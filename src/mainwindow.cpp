@@ -21,11 +21,19 @@
 #include <QtGui>
 #include "mainwindow.h"
 
+// TODO: Saving window state on close
+
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
 	setupUi(this);
 	connect(actionSettingsSettings,SIGNAL(triggered()),this,SLOT(ChangeSettings()));
+	// Centering MainWindow
+	// TODO: Loading of saved window state
+QRect rect = geometry();
+    rect.moveCenter(QApplication::desktop()->screenGeometry(QApplication::desktop()->primaryScreen()).center());
+	setGeometry(rect);
+
 }
 
 void MainWindow::ChangeSettings()

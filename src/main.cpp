@@ -28,7 +28,12 @@ QApplication app(argc, argv);
 // l18n
 QLocale *qlocale = &QLocale::system();
 QTranslator translator;
+	// Getting current locale languge name and trying to load it
 	if (translator.load(qlocale->languageToString(qlocale->language()),"i18n"))
+		app.installTranslator(&translator);
+	// If language loading failed and locale language is not
+	// application's "native" we're trying to load English
+	else if (qlocale->languageToString(qlocale->language()).compare("Russian") && translator.load("English","i18n"))
 		app.installTranslator(&translator);//*/
 
 MainWindow mainwindow;
