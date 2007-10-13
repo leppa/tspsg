@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/images" >
+        <file>About.bmp</file>
+        <file>Icon.png</file>
+        <file>Settings.png</file>
+        <file>Task.bmp</file>
+    </qresource>
+    <qresource prefix="/images/buttons" >
+        <file>buttons/Critical.png</file>
+        <file>buttons/Delete.png</file>
+        <file>buttons/Document.png</file>
+        <file>buttons/Font.png</file>
+        <file>buttons/Help.png</file>
+        <file>buttons/NoAction.png</file>
+        <file>buttons/OK.png</file>
+        <file>buttons/OpenFolder.png</file>
+        <file>buttons/Print.png</file>
+        <file>buttons/PrintSetup.png</file>
+        <file>buttons/Properties.png</file>
+        <file>buttons/Save.png</file>
+        <file>buttons/book_open.png</file>
+        <file>buttons/infoBubble.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,406 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>589</width>
+    <height>460</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>589</width>
+    <height>460</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>Задача коммивояжера</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../resources/tspsg.qrc" >:/images/Icon.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QGridLayout" >
+    <item row="0" column="0" >
+     <widget class="QTabWidget" name="tabWidget" >
+      <property name="sizePolicy" >
+       <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="currentIndex" >
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabTask" >
+       <attribute name="title" >
+        <string>Задание</string>
+       </attribute>
+       <layout class="QVBoxLayout" >
+        <item>
+         <layout class="QHBoxLayout" >
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelVariant" >
+            <property name="text" >
+             <string>&amp;Вариант:</string>
+            </property>
+            <property name="buddy" >
+             <cstring>spinVariant</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spinVariant" >
+            <property name="cursor" >
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="minimum" >
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelCities" >
+            <property name="text" >
+             <string>&amp;Городов:</string>
+            </property>
+            <property name="buddy" >
+             <cstring>spinCities</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spinCities" >
+            <property name="cursor" >
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="minimum" >
+             <number>3</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableView" name="tableTask" />
+        </item>
+        <item>
+         <layout class="QHBoxLayout" >
+          <item>
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="buttonRandom" >
+            <property name="cursor" >
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="statusTip" >
+             <string>Заполнить таблицу случайными значениями</string>
+            </property>
+            <property name="text" >
+             <string>Случайно</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="buttonSolve" >
+            <property name="cursor" >
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="statusTip" >
+             <string>Решить текущую задачу</string>
+            </property>
+            <property name="text" >
+             <string>Решить</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/OK.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabSolution" >
+       <attribute name="title" >
+        <string>Результат</string>
+       </attribute>
+       <layout class="QVBoxLayout" >
+        <item>
+         <layout class="QHBoxLayout" >
+          <property name="spacing" >
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QTextEdit" name="textEdit" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Expanding" hsizetype="Fixed" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="readOnly" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGraphicsView" name="graphicsView" />
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>589</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile" >
+    <property name="windowIcon" >
+     <iconset/>
+    </property>
+    <property name="title" >
+     <string>&amp;Файл</string>
+    </property>
+    <widget class="QMenu" name="menuFileSave" >
+     <property name="title" >
+      <string>Со&amp;хранить</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Save.png</iconset>
+     </property>
+     <addaction name="actionFileSaveResults" />
+     <addaction name="actionFileSaveGraph" />
+     <addaction name="actionFileSaveAll" />
+    </widget>
+    <addaction name="actionFileNew" />
+    <addaction name="actionFileOpen" />
+    <addaction name="menuFileSave" />
+    <addaction name="separator" />
+    <addaction name="actionFilePrintSetup" />
+    <addaction name="actionFilePrint" />
+    <addaction name="separator" />
+    <addaction name="actionFileExit" />
+   </widget>
+   <widget class="QMenu" name="menuSettings" >
+    <property name="title" >
+     <string>&amp;Настройки</string>
+    </property>
+    <addaction name="actionSettingsSettings" />
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>&amp;Помощь</string>
+    </property>
+    <addaction name="actionHelpContents" />
+    <addaction name="actionHelpContextual" />
+    <addaction name="separator" />
+    <addaction name="actionHelpAbout" />
+   </widget>
+   <addaction name="menuFile" />
+   <addaction name="menuSettings" />
+   <addaction name="menuHelp" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QToolBar" name="toolBar" >
+   <property name="cursor" >
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>17</width>
+     <height>18</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionFileNew" />
+   <addaction name="separator" />
+   <addaction name="actionFileSaveAll" />
+   <addaction name="actionFileOpen" />
+   <addaction name="separator" />
+   <addaction name="actionFilePrint" />
+   <addaction name="actionSettingsSettings" />
+   <addaction name="separator" />
+   <addaction name="actionFileExit" />
+  </widget>
+  <action name="actionFilePrintSetup" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/PrintSetup.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Настройка печати</string>
+   </property>
+  </action>
+  <action name="actionFilePrint" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Print.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Печать...</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionFileSaveResults" >
+   <property name="text" >
+    <string>&amp;Ход решения</string>
+   </property>
+  </action>
+  <action name="actionFileSaveGraph" >
+   <property name="text" >
+    <string>&amp;Граф решения</string>
+   </property>
+  </action>
+  <action name="actionFileSaveAll" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Save.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Сохранить &amp;все</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionFileNew" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Document.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Создать</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionFileOpen" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/OpenFolder.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Открыть</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSettingsSettings" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Properties.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Параметры</string>
+   </property>
+  </action>
+  <action name="actionHelpContents" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/book_open.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Содежание</string>
+   </property>
+  </action>
+  <action name="actionHelpContextual" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Help.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Контекстная справка</string>
+   </property>
+  </action>
+  <action name="actionHelpAbout" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/infoBubble.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Про...</string>
+   </property>
+  </action>
+  <action name="actionFileExit" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/NoAction.png</iconset>
+   </property>
+   <property name="text" >
+    <string>В&amp;ыход</string>
+   </property>
+   <property name="statusTip" >
+    <string>Выйти из программы</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../resources/tspsg.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionFileExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>294</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
