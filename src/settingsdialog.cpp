@@ -1,6 +1,6 @@
 /*
  *	TSPSG - TSP Solver and Generator
- *	Copyright (C) 2007 L¸ppa <lacontacts[at]gmail[dot]com>
+ *	Copyright (C) 2007 LÑ‘ppa <lacontacts[at]gmail[dot]com>
  *
  *	$Id$
  *	$URL$

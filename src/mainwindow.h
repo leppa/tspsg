@@ -1,6 +1,9 @@
 /*
  *	TSPSG - TSP Solver and Generator
- *	Copyright (C) 2007 L¸ppa <lacontacts[at]gmail[dot]com>
+ *	Copyright (C) 2007 LÑ‘ppa <lacontacts[at]gmail[dot]com>
+ *
+ *	$Id$
+ *	$URL$
  *
  *	This file is part of TSPSG.
  *
@@ -32,6 +35,7 @@ public:
 	MainWindow(QWidget *parent = 0);
 private slots:
 	void ChangeSettings();
+	void CitiesNumberChanged(int n);
 };
 
 #endif // MAINWINDOW_H
