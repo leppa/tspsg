@@ -2,6 +2,9 @@
  *	TSPSG - TSP Solver and Generator
  *	Copyright (C) 2007 L¸ppa <lacontacts[at]gmail[dot]com>
  *
+ *	$Id$
+ *	$URL$
+ *
  *	This file is part of TSPSG.
  *
  *	TSPSG is free software: you can redistribute it and/or modify
