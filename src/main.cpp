@@ -1,24 +1,24 @@
 /*
- *	TSPSG - TSP Solver and Generator
- *	Copyright (C) 2007 Lёppa <lacontacts[at]gmail[dot]com>
+ *  TSPSG - TSP Solver and Generator
+ *  Copyright (C) 2007 Lёppa <lacontacts[at]gmail[dot]com>
  *
- *	$Id$
- *	$URL$
+ *  $Id$
+ *  $URL$
  *
- *	This file is part of TSPSG.
+ *  This file is part of TSPSG.
  *
- *	TSPSG is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
+ *  TSPSG is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
  *
- *	TSPSG is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *  TSPSG is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
+ *  You should have received a copy of the GNU General Public License
+ *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <QApplication>
@@ -28,7 +28,8 @@
 int main(int argc, char *argv[])
 {
 QApplication app(argc, argv);
-// l18n
+/*/ i18n
+// TODO: Make English as program's "native" language
 QLocale *qlocale = &QLocale::system();
 QTranslator translator;
 	// Getting current locale languge name and trying to load it
@@ -37,8 +38,8 @@ QTranslator translator;
 	// If language loading failed and locale language is not
 	// application's "native" we're trying to load English
 	else if (qlocale->languageToString(qlocale->language()).compare("Russian") && translator.load("English","i18n"))
-		app.installTranslator(&translator);//*/
-
+		app.installTranslator(&translator);
+//*/
 MainWindow mainwindow;
 	mainwindow.show();
 	return app.exec();
