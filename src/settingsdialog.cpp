@@ -21,8 +21,9 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "settingsdialog.h"
 #include <QMessageBox>
+#include <QStatusTipEvent>
+#include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
 	: QDialog(parent)
@@ -34,5 +35,23 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 //	setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint);
 	setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
 	layout()->setSizeConstraint(layout()->SetFixedSize);
+	// Setting initial text of dialog hint label to own status tip text
+	labelHint->setText(labelHint->statusTip());
+}
+
+bool SettingsDialog::event(QEvent *ev)
+{
+	// Checking for StatusTip event and if tip text is not empty string
+	// setting it as text of the dialog hint label. Otherwise, setting
+	// dialog hint label text to own status tip text
+	if (ev->type() == QEvent::StatusTip) {
+QString tip = static_cast<QStatusTipEvent *>(ev)->tip();
+		if (tip.length() != 0)
+			labelHint->setText(tip);
+		else
+			labelHint->setText(labelHint->statusTip());
+		return true;
+	} else
+		return QDialog::event(ev);
 }
 

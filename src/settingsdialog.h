@@ -32,7 +32,10 @@ class SettingsDialog: public QDialog, public Ui::SettingsDialog
 	Q_OBJECT
 public:
 	SettingsDialog(QWidget *parent = 0);
-	
+
+private:
+	bool event(QEvent *);
+
 private slots:
 	void spinRandMinValueChanged(int val) { spinRandMax->setMinimum(val + 1); }
 };
