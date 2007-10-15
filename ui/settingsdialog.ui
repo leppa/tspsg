@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>436</width>
-    <height>172</height>
+    <width>440</width>
+    <height>176</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -181,6 +181,9 @@
                  <property name="cursor" >
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
+                 <property name="statusTip" >
+                  <string>Нижняя граница для генерации случайных значений</string>
+                 </property>
                  <property name="maximum" >
                   <number>1000</number>
                  </property>
@@ -213,6 +216,9 @@
                 <widget class="QSpinBox" name="spinRandMax" >
                  <property name="cursor" >
                   <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="statusTip" >
+                  <string>Верхняя граница для генерации случайных значений</string>
                  </property>
                  <property name="minimum" >
                   <number>1</number>
@@ -253,6 +259,9 @@
                  <property name="cursor" >
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
+                 <property name="statusTip" >
+                  <string>Размер отступа от левого края страницы</string>
+                 </property>
                  <property name="maximum" >
                   <number>999</number>
                  </property>
@@ -271,6 +280,9 @@
                <property name="cursor" >
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
+               <property name="statusTip" >
+                <string>Задать параметры шрифта, используемого при печати</string>
+               </property>
                <property name="text" >
                 <string>&amp;Шрифт...</string>
                </property>
@@ -288,6 +300,9 @@
          <widget class="QCheckBox" name="checkBox" >
           <property name="cursor" >
            <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="statusTip" >
+           <string>Открывать окно в том же положении и с теми же размерами, с какими оно было закрыто</string>
           </property>
           <property name="text" >
            <string>Сохранять состояние и положение главного окна</string>
@@ -341,7 +356,7 @@
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="toolTip" >
-        <string>Помощь</string>
+        <string>Справка</string>
        </property>
        <property name="statusTip" >
         <string>Получить помощь по настройкам</string>
@@ -365,14 +380,20 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="text" >
-        <string>Подсказка</string>
+       <property name="minimumSize" >
+        <size>
+         <width>235</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="statusTip" >
+        <string>Наведите указателем мыши на требуемый элемент диалога, чтоб получить подсказку</string>
        </property>
        <property name="textFormat" >
         <enum>Qt::PlainText</enum>
        </property>
        <property name="alignment" >
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        <set>Qt::AlignJustify|Qt::AlignVCenter</set>
        </property>
        <property name="wordWrap" >
         <bool>true</bool>
@@ -383,6 +404,9 @@
       <widget class="QPushButton" name="buttonOK" >
        <property name="cursor" >
         <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="statusTip" >
+        <string>Сохранить новые параметры</string>
        </property>
        <property name="text" >
         <string>&amp;OK</string>
@@ -399,6 +423,9 @@
       <widget class="QPushButton" name="buttonCancel" >
        <property name="cursor" >
         <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="statusTip" >
+        <string>Закрыть окно без сохранения параметров</string>
        </property>
        <property name="text" >
         <string>&amp;Отмена</string>

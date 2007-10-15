@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>506</width>
-    <height>396</height>
+    <width>640</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -30,7 +30,7 @@
       </property>
       <widget class="QWidget" name="tabTask" >
        <attribute name="title" >
-        <string>Задание</string>
+        <string>Задача</string>
        </attribute>
        <layout class="QVBoxLayout" >
         <item>
@@ -63,6 +63,9 @@
             <property name="cursor" >
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="statusTip" >
+             <string>Номер варианта</string>
+            </property>
             <property name="minimum" >
              <number>1</number>
             </property>
@@ -82,6 +85,9 @@
            <widget class="QSpinBox" name="spinCities" >
             <property name="cursor" >
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="statusTip" >
+             <string>Количество городов, которые обходит окммивояжер</string>
             </property>
             <property name="minimum" >
              <number>3</number>
@@ -111,6 +117,9 @@
         </item>
         <item>
          <widget class="QTableWidget" name="tableTask" >
+          <property name="statusTip" >
+           <string>Стоимости переходов/переездов из города в город</string>
+          </property>
           <property name="selectionMode" >
            <enum>QAbstractItemView::NoSelection</enum>
           </property>
@@ -182,7 +191,7 @@
       </widget>
       <widget class="QWidget" name="tabSolution" >
        <attribute name="title" >
-        <string>Результат</string>
+        <string>Решение</string>
        </attribute>
        <layout class="QVBoxLayout" >
         <item>
@@ -198,13 +207,20 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="statusTip" >
+             <string>Ход решения</string>
+            </property>
             <property name="readOnly" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QGraphicsView" name="graphicsView" />
+           <widget class="QGraphicsView" name="graphicsView" >
+            <property name="statusTip" >
+             <string>Граф решения</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -219,7 +235,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>506</width>
+     <width>640</width>
      <height>21</height>
     </rect>
    </property>
@@ -231,15 +247,20 @@
      <string>&amp;Файл</string>
     </property>
     <widget class="QMenu" name="menuFileSave" >
+     <property name="statusTip" >
+      <string/>
+     </property>
      <property name="title" >
       <string>Со&amp;хранить</string>
      </property>
      <property name="icon" >
       <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Save.png</iconset>
      </property>
-     <addaction name="actionFileSaveResults" />
-     <addaction name="actionFileSaveGraph" />
-     <addaction name="actionFileSaveAll" />
+     <addaction name="actionFileSaveTask" />
+     <addaction name="separator" />
+     <addaction name="actionFileSaveResultAll" />
+     <addaction name="actionFileSaveResultMatrices" />
+     <addaction name="actionFileSaveResultGraph" />
     </widget>
     <addaction name="actionFileNew" />
     <addaction name="actionFileOpen" />
@@ -287,9 +308,8 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionFileNew" />
-   <addaction name="separator" />
-   <addaction name="actionFileSaveAll" />
    <addaction name="actionFileOpen" />
+   <addaction name="actionFileSaveTask" />
    <addaction name="separator" />
    <addaction name="actionFilePrint" />
    <addaction name="actionSettingsSettings" />
@@ -303,34 +323,58 @@
    <property name="text" >
     <string>&amp;Настройка печати</string>
    </property>
+   <property name="statusTip" >
+    <string>Настроить принтер для печати</string>
+   </property>
   </action>
   <action name="actionFilePrint" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="icon" >
     <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Print.png</iconset>
    </property>
    <property name="text" >
     <string>&amp;Печать...</string>
    </property>
+   <property name="statusTip" >
+    <string>Распечатать результаты решения</string>
+   </property>
    <property name="shortcut" >
     <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="actionFileSaveResults" >
+  <action name="actionFileSaveResultMatrices" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="text" >
     <string>&amp;Ход решения</string>
    </property>
+   <property name="statusTip" >
+    <string>Сохранить только хоод решения</string>
+   </property>
   </action>
-  <action name="actionFileSaveGraph" >
+  <action name="actionFileSaveResultGraph" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="text" >
     <string>&amp;Граф решения</string>
    </property>
+   <property name="statusTip" >
+    <string>Сохранить только граф решения</string>
+   </property>
   </action>
-  <action name="actionFileSaveAll" >
-   <property name="icon" >
-    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Save.png</iconset>
+  <action name="actionFileSaveResultAll" >
+   <property name="enabled" >
+    <bool>false</bool>
    </property>
    <property name="text" >
-    <string>Сохранить &amp;все</string>
+    <string>&amp;Решение</string>
+   </property>
+   <property name="statusTip" >
+    <string>Сохранить ход и граф решения</string>
    </property>
    <property name="shortcut" >
     <string>Ctrl+S</string>
@@ -343,6 +387,9 @@
    <property name="text" >
     <string>&amp;Создать</string>
    </property>
+   <property name="statusTip" >
+    <string>Создать новую задачу</string>
+   </property>
    <property name="shortcut" >
     <string>Ctrl+N</string>
    </property>
@@ -353,6 +400,12 @@
    </property>
    <property name="text" >
     <string>&amp;Открыть</string>
+   </property>
+   <property name="toolTip" >
+    <string>Открыть задачу</string>
+   </property>
+   <property name="statusTip" >
+    <string>Открыть сохраненное условие задачи</string>
    </property>
    <property name="shortcut" >
     <string>Ctrl+O</string>
@@ -365,6 +418,9 @@
    <property name="text" >
     <string>&amp;Параметры</string>
    </property>
+   <property name="statusTip" >
+    <string>Настройка параметров программмы</string>
+   </property>
   </action>
   <action name="actionHelpContents" >
    <property name="icon" >
@@ -373,6 +429,9 @@
    <property name="text" >
     <string>&amp;Содежание</string>
    </property>
+   <property name="statusTip" >
+    <string>Вызвать справку по программе</string>
+   </property>
   </action>
   <action name="actionHelpContextual" >
    <property name="icon" >
@@ -380,6 +439,9 @@
    </property>
    <property name="text" >
     <string>&amp;Контекстная справка</string>
+   </property>
+   <property name="statusTip" >
+    <string>Вызвать контекстную справку</string>
    </property>
   </action>
   <action name="actionHelpAbout" >
@@ -399,6 +461,26 @@
    </property>
    <property name="statusTip" >
     <string>Выйти из программы</string>
+   </property>
+  </action>
+  <action name="actionFileSaveTask" >
+   <property name="icon" >
+    <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Save.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Задачу</string>
+   </property>
+   <property name="iconText" >
+    <string>Сохранить</string>
+   </property>
+   <property name="toolTip" >
+    <string>Сохранить задачу</string>
+   </property>
+   <property name="statusTip" >
+    <string>Сохранить условие задачи в файл</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
    </property>
   </action>
  </widget>
