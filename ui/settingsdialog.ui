@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
-    <height>176</height>
+    <width>436</width>
+    <height>172</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -302,7 +302,7 @@
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="statusTip" >
-           <string>Открывать окно в том же положении и с теми же размерами, с какими оно было закрыто</string>
+           <string>Восстанавливать состояние и размеры окна после перезапуска программы</string>
           </property>
           <property name="text" >
            <string>Сохранять состояние и положение главного окна</string>
@@ -380,20 +380,17 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="minimumSize" >
-        <size>
-         <width>235</width>
-         <height>30</height>
-        </size>
-       </property>
        <property name="statusTip" >
-        <string>Наведите указателем мыши на требуемый элемент диалога, чтоб получить подсказку</string>
+        <string>Наведите указатель мыши на элемент диалога, чтоб получить подсказку</string>
+       </property>
+       <property name="text" >
+        <string/>
        </property>
        <property name="textFormat" >
         <enum>Qt::PlainText</enum>
        </property>
        <property name="alignment" >
-        <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+        <set>Qt::AlignJustify|Qt::AlignTop</set>
        </property>
        <property name="wordWrap" >
         <bool>true</bool>
