@@ -40,6 +40,7 @@ private slots:
 	void CitiesNumberChanged(int n);
 private:
 	void PrepareTable();
+	int rand(int, int);
 	int randMin;
 	int randMax;
 };

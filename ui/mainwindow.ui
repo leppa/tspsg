@@ -451,6 +451,9 @@
    <property name="text" >
     <string>&amp;Про...</string>
    </property>
+   <property name="statusTip" >
+    <string>Получить информацию о программе</string>
+   </property>
   </action>
   <action name="actionFileExit" >
    <property name="icon" >

@@ -24,7 +24,7 @@
 #include <QtGui>
 #include "mainwindow.h"
 
-// TODO: Saving window state on close
+// TODO: Saving window state on close.
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), randMin(1), randMax(10)
@@ -39,7 +39,13 @@ MainWindow::MainWindow(QWidget *parent)
 QRect rect = geometry();
     rect.moveCenter(QApplication::desktop()->screenGeometry(QApplication::desktop()->primaryScreen()).center());
 	setGeometry(rect);
+	qsrand(QDateTime().currentDateTime().toTime_t());
 	PrepareTable();
+}
+
+int MainWindow::rand(int min, int max)
+{
+	return min + (int)(((float)qrand() / RAND_MAX) * max);
 }
 
 void MainWindow::PrepareTable()
@@ -55,7 +61,7 @@ QTableWidgetItem *item;
 				item = new QTableWidgetItem("...");
 				item->setFlags(item->flags() ^ Qt::ItemIsEditable);
 			} else {
-				item = new QTableWidgetItem(QVariant(randMin + qrand() * randMax / RAND_MAX).toString());
+				item = new QTableWidgetItem(QVariant(rand(randMin,randMax)).toString());
 QFont font = item->font();
 				font.setBold(true);
 				item->setFont(font);
@@ -88,12 +94,12 @@ QTableWidgetItem *item = new QTableWidgetItem(trUtf8("Город ") + QVariant(n
 		item->setFlags(item->flags() ^ Qt::ItemIsEditable);
 		tableTask->setItem(spinCities->value() - 1,spinCities->value() - 1,item);
 		for (int k = 0; k < spinCities->value() - 1; k++) {
-			item = new QTableWidgetItem(QVariant(randMin + qrand() * randMax / RAND_MAX).toString());
+			item = new QTableWidgetItem(QVariant(rand(randMin, randMax)).toString());
 QFont font = item->font();
 			font.setBold(true);
 			item->setFont(font);
 			tableTask->setItem(k,spinCities->value() - 1,item);
-			item = new QTableWidgetItem(QVariant(randMin + qrand() * randMax / RAND_MAX).toString());
+			item = new QTableWidgetItem(QVariant(rand(randMin, randMax)).toString());
 			font = item->font();
 			font.setBold(true);
 			item->setFont(font);
@@ -118,7 +124,7 @@ void MainWindow::Random()
 	for (int y = 0; y < spinCities->value(); y++)
 		for (int x = 0; x < spinCities->value(); x++)
 			if (x != y)
-				tableTask->item(x,y)->setText(QVariant(randMin + qrand() * randMax / RAND_MAX).toString());
+				tableTask->item(x,y)->setText(QVariant(rand(randMin, randMax)).toString());
 }
 
 void MainWindow::Solve()
