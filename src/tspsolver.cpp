@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 LÑ‘ppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007 L¸ppa <lacontacts[at]gmail[dot]com>
  *
  *  $Id$
  *  $URL$
@@ -21,30 +21,34 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
-#include <QMainWindow>
-#include "ui_mainwindow.h"
-#include "settingsdialog.h"
 #include "tspsolver.h"
 
-class MainWindow: public QMainWindow, Ui::MainWindow
-{
-	Q_OBJECT
-public:
-	MainWindow(QWidget *parent = 0);
-private slots:
-	void ChangeSettings();
-	void Solve();
-	void Random();
-	void CitiesNumberChanged(int n);
-private:
-	void PrepareTable();
-	int rand(int, int);
-	int randMin;
-	int randMax;
-};
+// Temoporary matrix for testing algorithm
+double testmatrix[] = {
+		infinity, 6, 7, 3, 4,
+		9, infinity, 6, 9, 10,
+		6, 9, infinity, 5, 3,
+		3, 10, 4, infinity, 2,
+		5, 1, 1, 9, infinity
+	};
 
-#endif // MAINWINDOW_H
+
+CTSPSolver::CTSPSolver()
+{
+}
+
+sStep *CTSPSolver::solve(int numCities, double *task)
+{
+	if (numCities <= 1)
+		return NULL;
+// Temporary debug code :-)
+	task = &testmatrix[0];
+	numCities = 5;
+//*/
+sStep step;
+	step.matrix = new double(numCities * numCities);
+	memcpy(step.matrix,task,sizeof(double) * numCities * numCities);
+
+	return NULL;
+}
 

@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 LÑ‘ppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007 L¸ppa <lacontacts[at]gmail[dot]com>
  *
  *  $Id$
  *  $URL$
@@ -21,30 +21,30 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef TSPSOLVER_H
+#define TSPSOLVER_H
 
-#include <QMainWindow>
-#include "ui_mainwindow.h"
-#include "settingsdialog.h"
-#include "tspsolver.h"
+#include <QtCore>
 
-class MainWindow: public QMainWindow, Ui::MainWindow
-{
-	Q_OBJECT
-public:
-	MainWindow(QWidget *parent = 0);
-private slots:
-	void ChangeSettings();
-	void Solve();
-	void Random();
-	void CitiesNumberChanged(int n);
-private:
-	void PrepareTable();
-	int rand(int, int);
-	int randMin;
-	int randMax;
+const double infinity = 1.7E+308;
+
+// Structure represent one step of solving
+// The tree of such elements will represent the solving process
+struct sStep {
+	double *matrix;
+	double price;
+	struct {unsigned int x; unsigned int y;} pos;
+	sStep *pLeft, *pRight;
+	sStep() { matrix = NULL; price = pos.x = pos.y = 0; pLeft = pRight = NULL;}
 };
 
-#endif // MAINWINDOW_H
+// TSP Solver class
+class CTSPSolver
+{
+public:
+	CTSPSolver();
+	sStep *solve(int, double *);
+};
+
+#endif // TSPSOLVER_H
 

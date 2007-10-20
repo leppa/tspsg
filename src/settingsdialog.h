@@ -40,5 +40,5 @@ private slots:
 	void spinRandMinValueChanged(int val) { spinRandMax->setMinimum(val + 1); }
 };
 
-#endif //  SETTINGSDIALOG_H
+#endif // SETTINGSDIALOG_H
 

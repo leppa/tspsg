@@ -24,7 +24,7 @@
 #include <QtGui>
 #include "mainwindow.h"
 
-// TODO: Saving window state on close.
+// TODO: Saving window state on close
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), randMin(1), randMax(10)
@@ -82,7 +82,7 @@ bool increased = tableTask->rowCount() < n ? true : false;
 	for (int k = 0; k < n; k++)
 //		tableTask->setColumnWidth(k,tableTask->viewport()->width() / n);
 	// If number of cities increased we need to reset headers and set
-	// appropriate sizes for new column and row.
+	// appropriate sizes for new column and row
 	if (increased) {
 QTableWidgetItem *item = new QTableWidgetItem(trUtf8("Город ") + QVariant(n).toString());
 		tableTask->setVerticalHeaderItem(n - 1,item);
@@ -129,7 +129,9 @@ void MainWindow::Random()
 
 void MainWindow::Solve()
 {
-	tabWidget->setCurrentIndex(1);
+	// tabWidget->setCurrentIndex(1);
+CTSPSolver solver;
+	solver.solve(spinCities->value(),NULL);
 	// TODO: Task solving goes here :-)
 }
 
