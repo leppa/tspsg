@@ -23,32 +23,37 @@
 
 #include "tspsolver.h"
 
-// Temoporary matrix for testing algorithm
-double testmatrix[] = {
-		infinity, 6, 7, 3, 4,
-		9, infinity, 6, 9, 10,
-		6, 9, infinity, 5, 3,
-		3, 10, 4, infinity, 2,
-		5, 1, 1, 9, infinity
-	};
-
-
 CTSPSolver::CTSPSolver()
 {
 }
 
-sStep *CTSPSolver::solve(int numCities, double *task)
+double CTSPSolver::findMinInRow(int nRow, tMatrix matrix)
+{
+double min = infinity;
+	for (int k = 0; k < nCities; k++)
+		if (min > matrix[nRow][k])
+			min = matrix[nRow][k];
+	return min == infinity ? 0 : min;
+}
+
+double CTSPSolver::findMinInCol(int nCol, tMatrix matrix)
+{
+double min = infinity;
+	for (int k = 0; k < nCities; k++)
+		if (min > matrix[k][nCol])
+			min = matrix[k][nCol];
+	return min == infinity ? 0 : min;
+}
+
+sStep *CTSPSolver::solve(int numCities, tMatrix task)
 {
 	if (numCities <= 1)
 		return NULL;
-// Temporary debug code :-)
-	task = &testmatrix[0];
-	numCities = 5;
-//*/
-sStep step;
-	step.matrix = new double(numCities * numCities);
-	memcpy(step.matrix,task,sizeof(double) * numCities * numCities);
+	nCities = numCities;
+sStep *step = new sStep();
+	step->matrix = task;
+	root = step;
 
-	return NULL;
+	return step;
 }
 

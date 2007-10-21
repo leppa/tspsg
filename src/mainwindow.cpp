@@ -129,9 +129,32 @@ void MainWindow::Random()
 
 void MainWindow::Solve()
 {
-	// tabWidget->setCurrentIndex(1);
-CTSPSolver solver;
-	solver.solve(spinCities->value(),NULL);
 	// TODO: Task solving goes here :-)
+tMatrix matrix;
+double *row;
+bool ok;
+	for (int x = 0; x < spinCities->value(); x++) {
+		row = new double[spinCities->value()];
+		for (int y = 0; y < spinCities->value(); y++) {
+			if (x == y)
+				row[y] = infinity;
+			else {
+				row[y] = tableTask->item(x,y)->text().toDouble(&ok);
+				if (!ok) {
+					QMessageBox(QMessageBox::Critical,trUtf8("Ошибка в данных"),QString(trUtf8("Ошибка в ячейке [Строка %1; Колонка %2]: Неверный формат данных.")).arg(x + 1).arg(y + 1),QMessageBox::Ok,this).exec();
+					return;
+				} else if (row[y] < 0) {
+					QMessageBox(QMessageBox::Critical,trUtf8("Ошибка в данных"),QString(trUtf8("Ошибка в ячейке [Строка %1; Колонка %2]: Значение не может быть меньше нуля.")).arg(x + 1).arg(y + 1),QMessageBox::Ok,this).exec();
+					return;
+				}
+			}
+		}
+		matrix.append(row);
+	}
+CTSPSolver solver;
+sStep *root = solver.solve(spinCities->value(),matrix);
+	if (!root)
+		QMessageBox(QMessageBox::Critical,trUtf8("Ошибка при решении"),trUtf8("Во время решения задачи возникла ошибка"),QMessageBox::Ok,this).exec();
+	// tabWidget->setCurrentIndex(1);
 }
 

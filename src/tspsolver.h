@@ -28,14 +28,16 @@
 
 const double infinity = 1.7E+308;
 
+typedef QList<double *> tMatrix;
+
 // Structure represent one step of solving
 // The tree of such elements will represent the solving process
 struct sStep {
-	double *matrix;
+	tMatrix matrix;
 	double price;
 	struct {unsigned int x; unsigned int y;} pos;
-	sStep *pLeft, *pRight;
-	sStep() { matrix = NULL; price = pos.x = pos.y = 0; pLeft = pRight = NULL;}
+	sStep *plNode, *prNode;
+	sStep() { price = pos.x = pos.y = 0; plNode = prNode = NULL; }
 };
 
 // TSP Solver class
@@ -43,7 +45,12 @@ class CTSPSolver
 {
 public:
 	CTSPSolver();
-	sStep *solve(int, double *);
+	sStep *solve(int, tMatrix);
+private:
+	int nCities;
+	sStep *root;
+	double findMinInRow(int, tMatrix);
+	double findMinInCol(int, tMatrix);
 };
 
 #endif // TSPSOLVER_H
