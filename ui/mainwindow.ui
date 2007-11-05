@@ -87,7 +87,7 @@
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="statusTip" >
-             <string>Количество городов, которые обходит окммивояжер</string>
+             <string>Количество городов, которые обходит коммивояжер</string>
             </property>
             <property name="minimum" >
              <number>3</number>

@@ -21,8 +21,8 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "tspmodel.h"
 #include <QTGui>
+#include "tspmodel.h"
 
 CTSPModel::CTSPModel(QObject *parent)
 	: QAbstractTableModel(parent), randMin(1), randMax(10), nCities(0)
