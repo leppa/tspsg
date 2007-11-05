@@ -28,6 +28,7 @@
 #include "ui_mainwindow.h"
 #include "settingsdialog.h"
 #include "tspsolver.h"
+#include "tspmodel.h"
 
 class MainWindow: public QMainWindow, Ui::MainWindow
 {
@@ -40,8 +41,7 @@ private slots:
 	void Random();
 	void CitiesNumberChanged(int n);
 private:
-	void PrepareTable();
-	int rand(int, int);
+	CTSPModel *tspmodel;
 	int randMin;
 	int randMax;
 };

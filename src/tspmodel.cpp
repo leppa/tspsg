@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 L¸ppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007 LÑ‘ppa <lacontacts[at]gmail[dot]com>
  *
  *  $Id$
  *  $URL$
@@ -25,7 +25,7 @@
 #include <QTGui>
 
 CTSPModel::CTSPModel(QObject *parent)
-	: QAbstractTableModel(parent), randMin(1), randMax(10)
+	: QAbstractTableModel(parent), randMin(1), randMax(10), nCities(0)
 {
 }
 
@@ -47,7 +47,7 @@ int CTSPModel::columnCount(const QModelIndex &) const
 QVariant CTSPModel::headerData(int section, Qt::Orientation, int role) const
 {
 	if (role == Qt::DisplayRole)
-		return trUtf8("Ãîðîä %1").arg(section + 1);
+		return trUtf8("Ð“Ð¾Ñ€Ð¾Ð´ %1").arg(section + 1);
 	return QVariant();
 }
 
@@ -57,26 +57,49 @@ QVariant CTSPModel::data(const QModelIndex &index, int role) const
 		return QVariant();
 	if (role == Qt::TextAlignmentRole)
 		return int(Qt::AlignCenter);
-	else if (role == Qt::DisplayRole) {
-		if (index.row() == index.column())
-			return trUtf8("---");
+	else if (role == Qt::FontRole) {
+QFont font;
+		font.setBold(true);
+		return font;
+	} else if (role == Qt::DisplayRole || role == Qt::EditRole) {
 		if (index.row() < nCities && index.column() < nCities)
-			return table.at(index.row())->at(index.column());
+			if (table[index.row()][index.column()] == INFINITY)
+				return trUtf8(INFSTR);
+			else
+				// HACK: Converting to string to prevent spinbox in edit mode
+				return QVariant(table[index.row()][index.column()]).toString();
 		else
 			return QVariant();
-	}
+	} else if (role == Qt::UserRole)
+		return table[index.row()][index.column()];
 	return QVariant();
 }
 
 bool CTSPModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-	return true;
+	if (!index.isValid())
+		return false;
+	if (role == Qt::EditRole && index.row() != index.column()) {
+		if (value.toString().compare(INFSTR) == 0)
+			table[index.row()][index.column()] = INFINITY;
+		else {
+bool ok;
+double tmp = value.toDouble(&ok);
+			if (!ok || tmp < 0)
+				return false;
+			else
+				table[index.row()][index.column()] = tmp;
+		}
+		emit dataChanged(index,index);
+		return true;
+	}
+	return false;
 }
 
 Qt::ItemFlags CTSPModel::flags(const QModelIndex &index) const
 {
 Qt::ItemFlags flags = QAbstractItemModel::flags(index);
-	if (index.row() == index.column())
+	if (index.row() != index.column())
 		flags |= Qt::ItemIsEditable;
 	return flags;
 }
@@ -88,20 +111,35 @@ int CTSPModel::numCities() const
 
 void CTSPModel::setNumCities(int n)
 {
+	if (n == nCities)
+		return;
+	emit layoutAboutToBeChanged();
 	if (n > nCities) {
-		foreach(QList<double> *row,table) {
-			for (int k = nCities; k < n; k++)
-				row->append(rand(randMin,randMax));
+		for (int r = 0; r < nCities; r++) {
+			for (int c = nCities; c < n; c++)
+				if (r == c)
+					table[r][c] = INFINITY;
+				else
+					table[r][c] = rand(randMin,randMax);
 		}
-		for (int k = nCities; k < n; k++) {
-QList<double> *row = new QList<double>[n];
-			foreach(double cell,*row)
-				cell = rand(randMin,randMax);
-			table.append(row);
+		for (int r = nCities; r < n; r++) {
+			for (int c = 0; c < n; c++)
+				if (r == c)
+					table[r][c] = INFINITY;
+				else
+					table[r][c] = rand(randMin,randMax);
 		}
-	} else if (n < nCities) {
-		// TODO: Shrinking table
 	}
 	nCities = n;
+	emit layoutChanged();
+}
+
+void CTSPModel::randomize()
+{
+	for (int r = 0; r < nCities; r++)
+		for (int c = 0; c < nCities; c++)
+			if (r != c)
+				table[r][c] = rand(randMin,randMax);
+	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
 }
 

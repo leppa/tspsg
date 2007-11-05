@@ -37,75 +37,19 @@ MainWindow::MainWindow(QWidget *parent)
 	// Centering MainWindow
 	// TODO: Loading of saved window state
 QRect rect = geometry();
-    rect.moveCenter(QApplication::desktop()->screenGeometry(QApplication::desktop()->primaryScreen()).center());
+	rect.moveCenter(QApplication::desktop()->screenGeometry(QApplication::desktop()->primaryScreen()).center());
 	setGeometry(rect);
 	qsrand(QDateTime().currentDateTime().toTime_t());
-	PrepareTable();
-}
-
-int MainWindow::rand(int min, int max)
-{
-	return min + (int)(((float)qrand() / RAND_MAX) * max);
-}
-
-void MainWindow::PrepareTable()
-{
-QTableWidgetItem *item;
-	for (int y = 0; y < spinCities->value(); y++) {
-		item = new QTableWidgetItem(trUtf8("Город ") + QVariant(y + 1).toString());
-		tableTask->setVerticalHeaderItem(y,item);
-		item = new QTableWidgetItem(trUtf8("Город ") + QVariant(y + 1).toString());
-		tableTask->setHorizontalHeaderItem(y,item);
-		for (int x = 0; x < spinCities->value(); x++) {
-			if (y == x) {
-				item = new QTableWidgetItem("...");
-				item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-			} else {
-				item = new QTableWidgetItem(QVariant(rand(randMin,randMax)).toString());
-QFont font = item->font();
-				font.setBold(true);
-				item->setFont(font);
-			}
-			item->setTextAlignment(Qt::AlignCenter);
-			tableTask->setItem(x,y,item);
-		}
-	}
-	tableTask->resizeRowsToContents();
-	tableTask->resizeColumnsToContents();
+	tspmodel = new CTSPModel();
+	tspmodel->randMin = randMin;
+	tspmodel->randMax = randMax;
+	tspmodel->setNumCities(spinCities->value());
+	taskView->setModel(tspmodel);
 }
 
 void MainWindow::CitiesNumberChanged(int n)
 {
-bool increased = tableTask->rowCount() < n ? true : false;
-	tableTask->setRowCount(n);
-	tableTask->setColumnCount(n);
-	for (int k = 0; k < n; k++)
-//		tableTask->setColumnWidth(k,tableTask->viewport()->width() / n);
-	// If number of cities increased we need to reset headers and set
-	// appropriate sizes for new column and row
-	if (increased) {
-QTableWidgetItem *item = new QTableWidgetItem(trUtf8("Город ") + QVariant(n).toString());
-		tableTask->setVerticalHeaderItem(n - 1,item);
-		item = new QTableWidgetItem(trUtf8("Город ") + QVariant(n).toString());
-		tableTask->setHorizontalHeaderItem(n - 1,item);
-		tableTask->resizeRowToContents(n - 1);
-		tableTask->resizeColumnToContents(n - 1);
-		item = new QTableWidgetItem("...");
-		item->setFlags(item->flags() ^ Qt::ItemIsEditable);
-		tableTask->setItem(spinCities->value() - 1,spinCities->value() - 1,item);
-		for (int k = 0; k < spinCities->value() - 1; k++) {
-			item = new QTableWidgetItem(QVariant(rand(randMin, randMax)).toString());
-QFont font = item->font();
-			font.setBold(true);
-			item->setFont(font);
-			tableTask->setItem(k,spinCities->value() - 1,item);
-			item = new QTableWidgetItem(QVariant(rand(randMin, randMax)).toString());
-			font = item->font();
-			font.setBold(true);
-			item->setFont(font);
-			tableTask->setItem(spinCities->value() - 1,k,item);
-		}
-	}
+	tspmodel->setNumCities(n);
 }
 
 void MainWindow::ChangeSettings()
@@ -121,10 +65,7 @@ SettingsDialog sd(this);
 
 void MainWindow::Random()
 {
-	for (int y = 0; y < spinCities->value(); y++)
-		for (int x = 0; x < spinCities->value(); x++)
-			if (x != y)
-				tableTask->item(x,y)->setText(QVariant(rand(randMin, randMax)).toString());
+	tspmodel->randomize();
 }
 
 void MainWindow::Solve()
@@ -132,21 +73,15 @@ void MainWindow::Solve()
 	// TODO: Task solving goes here :-)
 tMatrix matrix;
 double *row;
+int n = spinCities->value();
 bool ok;
-	for (int x = 0; x < spinCities->value(); x++) {
-		row = new double[spinCities->value()];
-		for (int y = 0; y < spinCities->value(); y++) {
-			if (x == y)
-				row[y] = infinity;
-			else {
-				row[y] = tableTask->item(x,y)->text().toDouble(&ok);
-				if (!ok) {
-					QMessageBox(QMessageBox::Critical,trUtf8("Ошибка в данных"),QString(trUtf8("Ошибка в ячейке [Строка %1; Колонка %2]: Неверный формат данных.")).arg(x + 1).arg(y + 1),QMessageBox::Ok,this).exec();
-					return;
-				} else if (row[y] < 0) {
-					QMessageBox(QMessageBox::Critical,trUtf8("Ошибка в данных"),QString(trUtf8("Ошибка в ячейке [Строка %1; Колонка %2]: Значение не может быть меньше нуля.")).arg(x + 1).arg(y + 1),QMessageBox::Ok,this).exec();
-					return;
-				}
+	for (int r = 0; r < n; r++) {
+		row = new double[n];
+		for (int c = 0; c < n; c++) {
+			row[c] = tspmodel->index(r,c).data(Qt::UserRole).toDouble(&ok);
+			if (!ok) {
+				QMessageBox(QMessageBox::Critical,trUtf8("Ошибка в данных"),QString(trUtf8("Ошибка в ячейке [Строка %1; Колонка %2]: Неверный формат данных.")).arg(r + 1).arg(c + 1),QMessageBox::Ok,this).exec();
+				return;
 			}
 		}
 		matrix.append(row);

@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 L¸ppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007 LÑ‘ppa <lacontacts[at]gmail[dot]com>
  *
  *  $Id$
  *  $URL$
@@ -24,6 +24,16 @@
 #ifndef TSPMODEL_H
 #define TSPMODEL_H
 
+// Decided, that static array with 100 of cities maximum hard limit
+// will be enough for most cases, but the code will be simplier than
+// when using dynamic lists. If you need more, just change this value
+// and recompile the program ;-)
+#define MAX_CITIES 100
+// This value means infinity :-)
+#define INFINITY 1.7E+308
+// This is string, which represents infinite value in table
+#define INFSTR "---"
+
 #include <QAbstractTableModel>
 
 class CTSPModel: public QAbstractTableModel
@@ -39,10 +49,11 @@ public:
 	Qt::ItemFlags flags(const QModelIndex &) const;
 	int numCities() const;
 	void setNumCities(int);
+	void randomize();
 	int randMin;
 	int randMax;
 private:
-	QList<QList<double> *> table;
+	double table[MAX_CITIES][MAX_CITIES];
 	int nCities;
 	int rand(int, int);
 };

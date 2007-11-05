@@ -26,11 +26,9 @@
 
 #include <QtCore>
 
-const double infinity = 1.7E+308;
-
 typedef QList<double *> tMatrix;
 
-// Structure represent one step of solving
+// This structure represents one step of solving
 // The tree of such elements will represent the solving process
 struct sStep {
 	tMatrix matrix;
