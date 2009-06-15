@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 Lёppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -45,4 +45,3 @@ MainWindow mainwindow;
 	mainwindow.show();
 	return app.exec();
 }
-

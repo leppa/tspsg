@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 Lёppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -22,6 +22,9 @@
  */
 
 #include <QtGui>
+#ifndef Q_OS_WINCE
+	#include <QPrintDialog>
+#endif // Q_OS_WINCE
 #include "mainwindow.h"
 
 // TODO: Saving window state on close
@@ -31,13 +34,23 @@ MainWindow::MainWindow(QWidget *parent)
 {
 	setupUi(this);
 	connect(actionSettingsSettings,SIGNAL(triggered()),this,SLOT(ChangeSettings()));
+#ifndef Q_OS_WINCE
+	connect(actionFilePrintSetup,SIGNAL(triggered()),this,SLOT(PrintSetup()));
+#endif // Q_OS_WINCE
 	connect(buttonSolve,SIGNAL(clicked()),this,SLOT(Solve()));
 	connect(buttonRandom,SIGNAL(clicked()),this,SLOT(Random()));
 	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(CitiesNumberChanged(int)));
+QRect rect = geometry();
+#ifdef Q_OS_WINCE
+	// HACK: Fix for all tabWidget elements becoming "unclickable" if making it central widget.
+	rect.setSize(QApplication::desktop()->availableGeometry().size());
+	rect.setHeight(rect.height() - (QApplication::desktop()->screenGeometry().height() - QApplication::desktop()->availableGeometry().height()));
+	tabWidget->resize(rect.width(),rect.height() - toolBar->size().height());
+#else
 	// Centering MainWindow
 	// TODO: Loading of saved window state
-QRect rect = geometry();
-	rect.moveCenter(QApplication::desktop()->screenGeometry(QApplication::desktop()->primaryScreen()).center());
+	rect.moveCenter(QApplication::desktop()->availableGeometry().center());
+#endif // Q_OS_WINCE
 	setGeometry(rect);
 	qsrand(QDateTime().currentDateTime().toTime_t());
 	tspmodel = new CTSPModel();
@@ -62,6 +75,14 @@ SettingsDialog sd(this);
 		randMax = sd.spinRandMax->value();
 	}
 }
+
+#ifndef Q_OS_WINCE
+void MainWindow::PrintSetup()
+{
+QPrintDialog pd;
+	pd.exec();
+}
+#endif // Q_OS_WINCE
 
 void MainWindow::Random()
 {
@@ -92,4 +113,3 @@ sStep *root = solver.solve(spinCities->value(),matrix);
 		QMessageBox(QMessageBox::Critical,trUtf8("Ошибка при решении"),trUtf8("Во время решения задачи возникла ошибка"),QMessageBox::Ok,this).exec();
 	// tabWidget->setCurrentIndex(1);
 }
-

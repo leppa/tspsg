@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 Lёppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -23,6 +23,7 @@
 
 #include <QMessageBox>
 #include <QStatusTipEvent>
+#include <QFontDialog>
 #include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
@@ -32,9 +33,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	connect(buttonOK,SIGNAL(clicked()),this,SLOT(accept()));
 	connect(buttonCancel,SIGNAL(clicked()),this,SLOT(reject()));
 	connect(spinRandMin,SIGNAL(valueChanged(int)),this,SLOT(spinRandMinValueChanged(int)));
+	connect(buttonFont,SIGNAL(clicked()),this,SLOT(buttonFontClicked()));
 //	setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint);
 	setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
 	layout()->setSizeConstraint(layout()->SetFixedSize);
+#ifndef Q_OS_WINCE
 	// Setting initial text of dialog hint label to own status tip
 	// text.
 	labelHint->setText(labelHint->statusTip());
@@ -42,8 +45,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	// from one-line to two-line and vice versa. Any better solution?
 	labelHint->setMaximumHeight(labelHint->height());
 	labelHint->setMinimumHeight(labelHint->height());
+#endif // Q_OS_WINCE
 }
 
+#ifndef Q_OS_WINCE
 bool SettingsDialog::event(QEvent *ev)
 {
 	// Checking for StatusTip event and if tip text is not empty string
@@ -59,4 +64,11 @@ QString tip = static_cast<QStatusTipEvent *>(ev)->tip();
 	} else
 		return QDialog::event(ev);
 }
+#endif // Q_OS_WINCE
 
+void SettingsDialog::buttonFontClicked()
+{
+	// TODO: Pass current font to dialog and save selected.
+QFontDialog fd;
+	fd.exec();
+}

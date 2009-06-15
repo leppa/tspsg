@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>480</height>
+    <width>234</width>
+    <height>292</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,211 +18,227 @@
     <normaloff>:/images/Icon.png</normaloff>:/images/Icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout">
-    <item row="0" column="0">
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tabTask">
-       <attribute name="title">
-        <string>Задача</string>
-       </attribute>
-       <layout class="QVBoxLayout">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>235</width>
+      <height>240</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::North</enum>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tabTask">
+     <attribute name="title">
+      <string>Задача</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="_2">
         <item>
-         <layout class="QHBoxLayout">
-          <item>
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QLabel" name="labelVariant">
-            <property name="text">
-             <string>&amp;Вариант:</string>
-            </property>
-            <property name="buddy">
-             <cstring>spinVariant</cstring>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinVariant">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="statusTip">
-             <string>Номер варианта</string>
-            </property>
-            <property name="minimum">
-             <number>1</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="labelCities">
-            <property name="text">
-             <string>&amp;Городов:</string>
-            </property>
-            <property name="buddy">
-             <cstring>spinCities</cstring>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinCities">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="statusTip">
-             <string>Количество городов, которые обходит коммивояжер</string>
-            </property>
-            <property name="minimum">
-             <number>3</number>
-            </property>
-            <property name="maximum">
-             <number>5</number>
-            </property>
-            <property name="value">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
-         <widget class="QTableView" name="taskView">
-          <property name="statusTip">
-           <string>Стоимости переходов/переездов из города в город</string>
+         <widget class="QLabel" name="labelVariant">
+          <property name="text">
+           <string>&amp;Вариант:</string>
           </property>
-          <property name="selectionMode">
-           <enum>QAbstractItemView::NoSelection</enum>
+          <property name="buddy">
+           <cstring>spinVariant</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout">
-          <item>
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="buttonRandom">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="statusTip">
-             <string>Заполнить таблицу случайными значениями</string>
-            </property>
-            <property name="text">
-             <string>Случайно</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="buttonSolve">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="statusTip">
-             <string>Решить текущую задачу</string>
-            </property>
-            <property name="text">
-             <string>Решить</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources/tspsg.qrc">
-              <normaloff>:/images/buttons/buttons/OK.png</normaloff>:/images/buttons/buttons/OK.png</iconset>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tabSolution">
-       <attribute name="title">
-        <string>Решение</string>
-       </attribute>
-       <layout class="QVBoxLayout">
-        <item>
-         <layout class="QHBoxLayout">
-          <property name="spacing">
-           <number>0</number>
+         <widget class="QSpinBox" name="spinVariant">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
-          <item>
-           <widget class="QTextEdit" name="textEdit">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="statusTip">
-             <string>Ход решения</string>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGraphicsView" name="graphicsView">
-            <property name="statusTip">
-             <string>Граф решения</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+          <property name="statusTip">
+           <string>Номер варианта</string>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelCities">
+          <property name="text">
+           <string>&amp;Городов:</string>
+          </property>
+          <property name="buddy">
+           <cstring>spinCities</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spinCities">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="statusTip">
+           <string>Количество городов, которые обходит коммивояжер</string>
+          </property>
+          <property name="minimum">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <number>5</number>
+          </property>
+          <property name="value">
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
-      </widget>
-     </widget>
-    </item>
-   </layout>
+      </item>
+      <item>
+       <widget class="QTableView" name="taskView">
+        <property name="statusTip">
+         <string>Стоимости переходов/переездов из города в город</string>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::NoSelection</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="_3">
+        <item>
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="buttonRandom">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="statusTip">
+           <string>Заполнить таблицу случайными значениями</string>
+          </property>
+          <property name="text">
+           <string>Случайно</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="buttonSolve">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="statusTip">
+           <string>Решить текущую задачу</string>
+          </property>
+          <property name="text">
+           <string>Решить</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/tspsg.qrc">
+            <normaloff>:/images/buttons/buttons/OK.png</normaloff>:/images/buttons/buttons/OK.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="tabSolution">
+     <attribute name="title">
+      <string>Решение</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="_4">
+      <item>
+       <layout class="QHBoxLayout" name="_5">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTextEdit" name="textEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="statusTip">
+           <string>Ход решения</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGraphicsView" name="graphicsView">
+          <property name="statusTip">
+           <string>Граф решения</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>640</width>
+     <width>234</width>
      <height>22</height>
     </rect>
    </property>
@@ -256,9 +272,6 @@
     <addaction name="actionFileOpen"/>
     <addaction name="menuFileSave"/>
     <addaction name="separator"/>
-    <addaction name="actionFilePrintSetup"/>
-    <addaction name="actionFilePrint"/>
-    <addaction name="separator"/>
     <addaction name="actionFileExit"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
@@ -280,7 +293,6 @@
    <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
    <property name="cursor">
     <cursorShape>ArrowCursor</cursorShape>
@@ -301,41 +313,10 @@
    <addaction name="actionFileOpen"/>
    <addaction name="actionFileSaveTask"/>
    <addaction name="separator"/>
-   <addaction name="actionFilePrint"/>
    <addaction name="actionSettingsSettings"/>
    <addaction name="separator"/>
    <addaction name="actionFileExit"/>
   </widget>
-  <action name="actionFilePrintSetup">
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/buttons/buttons/PrintSetup.png</normaloff>:/images/buttons/buttons/PrintSetup.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Настройка печати</string>
-   </property>
-   <property name="statusTip">
-    <string>Настроить принтер для печати</string>
-   </property>
-  </action>
-  <action name="actionFilePrint">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/buttons/buttons/Print.png</normaloff>:/images/buttons/buttons/Print.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Печать...</string>
-   </property>
-   <property name="statusTip">
-    <string>Распечатать результаты решения</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
-   </property>
-  </action>
   <action name="actionFileSaveResultMatrices">
    <property name="enabled">
     <bool>false</bool>
@@ -502,7 +483,7 @@
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>294</x>
+     <x>251</x>
      <y>229</y>
     </hint>
    </hints>

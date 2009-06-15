@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 Lёppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -25,7 +25,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "ui_mainwindow.h"
+#ifdef Q_OS_WINCE
+	#include "ui_mainwindow.ce.h"
+#else
+	#include "ui_mainwindow.h"
+#endif // Q_OS_WINCE
 #include "settingsdialog.h"
 #include "tspsolver.h"
 #include "tspmodel.h"
@@ -37,6 +41,9 @@ public:
 	MainWindow(QWidget *parent = 0);
 private slots:
 	void ChangeSettings();
+#ifndef Q_OS_WINCE
+	void PrintSetup();
+#endif // Q_OS_WINCE
 	void Solve();
 	void Random();
 	void CitiesNumberChanged(int n);
@@ -47,4 +54,3 @@ private:
 };
 
 #endif // MAINWINDOW_H
-

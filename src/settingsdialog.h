@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 Lёppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -25,7 +25,11 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
-#include "ui_settingsdialog.h"
+#ifdef Q_OS_WINCE
+	#include "ui_settingsdialog.ce.h"
+#else
+	#include "ui_settingsdialog.h"
+#endif // Q_OS_WINCE
 
 class SettingsDialog: public QDialog, public Ui::SettingsDialog
 {
@@ -34,11 +38,13 @@ public:
 	SettingsDialog(QWidget *parent = 0);
 
 private:
+#ifndef WINCE
 	bool event(QEvent *);
+#endif
 
 private slots:
 	void spinRandMinValueChanged(int val) { spinRandMax->setMinimum(val + 1); }
+	void buttonFontClicked();
 };
 
 #endif // SETTINGSDIALOG_H
-

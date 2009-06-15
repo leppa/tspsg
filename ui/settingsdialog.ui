@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>SettingsDialog</class>
- <widget class="QWidget" name="SettingsDialog" >
-  <property name="geometry" >
+ <widget class="QWidget" name="SettingsDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,91 +10,83 @@
     <height>172</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Параметры</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="../resources/tspsg.qrc" >:/images/Settings.png</iconset>
+  <property name="windowIcon">
+   <iconset resource="../resources/tspsg.qrc">
+    <normaloff>:/images/Settings.png</normaloff>:/images/Settings.png</iconset>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="spacing" >
+  <layout class="QVBoxLayout">
+   <property name="spacing">
     <number>0</number>
    </property>
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
+   <property name="margin">
     <number>0</number>
    </property>
    <item>
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
+    <layout class="QHBoxLayout">
+     <property name="spacing">
       <number>0</number>
      </property>
      <item>
-      <widget class="QLabel" name="imageSide" >
-       <property name="minimumSize" >
+      <widget class="QLabel" name="imageSide">
+       <property name="minimumSize">
         <size>
          <width>130</width>
          <height>0</height>
         </size>
        </property>
-       <property name="styleSheet" >
+       <property name="styleSheet">
         <string>background-color: #0080C0</string>
        </property>
-       <property name="frameShape" >
+       <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
        </property>
-       <property name="lineWidth" >
+       <property name="lineWidth">
         <number>0</number>
        </property>
-       <property name="text" >
+       <property name="text">
         <string/>
        </property>
-       <property name="pixmap" >
-        <pixmap resource="../resources/tspsg.qrc" >:/images/Settings.png</pixmap>
+       <property name="pixmap">
+        <pixmap resource="../resources/tspsg.qrc">:/images/Settings.png</pixmap>
        </property>
-       <property name="alignment" >
+       <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="Line" name="lineVertical" >
-       <property name="frameShadow" >
+      <widget class="Line" name="lineVertical">
+       <property name="frameShadow">
         <enum>QFrame::Plain</enum>
        </property>
-       <property name="lineWidth" >
+       <property name="lineWidth">
         <number>2</number>
        </property>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QWidget" native="1" name="background" >
-       <property name="palette" >
+      <widget class="QWidget" name="background" native="true">
+       <property name="palette">
         <palette>
          <active>
-          <colorrole role="Base" >
-           <brush brushstyle="SolidPattern" >
-            <color alpha="255" >
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
              <red>255</red>
              <green>255</green>
              <blue>255</blue>
             </color>
            </brush>
           </colorrole>
-          <colorrole role="Window" >
-           <brush brushstyle="SolidPattern" >
-            <color alpha="255" >
+          <colorrole role="Window">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
              <red>255</red>
              <green>255</green>
              <blue>255</blue>
@@ -102,18 +95,18 @@
           </colorrole>
          </active>
          <inactive>
-          <colorrole role="Base" >
-           <brush brushstyle="SolidPattern" >
-            <color alpha="255" >
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
              <red>255</red>
              <green>255</green>
              <blue>255</blue>
             </color>
            </brush>
           </colorrole>
-          <colorrole role="Window" >
-           <brush brushstyle="SolidPattern" >
-            <color alpha="255" >
+          <colorrole role="Window">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
              <red>255</red>
              <green>255</green>
              <blue>255</blue>
@@ -122,18 +115,18 @@
           </colorrole>
          </inactive>
          <disabled>
-          <colorrole role="Base" >
-           <brush brushstyle="SolidPattern" >
-            <color alpha="255" >
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
              <red>255</red>
              <green>255</green>
              <blue>255</blue>
             </color>
            </brush>
           </colorrole>
-          <colorrole role="Window" >
-           <brush brushstyle="SolidPattern" >
-            <color alpha="255" >
+          <colorrole role="Window">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
              <red>255</red>
              <green>255</green>
              <blue>255</blue>
@@ -143,51 +136,51 @@
          </disabled>
         </palette>
        </property>
-       <property name="autoFillBackground" >
+       <property name="autoFillBackground">
         <bool>true</bool>
        </property>
-       <layout class="QVBoxLayout" >
+       <layout class="QVBoxLayout">
         <item>
-         <layout class="QHBoxLayout" >
-          <property name="spacing" >
+         <layout class="QHBoxLayout">
+          <property name="spacing">
            <number>6</number>
           </property>
           <item>
-           <widget class="QGroupBox" name="groupRandomSettings" >
-            <property name="title" >
+           <widget class="QGroupBox" name="groupRandomSettings">
+            <property name="title">
              <string>Случайные значения:</string>
             </property>
-            <layout class="QVBoxLayout" >
+            <layout class="QVBoxLayout">
              <item>
-              <layout class="QHBoxLayout" >
+              <layout class="QHBoxLayout">
                <item>
-                <widget class="QLabel" name="labelRandMin" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+                <widget class="QLabel" name="labelRandMin">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
-                 <property name="text" >
+                 <property name="text">
                   <string>Ми&amp;нимум:</string>
                  </property>
-                 <property name="buddy" >
+                 <property name="buddy">
                   <cstring>spinRandMin</cstring>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="spinRandMin" >
-                 <property name="cursor" >
+                <widget class="QSpinBox" name="spinRandMin">
+                 <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
-                 <property name="statusTip" >
+                 <property name="statusTip">
                   <string>Нижняя граница для генерации случайных значений</string>
                  </property>
-                 <property name="maximum" >
+                 <property name="maximum">
                   <number>1000</number>
                  </property>
-                 <property name="value" >
+                 <property name="value">
                   <number>1</number>
                  </property>
                 </widget>
@@ -195,38 +188,38 @@
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" >
+              <layout class="QHBoxLayout">
                <item>
-                <widget class="QLabel" name="labelRandMax" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+                <widget class="QLabel" name="labelRandMax">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
-                 <property name="text" >
+                 <property name="text">
                   <string>&amp;Максимум:</string>
                  </property>
-                 <property name="buddy" >
+                 <property name="buddy">
                   <cstring>spinRandMax</cstring>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="spinRandMax" >
-                 <property name="cursor" >
+                <widget class="QSpinBox" name="spinRandMax">
+                 <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
-                 <property name="statusTip" >
+                 <property name="statusTip">
                   <string>Верхняя граница для генерации случайных значений</string>
                  </property>
-                 <property name="minimum" >
+                 <property name="minimum">
                   <number>1</number>
                  </property>
-                 <property name="maximum" >
+                 <property name="maximum">
                   <number>1000</number>
                  </property>
-                 <property name="value" >
+                 <property name="value">
                   <number>10</number>
                  </property>
                 </widget>
@@ -237,38 +230,38 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupPrintSetup" >
-            <property name="title" >
+           <widget class="QGroupBox" name="groupPrintSetup">
+            <property name="title">
              <string>Настройки печати:</string>
             </property>
-            <layout class="QVBoxLayout" >
+            <layout class="QVBoxLayout">
              <item>
-              <layout class="QHBoxLayout" >
+              <layout class="QHBoxLayout">
                <item>
-                <widget class="QLabel" name="labelLeftMargin" >
-                 <property name="text" >
+                <widget class="QLabel" name="labelLeftMargin">
+                 <property name="text">
                   <string>&amp;Левый отступ:</string>
                  </property>
-                 <property name="buddy" >
+                 <property name="buddy">
                   <cstring>spinLeftMargin</cstring>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="spinLeftMargin" >
-                 <property name="cursor" >
+                <widget class="QSpinBox" name="spinLeftMargin">
+                 <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
-                 <property name="statusTip" >
+                 <property name="statusTip">
                   <string>Размер отступа от левого края страницы</string>
                  </property>
-                 <property name="maximum" >
+                 <property name="maximum">
                   <number>999</number>
                  </property>
-                 <property name="singleStep" >
+                 <property name="singleStep">
                   <number>10</number>
                  </property>
-                 <property name="value" >
+                 <property name="value">
                   <number>100</number>
                  </property>
                 </widget>
@@ -276,18 +269,19 @@
               </layout>
              </item>
              <item>
-              <widget class="QPushButton" name="buttonFont" >
-               <property name="cursor" >
+              <widget class="QPushButton" name="buttonFont">
+               <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
-               <property name="statusTip" >
+               <property name="statusTip">
                 <string>Задать параметры шрифта, используемого при печати</string>
                </property>
-               <property name="text" >
+               <property name="text">
                 <string>&amp;Шрифт...</string>
                </property>
-               <property name="icon" >
-                <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Font.png</iconset>
+               <property name="icon">
+                <iconset resource="../resources/tspsg.qrc">
+                 <normaloff>:/images/buttons/buttons/Font.png</normaloff>:/images/buttons/buttons/Font.png</iconset>
                </property>
               </widget>
              </item>
@@ -297,14 +291,14 @@
          </layout>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox" >
-          <property name="cursor" >
+         <widget class="QCheckBox" name="checkBox">
+          <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
-          <property name="statusTip" >
+          <property name="statusTip">
            <string>Восстанавливать состояние и размеры окна после перезапуска программы</string>
           </property>
-          <property name="text" >
+          <property name="text">
            <string>Сохранять состояние и положение главного окна</string>
           </property>
          </widget>
@@ -315,120 +309,114 @@
     </layout>
    </item>
    <item>
-    <widget class="Line" name="lineHorizontal" >
-     <property name="maximumSize" >
+    <widget class="Line" name="lineHorizontal">
+     <property name="maximumSize">
       <size>
        <width>16777215</width>
        <height>2</height>
       </size>
      </property>
-     <property name="frameShadow" >
+     <property name="frameShadow">
       <enum>QFrame::Plain</enum>
      </property>
-     <property name="lineWidth" >
+     <property name="lineWidth">
       <number>2</number>
      </property>
-     <property name="orientation" >
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
+    <layout class="QHBoxLayout">
+     <property name="spacing">
       <number>6</number>
      </property>
-     <property name="leftMargin" >
-      <number>6</number>
-     </property>
-     <property name="topMargin" >
-      <number>6</number>
-     </property>
-     <property name="rightMargin" >
-      <number>6</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin">
       <number>6</number>
      </property>
      <item>
-      <widget class="QToolButton" name="toolButton" >
-       <property name="cursor" >
+      <widget class="QToolButton" name="toolButton">
+       <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Справка</string>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Получить помощь по настройкам</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>Помощь</string>
        </property>
-       <property name="icon" >
-        <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Help.png</iconset>
+       <property name="icon">
+        <iconset resource="../resources/tspsg.qrc">
+         <normaloff>:/images/buttons/buttons/Help.png</normaloff>:/images/buttons/buttons/Help.png</iconset>
        </property>
-       <property name="autoRaise" >
+       <property name="autoRaise">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="labelHint" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+      <widget class="QLabel" name="labelHint">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Наведите указатель мыши на элемент диалога, чтоб получить подсказку</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string/>
        </property>
-       <property name="textFormat" >
+       <property name="textFormat">
         <enum>Qt::PlainText</enum>
        </property>
-       <property name="alignment" >
+       <property name="alignment">
         <set>Qt::AlignJustify|Qt::AlignTop</set>
        </property>
-       <property name="wordWrap" >
+       <property name="wordWrap">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="buttonOK" >
-       <property name="cursor" >
+      <widget class="QPushButton" name="buttonOK">
+       <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Сохранить новые параметры</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>&amp;OK</string>
        </property>
-       <property name="icon" >
-        <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/OK.png</iconset>
+       <property name="icon">
+        <iconset resource="../resources/tspsg.qrc">
+         <normaloff>:/images/buttons/buttons/OK.png</normaloff>:/images/buttons/buttons/OK.png</iconset>
        </property>
-       <property name="default" >
+       <property name="default">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="buttonCancel" >
-       <property name="cursor" >
+      <widget class="QPushButton" name="buttonCancel">
+       <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Закрыть окно без сохранения параметров</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>&amp;Отмена</string>
        </property>
-       <property name="icon" >
-        <iconset resource="../resources/tspsg.qrc" >:/images/buttons/buttons/Critical.png</iconset>
+       <property name="icon">
+        <iconset resource="../resources/tspsg.qrc">
+         <normaloff>:/images/buttons/buttons/Critical.png</normaloff>:/images/buttons/buttons/Critical.png</iconset>
        </property>
       </widget>
      </item>
@@ -437,7 +425,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resources/tspsg.qrc" />
+  <include location="../resources/tspsg.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,0 +1,13 @@
+/*
+ *  TSPSG - TSP Solver and Generator
+ *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ *
+ *  $Id$
+ *  $URL$
+ *
+ *  This file is part of TSPSG.
+ */
+
+#include "..\\src\\resource.h"
+
+IDI_APPICON	ICON	"Icon.ico"

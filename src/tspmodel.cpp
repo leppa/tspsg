@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 Lёppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -44,10 +44,13 @@ int CTSPModel::columnCount(const QModelIndex &) const
 	return nCities;
 }
 
-QVariant CTSPModel::headerData(int section, Qt::Orientation, int role) const
+QVariant CTSPModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
 	if (role == Qt::DisplayRole)
-		return trUtf8("Город %1").arg(section + 1);
+		if (orientation == Qt::Vertical)
+			return trUtf8("Город %1").arg(section + 1);
+		else
+			return trUtf8("%1").arg(section + 1);
 	return QVariant();
 }
 
@@ -142,4 +145,3 @@ void CTSPModel::randomize()
 				table[r][c] = rand(randMin,randMax);
 	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
 }
-

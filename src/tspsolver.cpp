@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007 L¸ppa <lacontacts[at]gmail[dot]com>
+ *  Copyright (C) 2007-2009 LÑ‘ppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -57,4 +57,3 @@ sStep *step = new sStep();
 
 	return step;
 }
-
