@@ -33,6 +33,7 @@ FORMS += ui/mainwindow.ce.ui \
 #Resource file(s)
 RESOURCES += resources/tspsg.qrc
 
-#Translation files
+#Translations
+CODECFORTR = UTF-8
 TRANSLATIONS += i18n/English.ts \
 	i18n/Ukrainian.ts

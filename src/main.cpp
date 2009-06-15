@@ -31,14 +31,15 @@ int main(int argc, char *argv[])
 QApplication app(argc, argv);
 /*/ i18n
 // TODO: Make English as program's "native" language
-QLocale *qlocale = &QLocale::system();
+QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+QString locale = QLocale::languageToString(QLocale::system().language());
 QTranslator translator;
 	// Getting current locale languge name and trying to load it
-	if (translator.load(qlocale->languageToString(qlocale->language()),"i18n"))
+	if (translator.load(locale,"i18n"))
 		app.installTranslator(&translator);
 	// If language loading failed and locale language is not
 	// application's "native" we're trying to load English
-	else if (qlocale->languageToString(qlocale->language()).compare("Russian") && translator.load("English","i18n"))
+	else if (locale.compare("Russian") && translator.load("English","i18n"))
 		app.installTranslator(&translator);
 //*/
 MainWindow mainwindow;
