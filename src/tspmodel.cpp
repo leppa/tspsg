@@ -21,7 +21,7 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QTGui>
+#include <QtGui>
 #include "tspmodel.h"
 
 CTSPModel::CTSPModel(QObject *parent)
