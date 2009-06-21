@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>229</width>
+    <width>235</width>
     <height>264</height>
    </rect>
   </property>
@@ -194,6 +194,17 @@
          </spacer>
         </item>
         <item>
+         <widget class="QPushButton" name="buttonColor">
+          <property name="text">
+           <string>&amp;Цвет...</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/tspsg.qrc">
+            <normaloff>:/images/buttons/buttons/Color.png</normaloff>:/images/buttons/buttons/Color.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="buttonFont">
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
@@ -224,53 +235,6 @@
          </size>
         </property>
        </spacer>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBox">
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="statusTip">
-           <string>Восстанавливать состояние и размеры окна после перезапуска программы</string>
-          </property>
-          <property name="text">
-           <string>Сохранять состояние и
-положение главного окна</string>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
       </item>
      </layout>
     </widget>

@@ -368,9 +368,6 @@
    <property name="statusTip">
     <string>Сохранить ход и граф решения</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
   </action>
   <action name="actionFileNew">
    <property name="icon">

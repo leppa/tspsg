@@ -39,8 +39,12 @@ class MainWindow: public QMainWindow, Ui::MainWindow
 	Q_OBJECT
 public:
 	MainWindow(QWidget *parent = 0);
+#ifndef Q_OS_WINCE
+	void closeEvent(QCloseEvent *event);
+#endif // Q_OS_WINCE
 private slots:
 	void ChangeSettings();
+	void showAbout();
 #ifndef Q_OS_WINCE
 	void PrintSetup();
 #endif // Q_OS_WINCE
@@ -49,8 +53,6 @@ private slots:
 	void CitiesNumberChanged(int n);
 private:
 	CTSPModel *tspmodel;
-	int randMin;
-	int randMax;
 };
 
 #endif // MAINWINDOW_H

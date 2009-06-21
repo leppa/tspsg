@@ -1,6 +1,6 @@
 /*
  *  TSPSG - TSP Solver and Generator
- *  Copyright (C) 2007-2009 LÑ‘ppa <contacts[at]oleksii[dot]name>
+ *  Copyright (C) 2007-2009 L¸ppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -21,36 +21,18 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#ifndef DEFAULTS_H
+#define DEFAULTS_H
 
-#include <QDialog>
-#include <QSettings>
-#ifdef Q_OS_WINCE
-	#include "ui_settingsdialog.ce.h"
-#else
-	#include "ui_settingsdialog.h"
-#endif // Q_OS_WINCE
+// Ini file name
+#define INI_FILE "tspsg.ini"
 
-class SettingsDialog: public QDialog, public Ui::SettingsDialog
-{
-	Q_OBJECT
-public:
-	SettingsDialog(QWidget *parent = 0);
+// Default values
+#define DEF_RAND_MIN 1
+#define DEF_RAND_MAX 10
+#define DEF_OFFSET 100
+#define DEF_FONT_FAMILY "Courier New"
+#define DEF_FONT_SIZE 12
+#define DEF_FONT_COLOR Qt::black
 
-private:
-	QSettings *settings;
-	QFont font;
-	QColor color;
-#ifndef Q_OS_WINCE
-	bool event(QEvent *);
-#endif
-
-private slots:
-	void accept();
-	void spinRandMinValueChanged(int val) { spinRandMax->setMinimum(val + 1); }
-	void buttonFontClicked();
-	void buttonColorClicked();
-};
-
-#endif // SETTINGSDIALOG_H
+#endif // DEFAULTS_H

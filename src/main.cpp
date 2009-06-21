@@ -29,6 +29,9 @@
 int main(int argc, char *argv[])
 {
 QApplication app(argc, argv);
+	app.setOrganizationName("..::Lёppsville::..");
+	app.setOrganizationDomain("www.leppsville.com");
+	app.setApplicationName("TSPSG");
 /*/ i18n
 // TODO: Make English as program's "native" language
 QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));

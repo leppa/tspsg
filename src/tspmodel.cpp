@@ -22,11 +22,13 @@
  */
 
 #include <QtGui>
+#include "defines.h"
 #include "tspmodel.h"
 
 CTSPModel::CTSPModel(QObject *parent)
-	: QAbstractTableModel(parent), randMin(1), randMax(10), nCities(0)
+	: QAbstractTableModel(parent), nCities(0)
 {
+	settings = new QSettings(INI_FILE,QSettings::IniFormat);
 }
 
 int CTSPModel::rand(int min, int max)
@@ -114,6 +116,8 @@ int CTSPModel::numCities() const
 
 void CTSPModel::setNumCities(int n)
 {
+int randMin = settings->value("MinCost",DEF_RAND_MIN).toInt();
+int randMax = settings->value("MaxCost",DEF_RAND_MAX).toInt();
 	if (n == nCities)
 		return;
 	emit layoutAboutToBeChanged();
@@ -139,6 +143,8 @@ void CTSPModel::setNumCities(int n)
 
 void CTSPModel::randomize()
 {
+int randMin = settings->value("MinCost",DEF_RAND_MIN).toInt();
+int randMax = settings->value("MaxCost",DEF_RAND_MAX).toInt();
 	for (int r = 0; r < nCities; r++)
 		for (int c = 0; c < nCities; c++)
 			if (r != c)

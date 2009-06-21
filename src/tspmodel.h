@@ -30,11 +30,14 @@
 // and recompile the program ;-)
 #define MAX_CITIES 100
 // This value means infinity :-)
-#define INFINITY 1.7E+308
+#ifndef INFINITY
+	#define INFINITY 1.7E+308
+#endif
 // This is string, which represents infinite value in table
 #define INFSTR "---"
 
 #include <QAbstractTableModel>
+#include <QSettings>
 
 class CTSPModel: public QAbstractTableModel
 {
@@ -50,9 +53,8 @@ public:
 	int numCities() const;
 	void setNumCities(int);
 	void randomize();
-	int randMin;
-	int randMax;
 private:
+	QSettings *settings;
 	double table[MAX_CITIES][MAX_CITIES];
 	int nCities;
 	int rand(int, int);

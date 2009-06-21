@@ -24,6 +24,8 @@
 #include <QMessageBox>
 #include <QStatusTipEvent>
 #include <QFontDialog>
+#include <QColorDialog>
+#include "defines.h"
 #include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
@@ -34,6 +36,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	connect(buttonCancel,SIGNAL(clicked()),this,SLOT(reject()));
 	connect(spinRandMin,SIGNAL(valueChanged(int)),this,SLOT(spinRandMinValueChanged(int)));
 	connect(buttonFont,SIGNAL(clicked()),this,SLOT(buttonFontClicked()));
+	connect(buttonColor,SIGNAL(clicked()),this,SLOT(buttonColorClicked()));
 //	setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint);
 	setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
 	layout()->setSizeConstraint(layout()->SetFixedSize);
@@ -46,6 +49,19 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	labelHint->setMaximumHeight(labelHint->height());
 	labelHint->setMinimumHeight(labelHint->height());
 #endif // Q_OS_WINCE
+	settings = new QSettings(INI_FILE,QSettings::IniFormat);
+	spinRandMin->setValue(settings->value("MinCost",DEF_RAND_MIN).toInt());
+	spinRandMax->setValue(settings->value("MaxCost",DEF_RAND_MAX).toInt());
+#ifndef Q_OS_WINCE
+	cbSaveState->setChecked(settings->value("SavePos",false).toBool());
+#endif // Q_OS_WINCE
+	settings->beginGroup("Print");
+	font = settings->value("Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>();
+	color = settings->value("Color",DEF_FONT_COLOR).value<QColor>();
+#ifndef Q_OS_WINCE
+	spinLeftMargin->setValue(settings->value("Offset",DEF_OFFSET).toInt());
+#endif // Q_OS_WINCE
+	settings->endGroup();
 }
 
 #ifndef Q_OS_WINCE
@@ -68,7 +84,32 @@ QString tip = static_cast<QStatusTipEvent *>(ev)->tip();
 
 void SettingsDialog::buttonFontClicked()
 {
-	// TODO: Pass current font to dialog and save selected.
-QFontDialog fd;
-	fd.exec();
+bool ok;
+QFont font = QFontDialog::getFont(&ok,this->font,this);
+	if (ok)
+		this->font = font;
+}
+
+void SettingsDialog::buttonColorClicked()
+{
+QColorDialog cd(color,this);
+	if (cd.exec() == QDialog::Accepted)
+		color = cd.selectedColor();
+}
+
+void SettingsDialog::accept()
+{
+#ifndef Q_OS_WINCE
+	settings->setValue("SavePos",cbSaveState->isChecked());
+#endif // Q_OS_WINCE
+	settings->setValue("MinCost",spinRandMin->value());
+	settings->setValue("MaxCost",spinRandMax->value());
+	settings->beginGroup("Print");
+	settings->setValue("Font",font);
+	settings->setValue("Color",color);
+#ifndef Q_OS_WINCE
+	settings->setValue("Offset",spinLeftMargin->value());
+#endif // Q_OS_WINCE
+	settings->endGroup();
+	QDialog::accept();
 }

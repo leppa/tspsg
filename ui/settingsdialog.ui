@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>436</width>
+    <width>466</width>
     <height>172</height>
    </rect>
   </property>
@@ -234,7 +234,7 @@
             <property name="title">
              <string>Настройки печати:</string>
             </property>
-            <layout class="QVBoxLayout">
+            <layout class="QVBoxLayout" name="verticalLayout">
              <item>
               <layout class="QHBoxLayout">
                <item>
@@ -269,20 +269,37 @@
               </layout>
              </item>
              <item>
-              <widget class="QPushButton" name="buttonFont">
-               <property name="cursor">
-                <cursorShape>PointingHandCursor</cursorShape>
+              <widget class="QSplitter" name="splitter">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
                </property>
-               <property name="statusTip">
-                <string>Задать параметры шрифта, используемого при печати</string>
-               </property>
-               <property name="text">
-                <string>&amp;Шрифт...</string>
-               </property>
-               <property name="icon">
-                <iconset resource="../resources/tspsg.qrc">
-                 <normaloff>:/images/buttons/buttons/Font.png</normaloff>:/images/buttons/buttons/Font.png</iconset>
-               </property>
+               <widget class="QPushButton" name="buttonColor">
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>&amp;Цвет...</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../resources/tspsg.qrc">
+                  <normaloff>:/images/buttons/buttons/Color.png</normaloff>:/images/buttons/buttons/Color.png</iconset>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="buttonFont">
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="statusTip">
+                 <string>Задать параметры шрифта, используемого при печати</string>
+                </property>
+                <property name="text">
+                 <string>&amp;Шрифт...</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../resources/tspsg.qrc">
+                  <normaloff>:/images/buttons/buttons/Font.png</normaloff>:/images/buttons/buttons/Font.png</iconset>
+                </property>
+               </widget>
               </widget>
              </item>
             </layout>
@@ -291,7 +308,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox">
+         <widget class="QCheckBox" name="cbSaveState">
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
@@ -425,6 +442,7 @@
   </layout>
  </widget>
  <resources>
+  <include location="../resources/tspsg.qrc"/>
   <include location="../resources/tspsg.qrc"/>
  </resources>
  <connections/>
