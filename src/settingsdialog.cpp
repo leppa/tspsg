@@ -92,9 +92,9 @@ QFont font = QFontDialog::getFont(&ok,this->font,this);
 
 void SettingsDialog::buttonColorClicked()
 {
-QColorDialog cd(color,this);
-	if (cd.exec() == QDialog::Accepted)
-		color = cd.selectedColor();
+QColor color = QColorDialog::getColor(this->color,this);
+	if (color.isValid())
+		this->color = color;
 }
 
 void SettingsDialog::accept()
