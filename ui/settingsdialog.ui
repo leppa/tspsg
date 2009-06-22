@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>466</width>
-    <height>172</height>
+    <width>498</width>
+    <height>188</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -239,6 +239,12 @@
               <layout class="QHBoxLayout">
                <item>
                 <widget class="QLabel" name="labelLeftMargin">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>&amp;Левый отступ:</string>
                  </property>
@@ -269,38 +275,42 @@
               </layout>
              </item>
              <item>
-              <widget class="QSplitter" name="splitter">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <property name="spacing">
+                <number>0</number>
                </property>
-               <widget class="QPushButton" name="buttonColor">
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="text">
-                 <string>&amp;Цвет...</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../resources/tspsg.qrc">
-                  <normaloff>:/images/buttons/buttons/Color.png</normaloff>:/images/buttons/buttons/Color.png</iconset>
-                </property>
-               </widget>
-               <widget class="QPushButton" name="buttonFont">
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="statusTip">
-                 <string>Задать параметры шрифта, используемого при печати</string>
-                </property>
-                <property name="text">
-                 <string>&amp;Шрифт...</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../resources/tspsg.qrc">
-                  <normaloff>:/images/buttons/buttons/Font.png</normaloff>:/images/buttons/buttons/Font.png</iconset>
-                </property>
-               </widget>
-              </widget>
+               <item>
+                <widget class="QPushButton" name="buttonColor">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="text">
+                  <string>&amp;Цвет...</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../resources/tspsg.qrc">
+                   <normaloff>:/images/buttons/buttons/Color.png</normaloff>:/images/buttons/buttons/Color.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="buttonFont">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="statusTip">
+                  <string>Задать параметры шрифта, используемого при печати</string>
+                 </property>
+                 <property name="text">
+                  <string>&amp;Шрифт...</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../resources/tspsg.qrc">
+                   <normaloff>:/images/buttons/buttons/Font.png</normaloff>:/images/buttons/buttons/Font.png</iconset>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </widget>
