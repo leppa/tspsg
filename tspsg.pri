@@ -11,7 +11,8 @@
 ######################################################################
 
 #Header files
-HEADERS += src/mainwindow.h \
+HEADERS += src/defines.h \
+	src/mainwindow.h \
 	src/settingsdialog.h \
 	src/tspmodel.h \
 	src/tspsolver.h \

@@ -284,6 +284,9 @@
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
+                 <property name="statusTip">
+                  <string>Задать цвет шрифта, используемого при печати</string>
+                 </property>
                  <property name="text">
                   <string>&amp;Цвет...</string>
                  </property>
@@ -452,7 +455,6 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resources/tspsg.qrc"/>
   <include location="../resources/tspsg.qrc"/>
  </resources>
  <connections/>

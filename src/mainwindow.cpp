@@ -149,11 +149,11 @@ TSPSG is licensed under the terms of the GNU General Public License. You should 
 	QMessageBox(QMessageBox::Information,"About",about).exec();
 }
 
-#ifndef Q_OS_WINCE
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-	// Saving windows state
 	settings->setValue("NumCities",spinCities->value());
+#ifndef Q_OS_WINCE
+	// Saving windows state
 	if (settings->value("SavePos",false).toBool()) {
 		settings->beginGroup("MainWindow");
 		settings->setValue("Maximized",isMaximized());
@@ -163,6 +163,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
 		}
 		settings->endGroup();
 	}
+#endif // Q_OS_WINCE
 	QMainWindow::closeEvent(event);
 }
-#endif // Q_OS_WINCE

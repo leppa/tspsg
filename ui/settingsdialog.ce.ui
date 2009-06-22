@@ -195,6 +195,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="buttonColor">
+          <property name="statusTip">
+           <string>Задать цвет шрифта, используемого при печати</string>
+          </property>
           <property name="text">
            <string>&amp;Цвет...</string>
           </property>
