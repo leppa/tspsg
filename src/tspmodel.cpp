@@ -28,7 +28,7 @@
 CTSPModel::CTSPModel(QObject *parent)
 	: QAbstractTableModel(parent), nCities(0)
 {
-	settings = new QSettings(INI_FILE,QSettings::IniFormat);
+	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
 }
 
 int CTSPModel::rand(int min, int max)

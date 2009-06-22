@@ -21,11 +21,8 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DEFAULTS_H
-#define DEFAULTS_H
-
-// Ini file name
-#define INI_FILE "tspsg.ini"
+#ifndef DEFINES_H
+#define DEFINES_H
 
 // Default values
 #define DEF_RAND_MIN 1
@@ -35,4 +32,4 @@
 #define DEF_FONT_SIZE 12
 #define DEF_FONT_COLOR Qt::black
 
-#endif // DEFAULTS_H
+#endif // DEFINES_H

@@ -25,6 +25,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSettings>
 #ifdef Q_OS_WINCE
 	#include "ui_mainwindow.ce.h"
 #else
@@ -52,6 +53,7 @@ private slots:
 	void Random();
 	void CitiesNumberChanged(int n);
 private:
+	QSettings *settings;
 	CTSPModel *tspmodel;
 };
 

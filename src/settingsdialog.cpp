@@ -49,7 +49,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	labelHint->setMaximumHeight(labelHint->height());
 	labelHint->setMinimumHeight(labelHint->height());
 #endif // Q_OS_WINCE
-	settings = new QSettings(INI_FILE,QSettings::IniFormat);
+	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
 	spinRandMin->setValue(settings->value("MinCost",DEF_RAND_MIN).toInt());
 	spinRandMax->setValue(settings->value("MaxCost",DEF_RAND_MAX).toInt());
 #ifndef Q_OS_WINCE

@@ -32,8 +32,8 @@ MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
 	setupUi(this);
-QSettings settings(INI_FILE,QSettings::IniFormat);
-	spinCities->setValue(settings.value("NumCities",5).toInt());
+	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
+	spinCities->setValue(settings->value("NumCities",5).toInt());
 	connect(actionSettingsSettings,SIGNAL(triggered()),this,SLOT(ChangeSettings()));
 	connect(actionHelpAbout,SIGNAL(triggered()),this,SLOT(showAbout()));
 #ifndef Q_OS_WINCE
@@ -49,14 +49,14 @@ QRect rect = geometry();
 	rect.setHeight(rect.height() - (QApplication::desktop()->screenGeometry().height() - QApplication::desktop()->availableGeometry().height()));
 	tabWidget->resize(rect.width(),rect.height() - toolBar->size().height());
 #else
-	if (settings.value("SavePos",false).toBool()) {
+	if (settings->value("SavePos",false).toBool()) {
 		// Loading of saved window state
-		settings.beginGroup("MainWindow");
-		resize(settings.value("Size",size()).toSize());
-		move(settings.value("Position",pos()).toPoint());
-		if (settings.value("Maximized",false).toBool())
+		settings->beginGroup("MainWindow");
+		resize(settings->value("Size",size()).toSize());
+		move(settings->value("Position",pos()).toPoint());
+		if (settings->value("Maximized",false).toBool())
 			setWindowState(windowState() | Qt::WindowMaximized);
-		settings.endGroup();
+		settings->endGroup();
 	} else {
 		// Centering main window
 		rect.moveCenter(QApplication::desktop()->availableGeometry(this).center());
@@ -153,16 +153,15 @@ TSPSG is licensed under the terms of the GNU General Public License. You should 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
 	// Saving windows state
-QSettings settings(INI_FILE,QSettings::IniFormat);
-	settings.setValue("NumCities",spinCities->value());
-	if (settings.value("SavePos",false).toBool()) {
-		settings.beginGroup("MainWindow");
-		settings.setValue("Maximized",isMaximized());
+	settings->setValue("NumCities",spinCities->value());
+	if (settings->value("SavePos",false).toBool()) {
+		settings->beginGroup("MainWindow");
+		settings->setValue("Maximized",isMaximized());
 		if (!isMaximized()) {
-			settings.setValue("Size",size());
-			settings.setValue("Position",pos());
+			settings->setValue("Size",size());
+			settings->setValue("Position",pos());
 		}
-		settings.endGroup();
+		settings->endGroup();
 	}
 	QMainWindow::closeEvent(event);
 }
