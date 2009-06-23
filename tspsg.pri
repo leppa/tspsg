@@ -37,4 +37,5 @@ RESOURCES += resources/tspsg.qrc
 #Translations
 CODECFORTR = UTF-8
 TRANSLATIONS += i18n/English.ts \
+	i18n/Russian.ts \
 	i18n/Ukrainian.ts

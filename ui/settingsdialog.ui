@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>498</width>
-    <height>188</height>
+    <width>448</width>
+    <height>174</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Параметры</string>
+   <string>Preferences</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/tspsg.qrc">
@@ -148,7 +148,7 @@
           <item>
            <widget class="QGroupBox" name="groupRandomSettings">
             <property name="title">
-             <string>Случайные значения:</string>
+             <string>Random values:</string>
             </property>
             <layout class="QVBoxLayout">
              <item>
@@ -162,7 +162,7 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>Ми&amp;нимум:</string>
+                  <string>&amp;Minimal:</string>
                  </property>
                  <property name="buddy">
                   <cstring>spinRandMin</cstring>
@@ -175,7 +175,7 @@
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="statusTip">
-                  <string>Нижняя граница для генерации случайных значений</string>
+                  <string>Minimum for random number generation</string>
                  </property>
                  <property name="maximum">
                   <number>1000</number>
@@ -198,7 +198,7 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>&amp;Максимум:</string>
+                  <string>Ma&amp;ximal:</string>
                  </property>
                  <property name="buddy">
                   <cstring>spinRandMax</cstring>
@@ -211,7 +211,7 @@
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="statusTip">
-                  <string>Верхняя граница для генерации случайных значений</string>
+                  <string>Maximum for random number generation</string>
                  </property>
                  <property name="minimum">
                   <number>1</number>
@@ -232,7 +232,7 @@
           <item>
            <widget class="QGroupBox" name="groupPrintSetup">
             <property name="title">
-             <string>Настройки печати:</string>
+             <string>Print settings:</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
              <item>
@@ -246,7 +246,7 @@
                   </sizepolicy>
                  </property>
                  <property name="text">
-                  <string>&amp;Левый отступ:</string>
+                  <string>&amp;Left margin:</string>
                  </property>
                  <property name="buddy">
                   <cstring>spinLeftMargin</cstring>
@@ -259,7 +259,7 @@
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="statusTip">
-                  <string>Размер отступа от левого края страницы</string>
+                  <string>Left border margin for page</string>
                  </property>
                  <property name="maximum">
                   <number>999</number>
@@ -285,10 +285,10 @@
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="statusTip">
-                  <string>Задать цвет шрифта, используемого при печати</string>
+                  <string>Font color for printing</string>
                  </property>
                  <property name="text">
-                  <string>&amp;Цвет...</string>
+                  <string>&amp;Color...</string>
                  </property>
                  <property name="icon">
                   <iconset resource="../resources/tspsg.qrc">
@@ -302,10 +302,10 @@
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="statusTip">
-                  <string>Задать параметры шрифта, используемого при печати</string>
+                  <string>Font face for printing</string>
                  </property>
                  <property name="text">
-                  <string>&amp;Шрифт...</string>
+                  <string>&amp;Font...</string>
                  </property>
                  <property name="icon">
                   <iconset resource="../resources/tspsg.qrc">
@@ -326,10 +326,10 @@
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="statusTip">
-           <string>Восстанавливать состояние и размеры окна после перезапуска программы</string>
+           <string>Restore main window state and position on application restart</string>
           </property>
           <property name="text">
-           <string>Сохранять состояние и положение главного окна</string>
+           <string>Save main window state and position</string>
           </property>
          </widget>
         </item>
@@ -366,18 +366,21 @@
       <number>6</number>
      </property>
      <item>
-      <widget class="QToolButton" name="toolButton">
+      <widget class="QToolButton" name="buttonHelp">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="toolTip">
-        <string>Справка</string>
+        <string>Help</string>
        </property>
        <property name="statusTip">
-        <string>Получить помощь по настройкам</string>
+        <string>Get preferences help</string>
        </property>
        <property name="text">
-        <string>Помощь</string>
+        <string>Help</string>
        </property>
        <property name="icon">
         <iconset resource="../resources/tspsg.qrc">
@@ -397,7 +400,7 @@
         </sizepolicy>
        </property>
        <property name="statusTip">
-        <string>Наведите указатель мыши на элемент диалога, чтоб получить подсказку</string>
+        <string>Hover mouse pointer over dialog elements to get additional help</string>
        </property>
        <property name="text">
         <string/>
@@ -419,7 +422,7 @@
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="statusTip">
-        <string>Сохранить новые параметры</string>
+        <string>Save new preferences</string>
        </property>
        <property name="text">
         <string>&amp;OK</string>
@@ -439,10 +442,10 @@
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="statusTip">
-        <string>Закрыть окно без сохранения параметров</string>
+        <string>Close without saving preferences</string>
        </property>
        <property name="text">
-        <string>&amp;Отмена</string>
+        <string>&amp;Cancel</string>
        </property>
        <property name="icon">
         <iconset resource="../resources/tspsg.qrc">

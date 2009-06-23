@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Задача коммивояжера</string>
+   <string>Travelling salesman problem</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/tspsg.qrc">
@@ -32,7 +32,7 @@
       </property>
       <widget class="QWidget" name="tabTask">
        <attribute name="title">
-        <string>Задача</string>
+        <string>Task</string>
        </attribute>
        <layout class="QVBoxLayout">
         <item>
@@ -53,7 +53,7 @@
           <item>
            <widget class="QLabel" name="labelVariant">
             <property name="text">
-             <string>&amp;Вариант:</string>
+             <string>&amp;Variant:</string>
             </property>
             <property name="buddy">
              <cstring>spinVariant</cstring>
@@ -66,7 +66,7 @@
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="statusTip">
-             <string>Номер варианта</string>
+             <string>Number of variant</string>
             </property>
             <property name="minimum">
              <number>1</number>
@@ -76,7 +76,7 @@
           <item>
            <widget class="QLabel" name="labelCities">
             <property name="text">
-             <string>&amp;Городов:</string>
+             <string>&amp;Cities:</string>
             </property>
             <property name="buddy">
              <cstring>spinCities</cstring>
@@ -89,7 +89,7 @@
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="statusTip">
-             <string>Количество городов, которые обходит коммивояжер</string>
+             <string>Number of cities</string>
             </property>
             <property name="minimum">
              <number>3</number>
@@ -120,7 +120,7 @@
         <item>
          <widget class="QTableView" name="taskView">
           <property name="statusTip">
-           <string>Стоимости переходов/переездов из города в город</string>
+           <string>Cost of travel from city to city</string>
           </property>
           <property name="selectionMode">
            <enum>QAbstractItemView::NoSelection</enum>
@@ -148,10 +148,10 @@
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="statusTip">
-             <string>Заполнить таблицу случайными значениями</string>
+             <string>Fill table with random numbers</string>
             </property>
             <property name="text">
-             <string>Случайно</string>
+             <string>Random</string>
             </property>
            </widget>
           </item>
@@ -161,10 +161,10 @@
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="statusTip">
-             <string>Решить текущую задачу</string>
+             <string>Solve current task</string>
             </property>
             <property name="text">
-             <string>Решить</string>
+             <string>Solve</string>
             </property>
             <property name="icon">
              <iconset resource="../resources/tspsg.qrc">
@@ -178,7 +178,7 @@
       </widget>
       <widget class="QWidget" name="tabSolution">
        <attribute name="title">
-        <string>Решение</string>
+        <string>Solution</string>
        </attribute>
        <layout class="QVBoxLayout">
         <item>
@@ -195,7 +195,7 @@
              </sizepolicy>
             </property>
             <property name="statusTip">
-             <string>Ход решения</string>
+             <string>Solution steps</string>
             </property>
             <property name="readOnly">
              <bool>true</bool>
@@ -205,7 +205,7 @@
           <item>
            <widget class="QGraphicsView" name="graphicsView">
             <property name="statusTip">
-             <string>Граф решения</string>
+             <string>Solution graph</string>
             </property>
            </widget>
           </item>
@@ -233,14 +233,14 @@
      </iconset>
     </property>
     <property name="title">
-     <string>&amp;Файл</string>
+     <string>&amp;File</string>
     </property>
     <widget class="QMenu" name="menuFileSave">
      <property name="statusTip">
       <string/>
      </property>
      <property name="title">
-      <string>Со&amp;хранить</string>
+      <string>&amp;Save</string>
      </property>
      <property name="icon">
       <iconset resource="../resources/tspsg.qrc">
@@ -263,13 +263,13 @@
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
-     <string>&amp;Настройки</string>
+     <string>&amp;Settings</string>
     </property>
     <addaction name="actionSettingsSettings"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>&amp;Помощь</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionHelpContents"/>
     <addaction name="actionHelpContextual"/>
@@ -312,10 +312,10 @@
      <normaloff>:/images/buttons/buttons/PrintSetup.png</normaloff>:/images/buttons/buttons/PrintSetup.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Настройка печати</string>
+    <string>P&amp;rint setup...</string>
    </property>
    <property name="statusTip">
-    <string>Настроить принтер для печати</string>
+    <string>Setup printing</string>
    </property>
   </action>
   <action name="actionFilePrint">
@@ -327,10 +327,10 @@
      <normaloff>:/images/buttons/buttons/Print.png</normaloff>:/images/buttons/buttons/Print.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Печать...</string>
+    <string>&amp;Print...</string>
    </property>
    <property name="statusTip">
-    <string>Распечатать результаты решения</string>
+    <string>Print solution results</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -341,10 +341,13 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>&amp;Ход решения</string>
+    <string>Solution st&amp;eps</string>
+   </property>
+   <property name="toolTip">
+    <string>Save solution steps</string>
    </property>
    <property name="statusTip">
-    <string>Сохранить только хоод решения</string>
+    <string>Save solution steps only</string>
    </property>
   </action>
   <action name="actionFileSaveResultGraph">
@@ -352,10 +355,13 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>&amp;Граф решения</string>
+    <string>Solution &amp;graph</string>
+   </property>
+   <property name="toolTip">
+    <string>Save solution graph</string>
    </property>
    <property name="statusTip">
-    <string>Сохранить только граф решения</string>
+    <string>Save solution graph only</string>
    </property>
   </action>
   <action name="actionFileSaveResultAll">
@@ -363,10 +369,13 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>&amp;Решение</string>
+    <string>&amp;Solution</string>
+   </property>
+   <property name="toolTip">
+    <string>Save solution</string>
    </property>
    <property name="statusTip">
-    <string>Сохранить ход и граф решения</string>
+    <string>Save solution steps and graph</string>
    </property>
   </action>
   <action name="actionFileNew">
@@ -375,28 +384,40 @@
      <normaloff>:/images/buttons/buttons/Document.png</normaloff>:/images/buttons/buttons/Document.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Создать</string>
+    <string>&amp;New</string>
+   </property>
+   <property name="iconText">
+    <string>New</string>
+   </property>
+   <property name="toolTip">
+    <string>New task</string>
    </property>
    <property name="statusTip">
-    <string>Создать новую задачу</string>
+    <string>Create new task</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
   </action>
   <action name="actionFileOpen">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
      <normaloff>:/images/buttons/buttons/OpenFolder.png</normaloff>:/images/buttons/buttons/OpenFolder.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Открыть</string>
+    <string>&amp;Open...</string>
+   </property>
+   <property name="iconText">
+    <string>Open...</string>
    </property>
    <property name="toolTip">
-    <string>Открыть задачу</string>
+    <string>Open task</string>
    </property>
    <property name="statusTip">
-    <string>Открыть сохраненное условие задачи</string>
+    <string>Open saved task</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -408,34 +429,43 @@
      <normaloff>:/images/buttons/buttons/Properties.png</normaloff>:/images/buttons/buttons/Properties.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Параметры</string>
+    <string>&amp;Preferences...</string>
+   </property>
+   <property name="iconText">
+    <string>Preferences...</string>
    </property>
    <property name="statusTip">
-    <string>Настройка параметров программмы</string>
+    <string>Application preferences</string>
    </property>
   </action>
   <action name="actionHelpContents">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
      <normaloff>:/images/buttons/buttons/book_open.png</normaloff>:/images/buttons/buttons/book_open.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Содежание</string>
+    <string>&amp;Contents</string>
    </property>
    <property name="statusTip">
-    <string>Вызвать справку по программе</string>
+    <string>Open help contents</string>
    </property>
   </action>
   <action name="actionHelpContextual">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
      <normaloff>:/images/buttons/buttons/Help.png</normaloff>:/images/buttons/buttons/Help.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Контекстная справка</string>
+    <string>&amp;Context help</string>
    </property>
    <property name="statusTip">
-    <string>Вызвать контекстную справку</string>
+    <string>Open context help</string>
    </property>
   </action>
   <action name="actionHelpAbout">
@@ -444,10 +474,13 @@
      <normaloff>:/images/buttons/buttons/infoBubble.png</normaloff>:/images/buttons/buttons/infoBubble.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Про...</string>
+    <string>&amp;About...</string>
+   </property>
+   <property name="iconText">
+    <string>About...</string>
    </property>
    <property name="statusTip">
-    <string>Получить информацию о программе</string>
+    <string>About application</string>
    </property>
   </action>
   <action name="actionFileExit">
@@ -456,28 +489,31 @@
      <normaloff>:/images/buttons/buttons/NoAction.png</normaloff>:/images/buttons/buttons/NoAction.png</iconset>
    </property>
    <property name="text">
-    <string>В&amp;ыход</string>
+    <string>E&amp;xit</string>
    </property>
    <property name="statusTip">
-    <string>Выйти из программы</string>
+    <string>Exit application</string>
    </property>
   </action>
   <action name="actionFileSaveTask">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
      <normaloff>:/images/buttons/buttons/Save.png</normaloff>:/images/buttons/buttons/Save.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Задачу</string>
+    <string>&amp;Task...</string>
    </property>
    <property name="iconText">
-    <string>Сохранить</string>
+    <string>Task...</string>
    </property>
    <property name="toolTip">
-    <string>Сохранить задачу</string>
+    <string>Save task</string>
    </property>
    <property name="statusTip">
-    <string>Сохранить условие задачи в файл</string>
+    <string>Save task to file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>

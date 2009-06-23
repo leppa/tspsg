@@ -32,19 +32,15 @@ QApplication app(argc, argv);
 	app.setOrganizationName("..::Lёppsville::..");
 	app.setOrganizationDomain("www.leppsville.com");
 	app.setApplicationName("TSPSG");
-/*/ i18n
-// TODO: Make English as program's "native" language
+// i18n
+// TODO: Language selection in application.
+// TODO: Saving and restoring selected language.
 QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 QString locale = QLocale::languageToString(QLocale::system().language());
 QTranslator translator;
-	// Getting current locale languge name and trying to load it
-	if (translator.load(locale,"i18n"))
+	// Getting current locale language name and trying to load it, if it's not English
+	if (locale.compare("English") && translator.load(locale,"i18n"))
 		app.installTranslator(&translator);
-	// If language loading failed and locale language is not
-	// application's "native" we're trying to load English
-	else if (locale.compare("Russian") && translator.load("English","i18n"))
-		app.installTranslator(&translator);
-//*/
 MainWindow mainwindow;
 	mainwindow.show();
 	return app.exec();

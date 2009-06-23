@@ -32,4 +32,16 @@
 #define DEF_FONT_SIZE 12
 #define DEF_FONT_COLOR Qt::black
 
+// Decided, that static array with 100 of cities maximum hard limit
+// will be enough for most cases, but the code will be simplier than
+// when using dynamic lists. If you need more, just change this value
+// and recompile the program ;-)
+#define MAX_CITIES 100
+// This value means infinity :-)
+#ifndef INFINITY
+	#define INFINITY 1.7E+308
+#endif
+// This is string, which represents infinite value in table
+#define INFSTR "-----"
+
 #endif // DEFINES_H

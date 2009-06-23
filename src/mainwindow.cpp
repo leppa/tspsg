@@ -25,7 +25,6 @@
 #ifndef Q_OS_WINCE
 	#include <QPrintDialog>
 #endif // Q_OS_WINCE
-#include "defines.h"
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -123,7 +122,7 @@ bool ok;
 		for (int c = 0; c < n; c++) {
 			row[c] = tspmodel->index(r,c).data(Qt::UserRole).toDouble(&ok);
 			if (!ok) {
-				QMessageBox(QMessageBox::Critical,trUtf8("Ошибка в данных"),QString(trUtf8("Ошибка в ячейке [Строка %1; Колонка %2]: Неверный формат данных.")).arg(r + 1).arg(c + 1),QMessageBox::Ok,this).exec();
+				QMessageBox(QMessageBox::Critical,trUtf8("Data error"),QString(trUtf8("Error in cell [Row %1; Column %2]: Invalid data format.")).arg(r + 1).arg(c + 1),QMessageBox::Ok,this).exec();
 				return;
 			}
 		}
@@ -132,7 +131,7 @@ bool ok;
 CTSPSolver solver;
 sStep *root = solver.solve(spinCities->value(),matrix);
 	if (!root)
-		QMessageBox(QMessageBox::Critical,trUtf8("Ошибка при решении"),trUtf8("Во время решения задачи возникла ошибка"),QMessageBox::Ok,this).exec();
+		QMessageBox(QMessageBox::Critical,trUtf8("Solution error"),trUtf8("There was an error while solving the task."),QMessageBox::Ok,this).exec();
 	// tabWidget->setCurrentIndex(1);
 }
 
@@ -146,7 +145,7 @@ Qt library versions:\n\
     Runtime: %3\n\
 \n\
 TSPSG is licensed under the terms of the GNU General Public License. You should have received a copy of the GNU General Public License along with TSPSG.").arg(QDate().toString("%Y"),QT_VERSION_STR,qVersion());
-	QMessageBox(QMessageBox::Information,"About",about).exec();
+	QMessageBox(QMessageBox::Information,"About",about,QMessageBox::Ok,this).exec();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

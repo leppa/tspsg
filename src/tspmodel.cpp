@@ -22,7 +22,6 @@
  */
 
 #include <QtGui>
-#include "defines.h"
 #include "tspmodel.h"
 
 CTSPModel::CTSPModel(QObject *parent)
@@ -50,7 +49,7 @@ QVariant CTSPModel::headerData(int section, Qt::Orientation orientation, int rol
 {
 	if (role == Qt::DisplayRole)
 		if (orientation == Qt::Vertical)
-			return trUtf8("Город %1").arg(section + 1);
+			return trUtf8("City %1").arg(section + 1);
 		else
 			return trUtf8("%1").arg(section + 1);
 	return QVariant();
