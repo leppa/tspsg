@@ -154,7 +154,7 @@
         <location filename="../ui/mainwindow.ce.ui" line="282"/>
         <location filename="../ui/mainwindow.ui" line="266"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Параметри</translation>
+        <translation>&amp;Налагодження</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="288"/>
@@ -274,19 +274,19 @@
         <location filename="../ui/mainwindow.ce.ui" line="416"/>
         <location filename="../ui/mainwindow.ui" line="432"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Налагодження...</translation>
+        <translation>&amp;Параметри...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="419"/>
         <location filename="../ui/mainwindow.ui" line="435"/>
         <source>Preferences...</source>
-        <translation>Налагодження...</translation>
+        <translation>Параметри...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="422"/>
         <location filename="../ui/mainwindow.ui" line="438"/>
         <source>Application preferences</source>
-        <translation>Налагодження додатку</translation>
+        <translation>Параметри додатку</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="434"/>
