@@ -42,17 +42,24 @@ public:
 	MainWindow(QWidget *parent = 0);
 	void closeEvent(QCloseEvent *event);
 private slots:
-	void ChangeSettings();
-	void showAbout();
+	void actionFileNewTriggered();
+	void actionSettingsPreferencesTriggered();
+	void actionSettingsLanguageAutodetectTriggered(bool checked);
+	void groupSettingsLanguageListTriggered(QAction *action);
+	void actionHelpAboutTriggered();
 #ifndef Q_OS_WINCE
-	void PrintSetup();
+	void actionFilePrintSetupTriggered();
 #endif // Q_OS_WINCE
-	void Solve();
-	void Random();
-	void CitiesNumberChanged(int n);
+	void buttonSolveClicked();
+	void buttonRandomClicked();
+	void spinCitiesValueChanged(int n);
 private:
 	QSettings *settings;
+	QPrinter *printer;
 	CTSPModel *tspmodel;
+	QActionGroup *groupSettingsLanguageList;
+	bool loadLanguage();
+	void loadLangList();
 };
 
 #endif // MAINWINDOW_H

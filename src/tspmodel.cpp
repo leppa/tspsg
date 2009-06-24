@@ -140,6 +140,15 @@ int randMax = settings->value("MaxCost",DEF_RAND_MAX).toInt();
 	emit layoutChanged();
 }
 
+void CTSPModel::clear()
+{
+	for (int r = 0; r < nCities; r++)
+		for (int c = 0; c < nCities; c++)
+			if (r != c)
+				table[r][c] = 0;
+	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+}
+
 void CTSPModel::randomize()
 {
 int randMin = settings->value("MinCost",DEF_RAND_MIN).toInt();

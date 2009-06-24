@@ -281,7 +281,21 @@
     <property name="title">
      <string>&amp;Settings</string>
     </property>
-    <addaction name="actionSettingsSettings"/>
+    <widget class="QMenu" name="menuSettingsLanguage">
+     <property name="toolTip">
+      <string>Select language</string>
+     </property>
+     <property name="statusTip">
+      <string>Select application language</string>
+     </property>
+     <property name="title">
+      <string extracomment="Please, append &quot; / Language&quot; when translating this string.">&amp;Language</string>
+     </property>
+     <addaction name="actionSettingsLanguageAutodetect"/>
+    </widget>
+    <addaction name="menuSettingsLanguage"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettingsPreferences"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -316,7 +330,7 @@
    <addaction name="actionFileOpen"/>
    <addaction name="actionFileSaveTask"/>
    <addaction name="separator"/>
-   <addaction name="actionSettingsSettings"/>
+   <addaction name="actionSettingsPreferences"/>
    <addaction name="separator"/>
    <addaction name="actionFileExit"/>
   </widget>
@@ -407,7 +421,7 @@
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionSettingsSettings">
+  <action name="actionSettingsPreferences">
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
      <normaloff>:/images/buttons/buttons/Properties.png</normaloff>:/images/buttons/buttons/Properties.png</iconset>
@@ -501,6 +515,23 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSettingsLanguageAutodetect">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Autodetect</string>
+   </property>
+   <property name="toolTip">
+    <string>Detect language automatically</string>
+   </property>
+   <property name="statusTip">
+    <string>Detect language automatically based on regional settings</string>
    </property>
   </action>
  </widget>

@@ -41,6 +41,7 @@ public:
 	Qt::ItemFlags flags(const QModelIndex &) const;
 	int numCities() const;
 	void setNumCities(int);
+	void clear();
 	void randomize();
 private:
 	QSettings *settings;
