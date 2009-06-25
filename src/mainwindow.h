@@ -58,7 +58,7 @@ private:
 	QPrinter *printer;
 	CTSPModel *tspmodel;
 	QActionGroup *groupSettingsLanguageList;
-	bool loadLanguage();
+	bool loadLanguage(QString lang = "");
 	void loadLangList();
 };
 

@@ -6,6 +6,7 @@
     <file>Task.bmp</file>
   </qresource>
   <qresource prefix="/images/buttons" >
+    <file>buttons/Web.png</file>
     <file>buttons/Color.png</file>
     <file>buttons/Critical.png</file>
     <file>buttons/Delete.png</file>

@@ -272,7 +272,13 @@
      <property name="title">
       <string extracomment="Please, append &quot; / Language&quot; when translating this string.">&amp;Language</string>
      </property>
+     <property name="icon">
+      <iconset resource="../resources/tspsg.qrc">
+       <normaloff>:/images/buttons/buttons/Web.png</normaloff>:/images/buttons/buttons/Web.png</iconset>
+     </property>
      <addaction name="actionSettingsLanguageAutodetect"/>
+     <addaction name="separator"/>
+     <addaction name="actionSettingsLanguageEnglish"/>
     </widget>
     <addaction name="menuSettingsLanguage"/>
     <addaction name="separator"/>
@@ -545,6 +551,17 @@
    </property>
    <property name="statusTip">
     <string>Detect language automatically based on regional settings</string>
+   </property>
+  </action>
+  <action name="actionSettingsLanguageEnglish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">English</string>
    </property>
   </action>
  </widget>

@@ -3,27 +3,6 @@
 <TS version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
-    <name></name>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="244"/>
-        <location filename="../src/mainwindow.cpp" line="253"/>
-        <source>Language change</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="244"/>
-        <source>Language will be autodetected on next application start.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="253"/>
-        <source>You have language autodetection turned on.
-It needs to be off.
-Do you wish to turn it off?</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CTSPModel</name>
     <message>
         <location filename="../src/tspmodel.cpp" line="52"/>
@@ -39,33 +18,47 @@ Do you wish to turn it off?</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="122"/>
+        <location filename="../src/mainwindow.cpp" line="125"/>
+        <location filename="../src/mainwindow.cpp" line="246"/>
+        <location filename="../src/mainwindow.cpp" line="255"/>
         <source>Language change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="122"/>
+        <location filename="../src/mainwindow.cpp" line="125"/>
         <source>Unable to load translation language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="189"/>
+        <location filename="../src/mainwindow.cpp" line="192"/>
         <source>Data error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="189"/>
+        <location filename="../src/mainwindow.cpp" line="192"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="198"/>
+        <location filename="../src/mainwindow.cpp" line="201"/>
         <source>Solution error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="198"/>
+        <location filename="../src/mainwindow.cpp" line="201"/>
         <source>There was an error while solving the task.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="246"/>
+        <source>Language will be autodetected on next application start.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="255"/>
+        <source>You have language autodetection turned on.
+It needs to be off.
+Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -177,231 +170,236 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="302"/>
-        <location filename="../ui/mainwindow.ui" line="283"/>
+        <location filename="../ui/mainwindow.ce.ui" line="308"/>
+        <location filename="../ui/mainwindow.ui" line="289"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="342"/>
-        <location filename="../ui/mainwindow.ui" line="355"/>
-        <source>Solution st&amp;eps</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="345"/>
-        <location filename="../ui/mainwindow.ui" line="358"/>
-        <source>Save solution steps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="348"/>
         <location filename="../ui/mainwindow.ui" line="361"/>
+        <source>Solution st&amp;eps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="351"/>
+        <location filename="../ui/mainwindow.ui" line="364"/>
+        <source>Save solution steps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="354"/>
+        <location filename="../ui/mainwindow.ui" line="367"/>
         <source>Save solution steps only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="356"/>
-        <location filename="../ui/mainwindow.ui" line="369"/>
-        <source>Solution &amp;graph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="359"/>
-        <location filename="../ui/mainwindow.ui" line="372"/>
-        <source>Save solution graph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="362"/>
         <location filename="../ui/mainwindow.ui" line="375"/>
+        <source>Solution &amp;graph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="365"/>
+        <location filename="../ui/mainwindow.ui" line="378"/>
+        <source>Save solution graph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="368"/>
+        <location filename="../ui/mainwindow.ui" line="381"/>
         <source>Save solution graph only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="370"/>
-        <location filename="../ui/mainwindow.ui" line="383"/>
-        <source>&amp;Solution</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="373"/>
-        <location filename="../ui/mainwindow.ui" line="386"/>
-        <source>Save solution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="376"/>
         <location filename="../ui/mainwindow.ui" line="389"/>
+        <source>&amp;Solution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="379"/>
+        <location filename="../ui/mainwindow.ui" line="392"/>
+        <source>Save solution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="382"/>
+        <location filename="../ui/mainwindow.ui" line="395"/>
         <source>Save solution steps and graph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="385"/>
-        <location filename="../ui/mainwindow.ui" line="398"/>
-        <source>&amp;New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="388"/>
-        <location filename="../ui/mainwindow.ui" line="401"/>
-        <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="391"/>
         <location filename="../ui/mainwindow.ui" line="404"/>
-        <source>New task</source>
+        <source>&amp;New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="394"/>
         <location filename="../ui/mainwindow.ui" line="407"/>
-        <source>Create new task</source>
+        <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="397"/>
         <location filename="../ui/mainwindow.ui" line="410"/>
+        <source>New task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="400"/>
+        <location filename="../ui/mainwindow.ui" line="413"/>
+        <source>Create new task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="403"/>
+        <location filename="../ui/mainwindow.ui" line="416"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="409"/>
-        <location filename="../ui/mainwindow.ui" line="422"/>
-        <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="412"/>
-        <location filename="../ui/mainwindow.ui" line="425"/>
-        <source>Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="415"/>
         <location filename="../ui/mainwindow.ui" line="428"/>
-        <source>Open task</source>
+        <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="418"/>
         <location filename="../ui/mainwindow.ui" line="431"/>
-        <source>Open saved task</source>
+        <source>Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="421"/>
         <location filename="../ui/mainwindow.ui" line="434"/>
+        <source>Open task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="424"/>
+        <location filename="../ui/mainwindow.ui" line="437"/>
+        <source>Open saved task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="427"/>
+        <location filename="../ui/mainwindow.ui" line="440"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="430"/>
-        <location filename="../ui/mainwindow.ui" line="443"/>
-        <source>&amp;Preferences...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="433"/>
-        <location filename="../ui/mainwindow.ui" line="446"/>
-        <source>Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="436"/>
         <location filename="../ui/mainwindow.ui" line="449"/>
+        <source>&amp;Preferences...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="439"/>
+        <location filename="../ui/mainwindow.ui" line="452"/>
+        <source>Preferences...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="442"/>
+        <location filename="../ui/mainwindow.ui" line="455"/>
         <source>Application preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="448"/>
-        <location filename="../ui/mainwindow.ui" line="461"/>
+        <location filename="../ui/mainwindow.ce.ui" line="454"/>
+        <location filename="../ui/mainwindow.ui" line="467"/>
         <source>&amp;Contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="451"/>
-        <location filename="../ui/mainwindow.ui" line="464"/>
+        <location filename="../ui/mainwindow.ce.ui" line="457"/>
+        <location filename="../ui/mainwindow.ui" line="470"/>
         <source>Open help contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="463"/>
-        <location filename="../ui/mainwindow.ui" line="476"/>
+        <location filename="../ui/mainwindow.ce.ui" line="469"/>
+        <location filename="../ui/mainwindow.ui" line="482"/>
         <source>&amp;Context help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="466"/>
-        <location filename="../ui/mainwindow.ui" line="479"/>
+        <location filename="../ui/mainwindow.ce.ui" line="472"/>
+        <location filename="../ui/mainwindow.ui" line="485"/>
         <source>Open context help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="475"/>
-        <location filename="../ui/mainwindow.ui" line="488"/>
-        <source>&amp;About...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="478"/>
-        <location filename="../ui/mainwindow.ui" line="491"/>
-        <source>About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="481"/>
         <location filename="../ui/mainwindow.ui" line="494"/>
+        <source>&amp;About...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="484"/>
+        <location filename="../ui/mainwindow.ui" line="497"/>
+        <source>About...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="487"/>
+        <location filename="../ui/mainwindow.ui" line="500"/>
         <source>About application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="490"/>
-        <location filename="../ui/mainwindow.ui" line="503"/>
+        <location filename="../ui/mainwindow.ce.ui" line="496"/>
+        <location filename="../ui/mainwindow.ui" line="509"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="493"/>
-        <location filename="../ui/mainwindow.ui" line="506"/>
+        <location filename="../ui/mainwindow.ce.ui" line="499"/>
+        <location filename="../ui/mainwindow.ui" line="512"/>
         <source>Exit application</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="505"/>
-        <location filename="../ui/mainwindow.ui" line="518"/>
-        <source>&amp;Task...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="508"/>
-        <location filename="../ui/mainwindow.ui" line="521"/>
-        <source>Task...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="511"/>
         <location filename="../ui/mainwindow.ui" line="524"/>
-        <source>Save task</source>
+        <source>&amp;Task...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="514"/>
         <location filename="../ui/mainwindow.ui" line="527"/>
-        <source>Save task to file</source>
+        <source>Task...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="517"/>
         <location filename="../ui/mainwindow.ui" line="530"/>
+        <source>Save task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="520"/>
+        <location filename="../ui/mainwindow.ui" line="533"/>
+        <source>Save task to file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="523"/>
+        <location filename="../ui/mainwindow.ui" line="536"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="528"/>
-        <location filename="../ui/mainwindow.ui" line="541"/>
+        <location filename="../ui/mainwindow.ce.ui" line="534"/>
+        <location filename="../ui/mainwindow.ui" line="547"/>
         <source>&amp;Autodetect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="551"/>
+        <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -417,39 +415,39 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="326"/>
+        <location filename="../ui/mainwindow.ui" line="332"/>
         <source>P&amp;rint setup...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="329"/>
+        <location filename="../ui/mainwindow.ui" line="335"/>
         <source>Setup printing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="341"/>
+        <location filename="../ui/mainwindow.ui" line="347"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="344"/>
+        <location filename="../ui/mainwindow.ui" line="350"/>
         <source>Print solution results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="347"/>
+        <location filename="../ui/mainwindow.ui" line="353"/>
         <source>Ctrl+P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="531"/>
-        <location filename="../ui/mainwindow.ui" line="544"/>
+        <location filename="../ui/mainwindow.ce.ui" line="537"/>
+        <location filename="../ui/mainwindow.ui" line="550"/>
         <source>Detect language automatically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="534"/>
-        <location filename="../ui/mainwindow.ui" line="547"/>
+        <location filename="../ui/mainwindow.ce.ui" line="540"/>
+        <location filename="../ui/mainwindow.ui" line="553"/>
         <source>Detect language automatically based on regional settings</source>
         <translation type="unfinished"></translation>
     </message>

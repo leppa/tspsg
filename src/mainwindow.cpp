@@ -37,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent)
 	printer = new QPrinter();
 #endif // Q_OS_WINCE
 	groupSettingsLanguageList = new QActionGroup(this);
+	actionSettingsLanguageEnglish->setData("en");
+	actionSettingsLanguageEnglish->setActionGroup(groupSettingsLanguageList);
 	loadLangList();
 	spinCities->setValue(settings->value("NumCities",5).toInt());
 	actionSettingsLanguageAutodetect->setChecked(settings->value("Language","").toString().isEmpty());
@@ -82,11 +84,14 @@ QRect rect = geometry();
 #endif // Q_OS_WINCE
 }
 
-bool MainWindow::loadLanguage()
+bool MainWindow::loadLanguage(QString lang)
 {
 // i18n
-bool ad = settings->value("Language","").toString().isEmpty();
-QString lang = settings->value("Language",QLocale::system().name()).toString();
+bool ad = false;
+	if (lang.isEmpty()) {
+		ad = settings->value("Language","").toString().isEmpty();
+		lang = settings->value("Language",QLocale::system().name()).toString();
+	}
 static QTranslator *qtTranslator;
 	if (qtTranslator) {
 		qApp->removeTranslator(qtTranslator);
@@ -94,6 +99,12 @@ static QTranslator *qtTranslator;
 		qtTranslator = NULL;
 	}
 	qtTranslator = new QTranslator();
+static QTranslator *translator;
+	if (translator) {
+		qApp->removeTranslator(translator);
+		delete translator;
+	}
+	translator = new QTranslator();
 	if (lang.compare("en") && !lang.startsWith("en_")) {
 		// Trying to load system Qt library translation...
 		if (qtTranslator->load("qt_" + lang,QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
@@ -106,15 +117,7 @@ static QTranslator *qtTranslator;
 				delete qtTranslator;
 				qtTranslator = NULL;
 			}
-	}
-	// Now let's load application translation.
-static QTranslator *translator;
-	if (translator) {
-		qApp->removeTranslator(translator);
-		delete translator;
-	}
-	translator = new QTranslator();
-	if (lang.compare("en") && !lang.startsWith("en_")) {
+		// Now let's load application translation.
 		if (translator->load(lang,"i18n"))
 			qApp->installTranslator(translator);
 		else {
@@ -202,13 +205,13 @@ sStep *root = solver.solve(spinCities->value(),matrix);
 void MainWindow::actionHelpAboutTriggered()
 {
 	// TODO: Normal about window :-)
-QString about = QString::fromUtf8("TSPSG - TSP Solver and Generator\n\
-    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n\
-Qt library versions:\n\
-    Compile time: %2\n\
-    Runtime: %3\n\
-\n\
-TSPSG is licensed under the terms of the GNU General Public License. You should have received a copy of the GNU General Public License along with TSPSG.").arg(QDate().toString("%Y"),QT_VERSION_STR,qVersion());
+QString about = QString::fromUtf8("TSPSG - TSP Solver and Generator\n");
+about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
+	about += "Qt library versions:\n";
+	about += QString::fromUtf8("    Compile time: %1\n").arg(QT_VERSION_STR);
+	about += QString::fromUtf8("    Runtime: %1\n").arg(qVersion());
+	about += "\n";
+	about += "TSPSG is licensed under the terms of the GNU General Public License. You should have received a copy of the GNU General Public License along with TSPSG.";
 	QMessageBox(QMessageBox::Information,"About",about,QMessageBox::Ok,this).exec();
 }
 
@@ -222,11 +225,10 @@ QDir dir("i18n","*.qm",QDir::Name | QDir::IgnoreCase,QDir::Files);
 QFileInfoList langs = dir.entryInfoList();
 	if (langs.size() <= 0)
 		return;
-	menuSettingsLanguage->addSeparator();
 QAction *a;
 	for (int k = 0; k < langs.size(); k++) {
 		QFileInfo lang = langs.at(k);
-		if (!lang.completeBaseName().startsWith("qt_")) {
+		if (!lang.completeBaseName().startsWith("qt_") && lang.completeBaseName().compare("en")) {
 			a = menuSettingsLanguage->addAction(langinfo.value(lang.completeBaseName() + "/NativeName",lang.completeBaseName()).toString());
 			a->setData(lang.completeBaseName());
 			a->setCheckable(true);
@@ -255,10 +257,9 @@ void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
 		} else
 			return;
 	}
-	if (loadLanguage()) {
+	if (loadLanguage(action->data().toString())) {
 		settings->setValue("Language",action->data().toString());
 		retranslateUi(this);
-	} else {
 	}
 }
 
