@@ -24,9 +24,7 @@
 #ifndef TSPMODEL_H
 #define TSPMODEL_H
 
-#include <QAbstractTableModel>
-#include <QSettings>
-#include "defines.h"
+#include "globals.h"
 
 class CTSPModel: public QAbstractTableModel
 {
@@ -39,15 +37,21 @@ public:
 	QVariant data(const QModelIndex &, int) const;
 	bool setData(const QModelIndex &, const QVariant &, int);
 	Qt::ItemFlags flags(const QModelIndex &) const;
-	int numCities() const;
+	quint16 numCities() const;
 	void setNumCities(int);
 	void clear();
+	void loadTask(QString);
+	void saveTask(QString);
 	void randomize();
+signals:
+	void numCitiesChanged(int);
 private:
 	QSettings *settings;
 	double table[MAX_CITIES][MAX_CITIES];
-	int nCities;
+	quint16 nCities;
 	int rand(int, int);
+	void loadZKT(QDataStream *);
+	void loadTSPT(QDataStream *);
 };
 
 #endif // TSPMODEL_H

@@ -21,10 +21,6 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtGui>
-#ifndef Q_OS_WINCE
-	#include <QPrintDialog>
-#endif // Q_OS_WINCE
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -43,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent)
 	spinCities->setValue(settings->value("NumCities",5).toInt());
 	actionSettingsLanguageAutodetect->setChecked(settings->value("Language","").toString().isEmpty());
 	connect(actionFileNew,SIGNAL(triggered()),this,SLOT(actionFileNewTriggered()));
+	connect(actionFileOpen,SIGNAL(triggered()),this,SLOT(actionFileOpenTriggered()));
+	connect(actionFileSaveTask,SIGNAL(triggered()),this,SLOT(actionFileSaveTaskTriggered()));
 	connect(actionSettingsPreferences,SIGNAL(triggered()),this,SLOT(actionSettingsPreferencesTriggered()));
 	connect(actionSettingsLanguageAutodetect,SIGNAL(triggered(bool)),this,SLOT(actionSettingsLanguageAutodetectTriggered(bool)));
 	connect(groupSettingsLanguageList,SIGNAL(triggered(QAction *)),this,SLOT(groupSettingsLanguageListTriggered(QAction *)));
@@ -78,6 +76,7 @@ QRect rect = geometry();
 	tspmodel = new CTSPModel();
 	tspmodel->setNumCities(spinCities->value());
 	taskView->setModel(tspmodel);
+	connect(tspmodel,SIGNAL(numCitiesChanged(int)),this,SLOT(numCitiesChanged(int)));
 #ifdef Q_OS_WINCE
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
@@ -152,6 +151,40 @@ void MainWindow::actionFileNewTriggered()
 	tspmodel->clear();
 }
 
+void MainWindow::actionFileOpenTriggered()
+{
+QFileDialog od(this);
+	od.setAcceptMode(QFileDialog::AcceptOpen);
+	od.setFileMode(QFileDialog::ExistingFile);
+QStringList filters(trUtf8("All Supported Formats") + " (*.tspt *.zkt)");
+	filters.append(QString(trUtf8("%1 Task Files")).arg("TSPSG") + " (*.tspt)");
+	filters.append(QString(trUtf8("%1 Task Files")).arg("ZKomModRd") + " (*.zkt)");
+	filters.append(trUtf8("All Files") + " (*)");
+	od.setNameFilters(filters);
+	if (od.exec() != QDialog::Accepted)
+		return;
+QStringList files = od.selectedFiles();
+	if (files.size() < 1)
+		return;
+	tspmodel->loadTask(files.first());
+}
+
+void MainWindow::actionFileSaveTaskTriggered()
+{
+QFileDialog sd(this);
+	sd.setAcceptMode(QFileDialog::AcceptSave);
+QStringList filters(QString(trUtf8("%1 Task File")).arg("TSPSG") + " (*.tspt)");
+	filters.append(trUtf8("All Files") + " (*)");
+	sd.setNameFilters(filters);
+	sd.setDefaultSuffix("tspt");
+	if (sd.exec() != QDialog::Accepted)
+		return;
+QStringList files = sd.selectedFiles();
+	if (files.size() < 1)
+		return;
+	tspmodel->saveTask(files.first());
+}
+
 void MainWindow::actionSettingsPreferencesTriggered()
 {
 SettingsDialog sd(this);
@@ -208,6 +241,7 @@ void MainWindow::actionHelpAboutTriggered()
 QString about = QString::fromUtf8("TSPSG - TSP Solver and Generator\n");
 about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
 	about += "Qt library versions:\n";
+	about += QString::fromUtf8("    OS: %1\n").arg(OS);
 	about += QString::fromUtf8("    Compile time: %1\n").arg(QT_VERSION_STR);
 	about += QString::fromUtf8("    Runtime: %1\n").arg(qVersion());
 	about += "\n";
@@ -279,4 +313,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
 	}
 #endif // Q_OS_WINCE
 	QMainWindow::closeEvent(event);
+}
+
+void MainWindow::numCitiesChanged(int nCities)
+{
+	spinCities->setValue(nCities);
 }

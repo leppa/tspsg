@@ -24,7 +24,7 @@
 #ifndef TSPSOLVER_H
 #define TSPSOLVER_H
 
-#include <QtCore>
+#include "globals.h"
 
 typedef QList<double *> tMatrix;
 

@@ -5,14 +5,38 @@
 <context>
     <name>CTSPModel</name>
     <message>
-        <location filename="../src/tspmodel.cpp" line="52"/>
+        <location filename="../src/tspmodel.cpp" line="51"/>
         <source>City %1</source>
         <translation>Місто %1</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="54"/>
+        <location filename="../src/tspmodel.cpp" line="53"/>
         <source>%1</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="165"/>
+        <location filename="../src/tspmodel.cpp" line="177"/>
+        <location filename="../src/tspmodel.cpp" line="203"/>
+        <source>Task Load</source>
+        <translation>Завантаження завдання</translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="165"/>
+        <source>Unable to load task:
+Unknown file format or file is corrupted.</source>
+        <translation>Неможливо завантажити завдання:
+Невідомий формат файлу або файл пошкоджено.</translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="177"/>
+        <location filename="../src/tspmodel.cpp" line="203"/>
+        <source>Unable to load task:
+File version is newer than application supports.
+Please, try to update application.</source>
+        <translation>Неможливо завантажити завдання:
+Версія файлу новіша ніж підримувана додатком.
+Будь-ласка, спробуйте оновити додаток.</translation>
     </message>
 </context>
 <context>
@@ -30,63 +54,68 @@
         <translation>Кількість міст, що проходить комівояжер</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="286"/>
-        <location filename="../ui/mainwindow.ui" line="267"/>
+        <location filename="../ui/mainwindow.ce.ui" line="287"/>
+        <location filename="../ui/mainwindow.ui" line="268"/>
         <source>Select language</source>
         <translation>Вибір мови</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="289"/>
-        <location filename="../ui/mainwindow.ui" line="270"/>
+        <location filename="../ui/mainwindow.ce.ui" line="290"/>
+        <location filename="../ui/mainwindow.ui" line="271"/>
         <source>Select application language</source>
         <translation>Обрати мову додатку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="332"/>
+        <location filename="../ui/mainwindow.ui" line="333"/>
         <source>P&amp;rint setup...</source>
         <translation>&amp;Налагодження друку...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="335"/>
+        <location filename="../ui/mainwindow.ui" line="336"/>
         <source>Setup printing</source>
         <translation>Налагодити друк</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="347"/>
+        <location filename="../ui/mainwindow.ui" line="348"/>
         <source>&amp;Print...</source>
         <translation>&amp;Друк...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="350"/>
+        <location filename="../ui/mainwindow.ui" line="351"/>
         <source>Print solution results</source>
         <translation>Роздрукувати результат розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="353"/>
+        <location filename="../ui/mainwindow.ui" line="354"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="537"/>
-        <location filename="../ui/mainwindow.ui" line="550"/>
+        <location filename="../ui/mainwindow.ui" line="574"/>
+        <source>Save</source>
+        <translation>Зберегти</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="532"/>
+        <location filename="../ui/mainwindow.ui" line="545"/>
         <source>Detect language automatically</source>
         <translation>Визначати мову автоматично</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="540"/>
-        <location filename="../ui/mainwindow.ui" line="553"/>
+        <location filename="../ui/mainwindow.ce.ui" line="535"/>
+        <location filename="../ui/mainwindow.ui" line="548"/>
         <source>Detect language automatically based on regional settings</source>
-        <translation type="unfinished">Визначати мову автоматично, використовуючи регіональні стандарти</translation>
+        <translation>Визначати мову автоматично, використовуючи регіональні стандарти</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="523"/>
-        <location filename="../ui/mainwindow.ui" line="536"/>
+        <location filename="../ui/mainwindow.ce.ui" line="518"/>
+        <location filename="../ui/mainwindow.ui" line="531"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="403"/>
-        <location filename="../ui/mainwindow.ui" line="416"/>
+        <location filename="../ui/mainwindow.ce.ui" line="404"/>
+        <location filename="../ui/mainwindow.ui" line="417"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
@@ -169,283 +198,331 @@
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="262"/>
-        <location filename="../ui/mainwindow.ui" line="240"/>
+        <location filename="../ui/mainwindow.ce.ui" line="558"/>
+        <location filename="../ui/mainwindow.ui" line="571"/>
         <source>&amp;Save</source>
         <translation>&amp;Зберегти</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="282"/>
-        <location filename="../ui/mainwindow.ui" line="263"/>
+        <location filename="../ui/mainwindow.ce.ui" line="283"/>
+        <location filename="../ui/mainwindow.ui" line="264"/>
         <source>&amp;Settings</source>
         <translation>&amp;Налагодження</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="292"/>
-        <location filename="../ui/mainwindow.ui" line="273"/>
+        <location filename="../ui/mainwindow.ce.ui" line="262"/>
+        <location filename="../ui/mainwindow.ui" line="240"/>
+        <source>Save &amp;as...</source>
+        <translation>Зберегти &amp;як...</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="293"/>
+        <location filename="../ui/mainwindow.ui" line="274"/>
         <source>&amp;Language</source>
         <translation>Мова / &amp;Language</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="308"/>
-        <location filename="../ui/mainwindow.ui" line="289"/>
+        <location filename="../ui/mainwindow.ce.ui" line="309"/>
+        <location filename="../ui/mainwindow.ui" line="290"/>
         <source>&amp;Help</source>
         <translation>&amp;Допомога</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="348"/>
-        <location filename="../ui/mainwindow.ui" line="361"/>
+        <location filename="../ui/mainwindow.ce.ui" line="349"/>
+        <location filename="../ui/mainwindow.ui" line="362"/>
         <source>Solution st&amp;eps</source>
         <translation>&amp;Хід розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="351"/>
-        <location filename="../ui/mainwindow.ui" line="364"/>
+        <location filename="../ui/mainwindow.ce.ui" line="352"/>
+        <location filename="../ui/mainwindow.ui" line="365"/>
         <source>Save solution steps</source>
         <translation>Зберегти хід розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="354"/>
-        <location filename="../ui/mainwindow.ui" line="367"/>
+        <location filename="../ui/mainwindow.ce.ui" line="355"/>
+        <location filename="../ui/mainwindow.ui" line="368"/>
         <source>Save solution steps only</source>
         <translation>Зберегти тільки хід розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="362"/>
-        <location filename="../ui/mainwindow.ui" line="375"/>
+        <location filename="../ui/mainwindow.ce.ui" line="363"/>
+        <location filename="../ui/mainwindow.ui" line="376"/>
         <source>Solution &amp;graph</source>
         <translation>&amp;Граф розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="365"/>
-        <location filename="../ui/mainwindow.ui" line="378"/>
+        <location filename="../ui/mainwindow.ce.ui" line="366"/>
+        <location filename="../ui/mainwindow.ui" line="379"/>
         <source>Save solution graph</source>
         <translation>Зберегти граф розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="368"/>
-        <location filename="../ui/mainwindow.ui" line="381"/>
+        <location filename="../ui/mainwindow.ce.ui" line="369"/>
+        <location filename="../ui/mainwindow.ui" line="382"/>
         <source>Save solution graph only</source>
         <translation>Зберегти тільки граф розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="376"/>
-        <location filename="../ui/mainwindow.ui" line="389"/>
+        <location filename="../ui/mainwindow.ce.ui" line="377"/>
+        <location filename="../ui/mainwindow.ui" line="390"/>
         <source>&amp;Solution</source>
         <translation>&amp;Розв&apos;язок</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="379"/>
-        <location filename="../ui/mainwindow.ui" line="392"/>
+        <location filename="../ui/mainwindow.ce.ui" line="380"/>
+        <location filename="../ui/mainwindow.ui" line="393"/>
         <source>Save solution</source>
         <translation>Зберегти розв&apos;язок</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="382"/>
-        <location filename="../ui/mainwindow.ui" line="395"/>
+        <location filename="../ui/mainwindow.ce.ui" line="383"/>
+        <location filename="../ui/mainwindow.ui" line="396"/>
         <source>Save solution steps and graph</source>
         <translation>Зберегти хід та граф розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="391"/>
-        <location filename="../ui/mainwindow.ui" line="404"/>
+        <location filename="../ui/mainwindow.ce.ui" line="392"/>
+        <location filename="../ui/mainwindow.ui" line="405"/>
         <source>&amp;New</source>
         <translation>&amp;Створити</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="394"/>
-        <location filename="../ui/mainwindow.ui" line="407"/>
+        <location filename="../ui/mainwindow.ce.ui" line="395"/>
+        <location filename="../ui/mainwindow.ui" line="408"/>
         <source>New</source>
         <translation>Створити</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="397"/>
-        <location filename="../ui/mainwindow.ui" line="410"/>
+        <location filename="../ui/mainwindow.ce.ui" line="398"/>
+        <location filename="../ui/mainwindow.ui" line="411"/>
         <source>New task</source>
         <translation>Нове завдання</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="400"/>
-        <location filename="../ui/mainwindow.ui" line="413"/>
+        <location filename="../ui/mainwindow.ce.ui" line="401"/>
+        <location filename="../ui/mainwindow.ui" line="414"/>
         <source>Create new task</source>
         <translation>Створити нове завдання</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="415"/>
-        <location filename="../ui/mainwindow.ui" line="428"/>
+        <location filename="../ui/mainwindow.ce.ui" line="413"/>
+        <location filename="../ui/mainwindow.ui" line="426"/>
         <source>&amp;Open...</source>
         <translation>&amp;Відкрити...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="418"/>
-        <location filename="../ui/mainwindow.ui" line="431"/>
+        <location filename="../ui/mainwindow.ce.ui" line="416"/>
+        <location filename="../ui/mainwindow.ui" line="429"/>
         <source>Open...</source>
         <translation>Відкрити...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="421"/>
-        <location filename="../ui/mainwindow.ui" line="434"/>
+        <location filename="../ui/mainwindow.ce.ui" line="419"/>
+        <location filename="../ui/mainwindow.ui" line="432"/>
         <source>Open task</source>
         <translation>Відкрити завдання</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="424"/>
-        <location filename="../ui/mainwindow.ui" line="437"/>
+        <location filename="../ui/mainwindow.ce.ui" line="422"/>
+        <location filename="../ui/mainwindow.ui" line="435"/>
         <source>Open saved task</source>
         <translation>Відкрити збережене завдання</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="427"/>
-        <location filename="../ui/mainwindow.ui" line="440"/>
+        <location filename="../ui/mainwindow.ce.ui" line="425"/>
+        <location filename="../ui/mainwindow.ui" line="438"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="436"/>
-        <location filename="../ui/mainwindow.ui" line="449"/>
+        <location filename="../ui/mainwindow.ce.ui" line="434"/>
+        <location filename="../ui/mainwindow.ui" line="447"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Параметри...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="439"/>
-        <location filename="../ui/mainwindow.ui" line="452"/>
+        <location filename="../ui/mainwindow.ce.ui" line="437"/>
+        <location filename="../ui/mainwindow.ui" line="450"/>
         <source>Preferences...</source>
         <translation>Параметри...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="442"/>
-        <location filename="../ui/mainwindow.ui" line="455"/>
+        <location filename="../ui/mainwindow.ce.ui" line="440"/>
+        <location filename="../ui/mainwindow.ui" line="453"/>
         <source>Application preferences</source>
         <translation>Параметри додатку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="454"/>
-        <location filename="../ui/mainwindow.ui" line="467"/>
+        <location filename="../ui/mainwindow.ce.ui" line="452"/>
+        <location filename="../ui/mainwindow.ui" line="465"/>
         <source>&amp;Contents</source>
         <translation>&amp;Зміст</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="457"/>
-        <location filename="../ui/mainwindow.ui" line="470"/>
+        <location filename="../ui/mainwindow.ce.ui" line="455"/>
+        <location filename="../ui/mainwindow.ui" line="468"/>
         <source>Open help contents</source>
         <translation>Відкрити зміст допомоги</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="469"/>
-        <location filename="../ui/mainwindow.ui" line="482"/>
+        <location filename="../ui/mainwindow.ce.ui" line="467"/>
+        <location filename="../ui/mainwindow.ui" line="480"/>
         <source>&amp;Context help</source>
         <translation>&amp;Контекстна допомога</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="472"/>
-        <location filename="../ui/mainwindow.ui" line="485"/>
+        <location filename="../ui/mainwindow.ce.ui" line="470"/>
+        <location filename="../ui/mainwindow.ui" line="483"/>
         <source>Open context help</source>
         <translation>Відкрити контекстну допомогу</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="481"/>
-        <location filename="../ui/mainwindow.ui" line="494"/>
+        <location filename="../ui/mainwindow.ce.ui" line="479"/>
+        <location filename="../ui/mainwindow.ui" line="492"/>
         <source>&amp;About...</source>
         <translation>&amp;Про...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="484"/>
-        <location filename="../ui/mainwindow.ui" line="497"/>
+        <location filename="../ui/mainwindow.ce.ui" line="482"/>
+        <location filename="../ui/mainwindow.ui" line="495"/>
         <source>About...</source>
         <translation>Про...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="487"/>
-        <location filename="../ui/mainwindow.ui" line="500"/>
+        <location filename="../ui/mainwindow.ce.ui" line="485"/>
+        <location filename="../ui/mainwindow.ui" line="498"/>
         <source>About application</source>
         <translation>Про додаток</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="496"/>
-        <location filename="../ui/mainwindow.ui" line="509"/>
+        <location filename="../ui/mainwindow.ce.ui" line="494"/>
+        <location filename="../ui/mainwindow.ui" line="507"/>
         <source>E&amp;xit</source>
         <translation>В&amp;ихід</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="499"/>
-        <location filename="../ui/mainwindow.ui" line="512"/>
+        <location filename="../ui/mainwindow.ce.ui" line="497"/>
+        <location filename="../ui/mainwindow.ui" line="510"/>
         <source>Exit application</source>
         <translation>Вийти з додатку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="511"/>
-        <location filename="../ui/mainwindow.ui" line="524"/>
+        <location filename="../ui/mainwindow.ce.ui" line="506"/>
+        <location filename="../ui/mainwindow.ui" line="519"/>
         <source>&amp;Task...</source>
         <translation>&amp;Завдання...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="514"/>
-        <location filename="../ui/mainwindow.ui" line="527"/>
+        <location filename="../ui/mainwindow.ce.ui" line="509"/>
+        <location filename="../ui/mainwindow.ui" line="522"/>
         <source>Task...</source>
         <translation>Завдання...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="517"/>
-        <location filename="../ui/mainwindow.ui" line="530"/>
+        <location filename="../ui/mainwindow.ce.ui" line="512"/>
+        <location filename="../ui/mainwindow.ce.ui" line="561"/>
+        <location filename="../ui/mainwindow.ui" line="525"/>
+        <location filename="../ui/mainwindow.ui" line="577"/>
         <source>Save task</source>
         <translation>Зберегти завдання</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="520"/>
-        <location filename="../ui/mainwindow.ui" line="533"/>
+        <location filename="../ui/mainwindow.ce.ui" line="515"/>
+        <location filename="../ui/mainwindow.ui" line="528"/>
         <source>Save task to file</source>
         <translation>Зберегти завдання до файлу</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="534"/>
-        <location filename="../ui/mainwindow.ui" line="547"/>
+        <location filename="../ui/mainwindow.ce.ui" line="529"/>
+        <location filename="../ui/mainwindow.ui" line="542"/>
         <source>&amp;Autodetect</source>
         <translation>&amp;Автовизначення</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="551"/>
+        <location filename="../ui/mainwindow.ce.ui" line="546"/>
         <source>English</source>
         <translation>Англійська</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="125"/>
-        <location filename="../src/mainwindow.cpp" line="246"/>
-        <location filename="../src/mainwindow.cpp" line="255"/>
+        <location filename="../ui/mainwindow.ce.ui" line="564"/>
+        <location filename="../ui/mainwindow.ui" line="580"/>
+        <source>Save current task</source>
+        <translation>Зберегти поточне завдання</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="124"/>
+        <location filename="../src/mainwindow.cpp" line="279"/>
+        <location filename="../src/mainwindow.cpp" line="288"/>
         <source>Language change</source>
         <translation>Зміна мови</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="125"/>
+        <location filename="../src/mainwindow.cpp" line="124"/>
         <source>Unable to load translation language.</source>
         <translation>Неможливо завантажити переклад.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="192"/>
+        <location filename="../src/mainwindow.cpp" line="159"/>
+        <source>All Supported Formats</source>
+        <translation>Усі підтримувані формати</translation>
+    </message>
+    <message>
+        <source>TSPSG Task Files</source>
+        <translation type="obsolete">Файли завдання TSPSG</translation>
+    </message>
+    <message>
+        <source>ZKomModRd Task Files</source>
+        <translation type="obsolete">Файли завдання ZKomModRd</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="162"/>
+        <location filename="../src/mainwindow.cpp" line="177"/>
+        <source>All Files</source>
+        <translation>Усі файли</translation>
+    </message>
+    <message>
+        <source>TSPSG Task File</source>
+        <translation type="obsolete">Файл завдання TSPSG</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="160"/>
+        <location filename="../src/mainwindow.cpp" line="161"/>
+        <source>%1 Task Files</source>
+        <translation>Файли завдань %1</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="176"/>
+        <source>%1 Task File</source>
+        <translation>Файл завдання %1</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="225"/>
         <source>Data error</source>
         <translation>Помилка даних</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="192"/>
+        <location filename="../src/mainwindow.cpp" line="225"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation>Помилка у комірці  [Рядок %1; Колонка %2]: Невірний формат даних.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="201"/>
+        <location filename="../src/mainwindow.cpp" line="234"/>
         <source>Solution error</source>
         <translation>Помилка розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="201"/>
+        <location filename="../src/mainwindow.cpp" line="234"/>
         <source>There was an error while solving the task.</source>
         <translation>Під час розв&apos;язання задачі виникла помилка.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="246"/>
+        <location filename="../src/mainwindow.cpp" line="279"/>
         <source>Language will be autodetected on next application start.</source>
         <translation>Мову буде автоматично визначено при наступному запуску додатку.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="255"/>
+        <location filename="../src/mainwindow.cpp" line="288"/>
         <source>You have language autodetection turned on.
 It needs to be off.
 Do you wish to turn it off?</source>

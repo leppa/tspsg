@@ -24,8 +24,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QSettings>
+#include "globals.h"
 #ifdef Q_OS_WINCE
 	#include "ui_mainwindow.ce.h"
 #else
@@ -40,19 +39,22 @@ class MainWindow: public QMainWindow, Ui::MainWindow
 	Q_OBJECT
 public:
 	MainWindow(QWidget *parent = 0);
-	void closeEvent(QCloseEvent *event);
+	void closeEvent(QCloseEvent *);
 private slots:
 	void actionFileNewTriggered();
+	void actionFileOpenTriggered();
+	void actionFileSaveTaskTriggered();
 	void actionSettingsPreferencesTriggered();
-	void actionSettingsLanguageAutodetectTriggered(bool checked);
-	void groupSettingsLanguageListTriggered(QAction *action);
+	void actionSettingsLanguageAutodetectTriggered(bool);
+	void groupSettingsLanguageListTriggered(QAction *);
 	void actionHelpAboutTriggered();
 #ifndef Q_OS_WINCE
 	void actionFilePrintSetupTriggered();
 #endif // Q_OS_WINCE
 	void buttonSolveClicked();
 	void buttonRandomClicked();
-	void spinCitiesValueChanged(int n);
+	void spinCitiesValueChanged(int);
+	void numCitiesChanged(int);
 private:
 	QSettings *settings;
 	QPrinter *printer;

@@ -254,12 +254,12 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <widget class="QMenu" name="menuFileSave">
+    <widget class="QMenu" name="menuFileSaveAs">
      <property name="statusTip">
       <string/>
      </property>
      <property name="title">
-      <string>&amp;Save</string>
+      <string>Save &amp;as...</string>
      </property>
      <property name="icon">
       <iconset resource="../resources/tspsg.qrc">
@@ -273,7 +273,8 @@
     </widget>
     <addaction name="actionFileNew"/>
     <addaction name="actionFileOpen"/>
-    <addaction name="menuFileSave"/>
+    <addaction name="actionFileSave"/>
+    <addaction name="menuFileSaveAs"/>
     <addaction name="separator"/>
     <addaction name="actionFileExit"/>
    </widget>
@@ -404,9 +405,6 @@
    </property>
   </action>
   <action name="actionFileOpen">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
      <normaloff>:/images/buttons/buttons/OpenFolder.png</normaloff>:/images/buttons/buttons/OpenFolder.png</iconset>
@@ -500,9 +498,6 @@
    </property>
   </action>
   <action name="actionFileSaveTask">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
      <normaloff>:/images/buttons/buttons/Save.png</normaloff>:/images/buttons/buttons/Save.png</iconset>
@@ -549,6 +544,24 @@
    </property>
    <property name="text">
     <string>English</string>
+   </property>
+  </action>
+  <action name="actionFileSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources/tspsg.qrc">
+     <normaloff>:/images/buttons/buttons/Save.png</normaloff>:/images/buttons/buttons/Save.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Save task</string>
+   </property>
+   <property name="statusTip">
+    <string>Save current task</string>
    </property>
   </action>
  </widget>

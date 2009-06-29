@@ -24,8 +24,7 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
-#include <QDialog>
-#include <QSettings>
+#include "globals.h"
 #ifdef Q_OS_WINCE
 	#include "ui_settingsdialog.ce.h"
 #else

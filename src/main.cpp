@@ -21,9 +21,6 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QApplication>
-#include <QTranslator>
-#include <QMessageBox>
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])

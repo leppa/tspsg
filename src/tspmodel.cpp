@@ -21,7 +21,6 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtGui>
 #include "tspmodel.h"
 
 CTSPModel::CTSPModel(QObject *parent)
@@ -108,15 +107,15 @@ Qt::ItemFlags flags = QAbstractItemModel::flags(index);
 	return flags;
 }
 
-int CTSPModel::numCities() const
+quint16 CTSPModel::numCities() const
 {
 	return nCities;
 }
 
 void CTSPModel::setNumCities(int n)
 {
-int randMin = settings->value("MinCost",DEF_RAND_MIN).toInt();
-int randMax = settings->value("MaxCost",DEF_RAND_MAX).toInt();
+// int randMin = settings->value("MinCost",DEF_RAND_MIN).toInt();
+// int randMax = settings->value("MaxCost",DEF_RAND_MAX).toInt();
 	if (n == nCities)
 		return;
 	emit layoutAboutToBeChanged();
@@ -126,14 +125,14 @@ int randMax = settings->value("MaxCost",DEF_RAND_MAX).toInt();
 				if (r == c)
 					table[r][c] = INFINITY;
 				else
-					table[r][c] = rand(randMin,randMax);
+					table[r][c] = 0; // rand(randMin,randMax);
 		}
 		for (int r = nCities; r < n; r++) {
 			for (int c = 0; c < n; c++)
 				if (r == c)
 					table[r][c] = INFINITY;
 				else
-					table[r][c] = rand(randMin,randMax);
+					table[r][c] = 0; // rand(randMin,randMax);
 		}
 	}
 	nCities = n;
@@ -147,6 +146,102 @@ void CTSPModel::clear()
 			if (r != c)
 				table[r][c] = 0;
 	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+}
+
+void CTSPModel::loadTask(QString fname)
+{
+QFile f(fname);
+	f.open(QIODevice::ReadOnly);
+QDataStream ds(&f);
+	ds.setVersion(QDataStream::Qt_4_4);
+quint32 sig;
+	ds >> sig;
+	ds.device()->reset();
+	if (sig == TSPT)
+		loadTSPT(&ds);
+	else if ((sig >> 16) == ZKT)
+		loadZKT(&ds);
+	else
+		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:\nUnknown file format or file is corrupted."),QMessageBox::Ok).exec();
+	f.close();
+}
+
+void CTSPModel::loadTSPT(QDataStream *ds)
+{
+	// Skipping signature
+	ds->skipRawData(sizeof(TSPT));
+	// File version
+quint8 version;
+	*ds >> version;
+	if (version > TSPT_VERSION) {
+		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:\nFile version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
+		return;
+	}
+	// Skipping metadata
+	ds->skipRawData(TSPT_META_SIZE);
+	// Cities number
+quint16 size;
+	*ds >> size;
+	if (nCities != size)
+		emit numCitiesChanged(size);
+	// Costs
+	for (int r = 0; r < size; r++)
+		for (int c = 0; c < size; c++)
+			if (r != c)
+				*ds >> table[r][c];
+	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+}
+
+void CTSPModel::loadZKT(QDataStream *ds)
+{
+	// Skipping signature
+	ds->skipRawData(sizeof(ZKT));
+	// File version
+quint16 version;
+	ds->readRawData(reinterpret_cast<char *>(&version),2);
+	if (version > ZKT_VERSION) {
+		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:\nFile version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
+		return;
+	}
+	// Cities number
+quint8 size;
+	ds->readRawData(reinterpret_cast<char *>(&size),1);
+	if (nCities != size)
+		emit numCitiesChanged(size);
+	// Costs
+double val;
+	for (int r = 0; r < size; r++)
+		for (int c = 0; c < size; c++)
+			if (r != c) {
+				ds->readRawData(reinterpret_cast<char *>(&val),8);
+				table[r][c] = val;
+			} else
+				ds->skipRawData(8);
+	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+}
+
+void CTSPModel::saveTask(QString fname)
+{
+QFile f(fname);
+	f.open(QIODevice::WriteOnly);
+QDataStream ds(&f);
+	ds.setVersion(QDataStream::Qt_4_4);
+	// File signature
+	ds << TSPT;
+	// File version
+	ds << TSPT_VERSION;
+	// File metadata version
+	ds << TSPT_META_VERSION;
+	// Metadata
+	ds << OSID;
+	// Number of cities
+	ds << nCities;
+	// Costs
+	for (int r = 0; r < nCities; r++)
+		for (int c = 0; c < nCities; c++)
+			if (r != c)
+				ds << table[r][c];
+	f.close();
 }
 
 void CTSPModel::randomize()

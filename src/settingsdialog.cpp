@@ -21,11 +21,6 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QMessageBox>
-#include <QStatusTipEvent>
-#include <QFontDialog>
-#include <QColorDialog>
-#include "defines.h"
 #include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)

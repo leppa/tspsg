@@ -21,9 +21,17 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DEFINES_H
-#define DEFINES_H
+#ifndef GLOBALS_H
+#define GLOBALS_H
 
+// INCLUDES
+#include <QtCore>
+#include <QtGui>
+
+// OS detection
+#include "os.h"
+
+// DEFINES
 // Default values
 #define DEF_RAND_MIN 1
 #define DEF_RAND_MAX 10
@@ -31,6 +39,19 @@
 #define DEF_FONT_FAMILY "Courier New"
 #define DEF_FONT_SIZE 12
 #define DEF_FONT_COLOR Qt::black
+
+// TSPSG Task file signature - letters TSPT
+#define TSPT quint32(0x54535054)
+// TSPSG Task file version
+#define TSPT_VERSION quint8(1)
+// TSPSG Task file metadata version
+#define TSPT_META_VERSION quint8(1)
+// TSPSG Task file metadata size in bytes (incl. version)
+#define TSPT_META_SIZE 2
+// ZKomModRd Task file signature - letters ZK
+#define ZKT quint16(0x5A4B)
+// ZKomModRd Task file version
+#define ZKT_VERSION quint8(1)
 
 // Decided, that static array with 100 of cities maximum hard limit
 // will be enough for most cases, but the code will be simplier than
@@ -44,4 +65,4 @@
 // This is string, which represents infinite value in table
 #define INFSTR "-----"
 
-#endif // DEFINES_H
+#endif // GLOBALS_H
