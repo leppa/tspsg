@@ -11,7 +11,8 @@
 ######################################################################
 
 #Header files
-HEADERS += src/defines.h \
+HEADERS += src/globals.h \
+	src/os.h \
 	src/mainwindow.h \
 	src/settingsdialog.h \
 	src/tspmodel.h \
