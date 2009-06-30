@@ -46,11 +46,12 @@ int CTSPModel::columnCount(const QModelIndex &) const
 
 QVariant CTSPModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-	if (role == Qt::DisplayRole)
+	if (role == Qt::DisplayRole) {
 		if (orientation == Qt::Vertical)
 			return trUtf8("City %1").arg(section + 1);
 		else
 			return trUtf8("%1").arg(section + 1);
+	}
 	return QVariant();
 }
 
