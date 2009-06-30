@@ -195,8 +195,11 @@ SettingsDialog sd(this);
 void MainWindow::actionFilePrintSetupTriggered()
 {
 QPrintDialog pd(printer,this);
+#if QT_VERSION >= 0x040500
+	// No such methods in Qt < 4.5
 	pd.setOption(QAbstractPrintDialog::PrintSelection,false);
 	pd.setOption(QAbstractPrintDialog::PrintPageRange,false);
+#endif
 	pd.exec();
 }
 #endif // Q_OS_WINCE
@@ -252,7 +255,10 @@ about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksi
 void MainWindow::loadLangList()
 {
 QSettings langinfo("i18n/languages.ini",QSettings::IniFormat);
+#if QT_VERSION >= 0x040500
+	// In Qt < 4.5 QSettings doesn't have method setIniCodec.
 	langinfo.setIniCodec("UTF-8");
+#endif
 QDir dir("i18n","*.qm",QDir::Name | QDir::IgnoreCase,QDir::Files);
 	if (!dir.exists())
 		return;
@@ -263,7 +269,13 @@ QAction *a;
 	for (int k = 0; k < langs.size(); k++) {
 		QFileInfo lang = langs.at(k);
 		if (!lang.completeBaseName().startsWith("qt_") && lang.completeBaseName().compare("en")) {
+#if QT_VERSION >= 0x040500
 			a = menuSettingsLanguage->addAction(langinfo.value(lang.completeBaseName() + "/NativeName",lang.completeBaseName()).toString());
+#else
+			// We use Name if Qt < 4.5 because NativeName is in UTF-8, QSettings
+			// reads .ini file as ASCII and there is no way to set file encoding.
+			a = menuSettingsLanguage->addAction(langinfo.value(lang.completeBaseName() + "/Name",lang.completeBaseName()).toString());
+#endif
 			a->setData(lang.completeBaseName());
 			a->setCheckable(true);
 			a->setActionGroup(groupSettingsLanguageList);

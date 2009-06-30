@@ -26,10 +26,12 @@
 int main(int argc, char *argv[])
 {
 QApplication app(argc, argv);
+	QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf8"));
+	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf8"));
+	QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 	app.setOrganizationName("..::Lёppsville::..");
 	app.setOrganizationDomain("www.leppsville.com");
 	app.setApplicationName("TSPSG");
-	QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 MainWindow mainwindow;
 	mainwindow.show();
 	return app.exec();

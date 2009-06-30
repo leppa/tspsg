@@ -20,7 +20,7 @@ HEADERS += src/globals.h \
 	src/resource.h
 
 #Source files
-SOURCES += ./src/main.cpp \
+SOURCES += src/main.cpp \
 	src/mainwindow.cpp \
 	src/settingsdialog.cpp \
 	src/tspmodel.cpp \
