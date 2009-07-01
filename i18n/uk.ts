@@ -15,28 +15,98 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="165"/>
-        <location filename="../src/tspmodel.cpp" line="177"/>
-        <location filename="../src/tspmodel.cpp" line="203"/>
+        <location filename="../src/tspmodel.cpp" line="156"/>
+        <source>Unexpected end of file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="158"/>
+        <source>Corrupt data read. File possibly corrupted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="160"/>
+        <source>Unknown error.</source>
+        <translation>Невідома помилка.</translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="161"/>
+        <location filename="../src/tspmodel.cpp" line="169"/>
+        <location filename="../src/tspmodel.cpp" line="184"/>
+        <location filename="../src/tspmodel.cpp" line="200"/>
+        <location filename="../src/tspmodel.cpp" line="213"/>
+        <location filename="../src/tspmodel.cpp" line="243"/>
+        <location filename="../src/tspmodel.cpp" line="252"/>
         <source>Task Load</source>
         <translation>Завантаження завдання</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="165"/>
-        <source>Unable to load task:
-Unknown file format or file is corrupted.</source>
-        <translation>Неможливо завантажити завдання:
-Невідомий формат файлу або файл пошкоджено.</translation>
+        <location filename="../src/tspmodel.cpp" line="161"/>
+        <location filename="../src/tspmodel.cpp" line="184"/>
+        <location filename="../src/tspmodel.cpp" line="200"/>
+        <location filename="../src/tspmodel.cpp" line="213"/>
+        <location filename="../src/tspmodel.cpp" line="243"/>
+        <location filename="../src/tspmodel.cpp" line="252"/>
+        <source>Unable to load task:</source>
+        <translation>Неможливо завантажити завдання:</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="177"/>
-        <location filename="../src/tspmodel.cpp" line="203"/>
-        <source>Unable to load task:
-File version is newer than application supports.
+        <location filename="../src/tspmodel.cpp" line="169"/>
+        <source>Unable to open task file.
+Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="184"/>
+        <source>Unknown file format or file is corrupted.</source>
+        <translation>Невідомий формат файлу або файл пошкоджено.</translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="200"/>
+        <location filename="../src/tspmodel.cpp" line="243"/>
+        <source>File version is newer than application supports.
 Please, try to update application.</source>
-        <translation>Неможливо завантажити завдання:
-Версія файлу новіша ніж підримувана додатком.
+        <translation>Версія файлу новіша ніж підримувана додатком.
 Будь-ласка, спробуйте оновити додаток.</translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="213"/>
+        <location filename="../src/tspmodel.cpp" line="252"/>
+        <source>Unexpected data read.
+File is possibly corrupted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="282"/>
+        <location filename="../src/tspmodel.cpp" line="288"/>
+        <location filename="../src/tspmodel.cpp" line="295"/>
+        <location filename="../src/tspmodel.cpp" line="302"/>
+        <location filename="../src/tspmodel.cpp" line="309"/>
+        <location filename="../src/tspmodel.cpp" line="316"/>
+        <location filename="../src/tspmodel.cpp" line="323"/>
+        <location filename="../src/tspmodel.cpp" line="333"/>
+        <source>Task Save</source>
+        <translation>Збереження завдання</translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="282"/>
+        <source>Unable to create task file.
+Error: %1
+Maybe, file is read-only?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="288"/>
+        <location filename="../src/tspmodel.cpp" line="295"/>
+        <location filename="../src/tspmodel.cpp" line="302"/>
+        <location filename="../src/tspmodel.cpp" line="309"/>
+        <location filename="../src/tspmodel.cpp" line="316"/>
+        <location filename="../src/tspmodel.cpp" line="323"/>
+        <location filename="../src/tspmodel.cpp" line="333"/>
+        <source>Unable to save task.
+Error: %1</source>
+        <translation>Неможливо зберегти завдання.
+Помилка: %1</translation>
     </message>
 </context>
 <context>
@@ -452,8 +522,8 @@ Please, try to update application.</source>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="124"/>
-        <location filename="../src/mainwindow.cpp" line="279"/>
-        <location filename="../src/mainwindow.cpp" line="288"/>
+        <location filename="../src/mainwindow.cpp" line="292"/>
+        <location filename="../src/mainwindow.cpp" line="301"/>
         <source>Language change</source>
         <translation>Зміна мови</translation>
     </message>
@@ -468,22 +538,10 @@ Please, try to update application.</source>
         <translation>Усі підтримувані формати</translation>
     </message>
     <message>
-        <source>TSPSG Task Files</source>
-        <translation type="obsolete">Файли завдання TSPSG</translation>
-    </message>
-    <message>
-        <source>ZKomModRd Task Files</source>
-        <translation type="obsolete">Файли завдання ZKomModRd</translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.cpp" line="162"/>
         <location filename="../src/mainwindow.cpp" line="177"/>
         <source>All Files</source>
         <translation>Усі файли</translation>
-    </message>
-    <message>
-        <source>TSPSG Task File</source>
-        <translation type="obsolete">Файл завдання TSPSG</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="160"/>
@@ -497,32 +555,32 @@ Please, try to update application.</source>
         <translation>Файл завдання %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="225"/>
+        <location filename="../src/mainwindow.cpp" line="228"/>
         <source>Data error</source>
         <translation>Помилка даних</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="225"/>
+        <location filename="../src/mainwindow.cpp" line="228"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation>Помилка у комірці  [Рядок %1; Колонка %2]: Невірний формат даних.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="234"/>
+        <location filename="../src/mainwindow.cpp" line="237"/>
         <source>Solution error</source>
         <translation>Помилка розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="234"/>
+        <location filename="../src/mainwindow.cpp" line="237"/>
         <source>There was an error while solving the task.</source>
         <translation>Під час розв&apos;язання задачі виникла помилка.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="279"/>
+        <location filename="../src/mainwindow.cpp" line="292"/>
         <source>Language will be autodetected on next application start.</source>
         <translation>Мову буде автоматично визначено при наступному запуску додатку.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="288"/>
+        <location filename="../src/mainwindow.cpp" line="301"/>
         <source>You have language autodetection turned on.
 It needs to be off.
 Do you wish to turn it off?</source>

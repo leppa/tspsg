@@ -49,7 +49,8 @@ private:
 	QSettings *settings;
 	double table[MAX_CITIES][MAX_CITIES];
 	quint16 nCities;
-	int rand(int, int);
+	int rand(int, int) const;
+	bool loadError(QDataStream::Status) const;
 	void loadZKT(QDataStream *);
 	void loadTSPT(QDataStream *);
 };

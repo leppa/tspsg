@@ -22,6 +22,13 @@
  */
 
 #include "mainwindow.h"
+#if QT_VERSION < 0x040500
+	#ifdef _MSC_VER
+		#pragma message("WARNING: You are using Qt version < 4.5. Application will not support some non-critical features.")
+	#elif (defined(__GNUC__) || defined(__MINGW32__))
+		#warning "WARNING: You are using Qt version < 4.5. Application will not support some non-critical features."
+	#endif
+#endif
 
 int main(int argc, char *argv[])
 {
