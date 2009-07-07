@@ -34,12 +34,12 @@ inline int CTSPModel::rand(int min, int max) const
 	return min + (int)(((float)qrand() / RAND_MAX) * max);
 }
 
-inline int CTSPModel::rowCount(const QModelIndex &) const
+int CTSPModel::rowCount(const QModelIndex &) const
 {
 	return nCities;
 }
 
-inline int CTSPModel::columnCount(const QModelIndex &) const
+int CTSPModel::columnCount(const QModelIndex &) const
 {
 	return nCities;
 }
