@@ -44,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(actionSettingsPreferences,SIGNAL(triggered()),this,SLOT(actionSettingsPreferencesTriggered()));
 	connect(actionSettingsLanguageAutodetect,SIGNAL(triggered(bool)),this,SLOT(actionSettingsLanguageAutodetectTriggered(bool)));
 	connect(groupSettingsLanguageList,SIGNAL(triggered(QAction *)),this,SLOT(groupSettingsLanguageListTriggered(QAction *)));
+	connect(actionHelpAboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
 	connect(actionHelpAbout,SIGNAL(triggered()),this,SLOT(actionHelpAboutTriggered()));
 #ifndef Q_OS_WINCE
 	connect(actionFilePrintSetup,SIGNAL(triggered()),this,SLOT(actionFilePrintSetupTriggered()));
@@ -77,6 +78,8 @@ QRect rect = geometry();
 	tspmodel->setNumCities(spinCities->value());
 	taskView->setModel(tspmodel);
 	connect(tspmodel,SIGNAL(numCitiesChanged(int)),this,SLOT(numCitiesChanged(int)));
+	connect(tspmodel,SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),this,SLOT(dataChanged()));
+	connect(tspmodel,SIGNAL(layoutChanged()),this,SLOT(dataChanged()));
 #ifdef Q_OS_WINCE
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
@@ -148,11 +151,22 @@ int count = tspmodel->numCities();
 
 void MainWindow::actionFileNewTriggered()
 {
+	if (isWindowModified()) {
+int res = QMessageBox(QMessageBox::Warning,trUtf8("New Task"),trUtf8("Would you like to save changes in current task?"),QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,this).exec();
+		if ((res == QMessageBox::Cancel) || ((res == QMessageBox::Yes) && !saveTask()))
+			return;
+	}
 	tspmodel->clear();
+	setWindowModified(false);
 }
 
 void MainWindow::actionFileOpenTriggered()
 {
+	if (isWindowModified()) {
+int res = QMessageBox(QMessageBox::Warning,trUtf8("Task Open"),trUtf8("Would you like to save changes in current task?"),QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,this).exec();
+		if ((res == QMessageBox::Cancel) || ((res == QMessageBox::Yes) && !saveTask()))
+			return;
+	}
 QFileDialog od(this);
 	od.setAcceptMode(QFileDialog::AcceptOpen);
 	od.setFileMode(QFileDialog::ExistingFile);
@@ -167,10 +181,15 @@ QStringList files = od.selectedFiles();
 	if (files.size() < 1)
 		return;
 	tspmodel->loadTask(files.first());
+	setWindowModified(false);
 }
 
 void MainWindow::actionFileSaveTaskTriggered()
 {
+	saveTask();
+}
+
+bool MainWindow::saveTask() {
 QFileDialog sd(this);
 	sd.setAcceptMode(QFileDialog::AcceptSave);
 QStringList filters(QString(trUtf8("%1 Task File")).arg("TSPSG") + " (*.tspt)");
@@ -178,11 +197,15 @@ QStringList filters(QString(trUtf8("%1 Task File")).arg("TSPSG") + " (*.tspt)");
 	sd.setNameFilters(filters);
 	sd.setDefaultSuffix("tspt");
 	if (sd.exec() != QDialog::Accepted)
-		return;
+		return false;
 QStringList files = sd.selectedFiles();
 	if (files.size() < 1)
-		return;
-	tspmodel->saveTask(files.first());
+		return false;
+	if (tspmodel->saveTask(files.first())) {
+		setWindowModified(false);
+		return true;
+	} else
+		return false;
 }
 
 void MainWindow::actionSettingsPreferencesTriggered()
@@ -207,6 +230,7 @@ QPrintDialog pd(printer,this);
 void MainWindow::buttonRandomClicked()
 {
 	tspmodel->randomize();
+	setWindowModified(true);
 #ifdef Q_OS_WINCE
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
@@ -243,8 +267,8 @@ void MainWindow::actionHelpAboutTriggered()
 	// TODO: Normal about window :-)
 QString about = QString::fromUtf8("TSPSG - TSP Solver and Generator\n");
 about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
-	about += "Qt library versions:\n";
-	about += QString::fromUtf8("    OS: %1\n").arg(OS);
+	about += QString::fromUtf8("Target OS: %1\n").arg(OS);
+	about += "Qt library:\n";
 	about += QString::fromUtf8("    Compile time: %1\n").arg(QT_VERSION_STR);
 	about += QString::fromUtf8("    Runtime: %1\n").arg(qVersion());
 	about += "\n";
@@ -311,6 +335,13 @@ void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+	if (isWindowModified()) {
+int res = QMessageBox(QMessageBox::Warning,trUtf8("Application Close"),trUtf8("Would you like to save changes in current task?"),QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,this).exec();
+		if ((res == QMessageBox::Cancel) || ((res == QMessageBox::Yes) && !saveTask())) {
+			event->ignore();
+			return;
+		}
+	}
 	settings->setValue("NumCities",spinCities->value());
 #ifndef Q_OS_WINCE
 	// Saving windows state
@@ -325,6 +356,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
 	}
 #endif // Q_OS_WINCE
 	QMainWindow::closeEvent(event);
+}
+
+void MainWindow::dataChanged()
+{
+	setWindowModified(true);
 }
 
 void MainWindow::numCitiesChanged(int nCities)

@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/images" >
+    <file>qtlogo-64.png</file>
     <file>About.bmp</file>
     <file>Icon.png</file>
     <file>Settings.png</file>

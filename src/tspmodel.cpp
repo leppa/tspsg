@@ -275,54 +275,54 @@ double val;
 	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
 }
 
-void CTSPModel::saveTask(QString fname)
+bool CTSPModel::saveTask(QString fname)
 {
 QFile f(fname);
 	if (!f.open(QIODevice::WriteOnly)) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),QString(trUtf8("Unable to create task file.\nError: %1\nMaybe, file is read-only?")).arg(f.errorString()),QMessageBox::Ok).exec();
-		return;
+		return false;
 	}
 QDataStream ds(&f);
 	ds.setVersion(QDataStream::Qt_4_4);
 	if (f.error() != QFile::NoError) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		f.close();
-		return;
+		return false;
 	}
 	// File signature
 	ds << TSPT;
 	if (f.error() != QFile::NoError) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		f.close();
-		return;
+		return false;
 	}
 	// File version
 	ds << TSPT_VERSION;
 	if (f.error() != QFile::NoError) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		f.close();
-		return;
+		return false;
 	}
 	// File metadata version
 	ds << TSPT_META_VERSION;
 	if (f.error() != QFile::NoError) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		f.close();
-		return;
+		return false;
 	}
 	// Metadata
 	ds << OSID;
 	if (f.error() != QFile::NoError) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		f.close();
-		return;
+		return false;
 	}
 	// Number of cities
 	ds << nCities;
 	if (f.error() != QFile::NoError) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		f.close();
-		return;
+		return false;
 	}
 	// Costs
 	for (int r = 0; r < nCities; r++)
@@ -332,10 +332,11 @@ QDataStream ds(&f);
 				if (f.error() != QFile::NoError) {
 					QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 					f.close();
-					return;
+					return false;
 				}
 			}
 	f.close();
+	return true;
 }
 
 void CTSPModel::randomize()

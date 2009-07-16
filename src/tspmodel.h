@@ -41,7 +41,7 @@ public:
 	void setNumCities(int);
 	void clear();
 	void loadTask(QString);
-	void saveTask(QString);
+	bool saveTask(QString);
 	void randomize();
 signals:
 	void numCitiesChanged(int);

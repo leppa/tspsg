@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Travelling salesman problem</string>
+   <string>Travelling salesman problem[*]</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/tspsg.qrc">
@@ -311,6 +311,7 @@
     <addaction name="actionHelpContents"/>
     <addaction name="actionHelpContextual"/>
     <addaction name="separator"/>
+    <addaction name="actionHelpAboutQt"/>
     <addaction name="actionHelpAbout"/>
    </widget>
    <addaction name="menuFile"/>
@@ -562,6 +563,24 @@
    </property>
    <property name="statusTip">
     <string>Save current task</string>
+   </property>
+  </action>
+  <action name="actionHelpAboutQt">
+   <property name="icon">
+    <iconset resource="../resources/tspsg.qrc">
+     <normaloff>:/images/qtlogo-64.png</normaloff>:/images/qtlogo-64.png</iconset>
+   </property>
+   <property name="text">
+    <string>About &amp;Qt...</string>
+   </property>
+   <property name="iconText">
+    <string>About Qt...</string>
+   </property>
+   <property name="toolTip">
+    <string>About Qt</string>
+   </property>
+   <property name="statusTip">
+    <string>About Qt library</string>
    </property>
   </action>
  </widget>

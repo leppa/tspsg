@@ -48,6 +48,7 @@ private slots:
 	void actionSettingsLanguageAutodetectTriggered(bool);
 	void groupSettingsLanguageListTriggered(QAction *);
 	void actionHelpAboutTriggered();
+	void dataChanged();
 #ifndef Q_OS_WINCE
 	void actionFilePrintSetupTriggered();
 #endif // Q_OS_WINCE
@@ -62,6 +63,7 @@ private:
 	QActionGroup *groupSettingsLanguageList;
 	bool loadLanguage(QString lang = "");
 	void loadLangList();
+	bool saveTask();
 };
 
 #endif // MAINWINDOW_H
