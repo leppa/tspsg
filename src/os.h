@@ -24,9 +24,9 @@
 #ifndef OS_H
 #define OS_H
 
-#ifdef _WIN64
+#if defined(__amd64__) || defined(_M_X64) || defined(__ia64__) || defined(_M_IA64)
 	#define BITS " (64-bit)"
-#elif defined _WIN32
+#elif defined(__i386__) || defined(_M_IX86) || defined(_X86_)
 	#define BITS " (32-bit)"
 #else
 	#define BITS ""
