@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/tspsg.qrc">
-    <normaloff>:/images/Settings.png</normaloff>:/images/Settings.png</iconset>
+    <normaloff>:/images/icons/preferences_system.png</normaloff>:/images/icons/preferences_system.png</iconset>
   </property>
   <layout class="QVBoxLayout">
    <property name="spacing">
@@ -50,7 +50,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../resources/tspsg.qrc">:/images/Settings.png</pixmap>
+        <pixmap resource="../resources/tspsg.qrc">:/images/icons/preferences_system.png</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -292,7 +292,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="../resources/tspsg.qrc">
-                   <normaloff>:/images/buttons/buttons/Color.png</normaloff>:/images/buttons/buttons/Color.png</iconset>
+                   <normaloff>:/images/icons/color_line.png</normaloff>:/images/icons/color_line.png</iconset>
                  </property>
                 </widget>
                </item>
@@ -309,7 +309,7 @@
                  </property>
                  <property name="icon">
                   <iconset resource="../resources/tspsg.qrc">
-                   <normaloff>:/images/buttons/buttons/Font.png</normaloff>:/images/buttons/buttons/Font.png</iconset>
+                   <normaloff>:/images/icons/fonts.png</normaloff>:/images/icons/fonts.png</iconset>
                  </property>
                 </widget>
                </item>
@@ -384,7 +384,7 @@
        </property>
        <property name="icon">
         <iconset resource="../resources/tspsg.qrc">
-         <normaloff>:/images/buttons/buttons/Help.png</normaloff>:/images/buttons/buttons/Help.png</iconset>
+         <normaloff>:/images/icons/help_hint.png</normaloff>:/images/icons/help_hint.png</iconset>
        </property>
        <property name="autoRaise">
         <bool>true</bool>
@@ -429,7 +429,7 @@
        </property>
        <property name="icon">
         <iconset resource="../resources/tspsg.qrc">
-         <normaloff>:/images/buttons/buttons/OK.png</normaloff>:/images/buttons/buttons/OK.png</iconset>
+         <normaloff>:/images/icons/button_ok.png</normaloff>:/images/icons/button_ok.png</iconset>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -449,7 +449,7 @@
        </property>
        <property name="icon">
         <iconset resource="../resources/tspsg.qrc">
-         <normaloff>:/images/buttons/buttons/Critical.png</normaloff>:/images/buttons/buttons/Critical.png</iconset>
+         <normaloff>:/images/icons/button_cancel.png</normaloff>:/images/icons/button_cancel.png</iconset>
        </property>
       </widget>
      </item>

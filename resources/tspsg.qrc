@@ -1,27 +1,27 @@
 <RCC>
-  <qresource prefix="/images" >
-    <file>qtlogo-64.png</file>
-    <file>About.bmp</file>
-    <file>Icon.png</file>
-    <file>Settings.png</file>
-    <file>Task.bmp</file>
-  </qresource>
-  <qresource prefix="/images/buttons" >
-    <file>buttons/Web.png</file>
-    <file>buttons/Color.png</file>
-    <file>buttons/Critical.png</file>
-    <file>buttons/Delete.png</file>
-    <file>buttons/Document.png</file>
-    <file>buttons/Font.png</file>
-    <file>buttons/Help.png</file>
-    <file>buttons/NoAction.png</file>
-    <file>buttons/OK.png</file>
-    <file>buttons/OpenFolder.png</file>
-    <file>buttons/Print.png</file>
-    <file>buttons/PrintSetup.png</file>
-    <file>buttons/Properties.png</file>
-    <file>buttons/Save.png</file>
-    <file>buttons/book_open.png</file>
-    <file>buttons/infoBubble.png</file>
-  </qresource>
+    <qresource prefix="/images" >
+        <file>qtlogo-64.png</file>
+        <file>About.bmp</file>
+        <file>Icon.png</file>
+        <file>Settings.png</file>
+        <file>Task.bmp</file>
+        <file>icons/button_cancel.png</file>
+        <file>icons/button_ok.png</file>
+        <file>icons/color_line.png</file>
+        <file>icons/contents.png</file>
+        <file>icons/contexthelp.png</file>
+        <file>icons/exit.png</file>
+        <file>icons/filenew.png</file>
+        <file>icons/fileopen.png</file>
+        <file>icons/fileprint.png</file>
+        <file>icons/filesave.png</file>
+        <file>icons/filesaveas.png</file>
+        <file>icons/fonts.png</file>
+        <file>icons/help_about.png</file>
+        <file>icons/help_browser.png</file>
+        <file>icons/help_hint.png</file>
+        <file>icons/locale.png</file>
+        <file>icons/preferences_system.png</file>
+        <file>icons/roll.png</file>
+    </qresource>
 </RCC>

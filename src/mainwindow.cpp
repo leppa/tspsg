@@ -29,6 +29,11 @@ MainWindow::MainWindow(QWidget *parent)
 	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
 	loadLanguage();
 	setupUi(this);
+#ifdef Q_OS_WINCE
+	// A little hack for toolbar icons to have sane size.
+int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::desktop()->screenGeometry().height());
+	toolBar->setIconSize(QSize(s / 10,s / 10));
+#endif
 #ifndef Q_OS_WINCE
 	printer = new QPrinter();
 #endif // Q_OS_WINCE
@@ -55,9 +60,11 @@ MainWindow::MainWindow(QWidget *parent)
 QRect rect = geometry();
 #ifdef Q_OS_WINCE
 	// HACK: Fix for all tabWidget elements becoming "unclickable" if making it central widget.
-	rect.setSize(QApplication::desktop()->availableGeometry().size());
+/*	rect.setSize(QApplication::desktop()->availableGeometry().size());
 	rect.setHeight(rect.height() - (QApplication::desktop()->screenGeometry().height() - QApplication::desktop()->availableGeometry().height()));
-	tabWidget->resize(rect.width(),rect.height() - toolBar->size().height());
+	tabWidget->resize(rect.width(),rect.height() - toolBar->iconSize().height());*/
+	// Somehow, this works now. No more "unclickable" elements :-\ 
+	setCentralWidget(tabWidget);
 #else
 	if (settings->value("SavePos",false).toBool()) {
 		// Loading of saved window state
