@@ -227,7 +227,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -241,7 +241,7 @@
     </property>
     <widget class="QMenu" name="menuFileSaveAs">
      <property name="title">
-      <string>Save &amp;as...</string>
+      <string>Save &amp;As...</string>
      </property>
      <property name="icon">
       <iconset resource="../resources/tspsg.qrc">
@@ -316,7 +316,7 @@
    </attribute>
    <addaction name="actionFileNew"/>
    <addaction name="actionFileOpen"/>
-   <addaction name="actionFileSaveTask"/>
+   <addaction name="actionFileSave"/>
    <addaction name="separator"/>
    <addaction name="actionFilePrint"/>
    <addaction name="actionSettingsPreferences"/>
@@ -329,7 +329,7 @@
      <normaloff>:/images/icons/fileprint.png</normaloff>:/images/icons/fileprint.png</iconset>
    </property>
    <property name="text">
-    <string>P&amp;rint setup...</string>
+    <string>P&amp;rint Setup...</string>
    </property>
    <property name="statusTip">
     <string>Setup printing</string>
@@ -358,7 +358,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Solution st&amp;eps</string>
+    <string>Solution S&amp;teps</string>
    </property>
    <property name="toolTip">
     <string>Save solution steps</string>
@@ -372,7 +372,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Solution &amp;graph</string>
+    <string>Solution &amp;Graph</string>
    </property>
    <property name="toolTip">
     <string>Save solution graph</string>

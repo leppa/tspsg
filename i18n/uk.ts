@@ -17,7 +17,7 @@
     <message>
         <location filename="../src/tspmodel.cpp" line="156"/>
         <source>Unexpected end of file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Неочікуваний кінець файлу.</translation>
     </message>
     <message>
         <location filename="../src/tspmodel.cpp" line="158"/>
@@ -54,7 +54,8 @@
         <location filename="../src/tspmodel.cpp" line="169"/>
         <source>Unable to open task file.
 Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Неможливо відкрити файл завдання.
+Помилка: %1</translation>
     </message>
     <message>
         <location filename="../src/tspmodel.cpp" line="184"/>
@@ -137,7 +138,7 @@ Error: %1</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="332"/>
-        <source>P&amp;rint setup...</source>
+        <source>P&amp;rint Setup...</source>
         <translation>&amp;Налагодження друку...</translation>
     </message>
     <message>
@@ -188,10 +189,6 @@ Error: %1</source>
         <location filename="../ui/mainwindow.ui" line="416"/>
         <source>Ctrl+N</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Travelling salesman problem</source>
-        <translation type="obsolete">Задача комівояжера</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="56"/>
@@ -266,6 +263,24 @@ Error: %1</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ce.ui" line="266"/>
+        <location filename="../ui/mainwindow.ui" line="244"/>
+        <source>Save &amp;As...</source>
+        <translation>Зберегти &amp;як...</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="348"/>
+        <location filename="../ui/mainwindow.ui" line="361"/>
+        <source>Solution S&amp;teps</source>
+        <translation>&amp;Хід розв&apos;язку</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ce.ui" line="362"/>
+        <location filename="../ui/mainwindow.ui" line="375"/>
+        <source>Solution &amp;Graph</source>
+        <translation>&amp;Граф розв&apos;язку</translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ce.ui" line="466"/>
         <location filename="../ui/mainwindow.ui" line="479"/>
         <source>Context &amp;Help</source>
@@ -290,12 +305,6 @@ Error: %1</source>
         <translation>Задача комівояжера[*]</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="266"/>
-        <location filename="../ui/mainwindow.ui" line="244"/>
-        <source>Save &amp;as...</source>
-        <translation>Зберегти &amp;як...</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ce.ui" line="297"/>
         <location filename="../ui/mainwindow.ui" line="278"/>
         <source>&amp;Language</source>
@@ -311,12 +320,6 @@ Please, append &quot; / Language&quot; when translating this string.</extracomme
         <translation>&amp;Допомога</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ce.ui" line="348"/>
-        <location filename="../ui/mainwindow.ui" line="361"/>
-        <source>Solution st&amp;eps</source>
-        <translation>&amp;Хід розв&apos;язку</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ce.ui" line="351"/>
         <location filename="../ui/mainwindow.ui" line="364"/>
         <source>Save solution steps</source>
@@ -327,12 +330,6 @@ Please, append &quot; / Language&quot; when translating this string.</extracomme
         <location filename="../ui/mainwindow.ui" line="367"/>
         <source>Save solution steps only</source>
         <translation>Зберегти тільки хід розв&apos;язку</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ce.ui" line="362"/>
-        <location filename="../ui/mainwindow.ui" line="375"/>
-        <source>Solution &amp;graph</source>
-        <translation>&amp;Граф розв&apos;язку</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="365"/>
@@ -447,10 +444,6 @@ Please, append &quot; / Language&quot; when translating this string.</extracomme
         <location filename="../ui/mainwindow.ui" line="467"/>
         <source>Open help contents</source>
         <translation>Відкрити зміст допомоги</translation>
-    </message>
-    <message>
-        <source>&amp;Context help</source>
-        <translation type="obsolete">&amp;Контекстна допомога</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ce.ui" line="469"/>
