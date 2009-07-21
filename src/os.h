@@ -24,103 +24,113 @@
 #ifndef OS_H
 #define OS_H
 
-#if defined(__amd64__) || defined(_M_X64) || defined(__ia64__) || defined(_M_IA64)
-	#define BITS " (64-bit)"
+// Some target arch detection.
+// NOTE: Only for GNU C, Visual Studio, Intel C/C++ and MinGW32 compilers
+#if defined(__amd64__) || defined(_M_X64)
+	#define ARCH " (AMD 64-bit)"
+#elif defined(__ia64__) || defined(_M_IA64)
+	#define ARCH " (Intel 64-bit)"
 #elif defined(__i386__) || defined(_M_IX86) || defined(_X86_)
-	#define BITS " (32-bit)"
+	#define ARCH " (Intel x86)"
+#elif defined(__powerpc__) || defined(_M_PPC)
+	#define ARCH " (PowerPC)"
+#elif defined(__arm__) || defined(_M_ARM)
+	#define ARCH " (ARM)"
+#elif defined(__mips__) || defined(_M_MRX000)
+	#define ARCH " (MIPS)"
 #else
-	#define BITS ""
-#endif // BITS
+	#define ARCH ""
+#endif // ARCH
 
 #ifdef Q_OS_AIX
-	#define OS "AIX"BITS
+	#define OS "AIX"ARCH
 	#define OSID quint8(1)
 #elif defined Q_OS_BSD4
-	#define OS "BSD 4.4"BITS
+	#define OS "BSD 4.4"ARCH
 	#define OSID quint8(2)
 #elif defined Q_OS_BSDI
-	#define OS "BSD/OS"BITS
+	#define OS "BSD/OS"ARCH
 	#define OSID quint8(3)
 #elif defined Q_OS_CYGWIN
-	#define OS "Cygwin"BITS
+	#define OS "Cygwin"ARCH
 	#define OSID quint8(4)
 #elif defined Q_OS_DARWIN
-	#define OS "Darwin OS"BITS
+	#define OS "Darwin OS"ARCH
 	#define OSID quint8(5)
 #elif defined Q_OS_DGUX
-	#define OS "DG/UX"BITS
+	#define OS "DG/UX"ARCH
 	#define OSID quint8(6)
 #elif defined Q_OS_DYNIX
-	#define OS "DYNIX/ptx"BITS
+	#define OS "DYNIX/ptx"ARCH
 	#define OSID quint8(7)
 #elif defined Q_OS_FREEBSD
-	#define OS "FreeBSD"BITS
+	#define OS "FreeBSD"ARCH
 	#define OSID quint8(8)
 #elif defined Q_OS_HPUX
-	#define OS "HP-UX"BITS
+	#define OS "HP-UX"ARCH
 	#define OSID quint8(9)
 #elif defined Q_OS_HURD
-	#define OS "GNU Hurd"BITS
+	#define OS "GNU Hurd"ARCH
 	#define OSID quint8(10)
 #elif defined Q_OS_IRIX
-	#define OS "SGI Irix"BITS
+	#define OS "SGI Irix"ARCH
 	#define OSID quint8(11)
 #elif defined Q_OS_LINUX
-	#define OS "Linux"BITS
+	#define OS "Linux"ARCH
 	#define OSID quint8(12)
 #elif defined Q_OS_LYNX
-	#define OS "LynxOS"BITS
+	#define OS "LynxOS"ARCH
 	#define OSID quint8(13)
 #elif defined Q_OS_MSDOS
-	#define OS "MS-DOS"BITS
+	#define OS "MS-DOS"ARCH
 	#define OSID quint8(14)
 #elif defined Q_OS_NETBSD
-	#define OS "NetBSD"BITS
+	#define OS "NetBSD"ARCH
 	#define OSID quint8(15)
 #elif defined Q_OS_OS2
-	#define OS "OS/2"BITS
+	#define OS "OS/2"ARCH
 	#define OSID quint8(16)
 #elif defined Q_OS_OPENBSD
-	#define OS "OpenBSD"BITS
+	#define OS "OpenBSD"ARCH
 	#define OSID quint8(17)
 #elif defined Q_OS_OS2EMX
-	#define OS "OS/2"BITS
+	#define OS "OS/2"ARCH
 	#define OSID quint8(18)
 #elif defined Q_OS_OSF
-	#define OS "HP Tru64 UNIX"BITS
+	#define OS "HP Tru64 UNIX"ARCH
 	#define OSID quint8(19)
 #elif defined Q_OS_QNX6
-	#define OS "QNX RTP 6.1"BITS
+	#define OS "QNX RTP 6.1"ARCH
 	#define OSID quint8(20)
 #elif defined Q_OS_QNX
-	#define OS "QNX"BITS
+	#define OS "QNX"ARCH
 	#define OSID quint8(21)
 #elif defined Q_OS_RELIANT
-	#define OS "Reliant UNIX"BITS
+	#define OS "Reliant UNIX"ARCH
 	#define OSID quint8(22)
 #elif defined Q_OS_SCO
-	#define OS "SCO OpenServer 5"BITS
+	#define OS "SCO OpenServer 5"ARCH
 	#define OSID quint8(23)
 #elif defined Q_OS_SOLARIS
-	#define OS "Sun Solaris"BITS
+	#define OS "Sun Solaris"ARCH
 	#define OSID quint8(24)
 #elif defined Q_OS_ULTRIX
-	#define OS "DEC Ultrix"BITS
+	#define OS "DEC Ultrix"ARCH
 	#define OSID quint8(25)
 #elif defined Q_OS_UNIX
-	#define OS "UNIX BSD/SYSV"BITS
+	#define OS "UNIX BSD/SYSV"ARCH
 	#define OSID quint8(26)
 #elif defined Q_OS_UNIXWARE
-	#define OS "UnixWare 7/Open UNIX 8"BITS
+	#define OS "UnixWare 7/Open UNIX 8"ARCH
 	#define OSID quint8(27)
 #elif defined Q_OS_WIN32
-	#define OS "Windows"BITS
+	#define OS "Windows"ARCH
 	#define OSID quint8(28)
 #elif defined Q_OS_WINCE
-	#define OS "Windows CE"
+	#define OS "Windows CE"ARCH
 	#define OSID quint8(29)
 #else
-	#define OS "Unknown"BITS
+	#define OS "Unknown"ARCH
 	#define OSID quint8(255)
 #endif // OS
 

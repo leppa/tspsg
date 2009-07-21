@@ -278,6 +278,7 @@ about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksi
 	about += "Qt library:\n";
 	about += QString::fromUtf8("    Compile time: %1\n").arg(QT_VERSION_STR);
 	about += QString::fromUtf8("    Runtime: %1\n").arg(qVersion());
+	about += QString::fromUtf8("Built on %1 at %2\n").arg(__DATE__).arg(__TIME__);
 	about += "\n";
 	about += "TSPSG is licensed under the terms of the GNU General Public License. You should have received a copy of the GNU General Public License along with TSPSG.";
 	QMessageBox(QMessageBox::Information,"About",about,QMessageBox::Ok,this).exec();
