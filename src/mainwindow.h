@@ -1,5 +1,5 @@
 /*
- *  TSPSG - TSP Solver and Generator
+ *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
@@ -43,7 +43,8 @@ public:
 private slots:
 	void actionFileNewTriggered();
 	void actionFileOpenTriggered();
-	void actionFileSaveTaskTriggered();
+	void actionFileSaveAsTaskTriggered();
+	void actionFileSaveAsSolutionTriggered();
 	void actionSettingsPreferencesTriggered();
 	void actionSettingsLanguageAutodetectTriggered(bool);
 	void groupSettingsLanguageListTriggered(QAction *);
@@ -61,9 +62,13 @@ private:
 	QPrinter *printer;
 	CTSPModel *tspmodel;
 	QActionGroup *groupSettingsLanguageList;
+	QStringList output;
 	bool loadLanguage(QString lang = "");
 	void loadLangList();
+	void initDocStyleSheet();
 	bool saveTask();
+	void outputMatrix(tMatrix, QStringList &, int nRow = -1, int nCol = -1);
+	void enableSolutionActions(bool enable = true);
 };
 
 #endif // MAINWINDOW_H

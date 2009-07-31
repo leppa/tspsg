@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>234</width>
-    <height>292</height>
+    <width>225</width>
+    <height>322</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,19 +21,16 @@
     <normaloff>:/images/Icon.png</normaloff>:/images/Icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
    <widget class="QTabWidget" name="tabWidget">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>235</width>
-      <height>240</height>
+      <x>9</x>
+      <y>9</y>
+      <width>207</width>
+      <height>248</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -205,36 +202,22 @@
      <attribute name="title">
       <string>Solution</string>
      </attribute>
-     <layout class="QVBoxLayout" name="_4">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <layout class="QHBoxLayout" name="_5">
-        <property name="spacing">
-         <number>0</number>
+       <widget class="QTextEdit" name="solutionText">
+        <property name="enabled">
+         <bool>false</bool>
         </property>
-        <item>
-         <widget class="QTextEdit" name="textEdit">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="statusTip">
-           <string>Solution steps</string>
-          </property>
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGraphicsView" name="graphicsView">
-          <property name="statusTip">
-           <string>Solution graph</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+        <property name="statusTip">
+         <string>Solution steps</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -245,8 +228,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>234</width>
-     <height>24</height>
+     <width>225</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -269,11 +252,8 @@
       <iconset resource="../resources/tspsg.qrc">
        <normaloff>:/images/icons/filesaveas.png</normaloff>:/images/icons/filesaveas.png</iconset>
      </property>
-     <addaction name="actionFileSaveTask"/>
-     <addaction name="separator"/>
-     <addaction name="actionFileSaveResultAll"/>
-     <addaction name="actionFileSaveResultMatrices"/>
-     <addaction name="actionFileSaveResultGraph"/>
+     <addaction name="actionFileSaveAsTask"/>
+     <addaction name="actionFileSaveAsSolution"/>
     </widget>
     <addaction name="actionFileNew"/>
     <addaction name="actionFileOpen"/>
@@ -294,7 +274,7 @@
       <string>Select application language</string>
      </property>
      <property name="title">
-      <string extracomment="Please, append &quot; / Language&quot; when translating this string.">&amp;Language</string>
+      <string comment="Please, append &quot; / Language&quot; when translating this string.">&amp;Language</string>
      </property>
      <property name="icon">
       <iconset resource="../resources/tspsg.qrc">
@@ -368,12 +348,15 @@
     <string>Save solution graph only</string>
    </property>
   </action>
-  <action name="actionFileSaveResultAll">
+  <action name="actionFileSaveAsSolution">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>&amp;Solution</string>
+    <string>&amp;Solution...</string>
+   </property>
+   <property name="iconText">
+    <string>Solution...</string>
    </property>
    <property name="toolTip">
     <string>Save solution</string>
@@ -496,7 +479,7 @@
     <string>Exit application</string>
    </property>
   </action>
-  <action name="actionFileSaveTask">
+  <action name="actionFileSaveAsTask">
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
      <normaloff>:/images/icons/filesaveas.png</normaloff>:/images/icons/filesaveas.png</iconset>
@@ -566,7 +549,7 @@
   <action name="actionHelpAboutQt">
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/qtlogo-64.png</normaloff>:/images/qtlogo-64.png</iconset>
+     <normaloff>:/images/icons/qtlogo-64.png</normaloff>:/images/icons/qtlogo-64.png</iconset>
    </property>
    <property name="text">
     <string>About &amp;Qt...</string>

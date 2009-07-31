@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>480</height>
+    <width>491</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,216 +18,206 @@
     <normaloff>:/images/Icon.png</normaloff>:/images/Icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout">
-    <item row="0" column="0">
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tabTask">
-       <attribute name="title">
-        <string>Task</string>
-       </attribute>
-       <layout class="QVBoxLayout">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>481</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tabTask">
+     <attribute name="title">
+      <string>Task</string>
+     </attribute>
+     <layout class="QVBoxLayout">
+      <item>
+       <layout class="QHBoxLayout">
         <item>
-         <layout class="QHBoxLayout">
-          <item>
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QLabel" name="labelVariant">
-            <property name="text">
-             <string>&amp;Variant:</string>
-            </property>
-            <property name="buddy">
-             <cstring>spinVariant</cstring>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinVariant">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="statusTip">
-             <string>Number of variant</string>
-            </property>
-            <property name="minimum">
-             <number>1</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="labelCities">
-            <property name="text">
-             <string>&amp;Cities:</string>
-            </property>
-            <property name="buddy">
-             <cstring>spinCities</cstring>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinCities">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="statusTip">
-             <string>Number of cities</string>
-            </property>
-            <property name="minimum">
-             <number>3</number>
-            </property>
-            <property name="maximum">
-             <number>5</number>
-            </property>
-            <property name="value">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
-         <widget class="QTableView" name="taskView">
-          <property name="statusTip">
-           <string>Cost of travel from city to city</string>
+         <widget class="QLabel" name="labelVariant">
+          <property name="text">
+           <string>&amp;Variant:</string>
           </property>
-          <property name="selectionMode">
-           <enum>QAbstractItemView::NoSelection</enum>
+          <property name="buddy">
+           <cstring>spinVariant</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout">
-          <item>
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="buttonRandom">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="statusTip">
-             <string>Fill table with random numbers</string>
-            </property>
-            <property name="text">
-             <string>Random</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources/tspsg.qrc">
-              <normaloff>:/images/icons/roll.png</normaloff>:/images/icons/roll.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="buttonSolve">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="statusTip">
-             <string>Solve current task</string>
-            </property>
-            <property name="text">
-             <string>Solve</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources/tspsg.qrc">
-              <normaloff>:/images/icons/button_ok.png</normaloff>:/images/icons/button_ok.png</iconset>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tabSolution">
-       <attribute name="title">
-        <string>Solution</string>
-       </attribute>
-       <layout class="QVBoxLayout">
-        <item>
-         <layout class="QHBoxLayout">
-          <property name="spacing">
-           <number>0</number>
+         <widget class="QSpinBox" name="spinVariant">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
-          <item>
-           <widget class="QTextEdit" name="textEdit">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="statusTip">
-             <string>Solution steps</string>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGraphicsView" name="graphicsView">
-            <property name="statusTip">
-             <string>Solution graph</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+          <property name="statusTip">
+           <string>Number of variant</string>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelCities">
+          <property name="text">
+           <string>&amp;Cities:</string>
+          </property>
+          <property name="buddy">
+           <cstring>spinCities</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spinCities">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="statusTip">
+           <string>Number of cities</string>
+          </property>
+          <property name="minimum">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <number>5</number>
+          </property>
+          <property name="value">
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
-      </widget>
-     </widget>
-    </item>
-   </layout>
+      </item>
+      <item>
+       <widget class="QTableView" name="taskView">
+        <property name="statusTip">
+         <string>Cost of travel from city to city</string>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::NoSelection</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout">
+        <item>
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="buttonRandom">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="statusTip">
+           <string>Fill table with random numbers</string>
+          </property>
+          <property name="text">
+           <string>Random</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/tspsg.qrc">
+            <normaloff>:/images/icons/roll.png</normaloff>:/images/icons/roll.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="buttonSolve">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="statusTip">
+           <string>Solve current task</string>
+          </property>
+          <property name="text">
+           <string>Solve</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/tspsg.qrc">
+            <normaloff>:/images/icons/button_ok.png</normaloff>:/images/icons/button_ok.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="tabSolution">
+     <attribute name="title">
+      <string>Solution</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QTextEdit" name="solutionText">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="statusTip">
+         <string>Solution steps</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>640</width>
-     <height>24</height>
+     <width>491</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -247,11 +237,8 @@
       <iconset resource="../resources/tspsg.qrc">
        <normaloff>:/images/icons/filesaveas.png</normaloff>:/images/icons/filesaveas.png</iconset>
      </property>
-     <addaction name="actionFileSaveTask"/>
-     <addaction name="separator"/>
-     <addaction name="actionFileSaveSolutionAll"/>
-     <addaction name="actionFileSaveSolutionMatrices"/>
-     <addaction name="actionFileSaveSolutionGraph"/>
+     <addaction name="actionFileSaveAsTask"/>
+     <addaction name="actionFileSaveAsSolution"/>
     </widget>
     <addaction name="actionFileNew"/>
     <addaction name="actionFileOpen"/>
@@ -275,7 +262,7 @@
       <string>Select application language</string>
      </property>
      <property name="title">
-      <string extracomment="Please, append &quot; / Language&quot; when translating this string.">&amp;Language</string>
+      <string comment="Please, append &quot; / Language&quot; when translating this string.">&amp;Language</string>
      </property>
      <property name="icon">
       <iconset resource="../resources/tspsg.qrc">
@@ -324,6 +311,9 @@
    <addaction name="actionFileExit"/>
   </widget>
   <action name="actionFilePrintSetup">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
      <normaloff>:/images/icons/fileprint.png</normaloff>:/images/icons/fileprint.png</iconset>
@@ -381,12 +371,12 @@
     <string>Save solution graph only</string>
    </property>
   </action>
-  <action name="actionFileSaveSolutionAll">
+  <action name="actionFileSaveAsSolution">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>&amp;Solution</string>
+    <string>&amp;Solution...</string>
    </property>
    <property name="toolTip">
     <string>Save solution</string>
@@ -509,11 +499,7 @@
     <string>Exit application</string>
    </property>
   </action>
-  <action name="actionFileSaveTask">
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/filesaveas.png</normaloff>:/images/icons/filesaveas.png</iconset>
-   </property>
+  <action name="actionFileSaveAsTask">
    <property name="text">
     <string>&amp;Task...</string>
    </property>
@@ -582,7 +568,7 @@
   <action name="actionHelpAboutQt">
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/qtlogo-64.png</normaloff>:/images/qtlogo-64.png</iconset>
+     <normaloff>:/images/icons/qtlogo-64.png</normaloff>:/images/icons/qtlogo-64.png</iconset>
    </property>
    <property name="text">
     <string>About &amp;Qt...</string>

@@ -1,5 +1,5 @@
 /*
- *  TSPSG - TSP Solver and Generator
+ *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
@@ -25,35 +25,190 @@
 #include "tspmodel.h"
 
 CTSPSolver::CTSPSolver()
+	: nCities(0)
 {
 }
 
-double CTSPSolver::findMinInRow(int nRow, tMatrix matrix)
+void CTSPSolver::cleanup()
+{
+	route.clear();
+}
+
+double CTSPSolver::findMinInRow(int nRow, tMatrix matrix, int exc)
 {
 double min = INFINITY;
 	for (int k = 0; k < nCities; k++)
-		if (min > matrix[nRow][k])
+		if (((k != exc)) && (min > matrix[nRow][k]))
 			min = matrix[nRow][k];
 	return min == INFINITY ? 0 : min;
 }
 
-double CTSPSolver::findMinInCol(int nCol, tMatrix matrix)
+double CTSPSolver::findMinInCol(int nCol, tMatrix matrix, int exr)
 {
 double min = INFINITY;
 	for (int k = 0; k < nCities; k++)
-		if (min > matrix[k][nCol])
+		if ((k != exr) && (min > matrix[k][nCol]))
 			min = matrix[k][nCol];
 	return min == INFINITY ? 0 : min;
 }
 
-sStep *CTSPSolver::solve(int numCities, tMatrix task)
+void CTSPSolver::subRow(tMatrix &matrix, int nRow, double val)
+{
+	for (int k = 0; k < nCities; k++)
+		if (k != nRow)
+			matrix[nRow][k] -= val;
+}
+
+void CTSPSolver::subCol(tMatrix &matrix, int nCol, double val)
+{
+	for (int k = 0; k < nCities; k++)
+		if (k != nCol)
+			matrix[k][nCol] -= val;
+}
+
+double CTSPSolver::align(tMatrix &matrix)
+{
+double r = 0;
+double min;
+	for (int k = 0; k < nCities; k++) {
+		min = findMinInRow(k,matrix);
+		if (min > 0) {
+			r += min;
+			subRow(matrix,k,min);
+		}
+	}
+	for (int k = 0; k < nCities; k++) {
+		min = findMinInCol(k,matrix);
+		if (min > 0) {
+			r += min;
+			subCol(matrix,k,min);
+		}
+	}
+	return r;
+}
+
+bool CTSPSolver::findCandidate(tMatrix matrix, int &nRow, int &nCol, double &h)
+{
+	h = -1;
+	nRow = -1;
+	nCol = -1;
+bool alts = false;
+double sum;
+	for (int r = 0; r < nCities; r++)
+		for (int c = 0; c < nCities; c++)
+			if ((matrix[r][c] == 0) && !forbidden.values(r).contains(c)) {
+				sum = findMinInRow(r,matrix,c) + findMinInCol(c,matrix,r);
+				if (sum > h) {
+					h = sum;
+					nRow = r;
+					nCol = c;
+					alts = false;
+				} else if (sum == h)
+					alts = true;
+			}
+	return alts;
+}
+
+bool CTSPSolver::hasSubCycles(int nRow, int nCol)
+{
+	if ((nRow < 0) || (nCol < 0) || route.isEmpty() || !(route.size() < nCities - 1) || !route.contains(nCol))
+		return false;
+int i = nCol;
+	while (true) {
+		if ((i = route[i]) == nRow)
+			return true;
+		if (!route.contains(i))
+			return false;
+	}
+	return false;
+}
+
+// TODO: Comment the algorithm
+sStep *CTSPSolver::solve(int numCities, tMatrix task, QWidget *parent)
 {
 	if (numCities <= 1)
 		return NULL;
+	cleanup();
 	nCities = numCities;
+double s;
+QProgressDialog pd(parent);
+QProgressBar *pb = new QProgressBar(&pd);
+	pb->setAlignment(Qt::AlignCenter);
+	pb->setFormat(trUtf8("%v of %m parts found"));
+	pd.setBar(pb);
+	pd.setMaximum(nCities);
+	pd.setMinimumDuration(1000);
+	pd.setLabelText(trUtf8("Calculating optimal route..."));
+	pd.setWindowTitle(trUtf8("Solution Progress"));
+	pd.setWindowModality(Qt::ApplicationModal);
+	pd.setValue(0);
+
 sStep *step = new sStep();
 	step->matrix = task;
+
+	s = align(step->matrix);
+	step->price = s;
 	root = step;
 
-	return step;
+sStep *left, *right;
+int nRow, nCol;
+	while (route.size() < nCities) {
+		forbidden.clear();
+		step->alts = findCandidate(step->matrix,nRow,nCol,s);
+		while (hasSubCycles(nRow,nCol)) {
+			forbidden[nRow] = nCol;
+			step->matrix[nRow][nCol] = INFINITY;
+			step->price += align(step->matrix);
+			step->alts = findCandidate(step->matrix,nRow,nCol,s);
+		}
+		if ((nRow == -1) || (nCol == -1) || pd.wasCanceled()) {
+			root = NULL;
+			break;
+		}
+
+		// Route with (nRow,nCol) path
+		right = new sStep();
+		right->matrix = step->matrix;
+		for (int k = 0; k < nCities; k++) {
+			if (k != nCol)
+				right->matrix[nRow][k] = INFINITY;
+			if (k != nRow)
+				right->matrix[k][nCol] = INFINITY;
+		}
+		right->price = step->price + align(right->matrix);
+		// Forbid selected route to exclude its reuse in next steps.
+		right->matrix[nCol][nRow] = INFINITY;
+		right->matrix[nRow][nCol] = INFINITY;
+
+		// Route without (nRow,nCol) path
+		left = new sStep();
+		left->matrix = step->matrix;
+		left->matrix[nRow][nCol] = INFINITY;
+ 		left->price = step->price + align(left->matrix);
+
+		step->candidate.nRow = nRow;
+		step->candidate.nCol = nCol;
+		step->plNode = left;
+		step->prNode = right;
+
+		if (right->price <= left->price) {
+			// Route with (nRow,nCol) path is cheaper
+			step = right;
+			route[nRow] = nCol;
+			pd.setValue(route.size());
+		} else {
+			// Route without (nRow,nCol) path is cheaper
+			step = left;
+			qApp->processEvents();
+		}
+	}
+
+	pd.reset();
+	qApp->processEvents();
+
+	if (!root && !pd.wasCanceled()) {
+		QMessageBox(QMessageBox::Warning,trUtf8("Solution Result"),trUtf8("This task has no solution."),QMessageBox::Ok,parent).exec();
+	}
+
+	return root;
 }

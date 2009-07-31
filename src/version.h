@@ -21,39 +21,20 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#ifndef VERSION_H
+#define VERSION_H
 
-#include "globals.h"
-#ifdef Q_OS_WINCE
-	#include "ui_settingsdialog.ce.h"
-#else
-	#include "ui_settingsdialog.h"
-#endif // Q_OS_WINCE
+#define BUILD_VERSION_MAJOR 0
+#define BUILD_VERSION_MINOR 1
+#define BUILD_RELEASE 1
+// Will stick this to revision
+#define BUILD_NUMBER 42
+#define BUILD_STATUS "alpha 1"
 
-class SettingsDialog: public QDialog, public Ui::SettingsDialog
-{
-	Q_OBJECT
-public:
-	SettingsDialog(QWidget *parent = 0);
-	bool fontChanged() const;
-	bool colorChanged() const;
+// "Converting" number to string
+#define QUOTE_X(x) #x
+#define QUOTE(x) QUOTE_X(x)
 
-private:
-	QSettings *settings;
-	QFont font;
-	QColor color;
-	bool newFont;
-	bool newColor;
-#ifndef Q_OS_WINCE
-	bool event(QEvent *);
-#endif
+#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE)
 
-private slots:
-	void accept();
-	void spinRandMinValueChanged(int val) { spinRandMax->setMinimum(val + 1); }
-	void buttonFontClicked();
-	void buttonColorClicked();
-};
-
-#endif // SETTINGSDIALOG_H
+#endif // VERSION_H

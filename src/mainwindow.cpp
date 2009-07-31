@@ -1,5 +1,5 @@
-/*
- *  TSPSG - TSP Solver and Generator
+	/*
+ *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
@@ -29,6 +29,10 @@ MainWindow::MainWindow(QWidget *parent)
 	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
 	loadLanguage();
 	setupUi(this);
+	initDocStyleSheet();
+	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
+	solutionText->setTextColor(settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>());
+	solutionText->setWordWrapMode(QTextOption::WordWrap);
 #ifdef Q_OS_WINCE
 	// A little hack for toolbar icons to have sane size.
 int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::desktop()->screenGeometry().height());
@@ -45,7 +49,8 @@ int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::des
 	actionSettingsLanguageAutodetect->setChecked(settings->value("Language","").toString().isEmpty());
 	connect(actionFileNew,SIGNAL(triggered()),this,SLOT(actionFileNewTriggered()));
 	connect(actionFileOpen,SIGNAL(triggered()),this,SLOT(actionFileOpenTriggered()));
-	connect(actionFileSaveTask,SIGNAL(triggered()),this,SLOT(actionFileSaveTaskTriggered()));
+	connect(actionFileSaveAsTask,SIGNAL(triggered()),this,SLOT(actionFileSaveAsTaskTriggered()));
+	connect(actionFileSaveAsSolution,SIGNAL(triggered()),this,SLOT(actionFileSaveAsSolutionTriggered()));
 	connect(actionSettingsPreferences,SIGNAL(triggered()),this,SLOT(actionSettingsPreferencesTriggered()));
 	connect(actionSettingsLanguageAutodetect,SIGNAL(triggered(bool)),this,SLOT(actionSettingsLanguageAutodetectTriggered(bool)));
 	connect(groupSettingsLanguageList,SIGNAL(triggered(QAction *)),this,SLOT(groupSettingsLanguageListTriggered(QAction *)));
@@ -58,14 +63,8 @@ int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::des
 	connect(buttonRandom,SIGNAL(clicked()),this,SLOT(buttonRandomClicked()));
 	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(spinCitiesValueChanged(int)));
 QRect rect = geometry();
-#ifdef Q_OS_WINCE
-	// HACK: Fix for all tabWidget elements becoming "unclickable" if making it central widget.
-/*	rect.setSize(QApplication::desktop()->availableGeometry().size());
-	rect.setHeight(rect.height() - (QApplication::desktop()->screenGeometry().height() - QApplication::desktop()->availableGeometry().height()));
-	tabWidget->resize(rect.width(),rect.height() - toolBar->iconSize().height());*/
-	// Somehow, this works now. No more "unclickable" elements :-\ 
 	setCentralWidget(tabWidget);
-#else
+#ifndef Q_OS_WINCE
 	if (settings->value("SavePos",false).toBool()) {
 		// Loading of saved window state
 		settings->beginGroup("MainWindow");
@@ -91,6 +90,14 @@ QRect rect = geometry();
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
 #endif // Q_OS_WINCE
+}
+
+void MainWindow::enableSolutionActions(bool enable)
+{
+	actionFileSaveAsSolution->setEnabled(enable);
+	solutionText->setEnabled(enable);
+	if (!enable)
+		output.clear();
 }
 
 bool MainWindow::loadLanguage(QString lang)
@@ -140,6 +147,18 @@ static QTranslator *translator;
 	return true;
 }
 
+void MainWindow::initDocStyleSheet()
+{
+QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
+QColor hilight;
+	if (color.value() < 192)
+		hilight.setHsv(color.hue(),color.saturation(),127 + qRound(color.value() / 2));
+	else
+		hilight.setHsv(color.hue(),color.saturation(),color.value() / 2);
+	solutionText->document()->setDefaultStyleSheet("* {color: " + color.name() +";} p {margin: 0px 10px;} table {margin: 5px;} td {padding: 1px 5px;} .hasalts {color: " + hilight.name() + ";} .selected {color: #A00000; font-weight: bold;} .alternate {color: #008000; font-weight: bold;}");
+	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
+}
+
 void MainWindow::spinCitiesValueChanged(int n)
 {
 #ifdef Q_OS_WINCE
@@ -165,6 +184,9 @@ int res = QMessageBox(QMessageBox::Warning,trUtf8("New Task"),trUtf8("Would you 
 	}
 	tspmodel->clear();
 	setWindowModified(false);
+	tabWidget->setCurrentIndex(0);
+	solutionText->clear();
+	enableSolutionActions(false);
 }
 
 void MainWindow::actionFileOpenTriggered()
@@ -189,11 +211,37 @@ QStringList files = od.selectedFiles();
 		return;
 	tspmodel->loadTask(files.first());
 	setWindowModified(false);
+	solutionText->clear();
+	enableSolutionActions(false);
 }
 
-void MainWindow::actionFileSaveTaskTriggered()
+void MainWindow::actionFileSaveAsTaskTriggered()
 {
 	saveTask();
+}
+
+void MainWindow::actionFileSaveAsSolutionTriggered()
+{
+static QString selectedFile;
+	if (selectedFile.isEmpty())
+		selectedFile = "solution.html";
+QFileDialog sd(this);
+	sd.setAcceptMode(QFileDialog::AcceptSave);
+QStringList filters(trUtf8("HTML Files") + " (*.html *.htm)");
+	filters.append(trUtf8("OpenDocument Files") + " (*.odt)");
+	filters.append(trUtf8("All Files") + " (*)");
+	sd.setNameFilters(filters);
+	sd.selectFile(selectedFile);
+	if (sd.exec() != QDialog::Accepted)
+		return;
+QStringList files = sd.selectedFiles();
+	if (files.empty())
+		return;
+	selectedFile = files.first();
+QTextDocumentWriter dw(selectedFile);
+	if (!(selectedFile.endsWith(".htm",Qt::CaseInsensitive) || selectedFile.endsWith(".html",Qt::CaseInsensitive) || selectedFile.endsWith(".odt",Qt::CaseInsensitive) || selectedFile.endsWith(".txt",Qt::CaseInsensitive)))
+		dw.setFormat("plaintext");
+	dw.write(solutionText->document());
 }
 
 bool MainWindow::saveTask() {
@@ -218,7 +266,17 @@ QStringList files = sd.selectedFiles();
 void MainWindow::actionSettingsPreferencesTriggered()
 {
 SettingsDialog sd(this);
-	sd.exec();
+	if (sd.exec() != QDialog::Accepted)
+		return;
+	if (sd.colorChanged() || sd.fontChanged()) {
+		initDocStyleSheet();
+		if (!output.isEmpty() && sd.colorChanged() && (QMessageBox(QMessageBox::Question,trUtf8("Settings Changed"),trUtf8("You have changed color settings.\nDo you wish to apply them to current solution text?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes)) {
+			QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+			solutionText->clear();
+			solutionText->setHtml(output.join(""));
+			QApplication::restoreOverrideCursor();
+		}
+	}
 }
 
 #ifndef Q_OS_WINCE
@@ -244,17 +302,37 @@ void MainWindow::buttonRandomClicked()
 #endif // Q_OS_WINCE
 }
 
+void MainWindow::outputMatrix(tMatrix matrix, QStringList &output, int nRow, int nCol)
+{
+int n = spinCities->value();
+QString line="";
+	output.append("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+	for (int r = 0; r < n; r++) {
+		line = "<tr>";
+		for (int c = 0; c < n; c++) {
+			if (matrix[r][c] == INFINITY)
+				line += "<td align=\"center\">"INFSTR"</td>";
+			else if ((r == nRow) && (c == nCol))
+				line += "<td align=\"center\" class=\"selected\">" + QVariant(matrix[r][c]).toString() + "</td>";
+			else
+				line += "<td align=\"center\">" + QVariant(matrix[r][c]).toString() + "</td>";
+		}
+		line += "</tr>";
+		output.append(line);
+	}
+	output.append("</table>");
+}
+
 void MainWindow::buttonSolveClicked()
 {
-	// TODO: Task solving goes here :-)
 tMatrix matrix;
-double *row;
+QList<double> row;
 int n = spinCities->value();
 bool ok;
 	for (int r = 0; r < n; r++) {
-		row = new double[n];
+		row.clear();
 		for (int c = 0; c < n; c++) {
-			row[c] = tspmodel->index(r,c).data(Qt::UserRole).toDouble(&ok);
+			row.append(tspmodel->index(r,c).data(Qt::UserRole).toDouble(&ok));
 			if (!ok) {
 				QMessageBox(QMessageBox::Critical,trUtf8("Data error"),QString(trUtf8("Error in cell [Row %1; Column %2]: Invalid data format.")).arg(r + 1).arg(c + 1),QMessageBox::Ok,this).exec();
 				return;
@@ -265,15 +343,52 @@ bool ok;
 CTSPSolver solver;
 sStep *root = solver.solve(spinCities->value(),matrix);
 	if (!root)
-		QMessageBox(QMessageBox::Critical,trUtf8("Solution error"),trUtf8("There was an error while solving the task."),QMessageBox::Ok,this).exec();
-	// tabWidget->setCurrentIndex(1);
+		return;
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
+	output.clear();
+	output.append("<p>" + trUtf8("Variant #%1").arg(spinVariant->value()) + "</p>");
+	output.append("<p>" + trUtf8("Task:") + "</p>");
+	outputMatrix(matrix,output);
+	output.append("<hr>");
+	output.append("<p>" + trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()) + "</p>");
+sStep *step = root;
+	n = 1;
+QString path = "";
+	while (n <= spinCities->value()) {
+		if (step->prNode->prNode != NULL || (step->prNode->prNode == NULL && step->plNode->prNode == NULL)) {
+			if (n != spinCities->value()) {
+				output.append("<p>" + trUtf8("Step #%1").arg(n++) + "</p>");
+				outputMatrix(step->matrix,output,step->candidate.nRow,step->candidate.nCol);
+				if (step->alts)
+					output.append("<p class=\"hasalts\">" + trUtf8("This step has alternate candidates for branching.") + "</p>");
+				output.append("<p>&nbsp;</p>");
+			}
+			path += QString(" (%1,%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1);
+		}
+		if (step->prNode->prNode != NULL)
+			step = step->prNode;
+		else if (step->plNode->prNode != NULL)
+			step = step->plNode;
+		else
+			break;
+	}
+	output.append("<p>" + trUtf8("Optimal path:") + "</p>");
+	output.append("<p>&nbsp;&nbsp;" + path + "</p>");
+	output.append("<p>" + trUtf8("The price is <b>%1</b> units.").arg(step->price) + "</p>");
+	solutionText->setHtml(output.join(""));
+	solutionText->setDocumentTitle(trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()));
+	enableSolutionActions();
+	tabWidget->setCurrentIndex(1);
+	QApplication::restoreOverrideCursor();
 }
 
 void MainWindow::actionHelpAboutTriggered()
 {
 	// TODO: Normal about window :-)
 QString about = QString::fromUtf8("TSPSG - TSP Solver and Generator\n");
-about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
+	about += QString::fromUtf8("    Version: "BUILD_VERSION" ("BUILD_STATUS")\n");
+	about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
 	about += QString::fromUtf8("Target OS: %1\n").arg(OS);
 	about += "Qt library:\n";
 	about += QString::fromUtf8("    Compile time: %1\n").arg(QT_VERSION_STR);

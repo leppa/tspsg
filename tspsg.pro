@@ -1,6 +1,6 @@
 ######################################################################
 #
-# TSPSG - TSP Solver and Generator
+# TSPSG: TSP Solver and Generator
 # Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
 #
 # $Id$

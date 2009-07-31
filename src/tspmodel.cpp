@@ -1,5 +1,5 @@
 /*
- *  TSPSG - TSP Solver and Generator
+ *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
@@ -118,22 +118,13 @@ void CTSPModel::setNumCities(int n)
 	if (n == nCities)
 		return;
 	emit layoutAboutToBeChanged();
-	if (n > nCities) {
-		for (int r = 0; r < nCities; r++) {
-			for (int c = nCities; c < n; c++)
-				if (r == c)
-					table[r][c] = INFINITY;
-				else
-					table[r][c] = 0;
-		}
-		for (int r = nCities; r < n; r++) {
-			for (int c = 0; c < n; c++)
-				if (r == c)
-					table[r][c] = INFINITY;
-				else
-					table[r][c] = 0;
-		}
+	table.resize(n);
+	for (int k = 0; k < n; k++) {
+		table[k].resize(n);
 	}
+	if (n > nCities)
+		for (int k = nCities; k < n; k++)
+			table[k][k] = INFINITY;
 	nCities = n;
 	emit layoutChanged();
 }
@@ -147,7 +138,7 @@ void CTSPModel::clear()
 	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
 }
 
-inline bool CTSPModel::loadError(QDataStream::Status status) const
+inline bool CTSPModel::loadError(QDataStream::Status status)
 {
 QString err;
 	if (status == QDataStream::Ok)
@@ -256,9 +247,9 @@ quint8 size;
 		emit numCitiesChanged(size);
 	// Costs
 double val;
-	for (int r = 0; r < size; r++)
-		for (int c = 0; c < size; c++)
-			if (r != c) {
+	for (int r = 0; r < 5; r++)
+		for (int c = 0; c < 5; c++)
+			if ((r != c) && (r < size)) {
 				ds->readRawData(reinterpret_cast<char *>(&val),8);
 				if (loadError(ds->status())) {
 					clear();

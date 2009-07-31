@@ -1,5 +1,5 @@
 /*
- *  TSPSG - TSP Solver and Generator
+ *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
@@ -26,29 +26,41 @@
 
 #include "globals.h"
 
-typedef QList<double *> tMatrix;
+typedef QList<QList<double>> tMatrix;
 
 // This structure represents one step of solving
 // The tree of such elements will represent the solving process
 struct sStep {
-	tMatrix matrix;
-	double price;
-	struct {unsigned int x; unsigned int y;} pos;
-	sStep *plNode, *prNode;
-	sStep() { price = pos.x = pos.y = 0; plNode = prNode = NULL; }
+	tMatrix matrix; // Steps's matrix
+	double price; // Price of travel to this step
+	struct {unsigned int nRow; unsigned int nCol;} candidate; // Candiadate for branching in current matrix
+	bool alts; // This matrix has alternative candidates
+	sStep *plNode, *prNode; // Pointers to left and right branch steps
+	sStep() { price = candidate.nRow = candidate.nCol = -1; alts = false; plNode = prNode = NULL; } // Default values
 };
 
 // TSP Solver class
 class CTSPSolver
 {
+	Q_DECLARE_TR_FUNCTIONS(CTSPSolver)
+
 public:
 	CTSPSolver();
-	sStep *solve(int, tMatrix);
+	sStep *solve(int, tMatrix, QWidget *parent = 0);
+
 private:
 	int nCities;
 	sStep *root;
-	double findMinInRow(int, tMatrix);
-	double findMinInCol(int, tMatrix);
+	QHash<int,int> route;
+	QHash<int,int> forbidden;
+	double align(tMatrix &);
+	void cleanup();
+	bool findCandidate(tMatrix, int &, int &, double &);
+	double findMinInRow(int, tMatrix, int exc = -1);
+	double findMinInCol(int, tMatrix, int exr = -1);
+	bool hasSubCycles(int, int);
+	void subCol(tMatrix &, int, double);
+	void subRow(tMatrix &, int, double);
 };
 
 #endif // TSPSOLVER_H

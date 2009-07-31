@@ -1,5 +1,5 @@
 /*
- *  TSPSG - TSP Solver and Generator
+ *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
@@ -24,7 +24,7 @@
 #include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
-	: QDialog(parent)
+	: QDialog(parent), newFont(false), newColor(false)
 {
 	setupUi(this);
 	connect(buttonOK,SIGNAL(clicked()),this,SLOT(accept()));
@@ -34,15 +34,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	connect(buttonColor,SIGNAL(clicked()),this,SLOT(buttonColorClicked()));
 //	setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint);
 	setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
-	layout()->setSizeConstraint(layout()->SetFixedSize);
 #ifndef Q_OS_WINCE
 	// Setting initial text of dialog hint label to own status tip
 	// text.
 	labelHint->setText(labelHint->statusTip());
-	// HACK: Do not resize label hint (and dialog) when text changes
-	// from one-line to two-line and vice versa. Any better solution?
-	labelHint->setMaximumHeight(labelHint->height());
-	labelHint->setMinimumHeight(labelHint->height());
 #endif // Q_OS_WINCE
 	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
 	spinRandMin->setValue(settings->value("MinCost",DEF_RAND_MIN).toInt());
@@ -50,13 +45,55 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 #ifndef Q_OS_WINCE
 	cbSaveState->setChecked(settings->value("SavePos",false).toBool());
 #endif // Q_OS_WINCE
-	settings->beginGroup("Print");
+	settings->beginGroup("Output");
 	font = settings->value("Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>();
 	color = settings->value("Color",DEF_FONT_COLOR).value<QColor>();
-#ifndef Q_OS_WINCE
-	spinLeftMargin->setValue(settings->value("Offset",DEF_OFFSET).toInt());
-#endif // Q_OS_WINCE
 	settings->endGroup();
+}
+
+void SettingsDialog::accept()
+{
+#ifndef Q_OS_WINCE
+	settings->setValue("SavePos",cbSaveState->isChecked());
+#endif // Q_OS_WINCE
+	settings->setValue("MinCost",spinRandMin->value());
+	settings->setValue("MaxCost",spinRandMax->value());
+	settings->beginGroup("Output");
+	if (newFont)
+		settings->setValue("Font",font);
+	if (newColor)
+		settings->setValue("Color",color);
+	settings->endGroup();
+	QDialog::accept();
+}
+
+void SettingsDialog::buttonFontClicked()
+{
+bool ok;
+QFont font = QFontDialog::getFont(&ok,this->font,this);
+	if (ok && (this->font != font)) {
+		this->font = font;
+		newFont = true;
+	}
+}
+
+void SettingsDialog::buttonColorClicked()
+{
+QColor color = QColorDialog::getColor(this->color,this);
+	if (color.isValid() && (this->color != color)) {
+		this->color = color;
+		newColor = true;
+	}
+}
+
+bool SettingsDialog::colorChanged() const
+{
+	return newColor;
+}
+
+bool SettingsDialog::fontChanged() const
+{
+	return newFont;
 }
 
 #ifndef Q_OS_WINCE
@@ -76,35 +113,3 @@ QString tip = static_cast<QStatusTipEvent *>(ev)->tip();
 		return QDialog::event(ev);
 }
 #endif // Q_OS_WINCE
-
-void SettingsDialog::buttonFontClicked()
-{
-bool ok;
-QFont font = QFontDialog::getFont(&ok,this->font,this);
-	if (ok)
-		this->font = font;
-}
-
-void SettingsDialog::buttonColorClicked()
-{
-QColor color = QColorDialog::getColor(this->color,this);
-	if (color.isValid())
-		this->color = color;
-}
-
-void SettingsDialog::accept()
-{
-#ifndef Q_OS_WINCE
-	settings->setValue("SavePos",cbSaveState->isChecked());
-#endif // Q_OS_WINCE
-	settings->setValue("MinCost",spinRandMin->value());
-	settings->setValue("MaxCost",spinRandMax->value());
-	settings->beginGroup("Print");
-	settings->setValue("Font",font);
-	settings->setValue("Color",color);
-#ifndef Q_OS_WINCE
-	settings->setValue("Offset",spinLeftMargin->value());
-#endif // Q_OS_WINCE
-	settings->endGroup();
-	QDialog::accept();
-}

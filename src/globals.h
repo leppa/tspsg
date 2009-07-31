@@ -1,5 +1,5 @@
 /*
- *  TSPSG - TSP Solver and Generator
+ *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
@@ -28,6 +28,8 @@
 #include <QtCore>
 #include <QtGui>
 
+// Version info
+#include "version.h"
 // OS detection
 #include "os.h"
 
@@ -37,7 +39,7 @@
 #define DEF_RAND_MAX 10
 #define DEF_OFFSET 100
 #define DEF_FONT_FAMILY "Courier New"
-#define DEF_FONT_SIZE 12
+#define DEF_FONT_SIZE 10
 #define DEF_FONT_COLOR Qt::black
 
 // TSPSG Task file signature - letters TSPT
@@ -53,16 +55,11 @@
 // ZKomModRd Task file version
 #define ZKT_VERSION quint8(1)
 
-// Decided, that static array with 100 of cities maximum hard limit
-// will be enough for most cases, but the code will be simplier than
-// when using dynamic lists. If you need more, just change this value
-// and recompile the program ;-)
-#define MAX_CITIES 100
 // This value means infinity :-)
 #ifndef INFINITY
 	#define INFINITY 1.7E+308
 #endif
 // This is string, which represents infinite value in table
-#define INFSTR "-----"
+#define INFSTR "---"
 
 #endif // GLOBALS_H

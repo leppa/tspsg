@@ -1,5 +1,5 @@
 /*
- *  TSPSG - TSP Solver and Generator
+ *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
@@ -47,10 +47,10 @@ signals:
 	void numCitiesChanged(int);
 private:
 	QSettings *settings;
-	double table[MAX_CITIES][MAX_CITIES];
+	QVector<QVector<double>> table;
 	quint16 nCities;
 	int rand(int, int) const;
-	bool loadError(QDataStream::Status) const;
+	bool loadError(QDataStream::Status);
 	void loadZKT(QDataStream *);
 	void loadTSPT(QDataStream *);
 };

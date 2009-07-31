@@ -1,5 +1,5 @@
 /*
- *  TSPSG - TSP Solver and Generator
+ *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
@@ -9,5 +9,48 @@
  */
 
 #include "..\\src\\resource.h"
+#pragma code_page(65001)
 
+LANGUAGE	0x00, 0x00
+
+// Main Icon
 IDI_APPICON	ICON	"Icon.ico"
+
+// Version Info
+VS_VERSION_INFO VERSIONINFO
+	FILEVERSION BUILD_VERSION_MAJOR,BUILD_VERSION_MINOR,BUILD_RELEASE,BUILD_NUMBER
+	PRODUCTVERSION BUILD_VERSION_MAJOR,BUILD_VERSION_MINOR,BUILD_RELEASE,BUILD_NUMBER
+	FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+	FILEFLAGS 0x1L
+#else
+	FILEFLAGS 0x0L
+#endif
+#ifdef Q_OS_WINCE
+	FILEOS 0x50000L
+#else
+	FILEOS 0x4L
+#endif
+	FILETYPE 0x1L
+	FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", BUILD_STATUS
+            VALUE "CompanyName", "..::Lёppsville::.. Homes"
+            VALUE "FileDescription", "TSPSG: TSP Solver and Generator"
+            VALUE "FileVersion", BUILD_VERSION
+            VALUE "InternalName", "TSPSG"
+            VALUE "LegalCopyright", "Copyright © 2007 - 2009 Lёppa"
+            VALUE "OriginalFilename", "tspsg.exe"
+            VALUE "ProductName", "TSPSG"
+            VALUE "ProductVersion", BUILD_VERSION
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
