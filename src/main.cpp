@@ -26,20 +26,24 @@
 	#ifdef _MSC_VER
 		#pragma message("WARNING: You are using Qt version < 4.5. Application will not support some non-critical features.")
 	#elif (defined(__GNUC__) || defined(__MINGW32__))
-		#warning "WARNING: You are using Qt version < 4.5. Application will not support some non-critical features."
+		#warning WARNING: You are using Qt version < 4.5. Application will not support some non-critical features.
+	#else
+		#error You are using Qt version < 4.5. Application will not support some non-critical features. To continue, please, comment line 31 at main.cpp.
 	#endif
 #endif
 
 int main(int argc, char *argv[])
 {
 QApplication app(argc, argv);
+	app.setOverrideCursor(QCursor(Qt::WaitCursor));
 	QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf8"));
 	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf8"));
 	QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
-	app.setOrganizationName("..::Lёppsville::..");
-	app.setOrganizationDomain("www.leppsville.com");
+	app.setOrganizationName("..::Lёppsville::.. Homes");
+	app.setOrganizationDomain("l-homes.org");
 	app.setApplicationName("TSPSG");
 MainWindow mainwindow;
 	mainwindow.show();
+	app.restoreOverrideCursor();
 	return app.exec();
 }

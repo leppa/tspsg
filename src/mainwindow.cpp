@@ -1,4 +1,4 @@
-	/*
+/*
  *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
@@ -86,6 +86,10 @@ QRect rect = geometry();
 	connect(tspmodel,SIGNAL(numCitiesChanged(int)),this,SLOT(numCitiesChanged(int)));
 	connect(tspmodel,SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),this,SLOT(dataChanged()));
 	connect(tspmodel,SIGNAL(layoutChanged()),this,SLOT(dataChanged()));
+	if (QCoreApplication::arguments().count() > 1) {
+		tspmodel->loadTask(QCoreApplication::arguments().at(1));
+		setWindowModified(false);
+	}
 #ifdef Q_OS_WINCE
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
@@ -228,7 +232,9 @@ static QString selectedFile;
 QFileDialog sd(this);
 	sd.setAcceptMode(QFileDialog::AcceptSave);
 QStringList filters(trUtf8("HTML Files") + " (*.html *.htm)");
+#if QT_VERSION >= 0x040500
 	filters.append(trUtf8("OpenDocument Files") + " (*.odt)");
+#endif // QT_VERSION >= 0x040500
 	filters.append(trUtf8("All Files") + " (*)");
 	sd.setNameFilters(filters);
 	sd.selectFile(selectedFile);
@@ -238,10 +244,20 @@ QStringList files = sd.selectedFiles();
 	if (files.empty())
 		return;
 	selectedFile = files.first();
+#if QT_VERSION >= 0x040500
 QTextDocumentWriter dw(selectedFile);
 	if (!(selectedFile.endsWith(".htm",Qt::CaseInsensitive) || selectedFile.endsWith(".html",Qt::CaseInsensitive) || selectedFile.endsWith(".odt",Qt::CaseInsensitive) || selectedFile.endsWith(".txt",Qt::CaseInsensitive)))
 		dw.setFormat("plaintext");
 	dw.write(solutionText->document());
+#else
+	// Qt < 4.5 has no QTextDocumentWriter class
+QFile file(selectedFile);
+	if (!file.open(QFile::WriteOnly))
+		return;
+QTextStream ts(&file);
+	ts.setCodec(QTextCodec::codecForName("UTF-8"));
+	ts << solutionText->document()->toHtml("UTF-8");
+#endif // QT_VERSION >= 0x040500
 }
 
 bool MainWindow::saveTask() {
@@ -387,7 +403,7 @@ void MainWindow::actionHelpAboutTriggered()
 {
 	// TODO: Normal about window :-)
 QString about = QString::fromUtf8("TSPSG - TSP Solver and Generator\n");
-	about += QString::fromUtf8("    Version: "BUILD_VERSION" ("BUILD_STATUS")\n");
+	about += QString::fromUtf8("    Version: "BUILD_VERSION"\n");
 	about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
 	about += QString::fromUtf8("Target OS: %1\n").arg(OS);
 	about += "Qt library:\n";

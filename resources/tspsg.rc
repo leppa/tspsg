@@ -14,7 +14,7 @@
 LANGUAGE	0x00, 0x00
 
 // Main Icon
-IDI_APPICON	ICON	"Icon.ico"
+IDI_APPICON	ICON	"icon.ico"
 
 // Version Info
 VS_VERSION_INFO VERSIONINFO
@@ -38,7 +38,7 @@ BEGIN
     BEGIN
         BLOCK "000004b0"
         BEGIN
-            VALUE "Comments", BUILD_STATUS
+//            VALUE "Comments", BUILD_STATUS
             VALUE "CompanyName", "..::Lёppsville::.. Homes"
             VALUE "FileDescription", "TSPSG: TSP Solver and Generator"
             VALUE "FileVersion", BUILD_VERSION

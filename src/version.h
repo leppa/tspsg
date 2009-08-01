@@ -26,15 +26,32 @@
 
 #define BUILD_VERSION_MAJOR 0
 #define BUILD_VERSION_MINOR 1
-#define BUILD_RELEASE 1
-// Will stick this to revision
-#define BUILD_NUMBER 42
-#define BUILD_STATUS "alpha 1"
+#define BUILD_RELEASE 2
+// This will only change on releases and will be the same as revision number
+#define BUILD_NUMBER 65535
+// Release number meanings:
+//   1  --  3: alpha 1 to 3
+//   4  --  7: beta 1 to 4
+//   8  -- 10: rc 1 to 3
+//   11 --...: release 1 to ...
+#if BUILD_NUMBER == 65535
+	#define BUILD_STATUS (dev build)
+#elif BUILD_RELEASE < 4
+	#define BUILD_STATUS (alpha)
+#elif BUILD_RELEASE < 8
+	#define BUILD_STATUS (beta)
+#elif BUILD_RELEASE < 11
+	#define BUILD_STATUS (rc)
+#endif // BUILD_NUMBER == 65535
 
 // "Converting" number to string
 #define QUOTE_X(x) #x
 #define QUOTE(x) QUOTE_X(x)
 
-#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE)
+#ifndef BUILD_STATUS
+	#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE)
+#else
+	#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE BUILD_STATUS)
+#endif
 
 #endif // VERSION_H
