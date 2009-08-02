@@ -14,11 +14,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Travelling salesman problem[*]</string>
+   <string>Travelling Salesman Problem[*]</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/tspsg.qrc">
-    <normaloff>:/images/Icon.png</normaloff>:/images/Icon.png</iconset>
+    <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">

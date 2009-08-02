@@ -153,56 +153,66 @@ QString err;
 	return true;
 }
 
-void CTSPModel::loadTask(QString fname)
+bool CTSPModel::loadTask(QString fname)
 {
 QFile f(fname);
 	if (!f.open(QIODevice::ReadOnly)) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),QString(trUtf8("Unable to open task file.\nError: %1")).arg(f.errorString()),QMessageBox::Ok).exec();
-		return;
+		return false;
 	}
 QDataStream ds(&f);
 	ds.setVersion(QDataStream::Qt_4_4);
 quint32 sig;
 	ds >> sig;
 	if (loadError(ds.status()))
-		return;
+		return false;
 	ds.device()->reset();
 	if (sig == TSPT)
-		loadTSPT(&ds);
+		if (!loadTSPT(&ds)) {
+			f.close();
+			return false;
+		}
 	else if ((sig >> 16) == ZKT)
-		loadZKT(&ds);
-	else
+		if (!loadZKT(&ds)) {
+			f.close();
+			return false;
+		}
+	else {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("Unknown file format or file is corrupted."),QMessageBox::Ok).exec();
+		f.close();
+		return false;
+	}
 	f.close();
+	return true;
 }
 
-void CTSPModel::loadTSPT(QDataStream *ds)
+bool CTSPModel::loadTSPT(QDataStream *ds)
 {
 	// Skipping signature
 	ds->skipRawData(sizeof(TSPT));
 	if (loadError(ds->status()))
-		return;
+		return false;
 	// File version
 quint8 version;
 	*ds >> version;
 	if (loadError(ds->status()))
-		return;
+		return false;
 	if (version > TSPT_VERSION) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("File version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
-		return;
+		return false;
 	}
 	// Skipping metadata
 	ds->skipRawData(TSPT_META_SIZE);
 	if (loadError(ds->status()))
-		return;
+		return false;
 	// Cities number
 quint16 size;
 	*ds >> size;
 	if (loadError(ds->status()))
-		return;
+		return false;
 	if (size < 3) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("Unexpected data read.\nFile is possibly corrupted."),QMessageBox::Ok).exec();
-		return;
+		return false;
 	}
 	if (nCities != size)
 		emit numCitiesChanged(size);
@@ -213,35 +223,36 @@ quint16 size;
 				*ds >> table[r][c];
 				if (loadError(ds->status())) {
 					clear();
-					return;
+					return false;
 				}
 			}
 	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+	return true;
 }
 
-void CTSPModel::loadZKT(QDataStream *ds)
+bool CTSPModel::loadZKT(QDataStream *ds)
 {
 	// Skipping signature
 	ds->skipRawData(sizeof(ZKT));
 	if (loadError(ds->status()))
-		return;
+		return false;
 	// File version
 quint16 version;
 	ds->readRawData(reinterpret_cast<char *>(&version),2);
 	if (loadError(ds->status()))
-		return;
+		return false;
 	if (version > ZKT_VERSION) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("File version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
-		return;
+		return false;
 	}
 	// Cities number
 quint8 size;
 	ds->readRawData(reinterpret_cast<char *>(&size),1);
 	if (loadError(ds->status()))
-		return;
+		return false;
 	if ((size < 3) || (size > 5)) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("Unexpected data read.\nFile is possibly corrupted."),QMessageBox::Ok).exec();
-		return;
+		return false;
 	}
 	if (nCities != size)
 		emit numCitiesChanged(size);
@@ -253,17 +264,18 @@ double val;
 				ds->readRawData(reinterpret_cast<char *>(&val),8);
 				if (loadError(ds->status())) {
 					clear();
-					return;
+					return false;
 				}
 				table[r][c] = val;
 			} else {
 				ds->skipRawData(8);
 				if (loadError(ds->status())) {
 					clear();
-					return;
+					return false;
 				}
 			}
 	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+	return true;
 }
 
 bool CTSPModel::saveTask(QString fname)

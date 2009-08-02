@@ -37,9 +37,11 @@
 class MainWindow: public QMainWindow, Ui::MainWindow
 {
 	Q_OBJECT
+
 public:
 	MainWindow(QWidget *parent = 0);
 	void closeEvent(QCloseEvent *);
+
 private slots:
 	void actionFileNewTriggered();
 	void actionFileOpenTriggered();
@@ -57,18 +59,22 @@ private slots:
 	void buttonRandomClicked();
 	void spinCitiesValueChanged(int);
 	void numCitiesChanged(int);
+
 private:
 	QSettings *settings;
 	QPrinter *printer;
 	CTSPModel *tspmodel;
+	QString fileName;
 	QActionGroup *groupSettingsLanguageList;
 	QStringList output;
+	void enableSolutionActions(bool enable = true);
+	void initDocStyleSheet();
 	bool loadLanguage(QString lang = "");
 	void loadLangList();
-	void initDocStyleSheet();
-	bool saveTask();
+	bool maybeSave();
 	void outputMatrix(tMatrix, QStringList &, int nRow = -1, int nCol = -1);
-	void enableSolutionActions(bool enable = true);
+	void setFileName(QString fileName = trUtf8("Untitled") + ".tspt");
+	bool saveTask();
 };
 
 #endif // MAINWINDOW_H

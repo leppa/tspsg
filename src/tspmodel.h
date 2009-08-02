@@ -29,30 +29,33 @@
 class CTSPModel: public QAbstractTableModel
 {
 	Q_OBJECT
+
 public:
 	CTSPModel(QObject *parent = 0);
-	int rowCount(const QModelIndex &) const;
-	int columnCount(const QModelIndex &) const;
-	QVariant headerData(int, Qt::Orientation, int) const;
-	QVariant data(const QModelIndex &, int) const;
-	bool setData(const QModelIndex &, const QVariant &, int);
-	Qt::ItemFlags flags(const QModelIndex &) const;
-	quint16 numCities() const;
-	void setNumCities(int);
 	void clear();
-	void loadTask(QString);
-	bool saveTask(QString);
+	int columnCount(const QModelIndex &) const;
+	QVariant data(const QModelIndex &, int) const;
+	Qt::ItemFlags flags(const QModelIndex &) const;
+	QVariant headerData(int, Qt::Orientation, int) const;
+	bool loadTask(QString);
+	quint16 numCities() const;
 	void randomize();
+	int rowCount(const QModelIndex &) const;
+	bool saveTask(QString);
+	bool setData(const QModelIndex &, const QVariant &, int);
+	void setNumCities(int);
+
 signals:
 	void numCitiesChanged(int);
+
 private:
 	QSettings *settings;
 	QVector<QVector<double> > table;
 	quint16 nCities;
-	int rand(int, int) const;
 	bool loadError(QDataStream::Status);
-	void loadZKT(QDataStream *);
-	void loadTSPT(QDataStream *);
+	bool loadZKT(QDataStream *);
+	bool loadTSPT(QDataStream *);
+	int rand(int, int) const;
 };
 
 #endif // TSPMODEL_H

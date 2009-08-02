@@ -32,21 +32,21 @@
     <message>
         <location filename="../src/tspmodel.cpp" line="152"/>
         <location filename="../src/tspmodel.cpp" line="160"/>
-        <location filename="../src/tspmodel.cpp" line="175"/>
-        <location filename="../src/tspmodel.cpp" line="191"/>
-        <location filename="../src/tspmodel.cpp" line="204"/>
-        <location filename="../src/tspmodel.cpp" line="234"/>
-        <location filename="../src/tspmodel.cpp" line="243"/>
+        <location filename="../src/tspmodel.cpp" line="181"/>
+        <location filename="../src/tspmodel.cpp" line="201"/>
+        <location filename="../src/tspmodel.cpp" line="214"/>
+        <location filename="../src/tspmodel.cpp" line="245"/>
+        <location filename="../src/tspmodel.cpp" line="254"/>
         <source>Task Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/tspmodel.cpp" line="152"/>
-        <location filename="../src/tspmodel.cpp" line="175"/>
-        <location filename="../src/tspmodel.cpp" line="191"/>
-        <location filename="../src/tspmodel.cpp" line="204"/>
-        <location filename="../src/tspmodel.cpp" line="234"/>
-        <location filename="../src/tspmodel.cpp" line="243"/>
+        <location filename="../src/tspmodel.cpp" line="181"/>
+        <location filename="../src/tspmodel.cpp" line="201"/>
+        <location filename="../src/tspmodel.cpp" line="214"/>
+        <location filename="../src/tspmodel.cpp" line="245"/>
+        <location filename="../src/tspmodel.cpp" line="254"/>
         <source>Unable to load task:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -57,51 +57,51 @@ Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="175"/>
+        <location filename="../src/tspmodel.cpp" line="181"/>
         <source>Unknown file format or file is corrupted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="191"/>
-        <location filename="../src/tspmodel.cpp" line="234"/>
+        <location filename="../src/tspmodel.cpp" line="201"/>
+        <location filename="../src/tspmodel.cpp" line="245"/>
         <source>File version is newer than application supports.
 Please, try to update application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="204"/>
-        <location filename="../src/tspmodel.cpp" line="243"/>
+        <location filename="../src/tspmodel.cpp" line="214"/>
+        <location filename="../src/tspmodel.cpp" line="254"/>
         <source>Unexpected data read.
 File is possibly corrupted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="273"/>
-        <location filename="../src/tspmodel.cpp" line="279"/>
-        <location filename="../src/tspmodel.cpp" line="286"/>
-        <location filename="../src/tspmodel.cpp" line="293"/>
-        <location filename="../src/tspmodel.cpp" line="300"/>
-        <location filename="../src/tspmodel.cpp" line="307"/>
-        <location filename="../src/tspmodel.cpp" line="314"/>
-        <location filename="../src/tspmodel.cpp" line="324"/>
+        <location filename="../src/tspmodel.cpp" line="285"/>
+        <location filename="../src/tspmodel.cpp" line="291"/>
+        <location filename="../src/tspmodel.cpp" line="298"/>
+        <location filename="../src/tspmodel.cpp" line="305"/>
+        <location filename="../src/tspmodel.cpp" line="312"/>
+        <location filename="../src/tspmodel.cpp" line="319"/>
+        <location filename="../src/tspmodel.cpp" line="326"/>
+        <location filename="../src/tspmodel.cpp" line="336"/>
         <source>Task Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="273"/>
+        <location filename="../src/tspmodel.cpp" line="285"/>
         <source>Unable to create task file.
 Error: %1
 Maybe, file is read-only?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="279"/>
-        <location filename="../src/tspmodel.cpp" line="286"/>
-        <location filename="../src/tspmodel.cpp" line="293"/>
-        <location filename="../src/tspmodel.cpp" line="300"/>
-        <location filename="../src/tspmodel.cpp" line="307"/>
-        <location filename="../src/tspmodel.cpp" line="314"/>
-        <location filename="../src/tspmodel.cpp" line="324"/>
+        <location filename="../src/tspmodel.cpp" line="291"/>
+        <location filename="../src/tspmodel.cpp" line="298"/>
+        <location filename="../src/tspmodel.cpp" line="305"/>
+        <location filename="../src/tspmodel.cpp" line="312"/>
+        <location filename="../src/tspmodel.cpp" line="319"/>
+        <location filename="../src/tspmodel.cpp" line="326"/>
+        <location filename="../src/tspmodel.cpp" line="336"/>
         <source>Unable to save task.
 Error: %1</source>
         <translation type="unfinished"></translation>
@@ -138,139 +138,138 @@ Error: %1</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="141"/>
-        <location filename="../src/mainwindow.cpp" line="439"/>
-        <location filename="../src/mainwindow.cpp" line="448"/>
+        <location filename="../src/mainwindow.cpp" line="146"/>
+        <location filename="../src/mainwindow.cpp" line="492"/>
+        <location filename="../src/mainwindow.cpp" line="501"/>
         <source>Language change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="141"/>
+        <location filename="../src/mainwindow.cpp" line="146"/>
         <source>Unable to load translation language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="181"/>
-        <source>New Task</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="181"/>
-        <location filename="../src/mainwindow.cpp" line="195"/>
-        <location filename="../src/mainwindow.cpp" line="462"/>
+        <location filename="../src/mainwindow.cpp" line="192"/>
         <source>Would you like to save changes in current task?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="195"/>
-        <source>Task Open</source>
+        <location filename="../src/mainwindow.cpp" line="170"/>
+        <source>Travelling Salesman Problem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="202"/>
+        <location filename="../src/mainwindow.cpp" line="192"/>
+        <source>Unsaved Changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="224"/>
         <source>All Supported Formats</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="203"/>
-        <location filename="../src/mainwindow.cpp" line="204"/>
+        <location filename="../src/mainwindow.cpp" line="225"/>
+        <location filename="../src/mainwindow.cpp" line="226"/>
         <source>%1 Task Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="205"/>
-        <location filename="../src/mainwindow.cpp" line="232"/>
-        <location filename="../src/mainwindow.cpp" line="251"/>
+        <location filename="../src/mainwindow.cpp" line="227"/>
+        <location filename="../src/mainwindow.cpp" line="267"/>
+        <location filename="../src/mainwindow.cpp" line="296"/>
         <source>All Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="230"/>
+        <location filename="../src/mainwindow.cpp" line="263"/>
         <source>HTML Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="231"/>
+        <location filename="../src/mainwindow.cpp" line="265"/>
         <source>OpenDocument Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="250"/>
+        <location filename="../src/mainwindow.cpp" line="295"/>
         <source>%1 Task File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="273"/>
+        <location filename="../src/mainwindow.cpp" line="326"/>
         <source>Settings Changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="273"/>
+        <location filename="../src/mainwindow.cpp" line="326"/>
         <source>You have changed color settings.
 Do you wish to apply them to current solution text?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="337"/>
+        <location filename="../src/mainwindow.cpp" line="390"/>
         <source>Data error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="337"/>
+        <location filename="../src/mainwindow.cpp" line="390"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="350"/>
+        <location filename="../src/mainwindow.cpp" line="403"/>
         <source>Variant #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="351"/>
+        <location filename="../src/mainwindow.cpp" line="404"/>
         <source>Task:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="354"/>
-        <location filename="../src/mainwindow.cpp" line="380"/>
+        <location filename="../src/mainwindow.cpp" line="407"/>
+        <location filename="../src/mainwindow.cpp" line="433"/>
         <source>Solution of Variant #%1 task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="361"/>
+        <location filename="../src/mainwindow.cpp" line="414"/>
         <source>Step #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="364"/>
+        <location filename="../src/mainwindow.cpp" line="417"/>
         <source>This step has alternate candidates for branching.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="376"/>
+        <location filename="../src/mainwindow.cpp" line="429"/>
         <source>Optimal path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="378"/>
+        <location filename="../src/mainwindow.cpp" line="431"/>
         <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="439"/>
+        <location filename="../src/mainwindow.cpp" line="492"/>
         <source>Language will be autodetected on next application start.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="448"/>
+        <location filename="../src/mainwindow.cpp" line="501"/>
         <source>You have language autodetection turned on.
 It needs to be off.
 Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="462"/>
-        <source>Application Close</source>
+        <location filename="../src/mainwindow.cpp" line="506"/>
+        <location filename="../src/mainwindow.h" line="76"/>
+        <source>Untitled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

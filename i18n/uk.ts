@@ -33,21 +33,21 @@
     <message>
         <location filename="../src/tspmodel.cpp" line="152"/>
         <location filename="../src/tspmodel.cpp" line="160"/>
-        <location filename="../src/tspmodel.cpp" line="175"/>
-        <location filename="../src/tspmodel.cpp" line="191"/>
-        <location filename="../src/tspmodel.cpp" line="204"/>
-        <location filename="../src/tspmodel.cpp" line="234"/>
-        <location filename="../src/tspmodel.cpp" line="243"/>
+        <location filename="../src/tspmodel.cpp" line="181"/>
+        <location filename="../src/tspmodel.cpp" line="201"/>
+        <location filename="../src/tspmodel.cpp" line="214"/>
+        <location filename="../src/tspmodel.cpp" line="245"/>
+        <location filename="../src/tspmodel.cpp" line="254"/>
         <source>Task Load</source>
         <translation>Завантаження умови</translation>
     </message>
     <message>
         <location filename="../src/tspmodel.cpp" line="152"/>
-        <location filename="../src/tspmodel.cpp" line="175"/>
-        <location filename="../src/tspmodel.cpp" line="191"/>
-        <location filename="../src/tspmodel.cpp" line="204"/>
-        <location filename="../src/tspmodel.cpp" line="234"/>
-        <location filename="../src/tspmodel.cpp" line="243"/>
+        <location filename="../src/tspmodel.cpp" line="181"/>
+        <location filename="../src/tspmodel.cpp" line="201"/>
+        <location filename="../src/tspmodel.cpp" line="214"/>
+        <location filename="../src/tspmodel.cpp" line="245"/>
+        <location filename="../src/tspmodel.cpp" line="254"/>
         <source>Unable to load task:</source>
         <translation>Неможливо завантажити умову:</translation>
     </message>
@@ -59,40 +59,40 @@ Error: %1</source>
 Помилка: %1</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="175"/>
+        <location filename="../src/tspmodel.cpp" line="181"/>
         <source>Unknown file format or file is corrupted.</source>
         <translation>Невідомий формат файлу або файл пошкоджено.</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="191"/>
-        <location filename="../src/tspmodel.cpp" line="234"/>
+        <location filename="../src/tspmodel.cpp" line="201"/>
+        <location filename="../src/tspmodel.cpp" line="245"/>
         <source>File version is newer than application supports.
 Please, try to update application.</source>
         <translation>Версія файлу новіша ніж підримувана додатком.
 Будь-ласка, спробуйте оновити додаток.</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="204"/>
-        <location filename="../src/tspmodel.cpp" line="243"/>
+        <location filename="../src/tspmodel.cpp" line="214"/>
+        <location filename="../src/tspmodel.cpp" line="254"/>
         <source>Unexpected data read.
 File is possibly corrupted.</source>
         <translation>Прочитано неочікувані дані.
 Можливо, файл пошкоджено.</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="273"/>
-        <location filename="../src/tspmodel.cpp" line="279"/>
-        <location filename="../src/tspmodel.cpp" line="286"/>
-        <location filename="../src/tspmodel.cpp" line="293"/>
-        <location filename="../src/tspmodel.cpp" line="300"/>
-        <location filename="../src/tspmodel.cpp" line="307"/>
-        <location filename="../src/tspmodel.cpp" line="314"/>
-        <location filename="../src/tspmodel.cpp" line="324"/>
+        <location filename="../src/tspmodel.cpp" line="285"/>
+        <location filename="../src/tspmodel.cpp" line="291"/>
+        <location filename="../src/tspmodel.cpp" line="298"/>
+        <location filename="../src/tspmodel.cpp" line="305"/>
+        <location filename="../src/tspmodel.cpp" line="312"/>
+        <location filename="../src/tspmodel.cpp" line="319"/>
+        <location filename="../src/tspmodel.cpp" line="326"/>
+        <location filename="../src/tspmodel.cpp" line="336"/>
         <source>Task Save</source>
         <translation>Збереження умови</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="273"/>
+        <location filename="../src/tspmodel.cpp" line="285"/>
         <source>Unable to create task file.
 Error: %1
 Maybe, file is read-only?</source>
@@ -101,13 +101,13 @@ Maybe, file is read-only?</source>
 Можливо, файл тільки для читання?</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="279"/>
-        <location filename="../src/tspmodel.cpp" line="286"/>
-        <location filename="../src/tspmodel.cpp" line="293"/>
-        <location filename="../src/tspmodel.cpp" line="300"/>
-        <location filename="../src/tspmodel.cpp" line="307"/>
-        <location filename="../src/tspmodel.cpp" line="314"/>
-        <location filename="../src/tspmodel.cpp" line="324"/>
+        <location filename="../src/tspmodel.cpp" line="291"/>
+        <location filename="../src/tspmodel.cpp" line="298"/>
+        <location filename="../src/tspmodel.cpp" line="305"/>
+        <location filename="../src/tspmodel.cpp" line="312"/>
+        <location filename="../src/tspmodel.cpp" line="319"/>
+        <location filename="../src/tspmodel.cpp" line="326"/>
+        <location filename="../src/tspmodel.cpp" line="336"/>
         <source>Unable to save task.
 Error: %1</source>
         <translation>Неможливо зберегти умову.
@@ -577,132 +577,130 @@ Error: %1</source>
         <translation>Про бібліотеку Qt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="141"/>
-        <location filename="../src/mainwindow.cpp" line="439"/>
-        <location filename="../src/mainwindow.cpp" line="448"/>
+        <location filename="../src/mainwindow.cpp" line="146"/>
+        <location filename="../src/mainwindow.cpp" line="492"/>
+        <location filename="../src/mainwindow.cpp" line="501"/>
         <source>Language change</source>
         <translation>Зміна мови</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="141"/>
+        <location filename="../src/mainwindow.cpp" line="146"/>
         <source>Unable to load translation language.</source>
         <translation>Неможливо завантажити переклад.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="202"/>
+        <location filename="../src/mainwindow.cpp" line="170"/>
+        <source>Travelling Salesman Problem</source>
+        <translation>Задача комівояжера</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="192"/>
+        <source>Unsaved Changes</source>
+        <translation>Незбережені зміни</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="224"/>
         <source>All Supported Formats</source>
         <translation>Усі підтримувані формати</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="205"/>
-        <location filename="../src/mainwindow.cpp" line="232"/>
-        <location filename="../src/mainwindow.cpp" line="251"/>
+        <location filename="../src/mainwindow.cpp" line="227"/>
+        <location filename="../src/mainwindow.cpp" line="267"/>
+        <location filename="../src/mainwindow.cpp" line="296"/>
         <source>All Files</source>
         <translation>Усі файли</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="203"/>
-        <location filename="../src/mainwindow.cpp" line="204"/>
+        <location filename="../src/mainwindow.cpp" line="225"/>
+        <location filename="../src/mainwindow.cpp" line="226"/>
         <source>%1 Task Files</source>
         <translation>Файли умов %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="181"/>
-        <source>New Task</source>
-        <translation>Нова задача</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="181"/>
-        <location filename="../src/mainwindow.cpp" line="195"/>
-        <location filename="../src/mainwindow.cpp" line="462"/>
+        <location filename="../src/mainwindow.cpp" line="192"/>
         <source>Would you like to save changes in current task?</source>
         <translation>Бажаете зберегти зміни у поточній задачі?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="195"/>
-        <source>Task Open</source>
-        <translation>Відкриття завдання</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="230"/>
+        <location filename="../src/mainwindow.cpp" line="263"/>
         <source>HTML Files</source>
         <translation>Файли HTML</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="231"/>
+        <location filename="../src/mainwindow.cpp" line="265"/>
         <source>OpenDocument Files</source>
         <translation>Файли OpenDocument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="250"/>
+        <location filename="../src/mainwindow.cpp" line="295"/>
         <source>%1 Task File</source>
         <translation>Файл умови %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="273"/>
+        <location filename="../src/mainwindow.cpp" line="326"/>
         <source>Settings Changed</source>
         <translation>Параметри змінено</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="273"/>
+        <location filename="../src/mainwindow.cpp" line="326"/>
         <source>You have changed color settings.
 Do you wish to apply them to current solution text?</source>
         <translation>Ви змінили параметри кольору.
 Бажаєте застосувати їх до поточного тексту розв&apos;зку?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="337"/>
+        <location filename="../src/mainwindow.cpp" line="390"/>
         <source>Data error</source>
         <translation>Помилка у даних</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="337"/>
+        <location filename="../src/mainwindow.cpp" line="390"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation>Помилка у комірці  [Рядок %1; Колонка %2]: Невірний формат даних.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="350"/>
+        <location filename="../src/mainwindow.cpp" line="403"/>
         <source>Variant #%1</source>
         <translation>Варіант №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="351"/>
+        <location filename="../src/mainwindow.cpp" line="404"/>
         <source>Task:</source>
         <translation>Умова:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="354"/>
-        <location filename="../src/mainwindow.cpp" line="380"/>
+        <location filename="../src/mainwindow.cpp" line="407"/>
+        <location filename="../src/mainwindow.cpp" line="433"/>
         <source>Solution of Variant #%1 task</source>
         <translation>Розв&apos;язок варіанту №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="361"/>
+        <location filename="../src/mainwindow.cpp" line="414"/>
         <source>Step #%1</source>
         <translation>Крок №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="364"/>
+        <location filename="../src/mainwindow.cpp" line="417"/>
         <source>This step has alternate candidates for branching.</source>
         <translation>У цьому кроці є альтернативні кандидати на розгалудження.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="376"/>
+        <location filename="../src/mainwindow.cpp" line="429"/>
         <source>Optimal path:</source>
         <translation>Оптимальний шлях:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="378"/>
+        <location filename="../src/mainwindow.cpp" line="431"/>
         <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
         <translation>Вартість - &lt;b&gt;%1&lt;/b&gt; одиниць.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="439"/>
+        <location filename="../src/mainwindow.cpp" line="492"/>
         <source>Language will be autodetected on next application start.</source>
         <translation>Мову буде автоматично визначено при наступному запуску додатку.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="448"/>
+        <location filename="../src/mainwindow.cpp" line="501"/>
         <source>You have language autodetection turned on.
 It needs to be off.
 Do you wish to turn it off?</source>
@@ -711,9 +709,10 @@ Do you wish to turn it off?</source>
 Вимкнути його?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="462"/>
-        <source>Application Close</source>
-        <translation>Закриття додатку</translation>
+        <location filename="../src/mainwindow.cpp" line="506"/>
+        <location filename="../src/mainwindow.h" line="76"/>
+        <source>Untitled</source>
+        <translation>Без імені</translation>
     </message>
 </context>
 <context>

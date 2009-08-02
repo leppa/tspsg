@@ -4,19 +4,18 @@ Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
 $Id$
 $URL$
 
-This software is intended to generate and solve Travelling
-Salesman Problem (TSP) tasks. It uses Branch and Bound method
-for solving. An input is a number of cities and a matrix of
-city-to-city travel prices. The matrix can be populated with
-random values in a given range (useful for generating tasks).
-The result is an optimal route, its price, step-by-step matrices
-of solving and solving graph. The task can be saved in internal
-binary format and opened later. The result can be printed without
-the answer (only input matrix) or with it.
+TSPSG is intended to generate and solve Travelling Salesman Problem
+(TSP) tasks. It uses Branch and Bound method for solving. An input
+is number of cities and matrix of city-to-city travel prices.
+The matrix can be populated with random values in a given range
+(useful for generating tasks). The result is an optimal route, its
+price, step-by-step matrices of solving and solving graph. The task
+can be saved in internal binary format and opened later. The result
+can be printed without the answer (only input matrix) or with it.
 
-TSPSG may be useful for teachers to generate tasks for tests or
-just for regular users to solve TSPs. It is also may be used as an
-example of using Branch and bound method to solve particular task.
+TSPSG may be useful for teachers to generate test tasks or just for
+regular users to solve TSPs. Also, it may be used as an example of
+using Branch and bound method to solve particular task.
 
 TSPSG is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published

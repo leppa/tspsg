@@ -86,10 +86,11 @@ QRect rect = geometry();
 	connect(tspmodel,SIGNAL(numCitiesChanged(int)),this,SLOT(numCitiesChanged(int)));
 	connect(tspmodel,SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),this,SLOT(dataChanged()));
 	connect(tspmodel,SIGNAL(layoutChanged()),this,SLOT(dataChanged()));
-	if (QCoreApplication::arguments().count() > 1) {
-		tspmodel->loadTask(QCoreApplication::arguments().at(1));
+	if ((QCoreApplication::arguments().count() > 1) && (tspmodel->loadTask(QCoreApplication::arguments().at(1)))) {
+		setFileName(QCoreApplication::arguments().at(1));
 		setWindowModified(false);
-	}
+	} else
+		setFileName();
 #ifdef Q_OS_WINCE
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
@@ -163,6 +164,12 @@ QColor hilight;
 	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
 }
 
+void MainWindow::setFileName(QString fileName)
+{
+	this->fileName = fileName;
+	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(trUtf8("Travelling Salesman Problem")));
+}
+
 void MainWindow::spinCitiesValueChanged(int n)
 {
 #ifdef Q_OS_WINCE
@@ -178,15 +185,29 @@ int count = tspmodel->numCities();
 #endif // Q_OS_WINCE
 }
 
+bool MainWindow::maybeSave()
+{
+	if (!isWindowModified())
+		return true;
+int res = QMessageBox(QMessageBox::Warning,trUtf8("Unsaved Changes"),trUtf8("Would you like to save changes in current task?"),QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,this).exec();
+	if (res == QMessageBox::Save)
+		return saveTask();
+	else if (res == QMessageBox::Cancel)
+		return false;
+	else
+		return true;
+}
 
 void MainWindow::actionFileNewTriggered()
 {
-	if (isWindowModified()) {
-int res = QMessageBox(QMessageBox::Warning,trUtf8("New Task"),trUtf8("Would you like to save changes in current task?"),QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,this).exec();
-		if ((res == QMessageBox::Cancel) || ((res == QMessageBox::Yes) && !saveTask()))
-			return;
-	}
+	if (!maybeSave())
+		return;
 	tspmodel->clear();
+#ifdef Q_OS_WINCE
+	taskView->resizeColumnsToContents();
+	taskView->resizeRowsToContents();
+#endif
+	setFileName();
 	setWindowModified(false);
 	tabWidget->setCurrentIndex(0);
 	solutionText->clear();
@@ -195,28 +216,36 @@ int res = QMessageBox(QMessageBox::Warning,trUtf8("New Task"),trUtf8("Would you 
 
 void MainWindow::actionFileOpenTriggered()
 {
-	if (isWindowModified()) {
-int res = QMessageBox(QMessageBox::Warning,trUtf8("Task Open"),trUtf8("Would you like to save changes in current task?"),QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,this).exec();
-		if ((res == QMessageBox::Cancel) || ((res == QMessageBox::Yes) && !saveTask()))
-			return;
-	}
+	if (!maybeSave())
+		return;
 QFileDialog od(this);
 	od.setAcceptMode(QFileDialog::AcceptOpen);
 	od.setFileMode(QFileDialog::ExistingFile);
 QStringList filters(trUtf8("All Supported Formats") + " (*.tspt *.zkt)");
-	filters.append(QString(trUtf8("%1 Task Files")).arg("TSPSG") + " (*.tspt)");
-	filters.append(QString(trUtf8("%1 Task Files")).arg("ZKomModRd") + " (*.zkt)");
+	filters.append(trUtf8("%1 Task Files").arg("TSPSG") + " (*.tspt)");
+	filters.append(trUtf8("%1 Task Files").arg("ZKomModRd") + " (*.zkt)");
 	filters.append(trUtf8("All Files") + " (*)");
 	od.setNameFilters(filters);
 	if (od.exec() != QDialog::Accepted)
 		return;
 QStringList files = od.selectedFiles();
-	if (files.size() < 1)
+	if (files.empty())
 		return;
-	tspmodel->loadTask(files.first());
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	if (!tspmodel->loadTask(files.first())) {
+		QApplication::restoreOverrideCursor();
+		return;
+	}
+	setFileName(files.first());
+#ifdef Q_OS_WINCE
+	taskView->resizeColumnsToContents();
+	taskView->resizeRowsToContents();
+#endif
+	tabWidget->setCurrentIndex(0);
 	setWindowModified(false);
 	solutionText->clear();
 	enableSolutionActions(false);
+	QApplication::restoreOverrideCursor();
 }
 
 void MainWindow::actionFileSaveAsTaskTriggered()
@@ -263,20 +292,28 @@ QTextStream ts(&file);
 bool MainWindow::saveTask() {
 QFileDialog sd(this);
 	sd.setAcceptMode(QFileDialog::AcceptSave);
-QStringList filters(QString(trUtf8("%1 Task File")).arg("TSPSG") + " (*.tspt)");
+QStringList filters(trUtf8("%1 Task File").arg("TSPSG") + " (*.tspt)");
 	filters.append(trUtf8("All Files") + " (*)");
 	sd.setNameFilters(filters);
 	sd.setDefaultSuffix("tspt");
+	if (fileName.endsWith(".tspt",Qt::CaseInsensitive))
+		sd.selectFile(fileName);
+	else
+		sd.selectFile(QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt");
 	if (sd.exec() != QDialog::Accepted)
 		return false;
 QStringList files = sd.selectedFiles();
-	if (files.size() < 1)
+	if (files.empty())
 		return false;
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	if (tspmodel->saveTask(files.first())) {
+		setFileName(files.first());
 		setWindowModified(false);
+		QApplication::restoreOverrideCursor();
 		return true;
-	} else
-		return false;
+	}
+	QApplication::restoreOverrideCursor();
+	return false;
 }
 
 void MainWindow::actionSettingsPreferencesTriggered()
@@ -350,7 +387,7 @@ bool ok;
 		for (int c = 0; c < n; c++) {
 			row.append(tspmodel->index(r,c).data(Qt::UserRole).toDouble(&ok));
 			if (!ok) {
-				QMessageBox(QMessageBox::Critical,trUtf8("Data error"),QString(trUtf8("Error in cell [Row %1; Column %2]: Invalid data format.")).arg(r + 1).arg(c + 1),QMessageBox::Ok,this).exec();
+				QMessageBox(QMessageBox::Critical,trUtf8("Data error"),trUtf8("Error in cell [Row %1; Column %2]: Invalid data format.").arg(r + 1).arg(c + 1),QMessageBox::Ok,this).exec();
 				return;
 			}
 		}
@@ -466,20 +503,20 @@ void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
 		} else
 			return;
 	}
+bool untitled = (fileName == trUtf8("Untitled") + ".tspt");
 	if (loadLanguage(action->data().toString())) {
 		settings->setValue("Language",action->data().toString());
 		retranslateUi(this);
+		if (untitled)
+			setFileName();
 	}
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-	if (isWindowModified()) {
-int res = QMessageBox(QMessageBox::Warning,trUtf8("Application Close"),trUtf8("Would you like to save changes in current task?"),QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,this).exec();
-		if ((res == QMessageBox::Cancel) || ((res == QMessageBox::Yes) && !saveTask())) {
-			event->ignore();
-			return;
-		}
+	if (!maybeSave()) {
+		event->ignore();
+		return;
 	}
 	settings->setValue("NumCities",spinCities->value());
 #ifndef Q_OS_WINCE
