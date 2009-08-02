@@ -167,17 +167,17 @@ quint32 sig;
 	if (loadError(ds.status()))
 		return false;
 	ds.device()->reset();
-	if (sig == TSPT)
+	if (sig == TSPT) {
 		if (!loadTSPT(&ds)) {
 			f.close();
 			return false;
 		}
-	else if ((sig >> 16) == ZKT)
+	} else if ((sig >> 16) == ZKT) {
 		if (!loadZKT(&ds)) {
 			f.close();
 			return false;
 		}
-	else {
+	} else {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("Unknown file format or file is corrupted."),QMessageBox::Ok).exec();
 		f.close();
 		return false;
