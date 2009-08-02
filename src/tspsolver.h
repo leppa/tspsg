@@ -26,7 +26,7 @@
 
 #include "globals.h"
 
-typedef QList<QList<double>> tMatrix;
+typedef QList<QList<double> > tMatrix;
 
 // This structure represents one step of solving
 // The tree of such elements will represent the solving process

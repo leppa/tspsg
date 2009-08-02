@@ -47,7 +47,7 @@ signals:
 	void numCitiesChanged(int);
 private:
 	QSettings *settings;
-	QVector<QVector<double>> table;
+	QVector<QVector<double> > table;
 	quint16 nCities;
 	int rand(int, int) const;
 	bool loadError(QDataStream::Status);
