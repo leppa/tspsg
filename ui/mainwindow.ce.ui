@@ -525,7 +525,10 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>English</string>
+    <string notr="true">English</string>
+   </property>
+   <property name="iconText">
+    <string notr="true">English</string>
    </property>
   </action>
   <action name="actionFileSave">

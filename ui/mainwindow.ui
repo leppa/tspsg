@@ -543,6 +543,9 @@
    <property name="text">
     <string notr="true">English</string>
    </property>
+   <property name="iconText">
+    <string notr="true">English</string>
+   </property>
   </action>
   <action name="actionFileSave">
    <property name="enabled">
