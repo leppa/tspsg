@@ -643,14 +643,14 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBackToTask</sender>
+   <sender>buttonSaveSolution</sender>
    <signal>clicked()</signal>
    <receiver>actionFileSaveAsSolution</receiver>
    <slot>trigger()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>172</x>
-     <y>299</y>
+     <x>102</x>
+     <y>785</y>
     </hint>
     <hint type="destinationlabel">
      <x>-1</x>

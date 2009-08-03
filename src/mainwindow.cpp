@@ -91,6 +91,7 @@ QRect rect = geometry();
 	else {
 		setFileName();
 		spinCities->setValue(settings->value("NumCities",DEF_NUM_CITIES).toInt());
+		tspmodel->setNumCities(spinCities->value());
 	}
 	taskView->setModel(tspmodel);
 	setWindowModified(false);
@@ -279,6 +280,7 @@ QStringList files = sd.selectedFiles();
 	if (files.empty())
 		return;
 	selectedFile = files.first();
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 #if QT_VERSION >= 0x040500
 QTextDocumentWriter dw(selectedFile);
 	if (!(selectedFile.endsWith(".htm",Qt::CaseInsensitive) || selectedFile.endsWith(".html",Qt::CaseInsensitive) || selectedFile.endsWith(".odt",Qt::CaseInsensitive) || selectedFile.endsWith(".txt",Qt::CaseInsensitive)))
@@ -287,12 +289,16 @@ QTextDocumentWriter dw(selectedFile);
 #else
 	// Qt < 4.5 has no QTextDocumentWriter class
 QFile file(selectedFile);
-	if (!file.open(QFile::WriteOnly))
+	if (!file.open(QFile::WriteOnly)) {
+		QApplication::restoreOverrideCursor();
 		return;
+	}
 QTextStream ts(&file);
 	ts.setCodec(QTextCodec::codecForName("UTF-8"));
 	ts << solutionText->document()->toHtml("UTF-8");
+	file.close();
 #endif // QT_VERSION >= 0x040500
+	QApplication::restoreOverrideCursor();
 }
 
 bool MainWindow::saveTask() {
