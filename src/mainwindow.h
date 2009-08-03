@@ -45,6 +45,7 @@ public:
 private slots:
 	void actionFileNewTriggered();
 	void actionFileOpenTriggered();
+	void actionFileSaveTriggered();
 	void actionFileSaveAsTaskTriggered();
 	void actionFileSaveAsSolutionTriggered();
 	void actionSettingsPreferencesTriggered();
@@ -57,12 +58,15 @@ private slots:
 #endif // Q_OS_WINCE
 	void buttonSolveClicked();
 	void buttonRandomClicked();
+	void buttonBackToTaskClicked();
 	void spinCitiesValueChanged(int);
 	void numCitiesChanged(int);
 
 private:
 	QSettings *settings;
+#ifndef Q_OS_WINCE
 	QPrinter *printer;
+#endif // Q_OS_WINCE
 	CTSPModel *tspmodel;
 	QString fileName;
 	QActionGroup *groupSettingsLanguageList;

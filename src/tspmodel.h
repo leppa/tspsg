@@ -53,8 +53,8 @@ private:
 	QVector<QVector<double> > table;
 	quint16 nCities;
 	bool loadError(QDataStream::Status);
-	bool loadZKT(QDataStream *);
 	bool loadTSPT(QDataStream *);
+	bool loadZKT(QDataStream *);
 	int rand(int, int) const;
 };
 

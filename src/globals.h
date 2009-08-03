@@ -37,6 +37,7 @@
 // Default values
 #define DEF_RAND_MIN 1
 #define DEF_RAND_MAX 10
+#define DEF_NUM_CITIES 5
 #define DEF_OFFSET 100
 #define DEF_FONT_FAMILY "Courier New"
 #define DEF_FONT_SIZE 10
@@ -55,11 +56,19 @@
 // ZKomModRd Task file version
 #define ZKT_VERSION quint8(1)
 
+// Maximum available number of cities
+#define MAX_NUM_CITIES 20
 // This value means infinity :-)
 #ifndef INFINITY
 	#define INFINITY 1.7E+308
 #endif
 // This is string, which represents infinite value in table
 #define INFSTR "---"
+
+// Let's check that default number of cities is sane (<= MAX_NUM_CITIES)
+#if DEF_NUM_CITIES > MAX_NUM_CITIES
+	#undef DEF_NUM_CITIES
+	#define DEF_NUM_CITIES MAX_NUM_CITIES
+#endif
 
 #endif // GLOBALS_H

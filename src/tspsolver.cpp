@@ -96,7 +96,8 @@ bool alts = false;
 double sum;
 	for (int r = 0; r < nCities; r++)
 		for (int c = 0; c < nCities; c++)
-			if ((matrix[r][c] == 0) && !forbidden.values(r).contains(c)) {
+//			if ((matrix[r][c] == 0) && !forbidden.values(r).contains(c)) {
+			if (matrix[r][c] == 0) {
 				sum = findMinInRow(r,matrix,c) + findMinInCol(c,matrix,r);
 				if (sum > h) {
 					h = sum;
@@ -153,10 +154,10 @@ sStep *step = new sStep();
 sStep *left, *right;
 int nRow, nCol;
 	while (route.size() < nCities) {
-		forbidden.clear();
+//		forbidden.clear();
 		step->alts = findCandidate(step->matrix,nRow,nCol,s);
 		while (hasSubCycles(nRow,nCol)) {
-			forbidden[nRow] = nCol;
+//			forbidden[nRow] = nCol;
 			step->matrix[nRow][nCol] = INFINITY;
 			step->price += align(step->matrix);
 			step->alts = findCandidate(step->matrix,nRow,nCol,s);
@@ -203,12 +204,12 @@ int nRow, nCol;
 		}
 	}
 
-	pd.reset();
-	qApp->processEvents();
-
 	if (!root && !pd.wasCanceled()) {
-		QMessageBox(QMessageBox::Warning,trUtf8("Solution Result"),trUtf8("This task has no solution."),QMessageBox::Ok,parent).exec();
+		pd.reset();
+		QMessageBox(QMessageBox::Warning,trUtf8("Solution Result"),trUtf8("Unable to find solution.\nMaybe, this task has no solutions."),QMessageBox::Ok,parent).exec();
 	}
+
+	qApp->processEvents();
 
 	return root;
 }

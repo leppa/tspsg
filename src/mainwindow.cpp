@@ -45,10 +45,11 @@ int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::des
 	actionSettingsLanguageEnglish->setData("en");
 	actionSettingsLanguageEnglish->setActionGroup(groupSettingsLanguageList);
 	loadLangList();
-	spinCities->setValue(settings->value("NumCities",5).toInt());
+	spinCities->setMaximum(MAX_NUM_CITIES);
 	actionSettingsLanguageAutodetect->setChecked(settings->value("Language","").toString().isEmpty());
 	connect(actionFileNew,SIGNAL(triggered()),this,SLOT(actionFileNewTriggered()));
 	connect(actionFileOpen,SIGNAL(triggered()),this,SLOT(actionFileOpenTriggered()));
+	connect(actionFileSave,SIGNAL(triggered()),this,SLOT(actionFileSaveTriggered()));
 	connect(actionFileSaveAsTask,SIGNAL(triggered()),this,SLOT(actionFileSaveAsTaskTriggered()));
 	connect(actionFileSaveAsSolution,SIGNAL(triggered()),this,SLOT(actionFileSaveAsSolutionTriggered()));
 	connect(actionSettingsPreferences,SIGNAL(triggered()),this,SLOT(actionSettingsPreferencesTriggered()));
@@ -61,9 +62,10 @@ int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::des
 #endif // Q_OS_WINCE
 	connect(buttonSolve,SIGNAL(clicked()),this,SLOT(buttonSolveClicked()));
 	connect(buttonRandom,SIGNAL(clicked()),this,SLOT(buttonRandomClicked()));
+	connect(buttonBackToTask,SIGNAL(clicked()),this,SLOT(buttonBackToTaskClicked()));
 	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(spinCitiesValueChanged(int)));
-QRect rect = geometry();
 	setCentralWidget(tabWidget);
+QRect rect = geometry();
 #ifndef Q_OS_WINCE
 	if (settings->value("SavePos",false).toBool()) {
 		// Loading of saved window state
@@ -81,24 +83,24 @@ QRect rect = geometry();
 #endif // Q_OS_WINCE
 	qsrand(QDateTime().currentDateTime().toTime_t());
 	tspmodel = new CTSPModel();
-	tspmodel->setNumCities(spinCities->value());
-	taskView->setModel(tspmodel);
 	connect(tspmodel,SIGNAL(numCitiesChanged(int)),this,SLOT(numCitiesChanged(int)));
 	connect(tspmodel,SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),this,SLOT(dataChanged()));
 	connect(tspmodel,SIGNAL(layoutChanged()),this,SLOT(dataChanged()));
-	if ((QCoreApplication::arguments().count() > 1) && (tspmodel->loadTask(QCoreApplication::arguments().at(1)))) {
+	if ((QCoreApplication::arguments().count() > 1) && (tspmodel->loadTask(QCoreApplication::arguments().at(1))))
 		setFileName(QCoreApplication::arguments().at(1));
-		setWindowModified(false);
-	} else
+	else {
 		setFileName();
-#ifdef Q_OS_WINCE
+		spinCities->setValue(settings->value("NumCities",DEF_NUM_CITIES).toInt());
+	}
+	taskView->setModel(tspmodel);
+	setWindowModified(false);
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
-#endif // Q_OS_WINCE
 }
 
 void MainWindow::enableSolutionActions(bool enable)
 {
+	buttonSaveSolution->setEnabled(enable);
 	actionFileSaveAsSolution->setEnabled(enable);
 	solutionText->setEnabled(enable);
 	if (!enable)
@@ -172,17 +174,13 @@ void MainWindow::setFileName(QString fileName)
 
 void MainWindow::spinCitiesValueChanged(int n)
 {
-#ifdef Q_OS_WINCE
 int count = tspmodel->numCities();
-#endif // Q_OS_WINCE
 	tspmodel->setNumCities(n);
-#ifdef Q_OS_WINCE
 	if (n > count)
 		for (int k = count; k < n; k++) {
 			taskView->resizeColumnToContents(k);
 			taskView->resizeRowToContents(k);
 		}
-#endif // Q_OS_WINCE
 }
 
 bool MainWindow::maybeSave()
@@ -203,10 +201,8 @@ void MainWindow::actionFileNewTriggered()
 	if (!maybeSave())
 		return;
 	tspmodel->clear();
-#ifdef Q_OS_WINCE
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
-#endif
 	setFileName();
 	setWindowModified(false);
 	tabWidget->setCurrentIndex(0);
@@ -237,15 +233,25 @@ QStringList files = od.selectedFiles();
 		return;
 	}
 	setFileName(files.first());
-#ifdef Q_OS_WINCE
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
-#endif
 	tabWidget->setCurrentIndex(0);
 	setWindowModified(false);
 	solutionText->clear();
 	enableSolutionActions(false);
 	QApplication::restoreOverrideCursor();
+}
+
+void MainWindow::actionFileSaveTriggered()
+{
+	if ((fileName == trUtf8("Untitled") + ".tspt") || (!fileName.endsWith(".tspt",Qt::CaseInsensitive)))
+		saveTask();
+	else {
+		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+		if (tspmodel->saveTask(fileName))
+			setWindowModified(false);
+		QApplication::restoreOverrideCursor();
+	}
 }
 
 void MainWindow::actionFileSaveAsTaskTriggered()
@@ -349,10 +355,13 @@ void MainWindow::buttonRandomClicked()
 {
 	tspmodel->randomize();
 	setWindowModified(true);
-#ifdef Q_OS_WINCE
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
-#endif // Q_OS_WINCE
+}
+
+void MainWindow::buttonBackToTaskClicked()
+{
+	tabWidget->setCurrentIndex(0);
 }
 
 void MainWindow::outputMatrix(tMatrix matrix, QStringList &output, int nRow, int nCol)
@@ -394,7 +403,7 @@ bool ok;
 		matrix.append(row);
 	}
 CTSPSolver solver;
-sStep *root = solver.solve(spinCities->value(),matrix);
+sStep *root = solver.solve(n,matrix,this);
 	if (!root)
 		return;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -541,5 +550,7 @@ void MainWindow::dataChanged()
 
 void MainWindow::numCitiesChanged(int nCities)
 {
+	blockSignals(true);
 	spinCities->setValue(nCities);
+	blockSignals(false);
 }

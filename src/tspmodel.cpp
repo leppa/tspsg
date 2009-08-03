@@ -205,18 +205,20 @@ quint8 version;
 	ds->skipRawData(TSPT_META_SIZE);
 	if (loadError(ds->status()))
 		return false;
-	// Cities number
+	// Number of cities
 quint16 size;
 	*ds >> size;
 	if (loadError(ds->status()))
 		return false;
-	if (size < 3) {
+	if ((size < 3) || (size > MAX_NUM_CITIES)) {
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("Unexpected data read.\nFile is possibly corrupted."),QMessageBox::Ok).exec();
 		return false;
 	}
-	if (nCities != size)
+	if (nCities != size) {
+		setNumCities(size);
 		emit numCitiesChanged(size);
-	// Costs
+	}
+	// Travel costs
 	for (int r = 0; r < size; r++)
 		for (int c = 0; c < size; c++)
 			if (r != c) {
@@ -245,7 +247,7 @@ quint16 version;
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("File version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
 		return false;
 	}
-	// Cities number
+	// Number of cities
 quint8 size;
 	ds->readRawData(reinterpret_cast<char *>(&size),1);
 	if (loadError(ds->status()))
@@ -254,9 +256,11 @@ quint8 size;
 		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("Unexpected data read.\nFile is possibly corrupted."),QMessageBox::Ok).exec();
 		return false;
 	}
-	if (nCities != size)
+	if (nCities != size) {
+		setNumCities(size);
 		emit numCitiesChanged(size);
-	// Costs
+	}
+	// Travel costs
 double val;
 	for (int r = 0; r < 5; r++)
 		for (int c = 0; c < 5; c++)

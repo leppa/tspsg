@@ -52,7 +52,7 @@ private:
 	int nCities;
 	sStep *root;
 	QHash<int,int> route;
-	QHash<int,int> forbidden;
+//	QHash<int,int> forbidden;
 	double align(tMatrix &);
 	void cleanup();
 	bool findCandidate(tMatrix, int &, int &, double &);
