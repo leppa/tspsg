@@ -1,13 +1,13 @@
 <RCC>
     <qresource prefix="/images" >
-        <file>about.bmp</file>
-        <file>icon.png</file>
+        <file>Icon.png</file>
         <file>icons/back.png</file>
         <file>icons/button_cancel.png</file>
         <file>icons/button_ok.png</file>
         <file>icons/color_line.png</file>
         <file>icons/contents.png</file>
         <file>icons/contexthelp.png</file>
+        <file>icons/document_preview.png</file>
         <file>icons/exit.png</file>
         <file>icons/filenew.png</file>
         <file>icons/fileopen.png</file>

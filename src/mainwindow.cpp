@@ -39,7 +39,7 @@ int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::des
 	toolBar->setIconSize(QSize(s / 10,s / 10));
 #endif
 #ifndef Q_OS_WINCE
-	printer = new QPrinter();
+	printer = new QPrinter(QPrinter::HighResolution);
 #endif // Q_OS_WINCE
 	groupSettingsLanguageList = new QActionGroup(this);
 	actionSettingsLanguageEnglish->setData("en");
@@ -58,7 +58,8 @@ int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::des
 	connect(actionHelpAboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
 	connect(actionHelpAbout,SIGNAL(triggered()),this,SLOT(actionHelpAboutTriggered()));
 #ifndef Q_OS_WINCE
-	connect(actionFilePrintSetup,SIGNAL(triggered()),this,SLOT(actionFilePrintSetupTriggered()));
+	connect(actionFilePrintPreview,SIGNAL(triggered()),this,SLOT(actionFilePrintPreviewTriggered()));
+	connect(actionFilePrint,SIGNAL(triggered()),this,SLOT(actionFilePrintTriggered()));
 #endif // Q_OS_WINCE
 	connect(buttonSolve,SIGNAL(clicked()),this,SLOT(buttonSolveClicked()));
 	connect(buttonRandom,SIGNAL(clicked()),this,SLOT(buttonRandomClicked()));
@@ -83,6 +84,7 @@ QRect rect = geometry();
 #endif // Q_OS_WINCE
 	qsrand(QDateTime().currentDateTime().toTime_t());
 	tspmodel = new CTSPModel();
+	taskView->setModel(tspmodel);
 	connect(tspmodel,SIGNAL(numCitiesChanged(int)),this,SLOT(numCitiesChanged(int)));
 	connect(tspmodel,SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),this,SLOT(dataChanged()));
 	connect(tspmodel,SIGNAL(layoutChanged()),this,SLOT(dataChanged()));
@@ -91,12 +93,9 @@ QRect rect = geometry();
 	else {
 		setFileName();
 		spinCities->setValue(settings->value("NumCities",DEF_NUM_CITIES).toInt());
-		tspmodel->setNumCities(spinCities->value());
+		spinCitiesValueChanged(spinCities->value());
 	}
-	taskView->setModel(tspmodel);
 	setWindowModified(false);
-	taskView->resizeColumnsToContents();
-	taskView->resizeRowsToContents();
 }
 
 void MainWindow::enableSolutionActions(bool enable)
@@ -106,6 +105,10 @@ void MainWindow::enableSolutionActions(bool enable)
 	solutionText->setEnabled(enable);
 	if (!enable)
 		output.clear();
+#ifndef Q_OS_WINCE
+	actionFilePrint->setEnabled(enable);
+	actionFilePrintPreview->setEnabled(enable);
+#endif // Q_OS_WINCE
 }
 
 bool MainWindow::loadLanguage(QString lang)
@@ -116,14 +119,14 @@ bool ad = false;
 		ad = settings->value("Language","").toString().isEmpty();
 		lang = settings->value("Language",QLocale::system().name()).toString();
 	}
-static QTranslator *qtTranslator;
+static QTranslator *qtTranslator; // Qt library translator
 	if (qtTranslator) {
 		qApp->removeTranslator(qtTranslator);
 		delete qtTranslator;
 		qtTranslator = NULL;
 	}
 	qtTranslator = new QTranslator();
-static QTranslator *translator;
+static QTranslator *translator; // Application translator
 	if (translator) {
 		qApp->removeTranslator(translator);
 		delete translator;
@@ -138,6 +141,7 @@ static QTranslator *translator;
 			if (qtTranslator->load("qt_" + lang,"i18n"))
 				qApp->installTranslator(qtTranslator);
 			else {
+				// Qt library translation unavailable
 				delete qtTranslator;
 				qtTranslator = NULL;
 			}
@@ -146,7 +150,7 @@ static QTranslator *translator;
 			qApp->installTranslator(translator);
 		else {
 			if (!ad)
-				QMessageBox(QMessageBox::Warning,trUtf8("Language change"),trUtf8("Unable to load translation language."),QMessageBox::Ok,this).exec();
+				QMessageBox(QMessageBox::Warning,trUtf8("Language Change"),trUtf8("Unable to load translation language."),QMessageBox::Ok,this).exec();
 			delete translator;
 			translator = NULL;
 			return false;
@@ -345,7 +349,19 @@ SettingsDialog sd(this);
 }
 
 #ifndef Q_OS_WINCE
-void MainWindow::actionFilePrintSetupTriggered()
+void MainWindow::printPreview(QPrinter *printer)
+{
+	solutionText->print(printer);
+}
+
+void MainWindow::actionFilePrintPreviewTriggered()
+{
+QPrintPreviewDialog ppd(printer, this);
+    connect(&ppd,SIGNAL(paintRequested(QPrinter *)),SLOT(printPreview(QPrinter *)));
+    ppd.exec();
+}
+
+void MainWindow::actionFilePrintTriggered()
 {
 QPrintDialog pd(printer,this);
 #if QT_VERSION >= 0x040500
@@ -353,7 +369,9 @@ QPrintDialog pd(printer,this);
 	pd.setOption(QAbstractPrintDialog::PrintSelection,false);
 	pd.setOption(QAbstractPrintDialog::PrintPageRange,false);
 #endif
-	pd.exec();
+	if (pd.exec() != QDialog::Accepted)
+		return;
+	solutionText->document()->print(printer);
 }
 #endif // Q_OS_WINCE
 

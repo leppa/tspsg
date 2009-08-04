@@ -17,7 +17,7 @@
    <string>Travelling Salesman Problem</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resources/tspsg.qrc">
+   <iconset>
     <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">

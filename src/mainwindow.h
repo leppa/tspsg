@@ -54,7 +54,9 @@ private slots:
 	void actionHelpAboutTriggered();
 	void dataChanged();
 #ifndef Q_OS_WINCE
-	void actionFilePrintSetupTriggered();
+	void printPreview(QPrinter *);
+	void actionFilePrintPreviewTriggered();
+	void actionFilePrintTriggered();
 #endif // Q_OS_WINCE
 	void buttonSolveClicked();
 	void buttonRandomClicked();

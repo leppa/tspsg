@@ -14,7 +14,7 @@
    <string>Travelling Salesman Problem</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resources/tspsg.qrc">
+   <iconset>
     <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -296,7 +296,7 @@
     <addaction name="actionFileSave"/>
     <addaction name="menuFileSaveAs"/>
     <addaction name="separator"/>
-    <addaction name="actionFilePrintSetup"/>
+    <addaction name="actionFilePrintPreview"/>
     <addaction name="actionFilePrint"/>
     <addaction name="separator"/>
     <addaction name="actionFileExit"/>
@@ -361,19 +361,25 @@
    <addaction name="separator"/>
    <addaction name="actionFileExit"/>
   </widget>
-  <action name="actionFilePrintSetup">
+  <action name="actionFilePrintPreview">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/fileprint.png</normaloff>:/images/icons/fileprint.png</iconset>
+     <normaloff>:/images/icons/document_preview.png</normaloff>:/images/icons/document_preview.png</iconset>
    </property>
    <property name="text">
-    <string>P&amp;rint Setup...</string>
+    <string>P&amp;rint Preview...</string>
+   </property>
+   <property name="iconText">
+    <string>Print Preview...</string>
+   </property>
+   <property name="toolTip">
+    <string>Preview solution results</string>
    </property>
    <property name="statusTip">
-    <string>Setup printing</string>
+    <string>Preview current solution results before printing</string>
    </property>
   </action>
   <action name="actionFilePrint">
@@ -387,8 +393,14 @@
    <property name="text">
     <string>&amp;Print...</string>
    </property>
+   <property name="iconText">
+    <string>Print...</string>
+   </property>
+   <property name="toolTip">
+    <string>Print solution</string>
+   </property>
    <property name="statusTip">
-    <string>Print solution results</string>
+    <string>Print current solution results</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
