@@ -38,8 +38,8 @@ double CTSPSolver::findMinInRow(int nRow, tMatrix matrix, int exc)
 {
 double min = INFINITY;
 	for (int k = 0; k < nCities; k++)
-		if (((k != exc)) && (min > matrix[nRow][k]))
-			min = matrix[nRow][k];
+		if (((k != exc)) && (min > matrix.at(nRow).at(k)))
+			min = matrix.at(nRow).at(k);
 	return min == INFINITY ? 0 : min;
 }
 
@@ -47,8 +47,8 @@ double CTSPSolver::findMinInCol(int nCol, tMatrix matrix, int exr)
 {
 double min = INFINITY;
 	for (int k = 0; k < nCities; k++)
-		if ((k != exr) && (min > matrix[k][nCol]))
-			min = matrix[k][nCol];
+		if ((k != exr) && (min > matrix.at(k).at(nCol)))
+			min = matrix.at(k).at(nCol);
 	return min == INFINITY ? 0 : min;
 }
 
@@ -97,7 +97,7 @@ double sum;
 	for (int r = 0; r < nCities; r++)
 		for (int c = 0; c < nCities; c++)
 //			if ((matrix[r][c] == 0) && !forbidden.values(r).contains(c)) {
-			if (matrix[r][c] == 0) {
+			if (matrix.at(r).at(c) == 0) {
 				sum = findMinInRow(r,matrix,c) + findMinInCol(c,matrix,r);
 				if (sum > h) {
 					h = sum;

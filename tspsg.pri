@@ -28,8 +28,7 @@ SOURCES += src/main.cpp \
 	src/tspsolver.cpp
 
 #Forms
-FORMS += ui/mainwindow.ce.ui \
-	ui/mainwindow.ui \
+FORMS += ui/mainwindow.ui \
 	ui/settingsdialog.ui \
 	ui/settingsdialog.ce.ui
 

@@ -30,7 +30,7 @@
 
 // Version info
 #include "version.h"
-// OS detection
+// OS and ARCH detection
 #include "os.h"
 
 // DEFINES
@@ -57,7 +57,7 @@
 #define ZKT_VERSION quint8(1)
 
 // Maximum available number of cities
-#define MAX_NUM_CITIES 20
+#define MAX_NUM_CITIES 30
 // This value means infinity :-)
 #ifndef INFINITY
 	#define INFINITY 1.7E+308

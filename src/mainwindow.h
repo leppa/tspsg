@@ -25,11 +25,7 @@
 #define MAINWINDOW_H
 
 #include "globals.h"
-#ifdef Q_OS_WINCE
-	#include "ui_mainwindow.ce.h"
-#else
-	#include "ui_mainwindow.h"
-#endif // Q_OS_WINCE
+#include "ui_mainwindow.h"
 #include "settingsdialog.h"
 #include "tspsolver.h"
 #include "tspmodel.h"
@@ -53,11 +49,11 @@ private slots:
 	void groupSettingsLanguageListTriggered(QAction *);
 	void actionHelpAboutTriggered();
 	void dataChanged();
-#ifndef Q_OS_WINCE
+#ifndef QT_NO_PRINTER
 	void printPreview(QPrinter *);
 	void actionFilePrintPreviewTriggered();
 	void actionFilePrintTriggered();
-#endif // Q_OS_WINCE
+#endif // QT_NO_PRINTER
 	void buttonSolveClicked();
 	void buttonRandomClicked();
 	void buttonBackToTaskClicked();
@@ -66,9 +62,9 @@ private slots:
 
 private:
 	QSettings *settings;
-#ifndef Q_OS_WINCE
+#ifndef QT_NO_PRINTER
 	QPrinter *printer;
-#endif // Q_OS_WINCE
+#endif // QT_NO_PRINTER
 	CTSPModel *tspmodel;
 	QString fileName;
 	QActionGroup *groupSettingsLanguageList;

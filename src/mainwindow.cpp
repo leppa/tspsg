@@ -29,6 +29,11 @@ MainWindow::MainWindow(QWidget *parent)
 	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
 	loadLanguage();
 	setupUi(this);
+#ifndef Q_OS_WINCE
+QStatusBar *statusbar = new QStatusBar(this);
+	statusbar->setObjectName("statusbar");
+	setStatusBar(statusbar);
+#endif // Q_OS_WINCE
 	initDocStyleSheet();
 	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
 	solutionText->setTextColor(settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>());
@@ -38,9 +43,9 @@ MainWindow::MainWindow(QWidget *parent)
 int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::desktop()->screenGeometry().height());
 	toolBar->setIconSize(QSize(s / 10,s / 10));
 #endif
-#ifndef Q_OS_WINCE
+#ifndef QT_NO_PRINTER
 	printer = new QPrinter(QPrinter::HighResolution);
-#endif // Q_OS_WINCE
+#endif // QT_NO_PRINTER
 	groupSettingsLanguageList = new QActionGroup(this);
 	actionSettingsLanguageEnglish->setData("en");
 	actionSettingsLanguageEnglish->setActionGroup(groupSettingsLanguageList);
@@ -57,10 +62,14 @@ int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::des
 	connect(groupSettingsLanguageList,SIGNAL(triggered(QAction *)),this,SLOT(groupSettingsLanguageListTriggered(QAction *)));
 	connect(actionHelpAboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
 	connect(actionHelpAbout,SIGNAL(triggered()),this,SLOT(actionHelpAboutTriggered()));
-#ifndef Q_OS_WINCE
+#ifndef QT_NO_PRINTER
+	menuFile->insertAction(actionFileExit,actionFilePrintPreview);
+	menuFile->insertAction(actionFileExit,actionFilePrint);
+	menuFile->insertSeparator(actionFileExit);
+	toolBar->insertAction(actionSettingsPreferences,actionFilePrint);
 	connect(actionFilePrintPreview,SIGNAL(triggered()),this,SLOT(actionFilePrintPreviewTriggered()));
 	connect(actionFilePrint,SIGNAL(triggered()),this,SLOT(actionFilePrintTriggered()));
-#endif // Q_OS_WINCE
+#endif // QT_NO_PRINTER
 	connect(buttonSolve,SIGNAL(clicked()),this,SLOT(buttonSolveClicked()));
 	connect(buttonRandom,SIGNAL(clicked()),this,SLOT(buttonRandomClicked()));
 	connect(buttonBackToTask,SIGNAL(clicked()),this,SLOT(buttonBackToTaskClicked()));
@@ -105,10 +114,10 @@ void MainWindow::enableSolutionActions(bool enable)
 	solutionText->setEnabled(enable);
 	if (!enable)
 		output.clear();
-#ifndef Q_OS_WINCE
+#ifndef QT_NO_PRINTER
 	actionFilePrint->setEnabled(enable);
 	actionFilePrintPreview->setEnabled(enable);
-#endif // Q_OS_WINCE
+#endif // QT_NO_PRINTER
 }
 
 bool MainWindow::loadLanguage(QString lang)
@@ -205,6 +214,7 @@ void MainWindow::actionFileNewTriggered()
 {
 	if (!maybeSave())
 		return;
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	tspmodel->clear();
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
@@ -213,6 +223,7 @@ void MainWindow::actionFileNewTriggered()
 	tabWidget->setCurrentIndex(0);
 	solutionText->clear();
 	enableSolutionActions(false);
+	QApplication::restoreOverrideCursor();
 }
 
 void MainWindow::actionFileOpenTriggered()
@@ -348,7 +359,7 @@ SettingsDialog sd(this);
 	}
 }
 
-#ifndef Q_OS_WINCE
+#ifndef QT_NO_PRINTER
 void MainWindow::printPreview(QPrinter *printer)
 {
 	solutionText->print(printer);
@@ -371,16 +382,20 @@ QPrintDialog pd(printer,this);
 #endif
 	if (pd.exec() != QDialog::Accepted)
 		return;
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	solutionText->document()->print(printer);
+	QApplication::restoreOverrideCursor();
 }
-#endif // Q_OS_WINCE
+#endif // QT_NO_PRINTER
 
 void MainWindow::buttonRandomClicked()
 {
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	tspmodel->randomize();
 	setWindowModified(true);
 	taskView->resizeColumnsToContents();
 	taskView->resizeRowsToContents();
+	QApplication::restoreOverrideCursor();
 }
 
 void MainWindow::buttonBackToTaskClicked()
