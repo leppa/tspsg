@@ -279,10 +279,18 @@ void MainWindow::actionFileSaveAsSolutionTriggered()
 {
 static QString selectedFile;
 	if (selectedFile.isEmpty())
+#ifndef QT_NO_PRINTER
+		selectedFile = "solution.pdf";
+#else
 		selectedFile = "solution.html";
+#endif // QT_NO_PRINTER
 QFileDialog sd(this);
 	sd.setAcceptMode(QFileDialog::AcceptSave);
-QStringList filters(trUtf8("HTML Files") + " (*.html *.htm)");
+QStringList filters;
+#ifndef QT_NO_PRINTER
+	filters.append(trUtf8("PDF Files") + "(*.pdf)");
+#endif
+	filters.append(trUtf8("HTML Files") + " (*.html *.htm)");
 #if QT_VERSION >= 0x040500
 	filters.append(trUtf8("OpenDocument Files") + " (*.odt)");
 #endif // QT_VERSION >= 0x040500
@@ -296,6 +304,16 @@ QStringList files = sd.selectedFiles();
 		return;
 	selectedFile = files.first();
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+#ifndef QT_NO_PRINTER
+	if (selectedFile.endsWith(".pdf",Qt::CaseInsensitive)) {
+QPrinter printer(QPrinter::HighResolution);
+		printer.setOutputFormat(QPrinter::PdfFormat);
+		printer.setOutputFileName(selectedFile);
+		solutionText->document()->print(&printer);
+		QApplication::restoreOverrideCursor();
+		return;
+	}
+#endif
 #if QT_VERSION >= 0x040500
 QTextDocumentWriter dw(selectedFile);
 	if (!(selectedFile.endsWith(".htm",Qt::CaseInsensitive) || selectedFile.endsWith(".html",Qt::CaseInsensitive) || selectedFile.endsWith(".odt",Qt::CaseInsensitive) || selectedFile.endsWith(".txt",Qt::CaseInsensitive)))
@@ -487,7 +505,7 @@ QString path = "";
 void MainWindow::actionHelpAboutTriggered()
 {
 	// TODO: Normal about window :-)
-QString about = QString::fromUtf8("TSPSG - TSP Solver and Generator\n");
+QString about = QString::fromUtf8("TSPSG: TSP Solver and Generator\n");
 	about += QString::fromUtf8("    Version: "BUILD_VERSION"\n");
 	about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
 	about += QString::fromUtf8("Target OS: %1\n").arg(OS);

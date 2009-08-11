@@ -96,7 +96,7 @@ bool alts = false;
 double sum;
 	for (int r = 0; r < nCities; r++)
 		for (int c = 0; c < nCities; c++)
-//			if ((matrix[r][c] == 0) && !forbidden.values(r).contains(c)) {
+//			if ((matrix.at(r).at(c) == 0) && !forbidden.values(r).contains(c)) {
 			if (matrix.at(r).at(c) == 0) {
 				sum = findMinInRow(r,matrix,c) + findMinInCol(c,matrix,r);
 				if (sum > h) {
@@ -104,7 +104,7 @@ double sum;
 					nRow = r;
 					nCol = c;
 					alts = false;
-				} else if (sum == h)
+				} else if ((sum == h) && !hasSubCycles(r,c))
 					alts = true;
 			}
 	return alts;

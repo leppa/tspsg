@@ -38,7 +38,6 @@
 #define DEF_RAND_MIN 1
 #define DEF_RAND_MAX 10
 #define DEF_NUM_CITIES 5
-#define DEF_OFFSET 100
 #define DEF_FONT_FAMILY "Courier New"
 #define DEF_FONT_SIZE 10
 #define DEF_FONT_COLOR Qt::black
