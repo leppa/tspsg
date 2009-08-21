@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>415</width>
-    <height>176</height>
+    <width>243</width>
+    <height>174</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,421 +17,466 @@
    <iconset resource="../resources/tspsg.qrc">
     <normaloff>:/images/icons/preferences_system.png</normaloff>:/images/icons/preferences_system.png</iconset>
   </property>
-  <layout class="QVBoxLayout">
-   <property name="spacing">
-    <number>0</number>
+  <widget class="Line" name="lineHorizontal">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>120</y>
+     <width>241</width>
+     <height>2</height>
+    </rect>
    </property>
-   <property name="margin">
-    <number>0</number>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>2</height>
+    </size>
    </property>
-   <item>
-    <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>0</number>
-     </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="lineWidth">
+    <number>2</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QWidget" name="bgGrey" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>130</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>240</red>
+         <green>240</green>
+         <blue>240</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>240</red>
+         <green>240</green>
+         <blue>240</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>240</red>
+         <green>240</green>
+         <blue>240</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>240</red>
+         <green>240</green>
+         <blue>240</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>240</red>
+         <green>240</green>
+         <blue>240</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>240</red>
+         <green>240</green>
+         <blue>240</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <widget class="QPushButton" name="buttonCancel">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="statusTip">
+     <string>Close without saving preferences</string>
+    </property>
+    <property name="text">
+     <string>&amp;Cancel</string>
+    </property>
+    <property name="icon">
+     <iconset resource="../resources/tspsg.qrc">
+      <normaloff>:/images/icons/button_cancel.png</normaloff>:/images/icons/button_cancel.png</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonOK">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>10</y>
+      <width>77</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="statusTip">
+     <string>Save new preferences</string>
+    </property>
+    <property name="text">
+     <string>&amp;OK</string>
+    </property>
+    <property name="icon">
+     <iconset resource="../resources/tspsg.qrc">
+      <normaloff>:/images/icons/button_ok.png</normaloff>:/images/icons/button_ok.png</iconset>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelHint">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>10</y>
+      <width>16</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>28</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>28</height>
+     </size>
+    </property>
+    <property name="statusTip">
+     <string>Hover mouse pointer over dialog elements to get additional help</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::PlainText</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignJustify|Qt::AlignTop</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="buttonHelp">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>23</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Help</string>
+    </property>
+    <property name="statusTip">
+     <string>Get preferences help</string>
+    </property>
+    <property name="text">
+     <string>Help</string>
+    </property>
+    <property name="icon">
+     <iconset resource="../resources/tspsg.qrc">
+      <normaloff>:/images/icons/help_hint.png</normaloff>:/images/icons/help_hint.png</iconset>
+    </property>
+    <property name="autoRaise">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="bgWhite" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>239</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <widget class="QGroupBox" name="groupRandomSettings">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>115</width>
+      <height>84</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Random values:</string>
+    </property>
+    <layout class="QVBoxLayout">
      <item>
-      <widget class="QLabel" name="imageSide">
-       <property name="minimumSize">
-        <size>
-         <width>130</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string>background-color: #0080C0</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="lineWidth">
-        <number>0</number>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap resource="../resources/tspsg.qrc">:/images/icons/preferences_system.png</pixmap>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout">
+       <item>
+        <widget class="QLabel" name="labelRandMin">
+         <property name="text">
+          <string>&amp;Minimal:</string>
+         </property>
+         <property name="buddy">
+          <cstring>spinRandMin</cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinRandMin">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="statusTip">
+          <string>Minimum for random number generation</string>
+         </property>
+         <property name="maximum">
+          <number>1000</number>
+         </property>
+         <property name="value">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
-      <widget class="Line" name="lineVertical">
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="lineWidth">
-        <number>2</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QWidget" name="background" native="true">
-       <property name="palette">
-        <palette>
-         <active>
-          <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Window">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-         </active>
-         <inactive>
-          <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Window">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-         </inactive>
-         <disabled>
-          <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Window">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-         </disabled>
-        </palette>
-       </property>
-       <property name="autoFillBackground">
-        <bool>true</bool>
-       </property>
-       <layout class="QVBoxLayout">
-        <item>
-         <layout class="QHBoxLayout">
-          <property name="spacing">
-           <number>6</number>
-          </property>
-          <item>
-           <widget class="QGroupBox" name="groupRandomSettings">
-            <property name="title">
-             <string>Random values:</string>
-            </property>
-            <layout class="QVBoxLayout">
-             <item>
-              <layout class="QHBoxLayout">
-               <item>
-                <widget class="QLabel" name="labelRandMin">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>&amp;Minimal:</string>
-                 </property>
-                 <property name="buddy">
-                  <cstring>spinRandMin</cstring>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QSpinBox" name="spinRandMin">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="statusTip">
-                  <string>Minimum for random number generation</string>
-                 </property>
-                 <property name="maximum">
-                  <number>1000</number>
-                 </property>
-                 <property name="value">
-                  <number>1</number>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout">
-               <item>
-                <widget class="QLabel" name="labelRandMax">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>Ma&amp;ximal:</string>
-                 </property>
-                 <property name="buddy">
-                  <cstring>spinRandMax</cstring>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QSpinBox" name="spinRandMax">
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="statusTip">
-                  <string>Maximum for random number generation</string>
-                 </property>
-                 <property name="minimum">
-                  <number>1</number>
-                 </property>
-                 <property name="maximum">
-                  <number>1000</number>
-                 </property>
-                 <property name="value">
-                  <number>10</number>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="groupOutputSettings">
-            <property name="title">
-             <string>Output settings:</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout">
-             <item>
-              <widget class="QPushButton" name="buttonFont">
-               <property name="cursor">
-                <cursorShape>PointingHandCursor</cursorShape>
-               </property>
-               <property name="statusTip">
-                <string>Font face for printing</string>
-               </property>
-               <property name="text">
-                <string>&amp;Font...</string>
-               </property>
-               <property name="icon">
-                <iconset resource="../resources/tspsg.qrc">
-                 <normaloff>:/images/icons/fonts.png</normaloff>:/images/icons/fonts.png</iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="buttonColor">
-               <property name="cursor">
-                <cursorShape>PointingHandCursor</cursorShape>
-               </property>
-               <property name="statusTip">
-                <string>Font color for printing</string>
-               </property>
-               <property name="text">
-                <string>&amp;Color...</string>
-               </property>
-               <property name="icon">
-                <iconset resource="../resources/tspsg.qrc">
-                 <normaloff>:/images/icons/color_line.png</normaloff>:/images/icons/color_line.png</iconset>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="cbSaveState">
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="statusTip">
-           <string>Restore main window state and position on application restart</string>
-          </property>
-          <property name="text">
-           <string>Save main window state and position</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+      <layout class="QHBoxLayout">
+       <item>
+        <widget class="QLabel" name="labelRandMax">
+         <property name="text">
+          <string>Ma&amp;ximal:</string>
+         </property>
+         <property name="buddy">
+          <cstring>spinRandMax</cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinRandMax">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="statusTip">
+          <string>Maximum for random number generation</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>1000</number>
+         </property>
+         <property name="value">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="Line" name="lineHorizontal">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>2</height>
-      </size>
+   </widget>
+   <widget class="QGroupBox" name="groupOutputSettings">
+    <property name="geometry">
+     <rect>
+      <x>131</x>
+      <y>10</y>
+      <width>95</width>
+      <height>88</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Output settings:</string>
+    </property>
+    <widget class="QPushButton" name="buttonFont">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>24</y>
+       <width>75</width>
+       <height>24</height>
+      </rect>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
-     <property name="lineWidth">
-      <number>2</number>
+     <property name="statusTip">
+      <string>Font face for printing</string>
      </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+     <property name="text">
+      <string>&amp;Font...</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources/tspsg.qrc">
+       <normaloff>:/images/icons/fonts.png</normaloff>:/images/icons/fonts.png</iconset>
      </property>
     </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
+    <widget class="QPushButton" name="buttonColor">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>54</y>
+       <width>75</width>
+       <height>24</height>
+      </rect>
      </property>
-     <property name="margin">
-      <number>6</number>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
-     <item>
-      <widget class="QToolButton" name="buttonHelp">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="toolTip">
-        <string>Help</string>
-       </property>
-       <property name="statusTip">
-        <string>Get preferences help</string>
-       </property>
-       <property name="text">
-        <string>Help</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../resources/tspsg.qrc">
-         <normaloff>:/images/icons/help_hint.png</normaloff>:/images/icons/help_hint.png</iconset>
-       </property>
-       <property name="autoRaise">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="labelHint">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>28</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>28</height>
-        </size>
-       </property>
-       <property name="statusTip">
-        <string>Hover mouse pointer over dialog elements to get additional help</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::PlainText</enum>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignJustify|Qt::AlignTop</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="buttonOK">
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="statusTip">
-        <string>Save new preferences</string>
-       </property>
-       <property name="text">
-        <string>&amp;OK</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../resources/tspsg.qrc">
-         <normaloff>:/images/icons/button_ok.png</normaloff>:/images/icons/button_ok.png</iconset>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="buttonCancel">
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="statusTip">
-        <string>Close without saving preferences</string>
-       </property>
-       <property name="text">
-        <string>&amp;Cancel</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../resources/tspsg.qrc">
-         <normaloff>:/images/icons/button_cancel.png</normaloff>:/images/icons/button_cancel.png</iconset>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-  </layout>
+     <property name="statusTip">
+      <string>Font color for printing</string>
+     </property>
+     <property name="text">
+      <string>&amp;Color...</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources/tspsg.qrc">
+       <normaloff>:/images/icons/color_line.png</normaloff>:/images/icons/color_line.png</iconset>
+     </property>
+    </widget>
+   </widget>
+  </widget>
  </widget>
  <resources>
-  <include location="../resources/tspsg.qrc"/>
-  <include location="../resources/tspsg.qrc"/>
-  <include location="../resources/tspsg.qrc"/>
-  <include location="../resources/tspsg.qrc"/>
-  <include location="../resources/tspsg.qrc"/>
-  <include location="../resources/tspsg.qrc"/>
-  <include location="../resources/tspsg.qrc"/>
-  <include location="../resources/tspsg.qrc"/>
   <include location="../resources/tspsg.qrc"/>
  </resources>
  <connections/>

@@ -25,35 +25,38 @@
 #define SETTINGSDIALOG_H
 
 #include "globals.h"
-#ifdef Q_OS_WINCE
-	#include "ui_settingsdialog.ce.h"
-#else
-	#include "ui_settingsdialog.h"
-#endif // Q_OS_WINCE
+#include "ui_settingsdialog.h"
 
 class SettingsDialog: public QDialog, public Ui::SettingsDialog
 {
 	Q_OBJECT
 public:
 	SettingsDialog(QWidget *parent = 0);
-	bool fontChanged() const;
 	bool colorChanged() const;
+	bool fontChanged() const;
+
+#ifndef Q_OS_WINCE
+	QCheckBox *cbSaveState;
+	QLabel *imgIcon;
+	QLabel *labelHint;
+	QFrame *lineVertical;
+#endif // Q_OS_WINCE
 
 private:
-	QSettings *settings;
-	QFont font;
 	QColor color;
+	QFont font;
 	bool newFont;
 	bool newColor;
+	QSettings *settings;
 #ifndef Q_OS_WINCE
 	bool event(QEvent *);
 #endif
 
 private slots:
 	void accept();
-	void spinRandMinValueChanged(int val) { spinRandMax->setMinimum(val + 1); }
-	void buttonFontClicked();
 	void buttonColorClicked();
+	void buttonFontClicked();
+	void spinRandMinValueChanged(int val) { spinRandMax->setMinimum(val + 1); }
 };
 
 #endif // SETTINGSDIALOG_H

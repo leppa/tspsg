@@ -42,6 +42,7 @@
 	#define ARCH ""
 #endif // ARCH
 
+// Target OS detection. Done by Qt, so should work with any compiler.
 #ifdef Q_OS_AIX
 	#define OS "AIX"ARCH
 	#define OSID quint8(1)

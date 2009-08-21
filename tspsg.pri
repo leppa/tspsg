@@ -29,8 +29,7 @@ SOURCES += src/main.cpp \
 
 #Forms
 FORMS += ui/mainwindow.ui \
-	ui/settingsdialog.ui \
-	ui/settingsdialog.ce.ui
+	ui/settingsdialog.ui
 
 #Resource file(s)
 RESOURCES += resources/tspsg.qrc
