@@ -42,6 +42,20 @@
 #define DEF_FONT_SIZE 10
 #define DEF_FONT_COLOR Qt::black
 
+// Maximum available number of cities
+#define MAX_NUM_CITIES 30
+// Maximum for random generation limit settings
+#define MAX_RAND_VALUE 1000
+
+// Paths
+#if defined(Q_OS_LINUX) || defined(Q_OS_UNIX)
+	#define PATH_I18N "/usr/share/tspsg/i18n"
+	#define PATH_DOCS "/usr/share/doc/tspsg"
+#else
+	#define PATH_I18N "i18n"
+	#define PATH_DOCS "help"
+#endif // Q_OS_LINUX
+
 // TSPSG Task file signature - letters TSPT
 #define TSPT quint32(0x54535054)
 // TSPSG Task file version
@@ -55,8 +69,6 @@
 // ZKomModRd Task file version
 #define ZKT_VERSION quint8(1)
 
-// Maximum available number of cities
-#define MAX_NUM_CITIES 30
 // This value means infinity :-)
 #ifndef INFINITY
 	#define INFINITY 1.7E+308
@@ -64,10 +76,20 @@
 // This is string, which represents infinite value in table
 #define INFSTR "---"
 
-// Let's check that default number of cities is sane (<= MAX_NUM_CITIES)
+// Check that default number of cities is sane (<= MAX_NUM_CITIES)
 #if DEF_NUM_CITIES > MAX_NUM_CITIES
 	#undef DEF_NUM_CITIES
 	#define DEF_NUM_CITIES MAX_NUM_CITIES
+#endif
+// Check that maximum for random generation is sane (<= MAX_RAND_VALUE)
+#if DEF_RAND_MAX > MAX_RAND_VALUE
+	#undef DEF_RAND_MAX
+	#define DEF_RAND_MAX MAX_RAND_VALUE
+#endif
+// Check that DEF_RAND_MIN <= DEF_RAND_MAX
+#if DEF_RAND_MIN > DEF_RAND_MAX
+	#undef DEF_RAND_MIN
+	#define DEF_RAND_MIN DEF_RAND_MAX
 #endif
 
 #endif // GLOBALS_H

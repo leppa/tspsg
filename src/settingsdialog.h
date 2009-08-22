@@ -56,7 +56,7 @@ private slots:
 	void accept();
 	void buttonColorClicked();
 	void buttonFontClicked();
-	void spinRandMinValueChanged(int val) { spinRandMax->setMinimum(val + 1); }
+	void spinRandMinValueChanged(int val) { spinRandMax->setMinimum(val); }
 };
 
 #endif // SETTINGSDIALOG_H

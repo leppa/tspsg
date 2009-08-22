@@ -31,12 +31,49 @@ UI_DIR = ./tmp
 #Include file(s)
 include(tspsg.pri)
 
-# For wince: we are deploying to storage card because Qt libraries
-# (especially debug) are big enough for internal memory.
-deploy.path = "\Storage Card\tspsg"
-i18n.sources = i18n\languages.ini i18n\*.qm
-i18n.path = "\Storage Card\tspsg\i18n"
-DEPLOYMENT += deploy i18n
+# For *nix:
+#   - executable goes to $(INSTALL_ROOT)/bin
+#   - COPYING and README go to $(INSTALL_ROOT)/share/tspsg
+#   - translations go to $(INSTALL_ROOT)/share/tspsg/i18n
+#   - docs (none, yet) go to $(INSTALL_ROOT)/share/doc/tspsg
+# Usually, $(INSTALL_ROOT) is /usr or /usr/local
+unix {
+	target.path = /bin
+	share.path = /share/tspsg
+	share.files = COPYING README
+	i18n.path = /share/tspsg/i18n
+	i18n.files = i18n/languages.ini i18n/*.qm
+	docs.path = /share/doc/tspsg
+#	docs.files = docs/*
+	INSTALLS += target i18n docs share
+}
+
+# For win32: everything goes to $(INSTALL_ROOT)\tspsg and subfolders.
+# Usually, $(INSTALL_ROOT) is "C:\Program Files"
+win32 {
+	target.path = "\tspsg"
+	share.path = "\tspsg"
+	share.files = COPYING README
+	i18n.path = "\tspsg\i18n"
+	i18n.files = i18n\languages.ini i18n\*.qm
+	docs.path = "\tspsg\help"
+#	docs.files = docs\*
+	INSTALLS += target i18n docs share
+}
+
+# TODO: MacOSX
+
+# For wince: we are deploying to \Storage Card\Program Files\tspsg.
+wince {
+	deploy.path = "\Storage Card\Program Files\tspsg"
+	share.sources = COPYING README
+	share.path = "\Storage Card\Program Files\tspsg"
+	i18n.sources = i18n\languages.ini i18n\*.qm
+	i18n.path = "\Storage Card\Program Files\tspsg\i18n"
+#	docs.sources = docs\*
+#	docs.path = "\Storage Card\Program Files\tspsg\help"
+	DEPLOYMENT += deploy share i18n # docs
+}
 
 #Windows resource file
 win32:RC_FILE = resources/tspsg.rc

@@ -95,7 +95,7 @@ QRect rect = geometry();
 	tspmodel = new CTSPModel();
 	taskView->setModel(tspmodel);
 	connect(tspmodel,SIGNAL(numCitiesChanged(int)),this,SLOT(numCitiesChanged(int)));
-	connect(tspmodel,SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),this,SLOT(dataChanged()));
+	connect(tspmodel,SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),this,SLOT(dataChanged(const QModelIndex &, const QModelIndex &)));
 	connect(tspmodel,SIGNAL(layoutChanged()),this,SLOT(dataChanged()));
 	if ((QCoreApplication::arguments().count() > 1) && (tspmodel->loadTask(QCoreApplication::arguments().at(1))))
 		setFileName(QCoreApplication::arguments().at(1));
@@ -147,7 +147,7 @@ static QTranslator *translator; // Application translator
 			qApp->installTranslator(qtTranslator);
 		else
 			// No luck. Let's try to load bundled one.
-			if (qtTranslator->load("qt_" + lang,"i18n"))
+			if (qtTranslator->load("qt_" + lang,PATH_I18N))
 				qApp->installTranslator(qtTranslator);
 			else {
 				// Qt library translation unavailable
@@ -155,7 +155,7 @@ static QTranslator *translator; // Application translator
 				qtTranslator = NULL;
 			}
 		// Now let's load application translation.
-		if (translator->load(lang,"i18n"))
+		if (translator->load(lang,PATH_I18N))
 			qApp->installTranslator(translator);
 		else {
 			if (!ad)
@@ -190,7 +190,7 @@ void MainWindow::spinCitiesValueChanged(int n)
 {
 int count = tspmodel->numCities();
 	tspmodel->setNumCities(n);
-	if (n > count)
+	if ((n > count) && settings->value("Autosize",true).toBool())
 		for (int k = count; k < n; k++) {
 			taskView->resizeColumnToContents(k);
 			taskView->resizeRowToContents(k);
@@ -216,8 +216,6 @@ void MainWindow::actionFileNewTriggered()
 		return;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	tspmodel->clear();
-	taskView->resizeColumnsToContents();
-	taskView->resizeRowsToContents();
 	setFileName();
 	setWindowModified(false);
 	tabWidget->setCurrentIndex(0);
@@ -249,8 +247,6 @@ QStringList files = od.selectedFiles();
 		return;
 	}
 	setFileName(files.first());
-	taskView->resizeColumnsToContents();
-	taskView->resizeRowsToContents();
 	tabWidget->setCurrentIndex(0);
 	setWindowModified(false);
 	solutionText->clear();
@@ -410,9 +406,6 @@ void MainWindow::buttonRandomClicked()
 {
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	tspmodel->randomize();
-	setWindowModified(true);
-	taskView->resizeColumnsToContents();
-	taskView->resizeRowsToContents();
 	QApplication::restoreOverrideCursor();
 }
 
@@ -520,12 +513,12 @@ QString about = QString::fromUtf8("TSPSG: TSP Solver and Generator\n");
 
 void MainWindow::loadLangList()
 {
-QSettings langinfo("i18n/languages.ini",QSettings::IniFormat);
+QSettings langinfo(PATH_I18N"/languages.ini",QSettings::IniFormat);
 #if QT_VERSION >= 0x040500
 	// In Qt < 4.5 QSettings doesn't have method setIniCodec.
 	langinfo.setIniCodec("UTF-8");
 #endif
-QDir dir("i18n","*.qm",QDir::Name | QDir::IgnoreCase,QDir::Files);
+QDir dir(PATH_I18N,"*.qm",QDir::Name | QDir::IgnoreCase,QDir::Files);
 	if (!dir.exists())
 		return;
 QFileInfoList langs = dir.entryInfoList();
@@ -603,6 +596,17 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::dataChanged()
 {
 	setWindowModified(true);
+}
+
+void MainWindow::dataChanged(const QModelIndex &tl, const QModelIndex &br)
+{
+	setWindowModified(true);
+	if (settings->value("Autosize",true).toBool()) {
+		for (int k = tl.row(); k <= br.row(); k++)
+			taskView->resizeRowToContents(k);
+		for (int k = tl.column(); k <= br.column(); k++)
+			taskView->resizeColumnToContents(k);
+	}
 }
 
 void MainWindow::numCitiesChanged(int nCities)

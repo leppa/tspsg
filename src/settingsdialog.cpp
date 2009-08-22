@@ -43,6 +43,7 @@ QSpacerItem *spacer;
 	vbox2->addWidget(groupOutputSettings);
 	spacer = new QSpacerItem(0,0,QSizePolicy::Minimum,QSizePolicy::Expanding);
 	vbox2->addItem(spacer);
+	vbox2->addWidget(cbAutosize);
 
 	// Output settings group
 	hbox1 = new QHBoxLayout(groupOutputSettings);
@@ -91,7 +92,7 @@ QSpacerItem *spacer;
 	labelHint = new QLabel(bgGrey);
 	labelHint->setObjectName("labelHint");
 	labelHint->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
-	labelHint->setMinimumSize(QSize(175,28));
+	labelHint->setMinimumSize(QSize(190,28));
 	labelHint->setMaximumSize(QSize(0xFFFFFF,28));
 	labelHint->setTextFormat(Qt::PlainText);
 //	labelHint->setAlignment(Qt::AlignLeft | Qt::AlignTop);
@@ -129,6 +130,7 @@ QSpacerItem *spacer;
 	spacer = new QSpacerItem(0,0,QSizePolicy::Minimum,QSizePolicy::Expanding);
 	vbox2->addItem(spacer);
 	vbox2->addLayout(hbox2);
+	vbox2->addWidget(cbAutosize);
 	vbox2->addWidget(cbSaveState);
 	spacer = new QSpacerItem(0,0,QSizePolicy::Minimum,QSizePolicy::Expanding);
 	vbox2->addItem(spacer);
@@ -163,8 +165,11 @@ QSpacerItem *spacer;
 	labelHint->setText(labelHint->statusTip());
 #endif // Q_OS_WINCE
 	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
+	spinRandMin->setMaximum(MAX_RAND_VALUE);
 	spinRandMin->setValue(settings->value("MinCost",DEF_RAND_MIN).toInt());
+	spinRandMax->setMaximum(MAX_RAND_VALUE);
 	spinRandMax->setValue(settings->value("MaxCost",DEF_RAND_MAX).toInt());
+	cbAutosize->setChecked(settings->value("Autosize",true).toBool());
 #ifndef Q_OS_WINCE
 	cbSaveState->setChecked(settings->value("SavePos",false).toBool());
 #endif // Q_OS_WINCE
@@ -179,6 +184,7 @@ void SettingsDialog::accept()
 #ifndef Q_OS_WINCE
 	settings->setValue("SavePos",cbSaveState->isChecked());
 #endif // Q_OS_WINCE
+	settings->setValue("Autosize",cbAutosize->isChecked());
 	settings->setValue("MinCost",spinRandMin->value());
 	settings->setValue("MaxCost",spinRandMax->value());
 	settings->beginGroup("Output");

@@ -49,6 +49,7 @@ private slots:
 	void groupSettingsLanguageListTriggered(QAction *);
 	void actionHelpAboutTriggered();
 	void dataChanged();
+	void dataChanged(const QModelIndex &, const QModelIndex &);
 #ifndef QT_NO_PRINTER
 	void printPreview(QPrinter *);
 	void actionFilePrintPreviewTriggered();

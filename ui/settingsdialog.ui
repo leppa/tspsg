@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>243</width>
-    <height>174</height>
+    <width>241</width>
+    <height>182</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>120</y>
+     <y>130</y>
      <width>241</width>
      <height>2</height>
     </rect>
@@ -46,7 +46,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>130</y>
+     <y>140</y>
      <width>241</width>
      <height>41</height>
     </rect>
@@ -255,7 +255,7 @@
      <x>0</x>
      <y>0</y>
      <width>239</width>
-     <height>111</height>
+     <height>121</height>
     </rect>
    </property>
    <property name="palette">
@@ -364,12 +364,6 @@
          <property name="statusTip">
           <string>Minimum for random number generation</string>
          </property>
-         <property name="maximum">
-          <number>1000</number>
-         </property>
-         <property name="value">
-          <number>1</number>
-         </property>
         </widget>
        </item>
       </layout>
@@ -399,15 +393,6 @@
          </property>
          <property name="statusTip">
           <string>Maximum for random number generation</string>
-         </property>
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>1000</number>
-         </property>
-         <property name="value">
-          <number>10</number>
          </property>
         </widget>
        </item>
@@ -473,6 +458,22 @@
        <normaloff>:/images/icons/color_line.png</normaloff>:/images/icons/color_line.png</iconset>
      </property>
     </widget>
+   </widget>
+   <widget class="QCheckBox" name="cbAutosize">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>247</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="statusTip">
+     <string>Automatically resize rows and columns when content changes</string>
+    </property>
+    <property name="text">
+     <string>Automatically resize rows and columns</string>
+    </property>
    </widget>
   </widget>
  </widget>

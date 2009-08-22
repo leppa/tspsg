@@ -42,6 +42,7 @@ QApplication app(argc, argv);
 	app.setOrganizationName("..::Lёppsville::.. Homes");
 	app.setOrganizationDomain("l-homes.org");
 	app.setApplicationName("TSPSG");
+	app.setApplicationVersion(BUILD_VERSION);
 MainWindow mainwindow;
 	mainwindow.show();
 	app.restoreOverrideCursor();
