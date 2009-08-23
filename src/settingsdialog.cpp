@@ -83,7 +83,8 @@ QSpacerItem *spacer;
 
 	imgIcon = new QLabel(this);
 	imgIcon->setObjectName("imgIcon");
-	imgIcon->setFrameShape(QFrame::StyledPanel);
+	imgIcon->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Expanding);
+	imgIcon->setFrameShape(QFrame::Panel);
 	imgIcon->setLineWidth(0);
 	imgIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/icons/preferences_system.png")));
 	imgIcon->setStyleSheet("background-color: #0080C0;");
@@ -92,8 +93,9 @@ QSpacerItem *spacer;
 	labelHint = new QLabel(bgGrey);
 	labelHint->setObjectName("labelHint");
 	labelHint->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
-	labelHint->setMinimumSize(QSize(190,28));
-	labelHint->setMaximumSize(QSize(0xFFFFFF,28));
+//	labelHint->setMinimumSize(QSize(190,28));
+	labelHint->setMinimumSize(QSize(0,28));
+	labelHint->setMaximumSize(QSize(QWIDGETSIZE_MAX,28));
 	labelHint->setTextFormat(Qt::PlainText);
 //	labelHint->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 	labelHint->setWordWrap(true);
@@ -238,6 +240,12 @@ QString tip = static_cast<QStatusTipEvent *>(ev)->tip();
 		else
 			labelHint->setText(labelHint->statusTip());
 		return true;
+	// Making imgIcon square.
+	} else if (ev->type() == QEvent::Show) {
+bool result = QDialog::event(ev);
+		if (result)
+			imgIcon->setMinimumWidth(imgIcon->height());
+		return result;
 	} else
 		return QDialog::event(ev);
 }

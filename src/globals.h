@@ -44,7 +44,7 @@
 
 // Maximum available number of cities
 #define MAX_NUM_CITIES 30
-// Maximum for random generation limit settings
+// Maximum allowed value for random generation limits
 #define MAX_RAND_VALUE 1000
 
 // Paths

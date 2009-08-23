@@ -289,9 +289,9 @@ Do you wish to turn it off?</source>
 Отключить его?</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.h" line="79"/>
         <location filename="../src/mainwindow.cpp" line="259"/>
         <location filename="../src/mainwindow.cpp" line="565"/>
-        <location filename="../src/mainwindow.h" line="79"/>
         <source>Untitled</source>
         <translation>Без имени</translation>
     </message>
@@ -677,93 +677,93 @@ Do you wish to turn it off?</source>
         <translation>Параметры</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="338"/>
+        <location filename="../ui/settingsdialog.ui" line="268"/>
         <source>Random values:</source>
         <translation>Случайные значения:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="346"/>
+        <location filename="../ui/settingsdialog.ui" line="276"/>
         <source>&amp;Minimal:</source>
         <translation>&amp;Минимум:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="365"/>
+        <location filename="../ui/settingsdialog.ui" line="295"/>
         <source>Minimum for random number generation</source>
         <translation>Нижняя граница для генерации случайных значений</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="376"/>
+        <location filename="../ui/settingsdialog.ui" line="306"/>
         <source>Ma&amp;ximal:</source>
         <translation>М&amp;аксимум:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="395"/>
+        <location filename="../ui/settingsdialog.ui" line="325"/>
         <source>Maximum for random number generation</source>
         <translation>Верхняя граница для генерации случайных значений</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="413"/>
+        <location filename="../ui/settingsdialog.ui" line="343"/>
         <source>Output settings:</source>
         <translation>Параметры вывода:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="451"/>
+        <location filename="../ui/settingsdialog.ui" line="381"/>
         <source>Font color for printing</source>
         <translation>Цвет шрифта, используемого при печати</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="454"/>
+        <location filename="../ui/settingsdialog.ui" line="384"/>
         <source>&amp;Color...</source>
         <translation>&amp;Цвет...</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="472"/>
-        <source>Automatically resize rows and columns when content changes</source>
-        <translation>Автоматически подганять размер строк и колонок при изменении их содержания</translation>
+        <location filename="../ui/settingsdialog.ui" line="394"/>
+        <source>Automatically resize rows and columns to their contents</source>
+        <translation>Автоматически подганять размер строк и колонок под их содержание</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="475"/>
-        <source>Automatically resize rows and columns</source>
-        <translation>Автоматически подганять строки и колонки</translation>
+        <location filename="../ui/settingsdialog.ui" line="397"/>
+        <source>Autosize of rows and columns</source>
+        <translation>Авторазмер строк и колонок</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="428"/>
+        <location filename="../ui/settingsdialog.ui" line="358"/>
         <source>Font face for printing</source>
         <translation>Вид шрифта, используемого при печати</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="431"/>
+        <location filename="../ui/settingsdialog.ui" line="361"/>
         <source>&amp;Font...</source>
         <translation>&amp;Шрифт...</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="235"/>
-        <location filename="../ui/settingsdialog.ui" line="241"/>
+        <location filename="../ui/settingsdialog.ui" line="165"/>
+        <location filename="../ui/settingsdialog.ui" line="171"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="238"/>
+        <location filename="../ui/settingsdialog.ui" line="168"/>
         <source>Get preferences help</source>
         <translation>Получить помощь по настройкам</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="163"/>
+        <location filename="../ui/settingsdialog.ui" line="136"/>
         <source>Save new preferences</source>
         <translation>Сохранить новые параметры</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="166"/>
+        <location filename="../ui/settingsdialog.ui" line="139"/>
         <source>&amp;OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="140"/>
+        <location filename="../ui/settingsdialog.ui" line="113"/>
         <source>Close without saving preferences</source>
         <translation>Закрыть окно без сохранения параметров</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="143"/>
+        <location filename="../ui/settingsdialog.ui" line="116"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
@@ -779,7 +779,6 @@ Do you wish to turn it off?</source>
     </message>
     <message>
         <location filename="../src/settingsdialog.cpp" line="101"/>
-        <location filename="../ui/settingsdialog.ui" line="204"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation>Наведите указатель мыши на элемент диалога, чтоб получить подсказку</translation>
     </message>
