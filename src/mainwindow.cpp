@@ -241,29 +241,22 @@ QStringList filters(trUtf8("All Supported Formats") + " (*.tspt *.zkt)");
 QStringList files = od.selectedFiles();
 	if (files.empty())
 		return;
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	if (!tspmodel->loadTask(files.first())) {
-		QApplication::restoreOverrideCursor();
+	if (!tspmodel->loadTask(files.first()))
 		return;
-	}
 	setFileName(files.first());
 	tabWidget->setCurrentIndex(0);
 	setWindowModified(false);
 	solutionText->clear();
 	enableSolutionActions(false);
-	QApplication::restoreOverrideCursor();
 }
 
 void MainWindow::actionFileSaveTriggered()
 {
 	if ((fileName == trUtf8("Untitled") + ".tspt") || (!fileName.endsWith(".tspt",Qt::CaseInsensitive)))
 		saveTask();
-	else {
-		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	else
 		if (tspmodel->saveTask(fileName))
 			setWindowModified(false);
-		QApplication::restoreOverrideCursor();
-	}
 }
 
 void MainWindow::actionFileSaveAsTaskTriggered()
@@ -346,14 +339,11 @@ QStringList filters(trUtf8("%1 Task File").arg("TSPSG") + " (*.tspt)");
 QStringList files = sd.selectedFiles();
 	if (files.empty())
 		return false;
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	if (tspmodel->saveTask(files.first())) {
 		setFileName(files.first());
 		setWindowModified(false);
-		QApplication::restoreOverrideCursor();
 		return true;
 	}
-	QApplication::restoreOverrideCursor();
 	return false;
 }
 

@@ -33,7 +33,7 @@ typedef QList<QList<double> > tMatrix;
 struct sStep {
 	tMatrix matrix; // Steps's matrix
 	double price; // Price of travel to this step
-	struct {unsigned int nRow; unsigned int nCol;} candidate; // Candiadate for branching in current matrix
+	struct {int nRow; int nCol;} candidate; // Candiadate for branching in current matrix
 	bool alts; // This matrix has alternative candidates
 	sStep *plNode, *prNode; // Pointers to left and right branch steps
 	sStep() { price = candidate.nRow = candidate.nCol = -1; alts = false; plNode = prNode = NULL; } // Default values
