@@ -46,16 +46,19 @@ class CTSPSolver
 
 public:
 	CTSPSolver();
+	QString getSortedPath() const;
+	bool isOptimal() const;
 	sStep *solve(int, tMatrix, QWidget *parent = 0);
 
 private:
+	bool mayNotBeOptimal;
 	int nCities;
 	sStep *root;
 	QHash<int,int> route;
 //	QHash<int,int> forbidden;
 	double align(tMatrix &);
 	void cleanup();
-	bool findCandidate(tMatrix, int &, int &, double &);
+	bool findCandidate(tMatrix, int &, int &);
 	double findMinInRow(int, tMatrix, int exc = -1);
 	double findMinInCol(int, tMatrix, int exr = -1);
 	bool hasSubCycles(int, int);

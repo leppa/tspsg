@@ -31,68 +31,68 @@
         <translation>Неизвестная ошибка.</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="152"/>
-        <location filename="../src/tspmodel.cpp" line="160"/>
-        <location filename="../src/tspmodel.cpp" line="181"/>
-        <location filename="../src/tspmodel.cpp" line="201"/>
-        <location filename="../src/tspmodel.cpp" line="214"/>
-        <location filename="../src/tspmodel.cpp" line="247"/>
-        <location filename="../src/tspmodel.cpp" line="256"/>
+        <location filename="../src/tspmodel.cpp" line="153"/>
+        <location filename="../src/tspmodel.cpp" line="163"/>
+        <location filename="../src/tspmodel.cpp" line="187"/>
+        <location filename="../src/tspmodel.cpp" line="208"/>
+        <location filename="../src/tspmodel.cpp" line="222"/>
+        <location filename="../src/tspmodel.cpp" line="257"/>
+        <location filename="../src/tspmodel.cpp" line="267"/>
         <source>Task Load</source>
         <translation>Загрузка условия</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="152"/>
-        <location filename="../src/tspmodel.cpp" line="181"/>
-        <location filename="../src/tspmodel.cpp" line="201"/>
-        <location filename="../src/tspmodel.cpp" line="214"/>
-        <location filename="../src/tspmodel.cpp" line="247"/>
-        <location filename="../src/tspmodel.cpp" line="256"/>
+        <location filename="../src/tspmodel.cpp" line="153"/>
+        <location filename="../src/tspmodel.cpp" line="187"/>
+        <location filename="../src/tspmodel.cpp" line="208"/>
+        <location filename="../src/tspmodel.cpp" line="222"/>
+        <location filename="../src/tspmodel.cpp" line="257"/>
+        <location filename="../src/tspmodel.cpp" line="267"/>
         <source>Unable to load task:</source>
         <translation>Невозможно загрузить условие:</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="160"/>
+        <location filename="../src/tspmodel.cpp" line="163"/>
         <source>Unable to open task file.
 Error: %1</source>
         <translation>Невозможно открыть файл с условием.
 Ошибка: %1</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="181"/>
+        <location filename="../src/tspmodel.cpp" line="187"/>
         <source>Unknown file format or file is corrupted.</source>
         <translation>Неизвестный формат файла или файл поврежден.</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="201"/>
-        <location filename="../src/tspmodel.cpp" line="247"/>
+        <location filename="../src/tspmodel.cpp" line="208"/>
+        <location filename="../src/tspmodel.cpp" line="257"/>
         <source>File version is newer than application supports.
 Please, try to update application.</source>
         <translation>Версия файла новее чем поддерживаемая приложением.
 Пожалуйста, попробуйте обновить приложение.</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="214"/>
-        <location filename="../src/tspmodel.cpp" line="256"/>
+        <location filename="../src/tspmodel.cpp" line="222"/>
+        <location filename="../src/tspmodel.cpp" line="267"/>
         <source>Unexpected data read.
 File is possibly corrupted.</source>
         <translation>Прочитано неожиданные данные.
 Возможно, файл поврежден.</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="289"/>
-        <location filename="../src/tspmodel.cpp" line="295"/>
-        <location filename="../src/tspmodel.cpp" line="302"/>
-        <location filename="../src/tspmodel.cpp" line="309"/>
-        <location filename="../src/tspmodel.cpp" line="316"/>
-        <location filename="../src/tspmodel.cpp" line="323"/>
-        <location filename="../src/tspmodel.cpp" line="330"/>
-        <location filename="../src/tspmodel.cpp" line="340"/>
+        <location filename="../src/tspmodel.cpp" line="303"/>
+        <location filename="../src/tspmodel.cpp" line="311"/>
+        <location filename="../src/tspmodel.cpp" line="319"/>
+        <location filename="../src/tspmodel.cpp" line="327"/>
+        <location filename="../src/tspmodel.cpp" line="335"/>
+        <location filename="../src/tspmodel.cpp" line="343"/>
+        <location filename="../src/tspmodel.cpp" line="351"/>
+        <location filename="../src/tspmodel.cpp" line="362"/>
         <source>Task Save</source>
         <translation>Сохранение условия</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="289"/>
+        <location filename="../src/tspmodel.cpp" line="303"/>
         <source>Unable to create task file.
 Error: %1
 Maybe, file is read-only?</source>
@@ -101,13 +101,13 @@ Maybe, file is read-only?</source>
 Возможно, файл только для чтения?</translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="295"/>
-        <location filename="../src/tspmodel.cpp" line="302"/>
-        <location filename="../src/tspmodel.cpp" line="309"/>
-        <location filename="../src/tspmodel.cpp" line="316"/>
-        <location filename="../src/tspmodel.cpp" line="323"/>
-        <location filename="../src/tspmodel.cpp" line="330"/>
-        <location filename="../src/tspmodel.cpp" line="340"/>
+        <location filename="../src/tspmodel.cpp" line="311"/>
+        <location filename="../src/tspmodel.cpp" line="319"/>
+        <location filename="../src/tspmodel.cpp" line="327"/>
+        <location filename="../src/tspmodel.cpp" line="335"/>
+        <location filename="../src/tspmodel.cpp" line="343"/>
+        <location filename="../src/tspmodel.cpp" line="351"/>
+        <location filename="../src/tspmodel.cpp" line="362"/>
         <source>Unable to save task.
 Error: %1</source>
         <translation>Невозможно сохранить условие.
@@ -132,23 +132,30 @@ Error: %1</source>
         <translation>Состояние решения</translation>
     </message>
     <message>
-        <location filename="../src/tspsolver.cpp" line="209"/>
+        <location filename="../src/tspsolver.cpp" line="217"/>
         <source>Solution Result</source>
         <translation>Результат решения</translation>
     </message>
     <message>
-        <location filename="../src/tspsolver.cpp" line="209"/>
+        <location filename="../src/tspsolver.cpp" line="217"/>
         <source>Unable to find solution.
 Maybe, this task has no solutions.</source>
         <translation>Не удалось найти решение.
 Возможно, у задачи нет решения.</translation>
     </message>
+    <message>
+        <location filename="../src/tspsolver.cpp" line="235"/>
+        <location filename="../src/tspsolver.cpp" line="237"/>
+        <location filename="../src/tspsolver.cpp" line="240"/>
+        <source>City %1</source>
+        <translation>Город %1</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="551"/>
-        <location filename="../src/mainwindow.cpp" line="560"/>
+        <location filename="../src/mainwindow.cpp" line="546"/>
+        <location filename="../src/mainwindow.cpp" line="555"/>
         <source>Language change</source>
         <translation>Смена языка</translation>
     </message>
@@ -175,8 +182,8 @@ Maybe, this task has no solutions.</source>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="237"/>
-        <location filename="../src/mainwindow.cpp" line="293"/>
-        <location filename="../src/mainwindow.cpp" line="337"/>
+        <location filename="../src/mainwindow.cpp" line="286"/>
+        <location filename="../src/mainwindow.cpp" line="330"/>
         <source>All Files</source>
         <translation>Все файлы</translation>
     </message>
@@ -197,90 +204,100 @@ Maybe, this task has no solutions.</source>
         <translation>Желаете сохранить изменения в текущей задаче?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="287"/>
+        <location filename="../src/mainwindow.cpp" line="280"/>
         <source>PDF Files</source>
         <translation>Файли PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="289"/>
+        <location filename="../src/mainwindow.cpp" line="282"/>
         <source>HTML Files</source>
         <translation>Файлы HTML</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="291"/>
+        <location filename="../src/mainwindow.cpp" line="284"/>
         <source>OpenDocument Files</source>
         <translation>Файлы OpenDocument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="336"/>
+        <location filename="../src/mainwindow.cpp" line="329"/>
         <source>%1 Task File</source>
         <translation>Файл условия %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="367"/>
+        <location filename="../src/mainwindow.cpp" line="357"/>
         <source>Settings Changed</source>
         <translation>Параметры изменены</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="367"/>
+        <location filename="../src/mainwindow.cpp" line="357"/>
         <source>You have changed color settings.
 Do you wish to apply them to current solution text?</source>
         <translation>Вы изменили параметры цвета.
 Желаете применить их к текущему тексту решения?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="449"/>
+        <location filename="../src/mainwindow.cpp" line="439"/>
         <source>Data error</source>
         <translation>Ошибка в данных</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="449"/>
+        <location filename="../src/mainwindow.cpp" line="439"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation>Ошибка в ячейке [Строка %1; Колонка %2]: Неверный формат данных.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="462"/>
+        <location filename="../src/mainwindow.cpp" line="452"/>
         <source>Variant #%1</source>
         <translation>Вариант №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="463"/>
+        <location filename="../src/mainwindow.cpp" line="453"/>
         <source>Task:</source>
         <translation>Условие:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="466"/>
-        <location filename="../src/mainwindow.cpp" line="492"/>
+        <location filename="../src/mainwindow.cpp" line="456"/>
+        <location filename="../src/mainwindow.cpp" line="487"/>
         <source>Solution of Variant #%1 task</source>
         <translation>Решение варианта №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="473"/>
+        <location filename="../src/mainwindow.cpp" line="462"/>
         <source>Step #%1</source>
         <translation>Шаг №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="476"/>
+        <location filename="../src/mainwindow.cpp" line="465"/>
         <source>This step has alternate candidates for branching.</source>
         <translation>У этого шага есть альтернативные кандидаты на ветвление.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="488"/>
+        <location filename="../src/mainwindow.cpp" line="477"/>
         <source>Optimal path:</source>
         <translation>Оптимальный путь:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="490"/>
+        <location filename="../src/mainwindow.cpp" line="479"/>
+        <source>Resulting path:</source>
+        <translation>Найденный путь:</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="481"/>
         <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
         <translation>Стоимость - &lt;b&gt;%1&lt;/b&gt; единиц.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="551"/>
+        <location filename="../src/mainwindow.cpp" line="484"/>
+        <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
+        <translation>ВНИМАНИЕ!!!&lt;br&gt;Найденное решение является рекордом, но может оказаться не оптимальным.&lt;br&gt;Для получения оптимального решения, или проверки текущего на оптимальность, требуется продолжить итерации.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="546"/>
         <source>Language will be autodetected on next application start.</source>
         <translation>Язык будет автоматически определен при следующем запуске приложения.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="560"/>
+        <location filename="../src/mainwindow.cpp" line="555"/>
         <source>You have language autodetection turned on.
 It needs to be off.
 Do you wish to turn it off?</source>
@@ -289,9 +306,9 @@ Do you wish to turn it off?</source>
 Отключить его?</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="255"/>
+        <location filename="../src/mainwindow.cpp" line="560"/>
         <location filename="../src/mainwindow.h" line="79"/>
-        <location filename="../src/mainwindow.cpp" line="259"/>
-        <location filename="../src/mainwindow.cpp" line="565"/>
         <source>Untitled</source>
         <translation>Без имени</translation>
     </message>
@@ -672,98 +689,98 @@ Do you wish to turn it off?</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="14"/>
+        <location filename="../ui/settingsdialog.ui" line="6"/>
         <source>Preferences</source>
         <translation>Параметры</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="268"/>
+        <location filename="../ui/settingsdialog.ui" line="177"/>
         <source>Random values:</source>
         <translation>Случайные значения:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="276"/>
+        <location filename="../ui/settingsdialog.ui" line="185"/>
         <source>&amp;Minimal:</source>
         <translation>&amp;Минимум:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="295"/>
+        <location filename="../ui/settingsdialog.ui" line="204"/>
         <source>Minimum for random number generation</source>
         <translation>Нижняя граница для генерации случайных значений</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="306"/>
+        <location filename="../ui/settingsdialog.ui" line="215"/>
         <source>Ma&amp;ximal:</source>
         <translation>М&amp;аксимум:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="325"/>
+        <location filename="../ui/settingsdialog.ui" line="234"/>
         <source>Maximum for random number generation</source>
         <translation>Верхняя граница для генерации случайных значений</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="343"/>
+        <location filename="../ui/settingsdialog.ui" line="244"/>
         <source>Output settings:</source>
         <translation>Параметры вывода:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="381"/>
+        <location filename="../ui/settingsdialog.ui" line="266"/>
         <source>Font color for printing</source>
         <translation>Цвет шрифта, используемого при печати</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="384"/>
+        <location filename="../ui/settingsdialog.ui" line="269"/>
         <source>&amp;Color...</source>
         <translation>&amp;Цвет...</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="394"/>
+        <location filename="../ui/settingsdialog.ui" line="282"/>
         <source>Automatically resize rows and columns to their contents</source>
         <translation>Автоматически подганять размер строк и колонок под их содержание</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="397"/>
+        <location filename="../ui/settingsdialog.ui" line="285"/>
         <source>Autosize of rows and columns</source>
         <translation>Авторазмер строк и колонок</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="358"/>
+        <location filename="../ui/settingsdialog.ui" line="251"/>
         <source>Font face for printing</source>
         <translation>Вид шрифта, используемого при печати</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="361"/>
+        <location filename="../ui/settingsdialog.ui" line="254"/>
         <source>&amp;Font...</source>
         <translation>&amp;Шрифт...</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="165"/>
-        <location filename="../ui/settingsdialog.ui" line="171"/>
+        <location filename="../ui/settingsdialog.ui" line="117"/>
+        <location filename="../ui/settingsdialog.ui" line="123"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="168"/>
+        <location filename="../ui/settingsdialog.ui" line="120"/>
         <source>Get preferences help</source>
         <translation>Получить помощь по настройкам</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="136"/>
+        <location filename="../ui/settingsdialog.ui" line="96"/>
         <source>Save new preferences</source>
         <translation>Сохранить новые параметры</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="139"/>
+        <location filename="../ui/settingsdialog.ui" line="99"/>
         <source>&amp;OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="113"/>
+        <location filename="../ui/settingsdialog.ui" line="81"/>
         <source>Close without saving preferences</source>
         <translation>Закрыть окно без сохранения параметров</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="116"/>
+        <location filename="../ui/settingsdialog.ui" line="84"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
@@ -778,7 +795,7 @@ Do you wish to turn it off?</source>
         <translation>Сохранять состояние и положение главного окна</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="101"/>
+        <location filename="../src/settingsdialog.cpp" line="103"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation>Наведите указатель мыши на элемент диалога, чтоб получить подсказку</translation>
     </message>

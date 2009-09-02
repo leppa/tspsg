@@ -32,6 +32,7 @@ CTSPSolver::CTSPSolver()
 void CTSPSolver::cleanup()
 {
 	route.clear();
+	mayNotBeOptimal = false;
 }
 
 double CTSPSolver::findMinInRow(int nRow, tMatrix matrix, int exc)
@@ -87,12 +88,12 @@ double min;
 	return r;
 }
 
-bool CTSPSolver::findCandidate(tMatrix matrix, int &nRow, int &nCol, double &h)
+bool CTSPSolver::findCandidate(tMatrix matrix, int &nRow, int &nCol)
 {
-	h = -1;
 	nRow = -1;
 	nCol = -1;
 bool alts = false;
+double h = -1;
 double sum;
 	for (int r = 0; r < nCities; r++)
 		for (int c = 0; c < nCities; c++)
@@ -131,7 +132,6 @@ sStep *CTSPSolver::solve(int numCities, tMatrix task, QWidget *parent)
 		return NULL;
 	cleanup();
 	nCities = numCities;
-double s;
 QProgressDialog pd(parent);
 QProgressBar *pb = new QProgressBar(&pd);
 	pb->setAlignment(Qt::AlignCenter);
@@ -146,21 +146,21 @@ QProgressBar *pb = new QProgressBar(&pd);
 
 sStep *step = new sStep();
 	step->matrix = task;
-
-	s = align(step->matrix);
-	step->price = s;
+	step->price = align(step->matrix);
 	root = step;
 
 sStep *left, *right;
 int nRow, nCol;
-	while (route.size() < nCities) {
+bool firstStep = true;
+double check;
+	while (this->route.size() < nCities) {
 //		forbidden.clear();
-		step->alts = findCandidate(step->matrix,nRow,nCol,s);
+		step->alts = findCandidate(step->matrix,nRow,nCol);
 		while (hasSubCycles(nRow,nCol)) {
 //			forbidden[nRow] = nCol;
 			step->matrix[nRow][nCol] = INFINITY;
 			step->price += align(step->matrix);
-			step->alts = findCandidate(step->matrix,nRow,nCol,s);
+			step->alts = findCandidate(step->matrix,nRow,nCol);
 		}
 		if ((nRow == -1) || (nCol == -1) || pd.wasCanceled()) {
 			root = NULL;
@@ -195,12 +195,20 @@ int nRow, nCol;
 		if (right->price <= left->price) {
 			// Route with (nRow,nCol) path is cheaper
 			step = right;
-			route[nRow] = nCol;
-			pd.setValue(route.size());
+			this->route[nRow] = nCol;
+			pd.setValue(this->route.size());
+			if (firstStep) {
+				check = left->price;
+				firstStep = false;
+			}
 		} else {
 			// Route without (nRow,nCol) path is cheaper
 			step = left;
 			qApp->processEvents();
+			if (firstStep) {
+				check = right->price;
+				firstStep = false;
+			}
 		}
 	}
 
@@ -211,5 +219,30 @@ int nRow, nCol;
 
 	qApp->processEvents();
 
+	if (root) {
+		route = this->route;
+		mayNotBeOptimal = (check < step->price);
+	}
 	return root;
+}
+
+QString CTSPSolver::getSortedPath() const
+{
+	if (!root || route.isEmpty() || (route.size() != nCities))
+		return QString();
+
+int i = 0; // We start from City 1
+QString path = trUtf8("City %1").arg(1) + " -> ";
+	while ((i = route[i]) != 0) {
+		path += trUtf8("City %1").arg(i + 1) + " -> ";
+	}
+	// And finish in City 1, too
+	path += trUtf8("City %1").arg(1);
+
+	return path;
+}
+
+bool CTSPSolver::isOptimal() const
+{
+	return !mayNotBeOptimal;
 }

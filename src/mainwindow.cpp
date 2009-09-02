@@ -456,7 +456,6 @@ QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
 	output.append("<p>" + trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()) + "</p>");
 sStep *step = root;
 	n = 1;
-QString path = "";
 	while (n <= spinCities->value()) {
 		if (step->prNode->prNode != NULL || (step->prNode->prNode == NULL && step->plNode->prNode == NULL)) {
 			if (n != spinCities->value()) {
@@ -466,7 +465,6 @@ QString path = "";
 					output.append("<p class=\"hasalts\">" + trUtf8("This step has alternate candidates for branching.") + "</p>");
 				output.append("<p>&nbsp;</p>");
 			}
-			path += QString(" (%1,%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1);
 		}
 		if (step->prNode->prNode != NULL)
 			step = step->prNode;
@@ -475,9 +473,16 @@ QString path = "";
 		else
 			break;
 	}
-	output.append("<p>" + trUtf8("Optimal path:") + "</p>");
-	output.append("<p>&nbsp;&nbsp;" + path + "</p>");
+	if (solver.isOptimal())
+		output.append("<p>" + trUtf8("Optimal path:") + "</p>");
+	else
+		output.append("<p>" + trUtf8("Resulting path:") + "</p>");
+	output.append("<p>&nbsp;&nbsp;" + solver.getSortedPath() + "</p>");
 	output.append("<p>" + trUtf8("The price is <b>%1</b> units.").arg(step->price) + "</p>");
+	if (!solver.isOptimal()) {
+		output.append("<p>&nbsp;</p>");
+		output.append("<p>" + trUtf8("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
+	}
 	solutionText->setHtml(output.join(""));
 	solutionText->setDocumentTitle(trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()));
 	enableSolutionActions();
