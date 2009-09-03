@@ -45,7 +45,11 @@ unix {
 	i18n.files = i18n/languages.ini i18n/*.qm
 	docs.path = /share/doc/tspsg
 #	docs.files = docs/*
-	INSTALLS += target i18n docs share
+	apps.path = /share/applications/
+	apps.files = resources/tspsg.desktop
+	icon.path = /share/pixmaps
+	icon.files = resources/tspsg.png
+	INSTALLS += target i18n docs share icon apps
 }
 
 # For win32: everything goes to $(INSTALL_ROOT)\tspsg and subfolders.

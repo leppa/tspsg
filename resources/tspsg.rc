@@ -14,7 +14,7 @@
 LANGUAGE	0x00, 0x00
 
 // Main Icon
-IDI_APPICON	ICON	"icon.ico"
+IDI_APPICON	ICON	"tspsg.ico"
 
 // Version Info
 VS_VERSION_INFO VERSIONINFO
