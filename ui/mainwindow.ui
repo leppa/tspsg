@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/tspsg.qrc">
-    <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
+    <normaloff>:/images/tspsg.png</normaloff>:/images/tspsg.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
