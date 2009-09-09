@@ -38,7 +38,7 @@ BEGIN
     BEGIN
         BLOCK "000004b0"
         BEGIN
-//            VALUE "Comments", BUILD_STATUS
+            VALUE "Comments", VERSIONID
             VALUE "CompanyName", "..::Lёppsville::.. Homes"
             VALUE "FileDescription", "TSPSG: TSP Solver and Generator"
             VALUE "FileVersion", BUILD_VERSION

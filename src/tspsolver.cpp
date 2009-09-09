@@ -242,6 +242,11 @@ QString path = trUtf8("City %1").arg(1) + " -> ";
 	return path;
 }
 
+QString CTSPSolver::getVersionId()
+{
+	return QString("$Id$");
+}
+
 bool CTSPSolver::isOptimal() const
 {
 	return !mayNotBeOptimal;

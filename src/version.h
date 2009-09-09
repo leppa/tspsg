@@ -24,6 +24,7 @@
 #ifndef VERSION_H
 #define VERSION_H
 
+#define VERSIONID "$Id$"
 #define BUILD_VERSION_MAJOR 0
 #define BUILD_VERSION_MINOR 1
 #define BUILD_RELEASE 2

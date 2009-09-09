@@ -49,6 +49,7 @@ public:
 	QString getSortedPath() const;
 	bool isOptimal() const;
 	sStep *solve(int, tMatrix, QWidget *parent = 0);
+	static QString getVersionId();
 
 private:
 	bool mayNotBeOptimal;

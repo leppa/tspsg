@@ -501,6 +501,8 @@ QString about = QString::fromUtf8("TSPSG: TSP Solver and Generator\n");
 	about += QString::fromUtf8("    Compile time: %1\n").arg(QT_VERSION_STR);
 	about += QString::fromUtf8("    Runtime: %1\n").arg(qVersion());
 	about += QString::fromUtf8("Built on %1 at %2\n").arg(__DATE__).arg(__TIME__);
+	about += QString::fromUtf8(VERSIONID"\n\n");
+	about += QString::fromUtf8("Algorithm: %1\n").arg(CTSPSolver::getVersionId());
 	about += "\n";
 	about += "TSPSG is licensed under the terms of the GNU General Public License. You should have received a copy of the GNU General Public License along with TSPSG.";
 	QMessageBox(QMessageBox::Information,"About",about,QMessageBox::Ok,this).exec();
