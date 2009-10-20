@@ -1,9 +1,12 @@
-/*
- *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+/*!
+ * \class MainWindow
+ * \brief Class for handling Main Window UI and logic.
+ * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
+ *
+ *  <b>TSPSG: TSP Solver and Generator</b>
  *
  *  This file is part of TSPSG.
  *
@@ -53,7 +56,7 @@ private slots:
 	void dataChanged();
 	void dataChanged(const QModelIndex &, const QModelIndex &);
 #ifndef QT_NO_PRINTER
-	void printPreview(QPrinter *);
+	void printPreview(QPrinter *printer);
 	void actionFilePrintPreviewTriggered();
 	void actionFilePrintTriggered();
 #endif // QT_NO_PRINTER

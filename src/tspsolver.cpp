@@ -23,6 +23,7 @@
 
 #include "tspsolver.h"
 
+//! Class constructor
 CTSPSolver::CTSPSolver()
 	: nCities(0)
 {
@@ -124,7 +125,14 @@ int i = nCol;
 	return false;
 }
 
-// TODO: Comment the algorithm
+/*!
+ * \brief Solves the given task.
+ * \param numCities Number of cities in the task.
+ * \param task The matrix of city-to-city travel costs.
+ * \param parent The parent widget for displaying messages and dialogs.
+ *
+ * \todo TODO: Comment the algorithm.
+ */
 sStep *CTSPSolver::solve(int numCities, tMatrix task, QWidget *parent)
 {
 	if (numCities <= 1)
@@ -225,6 +233,9 @@ double check;
 	return root;
 }
 
+/*!
+ * \brief Returns the sorted optimal path, starting from City 1.
+ */
 QString CTSPSolver::getSortedPath() const
 {
 	if (!root || route.isEmpty() || (route.size() != nCities))
@@ -241,11 +252,22 @@ QString path = trUtf8("City %1").arg(1) + " -> ";
 	return path;
 }
 
+/*!
+ * \brief Returns CTSPSolver's version ID.
+ *
+ *  Current version ID is <b>\$Id$</b>.
+ */
 QString CTSPSolver::getVersionId()
 {
 	return QString("$Id$");
 }
 
+/*!
+ * \brief Returns whether or not the solution is definitely optimal.
+ *
+ *  The solution may need some further interations to determine whether it is optimal.
+ *  In such cases this function returns \p false.
+ */
 bool CTSPSolver::isOptimal() const
 {
 	return !mayNotBeOptimal;

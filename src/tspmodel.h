@@ -1,9 +1,12 @@
-/*
- *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+/*!
+ * \class CTSPModel
+ * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \brief This class implements table model for manipulating a task.
  *
  *  $Id$
  *  $URL$
+ *
+ *  <b>TSPSG: TSP Solver and Generator</b>
  *
  *  This file is part of TSPSG.
  *

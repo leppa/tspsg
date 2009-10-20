@@ -23,6 +23,13 @@
 
 #include "mainwindow.h"
 
+/*!
+ * \brief Class constructor.
+ * \param parent Main Window parent widget.
+ *
+ *  Initializes Main Window and creates its layout based on target OS.
+ *  Loads TSPSG settings and opens a task file if it was specified as a commandline parameter.
+ */
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -483,8 +490,15 @@ sStep *step = root;
 		output.append("<p>&nbsp;</p>");
 		output.append("<p>" + trUtf8("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
 	}
+	output.append("<p></p>");
 	solutionText->setHtml(output.join(""));
 	solutionText->setDocumentTitle(trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()));
+
+	// Scrolling to the end of text.
+QTextCursor cursor(solutionText->textCursor());
+	cursor.movePosition(QTextCursor::End, QTextCursor::MoveAnchor);
+	solutionText->setTextCursor(cursor);
+
 	enableSolutionActions();
 	tabWidget->setCurrentIndex(1);
 	QApplication::restoreOverrideCursor();
@@ -492,7 +506,7 @@ sStep *step = root;
 
 void MainWindow::actionHelpAboutTriggered()
 {
-	// TODO: Normal about window :-)
+//! \todo TODO: Normal about window :-)
 QString about = QString::fromUtf8("TSPSG: TSP Solver and Generator\n");
 	about += QString::fromUtf8("    Version: "BUILD_VERSION"\n");
 	about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
@@ -568,6 +582,13 @@ bool untitled = (fileName == trUtf8("Untitled") + ".tspt");
 	}
 }
 
+/*!
+ * \brief Handles Main Window close event.
+ * \param event Close event.
+ *
+ *  Checks whether or not a current task was saved and asks for saving if not.
+ *  Saves TSPSG settings.
+ */
 void MainWindow::closeEvent(QCloseEvent *event)
 {
 	if (!maybeSave()) {

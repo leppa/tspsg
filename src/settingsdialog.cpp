@@ -23,6 +23,12 @@
 
 #include "settingsdialog.h"
 
+/*!
+ * \brief Class constructor.
+ * \param parent Settings Dialog parent widget.
+ *
+ * Initializes Settings Dialog and creates its layout based on target OS.
+ */
 SettingsDialog::SettingsDialog(QWidget *parent)
 	: QDialog(parent), newFont(false), newColor(false)
 {
@@ -217,14 +223,24 @@ QColor color = QColorDialog::getColor(this->color,this);
 	}
 }
 
+/*!
+ * \brief Indicates whether or not the font color has been changed.
+ */
 bool SettingsDialog::colorChanged() const
 {
 	return newColor;
 }
 
+/*!
+ * \brief Indicates whether or not the font properties have been changed.
+ */
 bool SettingsDialog::fontChanged() const
 {
 	return newFont;
+}
+
+void SettingsDialog::spinRandMinValueChanged(int val) {
+	spinRandMax->setMinimum(val);
 }
 
 #ifndef Q_OS_WINCE

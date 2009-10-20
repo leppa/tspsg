@@ -1,9 +1,12 @@
-/*
- *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+/*!
+ * \class SettingsDialog
+ * \brief Class for handling Settings Dialog UI and logic.
+ * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
+ *
+ *  <b>TSPSG: TSP Solver and Generator</b>
  *
  *  This file is part of TSPSG.
  *
@@ -28,20 +31,13 @@
 
 #include "ui_settingsdialog.h"
 
-class SettingsDialog: public QDialog, public Ui::SettingsDialog
+class SettingsDialog: public QDialog, Ui::SettingsDialog
 {
 	Q_OBJECT
 public:
 	SettingsDialog(QWidget *parent = 0);
 	bool colorChanged() const;
 	bool fontChanged() const;
-
-#ifndef Q_OS_WINCE
-	QCheckBox *cbSaveState;
-	QLabel *imgIcon;
-	QLabel *labelHint;
-	QFrame *lineVertical;
-#endif // Q_OS_WINCE
 
 private:
 	QColor color;
@@ -51,13 +47,18 @@ private:
 	QSettings *settings;
 #ifndef Q_OS_WINCE
 	bool event(QEvent *);
-#endif
+
+	QCheckBox *cbSaveState;
+	QLabel *imgIcon;
+	QLabel *labelHint;
+	QFrame *lineVertical;
+#endif // Q_OS_WINCE
 
 private slots:
 	void accept();
 	void buttonColorClicked();
 	void buttonFontClicked();
-	void spinRandMinValueChanged(int val) { spinRandMax->setMinimum(val); }
+	void spinRandMinValueChanged(int);
 };
 
 #endif // SETTINGSDIALOG_H

@@ -6,7 +6,7 @@ $URL$
 
 TSPSG is intended to generate and solve Travelling Salesman Problem
 (TSP) tasks. It uses Branch and Bound method for solving. An input
-is number of cities and matrix of city-to-city travel prices.
+is number of cities and matrix of city-to-city travel costs.
 The matrix can be populated with random values in a given range
 (useful for generating tasks). The result is an optimal route, its
 price, step-by-step matrices of solving and solving graph. The task
