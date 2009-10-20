@@ -1,6 +1,7 @@
-/*
- *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+/*! \mainpage
+ *
+ *  <b>TSPSG: TSP Solver and Generator</b>
+ *  \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -24,17 +25,39 @@
 #ifndef VERSION_H
 #define VERSION_H
 
+/*!
+ * \file version.h
+ * \brief This file contains TSPSG version information defines.
+ */
+
+//! TSPSG version ID
 #define VERSIONID "$Id$"
+//! Major version of current TSPSG build
 #define BUILD_VERSION_MAJOR 0
+//! Minor version of current TSPSG build
 #define BUILD_VERSION_MINOR 1
+//! TSPSG release number
 #define BUILD_RELEASE 2
-// This will only change on releases and will be the same as revision number
+
+/*!
+ * \brief Current TSPSG build number
+ *
+ * This will only change on releases and will be the same as revision number.
+ *
+ * Build number meanings:
+ *   - 1  --  3: alpha 1 to 3
+ *   - 4  --  7: beta 1 to 4
+ *   - 8  -- 10: rc 1 to 3
+ *   - 11 --...: release 1 to ...
+ */
 #define BUILD_NUMBER 65535
-// Release number meanings:
-//   1  --  3: alpha 1 to 3
-//   4  --  7: beta 1 to 4
-//   8  -- 10: rc 1 to 3
-//   11 --...: release 1 to ...
+
+/*!
+ * \def BUILD_STATUS
+ * \brief TSPSG build status
+ *
+ * Determined based on BUILD_NUMBER.
+ */
 #if BUILD_NUMBER == 65535
 	#define BUILD_STATUS (dev build)
 #elif BUILD_RELEASE < 4
@@ -45,10 +68,14 @@
 	#define BUILD_STATUS (rc)
 #endif // BUILD_NUMBER == 65535
 
-// "Converting" x to quoted string
+//! Used for "conversion" of \a x to quoted string
 #define QUOTE_X(x) #x
 #define QUOTE(x) QUOTE_X(x)
 
+/*!
+ * \def BUILD_VERSION
+ * \brief Full version of TSPSG in the form: \a major.\a minor.\a release [\a status].
+ */
 #ifndef BUILD_STATUS
 	#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE)
 #else

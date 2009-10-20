@@ -25,6 +25,7 @@
 #define SETTINGSDIALOG_H
 
 #include "globals.h"
+
 #include "ui_settingsdialog.h"
 
 class SettingsDialog: public QDialog, public Ui::SettingsDialog

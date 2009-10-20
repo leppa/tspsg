@@ -26,6 +26,8 @@
 
 #include "globals.h"
 
+#include "tspmodel.h"
+
 typedef QList<QList<double> > tMatrix;
 
 // This structure represents one step of solving

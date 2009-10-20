@@ -24,6 +24,11 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+/*!
+ * \file globals.h
+ * \brief This file contains TSPSG global defines.
+ */
+
 // INCLUDES
 #include <QtCore>
 #include <QtGui>
@@ -35,19 +40,33 @@
 
 // DEFINES
 // Default values
+//! Default minimum for random numbers generation
 #define DEF_RAND_MIN 1
+//! Default maximum for random numbers generation
 #define DEF_RAND_MAX 10
+//! Default number of cities
 #define DEF_NUM_CITIES 5
+//! Default font name
 #define DEF_FONT_FAMILY "Courier New"
+//! Default font size
 #define DEF_FONT_SIZE 10
+//! Default font color
 #define DEF_FONT_COLOR Qt::black
 
-// Maximum available number of cities
+//! Maximum available number of cities
 #define MAX_NUM_CITIES 30
-// Maximum allowed value for random generation limits
+//! Maximum allowed value for random generation limits
 #define MAX_RAND_VALUE 1000
 
 // Paths
+/*!
+ * \def PATH_I18N
+ * \brief Bath to internationalization files.
+ */
+/*!
+ * \def PATH_DOCS
+ * \brief Bath to documentation files.
+ */
 #if defined(Q_OS_LINUX) || defined(Q_OS_UNIX)
 	#define PATH_I18N "/usr/share/tspsg/i18n"
 	#define PATH_DOCS "/usr/share/doc/tspsg"
@@ -56,26 +75,30 @@
 	#define PATH_DOCS "help"
 #endif // Q_OS_LINUX
 
-// TSPSG Task file signature - letters TSPT
+//! TSPSG Task file signature - letters \p TSPT
 #define TSPT quint32(0x54535054)
-// TSPSG Task file version
+//! TSPSG Task file version
 #define TSPT_VERSION quint8(1)
-// TSPSG Task file metadata version
+//! TSPSG Task file metadata version
 #define TSPT_META_VERSION quint8(1)
-// TSPSG Task file metadata size in bytes (incl. version)
+//! TSPSG Task file metadata size in bytes (incl. version)
 #define TSPT_META_SIZE 2
-// ZKomModRd Task file signature - letters ZK
+//! ZKomModRd Task file signature - letters \p ZK
 #define ZKT quint16(0x5A4B)
-// ZKomModRd Task file version
+//! ZKomModRd Task file version
 #define ZKT_VERSION quint8(1)
 
-// This value means infinity :-)
-#ifndef INFINITY
-	#define INFINITY 1.7E+308
+// Some libraries already have INFINITY defined.
+// We need to undefine it for INFINITY to have always the same value.
+#ifdef INFINITY
+	#undef INFINITY
 #endif
-// This is string, which represents infinite value in table
+//! This value means infinity :-)
+#define INFINITY 1.7E+308
+//! This string represents infinite value in the table
 #define INFSTR "---"
 
+// Sanity checks
 // Check that default number of cities is sane (<= MAX_NUM_CITIES)
 #if DEF_NUM_CITIES > MAX_NUM_CITIES
 	#undef DEF_NUM_CITIES

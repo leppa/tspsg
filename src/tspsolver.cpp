@@ -22,7 +22,6 @@
  */
 
 #include "tspsolver.h"
-#include "tspmodel.h"
 
 CTSPSolver::CTSPSolver()
 	: nCities(0)

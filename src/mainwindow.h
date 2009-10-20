@@ -25,8 +25,10 @@
 #define MAINWINDOW_H
 
 #include "globals.h"
+
 #include "ui_mainwindow.h"
 #include "settingsdialog.h"
+
 #include "tspsolver.h"
 #include "tspmodel.h"
 

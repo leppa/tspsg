@@ -25,7 +25,11 @@
 #define OS_H
 
 // Some target arch detection.
-// NOTE: Only for GNU C, Visual Studio, Intel C/C++ and MinGW32 compilers
+/*!
+ * \def ARCH
+ * \brief The target CPU architecture TSPSG was built for.
+ * \warning NOTE: Only for GNU C, Visual Studio, Intel C/C++ and MinGW32 compilers.
+ */
 #if defined(__amd64__) || defined(_M_X64)
 	#define ARCH " (AMD 64-bit)"
 #elif defined(__ia64__) || defined(_M_IA64)
@@ -43,6 +47,16 @@
 #endif // ARCH
 
 // Target OS detection. Done by Qt, so should work with any compiler.
+/*!
+ * \def OS
+ * \brief The target operating system TSPSG was built for.
+ */
+/*!
+ * \def OSID
+ * \brief The target operating system ID.
+ * 
+ * This value is used in task file metadata.
+ */
 #ifdef Q_OS_AIX
 	#define OS "AIX"ARCH
 	#define OSID quint8(1)
