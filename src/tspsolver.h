@@ -29,6 +29,11 @@
 #ifndef TSPSOLVER_H
 #define TSPSOLVER_H
 
+/*!
+ * \file tspsolver.h
+ * \brief Defines #tMatrix typedef, sStep struct and CTSPSolver class.
+ */
+
 #include "globals.h"
 
 #include "tspmodel.h"

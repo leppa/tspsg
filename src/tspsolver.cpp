@@ -130,6 +130,7 @@ int i = nCol;
  * \param numCities Number of cities in the task.
  * \param task The matrix of city-to-city travel costs.
  * \param parent The parent widget for displaying messages and dialogs.
+ * \return Pointer to the root of the solution tree.
  *
  * \todo TODO: Comment the algorithm.
  */
@@ -235,6 +236,7 @@ double check;
 
 /*!
  * \brief Returns the sorted optimal path, starting from City 1.
+ * \return A string, containing sorted optimal path.
  */
 QString CTSPSolver::getSortedPath() const
 {
@@ -254,8 +256,7 @@ QString path = trUtf8("City %1").arg(1) + " -> ";
 
 /*!
  * \brief Returns CTSPSolver's version ID.
- *
- *  Current version ID is <b>\$Id$</b>.
+ * \return A string: <b>\$Id$</b>.
  */
 QString CTSPSolver::getVersionId()
 {
@@ -264,9 +265,10 @@ QString CTSPSolver::getVersionId()
 
 /*!
  * \brief Returns whether or not the solution is definitely optimal.
+ * \return \c true if solution is definitely optimal, otherwise \c false.
  *
  *  The solution may need some further interations to determine whether it is optimal.
- *  In such cases this function returns \p false.
+ *  In such cases this function returns \c false.
  */
 bool CTSPSolver::isOptimal() const
 {

@@ -23,5 +23,12 @@
 
 #include "version.h"
 
+/*!
+ * \file resource.h
+ * \brief This file contains windows resource IDs.
+ */
+
+//! Version information resource ID
 #define VS_VERSION_INFO 1
+//! Main application icon resource ID
 #define IDI_APPICON 101

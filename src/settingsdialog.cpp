@@ -225,6 +225,7 @@ QColor color = QColorDialog::getColor(this->color,this);
 
 /*!
  * \brief Indicates whether or not the font color has been changed.
+ * \return \c true if font color changed, otherwise \c false.
  */
 bool SettingsDialog::colorChanged() const
 {
@@ -233,6 +234,7 @@ bool SettingsDialog::colorChanged() const
 
 /*!
  * \brief Indicates whether or not the font properties have been changed.
+ * \return \c true if font properties changed, otherwise \c false.
  */
 bool SettingsDialog::fontChanged() const
 {

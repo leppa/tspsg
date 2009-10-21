@@ -24,11 +24,20 @@
 #ifndef OS_H
 #define OS_H
 
+/*!
+ * \file os.h
+ * \brief This file contains TSPSG target CPU architecture and OS detection.
+ *
+ *  Arch detection works only for <b>GNU C</b>, <b>Visual Studio</b>, <b>Intel C/C++</b> and <b>MinGW32</b> compilers.
+ *
+ *  OS detection should work for any compiler.
+ */
+
 // Some target arch detection.
 /*!
  * \def ARCH
  * \brief The target CPU architecture TSPSG was built for.
- * \warning NOTE: Only for GNU C, Visual Studio, Intel C/C++ and MinGW32 compilers.
+ * \warning NOTE: Only for <b>GNU C</b>, <b>Visual Studio</b>, <b>Intel C/C++</b> and <b>MinGW32</b> compilers.
  */
 #if defined(__amd64__) || defined(_M_X64)
 	#define ARCH " (AMD 64-bit)"
@@ -46,7 +55,7 @@
 	#define ARCH ""
 #endif // ARCH
 
-// Target OS detection. Done by Qt, so should work with any compiler.
+// Target OS detection. Done by Qt, so should work for any compiler.
 /*!
  * \def OS
  * \brief The target operating system TSPSG was built for.

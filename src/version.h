@@ -1,7 +1,8 @@
 /*! \mainpage
  *
+ * \image html tspsg.png
  *  <b>TSPSG: TSP Solver and Generator</b>
- *  \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -45,10 +46,10 @@
  * This will only change on releases and will be the same as revision number.
  *
  * Build number meanings:
- *   - 1  --  3: alpha 1 to 3
- *   - 4  --  7: beta 1 to 4
- *   - 8  -- 10: rc 1 to 3
- *   - 11 --...: release 1 to ...
+ *   - 1  --  3: <b>alpha</b> 1 to 3
+ *   - 4  --  7: <b>beta</b> 1 to 4
+ *   - 8  -- 10: <b>rc</b> 1 to 3
+ *   - 11 --  x: <b>release</b> 1 to x-10
  */
 #define BUILD_NUMBER 65535
 
@@ -68,13 +69,14 @@
 	#define BUILD_STATUS (rc)
 #endif // BUILD_NUMBER == 65535
 
-//! Used for "conversion" of \a x to quoted string
+//! \internal \brief A helper for QUOTE(x).
 #define QUOTE_X(x) #x
+//! Used for "conversion" of \a x to quoted string
 #define QUOTE(x) QUOTE_X(x)
 
 /*!
  * \def BUILD_VERSION
- * \brief Full version of TSPSG in the form: \a major.\a minor.\a release [\a status].
+ * \brief Full version of TSPSG in the form: \c major.\c minor.\c release[ \c status].
  */
 #ifndef BUILD_STATUS
 	#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE)

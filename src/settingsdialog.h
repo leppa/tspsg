@@ -27,6 +27,11 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
+/*!
+ * \file settingsdialog.h
+ * \brief Defines SettingsDialog class.
+ */
+
 #include "globals.h"
 
 #include "ui_settingsdialog.h"

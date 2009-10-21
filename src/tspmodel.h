@@ -27,6 +27,11 @@
 #ifndef TSPMODEL_H
 #define TSPMODEL_H
 
+/*!
+ * \file tspmodel.h
+ * \brief Defines CTSPModel class.
+ */
+
 #include "globals.h"
 
 class CTSPModel: public QAbstractTableModel

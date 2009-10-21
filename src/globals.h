@@ -75,7 +75,7 @@
 	#define PATH_DOCS "help"
 #endif // Q_OS_LINUX
 
-//! TSPSG Task file signature - letters \p TSPT
+//! TSPSG Task file signature - letters \c TSPT
 #define TSPT quint32(0x54535054)
 //! TSPSG Task file version
 #define TSPT_VERSION quint8(1)
@@ -83,17 +83,21 @@
 #define TSPT_META_VERSION quint8(1)
 //! TSPSG Task file metadata size in bytes (incl. version)
 #define TSPT_META_SIZE 2
-//! ZKomModRd Task file signature - letters \p ZK
+//! ZKomModRd Task file signature - letters \c ZK
 #define ZKT quint16(0x5A4B)
 //! ZKomModRd Task file version
 #define ZKT_VERSION quint8(1)
 
-// Some libraries already have INFINITY defined.
-// We need to undefine it for INFINITY to have always the same value.
+/*!
+ * \def INFINITY
+ * \brief This value means infinity :-)
+ *
+ *  Some libraries already have \c INFINITY defined.
+ *  We need to redefine it for the \c INFINITY to always have the same value.
+ */
 #ifdef INFINITY
 	#undef INFINITY
 #endif
-//! This value means infinity :-)
 #define INFINITY 1.7E+308
 //! This string represents infinite value in the table
 #define INFSTR "---"

@@ -27,6 +27,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+/*!
+ * \file mainwindow.h
+ * \brief Defines MainWindow class.
+ */
+
 #include "globals.h"
 
 #include "ui_mainwindow.h"
