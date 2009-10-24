@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$mainwindow_8h.html" title="Defines MainWindow class." alt="" coords="79,238,202,266"/>
+<area shape="rect" id="node5" href="$settingsdialog_8h.html" title="Defines SettingsDialog class." alt="" coords="22,161,155,189"/>
+<area shape="rect" id="node8" href="$tspmodel_8h.html" title="Defines CTSPModel class." alt="" coords="138,83,245,111"/>
+<area shape="rect" id="node11" href="$tspsolver_8h.html" title="Defines tMatrix typedef, sStep struct and CTSPSolver class." alt="" coords="230,161,334,189"/>
+</map>

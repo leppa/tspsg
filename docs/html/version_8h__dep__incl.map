@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$globals_8h.html" title="Contains TSPSG global defines." alt="" coords="97,83,193,111"/>
+<area shape="rect" id="node17" href="$resource_8h.html" title="Contains windows resource IDs." alt="" coords="217,83,321,111"/>
+<area shape="rect" id="node5" href="$mainwindow_8h.html" title="Defines MainWindow class." alt="" coords="79,315,202,343"/>
+<area shape="rect" id="node7" href="$settingsdialog_8h.html" title="Defines SettingsDialog class." alt="" coords="22,238,155,266"/>
+<area shape="rect" id="node10" href="$tspmodel_8h.html" title="Defines CTSPModel class." alt="" coords="138,161,245,189"/>
+<area shape="rect" id="node13" href="$tspsolver_8h.html" title="Defines tMatrix typedef, sStep struct and CTSPSolver class." alt="" coords="230,238,334,266"/>
+</map>

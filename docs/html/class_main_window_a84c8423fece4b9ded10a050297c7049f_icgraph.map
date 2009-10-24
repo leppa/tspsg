@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_main_window.html#ab8362fdebeecbfa92d41ad77377dbbd3" title="MainWindow::actionFileNewTriggered" alt="" coords="929,172,1167,200"/>
+<area shape="rect" id="node5" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="Class constructor." alt="" coords="1220,147,1396,175"/>
+<area shape="rect" id="node7" href="$class_main_window.html#adf72d971ae33ada0d093c6921ee3f5e9" title="MainWindow::actionFileOpenTriggered" alt="" coords="927,324,1169,352"/>
+<area shape="rect" id="node10" href="$class_main_window.html#aad1772e30eb7110bb1e074e3496035df" title="MainWindow::groupSettingsLanguageListTriggered" alt="" coords="231,71,543,99"/>
+<area shape="rect" id="node14" href="$class_main_window.html#a5b49c92c872a44ec743a65f9848a587a" title="MainWindow::saveTask" alt="" coords="308,197,465,225"/>
+<area shape="rect" id="node16" href="$class_main_window.html#a249fdd7432bb1528097dbcfbb06e2906" title="MainWindow::actionFileSaveAsTaskTriggered" alt="" coords="593,172,876,200"/>
+<area shape="rect" id="node19" href="$class_main_window.html#a0e937e6a20378dc80e2bf8b9be803a53" title="MainWindow::actionFileSaveTriggered" alt="" coords="615,273,855,301"/>
+<area shape="rect" id="node22" href="$class_main_window.html#a44eb5d77b382a5acd4b0091f499f4352" title="MainWindow::maybeSave" alt="" coords="649,223,820,251"/>
+<area shape="rect" id="node26" href="$class_main_window.html#a38edb88d43e844aca9d2e762c8706565" title="Handles Main Window close event." alt="" coords="965,223,1131,251"/>
+</map>

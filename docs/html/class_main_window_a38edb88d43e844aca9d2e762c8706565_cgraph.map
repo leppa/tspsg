@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_main_window.html#a44eb5d77b382a5acd4b0091f499f4352" title="MainWindow::maybeSave" alt="" coords="221,30,392,58"/>
+<area shape="rect" id="node5" href="$class_main_window.html#a5b49c92c872a44ec743a65f9848a587a" title="MainWindow::saveTask" alt="" coords="440,30,597,58"/>
+<area shape="rect" id="node7" href="$class_c_t_s_p_model.html#aae606273bf2ad5d76779e00901d76593" title="CTSPModel::saveTask" alt="" coords="657,5,809,33"/>
+<area shape="rect" id="node9" href="$class_main_window.html#a84c8423fece4b9ded10a050297c7049f" title="MainWindow::setFileName" alt="" coords="645,55,821,83"/>
+</map>
