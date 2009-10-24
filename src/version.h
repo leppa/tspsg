@@ -1,13 +1,37 @@
-/*! \mainpage
+/*!
+ * \file version.h
+ * \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
+ *  $Id$
+ *  $URL$
+ *
+ * \brief Contains TSPSG version information defines.
+ *
+ *  <b>TSPSG: TSP Solver and Generator</b>
+ *
+ *  This file is part of TSPSG.
+ *
+ *  TSPSG is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  TSPSG is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/*!
+ * \mainpage
  * \image html tspsg.png
  *  <b>TSPSG: TSP Solver and Generator</b>
  * \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
- *
- *  This file is part of TSPSG.
  *
  *  TSPSG is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -25,11 +49,6 @@
 
 #ifndef VERSION_H
 #define VERSION_H
-
-/*!
- * \file version.h
- * \brief This file contains TSPSG version information defines.
- */
 
 //! TSPSG version ID
 #define VERSIONID "$Id$"

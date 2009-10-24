@@ -1,10 +1,11 @@
 /*!
- * \class CTSPSolver
+ * \file tspsolver.h
  * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
- * \brief This class solves Travelling Salesman Problem task.
  *
  *  $Id$
  *  $URL$
+ *
+ * \brief Defines #tMatrix typedef, sStep struct and CTSPSolver class.
  *
  *  <b>TSPSG: TSP Solver and Generator</b>
  *
@@ -22,17 +23,10 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
- *
- * \todo TODO: Deletion of solution tree on destroy and cleanup.
  */
 
 #ifndef TSPSOLVER_H
 #define TSPSOLVER_H
-
-/*!
- * \file tspsolver.h
- * \brief Defines #tMatrix typedef, sStep struct and CTSPSolver class.
- */
 
 #include "globals.h"
 
@@ -66,6 +60,12 @@ struct sStep {
 	}
 };
 
+/*!
+ * \brief This class solves Travelling Salesman Problem task.
+ * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ *
+ * \todo TODO: Deletion of solution tree on destroy and cleanup.
+ */
 class CTSPSolver
 {
 	Q_DECLARE_TR_FUNCTIONS(CTSPSolver)
@@ -73,9 +73,9 @@ class CTSPSolver
 public:
 	CTSPSolver();
 	QString getSortedPath() const;
+	static QString getVersionId();
 	bool isOptimal() const;
 	sStep *solve(int, tMatrix, QWidget *parent = 0);
-	static QString getVersionId();
 
 private:
 	bool mayNotBeOptimal;
@@ -83,11 +83,12 @@ private:
 	sStep *root;
 	QHash<int,int> route;
 //	QHash<int,int> forbidden;
+
 	double align(tMatrix &);
 	void cleanup();
 	bool findCandidate(tMatrix, int &, int &);
-	double findMinInRow(int, tMatrix, int exc = -1);
 	double findMinInCol(int, tMatrix, int exr = -1);
+	double findMinInRow(int, tMatrix, int exc = -1);
 	bool hasSubCycles(int, int);
 	void subCol(tMatrix &, int, double);
 	void subRow(tMatrix &, int, double);

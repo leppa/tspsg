@@ -1,9 +1,13 @@
-/*
- *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+/*!
+ * \file globals.h
+ * \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
+ *
+ * \brief Contains TSPSG global defines.
+ *
+ *  <b>TSPSG: TSP Solver and Generator</b>
  *
  *  This file is part of TSPSG.
  *
@@ -23,11 +27,6 @@
 
 #ifndef GLOBALS_H
 #define GLOBALS_H
-
-/*!
- * \file globals.h
- * \brief This file contains TSPSG global defines.
- */
 
 // INCLUDES
 #include <QtCore>

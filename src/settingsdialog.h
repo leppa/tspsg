@@ -1,10 +1,11 @@
 /*!
- * \class SettingsDialog
- * \brief Class for handling Settings Dialog UI and logic.
+ * \file settingsdialog.h
  * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
+ *
+ * \brief Defines SettingsDialog class.
  *
  *  <b>TSPSG: TSP Solver and Generator</b>
  *
@@ -27,15 +28,14 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
-/*!
- * \file settingsdialog.h
- * \brief Defines SettingsDialog class.
- */
-
 #include "globals.h"
 
 #include "ui_settingsdialog.h"
 
+/*!
+ * \brief Class for handling Settings Dialog UI and logic.
+ * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ */
 class SettingsDialog: public QDialog, Ui::SettingsDialog
 {
 	Q_OBJECT
@@ -51,12 +51,12 @@ private:
 	bool newColor;
 	QSettings *settings;
 #ifndef Q_OS_WINCE
-	bool event(QEvent *);
-
 	QCheckBox *cbSaveState;
 	QLabel *imgIcon;
 	QLabel *labelHint;
 	QFrame *lineVertical;
+
+	bool event(QEvent *);
 #endif // Q_OS_WINCE
 
 private slots:

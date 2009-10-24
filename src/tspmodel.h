@@ -1,10 +1,11 @@
 /*!
- * \class CTSPModel
+ * \file tspmodel.h
  * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
- * \brief This class implements table model for manipulating a task.
  *
  *  $Id$
  *  $URL$
+ *
+ * \brief Defines CTSPModel class.
  *
  *  <b>TSPSG: TSP Solver and Generator</b>
  *
@@ -27,13 +28,12 @@
 #ifndef TSPMODEL_H
 #define TSPMODEL_H
 
-/*!
- * \file tspmodel.h
- * \brief Defines CTSPModel class.
- */
-
 #include "globals.h"
 
+/*!
+ * \brief This class implements table model for manipulating a task.
+ * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ */
 class CTSPModel: public QAbstractTableModel
 {
 	Q_OBJECT
@@ -54,6 +54,11 @@ public:
 	void setNumCities(int);
 
 signals:
+	/*!
+	 * \brief This signal is emitted whenever the number of cities in the task changes.
+	 *
+	 * \sa setNumCities()
+	 */
 	void numCitiesChanged(int);
 
 private:

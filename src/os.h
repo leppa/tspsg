@@ -1,9 +1,16 @@
-/*
- *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+/*!
+ * \file os.h
+ * \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
+ *
+ * \warning Arch detection works only for <b>GNU C</b>, <b>Visual Studio</b>, <b>Intel C/C++</b> and <b>MinGW32</b> compilers.
+ *  OS detection should work for any compiler.
+ *
+ * \brief Contains TSPSG target CPU architecture and OS detection.
+ *
+ *  <b>TSPSG: TSP Solver and Generator</b>
  *
  *  This file is part of TSPSG.
  *
@@ -23,15 +30,6 @@
 
 #ifndef OS_H
 #define OS_H
-
-/*!
- * \file os.h
- * \brief This file contains TSPSG target CPU architecture and OS detection.
- *
- *  Arch detection works only for <b>GNU C</b>, <b>Visual Studio</b>, <b>Intel C/C++</b> and <b>MinGW32</b> compilers.
- *
- *  OS detection should work for any compiler.
- */
 
 // Some target arch detection.
 /*!

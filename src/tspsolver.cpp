@@ -29,100 +29,45 @@ CTSPSolver::CTSPSolver()
 {
 }
 
-void CTSPSolver::cleanup()
+/*!
+ * \brief Returns the sorted optimal path, starting from City 1.
+ * \return A string, containing sorted optimal path.
+ */
+QString CTSPSolver::getSortedPath() const
 {
-	route.clear();
-	mayNotBeOptimal = false;
-}
+	if (!root || route.isEmpty() || (route.size() != nCities))
+		return QString();
 
-double CTSPSolver::findMinInRow(int nRow, tMatrix matrix, int exc)
-{
-double min = INFINITY;
-	for (int k = 0; k < nCities; k++)
-		if (((k != exc)) && (min > matrix.at(nRow).at(k)))
-			min = matrix.at(nRow).at(k);
-	return min == INFINITY ? 0 : min;
-}
-
-double CTSPSolver::findMinInCol(int nCol, tMatrix matrix, int exr)
-{
-double min = INFINITY;
-	for (int k = 0; k < nCities; k++)
-		if ((k != exr) && (min > matrix.at(k).at(nCol)))
-			min = matrix.at(k).at(nCol);
-	return min == INFINITY ? 0 : min;
-}
-
-void CTSPSolver::subRow(tMatrix &matrix, int nRow, double val)
-{
-	for (int k = 0; k < nCities; k++)
-		if (k != nRow)
-			matrix[nRow][k] -= val;
-}
-
-void CTSPSolver::subCol(tMatrix &matrix, int nCol, double val)
-{
-	for (int k = 0; k < nCities; k++)
-		if (k != nCol)
-			matrix[k][nCol] -= val;
-}
-
-double CTSPSolver::align(tMatrix &matrix)
-{
-double r = 0;
-double min;
-	for (int k = 0; k < nCities; k++) {
-		min = findMinInRow(k,matrix);
-		if (min > 0) {
-			r += min;
-			subRow(matrix,k,min);
-		}
+int i = 0; // We start from City 1
+QString path = trUtf8("City %1").arg(1) + " -> ";
+	while ((i = route[i]) != 0) {
+		path += trUtf8("City %1").arg(i + 1) + " -> ";
 	}
-	for (int k = 0; k < nCities; k++) {
-		min = findMinInCol(k,matrix);
-		if (min > 0) {
-			r += min;
-			subCol(matrix,k,min);
-		}
-	}
-	return r;
+	// And finish in City 1, too
+	path += trUtf8("City %1").arg(1);
+
+	return path;
 }
 
-bool CTSPSolver::findCandidate(tMatrix matrix, int &nRow, int &nCol)
+/*!
+ * \brief Returns CTSPSolver's version ID.
+ * \return A string: <b>\$Id$</b>.
+ */
+QString CTSPSolver::getVersionId()
 {
-	nRow = -1;
-	nCol = -1;
-bool alts = false;
-double h = -1;
-double sum;
-	for (int r = 0; r < nCities; r++)
-		for (int c = 0; c < nCities; c++)
-//			if ((matrix.at(r).at(c) == 0) && !forbidden.values(r).contains(c)) {
-			if (matrix.at(r).at(c) == 0) {
-				sum = findMinInRow(r,matrix,c) + findMinInCol(c,matrix,r);
-				if (sum > h) {
-					h = sum;
-					nRow = r;
-					nCol = c;
-					alts = false;
-				} else if ((sum == h) && !hasSubCycles(r,c))
-					alts = true;
-			}
-	return alts;
+	return QString("$Id$");
 }
 
-bool CTSPSolver::hasSubCycles(int nRow, int nCol)
+/*!
+ * \brief Returns whether or not the solution is definitely optimal.
+ * \return \c true if solution is definitely optimal, otherwise \c false.
+ *
+ *  The solution may need some further interations to determine whether it is optimal.
+ *  In such cases this function returns \c false.
+ */
+bool CTSPSolver::isOptimal() const
 {
-	if ((nRow < 0) || (nCol < 0) || route.isEmpty() || !(route.size() < nCities - 1) || !route.contains(nCol))
-		return false;
-int i = nCol;
-	while (true) {
-		if ((i = route[i]) == nRow)
-			return true;
-		if (!route.contains(i))
-			return false;
-	}
-	return false;
+	return !mayNotBeOptimal;
 }
 
 /*!
@@ -234,43 +179,100 @@ double check;
 	return root;
 }
 
-/*!
- * \brief Returns the sorted optimal path, starting from City 1.
- * \return A string, containing sorted optimal path.
- */
-QString CTSPSolver::getSortedPath() const
-{
-	if (!root || route.isEmpty() || (route.size() != nCities))
-		return QString();
+/* Privates **********************************************************/
 
-int i = 0; // We start from City 1
-QString path = trUtf8("City %1").arg(1) + " -> ";
-	while ((i = route[i]) != 0) {
-		path += trUtf8("City %1").arg(i + 1) + " -> ";
+double CTSPSolver::align(tMatrix &matrix)
+{
+double r = 0;
+double min;
+	for (int k = 0; k < nCities; k++) {
+		min = findMinInRow(k,matrix);
+		if (min > 0) {
+			r += min;
+			subRow(matrix,k,min);
+		}
 	}
-	// And finish in City 1, too
-	path += trUtf8("City %1").arg(1);
-
-	return path;
+	for (int k = 0; k < nCities; k++) {
+		min = findMinInCol(k,matrix);
+		if (min > 0) {
+			r += min;
+			subCol(matrix,k,min);
+		}
+	}
+	return r;
 }
 
-/*!
- * \brief Returns CTSPSolver's version ID.
- * \return A string: <b>\$Id$</b>.
- */
-QString CTSPSolver::getVersionId()
+void CTSPSolver::cleanup()
 {
-	return QString("$Id$");
+	route.clear();
+	mayNotBeOptimal = false;
 }
 
-/*!
- * \brief Returns whether or not the solution is definitely optimal.
- * \return \c true if solution is definitely optimal, otherwise \c false.
- *
- *  The solution may need some further interations to determine whether it is optimal.
- *  In such cases this function returns \c false.
- */
-bool CTSPSolver::isOptimal() const
+bool CTSPSolver::findCandidate(tMatrix matrix, int &nRow, int &nCol)
 {
-	return !mayNotBeOptimal;
+	nRow = -1;
+	nCol = -1;
+bool alts = false;
+double h = -1;
+double sum;
+	for (int r = 0; r < nCities; r++)
+		for (int c = 0; c < nCities; c++)
+//			if ((matrix.at(r).at(c) == 0) && !forbidden.values(r).contains(c)) {
+			if (matrix.at(r).at(c) == 0) {
+				sum = findMinInRow(r,matrix,c) + findMinInCol(c,matrix,r);
+				if (sum > h) {
+					h = sum;
+					nRow = r;
+					nCol = c;
+					alts = false;
+				} else if ((sum == h) && !hasSubCycles(r,c))
+					alts = true;
+			}
+	return alts;
+}
+
+double CTSPSolver::findMinInCol(int nCol, tMatrix matrix, int exr)
+{
+double min = INFINITY;
+	for (int k = 0; k < nCities; k++)
+		if ((k != exr) && (min > matrix.at(k).at(nCol)))
+			min = matrix.at(k).at(nCol);
+	return min == INFINITY ? 0 : min;
+}
+
+double CTSPSolver::findMinInRow(int nRow, tMatrix matrix, int exc)
+{
+double min = INFINITY;
+	for (int k = 0; k < nCities; k++)
+		if (((k != exc)) && (min > matrix.at(nRow).at(k)))
+			min = matrix.at(nRow).at(k);
+	return min == INFINITY ? 0 : min;
+}
+
+bool CTSPSolver::hasSubCycles(int nRow, int nCol)
+{
+	if ((nRow < 0) || (nCol < 0) || route.isEmpty() || !(route.size() < nCities - 1) || !route.contains(nCol))
+		return false;
+int i = nCol;
+	while (true) {
+		if ((i = route[i]) == nRow)
+			return true;
+		if (!route.contains(i))
+			return false;
+	}
+	return false;
+}
+
+void CTSPSolver::subCol(tMatrix &matrix, int nCol, double val)
+{
+	for (int k = 0; k < nCities; k++)
+		if (k != nCol)
+			matrix[k][nCol] -= val;
+}
+
+void CTSPSolver::subRow(tMatrix &matrix, int nRow, double val)
+{
+	for (int k = 0; k < nCities; k++)
+		if (k != nRow)
+			matrix[nRow][k] -= val;
 }

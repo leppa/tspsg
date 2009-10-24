@@ -187,6 +187,26 @@ QSpacerItem *spacer;
 	settings->endGroup();
 }
 
+/*!
+ * \brief Indicates whether or not the font color has been changed.
+ * \return \c true if font color changed, otherwise \c false.
+ */
+bool SettingsDialog::colorChanged() const
+{
+	return newColor;
+}
+
+/*!
+ * \brief Indicates whether or not the font properties have been changed.
+ * \return \c true if font properties changed, otherwise \c false.
+ */
+bool SettingsDialog::fontChanged() const
+{
+	return newFont;
+}
+
+/* Privates **********************************************************/
+
 void SettingsDialog::accept()
 {
 #ifndef Q_OS_WINCE
@@ -204,16 +224,6 @@ void SettingsDialog::accept()
 	QDialog::accept();
 }
 
-void SettingsDialog::buttonFontClicked()
-{
-bool ok;
-QFont font = QFontDialog::getFont(&ok,this->font,this);
-	if (ok && (this->font != font)) {
-		this->font = font;
-		newFont = true;
-	}
-}
-
 void SettingsDialog::buttonColorClicked()
 {
 QColor color = QColorDialog::getColor(this->color,this);
@@ -223,22 +233,14 @@ QColor color = QColorDialog::getColor(this->color,this);
 	}
 }
 
-/*!
- * \brief Indicates whether or not the font color has been changed.
- * \return \c true if font color changed, otherwise \c false.
- */
-bool SettingsDialog::colorChanged() const
+void SettingsDialog::buttonFontClicked()
 {
-	return newColor;
-}
-
-/*!
- * \brief Indicates whether or not the font properties have been changed.
- * \return \c true if font properties changed, otherwise \c false.
- */
-bool SettingsDialog::fontChanged() const
-{
-	return newFont;
+bool ok;
+QFont font = QFontDialog::getFont(&ok,this->font,this);
+	if (ok && (this->font != font)) {
+		this->font = font;
+		newFont = true;
+	}
 }
 
 void SettingsDialog::spinRandMinValueChanged(int val) {

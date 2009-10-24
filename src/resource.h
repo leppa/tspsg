@@ -1,10 +1,14 @@
-/*
- *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+/*!
+ * \file resource.h
+ * \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
  *
+ * \brief Contains windows resource IDs.
+ *
+ *  <b>TSPSG: TSP Solver and Generator</b>
+ *  
  *  This file is part of TSPSG.
  *
  *  TSPSG is free software: you can redistribute it and/or modify
@@ -22,11 +26,6 @@
  */
 
 #include "version.h"
-
-/*!
- * \file resource.h
- * \brief This file contains windows resource IDs.
- */
 
 //! Version information resource ID
 #define VS_VERSION_INFO 1

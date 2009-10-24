@@ -1,10 +1,11 @@
 /*!
- * \class MainWindow
- * \brief Class for handling Main Window UI and logic.
+ * \file mainwindow.h
  * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
+ *
+ * \brief Defines MainWindow class.
  *
  *  <b>TSPSG: TSP Solver and Generator</b>
  *
@@ -27,11 +28,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-/*!
- * \file mainwindow.h
- * \brief Defines MainWindow class.
- */
-
 #include "globals.h"
 
 #include "ui_mainwindow.h"
@@ -40,6 +36,10 @@
 #include "tspsolver.h"
 #include "tspmodel.h"
 
+/*!
+ * \brief Class for handling Main Window UI and logic.
+ * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ */
 class MainWindow: public QMainWindow, Ui::MainWindow
 {
 	Q_OBJECT
@@ -49,45 +49,51 @@ public:
 	void closeEvent(QCloseEvent *);
 
 private slots:
+// Actions
 	void actionFileNewTriggered();
 	void actionFileOpenTriggered();
 	void actionFileSaveTriggered();
 	void actionFileSaveAsTaskTriggered();
 	void actionFileSaveAsSolutionTriggered();
+#ifndef QT_NO_PRINTER
+	void actionFilePrintPreviewTriggered();
+	void actionFilePrintTriggered();
+#endif // QT_NO_PRINTER
 	void actionSettingsPreferencesTriggered();
 	void actionSettingsLanguageAutodetectTriggered(bool);
 	void groupSettingsLanguageListTriggered(QAction *);
 	void actionHelpAboutTriggered();
+// Buttons
+	void buttonBackToTaskClicked();
+	void buttonRandomClicked();
+	void buttonSolveClicked();
+
 	void dataChanged();
 	void dataChanged(const QModelIndex &, const QModelIndex &);
+	void numCitiesChanged(int);
 #ifndef QT_NO_PRINTER
 	void printPreview(QPrinter *printer);
-	void actionFilePrintPreviewTriggered();
-	void actionFilePrintTriggered();
 #endif // QT_NO_PRINTER
-	void buttonSolveClicked();
-	void buttonRandomClicked();
-	void buttonBackToTaskClicked();
 	void spinCitiesValueChanged(int);
-	void numCitiesChanged(int);
 
 private:
-	QSettings *settings;
-#ifndef QT_NO_PRINTER
-	QPrinter *printer;
-#endif // QT_NO_PRINTER
-	CTSPModel *tspmodel;
 	QString fileName;
 	QActionGroup *groupSettingsLanguageList;
 	QStringList output;
+#ifndef QT_NO_PRINTER
+	QPrinter *printer;
+#endif // QT_NO_PRINTER
+	QSettings *settings;
+	CTSPModel *tspmodel;
+
 	void enableSolutionActions(bool enable = true);
 	void initDocStyleSheet();
-	bool loadLanguage(QString lang = "");
 	void loadLangList();
+	bool loadLanguage(QString lang = "");
 	bool maybeSave();
 	void outputMatrix(tMatrix, QStringList &, int nRow = -1, int nCol = -1);
-	void setFileName(QString fileName = trUtf8("Untitled") + ".tspt");
 	bool saveTask();
+	void setFileName(QString fileName = trUtf8("Untitled") + ".tspt");
 };
 
 #endif // MAINWINDOW_H

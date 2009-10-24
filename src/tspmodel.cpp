@@ -23,38 +23,51 @@
 
 #include "tspmodel.h"
 
+/*!
+ * \brief Class constructor.
+ * \param parent The parent of the table model.
+ */
 CTSPModel::CTSPModel(QObject *parent)
 	: QAbstractTableModel(parent), nCities(0)
 {
 	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
 }
 
-inline int CTSPModel::rand(int min, int max) const
+/*!
+ * \brief Resets the table, setting all its elements to 0.
+ *
+ * \sa randomize()
+ */
+void CTSPModel::clear()
 {
-	return min + (int)(((float)qrand() / RAND_MAX) * max);
+	for (int r = 0; r < nCities; r++)
+		for (int c = 0; c < nCities; c++)
+			if (r != c)
+				table[r][c] = 0;
+	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
 }
 
-int CTSPModel::rowCount(const QModelIndex &) const
-{
-	return nCities;
-}
-
+/*!
+ * \brief Returns the column count in the table.
+ * \return Number of columns in the table.
+ *
+ *  Actually, this function returns the number of cities in the current task.
+ *
+ * \sa numCities(), rowCount()
+ */
 int CTSPModel::columnCount(const QModelIndex &) const
 {
 	return nCities;
 }
 
-QVariant CTSPModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
-	if (role == Qt::DisplayRole) {
-		if (orientation == Qt::Vertical)
-			return trUtf8("City %1").arg(section + 1);
-		else
-			return trUtf8("%1").arg(section + 1);
-	}
-	return QVariant();
-}
-
+/*!
+ * \brief Returns the data stored under the given \a role for the item referred to by the \a index.
+ * \param index An item index to get data from.
+ * \param role The role to get data for.
+ * \return Corresponding data.
+ *
+ * \sa setData(), headerData()
+ */
 QVariant CTSPModel::data(const QModelIndex &index, int role) const
 {
 	if (!index.isValid())
@@ -70,7 +83,7 @@ QFont font;
 			if (table[index.row()][index.column()] == INFINITY)
 				return trUtf8(INFSTR);
 			else
-				// HACK: Converting to string to prevent spinbox in edit mode
+//! \hack HACK: Converting to string to prevent spinbox in edit mode
 				return QVariant(table[index.row()][index.column()]).toString();
 		else
 			return QVariant();
@@ -79,27 +92,11 @@ QFont font;
 	return QVariant();
 }
 
-bool CTSPModel::setData(const QModelIndex &index, const QVariant &value, int role)
-{
-	if (!index.isValid())
-		return false;
-	if (role == Qt::EditRole && index.row() != index.column()) {
-		if (value.toString().compare(INFSTR) == 0)
-			table[index.row()][index.column()] = INFINITY;
-		else {
-bool ok;
-double tmp = value.toDouble(&ok);
-			if (!ok || tmp < 0)
-				return false;
-			else
-				table[index.row()][index.column()] = tmp;
-		}
-		emit dataChanged(index,index);
-		return true;
-	}
-	return false;
-}
-
+/*!
+ * \brief Returns the item flags for the given \a index.
+ * \param index An item index to get flags from.
+ * \return Corresponding item flags.
+ */
 Qt::ItemFlags CTSPModel::flags(const QModelIndex &index) const
 {
 Qt::ItemFlags flags = QAbstractItemModel::flags(index);
@@ -108,52 +105,33 @@ Qt::ItemFlags flags = QAbstractItemModel::flags(index);
 	return flags;
 }
 
-quint16 CTSPModel::numCities() const
+/*!
+ * \brief Returns the data for the given \a role and \a section in the header with the specified \a orientation.
+ * \param section The section to get header data for.
+ * \param orientation The orientation to get header data for.
+ * \param role The role to get header data for.
+ * \return Corresponding header data.
+ *
+ *  For horizontal headers, the section number corresponds to the column number of items shown beneath it. For vertical headers, the section number typically to the row number of items shown alongside it.
+ */
+QVariant CTSPModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-	return nCities;
-}
-
-void CTSPModel::setNumCities(int n)
-{
-	if (n == nCities)
-		return;
-	emit layoutAboutToBeChanged();
-	table.resize(n);
-	for (int k = 0; k < n; k++) {
-		table[k].resize(n);
+	if (role == Qt::DisplayRole) {
+		if (orientation == Qt::Vertical)
+			return trUtf8("City %1").arg(section + 1);
+		else
+			return trUtf8("%1").arg(section + 1);
 	}
-	if (n > nCities)
-		for (int k = nCities; k < n; k++)
-			table[k][k] = INFINITY;
-	nCities = n;
-	emit layoutChanged();
+	return QVariant();
 }
 
-void CTSPModel::clear()
-{
-	for (int r = 0; r < nCities; r++)
-		for (int c = 0; c < nCities; c++)
-			if (r != c)
-				table[r][c] = 0;
-	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
-}
-
-inline bool CTSPModel::loadError(QDataStream::Status status)
-{
-QString err;
-	if (status == QDataStream::Ok)
-		return false;
-	else if (status == QDataStream::ReadPastEnd)
-		err = trUtf8("Unexpected end of file.");
-	else if (status == QDataStream::ReadCorruptData)
-		err = trUtf8("Corrupt data read. File possibly corrupted.");
-	else
-		err = trUtf8("Unknown error.");
-	QApplication::restoreOverrideCursor();
-	QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + err,QMessageBox::Ok).exec();
-	return true;
-}
-
+/*!
+ * \brief Loads a task from \a fname.
+ * \param fname The name of the file to be loaded.
+ * \return \c true on success, otherwise \c false.
+ *
+ * \sa saveTask()
+ */
 bool CTSPModel::loadTask(QString fname)
 {
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -189,6 +167,199 @@ quint32 sig;
 	}
 	f.close();
 	QApplication::restoreOverrideCursor();
+	return true;
+}
+
+/*!
+ * \brief Returns the number of cities.
+ * \return Number of cities in the current task.
+ *
+ * \sa columnCount(), rowCount(), setNumCities()
+ */
+quint16 CTSPModel::numCities() const
+{
+	return nCities;
+}
+
+/*!
+ * \brief Randomizes the table by setting all its values to random ones.
+ *
+ *  Uses TSPSG settings to determine random values range.
+ *
+ * \sa clear()
+ */
+void CTSPModel::randomize()
+{
+int randMin = settings->value("MinCost",DEF_RAND_MIN).toInt();
+int randMax = settings->value("MaxCost",DEF_RAND_MAX).toInt();
+	for (int r = 0; r < nCities; r++)
+		for (int c = 0; c < nCities; c++)
+			if (r != c)
+				table[r][c] = rand(randMin,randMax);
+	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+}
+
+/*!
+ * \brief Returns the row count in the table.
+ * \return Number of rows in the table.
+ *
+ *  Actually, this function returns the number of cities in the current task.
+ *
+ * \sa columnCount(), numCities()
+ */
+int CTSPModel::rowCount(const QModelIndex &) const
+{
+	return nCities;
+}
+
+/*!
+ * \brief Saves current task to \a fname.
+ * \param fname The name of the file to seve to.
+ * \return \c true on success, otherwise \c false.
+ *
+ * \sa loadTask()
+ */
+bool CTSPModel::saveTask(QString fname)
+{
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+QFile f(fname);
+	if (!f.open(QIODevice::WriteOnly)) {
+		QApplication::restoreOverrideCursor();
+		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),QString(trUtf8("Unable to create task file.\nError: %1\nMaybe, file is read-only?")).arg(f.errorString()),QMessageBox::Ok).exec();
+		return false;
+	}
+QDataStream ds(&f);
+	ds.setVersion(QDataStream::Qt_4_4);
+	if (f.error() != QFile::NoError) {
+		f.close();
+		QApplication::restoreOverrideCursor();
+		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		return false;
+	}
+	// File signature
+	ds << TSPT;
+	if (f.error() != QFile::NoError) {
+		f.close();
+		QApplication::restoreOverrideCursor();
+		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		return false;
+	}
+	// File version
+	ds << TSPT_VERSION;
+	if (f.error() != QFile::NoError) {
+		f.close();
+		QApplication::restoreOverrideCursor();
+		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		return false;
+	}
+	// File metadata version
+	ds << TSPT_META_VERSION;
+	if (f.error() != QFile::NoError) {
+		f.close();
+		QApplication::restoreOverrideCursor();
+		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		return false;
+	}
+	// Metadata
+	ds << OSID;
+	if (f.error() != QFile::NoError) {
+		f.close();
+		QApplication::restoreOverrideCursor();
+		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		return false;
+	}
+	// Number of cities
+	ds << nCities;
+	if (f.error() != QFile::NoError) {
+		f.close();
+		QApplication::restoreOverrideCursor();
+		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		return false;
+	}
+	// Costs
+	for (int r = 0; r < nCities; r++)
+		for (int c = 0; c < nCities; c++)
+			if (r != c) {
+				ds << table[r][c];
+				if (f.error() != QFile::NoError) {
+					f.close();
+					QApplication::restoreOverrideCursor();
+					QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+					return false;
+				}
+			}
+	f.close();
+	QApplication::restoreOverrideCursor();
+	return true;
+}
+
+/*!
+ * \brief Sets the \a role data for the item at \a index to \a value.
+ * \param index The index of the item to set data at.
+ * \param value The value of the item data to be set.
+ * \param role The role of the item to set data for.
+ * \return \c true on success, otherwise \c false.
+ *
+ * \sa data()
+ */
+bool CTSPModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+	if (!index.isValid())
+		return false;
+	if (role == Qt::EditRole && index.row() != index.column()) {
+		if (value.toString().compare(INFSTR) == 0)
+			table[index.row()][index.column()] = INFINITY;
+		else {
+bool ok;
+double tmp = value.toDouble(&ok);
+			if (!ok || tmp < 0)
+				return false;
+			else
+				table[index.row()][index.column()] = tmp;
+		}
+		emit dataChanged(index,index);
+		return true;
+	}
+	return false;
+}
+
+/*!
+ * \brief Sets number of cities in the current task to \a n.
+ * \param n Number of cities to set to.
+ *
+ * \sa numCities()
+ */
+void CTSPModel::setNumCities(int n)
+{
+	if (n == nCities)
+		return;
+	emit layoutAboutToBeChanged();
+	table.resize(n);
+	for (int k = 0; k < n; k++) {
+		table[k].resize(n);
+	}
+	if (n > nCities)
+		for (int k = nCities; k < n; k++)
+			table[k][k] = INFINITY;
+	nCities = n;
+	emit layoutChanged();
+}
+
+/* Privates **********************************************************/
+
+inline bool CTSPModel::loadError(QDataStream::Status status)
+{
+QString err;
+	if (status == QDataStream::Ok)
+		return false;
+	else if (status == QDataStream::ReadPastEnd)
+		err = trUtf8("Unexpected end of file.");
+	else if (status == QDataStream::ReadCorruptData)
+		err = trUtf8("Corrupt data read. File possibly corrupted.");
+	else
+		err = trUtf8("Unknown error.");
+	QApplication::restoreOverrideCursor();
+	QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + err,QMessageBox::Ok).exec();
 	return true;
 }
 
@@ -294,87 +465,7 @@ double val;
 	return true;
 }
 
-bool CTSPModel::saveTask(QString fname)
+inline int CTSPModel::rand(int min, int max) const
 {
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-QFile f(fname);
-	if (!f.open(QIODevice::WriteOnly)) {
-		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),QString(trUtf8("Unable to create task file.\nError: %1\nMaybe, file is read-only?")).arg(f.errorString()),QMessageBox::Ok).exec();
-		return false;
-	}
-QDataStream ds(&f);
-	ds.setVersion(QDataStream::Qt_4_4);
-	if (f.error() != QFile::NoError) {
-		f.close();
-		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
-		return false;
-	}
-	// File signature
-	ds << TSPT;
-	if (f.error() != QFile::NoError) {
-		f.close();
-		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
-		return false;
-	}
-	// File version
-	ds << TSPT_VERSION;
-	if (f.error() != QFile::NoError) {
-		f.close();
-		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
-		return false;
-	}
-	// File metadata version
-	ds << TSPT_META_VERSION;
-	if (f.error() != QFile::NoError) {
-		f.close();
-		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
-		return false;
-	}
-	// Metadata
-	ds << OSID;
-	if (f.error() != QFile::NoError) {
-		f.close();
-		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
-		return false;
-	}
-	// Number of cities
-	ds << nCities;
-	if (f.error() != QFile::NoError) {
-		f.close();
-		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
-		return false;
-	}
-	// Costs
-	for (int r = 0; r < nCities; r++)
-		for (int c = 0; c < nCities; c++)
-			if (r != c) {
-				ds << table[r][c];
-				if (f.error() != QFile::NoError) {
-					f.close();
-					QApplication::restoreOverrideCursor();
-					QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
-					return false;
-				}
-			}
-	f.close();
-	QApplication::restoreOverrideCursor();
-	return true;
-}
-
-void CTSPModel::randomize()
-{
-int randMin = settings->value("MinCost",DEF_RAND_MIN).toInt();
-int randMax = settings->value("MaxCost",DEF_RAND_MAX).toInt();
-	for (int r = 0; r < nCities; r++)
-		for (int c = 0; c < nCities; c++)
-			if (r != c)
-				table[r][c] = rand(randMin,randMax);
-	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+	return min + (int)(((float)qrand() / RAND_MAX) * max);
 }

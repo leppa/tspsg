@@ -114,108 +114,36 @@ QRect rect = geometry();
 	setWindowModified(false);
 }
 
-void MainWindow::enableSolutionActions(bool enable)
+/*!
+ * \brief Handles Main Window close event.
+ * \param event Close event.
+ *
+ *  Checks whether or not a current task was saved and asks for saving if not.
+ *  Saves TSPSG settings.
+ */
+void MainWindow::closeEvent(QCloseEvent *event)
 {
-	buttonSaveSolution->setEnabled(enable);
-	actionFileSaveAsSolution->setEnabled(enable);
-	solutionText->setEnabled(enable);
-	if (!enable)
-		output.clear();
-#ifndef QT_NO_PRINTER
-	actionFilePrint->setEnabled(enable);
-	actionFilePrintPreview->setEnabled(enable);
-#endif // QT_NO_PRINTER
-}
-
-bool MainWindow::loadLanguage(QString lang)
-{
-// i18n
-bool ad = false;
-	if (lang.isEmpty()) {
-		ad = settings->value("Language","").toString().isEmpty();
-		lang = settings->value("Language",QLocale::system().name()).toString();
+	if (!maybeSave()) {
+		event->ignore();
+		return;
 	}
-static QTranslator *qtTranslator; // Qt library translator
-	if (qtTranslator) {
-		qApp->removeTranslator(qtTranslator);
-		delete qtTranslator;
-		qtTranslator = NULL;
-	}
-	qtTranslator = new QTranslator();
-static QTranslator *translator; // Application translator
-	if (translator) {
-		qApp->removeTranslator(translator);
-		delete translator;
-	}
-	translator = new QTranslator();
-	if (lang.compare("en") && !lang.startsWith("en_")) {
-		// Trying to load system Qt library translation...
-		if (qtTranslator->load("qt_" + lang,QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
-			qApp->installTranslator(qtTranslator);
-		else
-			// No luck. Let's try to load bundled one.
-			if (qtTranslator->load("qt_" + lang,PATH_I18N))
-				qApp->installTranslator(qtTranslator);
-			else {
-				// Qt library translation unavailable
-				delete qtTranslator;
-				qtTranslator = NULL;
-			}
-		// Now let's load application translation.
-		if (translator->load(lang,PATH_I18N))
-			qApp->installTranslator(translator);
-		else {
-			if (!ad)
-				QMessageBox(QMessageBox::Warning,trUtf8("Language Change"),trUtf8("Unable to load translation language."),QMessageBox::Ok,this).exec();
-			delete translator;
-			translator = NULL;
-			return false;
+	settings->setValue("NumCities",spinCities->value());
+#ifndef Q_OS_WINCE
+	// Saving windows state
+	if (settings->value("SavePos",false).toBool()) {
+		settings->beginGroup("MainWindow");
+		settings->setValue("Maximized",isMaximized());
+		if (!isMaximized()) {
+			settings->setValue("Size",size());
+			settings->setValue("Position",pos());
 		}
+		settings->endGroup();
 	}
-	return true;
+#endif // Q_OS_WINCE
+	QMainWindow::closeEvent(event);
 }
 
-void MainWindow::initDocStyleSheet()
-{
-QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
-QColor hilight;
-	if (color.value() < 192)
-		hilight.setHsv(color.hue(),color.saturation(),127 + qRound(color.value() / 2));
-	else
-		hilight.setHsv(color.hue(),color.saturation(),color.value() / 2);
-	solutionText->document()->setDefaultStyleSheet("* {color: " + color.name() +";} p {margin: 0px 10px;} table {margin: 5px;} td {padding: 1px 5px;} .hasalts {color: " + hilight.name() + ";} .selected {color: #A00000; font-weight: bold;} .alternate {color: #008000; font-weight: bold;}");
-	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
-}
-
-void MainWindow::setFileName(QString fileName)
-{
-	this->fileName = fileName;
-	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(trUtf8("Travelling Salesman Problem")));
-}
-
-void MainWindow::spinCitiesValueChanged(int n)
-{
-int count = tspmodel->numCities();
-	tspmodel->setNumCities(n);
-	if ((n > count) && settings->value("Autosize",true).toBool())
-		for (int k = count; k < n; k++) {
-			taskView->resizeColumnToContents(k);
-			taskView->resizeRowToContents(k);
-		}
-}
-
-bool MainWindow::maybeSave()
-{
-	if (!isWindowModified())
-		return true;
-int res = QMessageBox(QMessageBox::Warning,trUtf8("Unsaved Changes"),trUtf8("Would you like to save changes in current task?"),QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,this).exec();
-	if (res == QMessageBox::Save)
-		return saveTask();
-	else if (res == QMessageBox::Cancel)
-		return false;
-	else
-		return true;
-}
+/* Privates **********************************************************/
 
 void MainWindow::actionFileNewTriggered()
 {
@@ -330,52 +258,7 @@ QTextStream ts(&file);
 	QApplication::restoreOverrideCursor();
 }
 
-bool MainWindow::saveTask() {
-QFileDialog sd(this);
-	sd.setAcceptMode(QFileDialog::AcceptSave);
-QStringList filters(trUtf8("%1 Task File").arg("TSPSG") + " (*.tspt)");
-	filters.append(trUtf8("All Files") + " (*)");
-	sd.setNameFilters(filters);
-	sd.setDefaultSuffix("tspt");
-	if (fileName.endsWith(".tspt",Qt::CaseInsensitive))
-		sd.selectFile(fileName);
-	else
-		sd.selectFile(QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt");
-	if (sd.exec() != QDialog::Accepted)
-		return false;
-QStringList files = sd.selectedFiles();
-	if (files.empty())
-		return false;
-	if (tspmodel->saveTask(files.first())) {
-		setFileName(files.first());
-		setWindowModified(false);
-		return true;
-	}
-	return false;
-}
-
-void MainWindow::actionSettingsPreferencesTriggered()
-{
-SettingsDialog sd(this);
-	if (sd.exec() != QDialog::Accepted)
-		return;
-	if (sd.colorChanged() || sd.fontChanged()) {
-		initDocStyleSheet();
-		if (!output.isEmpty() && sd.colorChanged() && (QMessageBox(QMessageBox::Question,trUtf8("Settings Changed"),trUtf8("You have changed color settings.\nDo you wish to apply them to current solution text?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes)) {
-			QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-			solutionText->clear();
-			solutionText->setHtml(output.join(""));
-			QApplication::restoreOverrideCursor();
-		}
-	}
-}
-
 #ifndef QT_NO_PRINTER
-void MainWindow::printPreview(QPrinter *printer)
-{
-	solutionText->print(printer);
-}
-
 void MainWindow::actionFilePrintPreviewTriggered()
 {
 QPrintPreviewDialog ppd(printer, this);
@@ -399,11 +282,65 @@ QPrintDialog pd(printer,this);
 }
 #endif // QT_NO_PRINTER
 
-void MainWindow::buttonRandomClicked()
+void MainWindow::actionSettingsPreferencesTriggered()
 {
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	tspmodel->randomize();
-	QApplication::restoreOverrideCursor();
+SettingsDialog sd(this);
+	if (sd.exec() != QDialog::Accepted)
+		return;
+	if (sd.colorChanged() || sd.fontChanged()) {
+		initDocStyleSheet();
+		if (!output.isEmpty() && sd.colorChanged() && (QMessageBox(QMessageBox::Question,trUtf8("Settings Changed"),trUtf8("You have changed color settings.\nDo you wish to apply them to current solution text?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes)) {
+			QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+			solutionText->clear();
+			solutionText->setHtml(output.join(""));
+			QApplication::restoreOverrideCursor();
+		}
+	}
+}
+
+void MainWindow::actionSettingsLanguageAutodetectTriggered(bool checked)
+{
+	if (checked) {
+		settings->remove("Language");
+		QMessageBox(QMessageBox::Information,trUtf8("Language change"),trUtf8("Language will be autodetected on next application start."),QMessageBox::Ok,this).exec();
+	} else
+		settings->setValue("Language",groupSettingsLanguageList->checkedAction()->data().toString());
+}
+
+void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
+{
+	if (actionSettingsLanguageAutodetect->isChecked()) {
+		// We have language autodetection. It needs to be disabled to change language.
+		if (QMessageBox(QMessageBox::Question,trUtf8("Language change"),trUtf8("You have language autodetection turned on.\nIt needs to be off.\nDo you wish to turn it off?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes) {
+			actionSettingsLanguageAutodetect->trigger();
+		} else
+			return;
+	}
+bool untitled = (fileName == trUtf8("Untitled") + ".tspt");
+	if (loadLanguage(action->data().toString())) {
+		settings->setValue("Language",action->data().toString());
+		retranslateUi(this);
+		if (untitled)
+			setFileName();
+	}
+}
+
+void MainWindow::actionHelpAboutTriggered()
+{
+//! \todo TODO: Normal about window :-)
+QString about = QString::fromUtf8("TSPSG: TSP Solver and Generator\n");
+	about += QString::fromUtf8("    Version: "BUILD_VERSION"\n");
+	about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
+	about += QString::fromUtf8("Target OS: %1\n").arg(OS);
+	about += "Qt library:\n";
+	about += QString::fromUtf8("    Compile time: %1\n").arg(QT_VERSION_STR);
+	about += QString::fromUtf8("    Runtime: %1\n").arg(qVersion());
+	about += QString::fromUtf8("Built on %1 at %2\n").arg(__DATE__).arg(__TIME__);
+	about += QString::fromUtf8(VERSIONID"\n\n");
+	about += QString::fromUtf8("Algorithm: %1\n").arg(CTSPSolver::getVersionId());
+	about += "\n";
+	about += "TSPSG is licensed under the terms of the GNU General Public License. You should have received a copy of the GNU General Public License along with TSPSG.";
+	QMessageBox(QMessageBox::Information,"About",about,QMessageBox::Ok,this).exec();
 }
 
 void MainWindow::buttonBackToTaskClicked()
@@ -411,25 +348,11 @@ void MainWindow::buttonBackToTaskClicked()
 	tabWidget->setCurrentIndex(0);
 }
 
-void MainWindow::outputMatrix(tMatrix matrix, QStringList &output, int nRow, int nCol)
+void MainWindow::buttonRandomClicked()
 {
-int n = spinCities->value();
-QString line="";
-	output.append("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
-	for (int r = 0; r < n; r++) {
-		line = "<tr>";
-		for (int c = 0; c < n; c++) {
-			if (matrix[r][c] == INFINITY)
-				line += "<td align=\"center\">"INFSTR"</td>";
-			else if ((r == nRow) && (c == nCol))
-				line += "<td align=\"center\" class=\"selected\">" + QVariant(matrix[r][c]).toString() + "</td>";
-			else
-				line += "<td align=\"center\">" + QVariant(matrix[r][c]).toString() + "</td>";
-		}
-		line += "</tr>";
-		output.append(line);
-	}
-	output.append("</table>");
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	tspmodel->randomize();
+	QApplication::restoreOverrideCursor();
 }
 
 void MainWindow::buttonSolveClicked()
@@ -504,22 +427,70 @@ QTextCursor cursor(solutionText->textCursor());
 	QApplication::restoreOverrideCursor();
 }
 
-void MainWindow::actionHelpAboutTriggered()
+void MainWindow::dataChanged()
 {
-//! \todo TODO: Normal about window :-)
-QString about = QString::fromUtf8("TSPSG: TSP Solver and Generator\n");
-	about += QString::fromUtf8("    Version: "BUILD_VERSION"\n");
-	about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
-	about += QString::fromUtf8("Target OS: %1\n").arg(OS);
-	about += "Qt library:\n";
-	about += QString::fromUtf8("    Compile time: %1\n").arg(QT_VERSION_STR);
-	about += QString::fromUtf8("    Runtime: %1\n").arg(qVersion());
-	about += QString::fromUtf8("Built on %1 at %2\n").arg(__DATE__).arg(__TIME__);
-	about += QString::fromUtf8(VERSIONID"\n\n");
-	about += QString::fromUtf8("Algorithm: %1\n").arg(CTSPSolver::getVersionId());
-	about += "\n";
-	about += "TSPSG is licensed under the terms of the GNU General Public License. You should have received a copy of the GNU General Public License along with TSPSG.";
-	QMessageBox(QMessageBox::Information,"About",about,QMessageBox::Ok,this).exec();
+	setWindowModified(true);
+}
+
+void MainWindow::dataChanged(const QModelIndex &tl, const QModelIndex &br)
+{
+	setWindowModified(true);
+	if (settings->value("Autosize",true).toBool()) {
+		for (int k = tl.row(); k <= br.row(); k++)
+			taskView->resizeRowToContents(k);
+		for (int k = tl.column(); k <= br.column(); k++)
+			taskView->resizeColumnToContents(k);
+	}
+}
+
+void MainWindow::numCitiesChanged(int nCities)
+{
+	blockSignals(true);
+	spinCities->setValue(nCities);
+	blockSignals(false);
+}
+
+#ifndef QT_NO_PRINTER
+void MainWindow::printPreview(QPrinter *printer)
+{
+	solutionText->print(printer);
+}
+#endif // QT_NO_PRINTER
+
+void MainWindow::spinCitiesValueChanged(int n)
+{
+int count = tspmodel->numCities();
+	tspmodel->setNumCities(n);
+	if ((n > count) && settings->value("Autosize",true).toBool())
+		for (int k = count; k < n; k++) {
+			taskView->resizeColumnToContents(k);
+			taskView->resizeRowToContents(k);
+		}
+}
+
+void MainWindow::enableSolutionActions(bool enable)
+{
+	buttonSaveSolution->setEnabled(enable);
+	actionFileSaveAsSolution->setEnabled(enable);
+	solutionText->setEnabled(enable);
+	if (!enable)
+		output.clear();
+#ifndef QT_NO_PRINTER
+	actionFilePrint->setEnabled(enable);
+	actionFilePrintPreview->setEnabled(enable);
+#endif // QT_NO_PRINTER
+}
+
+void MainWindow::initDocStyleSheet()
+{
+QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
+QColor hilight;
+	if (color.value() < 192)
+		hilight.setHsv(color.hue(),color.saturation(),127 + qRound(color.value() / 2));
+	else
+		hilight.setHsv(color.hue(),color.saturation(),color.value() / 2);
+	solutionText->document()->setDefaultStyleSheet("* {color: " + color.name() +";} p {margin: 0px 10px;} table {margin: 5px;} td {padding: 1px 5px;} .hasalts {color: " + hilight.name() + ";} .selected {color: #A00000; font-weight: bold;} .alternate {color: #008000; font-weight: bold;}");
+	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
 }
 
 void MainWindow::loadLangList()
@@ -555,81 +526,114 @@ QAction *a;
 	}
 }
 
-void MainWindow::actionSettingsLanguageAutodetectTriggered(bool checked)
+bool MainWindow::loadLanguage(QString lang)
 {
-	if (checked) {
-		settings->remove("Language");
-		QMessageBox(QMessageBox::Information,trUtf8("Language change"),trUtf8("Language will be autodetected on next application start."),QMessageBox::Ok,this).exec();
-	} else
-		settings->setValue("Language",groupSettingsLanguageList->checkedAction()->data().toString());
-}
-
-void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
-{
-	if (actionSettingsLanguageAutodetect->isChecked()) {
-		// We have language autodetection. It needs to be disabled to change language.
-		if (QMessageBox(QMessageBox::Question,trUtf8("Language change"),trUtf8("You have language autodetection turned on.\nIt needs to be off.\nDo you wish to turn it off?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes) {
-			actionSettingsLanguageAutodetect->trigger();
-		} else
-			return;
+// i18n
+bool ad = false;
+	if (lang.isEmpty()) {
+		ad = settings->value("Language","").toString().isEmpty();
+		lang = settings->value("Language",QLocale::system().name()).toString();
 	}
-bool untitled = (fileName == trUtf8("Untitled") + ".tspt");
-	if (loadLanguage(action->data().toString())) {
-		settings->setValue("Language",action->data().toString());
-		retranslateUi(this);
-		if (untitled)
-			setFileName();
+static QTranslator *qtTranslator; // Qt library translator
+	if (qtTranslator) {
+		qApp->removeTranslator(qtTranslator);
+		delete qtTranslator;
+		qtTranslator = NULL;
 	}
-}
-
-/*!
- * \brief Handles Main Window close event.
- * \param event Close event.
- *
- *  Checks whether or not a current task was saved and asks for saving if not.
- *  Saves TSPSG settings.
- */
-void MainWindow::closeEvent(QCloseEvent *event)
-{
-	if (!maybeSave()) {
-		event->ignore();
-		return;
+	qtTranslator = new QTranslator();
+static QTranslator *translator; // Application translator
+	if (translator) {
+		qApp->removeTranslator(translator);
+		delete translator;
 	}
-	settings->setValue("NumCities",spinCities->value());
-#ifndef Q_OS_WINCE
-	// Saving windows state
-	if (settings->value("SavePos",false).toBool()) {
-		settings->beginGroup("MainWindow");
-		settings->setValue("Maximized",isMaximized());
-		if (!isMaximized()) {
-			settings->setValue("Size",size());
-			settings->setValue("Position",pos());
+	translator = new QTranslator();
+	if (lang.compare("en") && !lang.startsWith("en_")) {
+		// Trying to load system Qt library translation...
+		if (qtTranslator->load("qt_" + lang,QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+			qApp->installTranslator(qtTranslator);
+		else
+			// No luck. Let's try to load bundled one.
+			if (qtTranslator->load("qt_" + lang,PATH_I18N))
+				qApp->installTranslator(qtTranslator);
+			else {
+				// Qt library translation unavailable
+				delete qtTranslator;
+				qtTranslator = NULL;
+			}
+		// Now let's load application translation.
+		if (translator->load(lang,PATH_I18N))
+			qApp->installTranslator(translator);
+		else {
+			if (!ad)
+				QMessageBox(QMessageBox::Warning,trUtf8("Language Change"),trUtf8("Unable to load translation language."),QMessageBox::Ok,this).exec();
+			delete translator;
+			translator = NULL;
+			return false;
 		}
-		settings->endGroup();
 	}
-#endif // Q_OS_WINCE
-	QMainWindow::closeEvent(event);
+	return true;
 }
 
-void MainWindow::dataChanged()
+bool MainWindow::maybeSave()
 {
-	setWindowModified(true);
+	if (!isWindowModified())
+		return true;
+int res = QMessageBox(QMessageBox::Warning,trUtf8("Unsaved Changes"),trUtf8("Would you like to save changes in current task?"),QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,this).exec();
+	if (res == QMessageBox::Save)
+		return saveTask();
+	else if (res == QMessageBox::Cancel)
+		return false;
+	else
+		return true;
 }
 
-void MainWindow::dataChanged(const QModelIndex &tl, const QModelIndex &br)
+void MainWindow::outputMatrix(tMatrix matrix, QStringList &output, int nRow, int nCol)
 {
-	setWindowModified(true);
-	if (settings->value("Autosize",true).toBool()) {
-		for (int k = tl.row(); k <= br.row(); k++)
-			taskView->resizeRowToContents(k);
-		for (int k = tl.column(); k <= br.column(); k++)
-			taskView->resizeColumnToContents(k);
+int n = spinCities->value();
+QString line="";
+	output.append("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+	for (int r = 0; r < n; r++) {
+		line = "<tr>";
+		for (int c = 0; c < n; c++) {
+			if (matrix[r][c] == INFINITY)
+				line += "<td align=\"center\">"INFSTR"</td>";
+			else if ((r == nRow) && (c == nCol))
+				line += "<td align=\"center\" class=\"selected\">" + QVariant(matrix[r][c]).toString() + "</td>";
+			else
+				line += "<td align=\"center\">" + QVariant(matrix[r][c]).toString() + "</td>";
+		}
+		line += "</tr>";
+		output.append(line);
 	}
+	output.append("</table>");
 }
 
-void MainWindow::numCitiesChanged(int nCities)
+bool MainWindow::saveTask() {
+QFileDialog sd(this);
+	sd.setAcceptMode(QFileDialog::AcceptSave);
+QStringList filters(trUtf8("%1 Task File").arg("TSPSG") + " (*.tspt)");
+	filters.append(trUtf8("All Files") + " (*)");
+	sd.setNameFilters(filters);
+	sd.setDefaultSuffix("tspt");
+	if (fileName.endsWith(".tspt",Qt::CaseInsensitive))
+		sd.selectFile(fileName);
+	else
+		sd.selectFile(QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt");
+	if (sd.exec() != QDialog::Accepted)
+		return false;
+QStringList files = sd.selectedFiles();
+	if (files.empty())
+		return false;
+	if (tspmodel->saveTask(files.first())) {
+		setFileName(files.first());
+		setWindowModified(false);
+		return true;
+	}
+	return false;
+}
+
+void MainWindow::setFileName(QString fileName)
 {
-	blockSignals(true);
-	spinCities->setValue(nCities);
-	blockSignals(false);
+	this->fileName = fileName;
+	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(trUtf8("Travelling Salesman Problem")));
 }
