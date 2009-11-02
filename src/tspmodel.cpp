@@ -467,5 +467,5 @@ double val;
 
 inline int CTSPModel::rand(int min, int max) const
 {
-	return min + (int)(((float)qrand() / RAND_MAX) * max);
+	return min + (int)(((float)qrand() / RAND_MAX) * (max - min));
 }

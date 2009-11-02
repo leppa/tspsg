@@ -43,6 +43,10 @@ QApplication app(argc, argv);
 	app.setOrganizationDomain("l-homes.org");
 	app.setApplicationName("TSPSG");
 	app.setApplicationVersion(BUILD_VERSION);
+
+	// Seeding random number generator
+	qsrand(QDateTime::currentDateTime().toTime_t() ^ QCursor::pos().x() ^ QCursor::pos().y());
+
 MainWindow mainwindow;
 	mainwindow.show();
 	app.restoreOverrideCursor();
