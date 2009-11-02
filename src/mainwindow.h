@@ -46,7 +46,6 @@ class MainWindow: public QMainWindow, Ui::MainWindow
 
 public:
 	MainWindow(QWidget *parent = 0);
-	void closeEvent(QCloseEvent *);
 
 private slots:
 // Actions
@@ -86,6 +85,7 @@ private:
 	QSettings *settings;
 	CTSPModel *tspmodel;
 
+	void closeEvent(QCloseEvent *);
 	void enableSolutionActions(bool enable = true);
 	void initDocStyleSheet();
 	void loadLangList();

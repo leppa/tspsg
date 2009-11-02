@@ -82,8 +82,8 @@ int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::des
 	connect(buttonBackToTask,SIGNAL(clicked()),this,SLOT(buttonBackToTaskClicked()));
 	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(spinCitiesValueChanged(int)));
 	setCentralWidget(tabWidget);
-QRect rect = geometry();
 #ifndef Q_OS_WINCE
+QRect rect = geometry();
 	if (settings->value("SavePos",false).toBool()) {
 		// Loading of saved window state
 		settings->beginGroup("MainWindow");
@@ -112,35 +112,6 @@ QRect rect = geometry();
 		spinCitiesValueChanged(spinCities->value());
 	}
 	setWindowModified(false);
-}
-
-/*!
- * \brief Handles Main Window close event.
- * \param event Close event.
- *
- *  Checks whether or not a current task was saved and asks for saving if not.
- *  Saves TSPSG settings.
- */
-void MainWindow::closeEvent(QCloseEvent *event)
-{
-	if (!maybeSave()) {
-		event->ignore();
-		return;
-	}
-	settings->setValue("NumCities",spinCities->value());
-#ifndef Q_OS_WINCE
-	// Saving windows state
-	if (settings->value("SavePos",false).toBool()) {
-		settings->beginGroup("MainWindow");
-		settings->setValue("Maximized",isMaximized());
-		if (!isMaximized()) {
-			settings->setValue("Size",size());
-			settings->setValue("Position",pos());
-		}
-		settings->endGroup();
-	}
-#endif // Q_OS_WINCE
-	QMainWindow::closeEvent(event);
 }
 
 /* Privates **********************************************************/
@@ -466,6 +437,28 @@ int count = tspmodel->numCities();
 			taskView->resizeColumnToContents(k);
 			taskView->resizeRowToContents(k);
 		}
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+	if (!maybeSave()) {
+		event->ignore();
+		return;
+	}
+	settings->setValue("NumCities",spinCities->value());
+#ifndef Q_OS_WINCE
+	// Saving windows state
+	if (settings->value("SavePos",false).toBool()) {
+		settings->beginGroup("MainWindow");
+		settings->setValue("Maximized",isMaximized());
+		if (!isMaximized()) {
+			settings->setValue("Size",size());
+			settings->setValue("Position",pos());
+		}
+		settings->endGroup();
+	}
+#endif // Q_OS_WINCE
+	QMainWindow::closeEvent(event);
 }
 
 void MainWindow::enableSolutionActions(bool enable)
