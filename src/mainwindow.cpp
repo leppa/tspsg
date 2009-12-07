@@ -82,24 +82,26 @@ int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::des
 	connect(buttonBackToTask,SIGNAL(clicked()),this,SLOT(buttonBackToTaskClicked()));
 	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(spinCitiesValueChanged(int)));
 	setCentralWidget(tabWidget);
-#ifndef Q_OS_WINCE
-QRect rect = geometry();
-	if (settings->value("SavePos",false).toBool()) {
+
+	if (settings->value("SavePos", false).toBool()) {
 		// Loading of saved window state
 		settings->beginGroup("MainWindow");
-		resize(settings->value("Size",size()).toSize());
-		move(settings->value("Position",pos()).toPoint());
-		if (settings->value("Maximized",false).toBool())
-			setWindowState(windowState() | Qt::WindowMaximized);
+#ifndef Q_OS_WINCE
+		restoreGeometry(settings->value("Geometry").toByteArray());
+#endif // Q_OS_WINCE
+		restoreState(settings->value("State").toByteArray());
 		settings->endGroup();
+#ifndef Q_OS_WINCE
 	} else {
 		// Centering main window
+QRect rect = geometry();
 		rect.moveCenter(QApplication::desktop()->availableGeometry(this).center());
 		setGeometry(rect);
-	}
 #endif // Q_OS_WINCE
+	}
+
 	qsrand(QDateTime().currentDateTime().toTime_t());
-	tspmodel = new CTSPModel();
+	tspmodel = new CTSPModel(this);
 	taskView->setModel(tspmodel);
 	connect(tspmodel,SIGNAL(numCitiesChanged(int)),this,SLOT(numCitiesChanged(int)));
 	connect(tspmodel,SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),this,SLOT(dataChanged(const QModelIndex &, const QModelIndex &)));
@@ -439,26 +441,25 @@ int count = tspmodel->numCities();
 		}
 }
 
-void MainWindow::closeEvent(QCloseEvent *event)
+void MainWindow::closeEvent(QCloseEvent *ev)
 {
 	if (!maybeSave()) {
-		event->ignore();
+		ev->ignore();
 		return;
 	}
-	settings->setValue("NumCities",spinCities->value());
-#ifndef Q_OS_WINCE
-	// Saving windows state
-	if (settings->value("SavePos",false).toBool()) {
+	settings->setValue("NumCities", spinCities->value());
+
+	// Saving Main Window state
+	if (settings->value("SavePos", false).toBool()) {
 		settings->beginGroup("MainWindow");
-		settings->setValue("Maximized",isMaximized());
-		if (!isMaximized()) {
-			settings->setValue("Size",size());
-			settings->setValue("Position",pos());
-		}
+#ifndef Q_OS_WINCE
+		settings->setValue("Geometry", saveGeometry());
+#endif // Q_OS_WINCE
+		settings->setValue("State", saveState());
 		settings->endGroup();
 	}
-#endif // Q_OS_WINCE
-	QMainWindow::closeEvent(event);
+
+	QMainWindow::closeEvent(ev);
 }
 
 void MainWindow::enableSolutionActions(bool enable)
@@ -519,13 +520,14 @@ QAction *a;
 	}
 }
 
-bool MainWindow::loadLanguage(QString lang)
+bool MainWindow::loadLanguage(const QString &lang)
 {
 // i18n
 bool ad = false;
-	if (lang.isEmpty()) {
+QString lng = lang;
+	if (lng.isEmpty()) {
 		ad = settings->value("Language","").toString().isEmpty();
-		lang = settings->value("Language",QLocale::system().name()).toString();
+		lng = settings->value("Language",QLocale::system().name()).toString();
 	}
 static QTranslator *qtTranslator; // Qt library translator
 	if (qtTranslator) {
@@ -540,13 +542,13 @@ static QTranslator *translator; // Application translator
 		delete translator;
 	}
 	translator = new QTranslator();
-	if (lang.compare("en") && !lang.startsWith("en_")) {
+	if (lng.compare("en") && !lng.startsWith("en_")) {
 		// Trying to load system Qt library translation...
-		if (qtTranslator->load("qt_" + lang,QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+		if (qtTranslator->load("qt_" + lng,QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
 			qApp->installTranslator(qtTranslator);
 		else
 			// No luck. Let's try to load bundled one.
-			if (qtTranslator->load("qt_" + lang,PATH_I18N))
+			if (qtTranslator->load("qt_" + lng,PATH_I18N))
 				qApp->installTranslator(qtTranslator);
 			else {
 				// Qt library translation unavailable
@@ -554,7 +556,7 @@ static QTranslator *translator; // Application translator
 				qtTranslator = NULL;
 			}
 		// Now let's load application translation.
-		if (translator->load(lang,PATH_I18N))
+		if (translator->load(lng,PATH_I18N))
 			qApp->installTranslator(translator);
 		else {
 			if (!ad)
@@ -580,7 +582,7 @@ int res = QMessageBox(QMessageBox::Warning,trUtf8("Unsaved Changes"),trUtf8("Wou
 		return true;
 }
 
-void MainWindow::outputMatrix(tMatrix matrix, QStringList &output, int nRow, int nCol)
+void MainWindow::outputMatrix(const tMatrix &matrix, QStringList &output, int nRow, int nCol)
 {
 int n = spinCities->value();
 QString line="";
@@ -588,12 +590,12 @@ QString line="";
 	for (int r = 0; r < n; r++) {
 		line = "<tr>";
 		for (int c = 0; c < n; c++) {
-			if (matrix[r][c] == INFINITY)
+			if (matrix.at(r).at(c) == INFINITY)
 				line += "<td align=\"center\">"INFSTR"</td>";
 			else if ((r == nRow) && (c == nCol))
-				line += "<td align=\"center\" class=\"selected\">" + QVariant(matrix[r][c]).toString() + "</td>";
+				line += "<td align=\"center\" class=\"selected\">" + QVariant(matrix.at(r).at(c)).toString() + "</td>";
 			else
-				line += "<td align=\"center\">" + QVariant(matrix[r][c]).toString() + "</td>";
+				line += "<td align=\"center\">" + QVariant(matrix.at(r).at(c)).toString() + "</td>";
 		}
 		line += "</tr>";
 		output.append(line);
@@ -625,7 +627,7 @@ QStringList files = sd.selectedFiles();
 	return false;
 }
 
-void MainWindow::setFileName(QString fileName)
+void MainWindow::setFileName(const QString &fileName)
 {
 	this->fileName = fileName;
 	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(trUtf8("Travelling Salesman Problem")));

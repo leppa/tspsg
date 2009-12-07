@@ -56,19 +56,21 @@
 #define BUILD_VERSION_MAJOR 0
 //! Minor version of current TSPSG build
 #define BUILD_VERSION_MINOR 1
-//! TSPSG release number
+/*!
+ * \brief TSPSG release number
+ *
+ *  Release number meanings:
+ *    - 1  --  3: <b>alpha</b> 1 to 3
+ *    - 4  --  7: <b>beta</b> 1 to 4
+ *    - 8  -- 10: <b>rc</b> 1 to 3
+ *    - 11 --  x: <b>release</b> 1 to x-10
+ */
 #define BUILD_RELEASE 2
 
 /*!
  * \brief Current TSPSG build number
  *
- * This will only change on releases and will be the same as revision number.
- *
- * Build number meanings:
- *   - 1  --  3: <b>alpha</b> 1 to 3
- *   - 4  --  7: <b>beta</b> 1 to 4
- *   - 8  -- 10: <b>rc</b> 1 to 3
- *   - 11 --  x: <b>release</b> 1 to x-10
+ *  This will only change on releases and will be the same as revision number.
  */
 #define BUILD_NUMBER 65535
 
@@ -76,16 +78,20 @@
  * \def BUILD_STATUS
  * \brief TSPSG build status
  *
- * Determined based on BUILD_NUMBER.
+ * Determined based on BUILD_NUMBER and BUILD_RELEASE.
  */
 #if BUILD_NUMBER == 65535
 	#define BUILD_STATUS (dev build)
-#elif BUILD_RELEASE < 4
-	#define BUILD_STATUS (alpha)
-#elif BUILD_RELEASE < 8
-	#define BUILD_STATUS (beta)
-#elif BUILD_RELEASE < 11
-	#define BUILD_STATUS (rc)
+#else
+	#if BUILD_RELEASE < 4
+		#define BUILD_STATUS (alpha)
+	#elif BUILD_RELEASE < 8
+		#define BUILD_STATUS (beta)
+	#elif BUILD_RELEASE < 11
+		#define BUILD_STATUS (rc)
+	#else
+		#define BUILD_STATUS
+	#endif
 #endif // BUILD_NUMBER == 65535
 
 //! \internal \brief A helper for QUOTE(x).

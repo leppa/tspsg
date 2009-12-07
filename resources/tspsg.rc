@@ -8,6 +8,7 @@
  *  This file is part of TSPSG.
  */
 
+#include <winver.h>
 #include "..\\src\\resource.h"
 #pragma code_page(65001)
 
@@ -21,18 +22,23 @@ VS_VERSION_INFO VERSIONINFO
 	FILEVERSION BUILD_VERSION_MAJOR,BUILD_VERSION_MINOR,BUILD_RELEASE,BUILD_NUMBER
 	PRODUCTVERSION BUILD_VERSION_MAJOR,BUILD_VERSION_MINOR,BUILD_RELEASE,BUILD_NUMBER
 	FILEFLAGSMASK 0x17L
-#ifdef _DEBUG
-	FILEFLAGS 0x1L
+#if defined(_DEBUG) || defined(DEBUG)
+	FILEFLAGS VS_FF_DEBUG | VS_FF_PRERELEASE | VS_FF_PRIVATEBUILD
 #else
-	FILEFLAGS 0x0L
+	#if BUILD_NUMBER == 65535
+		FILEFLAGS VS_FF_PRERELEASE | VS_FF_SPECIALBUILD
+	#elif BUILD_RELEASE < 11
+			FILEFLAGS VS_FF_PRERELEASE
+	#else
+			FILEFLAGS 0x0L
+	#endif
 #endif
 #ifdef Q_OS_WINCE
-	FILEOS 0x50000L
+	FILEOS VOS_WINCE
 #else
-	FILEOS 0x4L
+	FILEOS VOS__WINDOWS32
 #endif
-	FILETYPE 0x1L
-	FILESUBTYPE 0x0L
+	FILETYPE VFT_APP
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
@@ -47,6 +53,11 @@ BEGIN
             VALUE "OriginalFilename", "tspsg.exe"
             VALUE "ProductName", "TSPSG"
             VALUE "ProductVersion", BUILD_VERSION
+#if defined(_DEBUG) || defined(DEBUG)
+            VALUE "PrivateBuild", "Debug development build"
+#elif BUILD_NUMBER == 65535
+            VALUE "SpecialBuild", "Internal development build"
+#endif
         END
     END
     BLOCK "VarFileInfo"

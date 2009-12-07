@@ -41,17 +41,17 @@ class CTSPModel: public QAbstractTableModel
 public:
 	CTSPModel(QObject *parent = 0);
 	void clear();
-	int columnCount(const QModelIndex &) const;
-	QVariant data(const QModelIndex &, int) const;
-	Qt::ItemFlags flags(const QModelIndex &) const;
-	QVariant headerData(int, Qt::Orientation, int) const;
-	bool loadTask(QString);
+	int columnCount(const QModelIndex &parent = QModelIndex()) const;
+	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+	Qt::ItemFlags flags(const QModelIndex &index) const;
+	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+	bool loadTask(const QString &fname);
 	quint16 numCities() const;
 	void randomize();
-	int rowCount(const QModelIndex &) const;
-	bool saveTask(QString);
-	bool setData(const QModelIndex &, const QVariant &, int);
-	void setNumCities(int);
+	int rowCount(const QModelIndex &parent = QModelIndex()) const;
+	bool saveTask(const QString &fname);
+	bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+	void setNumCities(int n);
 
 signals:
 	/*!

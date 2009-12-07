@@ -59,8 +59,8 @@ private slots:
 	void actionFilePrintTriggered();
 #endif // QT_NO_PRINTER
 	void actionSettingsPreferencesTriggered();
-	void actionSettingsLanguageAutodetectTriggered(bool);
-	void groupSettingsLanguageListTriggered(QAction *);
+	void actionSettingsLanguageAutodetectTriggered(bool checked);
+	void groupSettingsLanguageListTriggered(QAction *action);
 	void actionHelpAboutTriggered();
 // Buttons
 	void buttonBackToTaskClicked();
@@ -68,12 +68,12 @@ private slots:
 	void buttonSolveClicked();
 
 	void dataChanged();
-	void dataChanged(const QModelIndex &, const QModelIndex &);
-	void numCitiesChanged(int);
+	void dataChanged(const QModelIndex &tl, const QModelIndex &br);
+	void numCitiesChanged(int nCities);
 #ifndef QT_NO_PRINTER
 	void printPreview(QPrinter *printer);
 #endif // QT_NO_PRINTER
-	void spinCitiesValueChanged(int);
+	void spinCitiesValueChanged(int nCities);
 
 private:
 	QString fileName;
@@ -85,15 +85,15 @@ private:
 	QSettings *settings;
 	CTSPModel *tspmodel;
 
-	void closeEvent(QCloseEvent *);
+	void closeEvent(QCloseEvent *ev);
 	void enableSolutionActions(bool enable = true);
 	void initDocStyleSheet();
 	void loadLangList();
-	bool loadLanguage(QString lang = "");
+	bool loadLanguage(const QString &lang = QString());
 	bool maybeSave();
-	void outputMatrix(tMatrix, QStringList &, int nRow = -1, int nCol = -1);
+	void outputMatrix(const tMatrix &matrix, QStringList &output, int nRow = -1, int nCol = -1);
 	bool saveTask();
-	void setFileName(QString fileName = trUtf8("Untitled") + ".tspt");
+	void setFileName(const QString &fileName = trUtf8("Untitled") + ".tspt");
 };
 
 #endif // MAINWINDOW_H

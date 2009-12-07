@@ -10,10 +10,21 @@
 #
 ######################################################################
 
+QT += svg
+
 TEMPLATE = app
 TARGET = tspsg
 DEPENDPATH += .
 INCLUDEPATH += .
+
+# A hack to determine whether we have static or dynamic Qt build
+PRL = $$[QT_INSTALL_LIBS] QtCore.prl
+include($$join(PRL, "/"))
+contains(QMAKE_PRL_CONFIG, static) {
+# We "embed" SVG and JPEG support on static build
+	QTPLUGIN += qjpeg qsvg
+	DEFINES += STATIC_BUILD
+}
 
 CONFIG(release, debug|release) {
 	OBJECTS_DIR = release

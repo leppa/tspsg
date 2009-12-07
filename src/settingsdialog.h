@@ -56,14 +56,14 @@ private:
 	QLabel *labelHint;
 	QFrame *lineVertical;
 
-	bool event(QEvent *);
+	bool event(QEvent *ev);
 #endif // Q_OS_WINCE
 
 private slots:
 	void accept();
 	void buttonColorClicked();
 	void buttonFontClicked();
-	void spinRandMinValueChanged(int);
+	void spinRandMinValueChanged(int val);
 };
 
 #endif // SETTINGSDIALOG_H

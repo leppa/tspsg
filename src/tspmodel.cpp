@@ -132,7 +132,7 @@ QVariant CTSPModel::headerData(int section, Qt::Orientation orientation, int rol
  *
  * \sa saveTask()
  */
-bool CTSPModel::loadTask(QString fname)
+bool CTSPModel::loadTask(const QString &fname)
 {
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 QFile f(fname);
@@ -219,7 +219,7 @@ int CTSPModel::rowCount(const QModelIndex &) const
  *
  * \sa loadTask()
  */
-bool CTSPModel::saveTask(QString fname)
+bool CTSPModel::saveTask(const QString &fname)
 {
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 QFile f(fname);

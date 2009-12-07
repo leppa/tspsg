@@ -208,7 +208,7 @@ void CTSPSolver::cleanup()
 	mayNotBeOptimal = false;
 }
 
-bool CTSPSolver::findCandidate(tMatrix matrix, int &nRow, int &nCol)
+bool CTSPSolver::findCandidate(const tMatrix &matrix, int &nRow, int &nCol) const
 {
 	nRow = -1;
 	nCol = -1;
@@ -231,7 +231,7 @@ double sum;
 	return alts;
 }
 
-double CTSPSolver::findMinInCol(int nCol, tMatrix matrix, int exr)
+double CTSPSolver::findMinInCol(int nCol, const tMatrix &matrix, int exr) const
 {
 double min = INFINITY;
 	for (int k = 0; k < nCities; k++)
@@ -240,7 +240,7 @@ double min = INFINITY;
 	return min == INFINITY ? 0 : min;
 }
 
-double CTSPSolver::findMinInRow(int nRow, tMatrix matrix, int exc)
+double CTSPSolver::findMinInRow(int nRow, const tMatrix &matrix, int exc) const
 {
 double min = INFINITY;
 	for (int k = 0; k < nCities; k++)
@@ -249,7 +249,7 @@ double min = INFINITY;
 	return min == INFINITY ? 0 : min;
 }
 
-bool CTSPSolver::hasSubCycles(int nRow, int nCol)
+bool CTSPSolver::hasSubCycles(int nRow, int nCol) const
 {
 	if ((nRow < 0) || (nCol < 0) || route.isEmpty() || !(route.size() < nCities - 1) || !route.contains(nCol))
 		return false;

@@ -32,6 +32,11 @@
 	#endif
 #endif
 
+#ifdef STATIC_BUILD
+	Q_IMPORT_PLUGIN(qjpeg)
+	Q_IMPORT_PLUGIN(qsvg)
+#endif
+
 int main(int argc, char *argv[])
 {
 QApplication app(argc, argv);

@@ -75,7 +75,7 @@ public:
 	QString getSortedPath() const;
 	static QString getVersionId();
 	bool isOptimal() const;
-	sStep *solve(int, tMatrix, QWidget *parent = 0);
+	sStep *solve(int numCities, tMatrix task, QWidget *parent = 0);
 
 private:
 	bool mayNotBeOptimal;
@@ -84,14 +84,14 @@ private:
 	QHash<int,int> route;
 //	QHash<int,int> forbidden;
 
-	double align(tMatrix &);
+	double align(tMatrix &matrix);
 	void cleanup();
-	bool findCandidate(tMatrix, int &, int &);
-	double findMinInCol(int, tMatrix, int exr = -1);
-	double findMinInRow(int, tMatrix, int exc = -1);
-	bool hasSubCycles(int, int);
-	void subCol(tMatrix &, int, double);
-	void subRow(tMatrix &, int, double);
+	bool findCandidate(const tMatrix &matrix, int &nRow, int &nCol) const;
+	double findMinInCol(int nCol, const tMatrix &matrix, int exr = -1) const;
+	double findMinInRow(int nRow, const tMatrix &matrix, int exc = -1) const;
+	bool hasSubCycles(int nRow, int nCol) const;
+	void subCol(tMatrix &matrix, int nCol, double val);
+	void subRow(tMatrix &matrix, int nRow, double val);
 };
 
 #endif // TSPSOLVER_H
