@@ -87,33 +87,38 @@ window.onload = initDynSections;
 <a name="l00050"></a>00050 <span class="preprocessor">#ifndef VERSION_H</span>
 <a name="l00051"></a>00051 <span class="preprocessor"></span><span class="preprocessor">#define VERSION_H</span>
 <a name="l00052"></a>00052 <span class="preprocessor"></span>
-<a name="l00054"></a><a class="code" href="version_8h.html#a03c31210f51d4fa7d1a510566613e7d5">00054</a> <span class="preprocessor">#define VERSIONID &quot;$Id: version.h 66 2009-10-21 12:48:49Z laleppa $&quot;</span>
+<a name="l00054"></a><a class="code" href="version_8h.html#a03c31210f51d4fa7d1a510566613e7d5">00054</a> <span class="preprocessor">#define VERSIONID &quot;$Id: version.h 71 2009-12-07 16:06:44Z laleppa $&quot;</span>
 <a name="l00056"></a><a class="code" href="version_8h.html#a5cf508f5e45c0cfbf12ee768b9c7a0a2">00056</a> <span class="preprocessor">#define BUILD_VERSION_MAJOR 0</span>
 <a name="l00058"></a><a class="code" href="version_8h.html#ac631d87f240fc2c15f11be2bbbb23ff3">00058</a> <span class="preprocessor">#define BUILD_VERSION_MINOR 1</span>
-<a name="l00060"></a><a class="code" href="version_8h.html#a962258f08e30f89054491f457d225aaf">00060</a> <span class="preprocessor">#define BUILD_RELEASE 2</span>
-<a name="l00061"></a>00061 <span class="preprocessor"></span>
-<a name="l00073"></a><a class="code" href="version_8h.html#ae7f90861d8c4d5b1cbdcf71d325feea2">00073</a> <span class="preprocessor">#define BUILD_NUMBER 65535</span>
-<a name="l00074"></a>00074 <span class="preprocessor"></span>
-<a name="l00081"></a>00081 <span class="preprocessor">#if BUILD_NUMBER == 65535</span>
-<a name="l00082"></a><a class="code" href="version_8h.html#a7a713d0890ab037efe896938904fb407">00082</a> <span class="preprocessor"></span><span class="preprocessor">    #define BUILD_STATUS (dev build)</span>
-<a name="l00083"></a>00083 <span class="preprocessor"></span><span class="preprocessor">#elif BUILD_RELEASE &lt; 4</span>
-<a name="l00084"></a>00084 <span class="preprocessor"></span><span class="preprocessor">    #define BUILD_STATUS (alpha)</span>
-<a name="l00085"></a>00085 <span class="preprocessor"></span><span class="preprocessor">#elif BUILD_RELEASE &lt; 8</span>
-<a name="l00086"></a>00086 <span class="preprocessor"></span><span class="preprocessor">    #define BUILD_STATUS (beta)</span>
-<a name="l00087"></a>00087 <span class="preprocessor"></span><span class="preprocessor">#elif BUILD_RELEASE &lt; 11</span>
-<a name="l00088"></a>00088 <span class="preprocessor"></span><span class="preprocessor">    #define BUILD_STATUS (rc)</span>
-<a name="l00089"></a>00089 <span class="preprocessor"></span><span class="preprocessor">#endif // BUILD_NUMBER == 65535</span>
-<a name="l00090"></a>00090 <span class="preprocessor"></span>
-<a name="l00092"></a><a class="code" href="version_8h.html#a7853af8e699fd3e5e8690e4760eb61cb">00092</a> <span class="preprocessor">#define QUOTE_X(x) #x</span>
-<a name="l00094"></a><a class="code" href="version_8h.html#a2117b58e19182dff91ad3558e650541d">00094</a> <span class="preprocessor">#define QUOTE(x) QUOTE_X(x)</span>
-<a name="l00095"></a>00095 <span class="preprocessor"></span>
-<a name="l00100"></a>00100 <span class="preprocessor">#ifndef BUILD_STATUS</span>
-<a name="l00101"></a>00101 <span class="preprocessor"></span><span class="preprocessor">    #define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE)</span>
-<a name="l00102"></a>00102 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00103"></a><a class="code" href="version_8h.html#ad7a967dd260384e94010b31b1412a0b4">00103</a> <span class="preprocessor"></span><span class="preprocessor">    #define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE BUILD_STATUS)</span>
-<a name="l00104"></a>00104 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00105"></a>00105 <span class="preprocessor"></span>
-<a name="l00106"></a>00106 <span class="preprocessor">#endif // VERSION_H</span>
+<a name="l00059"></a>00059 <span class="preprocessor"></span>
+<a name="l00068"></a><a class="code" href="version_8h.html#a962258f08e30f89054491f457d225aaf">00068</a> <span class="preprocessor">#define BUILD_RELEASE 2</span>
+<a name="l00069"></a>00069 <span class="preprocessor"></span>
+<a name="l00075"></a><a class="code" href="version_8h.html#ae7f90861d8c4d5b1cbdcf71d325feea2">00075</a> <span class="preprocessor">#define BUILD_NUMBER 65535</span>
+<a name="l00076"></a>00076 <span class="preprocessor"></span>
+<a name="l00083"></a>00083 <span class="preprocessor">#if BUILD_NUMBER == 65535</span>
+<a name="l00084"></a><a class="code" href="version_8h.html#a7a713d0890ab037efe896938904fb407">00084</a> <span class="preprocessor"></span><span class="preprocessor">    #define BUILD_STATUS (dev build)</span>
+<a name="l00085"></a>00085 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00086"></a>00086 <span class="preprocessor"></span><span class="preprocessor">    #if BUILD_RELEASE &lt; 4</span>
+<a name="l00087"></a>00087 <span class="preprocessor"></span><span class="preprocessor">        #define BUILD_STATUS (alpha)</span>
+<a name="l00088"></a>00088 <span class="preprocessor"></span><span class="preprocessor">    #elif BUILD_RELEASE &lt; 8</span>
+<a name="l00089"></a>00089 <span class="preprocessor"></span><span class="preprocessor">        #define BUILD_STATUS (beta)</span>
+<a name="l00090"></a>00090 <span class="preprocessor"></span><span class="preprocessor">    #elif BUILD_RELEASE &lt; 11</span>
+<a name="l00091"></a>00091 <span class="preprocessor"></span><span class="preprocessor">        #define BUILD_STATUS (rc)</span>
+<a name="l00092"></a>00092 <span class="preprocessor"></span><span class="preprocessor">    #else</span>
+<a name="l00093"></a>00093 <span class="preprocessor"></span><span class="preprocessor">        #define BUILD_STATUS</span>
+<a name="l00094"></a>00094 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
+<a name="l00095"></a>00095 <span class="preprocessor"></span><span class="preprocessor">#endif // BUILD_NUMBER == 65535</span>
+<a name="l00096"></a>00096 <span class="preprocessor"></span>
+<a name="l00098"></a><a class="code" href="version_8h.html#a7853af8e699fd3e5e8690e4760eb61cb">00098</a> <span class="preprocessor">#define QUOTE_X(x) #x</span>
+<a name="l00100"></a><a class="code" href="version_8h.html#a2117b58e19182dff91ad3558e650541d">00100</a> <span class="preprocessor">#define QUOTE(x) QUOTE_X(x)</span>
+<a name="l00101"></a>00101 <span class="preprocessor"></span>
+<a name="l00106"></a>00106 <span class="preprocessor">#ifndef BUILD_STATUS</span>
+<a name="l00107"></a>00107 <span class="preprocessor"></span><span class="preprocessor">    #define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE)</span>
+<a name="l00108"></a>00108 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00109"></a><a class="code" href="version_8h.html#ad7a967dd260384e94010b31b1412a0b4">00109</a> <span class="preprocessor"></span><span class="preprocessor">    #define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE BUILD_STATUS)</span>
+<a name="l00110"></a>00110 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00111"></a>00111 <span class="preprocessor"></span>
+<a name="l00112"></a>00112 <span class="preprocessor">#endif // VERSION_H</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -129,7 +134,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Oct 24 16:33:19 2009 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 18:11:34 2009 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

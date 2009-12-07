@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_main_window.html#ab8362fdebeecbfa92d41ad77377dbbd3" title="MainWindow::actionFileNewTriggered" alt="" coords="384,5,621,33"/>
-<area shape="rect" id="node7" href="$class_c_t_s_p_model.html#a96a294df9e0b3509152078ed2d1e5736" title="CTSPModel::loadTSPT" alt="" coords="181,55,336,83"/>
-<area shape="rect" id="node15" href="$class_c_t_s_p_model.html#ab780cfdb9e4671c31defddb0a142db20" title="CTSPModel::loadZKT" alt="" coords="187,106,331,134"/>
-<area shape="rect" id="node5" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="Class constructor." alt="" coords="964,55,1140,83"/>
-<area shape="rect" id="node9" href="$class_c_t_s_p_model.html#ab2827e0bdb3246ade67df5a09805524a" title="CTSPModel::loadTask" alt="" coords="428,81,577,109"/>
-<area shape="rect" id="node11" href="$class_main_window.html#adf72d971ae33ada0d093c6921ee3f5e9" title="MainWindow::actionFileOpenTriggered" alt="" coords="671,106,913,134"/>
-</map>

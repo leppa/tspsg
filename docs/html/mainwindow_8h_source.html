@@ -95,60 +95,60 @@ window.onload = initDynSections;
 <a name="l00036"></a>00036 <span class="preprocessor">#include &quot;<a class="code" href="tspsolver_8h.html" title="Defines tMatrix typedef, sStep struct and CTSPSolver class.">tspsolver.h</a>&quot;</span>
 <a name="l00037"></a>00037 <span class="preprocessor">#include &quot;<a class="code" href="tspmodel_8h.html" title="Defines CTSPModel class.">tspmodel.h</a>&quot;</span>
 <a name="l00038"></a>00038 
-<a name="l00043"></a><a class="code" href="class_main_window.html">00043</a> <span class="keyword">class </span><a class="code" href="class_main_window.html" title="Class for handling Main Window UI and logic.">MainWindow</a>: <span class="keyword">public</span> QMainWindow, Ui::<a class="code" href="class_main_window.html" title="Class for handling Main Window UI and logic.">MainWindow</a>
+<a name="l00043"></a><a class="code" href="class_main_window.html">00043</a> <span class="keyword">class </span><a class="code" href="class_main_window.html" title="Class for handling Main Window UI and logic.">MainWindow</a>: <span class="keyword">public</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmainwindow.html">QMainWindow</a>, Ui::<a class="code" href="class_main_window.html" title="Class for handling Main Window UI and logic.">MainWindow</a>
 <a name="l00044"></a>00044 {
 <a name="l00045"></a>00045     Q_OBJECT
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="keyword">public</span>:
-<a name="l00048"></a>00048     <a class="code" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="Class constructor.">MainWindow</a>(QWidget *parent = 0);
-<a name="l00049"></a>00049     <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#a38edb88d43e844aca9d2e762c8706565" title="Handles Main Window close event.">closeEvent</a>(QCloseEvent *);
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="keyword">private</span> slots:
-<a name="l00052"></a>00052 <span class="comment">// Actions</span>
-<a name="l00053"></a>00053     <span class="keywordtype">void</span> actionFileNewTriggered();
-<a name="l00054"></a>00054     <span class="keywordtype">void</span> actionFileOpenTriggered();
-<a name="l00055"></a>00055     <span class="keywordtype">void</span> actionFileSaveTriggered();
-<a name="l00056"></a>00056     <span class="keywordtype">void</span> actionFileSaveAsTaskTriggered();
-<a name="l00057"></a>00057     <span class="keywordtype">void</span> actionFileSaveAsSolutionTriggered();
-<a name="l00058"></a>00058 <span class="preprocessor">#ifndef QT_NO_PRINTER</span>
-<a name="l00059"></a>00059 <span class="preprocessor"></span>    <span class="keywordtype">void</span> actionFilePrintPreviewTriggered();
-<a name="l00060"></a>00060     <span class="keywordtype">void</span> actionFilePrintTriggered();
-<a name="l00061"></a>00061 <span class="preprocessor">#endif // QT_NO_PRINTER</span>
-<a name="l00062"></a>00062 <span class="preprocessor"></span>    <span class="keywordtype">void</span> actionSettingsPreferencesTriggered();
-<a name="l00063"></a>00063     <span class="keywordtype">void</span> actionSettingsLanguageAutodetectTriggered(<span class="keywordtype">bool</span>);
-<a name="l00064"></a>00064     <span class="keywordtype">void</span> groupSettingsLanguageListTriggered(QAction *);
-<a name="l00065"></a>00065     <span class="keywordtype">void</span> actionHelpAboutTriggered();
-<a name="l00066"></a>00066 <span class="comment">// Buttons</span>
-<a name="l00067"></a>00067     <span class="keywordtype">void</span> buttonBackToTaskClicked();
-<a name="l00068"></a>00068     <span class="keywordtype">void</span> buttonRandomClicked();
-<a name="l00069"></a>00069     <span class="keywordtype">void</span> buttonSolveClicked();
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071     <span class="keywordtype">void</span> dataChanged();
-<a name="l00072"></a>00072     <span class="keywordtype">void</span> dataChanged(<span class="keyword">const</span> QModelIndex &amp;, <span class="keyword">const</span> QModelIndex &amp;);
-<a name="l00073"></a>00073     <span class="keywordtype">void</span> numCitiesChanged(<span class="keywordtype">int</span>);
-<a name="l00074"></a>00074 <span class="preprocessor">#ifndef QT_NO_PRINTER</span>
-<a name="l00075"></a>00075 <span class="preprocessor"></span>    <span class="keywordtype">void</span> printPreview(QPrinter *printer);
-<a name="l00076"></a>00076 <span class="preprocessor">#endif // QT_NO_PRINTER</span>
-<a name="l00077"></a>00077 <span class="preprocessor"></span>    <span class="keywordtype">void</span> spinCitiesValueChanged(<span class="keywordtype">int</span>);
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 <span class="keyword">private</span>:
-<a name="l00080"></a>00080     QString fileName;
-<a name="l00081"></a>00081     QActionGroup *groupSettingsLanguageList;
-<a name="l00082"></a>00082     QStringList output;
-<a name="l00083"></a>00083 <span class="preprocessor">#ifndef QT_NO_PRINTER</span>
-<a name="l00084"></a>00084 <span class="preprocessor"></span>    QPrinter *printer;
-<a name="l00085"></a>00085 <span class="preprocessor">#endif // QT_NO_PRINTER</span>
-<a name="l00086"></a>00086 <span class="preprocessor"></span>    QSettings *settings;
-<a name="l00087"></a>00087     <a class="code" href="class_c_t_s_p_model.html" title="This class implements table model for manipulating a task.">CTSPModel</a> *tspmodel;
-<a name="l00088"></a>00088 
+<a name="l00048"></a>00048     <a class="code" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="Class constructor.">MainWindow</a>(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qwidget.html">QWidget</a> *parent = 0);
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="keyword">private</span> slots:
+<a name="l00051"></a>00051 <span class="comment">// Actions</span>
+<a name="l00052"></a>00052     <span class="keywordtype">void</span> actionFileNewTriggered();
+<a name="l00053"></a>00053     <span class="keywordtype">void</span> actionFileOpenTriggered();
+<a name="l00054"></a>00054     <span class="keywordtype">void</span> actionFileSaveTriggered();
+<a name="l00055"></a>00055     <span class="keywordtype">void</span> actionFileSaveAsTaskTriggered();
+<a name="l00056"></a>00056     <span class="keywordtype">void</span> actionFileSaveAsSolutionTriggered();
+<a name="l00057"></a>00057 <span class="preprocessor">#ifndef QT_NO_PRINTER</span>
+<a name="l00058"></a>00058 <span class="preprocessor"></span>    <span class="keywordtype">void</span> actionFilePrintPreviewTriggered();
+<a name="l00059"></a>00059     <span class="keywordtype">void</span> actionFilePrintTriggered();
+<a name="l00060"></a>00060 <span class="preprocessor">#endif // QT_NO_PRINTER</span>
+<a name="l00061"></a>00061 <span class="preprocessor"></span>    <span class="keywordtype">void</span> actionSettingsPreferencesTriggered();
+<a name="l00062"></a>00062     <span class="keywordtype">void</span> actionSettingsLanguageAutodetectTriggered(<span class="keywordtype">bool</span> checked);
+<a name="l00063"></a>00063     <span class="keywordtype">void</span> groupSettingsLanguageListTriggered(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qaction.html">QAction</a> *action);
+<a name="l00064"></a>00064     <span class="keywordtype">void</span> actionHelpAboutTriggered();
+<a name="l00065"></a>00065 <span class="comment">// Buttons</span>
+<a name="l00066"></a>00066     <span class="keywordtype">void</span> buttonBackToTaskClicked();
+<a name="l00067"></a>00067     <span class="keywordtype">void</span> buttonRandomClicked();
+<a name="l00068"></a>00068     <span class="keywordtype">void</span> buttonSolveClicked();
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070     <span class="keywordtype">void</span> dataChanged();
+<a name="l00071"></a>00071     <span class="keywordtype">void</span> dataChanged(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;tl, <span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;br);
+<a name="l00072"></a>00072     <span class="keywordtype">void</span> numCitiesChanged(<span class="keywordtype">int</span> nCities);
+<a name="l00073"></a>00073 <span class="preprocessor">#ifndef QT_NO_PRINTER</span>
+<a name="l00074"></a>00074 <span class="preprocessor"></span>    <span class="keywordtype">void</span> printPreview(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qprinter.html">QPrinter</a> *printer);
+<a name="l00075"></a>00075 <span class="preprocessor">#endif // QT_NO_PRINTER</span>
+<a name="l00076"></a>00076 <span class="preprocessor"></span>    <span class="keywordtype">void</span> spinCitiesValueChanged(<span class="keywordtype">int</span> nCities);
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 <span class="keyword">private</span>:
+<a name="l00079"></a>00079     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> fileName;
+<a name="l00080"></a>00080     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qactiongroup.html">QActionGroup</a> *groupSettingsLanguageList;
+<a name="l00081"></a>00081     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstringlist.html">QStringList</a> output;
+<a name="l00082"></a>00082 <span class="preprocessor">#ifndef QT_NO_PRINTER</span>
+<a name="l00083"></a>00083 <span class="preprocessor"></span>    <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qprinter.html">QPrinter</a> *printer;
+<a name="l00084"></a>00084 <span class="preprocessor">#endif // QT_NO_PRINTER</span>
+<a name="l00085"></a>00085 <span class="preprocessor"></span>    <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qsettings.html">QSettings</a> *settings;
+<a name="l00086"></a>00086     <a class="code" href="class_c_t_s_p_model.html" title="This class implements table model for manipulating a task.">CTSPModel</a> *tspmodel;
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088     <span class="keywordtype">void</span> closeEvent(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qcloseevent.html">QCloseEvent</a> *ev);
 <a name="l00089"></a>00089     <span class="keywordtype">void</span> enableSolutionActions(<span class="keywordtype">bool</span> enable = <span class="keyword">true</span>);
 <a name="l00090"></a>00090     <span class="keywordtype">void</span> initDocStyleSheet();
 <a name="l00091"></a>00091     <span class="keywordtype">void</span> loadLangList();
-<a name="l00092"></a>00092     <span class="keywordtype">bool</span> loadLanguage(QString lang = <span class="stringliteral">&quot;&quot;</span>);
+<a name="l00092"></a>00092     <span class="keywordtype">bool</span> loadLanguage(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> &amp;lang = <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a>());
 <a name="l00093"></a>00093     <span class="keywordtype">bool</span> maybeSave();
-<a name="l00094"></a>00094     <span class="keywordtype">void</span> outputMatrix(<a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba" title="A matrix of city-to-city travel costs.">tMatrix</a>, QStringList &amp;, <span class="keywordtype">int</span> nRow = -1, <span class="keywordtype">int</span> nCol = -1);
+<a name="l00094"></a>00094     <span class="keywordtype">void</span> outputMatrix(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> &amp;matrix, <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstringlist.html">QStringList</a> &amp;output, <span class="keywordtype">int</span> nRow = -1, <span class="keywordtype">int</span> nCol = -1);
 <a name="l00095"></a>00095     <span class="keywordtype">bool</span> saveTask();
-<a name="l00096"></a>00096     <span class="keywordtype">void</span> setFileName(QString fileName = trUtf8(<span class="stringliteral">&quot;Untitled&quot;</span>) + <span class="stringliteral">&quot;.tspt&quot;</span>);
+<a name="l00096"></a>00096     <span class="keywordtype">void</span> setFileName(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> &amp;fileName = trUtf8(<span class="stringliteral">&quot;Untitled&quot;</span>) + <span class="stringliteral">&quot;.tspt&quot;</span>);
 <a name="l00097"></a>00097 };
 <a name="l00098"></a>00098 
 <a name="l00099"></a>00099 <span class="preprocessor">#endif // MAINWINDOW_H</span>
@@ -167,7 +167,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Oct 24 16:33:19 2009 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 18:11:34 2009 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

@@ -1,6 +1,7 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$class_settings_dialog.html#a5734a6eb58a8dd646d69d8132341862c" title="SettingsDialog::accept" alt="" coords="311,5,463,33"/>
-<area shape="rect" id="node5" href="$class_settings_dialog.html#a6f50d41c09ac2b51179209c607f53387" title="SettingsDialog::buttonColorClicked" alt="" coords="276,55,497,83"/>
-<area shape="rect" id="node7" href="$class_settings_dialog.html#a2aad06c96062b38b286733fbcc93fc26" title="SettingsDialog::buttonFontClicked" alt="" coords="277,106,496,134"/>
-<area shape="rect" id="node9" href="$class_settings_dialog.html#a8ac87cbde2c7cf86d498f53d3fb01152" title="SettingsDialog::spinRandMinValueChanged" alt="" coords="251,157,523,185"/>
+<area shape="rect" id="node3" href="qt-4.6.tag$qsettings.html#beginGroup" title="QSettings::beginGroup" alt="" coords="252,5,404,33"/>
+<area shape="rect" id="node5" href="qt-4.6.tag$qsettings.html#endGroup" title="QSettings::endGroup" alt="" coords="256,55,400,83"/>
+<area shape="rect" id="node7" href="qt-4.6.tag$qstring.html#fromUtf8" title="QString::fromUtf8" alt="" coords="268,106,388,134"/>
+<area shape="rect" id="node9" href="qt-4.6.tag$qdialog.html#reject" title="QDialog::reject" alt="" coords="275,157,381,185"/>
+<area shape="rect" id="node11" href="qt-4.6.tag$qsettings.html#value" title="QSettings::value" alt="" coords="271,207,385,235"/>
 </map>

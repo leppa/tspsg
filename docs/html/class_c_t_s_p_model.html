@@ -80,16 +80,31 @@ window.onload = initDynSections;
   <div class="tabs">
     <ul>
       <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
 </div>
 <div class="contents">
-<h1>CTSPModel Class Reference</h1><!-- doxytag: class="CTSPModel" -->
+<h1>CTSPModel Class Reference</h1><!-- doxytag: class="CTSPModel" --><!-- doxytag: inherits="QAbstractTableModel" -->
 <p>This class implements table model for manipulating a task.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="tspmodel_8h_source.html">tspmodel.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for CTSPModel:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model__inherit__graph.png" border="0" usemap="#_c_t_s_p_model_inherit__map" alt="Inheritance graph"/></div>
+<map name="_c_t_s_p_model_inherit__map" id="_c_t_s_p_model_inherit__map">
+<area shape="rect" id="node2" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qabstracttablemodel.html" title="QAbstractTableModel" alt="" coords="5,6,152,34"/></map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for CTSPModel:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model__coll__graph.png" border="0" usemap="#_c_t_s_p_model_coll__map" alt="Collaboration graph"/></div>
+<map name="_c_t_s_p_model_coll__map" id="_c_t_s_p_model_coll__map">
+<area shape="rect" id="node2" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qabstracttablemodel.html" title="QAbstractTableModel" alt="" coords="5,6,152,34"/><area shape="rect" id="node4" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qvector.html" title="QVector\&lt; QVector\&lt; double \&gt; \&gt;" alt="" coords="176,6,379,34"/><area shape="rect" id="node6" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qsettings.html" title="QSettings" alt="" coords="403,6,483,34"/></map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_c_t_s_p_model-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
@@ -97,32 +112,32 @@ window.onload = initDynSections;
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a733908abe1ffabf49ad34ccdabaeeee9">numCitiesChanged</a> (int)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This signal is emitted whenever the number of cities in the task changes.  <a href="#a733908abe1ffabf49ad34ccdabaeeee9"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a50a24986bc34b37c6c3b7bb52371b837">CTSPModel</a> (QObject *parent=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a50a24986bc34b37c6c3b7bb52371b837">CTSPModel</a> (<a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qobject.html">QObject</a> *parent=0)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class constructor.  <a href="#a50a24986bc34b37c6c3b7bb52371b837"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a4944812fdf6d348735db401f966b4f4a">clear</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Resets the table, setting all its elements to 0.  <a href="#a4944812fdf6d348735db401f966b4f4a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a94b2639d6b65af914ce17b816ddc3572">columnCount</a> (const QModelIndex &amp;) const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the column count in the table.  <a href="#a94b2639d6b65af914ce17b816ddc3572"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QVariant&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#ab8ccba12783303f239f92fe72b48793e">data</a> (const QModelIndex &amp;, int) const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the data stored under the given <em>role</em> for the item referred to by the <em>index</em>.  <a href="#ab8ccba12783303f239f92fe72b48793e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Qt::ItemFlags&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a057b15ee4fc0f8c7b5648188b8173db6">flags</a> (const QModelIndex &amp;) const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the item flags for the given <em>index</em>.  <a href="#a057b15ee4fc0f8c7b5648188b8173db6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QVariant&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a425d9678b2c2c63cf00fabb5643a2615">headerData</a> (int, Qt::Orientation, int) const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the data for the given <em>role</em> and <em>section</em> in the header with the specified <em>orientation</em>.  <a href="#a425d9678b2c2c63cf00fabb5643a2615"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#ab2827e0bdb3246ade67df5a09805524a">loadTask</a> (QString)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loads a task from <em>fname</em>.  <a href="#ab2827e0bdb3246ade67df5a09805524a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#ac1942bbffc1313543641881e456f2e55">columnCount</a> (const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;parent=<a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a>()) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the column count in the table.  <a href="#ac1942bbffc1313543641881e456f2e55"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qvariant.html">QVariant</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#aad200081a43582e766096807c04227dc">data</a> (const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;<a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qabstracttablemodel.html#index">index</a>, int role=Qt::DisplayRole) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the data stored under the given <em>role</em> for the item referred to by the <em>index</em>.  <a href="#aad200081a43582e766096807c04227dc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Qt::ItemFlags&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a77881106624bfc203fb97bffe0d7b585">flags</a> (const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;<a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qabstracttablemodel.html#index">index</a>) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the item flags for the given <em>index</em>.  <a href="#a77881106624bfc203fb97bffe0d7b585"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qvariant.html">QVariant</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a8c716850f6c31fa42b219d7f84038d71">headerData</a> (int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the data for the given <em>role</em> and <em>section</em> in the header with the specified <em>orientation</em>.  <a href="#a8c716850f6c31fa42b219d7f84038d71"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#ae25b1d25b13488fde89e381152c62549">loadTask</a> (const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> &amp;fname)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loads a task from <em>fname</em>.  <a href="#ae25b1d25b13488fde89e381152c62549"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">quint16&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a4fcde91257e57ba0e9754418cb83148e">numCities</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of cities.  <a href="#a4fcde91257e57ba0e9754418cb83148e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#ad18e48dd0b0ad56d8e4ae3b1bc039e4a">randomize</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Randomizes the table by setting all its values to random ones.  <a href="#ad18e48dd0b0ad56d8e4ae3b1bc039e4a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a7f00cebe4cf0fed16f734544c81103f9">rowCount</a> (const QModelIndex &amp;) const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the row count in the table.  <a href="#a7f00cebe4cf0fed16f734544c81103f9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#aae606273bf2ad5d76779e00901d76593">saveTask</a> (QString)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Saves current task to <em>fname</em>.  <a href="#aae606273bf2ad5d76779e00901d76593"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a4bb074d84c35fa350a55ca78b41e967f">setData</a> (const QModelIndex &amp;, const QVariant &amp;, int)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the <em>role</em> data for the item at <em>index</em> to <em>value</em>.  <a href="#a4bb074d84c35fa350a55ca78b41e967f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a5c485ac77762dbf4e27fb6d8d0664e3c">setNumCities</a> (int)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets number of cities in the current task to <em>n</em>.  <a href="#a5c485ac77762dbf4e27fb6d8d0664e3c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a419c2b9d40fc2f348b15ae02f442a39b">rowCount</a> (const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;parent=<a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a>()) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the row count in the table.  <a href="#a419c2b9d40fc2f348b15ae02f442a39b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#aa73d906286cf369d9e6352348e1aca61">saveTask</a> (const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> &amp;fname)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Saves current task to <em>fname</em>.  <a href="#aa73d906286cf369d9e6352348e1aca61"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#a614a0e748bdf52c504a0284c07a977ed">setData</a> (const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;<a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qabstracttablemodel.html#index">index</a>, const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qvariant.html">QVariant</a> &amp;value, int role=Qt::EditRole)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the <em>role</em> data for the item at <em>index</em> to <em>value</em>.  <a href="#a614a0e748bdf52c504a0284c07a977ed"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_model.html#aff717cb92ce6426033e85716644b9cef">setNumCities</a> (int n)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets number of cities in the current task to <em>n</em>.  <a href="#aff717cb92ce6426033e85716644b9cef"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This class implements table model for manipulating a task. </p>
@@ -135,7 +150,7 @@ window.onload = initDynSections;
         <tr>
           <td class="memname">CTSPModel::CTSPModel </td>
           <td>(</td>
-          <td class="paramtype">QObject *&nbsp;</td>
+          <td class="paramtype"><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qobject.html">QObject</a> *&nbsp;</td>
           <td class="paramname"> <em>parent</em> = <code>0</code></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -173,17 +188,26 @@ window.onload = initDynSections;
 <p>Resets the table, setting all its elements to 0. </p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#ad18e48dd0b0ad56d8e4ae3b1bc039e4a" title="Randomizes the table by setting all its values to random ones.">randomize()</a> </dd></dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model_a4944812fdf6d348735db401f966b4f4a_cgraph.png" border="0" usemap="#class_c_t_s_p_model_a4944812fdf6d348735db401f966b4f4a_cgraph_map" alt=""></div>
+<map name="class_c_t_s_p_model_a4944812fdf6d348735db401f966b4f4a_cgraph_map" id="class_c_t_s_p_model_a4944812fdf6d348735db401f966b4f4a_cgraph">
+<area shape="rect" id="node3" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qabstracttablemodel.html#index" title="QAbstractTableModel::index" alt="" coords="183,5,367,33"/></map>
+</div>
+</p>
+
 </div>
 </div>
-<a class="anchor" id="a94b2639d6b65af914ce17b816ddc3572"></a><!-- doxytag: member="CTSPModel::columnCount" ref="a94b2639d6b65af914ce17b816ddc3572" args="(const QModelIndex &amp;) const " -->
+<a class="anchor" id="ac1942bbffc1313543641881e456f2e55"></a><!-- doxytag: member="CTSPModel::columnCount" ref="ac1942bbffc1313543641881e456f2e55" args="(const QModelIndex &amp;parent=QModelIndex()) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int CTSPModel::columnCount </td>
           <td>(</td>
-          <td class="paramtype">const QModelIndex &amp;&nbsp;</td>
-          <td class="paramname"></td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>parent</em> = <code><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a>()</code></td>
           <td>&nbsp;)&nbsp;</td>
           <td> const</td>
         </tr>
@@ -194,25 +218,25 @@ window.onload = initDynSections;
 <p>Returns the column count in the table. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Number of columns in the table.</dd></dl>
 <p>Actually, this function returns the number of cities in the current task.</p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#a4fcde91257e57ba0e9754418cb83148e" title="Returns the number of cities.">numCities()</a>, <a class="el" href="class_c_t_s_p_model.html#a7f00cebe4cf0fed16f734544c81103f9" title="Returns the row count in the table.">rowCount()</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#a4fcde91257e57ba0e9754418cb83148e" title="Returns the number of cities.">numCities()</a>, <a class="el" href="class_c_t_s_p_model.html#a419c2b9d40fc2f348b15ae02f442a39b" title="Returns the row count in the table.">rowCount()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ab8ccba12783303f239f92fe72b48793e"></a><!-- doxytag: member="CTSPModel::data" ref="ab8ccba12783303f239f92fe72b48793e" args="(const QModelIndex &amp;, int) const " -->
+<a class="anchor" id="aad200081a43582e766096807c04227dc"></a><!-- doxytag: member="CTSPModel::data" ref="aad200081a43582e766096807c04227dc" args="(const QModelIndex &amp;index, int role=Qt::DisplayRole) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QVariant CTSPModel::data </td>
+          <td class="memname"><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qvariant.html">QVariant</a> CTSPModel::data </td>
           <td>(</td>
-          <td class="paramtype">const QModelIndex &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>role</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>role</em> = <code>Qt::DisplayRole</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -232,21 +256,30 @@ window.onload = initDynSections;
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Corresponding data.</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#a4bb074d84c35fa350a55ca78b41e967f" title="Sets the role data for the item at index to value.">setData()</a>, <a class="el" href="class_c_t_s_p_model.html#a425d9678b2c2c63cf00fabb5643a2615" title="Returns the data for the given role and section in the header with the specified...">headerData()</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#a614a0e748bdf52c504a0284c07a977ed" title="Sets the role data for the item at index to value.">setData()</a>, <a class="el" href="class_c_t_s_p_model.html#a8c716850f6c31fa42b219d7f84038d71" title="Returns the data for the given role and section in the header with the specified...">headerData()</a> </dd></dl>
 
 <p><dl class="hacks"><dt><b><a class="el" href="hacks.html#_hacks000001">Hack:</a></b></dt><dd>HACK: Converting to string to prevent spinbox in edit mode </dd></dl>
 </p>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model_aad200081a43582e766096807c04227dc_cgraph.png" border="0" usemap="#class_c_t_s_p_model_aad200081a43582e766096807c04227dc_cgraph_map" alt=""></div>
+<map name="class_c_t_s_p_model_aad200081a43582e766096807c04227dc_cgraph_map" id="class_c_t_s_p_model_aad200081a43582e766096807c04227dc_cgraph">
+<area shape="rect" id="node3" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html#column" title="QModelIndex::column" alt="" coords="180,5,327,33"/><area shape="rect" id="node5" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html#isValid" title="QModelIndex::isValid" alt="" coords="181,55,325,83"/><area shape="rect" id="node7" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html#row" title="QModelIndex::row" alt="" coords="191,106,316,134"/><area shape="rect" id="node9" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qfont.html#setBold" title="QFont::setBold" alt="" coords="199,157,308,185"/></map>
+</div>
+</p>
+
 </div>
 </div>
-<a class="anchor" id="a057b15ee4fc0f8c7b5648188b8173db6"></a><!-- doxytag: member="CTSPModel::flags" ref="a057b15ee4fc0f8c7b5648188b8173db6" args="(const QModelIndex &amp;) const " -->
+<a class="anchor" id="a77881106624bfc203fb97bffe0d7b585"></a><!-- doxytag: member="CTSPModel::flags" ref="a77881106624bfc203fb97bffe0d7b585" args="(const QModelIndex &amp;index) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Qt::ItemFlags CTSPModel::flags </td>
           <td>(</td>
-          <td class="paramtype">const QModelIndex &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>index</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td> const</td>
@@ -264,14 +297,23 @@ window.onload = initDynSections;
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Corresponding item flags. </dd></dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model_a77881106624bfc203fb97bffe0d7b585_cgraph.png" border="0" usemap="#class_c_t_s_p_model_a77881106624bfc203fb97bffe0d7b585_cgraph_map" alt=""></div>
+<map name="class_c_t_s_p_model_a77881106624bfc203fb97bffe0d7b585_cgraph_map" id="class_c_t_s_p_model_a77881106624bfc203fb97bffe0d7b585_cgraph">
+<area shape="rect" id="node3" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html#column" title="QModelIndex::column" alt="" coords="180,5,327,33"/><area shape="rect" id="node5" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html#row" title="QModelIndex::row" alt="" coords="191,55,316,83"/></map>
+</div>
+</p>
+
 </div>
 </div>
-<a class="anchor" id="a425d9678b2c2c63cf00fabb5643a2615"></a><!-- doxytag: member="CTSPModel::headerData" ref="a425d9678b2c2c63cf00fabb5643a2615" args="(int, Qt::Orientation, int) const " -->
+<a class="anchor" id="a8c716850f6c31fa42b219d7f84038d71"></a><!-- doxytag: member="CTSPModel::headerData" ref="a8c716850f6c31fa42b219d7f84038d71" args="(int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QVariant CTSPModel::headerData </td>
+          <td class="memname"><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qvariant.html">QVariant</a> CTSPModel::headerData </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
           <td class="paramname"> <em>section</em>, </td>
@@ -286,7 +328,7 @@ window.onload = initDynSections;
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>role</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>role</em> = <code>Qt::DisplayRole</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -311,14 +353,14 @@ window.onload = initDynSections;
 
 </div>
 </div>
-<a class="anchor" id="ab2827e0bdb3246ade67df5a09805524a"></a><!-- doxytag: member="CTSPModel::loadTask" ref="ab2827e0bdb3246ade67df5a09805524a" args="(QString)" -->
+<a class="anchor" id="ae25b1d25b13488fde89e381152c62549"></a><!-- doxytag: member="CTSPModel::loadTask" ref="ae25b1d25b13488fde89e381152c62549" args="(const QString &amp;fname)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool CTSPModel::loadTask </td>
           <td>(</td>
-          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>fname</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -335,7 +377,25 @@ window.onload = initDynSections;
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> on success, otherwise <code>false</code>.</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#aae606273bf2ad5d76779e00901d76593" title="Saves current task to fname.">saveTask()</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#aa73d906286cf369d9e6352348e1aca61" title="Saves current task to fname.">saveTask()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model_ae25b1d25b13488fde89e381152c62549_cgraph.png" border="0" usemap="#class_c_t_s_p_model_ae25b1d25b13488fde89e381152c62549_cgraph_map" alt=""></div>
+<map name="class_c_t_s_p_model_ae25b1d25b13488fde89e381152c62549_cgraph_map" id="class_c_t_s_p_model_ae25b1d25b13488fde89e381152c62549_cgraph">
+<area shape="rect" id="node3" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qfile.html#close" title="QFile::close" alt="" coords="275,5,365,33"/><area shape="rect" id="node5" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qdatastream.html#device" title="QDataStream::device" alt="" coords="248,55,392,83"/><area shape="rect" id="node7" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qfile.html#open" title="QFile::open" alt="" coords="276,106,364,134"/><area shape="rect" id="node9" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qapplication.html#restoreOverrideCursor" title="QApplication::restoreOverrideCursor" alt="" coords="207,157,433,185"/><area shape="rect" id="node11" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qapplication.html#setOverrideCursor" title="QApplication::setOverrideCursor" alt="" coords="217,207,423,235"/><area shape="rect" id="node13" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qdatastream.html#setVersion" title="QDataStream::setVersion" alt="" coords="235,258,405,286"/><area shape="rect" id="node15" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qdatastream.html#status" title="QDataStream::status" alt="" coords="248,309,392,337"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model_ae25b1d25b13488fde89e381152c62549_icgraph.png" border="0" usemap="#class_c_t_s_p_model_ae25b1d25b13488fde89e381152c62549_icgraph_map" alt=""></div>
+<map name="class_c_t_s_p_model_ae25b1d25b13488fde89e381152c62549_icgraph_map" id="class_c_t_s_p_model_ae25b1d25b13488fde89e381152c62549_icgraph">
+<area shape="rect" id="node3" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="Class constructor." alt="" coords="207,5,383,33"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -356,7 +416,7 @@ window.onload = initDynSections;
 
 <p>Returns the number of cities. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Number of cities in the current task.</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#a94b2639d6b65af914ce17b816ddc3572" title="Returns the column count in the table.">columnCount()</a>, <a class="el" href="class_c_t_s_p_model.html#a7f00cebe4cf0fed16f734544c81103f9" title="Returns the row count in the table.">rowCount()</a>, <a class="el" href="class_c_t_s_p_model.html#a5c485ac77762dbf4e27fb6d8d0664e3c" title="Sets number of cities in the current task to n.">setNumCities()</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#ac1942bbffc1313543641881e456f2e55" title="Returns the column count in the table.">columnCount()</a>, <a class="el" href="class_c_t_s_p_model.html#a419c2b9d40fc2f348b15ae02f442a39b" title="Returns the row count in the table.">rowCount()</a>, <a class="el" href="class_c_t_s_p_model.html#aff717cb92ce6426033e85716644b9cef" title="Sets number of cities in the current task to n.">setNumCities()</a> </dd></dl>
 
 </div>
 </div>
@@ -377,7 +437,7 @@ window.onload = initDynSections;
 <div class="memdoc">
 
 <p>This signal is emitted whenever the number of cities in the task changes. </p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#a5c485ac77762dbf4e27fb6d8d0664e3c" title="Sets number of cities in the current task to n.">setNumCities()</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#aff717cb92ce6426033e85716644b9cef" title="Sets number of cities in the current task to n.">setNumCities()</a> </dd></dl>
 
 </div>
 </div>
@@ -400,17 +460,26 @@ window.onload = initDynSections;
 <p>Uses TSPSG settings to determine random values range.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#a4944812fdf6d348735db401f966b4f4a" title="Resets the table, setting all its elements to 0.">clear()</a> </dd></dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model_ad18e48dd0b0ad56d8e4ae3b1bc039e4a_cgraph.png" border="0" usemap="#class_c_t_s_p_model_ad18e48dd0b0ad56d8e4ae3b1bc039e4a_cgraph_map" alt=""></div>
+<map name="class_c_t_s_p_model_ad18e48dd0b0ad56d8e4ae3b1bc039e4a_cgraph_map" id="class_c_t_s_p_model_ad18e48dd0b0ad56d8e4ae3b1bc039e4a_cgraph">
+<area shape="rect" id="node3" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qabstracttablemodel.html#index" title="QAbstractTableModel::index" alt="" coords="215,5,399,33"/><area shape="rect" id="node5" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qsettings.html#value" title="QSettings::value" alt="" coords="249,55,364,83"/></map>
+</div>
+</p>
+
 </div>
 </div>
-<a class="anchor" id="a7f00cebe4cf0fed16f734544c81103f9"></a><!-- doxytag: member="CTSPModel::rowCount" ref="a7f00cebe4cf0fed16f734544c81103f9" args="(const QModelIndex &amp;) const " -->
+<a class="anchor" id="a419c2b9d40fc2f348b15ae02f442a39b"></a><!-- doxytag: member="CTSPModel::rowCount" ref="a419c2b9d40fc2f348b15ae02f442a39b" args="(const QModelIndex &amp;parent=QModelIndex()) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int CTSPModel::rowCount </td>
           <td>(</td>
-          <td class="paramtype">const QModelIndex &amp;&nbsp;</td>
-          <td class="paramname"></td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>parent</em> = <code><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a>()</code></td>
           <td>&nbsp;)&nbsp;</td>
           <td> const</td>
         </tr>
@@ -421,18 +490,18 @@ window.onload = initDynSections;
 <p>Returns the row count in the table. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Number of rows in the table.</dd></dl>
 <p>Actually, this function returns the number of cities in the current task.</p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#a94b2639d6b65af914ce17b816ddc3572" title="Returns the column count in the table.">columnCount()</a>, <a class="el" href="class_c_t_s_p_model.html#a4fcde91257e57ba0e9754418cb83148e" title="Returns the number of cities.">numCities()</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#ac1942bbffc1313543641881e456f2e55" title="Returns the column count in the table.">columnCount()</a>, <a class="el" href="class_c_t_s_p_model.html#a4fcde91257e57ba0e9754418cb83148e" title="Returns the number of cities.">numCities()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="aae606273bf2ad5d76779e00901d76593"></a><!-- doxytag: member="CTSPModel::saveTask" ref="aae606273bf2ad5d76779e00901d76593" args="(QString)" -->
+<a class="anchor" id="aa73d906286cf369d9e6352348e1aca61"></a><!-- doxytag: member="CTSPModel::saveTask" ref="aa73d906286cf369d9e6352348e1aca61" args="(const QString &amp;fname)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool CTSPModel::saveTask </td>
           <td>(</td>
-          <td class="paramtype">QString&nbsp;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>fname</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -449,31 +518,40 @@ window.onload = initDynSections;
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> on success, otherwise <code>false</code>.</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#ab2827e0bdb3246ade67df5a09805524a" title="Loads a task from fname.">loadTask()</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#ae25b1d25b13488fde89e381152c62549" title="Loads a task from fname.">loadTask()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model_aa73d906286cf369d9e6352348e1aca61_cgraph.png" border="0" usemap="#class_c_t_s_p_model_aa73d906286cf369d9e6352348e1aca61_cgraph_map" alt=""></div>
+<map name="class_c_t_s_p_model_aa73d906286cf369d9e6352348e1aca61_cgraph_map" id="class_c_t_s_p_model_aa73d906286cf369d9e6352348e1aca61_cgraph">
+<area shape="rect" id="node3" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qfile.html#close" title="QFile::close" alt="" coords="275,5,365,33"/><area shape="rect" id="node5" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qfile.html#error" title="QFile::error" alt="" coords="277,55,363,83"/><area shape="rect" id="node7" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qfile.html#open" title="QFile::open" alt="" coords="276,106,364,134"/><area shape="rect" id="node9" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qapplication.html#restoreOverrideCursor" title="QApplication::restoreOverrideCursor" alt="" coords="207,157,433,185"/><area shape="rect" id="node11" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qapplication.html#setOverrideCursor" title="QApplication::setOverrideCursor" alt="" coords="217,207,423,235"/><area shape="rect" id="node13" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qdatastream.html#setVersion" title="QDataStream::setVersion" alt="" coords="235,258,405,286"/></map>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="a4bb074d84c35fa350a55ca78b41e967f"></a><!-- doxytag: member="CTSPModel::setData" ref="a4bb074d84c35fa350a55ca78b41e967f" args="(const QModelIndex &amp;, const QVariant &amp;, int)" -->
+<a class="anchor" id="a614a0e748bdf52c504a0284c07a977ed"></a><!-- doxytag: member="CTSPModel::setData" ref="a614a0e748bdf52c504a0284c07a977ed" args="(const QModelIndex &amp;index, const QVariant &amp;value, int role=Qt::EditRole)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">bool CTSPModel::setData </td>
           <td>(</td>
-          <td class="paramtype">const QModelIndex &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html">QModelIndex</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const QVariant &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qvariant.html">QVariant</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>value</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>role</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>role</em> = <code>Qt::EditRole</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -494,11 +572,20 @@ window.onload = initDynSections;
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd><code>true</code> on success, otherwise <code>false</code>.</dd></dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#ab8ccba12783303f239f92fe72b48793e" title="Returns the data stored under the given role for the item referred to by the index...">data()</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#aad200081a43582e766096807c04227dc" title="Returns the data stored under the given role for the item referred to by the index...">data()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model_a614a0e748bdf52c504a0284c07a977ed_cgraph.png" border="0" usemap="#class_c_t_s_p_model_a614a0e748bdf52c504a0284c07a977ed_cgraph_map" alt=""></div>
+<map name="class_c_t_s_p_model_a614a0e748bdf52c504a0284c07a977ed_cgraph_map" id="class_c_t_s_p_model_a614a0e748bdf52c504a0284c07a977ed_cgraph">
+<area shape="rect" id="node3" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html#column" title="QModelIndex::column" alt="" coords="199,5,345,33"/><area shape="rect" id="node5" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html#isValid" title="QModelIndex::isValid" alt="" coords="200,55,344,83"/><area shape="rect" id="node7" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmodelindex.html#row" title="QModelIndex::row" alt="" coords="209,106,335,134"/><area shape="rect" id="node9" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qvariant.html#toDouble" title="QVariant::toDouble" alt="" coords="207,157,337,185"/><area shape="rect" id="node11" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qvariant.html#toString" title="QVariant::toString" alt="" coords="209,207,335,235"/></map>
+</div>
+</p>
 
 </div>
 </div>
-<a class="anchor" id="a5c485ac77762dbf4e27fb6d8d0664e3c"></a><!-- doxytag: member="CTSPModel::setNumCities" ref="a5c485ac77762dbf4e27fb6d8d0664e3c" args="(int)" -->
+<a class="anchor" id="aff717cb92ce6426033e85716644b9cef"></a><!-- doxytag: member="CTSPModel::setNumCities" ref="aff717cb92ce6426033e85716644b9cef" args="(int n)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -523,6 +610,15 @@ window.onload = initDynSections;
 </dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_c_t_s_p_model.html#a4fcde91257e57ba0e9754418cb83148e" title="Returns the number of cities.">numCities()</a> </dd></dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="class_c_t_s_p_model_aff717cb92ce6426033e85716644b9cef_cgraph.png" border="0" usemap="#class_c_t_s_p_model_aff717cb92ce6426033e85716644b9cef_cgraph_map" alt=""></div>
+<map name="class_c_t_s_p_model_aff717cb92ce6426033e85716644b9cef_cgraph_map" id="class_c_t_s_p_model_aff717cb92ce6426033e85716644b9cef_cgraph">
+<area shape="rect" id="node3" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qvector.html#resize" title="QVector::resize" alt="" coords="229,5,341,33"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
@@ -544,7 +640,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Oct 24 16:33:19 2009 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 18:11:38 2009 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

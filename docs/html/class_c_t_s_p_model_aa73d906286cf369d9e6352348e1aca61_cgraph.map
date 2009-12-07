@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="qt-4.6.tag$qfile.html#close" title="QFile::close" alt="" coords="275,5,365,33"/>
+<area shape="rect" id="node5" href="qt-4.6.tag$qfile.html#error" title="QFile::error" alt="" coords="277,55,363,83"/>
+<area shape="rect" id="node7" href="qt-4.6.tag$qfile.html#open" title="QFile::open" alt="" coords="276,106,364,134"/>
+<area shape="rect" id="node9" href="qt-4.6.tag$qapplication.html#restoreOverrideCursor" title="QApplication::restoreOverrideCursor" alt="" coords="207,157,433,185"/>
+<area shape="rect" id="node11" href="qt-4.6.tag$qapplication.html#setOverrideCursor" title="QApplication::setOverrideCursor" alt="" coords="217,207,423,235"/>
+<area shape="rect" id="node13" href="qt-4.6.tag$qdatastream.html#setVersion" title="QDataStream::setVersion" alt="" coords="235,258,405,286"/>
+</map>

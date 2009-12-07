@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_main_window.html#ab8362fdebeecbfa92d41ad77377dbbd3" title="MainWindow::actionFileNewTriggered" alt="" coords="228,5,465,33"/>
-<area shape="rect" id="node7" href="$class_main_window.html#adf72d971ae33ada0d093c6921ee3f5e9" title="MainWindow::actionFileOpenTriggered" alt="" coords="225,55,468,83"/>
-<area shape="rect" id="node10" href="$class_main_window.html#a38edb88d43e844aca9d2e762c8706565" title="Handles Main Window close event." alt="" coords="264,106,429,134"/>
-<area shape="rect" id="node5" href="$class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="Class constructor." alt="" coords="519,30,695,58"/>
-</map>

@@ -1,51 +1,19 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$class_main_window.html#ab8362fdebeecbfa92d41ad77377dbbd3" title="MainWindow::actionFileNewTriggered" alt="" coords="293,661,531,689"/>
-<area shape="rect" id="node15" href="$class_main_window.html#a84c8423fece4b9ded10a050297c7049f" title="MainWindow::setFileName" alt="" coords="1168,762,1344,790"/>
-<area shape="rect" id="node18" href="$class_main_window.html#adf72d971ae33ada0d093c6921ee3f5e9" title="MainWindow::actionFileOpenTriggered" alt="" coords="291,560,533,588"/>
-<area shape="rect" id="node21" href="$class_c_t_s_p_model.html#ab2827e0bdb3246ade67df5a09805524a" title="CTSPModel::loadTask" alt="" coords="685,458,835,486"/>
-<area shape="rect" id="node41" href="$class_main_window.html#a129aaf04fc459d7b8d416a4fee49435e" title="MainWindow::actionFilePrintPreviewTriggered" alt="" coords="271,1016,553,1044"/>
-<area shape="rect" id="node45" href="$class_main_window.html#a553f17d522469ce4701671c96560724f" title="MainWindow::actionFilePrintTriggered" alt="" coords="292,1066,532,1094"/>
-<area shape="rect" id="node47" href="$class_main_window.html#a67a3889bd8e0175900ba4de348ec1ab6" title="MainWindow::actionFileSaveAsSolutionTriggered" alt="" coords="260,1117,564,1145"/>
-<area shape="rect" id="node49" href="$class_main_window.html#a249fdd7432bb1528097dbcfbb06e2906" title="MainWindow::actionFileSaveAsTaskTriggered" alt="" coords="271,914,553,942"/>
-<area shape="rect" id="node52" href="$class_main_window.html#a0e937e6a20378dc80e2bf8b9be803a53" title="MainWindow::actionFileSaveTriggered" alt="" coords="640,965,880,993"/>
-<area shape="rect" id="node56" href="$class_main_window.html#a6381e63363f0287c6de01439bafec82a" title="MainWindow::actionHelpAboutTriggered" alt="" coords="287,1168,537,1196"/>
-<area shape="rect" id="node60" href="$class_main_window.html#af47076b9052be85320fef524f08e53f4" title="MainWindow::actionSettingsLanguageAutodetectTriggered" alt="" coords="233,1218,591,1246"/>
-<area shape="rect" id="node62" href="$class_main_window.html#ab4739b59e29a918c00d1fc22a7179f2c" title="MainWindow::actionSettingsPreferencesTriggered" alt="" coords="259,1269,565,1297"/>
-<area shape="rect" id="node68" href="$class_main_window.html#a4a5642b943211c8147214aa2af5830d3" title="MainWindow::initDocStyleSheet" alt="" coords="656,1320,864,1348"/>
-<area shape="rect" id="node70" href="$class_main_window.html#a5afc39b4564445cfbd0936704d0496bb" title="MainWindow::buttonBackToTaskClicked" alt="" coords="285,1370,539,1398"/>
-<area shape="rect" id="node72" href="$class_main_window.html#a47e79ca8b277baeb0250a891f24d2123" title="MainWindow::buttonRandomClicked" alt="" coords="297,1421,527,1449"/>
-<area shape="rect" id="node78" href="$class_main_window.html#a371ca3e67e422b1566390e8470285fb6" title="MainWindow::buttonSolveClicked" alt="" coords="305,357,519,385"/>
-<area shape="rect" id="node103" href="$class_main_window.html#ad2f63ac8c57e17d40be8c6344f34640e" title="MainWindow::dataChanged" alt="" coords="323,1472,501,1500"/>
-<area shape="rect" id="node105" href="$class_main_window.html#aad1772e30eb7110bb1e074e3496035df" title="MainWindow::groupSettingsLanguageListTriggered" alt="" coords="256,813,568,841"/>
-<area shape="rect" id="node107" href="$class_main_window.html#aff4bbfccf5d506b83443984b2ca4bb2c" title="MainWindow::loadLanguage" alt="" coords="668,864,852,892"/>
-<area shape="rect" id="node111" href="$class_main_window.html#a73acef5636a105cd5e86d6e6f62ef6b7" title="MainWindow::loadLangList" alt="" coords="324,1522,500,1550"/>
-<area shape="rect" id="node115" href="$class_main_window.html#ad297675dd6fb42af2c424935dc737ad7" title="MainWindow::numCitiesChanged" alt="" coords="307,1573,517,1601"/>
-<area shape="rect" id="node118" href="$class_main_window.html#a38efa596550ee6b053bb6e42210bd49a" title="MainWindow::spinCitiesValueChanged" alt="" coords="291,205,533,233"/>
-<area shape="rect" id="node5" href="$class_c_t_s_p_model.html#a4944812fdf6d348735db401f966b4f4a" title="CTSPModel::clear" alt="" coords="1193,509,1319,537"/>
-<area shape="rect" id="node7" href="$class_main_window.html#a6bc09f6464b6336cdb71ff9893331082" title="MainWindow::enableSolutionActions" alt="" coords="644,560,876,588"/>
-<area shape="rect" id="node9" href="$class_main_window.html#a44eb5d77b382a5acd4b0091f499f4352" title="MainWindow::maybeSave" alt="" coords="675,610,845,638"/>
-<area shape="rect" id="node11" href="$class_main_window.html#a5b49c92c872a44ec743a65f9848a587a" title="MainWindow::saveTask" alt="" coords="937,914,1095,942"/>
-<area shape="rect" id="node13" href="$class_c_t_s_p_model.html#aae606273bf2ad5d76779e00901d76593" title="CTSPModel::saveTask" alt="" coords="1180,940,1332,968"/>
-<area shape="rect" id="node23" href="$class_c_t_s_p_model.html#a9bd70badbe17d5cb7cc56376184adde9" title="CTSPModel::loadError" alt="" coords="1181,408,1331,436"/>
-<area shape="rect" id="node25" href="$class_c_t_s_p_model.html#a96a294df9e0b3509152078ed2d1e5736" title="CTSPModel::loadTSPT" alt="" coords="939,458,1093,486"/>
-<area shape="rect" id="node33" href="$class_c_t_s_p_model.html#ab780cfdb9e4671c31defddb0a142db20" title="CTSPModel::loadZKT" alt="" coords="944,408,1088,436"/>
-<area shape="rect" id="node29" href="$class_c_t_s_p_model.html#a733908abe1ffabf49ad34ccdabaeeee9" title="CTSPModel::numCitiesChanged" alt="" coords="1152,458,1360,486"/>
-<area shape="rect" id="node31" href="$class_c_t_s_p_model.html#a5c485ac77762dbf4e27fb6d8d0664e3c" title="CTSPModel::setNumCities" alt="" coords="1168,357,1344,385"/>
-<area shape="rect" id="node43" href="$class_main_window.html#aceea0c51c23ebdf9f251ce4bd1f07e4b" title="MainWindow::printPreview" alt="" coords="675,1016,845,1044"/>
-<area shape="rect" id="node58" href="$class_c_t_s_p_solver.html#a677a878c4c8a06316a5d8d5a4fc8ab65" title="Returns CTSPSolver&#39;s version ID." alt="" coords="675,1168,845,1196"/>
-<area shape="rect" id="node64" href="$class_settings_dialog.html#a582255a7b2b320d0efa7e97a97e432c1" title="Indicates whether or not the font color has been changed." alt="" coords="664,1218,856,1246"/>
-<area shape="rect" id="node66" href="$class_settings_dialog.html#a3bbdd390758bf15a2c5e1fa69586560d" title="Indicates whether or not the font properties have been changed." alt="" coords="668,1269,852,1297"/>
-<area shape="rect" id="node74" href="$class_c_t_s_p_model.html#ad18e48dd0b0ad56d8e4ae3b1bc039e4a" title="CTSPModel::randomize" alt="" coords="681,1421,839,1449"/>
-<area shape="rect" id="node76" href="$class_c_t_s_p_model.html#ade32652fce25848ab7161ee534ee92c0" title="CTSPModel::rand" alt="" coords="955,1421,1077,1449"/>
-<area shape="rect" id="node80" href="$class_c_t_s_p_model.html#ab8ccba12783303f239f92fe72b48793e" title="CTSPModel::data" alt="" coords="699,256,821,284"/>
-<area shape="rect" id="node83" href="$class_c_t_s_p_solver.html#a57556c971a25e3556c4aa3cc1fd2d3d0" title="Returns the sorted optimal path, starting from City 1." alt="" coords="669,306,851,334"/>
-<area shape="rect" id="node85" href="$class_c_t_s_p_solver.html#a28d546e840cf53c639b45c0f26419f7a" title="Returns whether or not the solution is definitely optimal." alt="" coords="684,357,836,385"/>
-<area shape="rect" id="node87" href="$class_main_window.html#a62db3fe6622d8ba58484ba7f181d41a5" title="MainWindow::outputMatrix" alt="" coords="672,408,848,436"/>
-<area shape="rect" id="node89" href="$class_c_t_s_p_solver.html#a9dab2bba56c384663fb21f5e4d1f2743" title="Solves the given task." alt="" coords="696,129,824,157"/>
-<area shape="rect" id="node91" href="$class_c_t_s_p_solver.html#abd30771870d8a4d419e62802fc3d55ba" title="CTSPSolver::align" alt="" coords="953,104,1079,132"/>
-<area shape="rect" id="node95" href="$class_c_t_s_p_solver.html#aa6f883bf24b6d4371eb595a580b32c93" title="CTSPSolver::cleanup" alt="" coords="944,154,1088,182"/>
-<area shape="rect" id="node97" href="$class_c_t_s_p_solver.html#a5208e3bfc8b5c476fae350418f565f40" title="CTSPSolver::findCandidate" alt="" coords="928,53,1104,81"/>
-<area shape="rect" id="node100" href="$class_c_t_s_p_solver.html#a5e6c39a65f5b6ba64222eee3d759f7c0" title="CTSPSolver::hasSubCycles" alt="" coords="1165,16,1347,44"/>
-<area shape="rect" id="node93" href="$class_c_t_s_p_solver.html#ab81fee5df517e0b2f8418c91d245d536" title="CTSPSolver::findMinInCol" alt="" coords="1172,92,1340,120"/>
-<area shape="rect" id="node120" href="$class_c_t_s_p_model.html#a4fcde91257e57ba0e9754418cb83148e" title="CTSPModel::numCities" alt="" coords="683,78,837,106"/>
+<area shape="rect" id="node3" href="qt-4.6.tag$qcoreapplication.html#arguments" title="QCoreApplication::arguments" alt="" coords="243,5,435,33"/>
+<area shape="rect" id="node5" href="qt-4.6.tag$qsettings.html#beginGroup" title="QSettings::beginGroup" alt="" coords="263,55,415,83"/>
+<area shape="rect" id="node7" href="qt-4.6.tag$qapplication.html#desktop" title="QApplication::desktop" alt="" coords="264,106,413,134"/>
+<area shape="rect" id="node9" href="qt-4.6.tag$qsettings.html#endGroup" title="QSettings::endGroup" alt="" coords="267,157,411,185"/>
+<area shape="rect" id="node11" href="$class_c_t_s_p_model.html#ae25b1d25b13488fde89e381152c62549" title="Loads a task from fname." alt="" coords="264,207,413,235"/>
+<area shape="rect" id="node27" href="qt-4.6.tag$qrect.html#moveCenter" title="QRect::moveCenter" alt="" coords="272,258,405,286"/>
+<area shape="rect" id="node29" href="qt-4.6.tag$qmainwindow.html#restoreState" title="QMainWindow::restoreState" alt="" coords="247,309,431,337"/>
+<area shape="rect" id="node31" href="qt-4.6.tag$qmainwindow.html#setCentralWidget" title="QMainWindow::setCentralWidget" alt="" coords="232,359,445,387"/>
+<area shape="rect" id="node33" href="qt-4.6.tag$qmainwindow.html#setStatusBar" title="QMainWindow::setStatusBar" alt="" coords="244,410,433,438"/>
+<area shape="rect" id="node35" href="qt-4.6.tag$qsettings.html#value" title="QSettings::value" alt="" coords="281,461,396,489"/>
+<area shape="rect" id="node13" href="qt-4.6.tag$qfile.html#close" title="QFile::close" alt="" coords="563,55,653,83"/>
+<area shape="rect" id="node15" href="qt-4.6.tag$qdatastream.html#device" title="QDataStream::device" alt="" coords="536,106,680,134"/>
+<area shape="rect" id="node17" href="qt-4.6.tag$qfile.html#open" title="QFile::open" alt="" coords="564,157,652,185"/>
+<area shape="rect" id="node19" href="qt-4.6.tag$qapplication.html#restoreOverrideCursor" title="QApplication::restoreOverrideCursor" alt="" coords="495,207,721,235"/>
+<area shape="rect" id="node21" href="qt-4.6.tag$qapplication.html#setOverrideCursor" title="QApplication::setOverrideCursor" alt="" coords="505,258,711,286"/>
+<area shape="rect" id="node23" href="qt-4.6.tag$qdatastream.html#setVersion" title="QDataStream::setVersion" alt="" coords="523,309,693,337"/>
+<area shape="rect" id="node25" href="qt-4.6.tag$qdatastream.html#status" title="QDataStream::status" alt="" coords="536,359,680,387"/>
 </map>

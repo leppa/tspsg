@@ -100,7 +100,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03c31210f51d4fa7d1a510566613e7d5"></a><!-- doxytag: member="version.h::VERSIONID" ref="a03c31210f51d4fa7d1a510566613e7d5" args="" -->
-#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="version_8h.html#a03c31210f51d4fa7d1a510566613e7d5">VERSIONID</a>&nbsp;&nbsp;&nbsp;&quot;$Id: version.h 66 2009-10-21 12:48:49Z laleppa $&quot;</td></tr>
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="version_8h.html#a03c31210f51d4fa7d1a510566613e7d5">VERSIONID</a>&nbsp;&nbsp;&nbsp;&quot;$Id: version.h 71 2009-12-07 16:06:44Z laleppa $&quot;</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">TSPSG version ID. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cf508f5e45c0cfbf12ee768b9c7a0a2"></a><!-- doxytag: member="version.h::BUILD_VERSION_MAJOR" ref="a5cf508f5e45c0cfbf12ee768b9c7a0a2" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="version_8h.html#a5cf508f5e45c0cfbf12ee768b9c7a0a2">BUILD_VERSION_MAJOR</a>&nbsp;&nbsp;&nbsp;0</td></tr>
@@ -108,9 +108,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac631d87f240fc2c15f11be2bbbb23ff3"></a><!-- doxytag: member="version.h::BUILD_VERSION_MINOR" ref="ac631d87f240fc2c15f11be2bbbb23ff3" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="version_8h.html#ac631d87f240fc2c15f11be2bbbb23ff3">BUILD_VERSION_MINOR</a>&nbsp;&nbsp;&nbsp;1</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Minor version of current TSPSG build. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a962258f08e30f89054491f457d225aaf"></a><!-- doxytag: member="version.h::BUILD_RELEASE" ref="a962258f08e30f89054491f457d225aaf" args="" -->
-#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="version_8h.html#a962258f08e30f89054491f457d225aaf">BUILD_RELEASE</a>&nbsp;&nbsp;&nbsp;2</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">TSPSG release number. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="version_8h.html#a962258f08e30f89054491f457d225aaf">BUILD_RELEASE</a>&nbsp;&nbsp;&nbsp;2</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">TSPSG release number.  <a href="#a962258f08e30f89054491f457d225aaf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="version_8h.html#ae7f90861d8c4d5b1cbdcf71d325feea2">BUILD_NUMBER</a>&nbsp;&nbsp;&nbsp;65535</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Current TSPSG build number.  <a href="#ae7f90861d8c4d5b1cbdcf71d325feea2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="version_8h.html#a7a713d0890ab037efe896938904fb407">BUILD_STATUS</a>&nbsp;&nbsp;&nbsp;(dev build)</td></tr>
@@ -127,7 +126,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Contains TSPSG version information defines. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Copyright (C) 2007-2009 Lёppa &lt;contacts[at]oleksii[dot]name&gt;</dd></dl>
-<dl class="rcs"><dt><b>Id</b></dt><dd><a class="el" href="version_8h.html" title="Contains TSPSG version information defines.">version.h</a> 66 2009-10-21 12:48:49Z laleppa </dd></dl>
+<dl class="rcs"><dt><b>Id</b></dt><dd><a class="el" href="version_8h.html" title="Contains TSPSG version information defines.">version.h</a> 71 2009-12-07 16:06:44Z laleppa </dd></dl>
 <dl class="rcs"><dt><b>URL</b></dt><dd><a href="https://tspsg.svn.sourceforge.net/svnroot/tspsg/trunk/src/version.h">https://tspsg.svn.sourceforge.net/svnroot/tspsg/trunk/src/version.h</a> </dd></dl>
 <p><b>TSPSG: TSP Solver and Generator</b></p>
 <p>This file is part of TSPSG.</p>
@@ -147,8 +146,23 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="memdoc">
 
 <p>Current TSPSG build number. </p>
-<p>This will only change on releases and will be the same as revision number.</p>
-<p>Build number meanings:</p>
+<p>This will only change on releases and will be the same as revision number. </p>
+
+</div>
+</div>
+<a class="anchor" id="a962258f08e30f89054491f457d225aaf"></a><!-- doxytag: member="version.h::BUILD_RELEASE" ref="a962258f08e30f89054491f457d225aaf" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUILD_RELEASE&nbsp;&nbsp;&nbsp;2</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>TSPSG release number. </p>
+<p>Release number meanings:</p>
 <ul>
 <li>1 -- 3: <b>alpha</b> 1 to 3</li>
 <li>4 -- 7: <b>beta</b> 1 to 4</li>
@@ -170,7 +184,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="memdoc">
 
 <p>TSPSG build status. </p>
-<p>Determined based on BUILD_NUMBER. </p>
+<p>Determined based on BUILD_NUMBER and BUILD_RELEASE. </p>
 
 </div>
 </div>
@@ -212,7 +226,7 @@ This graph shows which files directly or indirectly include this file:</div>
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Oct 24 16:33:19 2009 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 18:11:36 2009 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

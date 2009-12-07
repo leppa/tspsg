@@ -91,11 +91,11 @@ window.onload = initDynSections;
 <a name="l00032"></a>00032 
 <a name="l00033"></a>00033 <span class="preprocessor">#include &quot;<a class="code" href="tspmodel_8h.html" title="Defines CTSPModel class.">tspmodel.h</a>&quot;</span>
 <a name="l00034"></a>00034 
-<a name="l00036"></a><a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba">00036</a> <span class="keyword">typedef</span> QList&lt;QList&lt;double&gt; &gt; <a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba" title="A matrix of city-to-city travel costs.">tMatrix</a>;
+<a name="l00036"></a><a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba">00036</a> <span class="keyword">typedef</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">QList&lt;QList&lt;double&gt;</a> &gt; <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a>;
 <a name="l00037"></a>00037 
 <a name="l00043"></a>00043 
 <a name="l00044"></a><a class="code" href="structs_step.html">00044</a> <span class="keyword">struct </span><a class="code" href="structs_step.html" title="This structure represents one step of solving.">sStep</a> {
-<a name="l00045"></a><a class="code" href="structs_step.html#a0b16ffd0c21e19482d8080559a4ebea7">00045</a>     <a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba" title="A matrix of city-to-city travel costs.">tMatrix</a> <a class="code" href="structs_step.html#a0b16ffd0c21e19482d8080559a4ebea7" title="This step&amp;#39;s matrix.">matrix</a>; 
+<a name="l00045"></a><a class="code" href="structs_step.html#a0b16ffd0c21e19482d8080559a4ebea7">00045</a>     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> <a class="code" href="structs_step.html#a0b16ffd0c21e19482d8080559a4ebea7" title="This step&amp;#39;s matrix.">matrix</a>; 
 <a name="l00046"></a><a class="code" href="structs_step.html#addaeb82c9ddd12c50b753ad2988ceafc">00046</a>     <span class="keywordtype">double</span> <a class="code" href="structs_step.html#addaeb82c9ddd12c50b753ad2988ceafc" title="The price of travel to this step.">price</a>; 
 <a name="l00047"></a>00047     <span class="keyword">struct </span>{
 <a name="l00048"></a><a class="code" href="structs_step.html#afa2175a8daa72a3b0cb510b4dd41b3e2">00048</a>         <span class="keywordtype">int</span> <a class="code" href="structs_step.html#afa2175a8daa72a3b0cb510b4dd41b3e2" title="A zero-based row number of the candidate.">nRow</a>; 
@@ -118,26 +118,26 @@ window.onload = initDynSections;
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073 <span class="keyword">public</span>:
 <a name="l00074"></a>00074     <a class="code" href="class_c_t_s_p_solver.html#aa5e45813d8f5e1c039b1bb9746d367bd" title="Class constructor.">CTSPSolver</a>();
-<a name="l00075"></a>00075     QString <a class="code" href="class_c_t_s_p_solver.html#a57556c971a25e3556c4aa3cc1fd2d3d0" title="Returns the sorted optimal path, starting from City 1.">getSortedPath</a>() <span class="keyword">const</span>;
-<a name="l00076"></a>00076     <span class="keyword">static</span> QString <a class="code" href="class_c_t_s_p_solver.html#a677a878c4c8a06316a5d8d5a4fc8ab65" title="Returns CTSPSolver&amp;#39;s version ID.">getVersionId</a>();
+<a name="l00075"></a>00075     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> <a class="code" href="class_c_t_s_p_solver.html#a57556c971a25e3556c4aa3cc1fd2d3d0" title="Returns the sorted optimal path, starting from City 1.">getSortedPath</a>() <span class="keyword">const</span>;
+<a name="l00076"></a>00076     <span class="keyword">static</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> <a class="code" href="class_c_t_s_p_solver.html#a677a878c4c8a06316a5d8d5a4fc8ab65" title="Returns CTSPSolver&amp;#39;s version ID.">getVersionId</a>();
 <a name="l00077"></a>00077     <span class="keywordtype">bool</span> <a class="code" href="class_c_t_s_p_solver.html#a28d546e840cf53c639b45c0f26419f7a" title="Returns whether or not the solution is definitely optimal.">isOptimal</a>() <span class="keyword">const</span>;
-<a name="l00078"></a>00078     <a class="code" href="structs_step.html" title="This structure represents one step of solving.">sStep</a> *<a class="code" href="class_c_t_s_p_solver.html#a9dab2bba56c384663fb21f5e4d1f2743" title="Solves the given task.">solve</a>(<span class="keywordtype">int</span>, <a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba" title="A matrix of city-to-city travel costs.">tMatrix</a>, QWidget *parent = 0);
+<a name="l00078"></a>00078     <a class="code" href="structs_step.html" title="This structure represents one step of solving.">sStep</a> *<a class="code" href="class_c_t_s_p_solver.html#abc4a62fa7954327949926473309d6bc3" title="Solves the given task.">solve</a>(<span class="keywordtype">int</span> numCities, <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> task, <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qwidget.html">QWidget</a> *parent = 0);
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080 <span class="keyword">private</span>:
 <a name="l00081"></a>00081     <span class="keywordtype">bool</span> mayNotBeOptimal;
 <a name="l00082"></a>00082     <span class="keywordtype">int</span> nCities;
 <a name="l00083"></a>00083     <a class="code" href="structs_step.html" title="This structure represents one step of solving.">sStep</a> *root;
-<a name="l00084"></a>00084     QHash&lt;int,int&gt; route;
+<a name="l00084"></a>00084     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qhash.html">QHash&lt;int,int&gt;</a> route;
 <a name="l00085"></a>00085 <span class="comment">//  QHash&lt;int,int&gt; forbidden;</span>
 <a name="l00086"></a>00086 
-<a name="l00087"></a>00087     <span class="keywordtype">double</span> align(<a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba" title="A matrix of city-to-city travel costs.">tMatrix</a> &amp;);
+<a name="l00087"></a>00087     <span class="keywordtype">double</span> align(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> &amp;matrix);
 <a name="l00088"></a>00088     <span class="keywordtype">void</span> cleanup();
-<a name="l00089"></a>00089     <span class="keywordtype">bool</span> findCandidate(<a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba" title="A matrix of city-to-city travel costs.">tMatrix</a>, <span class="keywordtype">int</span> &amp;, <span class="keywordtype">int</span> &amp;);
-<a name="l00090"></a>00090     <span class="keywordtype">double</span> findMinInCol(<span class="keywordtype">int</span>, <a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba" title="A matrix of city-to-city travel costs.">tMatrix</a>, <span class="keywordtype">int</span> exr = -1);
-<a name="l00091"></a>00091     <span class="keywordtype">double</span> findMinInRow(<span class="keywordtype">int</span>, <a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba" title="A matrix of city-to-city travel costs.">tMatrix</a>, <span class="keywordtype">int</span> exc = -1);
-<a name="l00092"></a>00092     <span class="keywordtype">bool</span> hasSubCycles(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>);
-<a name="l00093"></a>00093     <span class="keywordtype">void</span> subCol(<a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba" title="A matrix of city-to-city travel costs.">tMatrix</a> &amp;, <span class="keywordtype">int</span>, <span class="keywordtype">double</span>);
-<a name="l00094"></a>00094     <span class="keywordtype">void</span> subRow(<a class="code" href="tspsolver_8h.html#a96b95c574161e5013286210c96c581ba" title="A matrix of city-to-city travel costs.">tMatrix</a> &amp;, <span class="keywordtype">int</span>, <span class="keywordtype">double</span>);
+<a name="l00089"></a>00089     <span class="keywordtype">bool</span> findCandidate(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> &amp;matrix, <span class="keywordtype">int</span> &amp;nRow, <span class="keywordtype">int</span> &amp;nCol) <span class="keyword">const</span>;
+<a name="l00090"></a>00090     <span class="keywordtype">double</span> findMinInCol(<span class="keywordtype">int</span> nCol, <span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> &amp;matrix, <span class="keywordtype">int</span> exr = -1) <span class="keyword">const</span>;
+<a name="l00091"></a>00091     <span class="keywordtype">double</span> findMinInRow(<span class="keywordtype">int</span> nRow, <span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> &amp;matrix, <span class="keywordtype">int</span> exc = -1) <span class="keyword">const</span>;
+<a name="l00092"></a>00092     <span class="keywordtype">bool</span> hasSubCycles(<span class="keywordtype">int</span> nRow, <span class="keywordtype">int</span> nCol) <span class="keyword">const</span>;
+<a name="l00093"></a>00093     <span class="keywordtype">void</span> subCol(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> &amp;matrix, <span class="keywordtype">int</span> nCol, <span class="keywordtype">double</span> val);
+<a name="l00094"></a>00094     <span class="keywordtype">void</span> subRow(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> &amp;matrix, <span class="keywordtype">int</span> nRow, <span class="keywordtype">double</span> val);
 <a name="l00095"></a>00095 };
 <a name="l00096"></a>00096 
 <a name="l00097"></a>00097 <span class="preprocessor">#endif // TSPSOLVER_H</span>
@@ -156,7 +156,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Oct 24 16:33:19 2009 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 18:11:34 2009 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

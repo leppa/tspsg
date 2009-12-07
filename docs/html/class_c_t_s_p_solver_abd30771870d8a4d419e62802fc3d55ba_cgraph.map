@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_c_t_s_p_solver.html#ab81fee5df517e0b2f8418c91d245d536" title="CTSPSolver::findMinInCol" alt="" coords="183,5,351,33"/>
-<area shape="rect" id="node5" href="$class_c_t_s_p_solver.html#a6d05e55ce4532840a12424298540b14d" title="CTSPSolver::findMinInRow" alt="" coords="180,55,353,83"/>
-<area shape="rect" id="node7" href="$class_c_t_s_p_solver.html#a88188fd9447aa59b677ecf03245cb897" title="CTSPSolver::subCol" alt="" coords="197,106,336,134"/>
-<area shape="rect" id="node9" href="$class_c_t_s_p_solver.html#adb9ed70de30deaa1d9a703f361cc9596" title="CTSPSolver::subRow" alt="" coords="195,157,339,185"/>
-</map>

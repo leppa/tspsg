@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-%subst = ( );
+%subst = ( "qt-4.6.tag", "");
 $quiet   = 0;
 
 if (open(F,"search.cfg"))
