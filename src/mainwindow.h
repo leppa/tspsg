@@ -91,7 +91,8 @@ private:
 	void loadLangList();
 	bool loadLanguage(const QString &lang = QString());
 	bool maybeSave();
-	void outputMatrix(const tMatrix &matrix, QStringList &output, int nRow = -1, int nCol = -1);
+	void outputMatrix(const TMatrix &matrix, QStringList &output);
+	void outputMatrix(const SStep &step, QStringList &output);
 	bool saveTask();
 	void setFileName(const QString &fileName = trUtf8("Untitled") + ".tspt");
 };

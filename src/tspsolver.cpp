@@ -25,7 +25,7 @@
 
 //! Class constructor
 CTSPSolver::CTSPSolver()
-	: nCities(0)
+	: nCities(0), root(NULL)
 {
 }
 
@@ -79,7 +79,7 @@ bool CTSPSolver::isOptimal() const
  *
  * \todo TODO: Comment the algorithm.
  */
-sStep *CTSPSolver::solve(int numCities, tMatrix task, QWidget *parent)
+SStep *CTSPSolver::solve(int numCities, TMatrix task, QWidget *parent)
 {
 	if (numCities <= 1)
 		return NULL;
@@ -97,12 +97,12 @@ QProgressBar *pb = new QProgressBar(&pd);
 	pd.setWindowModality(Qt::ApplicationModal);
 	pd.setValue(0);
 
-sStep *step = new sStep();
+SStep *step = new SStep();
 	step->matrix = task;
 	step->price = align(step->matrix);
 	root = step;
 
-sStep *left, *right;
+SStep *left, *right;
 int nRow, nCol;
 bool firstStep = true;
 double check;
@@ -116,12 +116,12 @@ double check;
 			step->alts = findCandidate(step->matrix,nRow,nCol);
 		}
 		if ((nRow == -1) || (nCol == -1) || pd.wasCanceled()) {
-			root = NULL;
+			cleanup();
 			break;
 		}
 
 		// Route with (nRow,nCol) path
-		right = new sStep();
+		right = new SStep();
 		right->matrix = step->matrix;
 		for (int k = 0; k < nCities; k++) {
 			if (k != nCol)
@@ -135,7 +135,7 @@ double check;
 		right->matrix[nRow][nCol] = INFINITY;
 
 		// Route without (nRow,nCol) path
-		left = new sStep();
+		left = new SStep();
 		left->matrix = step->matrix;
 		left->matrix[nRow][nCol] = INFINITY;
  		left->price = step->price + align(left->matrix);
@@ -179,9 +179,15 @@ double check;
 	return root;
 }
 
+CTSPSolver::~CTSPSolver()
+{
+	if (root != NULL)
+		deleteNode(root);
+}
+
 /* Privates **********************************************************/
 
-double CTSPSolver::align(tMatrix &matrix)
+double CTSPSolver::align(TMatrix &matrix)
 {
 double r = 0;
 double min;
@@ -206,13 +212,26 @@ void CTSPSolver::cleanup()
 {
 	route.clear();
 	mayNotBeOptimal = false;
+	if (root != NULL)
+		deleteNode(root);
 }
 
-bool CTSPSolver::findCandidate(const tMatrix &matrix, int &nRow, int &nCol) const
+void CTSPSolver::deleteNode(SStep *node)
+{
+	if (node->plNode != NULL)
+		deleteNode(node->plNode);
+	if (node->prNode != NULL)
+		deleteNode(node->prNode);
+	delete node;
+	node = NULL;
+}
+
+QList<TCandidate> CTSPSolver::findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const
 {
 	nRow = -1;
 	nCol = -1;
-bool alts = false;
+QList<TCandidate> alts;
+TCandidate cand;
 double h = -1;
 double sum;
 	for (int r = 0; r < nCities; r++)
@@ -224,14 +243,17 @@ double sum;
 					h = sum;
 					nRow = r;
 					nCol = c;
-					alts = false;
-				} else if ((sum == h) && !hasSubCycles(r,c))
-					alts = true;
+					alts.clear();
+				} else if ((sum == h) && !hasSubCycles(r,c)) {
+					cand.nRow = r;
+					cand.nCol = c;
+					alts.append(cand);
+				}
 			}
 	return alts;
 }
 
-double CTSPSolver::findMinInCol(int nCol, const tMatrix &matrix, int exr) const
+double CTSPSolver::findMinInCol(int nCol, const TMatrix &matrix, int exr) const
 {
 double min = INFINITY;
 	for (int k = 0; k < nCities; k++)
@@ -240,7 +262,7 @@ double min = INFINITY;
 	return min == INFINITY ? 0 : min;
 }
 
-double CTSPSolver::findMinInRow(int nRow, const tMatrix &matrix, int exc) const
+double CTSPSolver::findMinInRow(int nRow, const TMatrix &matrix, int exc) const
 {
 double min = INFINITY;
 	for (int k = 0; k < nCities; k++)
@@ -263,14 +285,14 @@ int i = nCol;
 	return false;
 }
 
-void CTSPSolver::subCol(tMatrix &matrix, int nCol, double val)
+void CTSPSolver::subCol(TMatrix &matrix, int nCol, double val)
 {
 	for (int k = 0; k < nCities; k++)
 		if (k != nCol)
 			matrix[k][nCol] -= val;
 }
 
-void CTSPSolver::subRow(tMatrix &matrix, int nRow, double val)
+void CTSPSolver::subRow(TMatrix &matrix, int nRow, double val)
 {
 	for (int k = 0; k < nCities; k++)
 		if (k != nRow)

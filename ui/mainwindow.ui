@@ -524,10 +524,10 @@
      <normaloff>:/images/icons/help_about.png</normaloff>:/images/icons/help_about.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;About...</string>
+    <string>&amp;About TSPSG...</string>
    </property>
    <property name="iconText">
-    <string>About...</string>
+    <string>About TSPSG...</string>
    </property>
    <property name="statusTip">
     <string>About application</string>

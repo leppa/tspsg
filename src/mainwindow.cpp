@@ -301,19 +301,66 @@ bool untitled = (fileName == trUtf8("Untitled") + ".tspt");
 void MainWindow::actionHelpAboutTriggered()
 {
 //! \todo TODO: Normal about window :-)
-QString about = QString::fromUtf8("TSPSG: TSP Solver and Generator\n");
-	about += QString::fromUtf8("    Version: "BUILD_VERSION"\n");
-	about += QString::fromUtf8("    Copyright (C) 2007-%1 Lёppa <contacts[at]oleksii[dot]name>\n").arg(QDate::currentDate().toString("yyyy"));
-	about += QString::fromUtf8("Target OS: %1\n").arg(OS);
-	about += "Qt library:\n";
-	about += QString::fromUtf8("    Compile time: %1\n").arg(QT_VERSION_STR);
-	about += QString::fromUtf8("    Runtime: %1\n").arg(qVersion());
-	about += QString::fromUtf8("Built on %1 at %2\n").arg(__DATE__).arg(__TIME__);
-	about += QString::fromUtf8(VERSIONID"\n\n");
-	about += QString::fromUtf8("Algorithm: %1\n").arg(CTSPSolver::getVersionId());
-	about += "\n";
-	about += "TSPSG is licensed under the terms of the GNU General Public License. You should have received a copy of the GNU General Public License along with TSPSG.";
-	QMessageBox(QMessageBox::Information,"About",about,QMessageBox::Ok,this).exec();
+QString about = QString::fromUtf8("<b>TSPSG: TSP Solver and Generator</b><br>");
+	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Version: <b>"BUILD_VERSION"</b><br>");
+	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Copyright: <b>&copy; 2007-%1 Lёppa</b><br>").arg(QDate::currentDate().toString("yyyy"));
+	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sourceforge.net/</a></b><br>");
+	about += "<br>";
+	about += QString::fromUtf8("Target OS: <b>%1</b><br>").arg(OS);
+	about += "Qt library:<br>";
+	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Build time: <b>%1</b><br>").arg(QT_VERSION_STR);
+	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Runtime: <b>%1</b><br>").arg(qVersion());
+	about += QString::fromUtf8("Built on <b>%1</b> at <b>%2</b><br>").arg(__DATE__).arg(__TIME__);
+	about += QString::fromUtf8("Id: <b>"VERSIONID"</b><br>");
+	about += QString::fromUtf8("Algorithm: <b>%1</b><br>").arg(CTSPSolver::getVersionId());
+	about += "<br>";
+	about += "TSPSG is free software: you can redistribute it and/or modify it<br>"
+		"under the terms of the GNU General Public License as published<br>"
+		"by the Free Software Foundation, either version 3 of the License,<br>"
+		"or (at your option) any later version.<br>"
+		"<br>"
+		"TSPSG is distributed in the hope that it will be useful, but<br>"
+		"WITHOUT ANY WARRANTY; without even the implied warranty of<br>"
+		"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br>"
+		"GNU General Public License for more details.<br>"
+		"<br>"
+		"You should have received a copy of the GNU General Public License<br>"
+		"along with TSPSG.  If not, see <a href=\"http://www.gnu.org/licenses/\">http://www.gnu.org/licenses/</a>.";
+
+QDialog *dlg = new QDialog(this);
+QLabel *lblIcon = new QLabel(dlg);
+QTextBrowser *txtAbout = new QTextBrowser(dlg);
+QVBoxLayout *vb1 = new QVBoxLayout(),
+	*vb2 = new QVBoxLayout();
+QHBoxLayout *hb = new QHBoxLayout();
+QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal, dlg);
+
+	lblIcon->setPixmap(QPixmap(":/images/tspsg.png").scaledToWidth(64, Qt::SmoothTransformation));
+
+	vb1->addWidget(lblIcon);
+	vb1->addStretch();
+
+//	txtAbout->setTextInteractionFlags(txtAbout->textInteractionFlags() ^ Qt::TextEditable);
+	txtAbout->setWordWrapMode(QTextOption::NoWrap);
+	txtAbout->setOpenExternalLinks(true);
+	txtAbout->setHtml(about);
+	txtAbout->moveCursor(QTextCursor::Start);
+
+	hb->addLayout(vb1);
+	hb->addWidget(txtAbout);
+
+	vb2->addLayout(hb);
+	vb2->addWidget(bb);
+
+	dlg->setWindowTitle(trUtf8("About TSPSG"));
+	dlg->setLayout(vb2);
+
+	connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
+
+	dlg->resize(475, 350);
+	dlg->exec();
+
+	delete dlg;
 }
 
 void MainWindow::buttonBackToTaskClicked()
@@ -330,7 +377,7 @@ void MainWindow::buttonRandomClicked()
 
 void MainWindow::buttonSolveClicked()
 {
-tMatrix matrix;
+TMatrix matrix;
 QList<double> row;
 int n = spinCities->value();
 bool ok;
@@ -346,7 +393,7 @@ bool ok;
 		matrix.append(row);
 	}
 CTSPSolver solver;
-sStep *root = solver.solve(n,matrix,this);
+SStep *root = solver.solve(n,matrix,this);
 	if (!root)
 		return;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -357,15 +404,24 @@ QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
 	outputMatrix(matrix,output);
 	output.append("<hr>");
 	output.append("<p>" + trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()) + "</p>");
-sStep *step = root;
+SStep *step = root;
 	n = 1;
 	while (n <= spinCities->value()) {
-		if (step->prNode->prNode != NULL || (step->prNode->prNode == NULL && step->plNode->prNode == NULL)) {
+		if (step->prNode->prNode != NULL || ((step->prNode->prNode == NULL) && (step->plNode->prNode == NULL))) {
 			if (n != spinCities->value()) {
 				output.append("<p>" + trUtf8("Step #%1").arg(n++) + "</p>");
-				outputMatrix(step->matrix,output,step->candidate.nRow,step->candidate.nCol);
-				if (step->alts)
-					output.append("<p class=\"hasalts\">" + trUtf8("This step has alternate candidates for branching.") + "</p>");
+				outputMatrix(*step, output);
+				output.append("<p>" + trUtf8("Selected candidate for branching: %1.").arg(trUtf8("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)) + "</p>");
+				if (!step->alts.empty()) {
+TCandidate cand;
+QString alts;
+					foreach(cand, step->alts) {
+						if (!alts.isEmpty())
+							alts += ", ";
+						alts += trUtf8("(%1;%2)").arg(cand.nRow + 1).arg(cand.nCol + 1);
+					}
+					output.append("<p class=\"hasalts\">" + trUtf8("%n alternate candidate(s) for branching: %1.","",step->alts.count()).arg(alts) + "</p>");
+				}
 				output.append("<p>&nbsp;</p>");
 			}
 		}
@@ -391,9 +447,7 @@ sStep *step = root;
 	solutionText->setDocumentTitle(trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()));
 
 	// Scrolling to the end of text.
-QTextCursor cursor(solutionText->textCursor());
-	cursor.movePosition(QTextCursor::End, QTextCursor::MoveAnchor);
-	solutionText->setTextCursor(cursor);
+	solutionText->moveCursor(QTextCursor::End);
 
 	enableSolutionActions();
 	tabWidget->setCurrentIndex(1);
@@ -535,19 +589,19 @@ static QTranslator *qtTranslator; // Qt library translator
 		delete qtTranslator;
 		qtTranslator = NULL;
 	}
-	qtTranslator = new QTranslator();
 static QTranslator *translator; // Application translator
 	if (translator) {
 		qApp->removeTranslator(translator);
 		delete translator;
 	}
 	translator = new QTranslator();
-	if (lng.compare("en") && !lng.startsWith("en_")) {
+	if ((lng.compare("en") != 0) && !lng.startsWith("en_")) {
 		// Trying to load system Qt library translation...
+		qtTranslator = new QTranslator();
 		if (qtTranslator->load("qt_" + lng,QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
 			qApp->installTranslator(qtTranslator);
-		else
-			// No luck. Let's try to load bundled one.
+		else {
+			// No luck. Let's try to load a bundled one.
 			if (qtTranslator->load("qt_" + lng,PATH_I18N))
 				qApp->installTranslator(qtTranslator);
 			else {
@@ -555,14 +609,17 @@ static QTranslator *translator; // Application translator
 				delete qtTranslator;
 				qtTranslator = NULL;
 			}
-		// Now let's load application translation.
-		if (translator->load(lng,PATH_I18N))
-			qApp->installTranslator(translator);
-		else {
+		}
+	}
+	// Now let's load application translation.
+	if (translator->load(lng,PATH_I18N))
+		qApp->installTranslator(translator);
+	else {
+		delete translator;
+		translator = NULL;
+		if ((lng.compare("en") != 0) && !lng.startsWith("en_")) {
 			if (!ad)
 				QMessageBox(QMessageBox::Warning,trUtf8("Language Change"),trUtf8("Unable to load translation language."),QMessageBox::Ok,this).exec();
-			delete translator;
-			translator = NULL;
 			return false;
 		}
 	}
@@ -582,7 +639,7 @@ int res = QMessageBox(QMessageBox::Warning,trUtf8("Unsaved Changes"),trUtf8("Wou
 		return true;
 }
 
-void MainWindow::outputMatrix(const tMatrix &matrix, QStringList &output, int nRow, int nCol)
+void MainWindow::outputMatrix(const TMatrix &matrix, QStringList &output)
 {
 int n = spinCities->value();
 QString line="";
@@ -592,10 +649,36 @@ QString line="";
 		for (int c = 0; c < n; c++) {
 			if (matrix.at(r).at(c) == INFINITY)
 				line += "<td align=\"center\">"INFSTR"</td>";
-			else if ((r == nRow) && (c == nCol))
-				line += "<td align=\"center\" class=\"selected\">" + QVariant(matrix.at(r).at(c)).toString() + "</td>";
 			else
 				line += "<td align=\"center\">" + QVariant(matrix.at(r).at(c)).toString() + "</td>";
+		}
+		line += "</tr>";
+		output.append(line);
+	}
+	output.append("</table>");
+}
+
+void MainWindow::outputMatrix(const SStep &step, QStringList &output)
+{
+int n = spinCities->value();
+QString line="";
+	output.append("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+	for (int r = 0; r < n; r++) {
+		line = "<tr>";
+		for (int c = 0; c < n; c++) {
+			if (step.matrix.at(r).at(c) == INFINITY)
+				line += "<td align=\"center\">"INFSTR"</td>";
+			else if ((r == step.candidate.nRow) && (c == step.candidate.nCol))
+				line += "<td align=\"center\" class=\"selected\">" + QVariant(step.matrix.at(r).at(c)).toString() + "</td>";
+			else {
+TCandidate cand;
+				cand.nRow = r;
+				cand.nCol = c;
+				if (step.alts.contains(cand))
+					line += "<td align=\"center\" class=\"alternate\">" + QVariant(step.matrix.at(r).at(c)).toString() + "</td>";
+				else
+					line += "<td align=\"center\">" + QVariant(step.matrix.at(r).at(c)).toString() + "</td>";
+			}
 		}
 		line += "</tr>";
 		output.append(line);

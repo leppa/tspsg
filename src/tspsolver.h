@@ -33,29 +33,41 @@
 #include "tspmodel.h"
 
 //! A matrix of city-to-city travel costs.
-typedef QList<QList<double> > tMatrix;
+typedef QList<QList<double> > TMatrix;
+
+/*!
+ * \brief A structure that represents a candidate for branching.
+ */
+struct TCandidate {
+	int nRow; //!< A zero-based row number of the candidate
+	int nCol; //!< A zero-based column number of the candidate
+
+	//! Assigns default values
+	TCandidate() {
+		nCol = nRow = -1;
+	}
+	//! An operator == implementation
+	bool operator ==(const TCandidate &cand) const {
+		return ((cand.nRow == nRow) && (cand.nCol == nCol));
+	}
+};
 
 /*!
  * \brief This structure represents one step of solving.
  *
  *  A tree of such elements will represent the solving process.
  */
-//! \todo TODO: List alternative candidates.
-struct sStep {
-	tMatrix matrix; //!< This step's matrix
+struct SStep {
+	TMatrix matrix; //!< This step's matrix
 	double price; //!< The price of travel to this step
-	struct {
-		int nRow; //!< A zero-based row number of the candidate
-		int nCol; //!< A zero-based column number of the candidate
-	} candidate; //!< A candiadate for branching in the current matrix
-	bool alts; //!< Indicates whether or not matrix has alternative candidates
-	sStep *plNode; //!< Pointer to the left branch step
-	sStep *prNode; //!< Pointer to the right branch step
+	TCandidate candidate; //!< A candiadate for branching in the current matrix
+	QList<TCandidate> alts; //!< A list of alternative branching candidates
+	SStep *plNode; //!< Pointer to the left branch step
+	SStep *prNode; //!< Pointer to the right branch step
 
 	//! Assigns default values
-	sStep() {
-		price = candidate.nRow = candidate.nCol = -1;
-		alts = false;
+	SStep() {
+		price = -1;
 		plNode = prNode = NULL;
 	}
 };
@@ -75,23 +87,25 @@ public:
 	QString getSortedPath() const;
 	static QString getVersionId();
 	bool isOptimal() const;
-	sStep *solve(int numCities, tMatrix task, QWidget *parent = 0);
+	SStep *solve(int numCities, TMatrix task, QWidget *parent = 0);
+	~CTSPSolver();
 
 private:
 	bool mayNotBeOptimal;
 	int nCities;
-	sStep *root;
+	SStep *root;
 	QHash<int,int> route;
 //	QHash<int,int> forbidden;
 
-	double align(tMatrix &matrix);
+	double align(TMatrix &matrix);
 	void cleanup();
-	bool findCandidate(const tMatrix &matrix, int &nRow, int &nCol) const;
-	double findMinInCol(int nCol, const tMatrix &matrix, int exr = -1) const;
-	double findMinInRow(int nRow, const tMatrix &matrix, int exc = -1) const;
+	void deleteNode(SStep *node);
+	QList<TCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
+	double findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
+	double findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
 	bool hasSubCycles(int nRow, int nCol) const;
-	void subCol(tMatrix &matrix, int nCol, double val);
-	void subRow(tMatrix &matrix, int nRow, double val);
+	void subCol(TMatrix &matrix, int nCol, double val);
+	void subRow(TMatrix &matrix, int nRow, double val);
 };
 
 #endif // TSPSOLVER_H
