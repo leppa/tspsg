@@ -226,12 +226,12 @@ void CTSPSolver::deleteNode(SStep *node)
 	node = NULL;
 }
 
-QList<TCandidate> CTSPSolver::findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const
+QList<SCandidate> CTSPSolver::findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const
 {
 	nRow = -1;
 	nCol = -1;
-QList<TCandidate> alts;
-TCandidate cand;
+QList<SCandidate> alts;
+SCandidate cand;
 double h = -1;
 double sum;
 	for (int r = 0; r < nCities; r++)

@@ -1,7 +1,7 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$globals_8h.html" title="Contains TSPSG global defines." alt="" coords="203,238,275,266"/>
 <area shape="rect" id="node15" href="$settingsdialog_8h.html" title="Defines SettingsDialog class." alt="" coords="174,83,286,111"/>
-<area shape="rect" id="node20" href="$tspsolver_8h.html" title="Defines tMatrix typedef, sStep struct and CTSPSolver class." alt="" coords="310,83,393,111"/>
+<area shape="rect" id="node20" href="$tspsolver_8h.html" title="Defines TMatrix typedef, SCandidate and SStep structs and CTSPSolver class." alt="" coords="310,83,393,111"/>
 <area shape="rect" id="node23" href="$tspmodel_8h.html" title="Defines CTSPModel class." alt="" coords="378,161,463,189"/>
 <area shape="rect" id="node9" href="$version_8h.html" title="Contains TSPSG version information defines." alt="" coords="247,315,319,343"/>
 <area shape="rect" id="node11" href="$os_8h.html" title="Contains TSPSG target CPU architecture and OS detection." alt="" coords="343,315,389,343"/>

@@ -92,7 +92,7 @@ window.onload = initDynSections;
 <a name="l00033"></a>00033 <span class="preprocessor">#include &quot;ui_mainwindow.h&quot;</span>
 <a name="l00034"></a>00034 <span class="preprocessor">#include &quot;<a class="code" href="settingsdialog_8h.html" title="Defines SettingsDialog class.">settingsdialog.h</a>&quot;</span>
 <a name="l00035"></a>00035 
-<a name="l00036"></a>00036 <span class="preprocessor">#include &quot;<a class="code" href="tspsolver_8h.html" title="Defines tMatrix typedef, sStep struct and CTSPSolver class.">tspsolver.h</a>&quot;</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include &quot;<a class="code" href="tspsolver_8h.html" title="Defines TMatrix typedef, SCandidate and SStep structs and CTSPSolver class.">tspsolver.h</a>&quot;</span>
 <a name="l00037"></a>00037 <span class="preprocessor">#include &quot;<a class="code" href="tspmodel_8h.html" title="Defines CTSPModel class.">tspmodel.h</a>&quot;</span>
 <a name="l00038"></a>00038 
 <a name="l00043"></a><a class="code" href="class_main_window.html">00043</a> <span class="keyword">class </span><a class="code" href="class_main_window.html" title="Class for handling Main Window UI and logic.">MainWindow</a>: <span class="keyword">public</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmainwindow.html">QMainWindow</a>, Ui::<a class="code" href="class_main_window.html" title="Class for handling Main Window UI and logic.">MainWindow</a>
@@ -146,12 +146,13 @@ window.onload = initDynSections;
 <a name="l00091"></a>00091     <span class="keywordtype">void</span> loadLangList();
 <a name="l00092"></a>00092     <span class="keywordtype">bool</span> loadLanguage(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> &amp;lang = <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a>());
 <a name="l00093"></a>00093     <span class="keywordtype">bool</span> maybeSave();
-<a name="l00094"></a>00094     <span class="keywordtype">void</span> outputMatrix(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> &amp;matrix, <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstringlist.html">QStringList</a> &amp;output, <span class="keywordtype">int</span> nRow = -1, <span class="keywordtype">int</span> nCol = -1);
-<a name="l00095"></a>00095     <span class="keywordtype">bool</span> saveTask();
-<a name="l00096"></a>00096     <span class="keywordtype">void</span> setFileName(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> &amp;fileName = trUtf8(<span class="stringliteral">&quot;Untitled&quot;</span>) + <span class="stringliteral">&quot;.tspt&quot;</span>);
-<a name="l00097"></a>00097 };
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099 <span class="preprocessor">#endif // MAINWINDOW_H</span>
+<a name="l00094"></a>00094     <span class="keywordtype">void</span> outputMatrix(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstringlist.html">QStringList</a> &amp;output);
+<a name="l00095"></a>00095     <span class="keywordtype">void</span> outputMatrix(<span class="keyword">const</span> <a class="code" href="struct_s_step.html" title="This structure represents one step of solving.">SStep</a> &amp;step, <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstringlist.html">QStringList</a> &amp;output);
+<a name="l00096"></a>00096     <span class="keywordtype">bool</span> saveTask();
+<a name="l00097"></a>00097     <span class="keywordtype">void</span> setFileName(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> &amp;fileName = trUtf8(<span class="stringliteral">&quot;Untitled&quot;</span>) + <span class="stringliteral">&quot;.tspt&quot;</span>);
+<a name="l00098"></a>00098 };
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 <span class="preprocessor">#endif // MAINWINDOW_H</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -167,7 +168,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 18:11:34 2009 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Dec 17 00:37:27 2009 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

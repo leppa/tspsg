@@ -5,7 +5,7 @@
  *  $Id$
  *  $URL$
  *
- * \brief Defines #tMatrix typedef, sStep struct and CTSPSolver class.
+ * \brief Defines #TMatrix typedef, SCandidate and SStep structs and CTSPSolver class.
  *
  *  <b>TSPSG: TSP Solver and Generator</b>
  *
@@ -38,16 +38,16 @@ typedef QList<QList<double> > TMatrix;
 /*!
  * \brief A structure that represents a candidate for branching.
  */
-struct TCandidate {
+struct SCandidate {
 	int nRow; //!< A zero-based row number of the candidate
 	int nCol; //!< A zero-based column number of the candidate
 
 	//! Assigns default values
-	TCandidate() {
+	SCandidate() {
 		nCol = nRow = -1;
 	}
 	//! An operator == implementation
-	bool operator ==(const TCandidate &cand) const {
+	bool operator ==(const SCandidate &cand) const {
 		return ((cand.nRow == nRow) && (cand.nCol == nCol));
 	}
 };
@@ -60,8 +60,8 @@ struct TCandidate {
 struct SStep {
 	TMatrix matrix; //!< This step's matrix
 	double price; //!< The price of travel to this step
-	TCandidate candidate; //!< A candiadate for branching in the current matrix
-	QList<TCandidate> alts; //!< A list of alternative branching candidates
+	SCandidate candidate; //!< A candiadate for branching in the current matrix
+	QList<SCandidate> alts; //!< A list of alternative branching candidates
 	SStep *plNode; //!< Pointer to the left branch step
 	SStep *prNode; //!< Pointer to the right branch step
 
@@ -100,7 +100,7 @@ private:
 	double align(TMatrix &matrix);
 	void cleanup();
 	void deleteNode(SStep *node);
-	QList<TCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
+	QList<SCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
 	double findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
 	double findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
 	bool hasSubCycles(int nRow, int nCol) const;

@@ -413,7 +413,7 @@ SStep *step = root;
 				outputMatrix(*step, output);
 				output.append("<p>" + trUtf8("Selected candidate for branching: %1.").arg(trUtf8("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)) + "</p>");
 				if (!step->alts.empty()) {
-TCandidate cand;
+SCandidate cand;
 QString alts;
 					foreach(cand, step->alts) {
 						if (!alts.isEmpty())
@@ -671,7 +671,7 @@ QString line="";
 			else if ((r == step.candidate.nRow) && (c == step.candidate.nCol))
 				line += "<td align=\"center\" class=\"selected\">" + QVariant(step.matrix.at(r).at(c)).toString() + "</td>";
 			else {
-TCandidate cand;
+SCandidate cand;
 				cand.nRow = r;
 				cand.nCol = c;
 				if (step.alts.contains(cand))

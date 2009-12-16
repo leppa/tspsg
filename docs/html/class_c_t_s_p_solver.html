@@ -96,7 +96,7 @@ Collaboration diagram for CTSPSolver:</div>
 <div class="dynsection">
 <div class="center"><img src="class_c_t_s_p_solver__coll__graph.png" border="0" usemap="#_c_t_s_p_solver_coll__map" alt="Collaboration graph"/></div>
 <map name="_c_t_s_p_solver_coll__map" id="_c_t_s_p_solver_coll__map">
-<area shape="rect" id="node2" href="structs_step.html" title="This structure represents one step of solving." alt="" coords="61,101,117,129"/><area shape="rect" id="node5" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html" title="QList\&lt; QList\&lt; double \&gt; \&gt;" alt="" coords="5,6,173,34"/><area shape="rect" id="node7" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qhash.html" title="QHash\&lt; int, int \&gt;" alt="" coords="207,101,327,129"/></map>
+<area shape="rect" id="node2" href="struct_s_step.html" title="This structure represents one step of solving." alt="" coords="241,101,297,129"/><area shape="rect" id="node4" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html" title="QList\&lt; QList\&lt; double \&gt; \&gt;" alt="" coords="5,6,173,34"/><area shape="rect" id="node7" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html" title="QList\&lt; SCandidate \&gt;" alt="" coords="197,6,341,34"/><area shape="rect" id="node9" href="struct_s_candidate.html" title="A structure that represents a candidate for branching." alt="" coords="365,6,453,34"/><area shape="rect" id="node11" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qhash.html" title="QHash\&lt; int, int \&gt;" alt="" coords="387,101,507,129"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_c_t_s_p_solver-members.html">List of all members.</a></p>
@@ -109,8 +109,8 @@ Collaboration diagram for CTSPSolver:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the sorted optimal path, starting from City 1.  <a href="#a57556c971a25e3556c4aa3cc1fd2d3d0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_solver.html#a28d546e840cf53c639b45c0f26419f7a">isOptimal</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns whether or not the solution is definitely optimal.  <a href="#a28d546e840cf53c639b45c0f26419f7a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structs_step.html">sStep</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_solver.html#abc4a62fa7954327949926473309d6bc3">solve</a> (int numCities, <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a> task, <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qwidget.html">QWidget</a> *parent=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the given task.  <a href="#abc4a62fa7954327949926473309d6bc3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_s_step.html">SStep</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_solver.html#a9a6545dd05e449151aabe325f4058edd">solve</a> (int numCities, <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> task, <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qwidget.html">QWidget</a> *parent=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solves the given task.  <a href="#a9a6545dd05e449151aabe325f4058edd"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_t_s_p_solver.html#a677a878c4c8a06316a5d8d5a4fc8ab65">getVersionId</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns CTSPSolver's version ID.  <a href="#a677a878c4c8a06316a5d8d5a4fc8ab65"></a><br/></td></tr>
@@ -118,7 +118,7 @@ Collaboration diagram for CTSPSolver:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This class solves Travelling Salesman Problem task. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Copyright &copy; 2007-2009 Lёppa &lt;contacts[at]oleksii[dot]name&gt;</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>TODO: Deletion of solution tree on destroy and cleanup. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>TODO: Deletion of solution tree on destroy and cleanup. </dd></dl>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a57556c971a25e3556c4aa3cc1fd2d3d0"></a><!-- doxytag: member="CTSPSolver::getSortedPath" ref="a57556c971a25e3556c4aa3cc1fd2d3d0" args="() const " -->
 <div class="memitem">
@@ -165,7 +165,7 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 
 <p>Returns CTSPSolver's version ID. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A string: <b>$Id: tspsolver.cpp 71 2009-12-07 16:06:44Z laleppa $</b>. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string: <b>$Id: tspsolver.cpp 74 2009-12-16 22:22:05Z laleppa $</b>. </dd></dl>
 
 </div>
 </div>
@@ -190,12 +190,12 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="abc4a62fa7954327949926473309d6bc3"></a><!-- doxytag: member="CTSPSolver::solve" ref="abc4a62fa7954327949926473309d6bc3" args="(int numCities, tMatrix task, QWidget *parent=0)" -->
+<a class="anchor" id="a9a6545dd05e449151aabe325f4058edd"></a><!-- doxytag: member="CTSPSolver::solve" ref="a9a6545dd05e449151aabe325f4058edd" args="(int numCities, TMatrix task, QWidget *parent=0)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structs_step.html">sStep</a> * CTSPSolver::solve </td>
+          <td class="memname"><a class="el" href="struct_s_step.html">SStep</a> * CTSPSolver::solve </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
           <td class="paramname"> <em>numCities</em>, </td>
@@ -203,7 +203,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">tMatrix</a>&nbsp;</td>
+          <td class="paramtype"><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a>&nbsp;</td>
           <td class="paramname"> <em>task</em>, </td>
         </tr>
         <tr>
@@ -236,8 +236,8 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dynsection">
-<div class="center"><img src="class_c_t_s_p_solver_abc4a62fa7954327949926473309d6bc3_cgraph.png" border="0" usemap="#class_c_t_s_p_solver_abc4a62fa7954327949926473309d6bc3_cgraph_map" alt=""></div>
-<map name="class_c_t_s_p_solver_abc4a62fa7954327949926473309d6bc3_cgraph_map" id="class_c_t_s_p_solver_abc4a62fa7954327949926473309d6bc3_cgraph">
+<div class="center"><img src="class_c_t_s_p_solver_a9a6545dd05e449151aabe325f4058edd_cgraph.png" border="0" usemap="#class_c_t_s_p_solver_a9a6545dd05e449151aabe325f4058edd_cgraph_map" alt=""></div>
+<map name="class_c_t_s_p_solver_a9a6545dd05e449151aabe325f4058edd_cgraph_map" id="class_c_t_s_p_solver_a9a6545dd05e449151aabe325f4058edd_cgraph">
 <area shape="rect" id="node3" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qprogressdialog.html#reset" title="QProgressDialog::reset" alt="" coords="187,5,341,33"/><area shape="rect" id="node5" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qprogressdialog.html#setBar" title="QProgressDialog::setBar" alt="" coords="181,55,347,83"/><area shape="rect" id="node7" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qhash.html#size" title="QHash::size" alt="" coords="217,106,311,134"/></map>
 </div>
 </p>
@@ -263,7 +263,7 @@ Here is the call graph for this function:</div>
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Dec 7 18:11:39 2009 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Dec 17 00:37:32 2009 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
