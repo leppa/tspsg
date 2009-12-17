@@ -99,7 +99,7 @@ private:
 
 	double align(TMatrix &matrix);
 	void cleanup();
-	void deleteNode(SStep *node);
+	void deleteNode(SStep *&node);
 	QList<SCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
 	double findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
 	double findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;

@@ -216,7 +216,7 @@ void CTSPSolver::cleanup()
 		deleteNode(root);
 }
 
-void CTSPSolver::deleteNode(SStep *node)
+void CTSPSolver::deleteNode(SStep *&node)
 {
 	if (node->plNode != NULL)
 		deleteNode(node->plNode);

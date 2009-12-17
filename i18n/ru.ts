@@ -309,7 +309,7 @@ Do you wish to apply them to current solution text?</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="443"/>
         <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
-        <translation>ВНИМАНИЕ!!!&lt;br&gt;Найденное решение является рекордом, но может оказаться не оптимальным.&lt;br&gt;Для получения оптимального решения, или проверки текущего на оптимальность, требуется продолжить итерации.</translation>
+        <translation>&lt;b&gt;ВНИМАНИЕ!!!&lt;/b&gt;&lt;br&gt;Найденное решение является рекордом, но может оказаться не оптимальным.&lt;br&gt;Для получения оптимального решения, или проверки текущего на оптимальность, требуется продолжить итерации.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="278"/>
