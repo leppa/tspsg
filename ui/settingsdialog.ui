@@ -2,7 +2,7 @@
 <ui version="4.0">
  <author>Lёppa: $Id$</author>
  <class>SettingsDialog</class>
- <widget class="QWidget" name="SettingsDialog">
+ <widget class="QDialog" name="SettingsDialog">
   <property name="windowTitle">
    <string>Preferences</string>
   </property>
@@ -74,39 +74,6 @@
    <property name="autoFillBackground">
     <bool>true</bool>
    </property>
-   <widget class="QPushButton" name="buttonCancel">
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="statusTip">
-     <string>Close without saving preferences</string>
-    </property>
-    <property name="text">
-     <string>&amp;Cancel</string>
-    </property>
-    <property name="icon">
-     <iconset resource="../resources/tspsg.qrc">
-      <normaloff>:/images/icons/button_cancel.png</normaloff>:/images/icons/button_cancel.png</iconset>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="buttonOK">
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="statusTip">
-     <string>Save new preferences</string>
-    </property>
-    <property name="text">
-     <string>&amp;OK</string>
-    </property>
-    <property name="icon">
-     <iconset resource="../resources/tspsg.qrc">
-      <normaloff>:/images/icons/button_ok.png</normaloff>:/images/icons/button_ok.png</iconset>
-    </property>
-    <property name="default">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QToolButton" name="buttonHelp">
     <property name="enabled">
      <bool>false</bool>
@@ -129,6 +96,17 @@
     </property>
     <property name="autoRaise">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QDialogButtonBox" name="buttonBox">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="standardButtons">
+     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
     </property>
    </widget>
   </widget>
@@ -286,10 +264,124 @@
      <string>Autosize of rows and columns</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="cbShowMatrix">
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="statusTip">
+     <string>Show solution steps' matrices for every solution step</string>
+    </property>
+    <property name="text">
+     <string>Show solution steps' matrices</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbCitiesLimit">
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="statusTip">
+     <string>Use the number of cities in task to determine whether to show solution steps' matrices</string>
+    </property>
+    <property name="text">
+     <string>Only when &lt;=</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinCitiesLimit">
+    <property name="statusTip">
+     <string>Maximum number of cities for showing solution steps' matrices</string>
+    </property>
+    <property name="suffix">
+     <string comment="Don't forget a space at the beginning!"> cities</string>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources>
   <include location="../resources/tspsg.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>155</x>
+     <y>252</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>306</x>
+     <y>231</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>155</x>
+     <y>252</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>262</x>
+     <y>245</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbShowMatrix</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>cbCitiesLimit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>81</x>
+     <y>8</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>46</x>
+     <y>8</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbShowMatrix</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>cbCitiesLimit</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>81</x>
+     <y>8</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>46</x>
+     <y>8</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbCitiesLimit</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinCitiesLimit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>46</x>
+     <y>8</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>29</x>
+     <y>9</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -34,11 +34,25 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
 	setupUi(this);
 	// Laying out elements
+	layoutCitiesLimit = new QHBoxLayout();
+	layoutCitiesLimit->setMargin(0);
+	layoutCitiesLimit->setSpacing(0);
+	layoutCitiesLimit->addSpacing(10);
+	layoutCitiesLimit->addWidget(cbCitiesLimit);
+	layoutCitiesLimit->addWidget(spinCitiesLimit);
+	layoutCitiesLimit->addStretch();
+
+	buttonBox->button(QDialogButtonBox::Save)->setIcon(QIcon(":/images/icons/button_ok.png"));
+	buttonBox->button(QDialogButtonBox::Save)->setStatusTip(trUtf8("Save new preferences"));
+	buttonBox->button(QDialogButtonBox::Save)->setCursor(QCursor(Qt::PointingHandCursor));
+	buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QIcon(":/images/icons/button_cancel.png"));
+	buttonBox->button(QDialogButtonBox::Cancel)->setStatusTip(trUtf8("Close without saving preferences"));
+	buttonBox->button(QDialogButtonBox::Cancel)->setCursor(QCursor(Qt::PointingHandCursor));
+
 #ifdef Q_OS_WINCE
 	// Layout helper elements
 QVBoxLayout *vbox1, *vbox2;
 QHBoxLayout *hbox1, *hbox2;
-QSpacerItem *spacer;
 
 	labelRandMin->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
 	labelRandMax->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
@@ -47,8 +61,9 @@ QSpacerItem *spacer;
 	vbox2 = new QVBoxLayout(bgWhite);
 	vbox2->addWidget(groupRandomSettings);
 	vbox2->addWidget(groupOutputSettings);
-	spacer = new QSpacerItem(0,0,QSizePolicy::Minimum,QSizePolicy::Expanding);
-	vbox2->addItem(spacer);
+	vbox2->addStretch();
+	vbox2->addWidget(cbShowMatrix);
+	vbox2->addLayout(layoutCitiesLimit);
 	vbox2->addWidget(cbAutosize);
 
 	// Output settings group
@@ -61,10 +76,8 @@ QSpacerItem *spacer;
 	hbox2->setMargin(6);
 	hbox2->setSpacing(6);
 	hbox2->addWidget(buttonHelp);
-	spacer = new QSpacerItem(0,0,QSizePolicy::Expanding);
-	hbox2->addItem(spacer);
-	hbox2->addWidget(buttonOK);
-	hbox2->addWidget(buttonCancel);
+	hbox2->addStretch();
+	hbox2->addWidget(buttonBox);
 
 	// Central layout
 	vbox1 = new QVBoxLayout(this);
@@ -77,7 +90,6 @@ QSpacerItem *spacer;
 	// Layout helper elements
 QVBoxLayout *vbox1, *vbox2, *vbox3;
 QHBoxLayout *hbox1, *hbox2, *hbox3;
-QSpacerItem *spacer;
 
 	cbSaveState = new QCheckBox(bgWhite);
 	cbSaveState->setObjectName("cbSaveState");
@@ -92,9 +104,10 @@ QSpacerItem *spacer;
 	imgIcon->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Expanding);
 	imgIcon->setFrameShape(QFrame::Panel);
 	imgIcon->setLineWidth(0);
-	imgIcon->setPixmap(QPixmap(QString::fromUtf8(":/images/icons/preferences_system.png")));
+	imgIcon->setPixmap(QPixmap(":/images/icons/preferences_system.png"));
 	imgIcon->setStyleSheet("background-color: #0080C0;");
 	imgIcon->setAlignment(Qt::AlignCenter);
+	imgIcon->setMinimumWidth(150);
 
 	labelHint = new QLabel(bgGrey);
 	labelHint->setObjectName("labelHint");
@@ -130,18 +143,17 @@ QSpacerItem *spacer;
 	hbox2 = new QHBoxLayout();
 	hbox2->addWidget(groupRandomSettings);
 	hbox2->addWidget(groupOutputSettings);
-	spacer = new QSpacerItem(0,0,QSizePolicy::Expanding);
-	hbox2->addItem(spacer);
+	hbox2->addStretch();
 
 	// Top right part (with white bg)
 	vbox2 = new QVBoxLayout(bgWhite);
-	spacer = new QSpacerItem(0,0,QSizePolicy::Minimum,QSizePolicy::Expanding);
-	vbox2->addItem(spacer);
+	vbox2->addStretch();
 	vbox2->addLayout(hbox2);
+	vbox2->addWidget(cbShowMatrix);
+	vbox2->addLayout(layoutCitiesLimit);
 	vbox2->addWidget(cbAutosize);
 	vbox2->addWidget(cbSaveState);
-	spacer = new QSpacerItem(0,0,QSizePolicy::Minimum,QSizePolicy::Expanding);
-	vbox2->addItem(spacer);
+	vbox2->addStretch();
 
 	// Bottom part (with grey bg)
 	hbox3 = new QHBoxLayout(bgGrey);
@@ -149,8 +161,7 @@ QSpacerItem *spacer;
 	hbox3->setSpacing(6);
 	hbox3->addWidget(buttonHelp);
 	hbox3->addWidget(labelHint);
-	hbox3->addWidget(buttonOK);
-	hbox3->addWidget(buttonCancel);
+	hbox3->addWidget(buttonBox);
 
 	// Central layout
 	vbox1 = new QVBoxLayout(this);
@@ -160,16 +171,13 @@ QSpacerItem *spacer;
 	vbox1->addWidget(lineHorizontal);
 	vbox1->addWidget(bgGrey);
 #endif // Q_OS_WINCE
-	connect(buttonOK,SIGNAL(clicked()),this,SLOT(accept()));
-	connect(buttonCancel,SIGNAL(clicked()),this,SLOT(reject()));
 	connect(spinRandMin,SIGNAL(valueChanged(int)),this,SLOT(spinRandMinValueChanged(int)));
 	connect(buttonFont,SIGNAL(clicked()),this,SLOT(buttonFontClicked()));
 	connect(buttonColor,SIGNAL(clicked()),this,SLOT(buttonColorClicked()));
 //	setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint);
 	setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
 #ifndef Q_OS_WINCE
-	// Setting initial text of dialog hint label to own status tip
-	// text.
+	// Setting initial text of dialog hint label to own status tip text.
 	labelHint->setText(labelHint->statusTip());
 #endif // Q_OS_WINCE
 	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
@@ -181,10 +189,20 @@ QSpacerItem *spacer;
 #ifndef Q_OS_WINCE
 	cbSaveState->setChecked(settings->value("SavePos",false).toBool());
 #endif // Q_OS_WINCE
+
 	settings->beginGroup("Output");
+	cbShowMatrix->setChecked(settings->value("ShowMatrix", DEF_SHOW_MATRIX).toBool());
+	cbCitiesLimit->setEnabled(cbShowMatrix->isChecked());
+	cbCitiesLimit->setChecked(settings->value("UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT && cbShowMatrix->isChecked()).toBool());
+	spinCitiesLimit->setEnabled(cbShowMatrix->isChecked());
+	spinCitiesLimit->setValue(settings->value("ShowMatrixCitiesLimit", DEF_SHOW_MATRIX_CITY_LIMIT).toInt());
+	spinCitiesLimit->setMaximum(MAX_NUM_CITIES);
+
 	font = settings->value("Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>();
 	color = settings->value("Color",DEF_FONT_COLOR).value<QColor>();
 	settings->endGroup();
+
+	adjustSize();
 }
 
 /*!
@@ -210,16 +228,21 @@ bool SettingsDialog::fontChanged() const
 void SettingsDialog::accept()
 {
 #ifndef Q_OS_WINCE
-	settings->setValue("SavePos",cbSaveState->isChecked());
+	settings->setValue("SavePos", cbSaveState->isChecked());
 #endif // Q_OS_WINCE
-	settings->setValue("Autosize",cbAutosize->isChecked());
-	settings->setValue("MinCost",spinRandMin->value());
-	settings->setValue("MaxCost",spinRandMax->value());
+	settings->setValue("Autosize", cbAutosize->isChecked());
+	settings->setValue("MinCost", spinRandMin->value());
+	settings->setValue("MaxCost", spinRandMax->value());
+
 	settings->beginGroup("Output");
+	settings->setValue("ShowMatrix", cbShowMatrix->isChecked());
+	settings->setValue("UseShowMatrixLimit", cbShowMatrix->isChecked() && cbCitiesLimit->isChecked());
+	if (cbCitiesLimit->isChecked())
+		settings->setValue("ShowMatrixCitiesLimit", spinCitiesLimit->value());
 	if (newFont)
-		settings->setValue("Font",font);
+		settings->setValue("Font", font);
 	if (newColor)
-		settings->setValue("Color",color);
+		settings->setValue("Color", color);
 	settings->endGroup();
 	QDialog::accept();
 }
@@ -260,12 +283,6 @@ QString tip = static_cast<QStatusTipEvent *>(ev)->tip();
 		else
 			labelHint->setText(labelHint->statusTip());
 		return true;
-	// Making imgIcon square.
-	} else if (ev->type() == QEvent::Show) {
-bool result = QDialog::event(ev);
-		if (result)
-			imgIcon->setMinimumWidth(imgIcon->height());
-		return result;
 	} else
 		return QDialog::event(ev);
 }

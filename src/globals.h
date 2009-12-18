@@ -45,6 +45,12 @@
 #define DEF_RAND_MAX 10
 //! Default number of cities
 #define DEF_NUM_CITIES 5
+//! Default value for showing or not solution step matrices
+#define DEF_SHOW_MATRIX true
+//! Default value for using or not city limit for showing solution steps matrices
+#define DEF_USE_SHOW_MATRIX_LIMIT true
+//! Default maximum number of cities to show solution step matrices
+#define DEF_SHOW_MATRIX_CITY_LIMIT 15
 //! Default font name
 #define DEF_FONT_FAMILY "Courier New"
 //! Default font size
@@ -53,7 +59,7 @@
 #define DEF_FONT_COLOR Qt::black
 
 //! Maximum available number of cities
-#define MAX_NUM_CITIES 30
+#define MAX_NUM_CITIES 50
 //! Maximum allowed value for random generation limits
 #define MAX_RAND_VALUE 1000
 

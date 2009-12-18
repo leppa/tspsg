@@ -86,7 +86,6 @@ private:
 	CTSPModel *tspmodel;
 
 	void closeEvent(QCloseEvent *ev);
-	void enableSolutionActions(bool enable = true);
 	void initDocStyleSheet();
 	void loadLangList();
 	bool loadLanguage(const QString &lang = QString());
@@ -95,6 +94,7 @@ private:
 	void outputMatrix(const SStep &step, QStringList &output);
 	bool saveTask();
 	void setFileName(const QString &fileName = trUtf8("Untitled") + ".tspt");
+	void toggleSolutionActions(bool enable = true);
 };
 
 #endif // MAINWINDOW_H

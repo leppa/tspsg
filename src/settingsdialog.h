@@ -50,6 +50,7 @@ private:
 	bool newFont;
 	bool newColor;
 	QSettings *settings;
+	QHBoxLayout *layoutCitiesLimit;
 #ifndef Q_OS_WINCE
 	QCheckBox *cbSaveState;
 	QLabel *imgIcon;

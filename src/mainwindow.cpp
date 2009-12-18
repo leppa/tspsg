@@ -46,9 +46,8 @@ QStatusBar *statusbar = new QStatusBar(this);
 	solutionText->setTextColor(settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>());
 	solutionText->setWordWrapMode(QTextOption::WordWrap);
 #ifdef Q_OS_WINCE
-	// A little hack for toolbar icons to have sane size.
-int s = qMin(QApplication::desktop()->screenGeometry().width(),QApplication::desktop()->screenGeometry().height());
-	toolBar->setIconSize(QSize(s / 10,s / 10));
+	// A little hack for toolbar icons to have a sane size.
+	toolBar->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
 #endif
 #ifndef QT_NO_PRINTER
 	printer = new QPrinter(QPrinter::HighResolution);
@@ -128,7 +127,7 @@ void MainWindow::actionFileNewTriggered()
 	setWindowModified(false);
 	tabWidget->setCurrentIndex(0);
 	solutionText->clear();
-	enableSolutionActions(false);
+	toggleSolutionActions(false);
 	QApplication::restoreOverrideCursor();
 }
 
@@ -136,26 +135,22 @@ void MainWindow::actionFileOpenTriggered()
 {
 	if (!maybeSave())
 		return;
-QFileDialog od(this);
-	od.setAcceptMode(QFileDialog::AcceptOpen);
-	od.setFileMode(QFileDialog::ExistingFile);
+
 QStringList filters(trUtf8("All Supported Formats") + " (*.tspt *.zkt)");
 	filters.append(trUtf8("%1 Task Files").arg("TSPSG") + " (*.tspt)");
 	filters.append(trUtf8("%1 Task Files").arg("ZKomModRd") + " (*.zkt)");
 	filters.append(trUtf8("All Files") + " (*)");
-	od.setNameFilters(filters);
-	if (od.exec() != QDialog::Accepted)
+
+QString file = QFileDialog::getOpenFileName(this, trUtf8("Task Load"), QString(), filters.join(";;"));
+	if (file.isEmpty() || !QFileInfo(file).isFile())
 		return;
-QStringList files = od.selectedFiles();
-	if (files.empty())
+	if (!tspmodel->loadTask(file))
 		return;
-	if (!tspmodel->loadTask(files.first()))
-		return;
-	setFileName(files.first());
+	setFileName(file);
 	tabWidget->setCurrentIndex(0);
 	setWindowModified(false);
 	solutionText->clear();
-	enableSolutionActions(false);
+	toggleSolutionActions(false);
 }
 
 void MainWindow::actionFileSaveTriggered()
@@ -175,31 +170,36 @@ void MainWindow::actionFileSaveAsTaskTriggered()
 void MainWindow::actionFileSaveAsSolutionTriggered()
 {
 static QString selectedFile;
-	if (selectedFile.isEmpty())
+	if (selectedFile.isEmpty()) {
+		if (fileName == trUtf8("Untitled") + ".tspt") {
 #ifndef QT_NO_PRINTER
-		selectedFile = "solution.pdf";
+			selectedFile = "solution.pdf";
 #else
-		selectedFile = "solution.html";
+			selectedFile = "solution.html";
 #endif // QT_NO_PRINTER
-QFileDialog sd(this);
-	sd.setAcceptMode(QFileDialog::AcceptSave);
+		} else {
+#ifndef QT_NO_PRINTER
+			selectedFile = QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".pdf";
+#else
+			selectedFile = QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".html";
+#endif // QT_NO_PRINTER
+		}
+	}
+
 QStringList filters;
 #ifndef QT_NO_PRINTER
-	filters.append(trUtf8("PDF Files") + "(*.pdf)");
+	filters.append(trUtf8("PDF Files") + " (*.pdf)");
 #endif
 	filters.append(trUtf8("HTML Files") + " (*.html *.htm)");
 #if QT_VERSION >= 0x040500
 	filters.append(trUtf8("OpenDocument Files") + " (*.odt)");
 #endif // QT_VERSION >= 0x040500
 	filters.append(trUtf8("All Files") + " (*)");
-	sd.setNameFilters(filters);
-	sd.selectFile(selectedFile);
-	if (sd.exec() != QDialog::Accepted)
+
+QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filters.join(";;"));
+	if (file.isEmpty())
 		return;
-QStringList files = sd.selectedFiles();
-	if (files.empty())
-		return;
-	selectedFile = files.first();
+	selectedFile = file;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 #ifndef QT_NO_PRINTER
 	if (selectedFile.endsWith(".pdf",Qt::CaseInsensitive)) {
@@ -301,16 +301,26 @@ bool untitled = (fileName == trUtf8("Untitled") + ".tspt");
 void MainWindow::actionHelpAboutTriggered()
 {
 //! \todo TODO: Normal about window :-)
-QString about = QString::fromUtf8("<b>TSPSG: TSP Solver and Generator</b><br>");
-	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Version: <b>"BUILD_VERSION"</b><br>");
-	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Copyright: <b>&copy; 2007-%1 Lёppa</b><br>").arg(QDate::currentDate().toString("yyyy"));
-	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sourceforge.net/</a></b><br>");
-	about += "<br>";
+QString title;
+#ifdef Q_OS_WINCE
+	title += QString::fromUtf8("<b>TSPSG<br>TSP Solver and Generator</b><br>");
+#else
+	title += QString::fromUtf8("<b>TSPSG: TSP Solver and Generator</b><br>");
+#endif // Q_OS_WINCE
+	title += QString::fromUtf8("Version: <b>"BUILD_VERSION"</b><br>");
+	title += QString::fromUtf8("<b>&copy; 2007-%1 Lёppa</b><br>").arg(QDate::currentDate().toString("yyyy"));
+	title += QString::fromUtf8("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sf.net/</a></b><br>");
+QString about;
 	about += QString::fromUtf8("Target OS: <b>%1</b><br>").arg(OS);
-	about += "Qt library:<br>";
+#ifndef STATIC_BUILD
+	about += "Qt library (shared):<br>";
 	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Build time: <b>%1</b><br>").arg(QT_VERSION_STR);
 	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Runtime: <b>%1</b><br>").arg(qVersion());
+#else
+	about += QString::fromUtf8("Qt library: <b>%1</b> (static)<br>").arg(QT_VERSION_STR);
+#endif // STATIC_BUILD
 	about += QString::fromUtf8("Built on <b>%1</b> at <b>%2</b><br>").arg(__DATE__).arg(__TIME__);
+	about += "<br>";
 	about += QString::fromUtf8("Id: <b>"VERSIONID"</b><br>");
 	about += QString::fromUtf8("Algorithm: <b>%1</b><br>").arg(CTSPSolver::getVersionId());
 	about += "<br>";
@@ -328,17 +338,20 @@ QString about = QString::fromUtf8("<b>TSPSG: TSP Solver and Generator</b><br>");
 		"along with TSPSG.  If not, see <a href=\"http://www.gnu.org/licenses/\">http://www.gnu.org/licenses/</a>.";
 
 QDialog *dlg = new QDialog(this);
-QLabel *lblIcon = new QLabel(dlg);
+QLabel *lblIcon = new QLabel(dlg),
+	*lblTitle = new QLabel(dlg);
 QTextBrowser *txtAbout = new QTextBrowser(dlg);
-QVBoxLayout *vb1 = new QVBoxLayout(),
-	*vb2 = new QVBoxLayout();
+QVBoxLayout *vb = new QVBoxLayout();
 QHBoxLayout *hb = new QHBoxLayout();
 QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal, dlg);
 
-	lblIcon->setPixmap(QPixmap(":/images/tspsg.png").scaledToWidth(64, Qt::SmoothTransformation));
+	lblIcon->setPixmap(QPixmap(":/images/tspsg.png").scaledToWidth(logicalDpiX() * 2 / 3, Qt::SmoothTransformation));
+	lblIcon->setAlignment(Qt::AlignTop);
+	lblTitle->setText(title);
 
-	vb1->addWidget(lblIcon);
-	vb1->addStretch();
+	hb->addWidget(lblIcon);
+	hb->addWidget(lblTitle);
+	hb->addStretch();
 
 //	txtAbout->setTextInteractionFlags(txtAbout->textInteractionFlags() ^ Qt::TextEditable);
 	txtAbout->setWordWrapMode(QTextOption::NoWrap);
@@ -346,18 +359,17 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	txtAbout->setHtml(about);
 	txtAbout->moveCursor(QTextCursor::Start);
 
-	hb->addLayout(vb1);
-	hb->addWidget(txtAbout);
+	vb->addLayout(hb);
+	vb->addWidget(txtAbout);
+	vb->addWidget(bb);
 
-	vb2->addLayout(hb);
-	vb2->addWidget(bb);
-
+	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
 	dlg->setWindowTitle(trUtf8("About TSPSG"));
-	dlg->setLayout(vb2);
+	dlg->setLayout(vb);
 
 	connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
 
-	dlg->resize(475, 350);
+	dlg->resize(410, 300);
 	dlg->exec();
 
 	delete dlg;
@@ -401,7 +413,7 @@ QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
 	output.clear();
 	output.append("<p>" + trUtf8("Variant #%1").arg(spinVariant->value()) + "</p>");
 	output.append("<p>" + trUtf8("Task:") + "</p>");
-	outputMatrix(matrix,output);
+	outputMatrix(matrix, output);
 	output.append("<hr>");
 	output.append("<p>" + trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()) + "</p>");
 SStep *step = root;
@@ -410,7 +422,9 @@ SStep *step = root;
 		if (step->prNode->prNode != NULL || ((step->prNode->prNode == NULL) && (step->plNode->prNode == NULL))) {
 			if (n != spinCities->value()) {
 				output.append("<p>" + trUtf8("Step #%1").arg(n++) + "</p>");
-				outputMatrix(*step, output);
+				if (settings->value("Output/ShowMatrix", DEF_SHOW_MATRIX).toBool() && settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() && (spinCities->value() <= settings->value("Output/ShowMatrixCitiesLimit", DEF_SHOW_MATRIX_CITY_LIMIT).toInt())) {
+					outputMatrix(*step, output);
+				}
 				output.append("<p>" + trUtf8("Selected candidate for branching: %1.").arg(trUtf8("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)) + "</p>");
 				if (!step->alts.empty()) {
 SCandidate cand;
@@ -443,13 +457,14 @@ QString alts;
 		output.append("<p>" + trUtf8("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
 	}
 	output.append("<p></p>");
+
 	solutionText->setHtml(output.join(""));
 	solutionText->setDocumentTitle(trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()));
 
 	// Scrolling to the end of text.
 	solutionText->moveCursor(QTextCursor::End);
 
-	enableSolutionActions();
+	toggleSolutionActions();
 	tabWidget->setCurrentIndex(1);
 	QApplication::restoreOverrideCursor();
 }
@@ -514,19 +529,6 @@ void MainWindow::closeEvent(QCloseEvent *ev)
 	}
 
 	QMainWindow::closeEvent(ev);
-}
-
-void MainWindow::enableSolutionActions(bool enable)
-{
-	buttonSaveSolution->setEnabled(enable);
-	actionFileSaveAsSolution->setEnabled(enable);
-	solutionText->setEnabled(enable);
-	if (!enable)
-		output.clear();
-#ifndef QT_NO_PRINTER
-	actionFilePrint->setEnabled(enable);
-	actionFilePrintPreview->setEnabled(enable);
-#endif // QT_NO_PRINTER
 }
 
 void MainWindow::initDocStyleSheet()
@@ -687,23 +689,19 @@ SCandidate cand;
 }
 
 bool MainWindow::saveTask() {
-QFileDialog sd(this);
-	sd.setAcceptMode(QFileDialog::AcceptSave);
 QStringList filters(trUtf8("%1 Task File").arg("TSPSG") + " (*.tspt)");
 	filters.append(trUtf8("All Files") + " (*)");
-	sd.setNameFilters(filters);
-	sd.setDefaultSuffix("tspt");
-	if (fileName.endsWith(".tspt",Qt::CaseInsensitive))
-		sd.selectFile(fileName);
+QString file;
+	if (fileName.endsWith(".tspt", Qt::CaseInsensitive))
+		file = fileName;
 	else
-		sd.selectFile(QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt");
-	if (sd.exec() != QDialog::Accepted)
+		file = QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt";
+
+	file = QFileDialog::getSaveFileName(this, trUtf8("Task Save"), file, filters.join(";;"));
+	if (file.isEmpty())
 		return false;
-QStringList files = sd.selectedFiles();
-	if (files.empty())
-		return false;
-	if (tspmodel->saveTask(files.first())) {
-		setFileName(files.first());
+	if (tspmodel->saveTask(file)) {
+		setFileName(file);
 		setWindowModified(false);
 		return true;
 	}
@@ -714,4 +712,17 @@ void MainWindow::setFileName(const QString &fileName)
 {
 	this->fileName = fileName;
 	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(trUtf8("Travelling Salesman Problem")));
+}
+
+void MainWindow::toggleSolutionActions(bool enable)
+{
+	buttonSaveSolution->setEnabled(enable);
+	actionFileSaveAsSolution->setEnabled(enable);
+	solutionText->setEnabled(enable);
+	if (!enable)
+		output.clear();
+#ifndef QT_NO_PRINTER
+	actionFilePrint->setEnabled(enable);
+	actionFilePrintPreview->setEnabled(enable);
+#endif // QT_NO_PRINTER
 }
