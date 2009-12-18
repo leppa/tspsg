@@ -220,17 +220,17 @@ void CTSPSolver::cleanup()
 
 void CTSPSolver::deleteNode(SStep *&node)
 {
-static int x;
-	x++;
-qDebug() << ">>>" << x;
+//static int x;
+//	x++;
+//qDebug() << ">>>" << x;
 	if (node->plNode != NULL)
 		deleteNode(node->plNode);
 	if (node->prNode != NULL)
 		deleteNode(node->prNode);
 	delete node;
 	node = NULL;
-qDebug() << "<<<" << x;
-	x--;
+//qDebug() << "<<<" << x;
+//	x--;
 }
 
 QList<SCandidate> CTSPSolver::findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const

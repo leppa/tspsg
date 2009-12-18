@@ -152,77 +152,77 @@ Maybe, this task has no solutions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="622"/>
+        <location filename="../src/mainwindow.cpp" line="624"/>
         <source>Unable to load translation language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="633"/>
+        <location filename="../src/mainwindow.cpp" line="635"/>
         <source>Would you like to save changes in current task?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="15"/>
-        <location filename="../src/mainwindow.cpp" line="716"/>
+        <location filename="../src/mainwindow.cpp" line="714"/>
         <source>Travelling Salesman Problem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="622"/>
+        <location filename="../src/mainwindow.cpp" line="624"/>
         <source>Language Change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="633"/>
+        <location filename="../src/mainwindow.cpp" line="635"/>
         <source>Unsaved Changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="142"/>
+        <location filename="../src/mainwindow.cpp" line="139"/>
         <source>All Supported Formats</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="143"/>
-        <location filename="../src/mainwindow.cpp" line="144"/>
+        <location filename="../src/mainwindow.cpp" line="140"/>
+        <location filename="../src/mainwindow.cpp" line="141"/>
         <source>%1 Task Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="145"/>
-        <location filename="../src/mainwindow.cpp" line="194"/>
+        <location filename="../src/mainwindow.cpp" line="142"/>
+        <location filename="../src/mainwindow.cpp" line="197"/>
         <location filename="../src/mainwindow.cpp" line="693"/>
         <source>All Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="188"/>
+        <location filename="../src/mainwindow.cpp" line="191"/>
         <source>PDF Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="190"/>
+        <location filename="../src/mainwindow.cpp" line="193"/>
         <source>HTML Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="192"/>
+        <location filename="../src/mainwindow.cpp" line="195"/>
         <source>OpenDocument Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="414"/>
+        <location filename="../src/mainwindow.cpp" line="428"/>
         <source>Selected candidate for branching: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="414"/>
-        <location filename="../src/mainwindow.cpp" line="421"/>
+        <location filename="../src/mainwindow.cpp" line="428"/>
+        <location filename="../src/mainwindow.cpp" line="435"/>
         <source>(%1;%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="423"/>
+        <location filename="../src/mainwindow.cpp" line="437"/>
         <source>%n alternate candidate(s) for branching: %1.</source>
         <translation>
             <numerusform>%n alternate candidate for branching: %1.</numerusform>
@@ -240,65 +240,75 @@ Maybe, this task has no solutions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="144"/>
+        <source>Task Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/mainwindow.cpp" line="265"/>
         <source>You have changed color settings.
 Do you wish to apply them to current solution text?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="355"/>
+        <location filename="../src/mainwindow.cpp" line="367"/>
         <source>About TSPSG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="389"/>
+        <location filename="../src/mainwindow.cpp" line="401"/>
         <source>Data error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="389"/>
+        <location filename="../src/mainwindow.cpp" line="401"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="402"/>
+        <location filename="../src/mainwindow.cpp" line="414"/>
         <source>Variant #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="403"/>
+        <location filename="../src/mainwindow.cpp" line="415"/>
         <source>Task:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="406"/>
-        <location filename="../src/mainwindow.cpp" line="447"/>
+        <location filename="../src/mainwindow.cpp" line="418"/>
+        <location filename="../src/mainwindow.cpp" line="462"/>
         <source>Solution of Variant #%1 task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="412"/>
+        <location filename="../src/mainwindow.cpp" line="424"/>
         <source>Step #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="436"/>
+        <location filename="../src/mainwindow.cpp" line="450"/>
         <source>Optimal path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="438"/>
+        <location filename="../src/mainwindow.cpp" line="452"/>
         <source>Resulting path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="440"/>
+        <location filename="../src/mainwindow.cpp" line="454"/>
         <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="443"/>
+        <location filename="../src/mainwindow.cpp" line="457"/>
         <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="700"/>
+        <source>Task Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -314,9 +324,10 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="163"/>
+        <location filename="../src/mainwindow.cpp" line="158"/>
+        <location filename="../src/mainwindow.cpp" line="174"/>
         <location filename="../src/mainwindow.cpp" line="292"/>
-        <location filename="../src/mainwindow.h" line="97"/>
+        <location filename="../src/mainwindow.h" line="96"/>
         <source>Untitled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -702,108 +713,129 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="178"/>
+        <location filename="../ui/settingsdialog.ui" line="156"/>
         <source>Random values:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="186"/>
+        <location filename="../ui/settingsdialog.ui" line="164"/>
         <source>&amp;Minimal:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="205"/>
+        <location filename="../ui/settingsdialog.ui" line="183"/>
         <source>Minimum for random number generation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="216"/>
+        <location filename="../ui/settingsdialog.ui" line="194"/>
         <source>Ma&amp;ximal:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="235"/>
+        <location filename="../ui/settingsdialog.ui" line="213"/>
         <source>Maximum for random number generation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="245"/>
+        <location filename="../ui/settingsdialog.ui" line="223"/>
         <source>Output settings:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="267"/>
+        <location filename="../ui/settingsdialog.ui" line="245"/>
         <source>Font color for printing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="270"/>
+        <location filename="../ui/settingsdialog.ui" line="248"/>
         <source>&amp;Color...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="283"/>
+        <location filename="../ui/settingsdialog.ui" line="261"/>
         <source>Automatically resize rows and columns to their contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="286"/>
+        <location filename="../ui/settingsdialog.ui" line="264"/>
         <source>Autosize of rows and columns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="252"/>
+        <location filename="../ui/settingsdialog.ui" line="272"/>
+        <source>Show solution steps&apos; matrices for every solution step</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="275"/>
+        <source>Show solution steps&apos; matrices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="283"/>
+        <source>Use the number of cities in task to determine whether to show solution steps&apos; matrices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="286"/>
+        <source>Only when &lt;=</source>
+        <translation>Only when ≤</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="291"/>
+        <source>Maximum number of cities for showing solution steps&apos; matrices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="294"/>
+        <source> cities</source>
+        <comment>Don&apos;t forget a space at the beginning!</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="230"/>
         <source>Font face for printing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="255"/>
+        <location filename="../ui/settingsdialog.ui" line="233"/>
         <source>&amp;Font...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="118"/>
-        <location filename="../ui/settingsdialog.ui" line="124"/>
+        <location filename="../ui/settingsdialog.ui" line="85"/>
+        <location filename="../ui/settingsdialog.ui" line="91"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="121"/>
+        <location filename="../ui/settingsdialog.ui" line="88"/>
         <source>Get preferences help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="97"/>
+        <location filename="../src/settingsdialog.cpp" line="46"/>
         <source>Save new preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="100"/>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="82"/>
+        <location filename="../src/settingsdialog.cpp" line="49"/>
         <source>Close without saving preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="85"/>
-        <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/settingsdialog.cpp" line="85"/>
+        <location filename="../src/settingsdialog.cpp" line="97"/>
         <source>Restore main window state and position on application restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="87"/>
+        <location filename="../src/settingsdialog.cpp" line="99"/>
         <source>Save main window state and position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="109"/>
+        <location filename="../src/settingsdialog.cpp" line="122"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation type="unfinished"></translation>
     </message>
