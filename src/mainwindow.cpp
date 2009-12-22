@@ -33,54 +33,35 @@
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
-	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
+	settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
 	loadLanguage();
-	setupUi(this);
-#ifndef Q_OS_WINCE
-QStatusBar *statusbar = new QStatusBar(this);
-	statusbar->setObjectName("statusbar");
-	setStatusBar(statusbar);
-#endif // Q_OS_WINCE
+	setupUi();
+
 	initDocStyleSheet();
-	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
-	solutionText->setTextColor(settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>());
-	solutionText->setWordWrapMode(QTextOption::WordWrap);
-#ifdef Q_OS_WINCE
-	// A little hack for toolbar icons to have a sane size.
-	toolBar->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
-#endif
+
 #ifndef QT_NO_PRINTER
 	printer = new QPrinter(QPrinter::HighResolution);
 #endif // QT_NO_PRINTER
-	groupSettingsLanguageList = new QActionGroup(this);
-	actionSettingsLanguageEnglish->setData("en");
-	actionSettingsLanguageEnglish->setActionGroup(groupSettingsLanguageList);
-	loadLangList();
-	spinCities->setMaximum(MAX_NUM_CITIES);
-	actionSettingsLanguageAutodetect->setChecked(settings->value("Language","").toString().isEmpty());
+
 	connect(actionFileNew,SIGNAL(triggered()),this,SLOT(actionFileNewTriggered()));
 	connect(actionFileOpen,SIGNAL(triggered()),this,SLOT(actionFileOpenTriggered()));
 	connect(actionFileSave,SIGNAL(triggered()),this,SLOT(actionFileSaveTriggered()));
 	connect(actionFileSaveAsTask,SIGNAL(triggered()),this,SLOT(actionFileSaveAsTaskTriggered()));
 	connect(actionFileSaveAsSolution,SIGNAL(triggered()),this,SLOT(actionFileSaveAsSolutionTriggered()));
+#ifndef QT_NO_PRINTER
+	connect(actionFilePrintPreview,SIGNAL(triggered()),this,SLOT(actionFilePrintPreviewTriggered()));
+	connect(actionFilePrint,SIGNAL(triggered()),this,SLOT(actionFilePrintTriggered()));
+#endif // QT_NO_PRINTER
 	connect(actionSettingsPreferences,SIGNAL(triggered()),this,SLOT(actionSettingsPreferencesTriggered()));
 	connect(actionSettingsLanguageAutodetect,SIGNAL(triggered(bool)),this,SLOT(actionSettingsLanguageAutodetectTriggered(bool)));
 	connect(groupSettingsLanguageList,SIGNAL(triggered(QAction *)),this,SLOT(groupSettingsLanguageListTriggered(QAction *)));
 	connect(actionHelpAboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
 	connect(actionHelpAbout,SIGNAL(triggered()),this,SLOT(actionHelpAboutTriggered()));
-#ifndef QT_NO_PRINTER
-	menuFile->insertAction(actionFileExit,actionFilePrintPreview);
-	menuFile->insertAction(actionFileExit,actionFilePrint);
-	menuFile->insertSeparator(actionFileExit);
-	toolBar->insertAction(actionSettingsPreferences,actionFilePrint);
-	connect(actionFilePrintPreview,SIGNAL(triggered()),this,SLOT(actionFilePrintPreviewTriggered()));
-	connect(actionFilePrint,SIGNAL(triggered()),this,SLOT(actionFilePrintTriggered()));
-#endif // QT_NO_PRINTER
+
 	connect(buttonSolve,SIGNAL(clicked()),this,SLOT(buttonSolveClicked()));
 	connect(buttonRandom,SIGNAL(clicked()),this,SLOT(buttonRandomClicked()));
 	connect(buttonBackToTask,SIGNAL(clicked()),this,SLOT(buttonBackToTaskClicked()));
 	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(spinCitiesValueChanged(int)));
-	setCentralWidget(tabWidget);
 
 	if (settings->value("SavePos", false).toBool()) {
 		// Loading of saved window state
@@ -99,7 +80,6 @@ QRect rect = geometry();
 #endif // Q_OS_WINCE
 	}
 
-	qsrand(QDateTime().currentDateTime().toTime_t());
 	tspmodel = new CTSPModel(this);
 	taskView->setModel(tspmodel);
 	connect(tspmodel,SIGNAL(numCitiesChanged(int)),this,SLOT(numCitiesChanged(int)));
@@ -113,6 +93,13 @@ QRect rect = geometry();
 		spinCitiesValueChanged(spinCities->value());
 	}
 	setWindowModified(false);
+}
+
+MainWindow::~MainWindow()
+{
+#ifndef QT_NO_PRINTER
+	delete printer;
+#endif
 }
 
 /* Privates **********************************************************/
@@ -141,7 +128,11 @@ QStringList filters(trUtf8("All Supported Formats") + " (*.tspt *.zkt)");
 	filters.append(trUtf8("%1 Task Files").arg("ZKomModRd") + " (*.zkt)");
 	filters.append(trUtf8("All Files") + " (*)");
 
+#ifdef Q_OS_WINCE
+	QString file = QFileDialog::getOpenFileName(this, trUtf8("Task Load"), QString(), filters.join(";;"), NULL, QFileDialog::DontUseNativeDialog);
+#else
 QString file = QFileDialog::getOpenFileName(this, trUtf8("Task Load"), QString(), filters.join(";;"));
+#endif // Q_OS_WINCE
 	if (file.isEmpty() || !QFileInfo(file).isFile())
 		return;
 	if (!tspmodel->loadTask(file))
@@ -196,7 +187,11 @@ QStringList filters;
 #endif // QT_VERSION >= 0x040500
 	filters.append(trUtf8("All Files") + " (*)");
 
+#ifdef Q_OS_WINCE
+QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filters.join(";;"), NULL, QFileDialog::DontUseNativeDialog);
+#else
 QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filters.join(";;"));
+#endif
 	if (file.isEmpty())
 		return;
 	selectedFile = file;
@@ -291,10 +286,12 @@ void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
 	}
 bool untitled = (fileName == trUtf8("Untitled") + ".tspt");
 	if (loadLanguage(action->data().toString())) {
+		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 		settings->setValue("Language",action->data().toString());
-		retranslateUi(this);
+		retranslateUi();
 		if (untitled)
 			setFileName();
+		QApplication::restoreOverrideCursor();
 	}
 }
 
@@ -347,6 +344,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 
 	lblIcon->setPixmap(QPixmap(":/images/tspsg.png").scaledToWidth(logicalDpiX() * 2 / 3, Qt::SmoothTransformation));
 	lblIcon->setAlignment(Qt::AlignTop);
+	lblTitle->setOpenExternalLinks(true);
 	lblTitle->setText(title);
 
 	hb->addWidget(lblIcon);
@@ -451,7 +449,7 @@ QString alts;
 	else
 		output.append("<p>" + trUtf8("Resulting path:") + "</p>");
 	output.append("<p>&nbsp;&nbsp;" + solver.getSortedPath() + "</p>");
-	output.append("<p>" + trUtf8("The price is <b>%1</b> units.").arg(step->price) + "</p>");
+	output.append("<p>" + trUtf8("The price is <b>%n</b> unit(s).", "", step->price) + "</p>");
 	if (!solver.isOptimal()) {
 		output.append("<p>&nbsp;</p>");
 		output.append("<p>" + trUtf8("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
@@ -501,6 +499,7 @@ void MainWindow::printPreview(QPrinter *printer)
 
 void MainWindow::spinCitiesValueChanged(int n)
 {
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 int count = tspmodel->numCities();
 	tspmodel->setNumCities(n);
 	if ((n > count) && settings->value("Autosize",true).toBool())
@@ -508,6 +507,7 @@ int count = tspmodel->numCities();
 			taskView->resizeColumnToContents(k);
 			taskView->resizeRowToContents(k);
 		}
+	QApplication::restoreOverrideCursor();
 }
 
 void MainWindow::closeEvent(QCloseEvent *ev)
@@ -595,35 +595,37 @@ static QTranslator *translator; // Application translator
 	if (translator) {
 		qApp->removeTranslator(translator);
 		delete translator;
+		translator = NULL;
 	}
-	translator = new QTranslator();
-	if ((lng.compare("en") != 0) && !lng.startsWith("en_")) {
-		// Trying to load system Qt library translation...
-		qtTranslator = new QTranslator();
-		if (qtTranslator->load("qt_" + lng,QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+
+	if (lng == "en")
+		return true;
+
+	// Trying to load system Qt library translation...
+	qtTranslator = new QTranslator(this);
+	if (qtTranslator->load("qt_" + lng,QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+		qApp->installTranslator(qtTranslator);
+	else {
+		// No luck. Let's try to load a bundled one.
+		if (qtTranslator->load("qt_" + lng,PATH_I18N))
 			qApp->installTranslator(qtTranslator);
 		else {
-			// No luck. Let's try to load a bundled one.
-			if (qtTranslator->load("qt_" + lng,PATH_I18N))
-				qApp->installTranslator(qtTranslator);
-			else {
-				// Qt library translation unavailable
-				delete qtTranslator;
-				qtTranslator = NULL;
-			}
+			// Qt library translation unavailable
+			delete qtTranslator;
+			qtTranslator = NULL;
 		}
 	}
+
 	// Now let's load application translation.
+	translator = new QTranslator(this);
 	if (translator->load(lng,PATH_I18N))
 		qApp->installTranslator(translator);
 	else {
 		delete translator;
 		translator = NULL;
-		if ((lng.compare("en") != 0) && !lng.startsWith("en_")) {
-			if (!ad)
-				QMessageBox(QMessageBox::Warning,trUtf8("Language Change"),trUtf8("Unable to load translation language."),QMessageBox::Ok,this).exec();
-			return false;
-		}
+		if (!ad)
+			QMessageBox(QMessageBox::Warning,trUtf8("Language Change"),trUtf8("Unable to load translation language."),QMessageBox::Ok,this).exec();
+		return false;
 	}
 	return true;
 }
@@ -688,6 +690,31 @@ SCandidate cand;
 	output.append("</table>");
 }
 
+void MainWindow::retranslateUi(bool all)
+{
+	if (all)
+		Ui::MainWindow::retranslateUi(this);
+
+#ifndef QT_NO_PRINTER
+	actionFilePrintPreview->setText(QApplication::translate("MainWindow", "P&rint Preview...", 0, QApplication::UnicodeUTF8));
+#ifndef QT_NO_TOOLTIP
+	actionFilePrintPreview->setToolTip(QApplication::translate("MainWindow", "Preview solution results", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+	actionFilePrintPreview->setStatusTip(QApplication::translate("MainWindow", "Preview current solution results before printing", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_STATUSTIP
+
+	actionFilePrint->setText(QApplication::translate("MainWindow", "&Print...", 0, QApplication::UnicodeUTF8));
+#ifndef QT_NO_TOOLTIP
+	actionFilePrint->setToolTip(QApplication::translate("MainWindow", "Print solution", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+	actionFilePrint->setStatusTip(QApplication::translate("MainWindow", "Print current solution results", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_STATUSTIP
+	actionFilePrint->setShortcut(QApplication::translate("MainWindow", "Ctrl+P", 0, QApplication::UnicodeUTF8));
+#endif // QT_NO_PRINTER
+}
+
 bool MainWindow::saveTask() {
 QStringList filters(trUtf8("%1 Task File").arg("TSPSG") + " (*.tspt)");
 	filters.append(trUtf8("All Files") + " (*)");
@@ -697,7 +724,12 @@ QString file;
 	else
 		file = QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt";
 
+#ifdef Q_OS_WINCE
+	file = QFileDialog::getSaveFileName(this, trUtf8("Task Save"), file, filters.join(";;"), NULL, QFileDialog::DontUseNativeDialog);
+#else
 	file = QFileDialog::getSaveFileName(this, trUtf8("Task Save"), file, filters.join(";;"));
+#endif // Q_OS_WINCE
+
 	if (file.isEmpty())
 		return false;
 	if (tspmodel->saveTask(file)) {
@@ -712,6 +744,60 @@ void MainWindow::setFileName(const QString &fileName)
 {
 	this->fileName = fileName;
 	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(trUtf8("Travelling Salesman Problem")));
+}
+
+void MainWindow::setupUi()
+{
+	Ui::MainWindow::setupUi(this);
+
+#if QT_VERSION >= 0x040600
+	setToolButtonStyle(Qt::ToolButtonFollowStyle);
+#endif
+
+#ifndef Q_OS_WINCE
+QStatusBar *statusbar = new QStatusBar(this);
+	statusbar->setObjectName("statusbar");
+	setStatusBar(statusbar);
+#endif // Q_OS_WINCE
+
+#ifdef Q_OS_WINCE
+	//! \hack HACK: A little hack for toolbar icons to have a sane size.
+	toolBar->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
+#endif
+
+	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
+	solutionText->setTextColor(settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>());
+	solutionText->setWordWrapMode(QTextOption::WordWrap);
+
+#ifndef QT_NO_PRINTER
+	actionFilePrintPreview = new QAction(this);
+	actionFilePrintPreview->setObjectName("actionFilePrintPreview");
+	actionFilePrintPreview->setEnabled(false);
+	actionFilePrintPreview->setIcon(QIcon(":/images/icons/document_preview.png"));
+
+	actionFilePrint = new QAction(this);
+	actionFilePrint->setObjectName("actionFilePrint");
+	actionFilePrint->setEnabled(false);
+	actionFilePrint->setIcon(QIcon(":/images/icons/fileprint.png"));
+
+	menuFile->insertAction(actionFileExit,actionFilePrintPreview);
+	menuFile->insertAction(actionFileExit,actionFilePrint);
+	menuFile->insertSeparator(actionFileExit);
+
+	toolBar->insertAction(actionSettingsPreferences,actionFilePrint);
+#endif // QT_NO_PRINTER
+
+	groupSettingsLanguageList = new QActionGroup(this);
+	actionSettingsLanguageEnglish->setData("en");
+	actionSettingsLanguageEnglish->setActionGroup(groupSettingsLanguageList);
+	loadLangList();
+	actionSettingsLanguageAutodetect->setChecked(settings->value("Language","").toString().isEmpty());
+
+	spinCities->setMaximum(MAX_NUM_CITIES);
+
+	retranslateUi(false);
+
+	setCentralWidget(tabWidget);
 }
 
 void MainWindow::toggleSolutionActions(bool enable)

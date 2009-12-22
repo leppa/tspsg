@@ -52,6 +52,10 @@ QApplication app(argc, argv);
 	// Seeding random number generator
 	qsrand(QDateTime::currentDateTime().toTime_t() ^ QCursor::pos().x() ^ QCursor::pos().y());
 
+QTranslator en;
+	if (en.load("en", PATH_I18N))
+		app.installTranslator(&en);
+
 MainWindow mainwindow;
 	mainwindow.show();
 	app.restoreOverrideCursor();

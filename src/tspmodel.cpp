@@ -30,7 +30,7 @@
 CTSPModel::CTSPModel(QObject *parent)
 	: QAbstractTableModel(parent), nCities(0)
 {
-	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
+	settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
 }
 
 /*!
@@ -467,5 +467,5 @@ double val;
 
 inline int CTSPModel::rand(int min, int max) const
 {
-	return min + (int)(((float)qrand() / RAND_MAX) * (max - min));
+	return min + (int)floor(((double)qrand() / RAND_MAX) * (max + 1 - min));
 }

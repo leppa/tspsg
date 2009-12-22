@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>503</width>
-    <height>387</height>
+    <width>297</width>
+    <height>353</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -271,7 +271,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>503</width>
+     <width>297</width>
      <height>21</height>
     </rect>
    </property>
@@ -363,60 +363,12 @@
    <addaction name="separator"/>
    <addaction name="actionFileExit"/>
   </widget>
-  <action name="actionFilePrintPreview">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/document_preview.png</normaloff>:/images/icons/document_preview.png</iconset>
-   </property>
-   <property name="text">
-    <string>P&amp;rint Preview...</string>
-   </property>
-   <property name="iconText">
-    <string>Print Preview...</string>
-   </property>
-   <property name="toolTip">
-    <string>Preview solution results</string>
-   </property>
-   <property name="statusTip">
-    <string>Preview current solution results before printing</string>
-   </property>
-  </action>
-  <action name="actionFilePrint">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/fileprint.png</normaloff>:/images/icons/fileprint.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Print...</string>
-   </property>
-   <property name="iconText">
-    <string>Print...</string>
-   </property>
-   <property name="toolTip">
-    <string>Print solution</string>
-   </property>
-   <property name="statusTip">
-    <string>Print current solution results</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
-   </property>
-  </action>
   <action name="actionFileSaveAsSolution">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="text">
     <string>&amp;Solution...</string>
-   </property>
-   <property name="iconText">
-    <string>Solution...</string>
    </property>
    <property name="toolTip">
     <string>Save solution</string>
@@ -432,9 +384,6 @@
    </property>
    <property name="text">
     <string>&amp;New</string>
-   </property>
-   <property name="iconText">
-    <string>New</string>
    </property>
    <property name="toolTip">
     <string>New task</string>
@@ -454,9 +403,6 @@
    <property name="text">
     <string>&amp;Open...</string>
    </property>
-   <property name="iconText">
-    <string>Open...</string>
-   </property>
    <property name="toolTip">
     <string>Open task</string>
    </property>
@@ -474,9 +420,6 @@
    </property>
    <property name="text">
     <string>&amp;Preferences...</string>
-   </property>
-   <property name="iconText">
-    <string>Preferences...</string>
    </property>
    <property name="statusTip">
     <string>Application preferences</string>
@@ -526,9 +469,6 @@
    <property name="text">
     <string>&amp;About TSPSG...</string>
    </property>
-   <property name="iconText">
-    <string>About TSPSG...</string>
-   </property>
    <property name="statusTip">
     <string>About application</string>
    </property>
@@ -548,9 +488,6 @@
   <action name="actionFileSaveAsTask">
    <property name="text">
     <string>&amp;Task...</string>
-   </property>
-   <property name="iconText">
-    <string>Task...</string>
    </property>
    <property name="toolTip">
     <string>Save task</string>
@@ -598,9 +535,6 @@
    <property name="text">
     <string>&amp;Save</string>
    </property>
-   <property name="iconText">
-    <string>Save</string>
-   </property>
    <property name="toolTip">
     <string>Save task</string>
    </property>
@@ -618,9 +552,6 @@
    </property>
    <property name="text">
     <string>About &amp;Qt...</string>
-   </property>
-   <property name="iconText">
-    <string>About Qt...</string>
    </property>
    <property name="statusTip">
     <string>About Qt library</string>

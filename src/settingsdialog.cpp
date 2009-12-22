@@ -180,7 +180,9 @@ QHBoxLayout *hbox1, *hbox2, *hbox3;
 	// Setting initial text of dialog hint label to own status tip text.
 	labelHint->setText(labelHint->statusTip());
 #endif // Q_OS_WINCE
-	settings = new QSettings(QSettings::IniFormat,QSettings::UserScope,"TSPSG","tspsg");
+
+	settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
+
 	spinRandMin->setMaximum(MAX_RAND_VALUE);
 	spinRandMin->setValue(settings->value("MinCost",DEF_RAND_MIN).toInt());
 	spinRandMax->setMaximum(MAX_RAND_VALUE);

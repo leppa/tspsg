@@ -46,6 +46,7 @@ class MainWindow: public QMainWindow, Ui::MainWindow
 
 public:
 	MainWindow(QWidget *parent = 0);
+	~MainWindow();
 
 private slots:
 // Actions
@@ -81,6 +82,8 @@ private:
 	QStringList output;
 #ifndef QT_NO_PRINTER
 	QPrinter *printer;
+	QAction *actionFilePrintPreview;
+	QAction *actionFilePrint;
 #endif // QT_NO_PRINTER
 	QSettings *settings;
 	CTSPModel *tspmodel;
@@ -92,8 +95,10 @@ private:
 	bool maybeSave();
 	void outputMatrix(const TMatrix &matrix, QStringList &output);
 	void outputMatrix(const SStep &step, QStringList &output);
+	void retranslateUi(bool all = true);
 	bool saveTask();
 	void setFileName(const QString &fileName = trUtf8("Untitled") + ".tspt");
+	void setupUi();
 	void toggleSolutionActions(bool enable = true);
 };
 
