@@ -280,7 +280,7 @@
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="statusTip">
-     <string>Use the number of cities in task to determine whether to show solution steps' matrices</string>
+     <string>Show or hide solution steps' matrices based on number of cities in the task</string>
     </property>
     <property name="text">
      <string>Only when &lt;=</string>
@@ -295,6 +295,28 @@
     </property>
     <property name="minimum">
      <number>1</number>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbFractionalRandom">
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="statusTip">
+     <string>Generate fractional random values with the accuracy of 2 decimal places</string>
+    </property>
+    <property name="text">
+     <string>Fractional random values</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbScrollToEnd">
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="statusTip">
+     <string>Scroll to the end of solution output after solving</string>
+    </property>
+    <property name="text">
+     <string>Scroll to solution end</string>
     </property>
    </widget>
   </widget>

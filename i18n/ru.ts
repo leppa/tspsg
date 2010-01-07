@@ -160,18 +160,18 @@ Maybe, this task has no solutions.</source>
         <translation>Смена языка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="627"/>
+        <location filename="../src/mainwindow.cpp" line="632"/>
         <source>Unable to load translation language.</source>
         <translation>Невозможно загрузить перевод.</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="15"/>
-        <location filename="../src/mainwindow.cpp" line="746"/>
+        <location filename="../src/mainwindow.cpp" line="751"/>
         <source>Travelling Salesman Problem</source>
         <translation>Задача коммивояжера</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="637"/>
+        <location filename="../src/mainwindow.cpp" line="642"/>
         <source>Unsaved Changes</source>
         <translation>Несохраненные изменения</translation>
     </message>
@@ -183,7 +183,7 @@ Maybe, this task has no solutions.</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="129"/>
         <location filename="../src/mainwindow.cpp" line="188"/>
-        <location filename="../src/mainwindow.cpp" line="720"/>
+        <location filename="../src/mainwindow.cpp" line="725"/>
         <source>All Files</source>
         <translation>Все файлы</translation>
     </message>
@@ -194,12 +194,12 @@ Maybe, this task has no solutions.</source>
         <translation>Файлы условий %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="627"/>
+        <location filename="../src/mainwindow.cpp" line="632"/>
         <source>Language Change</source>
         <translation>Смена языка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="637"/>
+        <location filename="../src/mainwindow.cpp" line="642"/>
         <source>Would you like to save changes in current task?</source>
         <translation>Желаете сохранить изменения в текущей задаче?</translation>
     </message>
@@ -239,7 +239,7 @@ Maybe, this task has no solutions.</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="452"/>
+        <location filename="../src/mainwindow.cpp" line="453"/>
         <source>The price is &lt;b&gt;%n&lt;/b&gt; unit(s).</source>
         <translation>
             <numerusform>Стоимость - &lt;b&gt;%n&lt;/b&gt; единица.</numerusform>
@@ -248,7 +248,7 @@ Maybe, this task has no solutions.</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="719"/>
+        <location filename="../src/mainwindow.cpp" line="724"/>
         <source>%1 Task File</source>
         <translation>Файл условия %1</translation>
     </message>
@@ -297,7 +297,7 @@ Do you wish to apply them to current solution text?</source>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="416"/>
-        <location filename="../src/mainwindow.cpp" line="460"/>
+        <location filename="../src/mainwindow.cpp" line="463"/>
         <source>Solution of Variant #%1 task</source>
         <translation>Решение варианта №%1</translation>
     </message>
@@ -318,12 +318,17 @@ Do you wish to apply them to current solution text?</source>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="455"/>
+        <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
+        <translation>Стоимость - &lt;b&gt;%1&lt;/b&gt; единиц.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="458"/>
         <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
         <translation>&lt;b&gt;ВНИМАНИЕ!!!&lt;/b&gt;&lt;br&gt;Найденное решение является рекордом, но может оказаться не оптимальным.&lt;br&gt;Для получения оптимального решения, или проверки текущего на оптимальность, требуется продолжить итерации.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="728"/>
-        <location filename="../src/mainwindow.cpp" line="730"/>
+        <location filename="../src/mainwindow.cpp" line="733"/>
+        <location filename="../src/mainwindow.cpp" line="735"/>
         <source>Task Save</source>
         <translation>Сохранение условия</translation>
     </message>
@@ -623,37 +628,37 @@ Do you wish to turn it off?</source>
         <translation>Панель инструментов</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="699"/>
+        <location filename="../src/mainwindow.cpp" line="704"/>
         <source>P&amp;rint Preview...</source>
         <translation>П&amp;редварительный просмотр...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="701"/>
+        <location filename="../src/mainwindow.cpp" line="706"/>
         <source>Preview solution results</source>
         <translation>Предварительный просмотр результатов решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="704"/>
+        <location filename="../src/mainwindow.cpp" line="709"/>
         <source>Preview current solution results before printing</source>
         <translation>Предварительный просмотр результатов решения перед печатью</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="707"/>
+        <location filename="../src/mainwindow.cpp" line="712"/>
         <source>&amp;Print...</source>
         <translation>&amp;Печать...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="709"/>
+        <location filename="../src/mainwindow.cpp" line="714"/>
         <source>Print solution</source>
         <translation>Печать решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="712"/>
+        <location filename="../src/mainwindow.cpp" line="717"/>
         <source>Print current solution results</source>
         <translation>Распечатать текущие результаты решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="714"/>
+        <location filename="../src/mainwindow.cpp" line="719"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
@@ -742,8 +747,28 @@ Do you wish to turn it off?</source>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="283"/>
-        <source>Use the number of cities in task to determine whether to show solution steps&apos; matrices</source>
+        <source>Show or hide solution steps&apos; matrices based on number of cities in the task</source>
         <translation>Показывать матрицы хода решения в зависимости от количества городов в задаче</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="305"/>
+        <source>Generate fractional random values with the accuracy of 2 decimal places</source>
+        <translation>Генерировать дробные случайные числа с точностью до 2-о знака</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="308"/>
+        <source>Fractional random values</source>
+        <translation>Дробные случайные числа</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="316"/>
+        <source>Scroll to the end of solution output after solving</source>
+        <translation>Прокручивать в конец вывода после окончания решения задачи</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="319"/>
+        <source>Scroll to solution end</source>
+        <translation>Прокручивать в конец</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="286"/>
@@ -793,17 +818,17 @@ Do you wish to turn it off?</source>
         <translation>Закрыть окно без сохранения параметров</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="97"/>
+        <location filename="../src/settingsdialog.cpp" line="99"/>
         <source>Restore main window state and position on application restart</source>
         <translation>Восстанавливать состояние и размеры главного окна после перезапуска приложения</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="99"/>
+        <location filename="../src/settingsdialog.cpp" line="101"/>
         <source>Save main window state and position</source>
         <translation>Сохранять состояние и положение главного окна</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="122"/>
+        <location filename="../src/settingsdialog.cpp" line="124"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation>Наведите указатель мыши на элемент диалога, чтоб получить подсказку</translation>
     </message>

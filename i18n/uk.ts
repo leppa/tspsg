@@ -184,37 +184,37 @@ Maybe, this task has no solutions.</source>
         <translation>Панель інструментів</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="699"/>
+        <location filename="../src/mainwindow.cpp" line="704"/>
         <source>P&amp;rint Preview...</source>
         <translation>&amp;Попередній перегляд...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="701"/>
+        <location filename="../src/mainwindow.cpp" line="706"/>
         <source>Preview solution results</source>
         <translation>Попередній перегляд результатів розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="704"/>
+        <location filename="../src/mainwindow.cpp" line="709"/>
         <source>Preview current solution results before printing</source>
         <translation>Попередній перегляд результатів розв&apos;язку перед друком</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="707"/>
+        <location filename="../src/mainwindow.cpp" line="712"/>
         <source>&amp;Print...</source>
         <translation>&amp;Друк...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="709"/>
+        <location filename="../src/mainwindow.cpp" line="714"/>
         <source>Print solution</source>
         <translation>Друк розв&apos;зку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="712"/>
+        <location filename="../src/mainwindow.cpp" line="717"/>
         <source>Print current solution results</source>
         <translation>Роздрукувати поточний результат розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="714"/>
+        <location filename="../src/mainwindow.cpp" line="719"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
@@ -483,18 +483,18 @@ Maybe, this task has no solutions.</source>
         <translation>Зміна мови</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="627"/>
+        <location filename="../src/mainwindow.cpp" line="632"/>
         <source>Unable to load translation language.</source>
         <translation>Неможливо завантажити переклад.</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="15"/>
-        <location filename="../src/mainwindow.cpp" line="746"/>
+        <location filename="../src/mainwindow.cpp" line="751"/>
         <source>Travelling Salesman Problem</source>
         <translation>Задача комівояжера</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="637"/>
+        <location filename="../src/mainwindow.cpp" line="642"/>
         <source>Unsaved Changes</source>
         <translation>Незбережені зміни</translation>
     </message>
@@ -506,7 +506,7 @@ Maybe, this task has no solutions.</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="129"/>
         <location filename="../src/mainwindow.cpp" line="188"/>
-        <location filename="../src/mainwindow.cpp" line="720"/>
+        <location filename="../src/mainwindow.cpp" line="725"/>
         <source>All Files</source>
         <translation>Усі файли</translation>
     </message>
@@ -517,12 +517,12 @@ Maybe, this task has no solutions.</source>
         <translation>Файли умов %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="627"/>
+        <location filename="../src/mainwindow.cpp" line="632"/>
         <source>Language Change</source>
         <translation>Зміна мови</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="637"/>
+        <location filename="../src/mainwindow.cpp" line="642"/>
         <source>Would you like to save changes in current task?</source>
         <translation>Бажаете зберегти зміни у поточній задачі?</translation>
     </message>
@@ -562,7 +562,7 @@ Maybe, this task has no solutions.</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="452"/>
+        <location filename="../src/mainwindow.cpp" line="453"/>
         <source>The price is &lt;b&gt;%n&lt;/b&gt; unit(s).</source>
         <translation>
             <numerusform>Вартість - &lt;b&gt;%n&lt;/b&gt; одиниця.</numerusform>
@@ -571,7 +571,7 @@ Maybe, this task has no solutions.</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="719"/>
+        <location filename="../src/mainwindow.cpp" line="724"/>
         <source>%1 Task File</source>
         <translation>Файл умови %1</translation>
     </message>
@@ -620,7 +620,7 @@ Do you wish to apply them to current solution text?</source>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="416"/>
-        <location filename="../src/mainwindow.cpp" line="460"/>
+        <location filename="../src/mainwindow.cpp" line="463"/>
         <source>Solution of Variant #%1 task</source>
         <translation>Розв&apos;язок варіанту №%1</translation>
     </message>
@@ -641,12 +641,17 @@ Do you wish to apply them to current solution text?</source>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="455"/>
+        <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
+        <translation>Вартість - &lt;b&gt;%1&lt;/b&gt; одиниць.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="458"/>
         <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
         <translation>&lt;b&gt;Увага!!!&lt;/b&gt;&lt;br&gt;Знайдений розв&apos;язок є рекордом, але може бути неоптимальним.&lt;br&gt;Для отримання оптимального розв&apos;зку, або перевірки поточного на оптимальність, потрібно продовжити ітерації.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="728"/>
-        <location filename="../src/mainwindow.cpp" line="730"/>
+        <location filename="../src/mainwindow.cpp" line="733"/>
+        <location filename="../src/mainwindow.cpp" line="735"/>
         <source>Task Save</source>
         <translation>Збереження умови</translation>
     </message>
@@ -676,17 +681,17 @@ Do you wish to turn it off?</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="97"/>
+        <location filename="../src/settingsdialog.cpp" line="99"/>
         <source>Restore main window state and position on application restart</source>
         <translation>Відновлювати стан та розмір головного вікна після перезапуску додатку</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="99"/>
+        <location filename="../src/settingsdialog.cpp" line="101"/>
         <source>Save main window state and position</source>
         <translation>Зберегти стан та розміщення головного вікна</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="122"/>
+        <location filename="../src/settingsdialog.cpp" line="124"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation>Наведіть покажчик миші на елемент ділогу, щоб отримати підказку</translation>
     </message>
@@ -757,8 +762,28 @@ Do you wish to turn it off?</source>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="283"/>
-        <source>Use the number of cities in task to determine whether to show solution steps&apos; matrices</source>
+        <source>Show or hide solution steps&apos; matrices based on number of cities in the task</source>
         <translation>Показувати матриці кроків розв&apos;язку в залежності від кількості міст у задачі</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="305"/>
+        <source>Generate fractional random values with the accuracy of 2 decimal places</source>
+        <translation>Генерувати дробові випадкові числа з точністю до 2-го знаку</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="308"/>
+        <source>Fractional random values</source>
+        <translation>Дробові випадкові числа</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="316"/>
+        <source>Scroll to the end of solution output after solving</source>
+        <translation>Прокручувати в кінець виводу після закінчення розв&apos;язку задачі</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="319"/>
+        <source>Scroll to solution end</source>
+        <translation>Прокручувати в кінець</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="286"/>

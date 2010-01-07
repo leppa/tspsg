@@ -465,7 +465,12 @@ double val;
 	return true;
 }
 
-inline int CTSPModel::rand(int min, int max) const
+inline double CTSPModel::rand(int min, int max) const
 {
-	return min + (int)floor(((double)qrand() / RAND_MAX) * (max + 1 - min));
+double r;
+	if (settings->value("FractionalRandom", DEF_FRACTIONAL_RANDOM).toBool())
+		r = (double)qRound((double)qrand() / RAND_MAX * (max - min) * 100) / 100;
+	else
+		r = qRound((double)qrand() / RAND_MAX * (max - min));
+	return min + r;
 }

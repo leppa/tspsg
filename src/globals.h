@@ -45,12 +45,16 @@
 #define DEF_RAND_MAX 10
 //! Default number of cities
 #define DEF_NUM_CITIES 5
+//! Default value for generating fractional random values
+#define DEF_FRACTIONAL_RANDOM false
 //! Default value for showing or not solution step matrices
 #define DEF_SHOW_MATRIX true
 //! Default value for using or not city limit for showing solution steps matrices
 #define DEF_USE_SHOW_MATRIX_LIMIT true
 //! Default maximum number of cities to show solution step matrices
 #define DEF_SHOW_MATRIX_CITY_LIMIT 15
+//! Default for scrolling to the end of output after solving
+#define DEF_SCROLL_TO_END true
 //! Default font name
 #define DEF_FONT_FAMILY "Courier New"
 //! Default font size
@@ -106,6 +110,18 @@
 #define INFINITY 1.7E+308
 //! This string represents infinite value in the table
 #define INFSTR "---"
+
+// FUNCTIONS
+/*!
+ * \brief Checks whether \a x contains an integer value
+ * \param x A value to check
+ * \return \c true if \a x countains an integer, oherwise \c false
+ */
+inline bool isInteger(double x)
+{
+double i;
+	return (modf(x, &i) == 0.0);
+}
 
 // Sanity checks
 // Check that default number of cities is sane (<= MAX_NUM_CITIES)

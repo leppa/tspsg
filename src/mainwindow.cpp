@@ -449,7 +449,10 @@ QString alts;
 	else
 		output.append("<p>" + trUtf8("Resulting path:") + "</p>");
 	output.append("<p>&nbsp;&nbsp;" + solver.getSortedPath() + "</p>");
-	output.append("<p>" + trUtf8("The price is <b>%n</b> unit(s).", "", step->price) + "</p>");
+	if (isInteger(step->price))
+		output.append("<p>" + trUtf8("The price is <b>%n</b> unit(s).", "", step->price) + "</p>");
+	else
+		output.append("<p>" + trUtf8("The price is <b>%1</b> units.").arg(step->price, 0, 'f', 2) + "</p>");
 	if (!solver.isOptimal()) {
 		output.append("<p>&nbsp;</p>");
 		output.append("<p>" + trUtf8("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
@@ -459,8 +462,10 @@ QString alts;
 	solutionText->setHtml(output.join(""));
 	solutionText->setDocumentTitle(trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()));
 
-	// Scrolling to the end of text.
-	solutionText->moveCursor(QTextCursor::End);
+	if (settings->value("Output/ScrollToEnd", DEF_SCROLL_TO_END).toBool()) {
+		// Scrolling to the end of text.
+		solutionText->moveCursor(QTextCursor::End);
+	}
 
 	toggleSolutionActions();
 	tabWidget->setCurrentIndex(1);
@@ -654,7 +659,7 @@ QString line="";
 			if (matrix.at(r).at(c) == INFINITY)
 				line += "<td align=\"center\">"INFSTR"</td>";
 			else
-				line += "<td align=\"center\">" + QVariant(matrix.at(r).at(c)).toString() + "</td>";
+				line += isInteger(matrix.at(r).at(c)) ? QString("<td align=\"center\">%1</td>").arg(matrix.at(r).at(c)) : QString("<td align=\"center\">%1</td>").arg(matrix.at(r).at(c), 0, 'f', 2);
 		}
 		line += "</tr>";
 		output.append(line);
@@ -673,15 +678,15 @@ QString line="";
 			if (step.matrix.at(r).at(c) == INFINITY)
 				line += "<td align=\"center\">"INFSTR"</td>";
 			else if ((r == step.candidate.nRow) && (c == step.candidate.nCol))
-				line += "<td align=\"center\" class=\"selected\">" + QVariant(step.matrix.at(r).at(c)).toString() + "</td>";
+				line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\" class=\"selected\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\" class=\"selected\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', 2);
 			else {
 SCandidate cand;
 				cand.nRow = r;
 				cand.nCol = c;
 				if (step.alts.contains(cand))
-					line += "<td align=\"center\" class=\"alternate\">" + QVariant(step.matrix.at(r).at(c)).toString() + "</td>";
+					line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\" class=\"alternate\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\" class=\"alternate\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', 2);
 				else
-					line += "<td align=\"center\">" + QVariant(step.matrix.at(r).at(c)).toString() + "</td>";
+					line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', 2);
 			}
 		}
 		line += "</tr>";

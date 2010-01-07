@@ -68,7 +68,7 @@ private:
 	bool loadError(QDataStream::Status);
 	bool loadTSPT(QDataStream *);
 	bool loadZKT(QDataStream *);
-	int rand(int, int) const;
+	double rand(int, int) const;
 };
 
 #endif // TSPMODEL_H
