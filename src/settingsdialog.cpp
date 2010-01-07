@@ -57,12 +57,16 @@ QHBoxLayout *hbox1, *hbox2;
 	labelRandMin->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
 	labelRandMax->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
 
+	groupRandomSettings->layout()->addWidget(cbFractionalRandom);
+	groupRandomSettings->layout()->setSpacing(2);
+
 	// Top part (with white bg)
 	vbox2 = new QVBoxLayout(bgWhite);
+	vbox2->setSpacing(2);
 	vbox2->addWidget(groupRandomSettings);
 	vbox2->addWidget(groupOutputSettings);
 	vbox2->addStretch();
-	vbox2->addWidget(cbFractionalRandom);
+//	vbox2->addWidget(cbFractionalRandom);
 	vbox2->addWidget(cbShowMatrix);
 	vbox2->addLayout(layoutCitiesLimit);
 	vbox2->addWidget(cbScrollToEnd);
