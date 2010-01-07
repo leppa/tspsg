@@ -1,7 +1,5 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="qt-4.6.tag$qsettings.html#beginGroup" title="QSettings::beginGroup" alt="" coords="252,5,404,33"/>
 <area shape="rect" id="node5" href="qt-4.6.tag$qsettings.html#endGroup" title="QSettings::endGroup" alt="" coords="256,55,400,83"/>
-<area shape="rect" id="node7" href="qt-4.6.tag$qstring.html#fromUtf8" title="QString::fromUtf8" alt="" coords="268,106,388,134"/>
-<area shape="rect" id="node9" href="qt-4.6.tag$qdialog.html#reject" title="QDialog::reject" alt="" coords="275,157,381,185"/>
-<area shape="rect" id="node11" href="qt-4.6.tag$qsettings.html#value" title="QSettings::value" alt="" coords="271,207,385,235"/>
+<area shape="rect" id="node7" href="qt-4.6.tag$qsettings.html#value" title="QSettings::value" alt="" coords="271,106,385,134"/>
 </map>
