@@ -288,7 +288,7 @@
    </widget>
    <widget class="QSpinBox" name="spinCitiesLimit">
     <property name="statusTip">
-     <string>Maximum number of cities for showing solution steps' matrices</string>
+     <string>Maximum number of cities to show solution steps' matrices</string>
     </property>
     <property name="suffix">
      <string comment="Don't forget a space at the beginning!"> cities</string>
@@ -317,6 +317,17 @@
     </property>
     <property name="text">
      <string>Scroll to solution end</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbUseNativeDialogs">
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="statusTip">
+     <string>Use native File Open and File Save dialogs (uncheck to use Qt's File Dialogs)</string>
+    </property>
+    <property name="text">
+     <string>Use native file dialogs</string>
     </property>
    </widget>
   </widget>

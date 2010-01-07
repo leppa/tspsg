@@ -67,6 +67,7 @@ QHBoxLayout *hbox1, *hbox2;
 	vbox2->addLayout(layoutCitiesLimit);
 	vbox2->addWidget(cbScrollToEnd);
 	vbox2->addWidget(cbAutosize);
+	vbox2->addWidget(cbUseNativeDialogs);
 
 	// Output settings group
 	hbox1 = new QHBoxLayout(groupOutputSettings);
@@ -107,8 +108,8 @@ QHBoxLayout *hbox1, *hbox2, *hbox3;
 	imgIcon->setFrameShape(QFrame::Panel);
 	imgIcon->setLineWidth(0);
 	imgIcon->setPixmap(QPixmap(":/images/icons/preferences_system.png"));
-	imgIcon->setStyleSheet("background-color: #0080C0;");
-	imgIcon->setAlignment(Qt::AlignCenter);
+	imgIcon->setStyleSheet("background-color: #0080C0; padding-top: 11px;");
+	imgIcon->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
 	imgIcon->setMinimumWidth(150);
 
 	labelHint = new QLabel(bgGrey);
@@ -149,13 +150,14 @@ QHBoxLayout *hbox1, *hbox2, *hbox3;
 
 	// Top right part (with white bg)
 	vbox2 = new QVBoxLayout(bgWhite);
-	vbox2->addStretch();
+//	vbox2->addStretch();
 	vbox2->addLayout(hbox2);
 	vbox2->addWidget(cbFractionalRandom);
 	vbox2->addWidget(cbShowMatrix);
 	vbox2->addLayout(layoutCitiesLimit);
 	vbox2->addWidget(cbScrollToEnd);
 	vbox2->addWidget(cbAutosize);
+	vbox2->addWidget(cbUseNativeDialogs);
 	vbox2->addWidget(cbSaveState);
 	vbox2->addStretch();
 
@@ -192,9 +194,10 @@ QHBoxLayout *hbox1, *hbox2, *hbox3;
 	spinRandMax->setMaximum(MAX_RAND_VALUE);
 	spinRandMax->setValue(settings->value("MaxCost",DEF_RAND_MAX).toInt());
 	cbFractionalRandom->setChecked(settings->value("FractionalRandom", DEF_FRACTIONAL_RANDOM).toBool());
-	cbAutosize->setChecked(settings->value("Autosize",true).toBool());
+	cbAutosize->setChecked(settings->value("Autosize", DEF_AUTOSIZE).toBool());
+	cbUseNativeDialogs->setChecked(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool());
 #ifndef Q_OS_WINCE
-	cbSaveState->setChecked(settings->value("SavePos",false).toBool());
+	cbSaveState->setChecked(settings->value("SavePos", DEF_SAVEPOS).toBool());
 #endif // Q_OS_WINCE
 
 	settings->beginGroup("Output");
@@ -202,7 +205,7 @@ QHBoxLayout *hbox1, *hbox2, *hbox3;
 	cbCitiesLimit->setEnabled(cbShowMatrix->isChecked());
 	cbCitiesLimit->setChecked(settings->value("UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT && cbShowMatrix->isChecked()).toBool());
 	spinCitiesLimit->setEnabled(cbShowMatrix->isChecked());
-	spinCitiesLimit->setValue(settings->value("ShowMatrixCitiesLimit", DEF_SHOW_MATRIX_CITY_LIMIT).toInt());
+	spinCitiesLimit->setValue(settings->value("ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt());
 	spinCitiesLimit->setMaximum(MAX_NUM_CITIES);
 	cbScrollToEnd->setChecked(settings->value("ScrollToEnd", DEF_SCROLL_TO_END).toBool());
 
@@ -238,6 +241,7 @@ void SettingsDialog::accept()
 #ifndef Q_OS_WINCE
 	settings->setValue("SavePos", cbSaveState->isChecked());
 #endif // Q_OS_WINCE
+	settings->setValue("UseNativeDialogs", cbUseNativeDialogs->isChecked());
 	settings->setValue("Autosize", cbAutosize->isChecked());
 	settings->setValue("MinCost", spinRandMin->value());
 	settings->setValue("MaxCost", spinRandMax->value());
@@ -247,7 +251,7 @@ void SettingsDialog::accept()
 	settings->setValue("ShowMatrix", cbShowMatrix->isChecked());
 	settings->setValue("UseShowMatrixLimit", cbShowMatrix->isChecked() && cbCitiesLimit->isChecked());
 	if (cbCitiesLimit->isChecked())
-		settings->setValue("ShowMatrixCitiesLimit", spinCitiesLimit->value());
+		settings->setValue("ShowMatrixLimit", spinCitiesLimit->value());
 	settings->setValue("ScrollToEnd", cbScrollToEnd->isChecked());
 	if (newFont)
 		settings->setValue("Font", font);

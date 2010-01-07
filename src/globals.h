@@ -45,15 +45,28 @@
 #define DEF_RAND_MAX 10
 //! Default number of cities
 #define DEF_NUM_CITIES 5
-//! Default value for generating fractional random values
+/*!
+ * \def DEF_USE_NATIVE_DIALOGS
+ * \brief Default for "Use native file dialog".
+ */
+#ifdef Q_OS_WINCE
+	#define DEF_USE_NATIVE_DIALOGS false
+#else
+	#define DEF_USE_NATIVE_DIALOGS true
+#endif // Q_OS_WINCE
+//! Default for "Automatically resize rows and columns to their contents"
+#define DEF_AUTOSIZE true
+//! Default for "Save main window state and position"
+#define DEF_SAVEPOS false
+//! Default for "Fractional random values"
 #define DEF_FRACTIONAL_RANDOM false
-//! Default value for showing or not solution step matrices
+//! Default for "Show solution steps' matrices for every solution step"
 #define DEF_SHOW_MATRIX true
-//! Default value for using or not city limit for showing solution steps matrices
+//! Default for "Show or hide solution steps' matrices based on number of cities in the task"
 #define DEF_USE_SHOW_MATRIX_LIMIT true
-//! Default maximum number of cities to show solution step matrices
-#define DEF_SHOW_MATRIX_CITY_LIMIT 15
-//! Default for scrolling to the end of output after solving
+//! Default for "Maximum number of cities to show solution steps' matrices"
+#define DEF_SHOW_MATRIX_LIMIT 15
+//! Default for "Scroll to the end of output after solving"
 #define DEF_SCROLL_TO_END true
 //! Default font name
 #define DEF_FONT_FAMILY "Courier New"
@@ -113,9 +126,9 @@
 
 // FUNCTIONS
 /*!
- * \brief Checks whether \a x contains an integer value
- * \param x A value to check
- * \return \c true if \a x countains an integer, oherwise \c false
+ * \brief Checks whether \a x contains an integer value.
+ * \param x A value to check.
+ * \return \c true if \a x countains an integer, oherwise \c false.
  */
 inline bool isInteger(double x)
 {

@@ -63,7 +63,7 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(buttonBackToTask,SIGNAL(clicked()),this,SLOT(buttonBackToTaskClicked()));
 	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(spinCitiesValueChanged(int)));
 
-	if (settings->value("SavePos", false).toBool()) {
+	if (settings->value("SavePos", DEF_SAVEPOS).toBool()) {
 		// Loading of saved window state
 		settings->beginGroup("MainWindow");
 #ifndef Q_OS_WINCE
@@ -128,11 +128,8 @@ QStringList filters(trUtf8("All Supported Formats") + " (*.tspt *.zkt)");
 	filters.append(trUtf8("%1 Task Files").arg("ZKomModRd") + " (*.zkt)");
 	filters.append(trUtf8("All Files") + " (*)");
 
-#ifdef Q_OS_WINCE
-	QString file = QFileDialog::getOpenFileName(this, trUtf8("Task Load"), QString(), filters.join(";;"), NULL, QFileDialog::DontUseNativeDialog);
-#else
-QString file = QFileDialog::getOpenFileName(this, trUtf8("Task Load"), QString(), filters.join(";;"));
-#endif // Q_OS_WINCE
+QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
+QString file = QFileDialog::getOpenFileName(this, trUtf8("Task Load"), QString(), filters.join(";;"), NULL, opts);
 	if (file.isEmpty() || !QFileInfo(file).isFile())
 		return;
 	if (!tspmodel->loadTask(file))
@@ -187,11 +184,8 @@ QStringList filters;
 #endif // QT_VERSION >= 0x040500
 	filters.append(trUtf8("All Files") + " (*)");
 
-#ifdef Q_OS_WINCE
-QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filters.join(";;"), NULL, QFileDialog::DontUseNativeDialog);
-#else
-QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filters.join(";;"));
-#endif
+QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
+QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filters.join(";;"), NULL, opts);
 	if (file.isEmpty())
 		return;
 	selectedFile = file;
@@ -420,7 +414,7 @@ SStep *step = root;
 		if (step->prNode->prNode != NULL || ((step->prNode->prNode == NULL) && (step->plNode->prNode == NULL))) {
 			if (n != spinCities->value()) {
 				output.append("<p>" + trUtf8("Step #%1").arg(n++) + "</p>");
-				if (settings->value("Output/ShowMatrix", DEF_SHOW_MATRIX).toBool() && settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() && (spinCities->value() <= settings->value("Output/ShowMatrixCitiesLimit", DEF_SHOW_MATRIX_CITY_LIMIT).toInt())) {
+				if (settings->value("Output/ShowMatrix", DEF_SHOW_MATRIX).toBool() && settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() && (spinCities->value() <= settings->value("Output/ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt())) {
 					outputMatrix(*step, output);
 				}
 				output.append("<p>" + trUtf8("Selected candidate for branching: %1.").arg(trUtf8("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)) + "</p>");
@@ -480,7 +474,7 @@ void MainWindow::dataChanged()
 void MainWindow::dataChanged(const QModelIndex &tl, const QModelIndex &br)
 {
 	setWindowModified(true);
-	if (settings->value("Autosize",true).toBool()) {
+	if (settings->value("Autosize", DEF_AUTOSIZE).toBool()) {
 		for (int k = tl.row(); k <= br.row(); k++)
 			taskView->resizeRowToContents(k);
 		for (int k = tl.column(); k <= br.column(); k++)
@@ -507,7 +501,7 @@ void MainWindow::spinCitiesValueChanged(int n)
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 int count = tspmodel->numCities();
 	tspmodel->setNumCities(n);
-	if ((n > count) && settings->value("Autosize",true).toBool())
+	if ((n > count) && settings->value("Autosize", DEF_AUTOSIZE).toBool())
 		for (int k = count; k < n; k++) {
 			taskView->resizeColumnToContents(k);
 			taskView->resizeRowToContents(k);
@@ -524,7 +518,7 @@ void MainWindow::closeEvent(QCloseEvent *ev)
 	settings->setValue("NumCities", spinCities->value());
 
 	// Saving Main Window state
-	if (settings->value("SavePos", false).toBool()) {
+	if (settings->value("SavePos", DEF_SAVEPOS).toBool()) {
 		settings->beginGroup("MainWindow");
 #ifndef Q_OS_WINCE
 		settings->setValue("Geometry", saveGeometry());
@@ -729,11 +723,8 @@ QString file;
 	else
 		file = QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt";
 
-#ifdef Q_OS_WINCE
-	file = QFileDialog::getSaveFileName(this, trUtf8("Task Save"), file, filters.join(";;"), NULL, QFileDialog::DontUseNativeDialog);
-#else
-	file = QFileDialog::getSaveFileName(this, trUtf8("Task Save"), file, filters.join(";;"));
-#endif // Q_OS_WINCE
+QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
+	file = QFileDialog::getSaveFileName(this, trUtf8("Task Save"), file, filters.join(";;"), NULL, opts);
 
 	if (file.isEmpty())
 		return false;
