@@ -34,14 +34,14 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
 	setupUi(this);
 	// Laying out elements
-	layoutCitiesLimit = new QHBoxLayout();
+/*	layoutCitiesLimit = new QHBoxLayout();
 	layoutCitiesLimit->setMargin(0);
 	layoutCitiesLimit->setSpacing(0);
 	layoutCitiesLimit->addSpacing(10);
 	layoutCitiesLimit->addWidget(cbCitiesLimit);
 	layoutCitiesLimit->addWidget(spinCitiesLimit);
 	layoutCitiesLimit->addStretch();
-
+*/
 	buttonBox->button(QDialogButtonBox::Save)->setIcon(QIcon(":/images/icons/button_ok.png"));
 	buttonBox->button(QDialogButtonBox::Save)->setStatusTip(trUtf8("Save new preferences"));
 	buttonBox->button(QDialogButtonBox::Save)->setCursor(QCursor(Qt::PointingHandCursor));
@@ -51,40 +51,18 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
 #ifdef Q_OS_WINCE
 	// Layout helper elements
-QVBoxLayout *vbox1, *vbox2;
-QHBoxLayout *hbox1, *hbox2;
+QVBoxLayout *vbox1;
+QHBoxLayout *hbox1;
 
-	labelRandMin->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
-	labelRandMax->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
-
-	groupRandomSettings->layout()->addWidget(cbFractionalRandom);
-	groupRandomSettings->layout()->setSpacing(2);
-
-	// Top part (with white bg)
-	vbox2 = new QVBoxLayout(bgWhite);
-	vbox2->setSpacing(2);
-	vbox2->addWidget(groupRandomSettings);
-	vbox2->addWidget(groupOutputSettings);
-	vbox2->addStretch();
-//	vbox2->addWidget(cbFractionalRandom);
-	vbox2->addWidget(cbShowMatrix);
-	vbox2->addLayout(layoutCitiesLimit);
-	vbox2->addWidget(cbScrollToEnd);
-	vbox2->addWidget(cbAutosize);
-	vbox2->addWidget(cbUseNativeDialogs);
-
-	// Output settings group
-	hbox1 = new QHBoxLayout(groupOutputSettings);
-	hbox1->addWidget(buttonFont);
-	hbox1->addWidget(buttonColor);
+	bgWhite->layout()->setMargin(0);
 
 	// Bottom part (with grey bg)
-	hbox2 = new QHBoxLayout(bgGrey);
-	hbox2->setMargin(6);
-	hbox2->setSpacing(6);
-	hbox2->addWidget(buttonHelp);
-	hbox2->addStretch();
-	hbox2->addWidget(buttonBox);
+	hbox1 = new QHBoxLayout(bgGrey);
+	hbox1->setMargin(6);
+	hbox1->setSpacing(6);
+	hbox1->addWidget(buttonHelp);
+	hbox1->addStretch();
+	hbox1->addWidget(buttonBox);
 
 	// Central layout
 	vbox1 = new QVBoxLayout(this);
@@ -95,8 +73,8 @@ QHBoxLayout *hbox1, *hbox2;
 	vbox1->addWidget(bgGrey);
 #else
 	// Layout helper elements
-QVBoxLayout *vbox1, *vbox2, *vbox3;
-QHBoxLayout *hbox1, *hbox2, *hbox3;
+QVBoxLayout *vbox1, *vbox2;
+QHBoxLayout *hbox1, *hbox2;
 
 	cbSaveState = new QCheckBox(bgWhite);
 	cbSaveState->setObjectName("cbSaveState");
@@ -141,46 +119,26 @@ QHBoxLayout *hbox1, *hbox2, *hbox3;
 	hbox1->addWidget(lineVertical);
 	hbox1->addWidget(bgWhite);
 
-	// Output settings group
-	vbox3 = new QVBoxLayout(groupOutputSettings);
-	vbox3->addWidget(buttonFont);
-	vbox3->addWidget(buttonColor);
-
-	// Random and Output settings groups
-	hbox2 = new QHBoxLayout();
-	hbox2->addWidget(groupRandomSettings);
-	hbox2->addWidget(groupOutputSettings);
-	hbox2->addStretch();
-
-	// Top right part (with white bg)
-	vbox2 = new QVBoxLayout(bgWhite);
-//	vbox2->addStretch();
-	vbox2->addLayout(hbox2);
-	vbox2->addWidget(cbFractionalRandom);
-	vbox2->addWidget(cbShowMatrix);
-	vbox2->addLayout(layoutCitiesLimit);
-	vbox2->addWidget(cbScrollToEnd);
-	vbox2->addWidget(cbAutosize);
-	vbox2->addWidget(cbUseNativeDialogs);
-	vbox2->addWidget(cbSaveState);
-	vbox2->addStretch();
+	vbox1 = static_cast<QVBoxLayout *>(tabGeneral->layout());
+	vbox1->insertWidget(vbox2->indexOf(cbUseNativeDialogs) + 1, cbSaveState);
 
 	// Bottom part (with grey bg)
-	hbox3 = new QHBoxLayout(bgGrey);
-	hbox3->setMargin(6);
-	hbox3->setSpacing(6);
-	hbox3->addWidget(buttonHelp);
-	hbox3->addWidget(labelHint);
-	hbox3->addWidget(buttonBox);
+	hbox2 = new QHBoxLayout(bgGrey);
+	hbox2->setMargin(6);
+	hbox2->setSpacing(6);
+	hbox2->addWidget(buttonHelp);
+	hbox2->addWidget(labelHint);
+	hbox2->addWidget(buttonBox);
 
 	// Central layout
-	vbox1 = new QVBoxLayout(this);
-	vbox1->setMargin(0);
-	vbox1->setSpacing(0);
-	vbox1->addLayout(hbox1);
-	vbox1->addWidget(lineHorizontal);
-	vbox1->addWidget(bgGrey);
+	vbox2 = new QVBoxLayout(this);
+	vbox2->setMargin(0);
+	vbox2->setSpacing(0);
+	vbox2->addLayout(hbox1);
+	vbox2->addWidget(lineHorizontal);
+	vbox2->addWidget(bgGrey);
 #endif // Q_OS_WINCE
+
 	connect(spinRandMin,SIGNAL(valueChanged(int)),this,SLOT(spinRandMinValueChanged(int)));
 	connect(buttonFont,SIGNAL(clicked()),this,SLOT(buttonFontClicked()));
 	connect(buttonColor,SIGNAL(clicked()),this,SLOT(buttonColorClicked()));
