@@ -36,8 +36,8 @@
         <location filename="../src/tspmodel.cpp" line="362"/>
         <location filename="../src/tspmodel.cpp" line="379"/>
         <location filename="../src/tspmodel.cpp" line="393"/>
-        <location filename="../src/tspmodel.cpp" line="428"/>
-        <location filename="../src/tspmodel.cpp" line="438"/>
+        <location filename="../src/tspmodel.cpp" line="431"/>
+        <location filename="../src/tspmodel.cpp" line="441"/>
         <source>Task Load</source>
         <translation>Загрузка условия</translation>
     </message>
@@ -46,8 +46,8 @@
         <location filename="../src/tspmodel.cpp" line="362"/>
         <location filename="../src/tspmodel.cpp" line="379"/>
         <location filename="../src/tspmodel.cpp" line="393"/>
-        <location filename="../src/tspmodel.cpp" line="428"/>
-        <location filename="../src/tspmodel.cpp" line="438"/>
+        <location filename="../src/tspmodel.cpp" line="431"/>
+        <location filename="../src/tspmodel.cpp" line="441"/>
         <source>Unable to load task:</source>
         <translation>Невозможно загрузить условие:</translation>
     </message>
@@ -65,7 +65,7 @@ Error: %1</source>
     </message>
     <message>
         <location filename="../src/tspmodel.cpp" line="379"/>
-        <location filename="../src/tspmodel.cpp" line="428"/>
+        <location filename="../src/tspmodel.cpp" line="431"/>
         <source>File version is newer than application supports.
 Please, try to update application.</source>
         <translation>Версия файла новее чем поддерживаемая приложением.
@@ -73,7 +73,7 @@ Please, try to update application.</source>
     </message>
     <message>
         <location filename="../src/tspmodel.cpp" line="393"/>
-        <location filename="../src/tspmodel.cpp" line="438"/>
+        <location filename="../src/tspmodel.cpp" line="441"/>
         <source>Unexpected data read.
 File is possibly corrupted.</source>
         <translation>Прочитано неожиданные данные.
@@ -345,10 +345,10 @@ Do you wish to turn it off?</source>
 Отключить его?</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.h" line="100"/>
         <location filename="../src/mainwindow.cpp" line="146"/>
         <location filename="../src/mainwindow.cpp" line="162"/>
         <location filename="../src/mainwindow.cpp" line="281"/>
-        <location filename="../src/mainwindow.h" line="100"/>
         <source>Untitled</source>
         <translation>Без имени</translation>
     </message>
@@ -684,143 +684,175 @@ Do you wish to turn it off?</source>
         <translation>Параметры</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="224"/>
+        <location filename="../ui/settingsdialog.ui" line="208"/>
+        <source>Task</source>
+        <translation>Задача</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="211"/>
+        <source>Task generation and solving settings</source>
+        <translation>Настройки генерации и решения задач</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="219"/>
+        <source>Fractional accuracy:</source>
+        <translation>Точность дробных чисел:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="232"/>
+        <source>Accuracy of the fractional values (in decimal places)</source>
+        <translation>Точность дробных чисел (в знаках после запятой)</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="259"/>
+        <source>Random numbers</source>
+        <translation>Случайные числа</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="270"/>
         <source>&amp;Minimal:</source>
         <translation>&amp;Минимум:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="237"/>
+        <location filename="../ui/settingsdialog.ui" line="283"/>
         <source>Minimum for random number generation</source>
         <translation>Нижняя граница для генерации случайных значений</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="244"/>
+        <location filename="../ui/settingsdialog.ui" line="290"/>
         <source>Ma&amp;ximal:</source>
         <translation>М&amp;аксимум:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="257"/>
+        <location filename="../ui/settingsdialog.ui" line="303"/>
         <source>Maximum for random number generation</source>
         <translation>Верхняя граница для генерации случайных значений</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="430"/>
+        <location filename="../ui/settingsdialog.ui" line="315"/>
+        <source>Generate fractional random values with the Fractional accuracy</source>
+        <translation>Генерировать дробные случайные числа с заданной выше точностью</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="456"/>
+        <source>Output font settings</source>
+        <translation>Параметры шрифта вывода</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="485"/>
         <source>&amp;Color...</source>
         <translation>&amp;Цвет...</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="174"/>
+        <location filename="../ui/settingsdialog.ui" line="171"/>
         <source>Automatically resize rows and columns to their contents</source>
         <translation>Автоматически подганять размер строк и колонок под их содержание</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="162"/>
+        <location filename="../ui/settingsdialog.ui" line="159"/>
         <source>General</source>
         <translation>Общие</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="165"/>
+        <location filename="../ui/settingsdialog.ui" line="162"/>
         <source>General TSPSG settings</source>
         <translation>ОБщие настройки TSPSG</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="177"/>
+        <location filename="../ui/settingsdialog.ui" line="174"/>
         <source>Autosize of rows and columns</source>
         <translation>Авторазмер строк и колонок</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="187"/>
+        <location filename="../ui/settingsdialog.ui" line="184"/>
         <source>Use native File Open and File Save dialogs (uncheck to use Qt&apos;s Dialogs)</source>
         <translation>Использовать системные диалоги открытия и сохранения файла</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="211"/>
         <source>Random</source>
-        <translation>Случайные</translation>
+        <translation type="obsolete">Случайные</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="214"/>
         <source>Random number generation settings</source>
-        <translation>Настройки генерации случайных чисел</translation>
+        <translation type="obsolete">Настройки генерации случайных чисел</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="308"/>
+        <location filename="../ui/settingsdialog.ui" line="357"/>
         <source>Output</source>
         <translation>Вывод</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="311"/>
+        <location filename="../ui/settingsdialog.ui" line="360"/>
         <source>Solution output settings</source>
         <translation>Настройки вывода решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="320"/>
+        <location filename="../ui/settingsdialog.ui" line="369"/>
         <source>Show solution steps&apos; matrices for every solution step</source>
         <translation>Показывать матрицы шагов решения для каждого шага</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="323"/>
+        <location filename="../ui/settingsdialog.ui" line="372"/>
         <source>Show solution steps&apos; matrices</source>
         <translation>Показ матриц шагов решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="354"/>
+        <location filename="../ui/settingsdialog.ui" line="403"/>
         <source>Show or hide solution steps&apos; matrices based on number of cities in the task</source>
-        <translation>Показывать матрицы хода решения в зависимости от количества городов в задаче</translation>
+        <translation>Показывать матрицы хода решения в зависимости от количества городов</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="364"/>
+        <location filename="../ui/settingsdialog.ui" line="413"/>
         <source>Maximum number of cities to show solution steps&apos; matrices</source>
         <translation>Максимальное количество городов для показа матриц шагов решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="410"/>
+        <location filename="../ui/settingsdialog.ui" line="465"/>
         <source>Font face for solution output</source>
         <translation>Вид шрифта, используемого при выводе</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="427"/>
+        <location filename="../ui/settingsdialog.ui" line="482"/>
         <source>Font color for solution output</source>
         <translation>Цвет шрифта, используемого при выводе</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="284"/>
         <source>Generate fractional random values with the accuracy of 2 decimal places</source>
-        <translation>Генерировать дробные случайные числа с точностью до 2-о знака</translation>
+        <translation type="obsolete">Генерировать дробные случайные числа с точностью до 2-о знака</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="287"/>
+        <location filename="../ui/settingsdialog.ui" line="318"/>
         <source>Fractional random values</source>
         <translation>Дробные случайные числа</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="395"/>
+        <location filename="../ui/settingsdialog.ui" line="444"/>
         <source>Scroll to the end of solution output after solving</source>
         <translation>Прокручивать в конец вывода после окончания решения задачи</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="398"/>
+        <location filename="../ui/settingsdialog.ui" line="447"/>
         <source>Scroll to solution end</source>
         <translation>Прокручивать в конец решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="190"/>
+        <location filename="../ui/settingsdialog.ui" line="187"/>
         <source>Use native file dialogs</source>
         <translation>Системные файловые диалоги</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="357"/>
+        <location filename="../ui/settingsdialog.ui" line="406"/>
         <source>Only when &lt;=</source>
         <translation>Только когда ≤</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="367"/>
+        <location filename="../ui/settingsdialog.ui" line="416"/>
         <source> cities</source>
         <comment>Don&apos;t forget a space at the beginning!</comment>
         <translation> городов</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="413"/>
+        <location filename="../ui/settingsdialog.ui" line="468"/>
         <source>&amp;Font...</source>
         <translation>&amp;Шрифт...</translation>
     </message>
@@ -836,27 +868,28 @@ Do you wish to turn it off?</source>
         <translation>Получить помощь по настройкам</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="46"/>
+        <location filename="../src/settingsdialog.cpp" line="38"/>
         <source>Save new preferences</source>
         <translation>Сохранить новые параметры</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="49"/>
+        <location filename="../src/settingsdialog.cpp" line="41"/>
         <source>Close without saving preferences</source>
         <translation>Закрыть окно без сохранения параметров</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="82"/>
+        <location filename="../src/settingsdialog.cpp" line="74"/>
         <source>Restore main window state and position on application restart</source>
-        <translation>Восстанавливать состояние и размеры главного окна после перезапуска приложения</translation>
+        <translation>Сохранять состояние и размеры главного окна после перезапуска</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="84"/>
+        <location filename="../src/settingsdialog.cpp" line="76"/>
         <source>Save main window state and position</source>
-        <translation>Сохранять состояние и положение главного окна</translation>
+        <translation>Сохранять состояние и положение
+главного окна</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="107"/>
+        <location filename="../src/settingsdialog.cpp" line="99"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation>Наведите указатель мыши на элемент диалога, чтоб получить подсказку</translation>
     </message>

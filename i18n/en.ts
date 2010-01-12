@@ -35,8 +35,8 @@
         <location filename="../src/tspmodel.cpp" line="362"/>
         <location filename="../src/tspmodel.cpp" line="379"/>
         <location filename="../src/tspmodel.cpp" line="393"/>
-        <location filename="../src/tspmodel.cpp" line="428"/>
-        <location filename="../src/tspmodel.cpp" line="438"/>
+        <location filename="../src/tspmodel.cpp" line="431"/>
+        <location filename="../src/tspmodel.cpp" line="441"/>
         <source>Task Load</source>
         <translation type="unfinished"></translation>
     </message>
@@ -45,8 +45,8 @@
         <location filename="../src/tspmodel.cpp" line="362"/>
         <location filename="../src/tspmodel.cpp" line="379"/>
         <location filename="../src/tspmodel.cpp" line="393"/>
-        <location filename="../src/tspmodel.cpp" line="428"/>
-        <location filename="../src/tspmodel.cpp" line="438"/>
+        <location filename="../src/tspmodel.cpp" line="431"/>
+        <location filename="../src/tspmodel.cpp" line="441"/>
         <source>Unable to load task:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -63,14 +63,14 @@ Error: %1</source>
     </message>
     <message>
         <location filename="../src/tspmodel.cpp" line="379"/>
-        <location filename="../src/tspmodel.cpp" line="428"/>
+        <location filename="../src/tspmodel.cpp" line="431"/>
         <source>File version is newer than application supports.
 Please, try to update application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/tspmodel.cpp" line="393"/>
-        <location filename="../src/tspmodel.cpp" line="438"/>
+        <location filename="../src/tspmodel.cpp" line="441"/>
         <source>Unexpected data read.
 File is possibly corrupted.</source>
         <translation type="unfinished"></translation>
@@ -332,10 +332,10 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.h" line="100"/>
         <location filename="../src/mainwindow.cpp" line="146"/>
         <location filename="../src/mainwindow.cpp" line="162"/>
         <location filename="../src/mainwindow.cpp" line="281"/>
-        <location filename="../src/mainwindow.h" line="100"/>
         <source>Untitled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -671,143 +671,163 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="224"/>
-        <source>&amp;Minimal:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="237"/>
-        <source>Minimum for random number generation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="244"/>
-        <source>Ma&amp;ximal:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="257"/>
-        <source>Maximum for random number generation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="430"/>
-        <source>&amp;Color...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="174"/>
-        <source>Automatically resize rows and columns to their contents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="162"/>
-        <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="165"/>
-        <source>General TSPSG settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="177"/>
-        <source>Autosize of rows and columns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="187"/>
-        <source>Use native File Open and File Save dialogs (uncheck to use Qt&apos;s Dialogs)</source>
+        <location filename="../ui/settingsdialog.ui" line="208"/>
+        <source>Task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="211"/>
-        <source>Random</source>
+        <source>Task generation and solving settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="214"/>
-        <source>Random number generation settings</source>
+        <location filename="../ui/settingsdialog.ui" line="219"/>
+        <source>Fractional accuracy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="308"/>
-        <source>Output</source>
+        <location filename="../ui/settingsdialog.ui" line="232"/>
+        <source>Accuracy of the fractional values (in decimal places)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="311"/>
-        <source>Solution output settings</source>
+        <location filename="../ui/settingsdialog.ui" line="259"/>
+        <source>Random numbers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="320"/>
-        <source>Show solution steps&apos; matrices for every solution step</source>
+        <location filename="../ui/settingsdialog.ui" line="270"/>
+        <source>&amp;Minimal:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="323"/>
-        <source>Show solution steps&apos; matrices</source>
+        <location filename="../ui/settingsdialog.ui" line="283"/>
+        <source>Minimum for random number generation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="354"/>
-        <source>Show or hide solution steps&apos; matrices based on number of cities in the task</source>
+        <location filename="../ui/settingsdialog.ui" line="290"/>
+        <source>Ma&amp;ximal:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="364"/>
-        <source>Maximum number of cities to show solution steps&apos; matrices</source>
+        <location filename="../ui/settingsdialog.ui" line="303"/>
+        <source>Maximum for random number generation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="410"/>
-        <source>Font face for solution output</source>
+        <location filename="../ui/settingsdialog.ui" line="315"/>
+        <source>Generate fractional random values with the Fractional accuracy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="427"/>
-        <source>Font color for solution output</source>
+        <location filename="../ui/settingsdialog.ui" line="456"/>
+        <source>Output font settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="284"/>
-        <source>Generate fractional random values with the accuracy of 2 decimal places</source>
+        <location filename="../ui/settingsdialog.ui" line="485"/>
+        <source>&amp;Color...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="287"/>
-        <source>Fractional random values</source>
+        <location filename="../ui/settingsdialog.ui" line="171"/>
+        <source>Automatically resize rows and columns to their contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="395"/>
-        <source>Scroll to the end of solution output after solving</source>
+        <location filename="../ui/settingsdialog.ui" line="159"/>
+        <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="398"/>
-        <source>Scroll to solution end</source>
+        <location filename="../ui/settingsdialog.ui" line="162"/>
+        <source>General TSPSG settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="190"/>
-        <source>Use native file dialogs</source>
+        <location filename="../ui/settingsdialog.ui" line="174"/>
+        <source>Autosize of rows and columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="184"/>
+        <source>Use native File Open and File Save dialogs (uncheck to use Qt&apos;s Dialogs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="357"/>
+        <source>Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="360"/>
+        <source>Solution output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="369"/>
+        <source>Show solution steps&apos; matrices for every solution step</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="372"/>
+        <source>Show solution steps&apos; matrices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="403"/>
+        <source>Show or hide solution steps&apos; matrices based on number of cities in the task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="413"/>
+        <source>Maximum number of cities to show solution steps&apos; matrices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="465"/>
+        <source>Font face for solution output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="482"/>
+        <source>Font color for solution output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="318"/>
+        <source>Fractional random values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="444"/>
+        <source>Scroll to the end of solution output after solving</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="447"/>
+        <source>Scroll to solution end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="187"/>
+        <source>Use native file dialogs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="406"/>
         <source>Only when &lt;=</source>
         <translation>Only when ≤</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="367"/>
+        <location filename="../ui/settingsdialog.ui" line="416"/>
         <source> cities</source>
         <comment>Don&apos;t forget a space at the beginning!</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="413"/>
+        <location filename="../ui/settingsdialog.ui" line="468"/>
         <source>&amp;Font...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -823,27 +843,27 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="46"/>
+        <location filename="../src/settingsdialog.cpp" line="38"/>
         <source>Save new preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="49"/>
+        <location filename="../src/settingsdialog.cpp" line="41"/>
         <source>Close without saving preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="82"/>
+        <location filename="../src/settingsdialog.cpp" line="74"/>
         <source>Restore main window state and position on application restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="84"/>
+        <location filename="../src/settingsdialog.cpp" line="76"/>
         <source>Save main window state and position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="107"/>
+        <location filename="../src/settingsdialog.cpp" line="99"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation type="unfinished"></translation>
     </message>

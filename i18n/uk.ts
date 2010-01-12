@@ -36,8 +36,8 @@
         <location filename="../src/tspmodel.cpp" line="362"/>
         <location filename="../src/tspmodel.cpp" line="379"/>
         <location filename="../src/tspmodel.cpp" line="393"/>
-        <location filename="../src/tspmodel.cpp" line="428"/>
-        <location filename="../src/tspmodel.cpp" line="438"/>
+        <location filename="../src/tspmodel.cpp" line="431"/>
+        <location filename="../src/tspmodel.cpp" line="441"/>
         <source>Task Load</source>
         <translation>Завантаження умови</translation>
     </message>
@@ -46,8 +46,8 @@
         <location filename="../src/tspmodel.cpp" line="362"/>
         <location filename="../src/tspmodel.cpp" line="379"/>
         <location filename="../src/tspmodel.cpp" line="393"/>
-        <location filename="../src/tspmodel.cpp" line="428"/>
-        <location filename="../src/tspmodel.cpp" line="438"/>
+        <location filename="../src/tspmodel.cpp" line="431"/>
+        <location filename="../src/tspmodel.cpp" line="441"/>
         <source>Unable to load task:</source>
         <translation>Неможливо завантажити умову:</translation>
     </message>
@@ -65,7 +65,7 @@ Error: %1</source>
     </message>
     <message>
         <location filename="../src/tspmodel.cpp" line="379"/>
-        <location filename="../src/tspmodel.cpp" line="428"/>
+        <location filename="../src/tspmodel.cpp" line="431"/>
         <source>File version is newer than application supports.
 Please, try to update application.</source>
         <translation>Версія файлу новіша ніж підримувана додатком.
@@ -73,7 +73,7 @@ Please, try to update application.</source>
     </message>
     <message>
         <location filename="../src/tspmodel.cpp" line="393"/>
-        <location filename="../src/tspmodel.cpp" line="438"/>
+        <location filename="../src/tspmodel.cpp" line="441"/>
         <source>Unexpected data read.
 File is possibly corrupted.</source>
         <translation>Прочитано неочікувані дані.
@@ -668,10 +668,10 @@ Do you wish to turn it off?</source>
 Вимкнути його?</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.h" line="100"/>
         <location filename="../src/mainwindow.cpp" line="146"/>
         <location filename="../src/mainwindow.cpp" line="162"/>
         <location filename="../src/mainwindow.cpp" line="281"/>
-        <location filename="../src/mainwindow.h" line="100"/>
         <source>Untitled</source>
         <translation>Без імені</translation>
     </message>
@@ -679,17 +679,18 @@ Do you wish to turn it off?</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="82"/>
+        <location filename="../src/settingsdialog.cpp" line="74"/>
         <source>Restore main window state and position on application restart</source>
-        <translation>Відновлювати стан та розмір головного вікна після перезапуску додатку</translation>
+        <translation>Відновлювати стан та розмір головного вікна після перезапуску</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="84"/>
+        <location filename="../src/settingsdialog.cpp" line="76"/>
         <source>Save main window state and position</source>
-        <translation>Зберігати стан та розміщення головного вікна</translation>
+        <translation>Зберігати стан та розміщення
+головного вікна</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="107"/>
+        <location filename="../src/settingsdialog.cpp" line="99"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation>Наведіть покажчик миші на елемент ділогу, щоб отримати підказку</translation>
     </message>
@@ -699,143 +700,175 @@ Do you wish to turn it off?</source>
         <translation>Параметри</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="224"/>
+        <location filename="../ui/settingsdialog.ui" line="208"/>
+        <source>Task</source>
+        <translation>Задача</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="211"/>
+        <source>Task generation and solving settings</source>
+        <translation>Налаштування генерації та розв&apos;язку задач</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="219"/>
+        <source>Fractional accuracy:</source>
+        <translation>Точність дробових чисел:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="232"/>
+        <source>Accuracy of the fractional values (in decimal places)</source>
+        <translation>Точність дробових чисел (у знаках після коми)</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="259"/>
+        <source>Random numbers</source>
+        <translation>Випадкові числа</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="270"/>
         <source>&amp;Minimal:</source>
         <translation>&amp;Мінімум:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="237"/>
+        <location filename="../ui/settingsdialog.ui" line="283"/>
         <source>Minimum for random number generation</source>
         <translation>Нажня межа для генерації випадкових значень</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="244"/>
+        <location filename="../ui/settingsdialog.ui" line="290"/>
         <source>Ma&amp;ximal:</source>
         <translation>М&amp;аксимум:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="257"/>
+        <location filename="../ui/settingsdialog.ui" line="303"/>
         <source>Maximum for random number generation</source>
         <translation>Верхня межа для генерації випадкових значень</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="430"/>
+        <location filename="../ui/settingsdialog.ui" line="315"/>
+        <source>Generate fractional random values with the Fractional accuracy</source>
+        <translation>Генерувати дробові випадкові числа з вказаною вище точністю</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="456"/>
+        <source>Output font settings</source>
+        <translation>Параметри шрифта виводу</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="485"/>
         <source>&amp;Color...</source>
         <translation>&amp;Колір...</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="174"/>
+        <location filename="../ui/settingsdialog.ui" line="171"/>
         <source>Automatically resize rows and columns to their contents</source>
         <translation>Автоматично підганяти розмір рядків під їх зміст</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="162"/>
+        <location filename="../ui/settingsdialog.ui" line="159"/>
         <source>General</source>
         <translation>Загальні</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="165"/>
+        <location filename="../ui/settingsdialog.ui" line="162"/>
         <source>General TSPSG settings</source>
         <translation>Загальні налаштування TSPSG</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="177"/>
+        <location filename="../ui/settingsdialog.ui" line="174"/>
         <source>Autosize of rows and columns</source>
         <translation>Авторозмір рядків та колонок</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="187"/>
+        <location filename="../ui/settingsdialog.ui" line="184"/>
         <source>Use native File Open and File Save dialogs (uncheck to use Qt&apos;s Dialogs)</source>
         <translation>Використовувати системні діалоги відкриття та збереження файлу</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="211"/>
         <source>Random</source>
-        <translation>Випадкові</translation>
+        <translation type="obsolete">Випадкові</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="214"/>
         <source>Random number generation settings</source>
-        <translation>Налаштування генерації випадкових чисел</translation>
+        <translation type="obsolete">Налаштування генерації випадкових чисел</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="308"/>
+        <location filename="../ui/settingsdialog.ui" line="357"/>
         <source>Output</source>
         <translation>Виведення</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="311"/>
+        <location filename="../ui/settingsdialog.ui" line="360"/>
         <source>Solution output settings</source>
         <translation>Налаштування виводу розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="320"/>
+        <location filename="../ui/settingsdialog.ui" line="369"/>
         <source>Show solution steps&apos; matrices for every solution step</source>
         <translation>Показувати матриці кроків розв&apos;язку для кожного кроку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="323"/>
+        <location filename="../ui/settingsdialog.ui" line="372"/>
         <source>Show solution steps&apos; matrices</source>
         <translation>Показ матриць кроків розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="354"/>
+        <location filename="../ui/settingsdialog.ui" line="403"/>
         <source>Show or hide solution steps&apos; matrices based on number of cities in the task</source>
-        <translation>Показувати матриці кроків розв&apos;язку в залежності від кількості міст у задачі</translation>
+        <translation>Показувати матриці ходу розв&apos;язку в залежності від кількості міст</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="364"/>
+        <location filename="../ui/settingsdialog.ui" line="413"/>
         <source>Maximum number of cities to show solution steps&apos; matrices</source>
         <translation>Максимальна кількість міст для показу матриць кроків розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="410"/>
+        <location filename="../ui/settingsdialog.ui" line="465"/>
         <source>Font face for solution output</source>
         <translation>Вигляд шрифта для виводу</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="427"/>
+        <location filename="../ui/settingsdialog.ui" line="482"/>
         <source>Font color for solution output</source>
         <translation>Колір шрифта для виводу</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="284"/>
         <source>Generate fractional random values with the accuracy of 2 decimal places</source>
-        <translation>Генерувати дробові випадкові числа з точністю до 2-го знаку</translation>
+        <translation type="obsolete">Генерувати дробові випадкові числа з точністю до 2-го знаку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="287"/>
+        <location filename="../ui/settingsdialog.ui" line="318"/>
         <source>Fractional random values</source>
         <translation>Дробові випадкові числа</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="395"/>
+        <location filename="../ui/settingsdialog.ui" line="444"/>
         <source>Scroll to the end of solution output after solving</source>
         <translation>Прокручувати в кінець виводу після закінчення розв&apos;язку задачі</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="398"/>
+        <location filename="../ui/settingsdialog.ui" line="447"/>
         <source>Scroll to solution end</source>
         <translation>Прокручувати в кінець розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="190"/>
+        <location filename="../ui/settingsdialog.ui" line="187"/>
         <source>Use native file dialogs</source>
         <translation>Системні файлові діалоги</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="357"/>
+        <location filename="../ui/settingsdialog.ui" line="406"/>
         <source>Only when &lt;=</source>
         <translation>Лише коли ≤</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="367"/>
+        <location filename="../ui/settingsdialog.ui" line="416"/>
         <source> cities</source>
         <comment>Don&apos;t forget a space at the beginning!</comment>
         <translation> міст</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="413"/>
+        <location filename="../ui/settingsdialog.ui" line="468"/>
         <source>&amp;Font...</source>
         <translation>&amp;Шрифт...</translation>
     </message>
@@ -851,12 +884,12 @@ Do you wish to turn it off?</source>
         <translation>Отримати допомогу по налагодженням</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="46"/>
+        <location filename="../src/settingsdialog.cpp" line="38"/>
         <source>Save new preferences</source>
         <translation>Зберегти нові параметри</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="49"/>
+        <location filename="../src/settingsdialog.cpp" line="41"/>
         <source>Close without saving preferences</source>
         <translation>Закрити вікно без збереження параметрів</translation>
     </message>
