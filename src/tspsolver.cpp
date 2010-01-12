@@ -105,7 +105,7 @@ SStep *step = new SStep();
 SStep *left, *right;
 int nRow, nCol;
 bool firstStep = true;
-qreal check;
+double check;
 	while (this->route.size() < nCities) {
 //		forbidden.clear();
 		step->alts = findCandidate(step->matrix,nRow,nCol);
@@ -187,10 +187,10 @@ CTSPSolver::~CTSPSolver()
 
 /* Privates **********************************************************/
 
-qreal CTSPSolver::align(TMatrix &matrix)
+double CTSPSolver::align(TMatrix &matrix)
 {
-qreal r = 0;
-qreal min;
+double r = 0;
+double min;
 	for (int k = 0; k < nCities; k++) {
 		min = findMinInRow(k,matrix);
 		if (min > 0) {
@@ -239,8 +239,8 @@ QList<SCandidate> CTSPSolver::findCandidate(const TMatrix &matrix, int &nRow, in
 	nCol = -1;
 QList<SCandidate> alts;
 SCandidate cand;
-qreal h = -1;
-qreal sum;
+double h = -1;
+double sum;
 	for (int r = 0; r < nCities; r++)
 		for (int c = 0; c < nCities; c++)
 //			if ((matrix.at(r).at(c) == 0) && !forbidden.values(r).contains(c)) {
@@ -260,18 +260,18 @@ qreal sum;
 	return alts;
 }
 
-qreal CTSPSolver::findMinInCol(int nCol, const TMatrix &matrix, int exr) const
+double CTSPSolver::findMinInCol(int nCol, const TMatrix &matrix, int exr) const
 {
-qreal min = INFINITY;
+double min = INFINITY;
 	for (int k = 0; k < nCities; k++)
 		if ((k != exr) && (min > matrix.at(k).at(nCol)))
 			min = matrix.at(k).at(nCol);
 	return min == INFINITY ? 0 : min;
 }
 
-qreal CTSPSolver::findMinInRow(int nRow, const TMatrix &matrix, int exc) const
+double CTSPSolver::findMinInRow(int nRow, const TMatrix &matrix, int exc) const
 {
-qreal min = INFINITY;
+double min = INFINITY;
 	for (int k = 0; k < nCities; k++)
 		if (((k != exc)) && (min > matrix.at(nRow).at(k)))
 			min = matrix.at(nRow).at(k);
@@ -292,14 +292,14 @@ int i = nCol;
 	return false;
 }
 
-void CTSPSolver::subCol(TMatrix &matrix, int nCol, qreal val)
+void CTSPSolver::subCol(TMatrix &matrix, int nCol, double val)
 {
 	for (int k = 0; k < nCities; k++)
 		if (k != nCol)
 			matrix[k][nCol] -= val;
 }
 
-void CTSPSolver::subRow(TMatrix &matrix, int nRow, qreal val)
+void CTSPSolver::subRow(TMatrix &matrix, int nRow, double val)
 {
 	for (int k = 0; k < nCities; k++)
 		if (k != nRow)

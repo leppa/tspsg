@@ -280,7 +280,7 @@ QDataStream ds(&f);
 	for (int r = 0; r < nCities; r++)
 		for (int c = 0; c < nCities; c++)
 			if (r != c) {
-				ds << static_cast<double>(table[r][c]); // We cast to double because qreal may be float on some platforms and we store double values in file
+				ds << static_cast<double>(table[r][c]); // We cast to double because double may be float on some platforms and we store double values in file
 				if (f.error() != QFile::NoError) {
 					f.close();
 					QApplication::restoreOverrideCursor();
@@ -311,7 +311,7 @@ bool CTSPModel::setData(const QModelIndex &index, const QVariant &value, int rol
 			table[index.row()][index.column()] = INFINITY;
 		else {
 bool ok;
-qreal tmp = value.toReal(&ok);
+double tmp = value.toDouble(&ok);
 			if (!ok || tmp < 0)
 				return false;
 			else
@@ -398,7 +398,7 @@ quint16 size;
 		emit numCitiesChanged(size);
 	}
 
-double x; // We need this as qreal may be float on some platforms and we store double values in file
+double x; // We need this as double may be float on some platforms and we store double values in file
 	// Travel costs
 	for (int r = 0; r < size; r++)
 		for (int c = 0; c < size; c++)
@@ -446,7 +446,7 @@ quint8 size;
 		emit numCitiesChanged(size);
 	}
 	// Travel costs
-qreal val;
+double val;
 	for (int r = 0; r < 5; r++)
 		for (int c = 0; c < 5; c++)
 			if ((r != c) && (r < size) && (c < size)) {
@@ -468,13 +468,13 @@ qreal val;
 	return true;
 }
 
-inline qreal CTSPModel::rand(int min, int max) const
+inline double CTSPModel::rand(int min, int max) const
 {
-qreal r;
+double r;
 	if (settings->value("Task/FractionalRandom", DEF_FRACTIONAL_RANDOM).toBool()) {
-qreal x = qPow(10, settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
-		r = (qreal)qRound((qreal)qrand() / RAND_MAX * (max - min) * x) / x;
+double x = qPow(10, settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
+		r = (double)qRound((double)qrand() / RAND_MAX * (max - min) * x) / x;
 	} else
-		r = qRound((qreal)qrand() / RAND_MAX * (max - min));
+		r = qRound((double)qrand() / RAND_MAX * (max - min));
 	return min + r;
 }

@@ -382,13 +382,13 @@ void MainWindow::buttonRandomClicked()
 void MainWindow::buttonSolveClicked()
 {
 TMatrix matrix;
-QList<qreal> row;
+QList<double> row;
 int n = spinCities->value();
 bool ok;
 	for (int r = 0; r < n; r++) {
 		row.clear();
 		for (int c = 0; c < n; c++) {
-			row.append(tspmodel->index(r,c).data(Qt::UserRole).toReal(&ok));
+			row.append(tspmodel->index(r,c).data(Qt::UserRole).toDouble(&ok));
 			if (!ok) {
 				QMessageBox(QMessageBox::Critical,tr("Data error"),tr("Error in cell [Row %1; Column %2]: Invalid data format.").arg(r + 1).arg(c + 1),QMessageBox::Ok,this).exec();
 				return;

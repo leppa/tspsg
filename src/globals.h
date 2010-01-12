@@ -95,9 +95,9 @@
  * \param x A value to check.
  * \return \c true if \a x countains an integer, oherwise \c false.
  */
-inline bool isInteger(qreal x)
+inline bool isInteger(double x)
 {
-qreal i;
+double i;
 	return (modf(x, &i) == 0.0);
 }
 

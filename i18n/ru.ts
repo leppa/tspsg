@@ -736,7 +736,7 @@ Do you wish to turn it off?</source>
     <message>
         <location filename="../ui/settingsdialog.ui" line="456"/>
         <source>Output font settings</source>
-        <translation>Параметры шрифта вывода</translation>
+        <translation>Параметры шрифта</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="485"/>
@@ -756,7 +756,7 @@ Do you wish to turn it off?</source>
     <message>
         <location filename="../ui/settingsdialog.ui" line="162"/>
         <source>General TSPSG settings</source>
-        <translation>ОБщие настройки TSPSG</translation>
+        <translation>Общие настройки TSPSG</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="174"/>
@@ -767,14 +767,6 @@ Do you wish to turn it off?</source>
         <location filename="../ui/settingsdialog.ui" line="184"/>
         <source>Use native File Open and File Save dialogs (uncheck to use Qt&apos;s Dialogs)</source>
         <translation>Использовать системные диалоги открытия и сохранения файла</translation>
-    </message>
-    <message>
-        <source>Random</source>
-        <translation type="obsolete">Случайные</translation>
-    </message>
-    <message>
-        <source>Random number generation settings</source>
-        <translation type="obsolete">Настройки генерации случайных чисел</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="357"/>
@@ -815,10 +807,6 @@ Do you wish to turn it off?</source>
         <location filename="../ui/settingsdialog.ui" line="482"/>
         <source>Font color for solution output</source>
         <translation>Цвет шрифта, используемого при выводе</translation>
-    </message>
-    <message>
-        <source>Generate fractional random values with the accuracy of 2 decimal places</source>
-        <translation type="obsolete">Генерировать дробные случайные числа с точностью до 2-о знака</translation>
     </message>
     <message>
         <location filename="../ui/settingsdialog.ui" line="318"/>

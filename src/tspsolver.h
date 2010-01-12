@@ -33,7 +33,7 @@
 #include "tspmodel.h"
 
 //! A matrix of city-to-city travel costs.
-typedef QList<QList<qreal> > TMatrix;
+typedef QList<QList<double> > TMatrix;
 
 /*!
  * \brief A structure that represents a candidate for branching.
@@ -59,7 +59,7 @@ struct SCandidate {
  */
 struct SStep {
 	TMatrix matrix; //!< This step's matrix
-	qreal price; //!< The price of travel to this step
+	double price; //!< The price of travel to this step
 	SCandidate candidate; //!< A candiadate for branching in the current matrix
 	QList<SCandidate> alts; //!< A list of alternative branching candidates
 	SStep *plNode; //!< Pointer to the left branch step
@@ -97,15 +97,15 @@ private:
 	QHash<int,int> route;
 //	QHash<int,int> forbidden;
 
-	qreal align(TMatrix &matrix);
+	double align(TMatrix &matrix);
 	void cleanup();
 	void deleteNode(SStep *&node);
 	QList<SCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
-	qreal findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
-	qreal findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
+	double findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
+	double findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
 	bool hasSubCycles(int nRow, int nCol) const;
-	void subCol(TMatrix &matrix, int nCol, qreal val);
-	void subRow(TMatrix &matrix, int nRow, qreal val);
+	void subCol(TMatrix &matrix, int nCol, double val);
+	void subRow(TMatrix &matrix, int nRow, double val);
 };
 
 #endif // TSPSOLVER_H

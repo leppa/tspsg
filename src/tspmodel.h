@@ -63,12 +63,12 @@ signals:
 
 private:
 	QSettings *settings;
-	QVector<QVector<qreal> > table;
+	QVector<QVector<double> > table;
 	quint16 nCities;
 	bool loadError(QDataStream::Status);
 	bool loadTSPT(QDataStream *);
 	bool loadZKT(QDataStream *);
-	qreal rand(int, int) const;
+	double rand(int, int) const;
 };
 
 #endif // TSPMODEL_H
