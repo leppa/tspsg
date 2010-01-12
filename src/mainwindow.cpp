@@ -1,6 +1,6 @@
 /*
  *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ *  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -123,13 +123,13 @@ void MainWindow::actionFileOpenTriggered()
 	if (!maybeSave())
 		return;
 
-QStringList filters(trUtf8("All Supported Formats") + " (*.tspt *.zkt)");
-	filters.append(trUtf8("%1 Task Files").arg("TSPSG") + " (*.tspt)");
-	filters.append(trUtf8("%1 Task Files").arg("ZKomModRd") + " (*.zkt)");
-	filters.append(trUtf8("All Files") + " (*)");
+QStringList filters(tr("All Supported Formats") + " (*.tspt *.zkt)");
+	filters.append(tr("%1 Task Files").arg("TSPSG") + " (*.tspt)");
+	filters.append(tr("%1 Task Files").arg("ZKomModRd") + " (*.zkt)");
+	filters.append(tr("All Files") + " (*)");
 
 QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
-QString file = QFileDialog::getOpenFileName(this, trUtf8("Task Load"), QString(), filters.join(";;"), NULL, opts);
+QString file = QFileDialog::getOpenFileName(this, tr("Task Load"), QString(), filters.join(";;"), NULL, opts);
 	if (file.isEmpty() || !QFileInfo(file).isFile())
 		return;
 	if (!tspmodel->loadTask(file))
@@ -143,7 +143,7 @@ QString file = QFileDialog::getOpenFileName(this, trUtf8("Task Load"), QString()
 
 void MainWindow::actionFileSaveTriggered()
 {
-	if ((fileName == trUtf8("Untitled") + ".tspt") || (!fileName.endsWith(".tspt",Qt::CaseInsensitive)))
+	if ((fileName == tr("Untitled") + ".tspt") || (!fileName.endsWith(".tspt",Qt::CaseInsensitive)))
 		saveTask();
 	else
 		if (tspmodel->saveTask(fileName))
@@ -159,7 +159,7 @@ void MainWindow::actionFileSaveAsSolutionTriggered()
 {
 static QString selectedFile;
 	if (selectedFile.isEmpty()) {
-		if (fileName == trUtf8("Untitled") + ".tspt") {
+		if (fileName == tr("Untitled") + ".tspt") {
 #ifndef QT_NO_PRINTER
 			selectedFile = "solution.pdf";
 #else
@@ -176,13 +176,13 @@ static QString selectedFile;
 
 QStringList filters;
 #ifndef QT_NO_PRINTER
-	filters.append(trUtf8("PDF Files") + " (*.pdf)");
+	filters.append(tr("PDF Files") + " (*.pdf)");
 #endif
-	filters.append(trUtf8("HTML Files") + " (*.html *.htm)");
+	filters.append(tr("HTML Files") + " (*.html *.htm)");
 #if QT_VERSION >= 0x040500
-	filters.append(trUtf8("OpenDocument Files") + " (*.odt)");
+	filters.append(tr("OpenDocument Files") + " (*.odt)");
 #endif // QT_VERSION >= 0x040500
-	filters.append(trUtf8("All Files") + " (*)");
+	filters.append(tr("All Files") + " (*)");
 
 QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
 QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filters.join(";;"), NULL, opts);
@@ -251,7 +251,7 @@ SettingsDialog sd(this);
 		return;
 	if (sd.colorChanged() || sd.fontChanged()) {
 		initDocStyleSheet();
-		if (!output.isEmpty() && sd.colorChanged() && (QMessageBox(QMessageBox::Question,trUtf8("Settings Changed"),trUtf8("You have changed color settings.\nDo you wish to apply them to current solution text?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes)) {
+		if (!output.isEmpty() && sd.colorChanged() && (QMessageBox(QMessageBox::Question,tr("Settings Changed"),tr("You have changed color settings.\nDo you wish to apply them to current solution text?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes)) {
 			QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 			solutionText->clear();
 			solutionText->setHtml(output.join(""));
@@ -264,7 +264,7 @@ void MainWindow::actionSettingsLanguageAutodetectTriggered(bool checked)
 {
 	if (checked) {
 		settings->remove("Language");
-		QMessageBox(QMessageBox::Information,trUtf8("Language change"),trUtf8("Language will be autodetected on next application start."),QMessageBox::Ok,this).exec();
+		QMessageBox(QMessageBox::Information,tr("Language change"),tr("Language will be autodetected on next application start."),QMessageBox::Ok,this).exec();
 	} else
 		settings->setValue("Language",groupSettingsLanguageList->checkedAction()->data().toString());
 }
@@ -273,12 +273,12 @@ void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
 {
 	if (actionSettingsLanguageAutodetect->isChecked()) {
 		// We have language autodetection. It needs to be disabled to change language.
-		if (QMessageBox(QMessageBox::Question,trUtf8("Language change"),trUtf8("You have language autodetection turned on.\nIt needs to be off.\nDo you wish to turn it off?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes) {
+		if (QMessageBox(QMessageBox::Question,tr("Language change"),tr("You have language autodetection turned on.\nIt needs to be off.\nDo you wish to turn it off?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes) {
 			actionSettingsLanguageAutodetect->trigger();
 		} else
 			return;
 	}
-bool untitled = (fileName == trUtf8("Untitled") + ".tspt");
+bool untitled = (fileName == tr("Untitled") + ".tspt");
 	if (loadLanguage(action->data().toString())) {
 		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 		settings->setValue("Language",action->data().toString());
@@ -356,7 +356,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	vb->addWidget(bb);
 
 	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-	dlg->setWindowTitle(trUtf8("About TSPSG"));
+	dlg->setWindowTitle(tr("About TSPSG"));
 	dlg->setLayout(vb);
 
 	connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
@@ -382,15 +382,15 @@ void MainWindow::buttonRandomClicked()
 void MainWindow::buttonSolveClicked()
 {
 TMatrix matrix;
-QList<double> row;
+QList<qreal> row;
 int n = spinCities->value();
 bool ok;
 	for (int r = 0; r < n; r++) {
 		row.clear();
 		for (int c = 0; c < n; c++) {
-			row.append(tspmodel->index(r,c).data(Qt::UserRole).toDouble(&ok));
+			row.append(tspmodel->index(r,c).data(Qt::UserRole).toReal(&ok));
 			if (!ok) {
-				QMessageBox(QMessageBox::Critical,trUtf8("Data error"),trUtf8("Error in cell [Row %1; Column %2]: Invalid data format.").arg(r + 1).arg(c + 1),QMessageBox::Ok,this).exec();
+				QMessageBox(QMessageBox::Critical,tr("Data error"),tr("Error in cell [Row %1; Column %2]: Invalid data format.").arg(r + 1).arg(c + 1),QMessageBox::Ok,this).exec();
 				return;
 			}
 		}
@@ -403,30 +403,30 @@ SStep *root = solver.solve(n,matrix,this);
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
 	output.clear();
-	output.append("<p>" + trUtf8("Variant #%1").arg(spinVariant->value()) + "</p>");
-	output.append("<p>" + trUtf8("Task:") + "</p>");
+	output.append("<p>" + tr("Variant #%1").arg(spinVariant->value()) + "</p>");
+	output.append("<p>" + tr("Task:") + "</p>");
 	outputMatrix(matrix, output);
 	output.append("<hr>");
-	output.append("<p>" + trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()) + "</p>");
+	output.append("<p>" + tr("Solution of Variant #%1 task").arg(spinVariant->value()) + "</p>");
 SStep *step = root;
 	n = 1;
 	while (n <= spinCities->value()) {
 		if (step->prNode->prNode != NULL || ((step->prNode->prNode == NULL) && (step->plNode->prNode == NULL))) {
 			if (n != spinCities->value()) {
-				output.append("<p>" + trUtf8("Step #%1").arg(n++) + "</p>");
+				output.append("<p>" + tr("Step #%1").arg(n++) + "</p>");
 				if (settings->value("Output/ShowMatrix", DEF_SHOW_MATRIX).toBool() && settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() && (spinCities->value() <= settings->value("Output/ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt())) {
 					outputMatrix(*step, output);
 				}
-				output.append("<p>" + trUtf8("Selected candidate for branching: %1.").arg(trUtf8("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)) + "</p>");
+				output.append("<p>" + tr("Selected candidate for branching: %1.").arg(tr("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)) + "</p>");
 				if (!step->alts.empty()) {
 SCandidate cand;
 QString alts;
 					foreach(cand, step->alts) {
 						if (!alts.isEmpty())
 							alts += ", ";
-						alts += trUtf8("(%1;%2)").arg(cand.nRow + 1).arg(cand.nCol + 1);
+						alts += tr("(%1;%2)").arg(cand.nRow + 1).arg(cand.nCol + 1);
 					}
-					output.append("<p class=\"hasalts\">" + trUtf8("%n alternate candidate(s) for branching: %1.","",step->alts.count()).arg(alts) + "</p>");
+					output.append("<p class=\"hasalts\">" + tr("%n alternate candidate(s) for branching: %1.","",step->alts.count()).arg(alts) + "</p>");
 				}
 				output.append("<p>&nbsp;</p>");
 			}
@@ -439,22 +439,22 @@ QString alts;
 			break;
 	}
 	if (solver.isOptimal())
-		output.append("<p>" + trUtf8("Optimal path:") + "</p>");
+		output.append("<p>" + tr("Optimal path:") + "</p>");
 	else
-		output.append("<p>" + trUtf8("Resulting path:") + "</p>");
+		output.append("<p>" + tr("Resulting path:") + "</p>");
 	output.append("<p>&nbsp;&nbsp;" + solver.getSortedPath() + "</p>");
 	if (isInteger(step->price))
-		output.append("<p>" + trUtf8("The price is <b>%n</b> unit(s).", "", step->price) + "</p>");
+		output.append("<p>" + tr("The price is <b>%n</b> unit(s).", "", step->price) + "</p>");
 	else
-		output.append("<p>" + trUtf8("The price is <b>%1</b> units.").arg(step->price, 0, 'f', 2) + "</p>");
+		output.append("<p>" + tr("The price is <b>%1</b> units.").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()) + "</p>");
 	if (!solver.isOptimal()) {
 		output.append("<p>&nbsp;</p>");
-		output.append("<p>" + trUtf8("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
+		output.append("<p>" + tr("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
 	}
 	output.append("<p></p>");
 
 	solutionText->setHtml(output.join(""));
-	solutionText->setDocumentTitle(trUtf8("Solution of Variant #%1 task").arg(spinVariant->value()));
+	solutionText->setDocumentTitle(tr("Solution of Variant #%1 task").arg(spinVariant->value()));
 
 	if (settings->value("Output/ScrollToEnd", DEF_SCROLL_TO_END).toBool()) {
 		// Scrolling to the end of text.
@@ -623,7 +623,7 @@ static QTranslator *translator; // Application translator
 		delete translator;
 		translator = NULL;
 		if (!ad)
-			QMessageBox(QMessageBox::Warning,trUtf8("Language Change"),trUtf8("Unable to load translation language."),QMessageBox::Ok,this).exec();
+			QMessageBox(QMessageBox::Warning,tr("Language Change"),tr("Unable to load translation language."),QMessageBox::Ok,this).exec();
 		return false;
 	}
 	return true;
@@ -633,7 +633,7 @@ bool MainWindow::maybeSave()
 {
 	if (!isWindowModified())
 		return true;
-int res = QMessageBox(QMessageBox::Warning,trUtf8("Unsaved Changes"),trUtf8("Would you like to save changes in current task?"),QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,this).exec();
+int res = QMessageBox(QMessageBox::Warning,tr("Unsaved Changes"),tr("Would you like to save changes in current task?"),QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,this).exec();
 	if (res == QMessageBox::Save)
 		return saveTask();
 	else if (res == QMessageBox::Cancel)
@@ -653,7 +653,7 @@ QString line="";
 			if (matrix.at(r).at(c) == INFINITY)
 				line += "<td align=\"center\">"INFSTR"</td>";
 			else
-				line += isInteger(matrix.at(r).at(c)) ? QString("<td align=\"center\">%1</td>").arg(matrix.at(r).at(c)) : QString("<td align=\"center\">%1</td>").arg(matrix.at(r).at(c), 0, 'f', 2);
+				line += isInteger(matrix.at(r).at(c)) ? QString("<td align=\"center\">%1</td>").arg(matrix.at(r).at(c)) : QString("<td align=\"center\">%1</td>").arg(matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
 		}
 		line += "</tr>";
 		output.append(line);
@@ -672,15 +672,15 @@ QString line="";
 			if (step.matrix.at(r).at(c) == INFINITY)
 				line += "<td align=\"center\">"INFSTR"</td>";
 			else if ((r == step.candidate.nRow) && (c == step.candidate.nCol))
-				line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\" class=\"selected\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\" class=\"selected\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', 2);
+				line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\" class=\"selected\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\" class=\"selected\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
 			else {
 SCandidate cand;
 				cand.nRow = r;
 				cand.nCol = c;
 				if (step.alts.contains(cand))
-					line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\" class=\"alternate\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\" class=\"alternate\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', 2);
+					line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\" class=\"alternate\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\" class=\"alternate\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
 				else
-					line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', 2);
+					line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
 			}
 		}
 		line += "</tr>";
@@ -715,8 +715,8 @@ void MainWindow::retranslateUi(bool all)
 }
 
 bool MainWindow::saveTask() {
-QStringList filters(trUtf8("%1 Task File").arg("TSPSG") + " (*.tspt)");
-	filters.append(trUtf8("All Files") + " (*)");
+QStringList filters(tr("%1 Task File").arg("TSPSG") + " (*.tspt)");
+	filters.append(tr("All Files") + " (*)");
 QString file;
 	if (fileName.endsWith(".tspt", Qt::CaseInsensitive))
 		file = fileName;
@@ -724,7 +724,7 @@ QString file;
 		file = QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt";
 
 QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
-	file = QFileDialog::getSaveFileName(this, trUtf8("Task Save"), file, filters.join(";;"), NULL, opts);
+	file = QFileDialog::getSaveFileName(this, tr("Task Save"), file, filters.join(";;"), NULL, opts);
 
 	if (file.isEmpty())
 		return false;
@@ -739,7 +739,7 @@ QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_D
 void MainWindow::setFileName(const QString &fileName)
 {
 	this->fileName = fileName;
-	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(trUtf8("Travelling Salesman Problem")));
+	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(tr("Travelling Salesman Problem")));
 }
 
 void MainWindow::setupUi()

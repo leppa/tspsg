@@ -1,6 +1,6 @@
 /*
  *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ *  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -39,12 +39,12 @@ QString CTSPSolver::getSortedPath() const
 		return QString();
 
 int i = 0; // We start from City 1
-QString path = trUtf8("City %1").arg(1) + " -> ";
+QString path = tr("City %1").arg(1) + " -> ";
 	while ((i = route[i]) != 0) {
-		path += trUtf8("City %1").arg(i + 1) + " -> ";
+		path += tr("City %1").arg(i + 1) + " -> ";
 	}
 	// And finish in City 1, too
-	path += trUtf8("City %1").arg(1);
+	path += tr("City %1").arg(1);
 
 	return path;
 }
@@ -88,12 +88,12 @@ SStep *CTSPSolver::solve(int numCities, TMatrix task, QWidget *parent)
 QProgressDialog pd(parent);
 QProgressBar *pb = new QProgressBar(&pd);
 	pb->setAlignment(Qt::AlignCenter);
-	pb->setFormat(trUtf8("%v of %m parts found"));
+	pb->setFormat(tr("%v of %m parts found"));
 	pd.setBar(pb);
 	pd.setMaximum(nCities);
 	pd.setMinimumDuration(1000);
-	pd.setLabelText(trUtf8("Calculating optimal route..."));
-	pd.setWindowTitle(trUtf8("Solution Progress"));
+	pd.setLabelText(tr("Calculating optimal route..."));
+	pd.setWindowTitle(tr("Solution Progress"));
 	pd.setWindowModality(Qt::ApplicationModal);
 	pd.setValue(0);
 
@@ -105,7 +105,7 @@ SStep *step = new SStep();
 SStep *left, *right;
 int nRow, nCol;
 bool firstStep = true;
-double check;
+qreal check;
 	while (this->route.size() < nCities) {
 //		forbidden.clear();
 		step->alts = findCandidate(step->matrix,nRow,nCol);
@@ -167,7 +167,7 @@ double check;
 
 	if (!root && !pd.wasCanceled()) {
 		pd.reset();
-		QMessageBox(QMessageBox::Warning,trUtf8("Solution Result"),trUtf8("Unable to find solution.\nMaybe, this task has no solutions."),QMessageBox::Ok,parent).exec();
+		QMessageBox(QMessageBox::Warning,tr("Solution Result"),tr("Unable to find solution.\nMaybe, this task has no solutions."),QMessageBox::Ok,parent).exec();
 	}
 
 	qApp->processEvents();
@@ -187,10 +187,10 @@ CTSPSolver::~CTSPSolver()
 
 /* Privates **********************************************************/
 
-double CTSPSolver::align(TMatrix &matrix)
+qreal CTSPSolver::align(TMatrix &matrix)
 {
-double r = 0;
-double min;
+qreal r = 0;
+qreal min;
 	for (int k = 0; k < nCities; k++) {
 		min = findMinInRow(k,matrix);
 		if (min > 0) {
@@ -239,8 +239,8 @@ QList<SCandidate> CTSPSolver::findCandidate(const TMatrix &matrix, int &nRow, in
 	nCol = -1;
 QList<SCandidate> alts;
 SCandidate cand;
-double h = -1;
-double sum;
+qreal h = -1;
+qreal sum;
 	for (int r = 0; r < nCities; r++)
 		for (int c = 0; c < nCities; c++)
 //			if ((matrix.at(r).at(c) == 0) && !forbidden.values(r).contains(c)) {
@@ -260,18 +260,18 @@ double sum;
 	return alts;
 }
 
-double CTSPSolver::findMinInCol(int nCol, const TMatrix &matrix, int exr) const
+qreal CTSPSolver::findMinInCol(int nCol, const TMatrix &matrix, int exr) const
 {
-double min = INFINITY;
+qreal min = INFINITY;
 	for (int k = 0; k < nCities; k++)
 		if ((k != exr) && (min > matrix.at(k).at(nCol)))
 			min = matrix.at(k).at(nCol);
 	return min == INFINITY ? 0 : min;
 }
 
-double CTSPSolver::findMinInRow(int nRow, const TMatrix &matrix, int exc) const
+qreal CTSPSolver::findMinInRow(int nRow, const TMatrix &matrix, int exc) const
 {
-double min = INFINITY;
+qreal min = INFINITY;
 	for (int k = 0; k < nCities; k++)
 		if (((k != exc)) && (min > matrix.at(nRow).at(k)))
 			min = matrix.at(nRow).at(k);
@@ -292,14 +292,14 @@ int i = nCol;
 	return false;
 }
 
-void CTSPSolver::subCol(TMatrix &matrix, int nCol, double val)
+void CTSPSolver::subCol(TMatrix &matrix, int nCol, qreal val)
 {
 	for (int k = 0; k < nCities; k++)
 		if (k != nCol)
 			matrix[k][nCol] -= val;
 }
 
-void CTSPSolver::subRow(TMatrix &matrix, int nRow, double val)
+void CTSPSolver::subRow(TMatrix &matrix, int nRow, qreal val)
 {
 	for (int k = 0; k < nCities; k++)
 		if (k != nRow)

@@ -1,6 +1,6 @@
 /*!
  * \file version.h
- * \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -28,7 +28,7 @@
  * \mainpage
  * \image html tspsg.png
  *  <b>TSPSG: TSP Solver and Generator</b>
- * \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$

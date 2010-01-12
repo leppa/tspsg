@@ -1,6 +1,6 @@
 /*!
  * \file tspsolver.h
- * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -33,7 +33,7 @@
 #include "tspmodel.h"
 
 //! A matrix of city-to-city travel costs.
-typedef QList<QList<double> > TMatrix;
+typedef QList<QList<qreal> > TMatrix;
 
 /*!
  * \brief A structure that represents a candidate for branching.
@@ -59,7 +59,7 @@ struct SCandidate {
  */
 struct SStep {
 	TMatrix matrix; //!< This step's matrix
-	double price; //!< The price of travel to this step
+	qreal price; //!< The price of travel to this step
 	SCandidate candidate; //!< A candiadate for branching in the current matrix
 	QList<SCandidate> alts; //!< A list of alternative branching candidates
 	SStep *plNode; //!< Pointer to the left branch step
@@ -74,7 +74,7 @@ struct SStep {
 
 /*!
  * \brief This class solves Travelling Salesman Problem task.
- * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  * \todo TODO: Deletion of solution tree on destroy and cleanup.
  */
@@ -97,15 +97,15 @@ private:
 	QHash<int,int> route;
 //	QHash<int,int> forbidden;
 
-	double align(TMatrix &matrix);
+	qreal align(TMatrix &matrix);
 	void cleanup();
 	void deleteNode(SStep *&node);
 	QList<SCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
-	double findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
-	double findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
+	qreal findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
+	qreal findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
 	bool hasSubCycles(int nRow, int nCol) const;
-	void subCol(TMatrix &matrix, int nCol, double val);
-	void subRow(TMatrix &matrix, int nRow, double val);
+	void subCol(TMatrix &matrix, int nCol, qreal val);
+	void subRow(TMatrix &matrix, int nRow, qreal val);
 };
 
 #endif // TSPSOLVER_H

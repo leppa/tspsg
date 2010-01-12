@@ -1,6 +1,6 @@
 /*!
  * \file tspmodel.h
- * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -32,7 +32,7 @@
 
 /*!
  * \brief This class implements table model for manipulating a task.
- * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  */
 class CTSPModel: public QAbstractTableModel
 {
@@ -63,12 +63,12 @@ signals:
 
 private:
 	QSettings *settings;
-	QVector<QVector<double> > table;
+	QVector<QVector<qreal> > table;
 	quint16 nCities;
 	bool loadError(QDataStream::Status);
 	bool loadTSPT(QDataStream *);
 	bool loadZKT(QDataStream *);
-	double rand(int, int) const;
+	qreal rand(int, int) const;
 };
 
 #endif // TSPMODEL_H

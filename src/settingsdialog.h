@@ -1,6 +1,6 @@
 /*!
  * \file settingsdialog.h
- * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -34,7 +34,7 @@
 
 /*!
  * \brief Class for handling Settings Dialog UI and logic.
- * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  */
 class SettingsDialog: public QDialog, Ui::SettingsDialog
 {

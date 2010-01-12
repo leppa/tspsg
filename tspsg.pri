@@ -1,7 +1,7 @@
 ######################################################################
 #
 # TSPSG: TSP Solver and Generator
-# Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+# Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
 #
 # $Id$
 # $URL$
@@ -14,6 +14,7 @@
 HEADERS += src/globals.h \
 	src/version.h \
 	src/os.h \
+	src/defaults.h \
 	src/mainwindow.h \
 	src/settingsdialog.h \
 	src/tspmodel.h \

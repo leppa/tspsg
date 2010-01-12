@@ -1,6 +1,6 @@
 /*!
  * \file os.h
- * \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$

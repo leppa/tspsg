@@ -1,6 +1,6 @@
 /*!
  * \file mainwindow.h
- * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -38,7 +38,7 @@
 
 /*!
  * \brief Class for handling Main Window UI and logic.
- * \author Copyright &copy; 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  */
 class MainWindow: public QMainWindow, Ui::MainWindow
 {
@@ -97,7 +97,7 @@ private:
 	void outputMatrix(const SStep &step, QStringList &output);
 	void retranslateUi(bool all = true);
 	bool saveTask();
-	void setFileName(const QString &fileName = trUtf8("Untitled") + ".tspt");
+	void setFileName(const QString &fileName = tr("Untitled") + ".tspt");
 	void setupUi();
 	void toggleSolutionActions(bool enable = true);
 };

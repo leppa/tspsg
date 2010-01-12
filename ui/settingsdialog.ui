@@ -154,9 +154,6 @@
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
      <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
       <widget class="QWidget" name="tabGeneral">
        <attribute name="title">
         <string>General</string>
@@ -206,59 +203,38 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabRandom">
+      <widget class="QWidget" name="tabTask">
        <attribute name="title">
-        <string>Random</string>
+        <string>Task</string>
        </attribute>
        <attribute name="toolTip">
-        <string>Random number generation settings</string>
+        <string>Task generation and solving settings</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <layout class="QFormLayout" name="formLayout">
-            <item row="0" column="0">
-             <widget class="QLabel" name="labelRandMin">
-              <property name="text">
-               <string>&amp;Minimal:</string>
-              </property>
-              <property name="buddy">
-               <cstring>spinRandMin</cstring>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QSpinBox" name="spinRandMin">
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="statusTip">
-               <string>Minimum for random number generation</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="labelRandMax">
-              <property name="text">
-               <string>Ma&amp;ximal:</string>
-              </property>
-              <property name="buddy">
-               <cstring>spinRandMax</cstring>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QSpinBox" name="spinRandMax">
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="statusTip">
-               <string>Maximum for random number generation</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           <widget class="QLabel" name="labelFractionalAccuracy">
+            <property name="text">
+             <string>Fractional accuracy:</string>
+            </property>
+            <property name="buddy">
+             <cstring>spinFractionalAccuracy</cstring>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spinFractionalAccuracy">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="statusTip">
+             <string>Accuracy of the fractional values (in decimal places)</string>
+            </property>
+            <property name="maximum">
+             <number>6</number>
+            </property>
+           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_5">
@@ -267,7 +243,7 @@
             </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>10</width>
+              <width>0</width>
               <height>0</height>
              </size>
             </property>
@@ -276,17 +252,90 @@
          </layout>
         </item>
         <item>
-         <widget class="QCheckBox" name="cbFractionalRandom">
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="statusTip">
-           <string>Generate fractional random values with the accuracy of 2 decimal places</string>
-          </property>
-          <property name="text">
-           <string>Fractional random values</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="title">
+             <string>Random numbers</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <layout class="QFormLayout" name="formLayout">
+               <property name="fieldGrowthPolicy">
+                <enum>QFormLayout::ExpandingFieldsGrow</enum>
+               </property>
+               <item row="0" column="0">
+                <widget class="QLabel" name="labelRandMin">
+                 <property name="text">
+                  <string>&amp;Minimal:</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>spinRandMin</cstring>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="spinRandMin">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="statusTip">
+                  <string>Minimum for random number generation</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="labelRandMax">
+                 <property name="text">
+                  <string>Ma&amp;ximal:</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>spinRandMax</cstring>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="spinRandMax">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="statusTip">
+                  <string>Maximum for random number generation</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="cbFractionalRandom">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="statusTip">
+                <string>Generate fractional random values with the Fractional accuracy</string>
+               </property>
+               <property name="text">
+                <string>Fractional random values</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
         </item>
         <item>
          <spacer name="verticalSpacer_3">
@@ -296,7 +345,7 @@
           <property name="sizeHint" stdset="0">
            <size>
             <width>0</width>
-            <height>25</height>
+            <height>1</height>
            </size>
           </property>
          </spacer>
@@ -400,39 +449,48 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
-           <widget class="QPushButton" name="buttonFont">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
+           <widget class="QGroupBox" name="groupBox_2">
+            <property name="title">
+             <string>Output font settings</string>
             </property>
-            <property name="statusTip">
-             <string>Font face for solution output</string>
-            </property>
-            <property name="text">
-             <string>&amp;Font...</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources/tspsg.qrc">
-              <normaloff>:/images/icons/fonts.png</normaloff>:/images/icons/fonts.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="buttonColor">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="statusTip">
-             <string>Font color for solution output</string>
-            </property>
-            <property name="text">
-             <string>&amp;Color...</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources/tspsg.qrc">
-              <normaloff>:/images/icons/color_line.png</normaloff>:/images/icons/color_line.png</iconset>
-            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QPushButton" name="buttonFont">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="statusTip">
+                <string>Font face for solution output</string>
+               </property>
+               <property name="text">
+                <string>&amp;Font...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../resources/tspsg.qrc">
+                 <normaloff>:/images/icons/fonts.png</normaloff>:/images/icons/fonts.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="buttonColor">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="statusTip">
+                <string>Font color for solution output</string>
+               </property>
+               <property name="text">
+                <string>&amp;Color...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../resources/tspsg.qrc">
+                 <normaloff>:/images/icons/color_line.png</normaloff>:/images/icons/color_line.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
           <item>

@@ -1,6 +1,6 @@
 /*
  *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ *  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -49,7 +49,7 @@ BEGIN
             VALUE "FileDescription", "TSPSG: TSP Solver and Generator"
             VALUE "FileVersion", BUILD_VERSION
             VALUE "InternalName", "TSPSG"
-            VALUE "LegalCopyright", "Copyright © 2007 - 2009 Lёppa"
+            VALUE "LegalCopyright", "Copyright © 2007-2010 Lёppa <contacts[at]oleksii[dot]name>"
             VALUE "OriginalFilename", "tspsg.exe"
             VALUE "ProductName", "TSPSG"
             VALUE "ProductVersion", BUILD_VERSION

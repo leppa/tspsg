@@ -1,6 +1,6 @@
 /*!
  * \file globals.h
- * \author Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -36,45 +36,10 @@
 #include "version.h"
 // OS and ARCH detection
 #include "os.h"
+// TSPSG Defaults
+#include "defaults.h"
 
 // DEFINES
-// Default values
-//! Default minimum for random numbers generation
-#define DEF_RAND_MIN 1
-//! Default maximum for random numbers generation
-#define DEF_RAND_MAX 10
-//! Default number of cities
-#define DEF_NUM_CITIES 5
-/*!
- * \def DEF_USE_NATIVE_DIALOGS
- * \brief Default for "Use native file dialog".
- */
-#ifdef Q_OS_WINCE
-	#define DEF_USE_NATIVE_DIALOGS false
-#else
-	#define DEF_USE_NATIVE_DIALOGS true
-#endif // Q_OS_WINCE
-//! Default for "Automatically resize rows and columns to their contents"
-#define DEF_AUTOSIZE true
-//! Default for "Save main window state and position"
-#define DEF_SAVEPOS false
-//! Default for "Fractional random values"
-#define DEF_FRACTIONAL_RANDOM false
-//! Default for "Show solution steps' matrices for every solution step"
-#define DEF_SHOW_MATRIX true
-//! Default for "Show or hide solution steps' matrices based on number of cities in the task"
-#define DEF_USE_SHOW_MATRIX_LIMIT true
-//! Default for "Maximum number of cities to show solution steps' matrices"
-#define DEF_SHOW_MATRIX_LIMIT 15
-//! Default for "Scroll to the end of output after solving"
-#define DEF_SCROLL_TO_END true
-//! Default font name
-#define DEF_FONT_FAMILY "Courier New"
-//! Default font size
-#define DEF_FONT_SIZE 10
-//! Default font color
-#define DEF_FONT_COLOR Qt::black
-
 //! Maximum available number of cities
 #define MAX_NUM_CITIES 50
 //! Maximum allowed value for random generation limits
@@ -130,9 +95,9 @@
  * \param x A value to check.
  * \return \c true if \a x countains an integer, oherwise \c false.
  */
-inline bool isInteger(double x)
+inline bool isInteger(qreal x)
 {
-double i;
+qreal i;
 	return (modf(x, &i) == 0.0);
 }
 

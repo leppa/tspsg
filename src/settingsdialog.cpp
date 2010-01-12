@@ -1,6 +1,6 @@
 /*
  *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ *  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -33,20 +33,12 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	: QDialog(parent), newFont(false), newColor(false)
 {
 	setupUi(this);
-	// Laying out elements
-/*	layoutCitiesLimit = new QHBoxLayout();
-	layoutCitiesLimit->setMargin(0);
-	layoutCitiesLimit->setSpacing(0);
-	layoutCitiesLimit->addSpacing(10);
-	layoutCitiesLimit->addWidget(cbCitiesLimit);
-	layoutCitiesLimit->addWidget(spinCitiesLimit);
-	layoutCitiesLimit->addStretch();
-*/
+
 	buttonBox->button(QDialogButtonBox::Save)->setIcon(QIcon(":/images/icons/button_ok.png"));
-	buttonBox->button(QDialogButtonBox::Save)->setStatusTip(trUtf8("Save new preferences"));
+	buttonBox->button(QDialogButtonBox::Save)->setStatusTip(tr("Save new preferences"));
 	buttonBox->button(QDialogButtonBox::Save)->setCursor(QCursor(Qt::PointingHandCursor));
 	buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QIcon(":/images/icons/button_cancel.png"));
-	buttonBox->button(QDialogButtonBox::Cancel)->setStatusTip(trUtf8("Close without saving preferences"));
+	buttonBox->button(QDialogButtonBox::Cancel)->setStatusTip(tr("Close without saving preferences"));
 	buttonBox->button(QDialogButtonBox::Cancel)->setCursor(QCursor(Qt::PointingHandCursor));
 
 #ifdef Q_OS_WINCE
@@ -79,9 +71,9 @@ QHBoxLayout *hbox1, *hbox2;
 	cbSaveState = new QCheckBox(bgWhite);
 	cbSaveState->setObjectName("cbSaveState");
 #ifndef QT_NO_STATUSTIP
-	cbSaveState->setStatusTip(trUtf8("Restore main window state and position on application restart"));
+	cbSaveState->setStatusTip(tr("Restore main window state and position on application restart"));
 #endif // QT_NO_STATUSTIP
-	cbSaveState->setText(trUtf8("Save main window state and position"));
+	cbSaveState->setText(tr("Save main window state and position"));
 	cbSaveState->setCursor(QCursor(Qt::PointingHandCursor));
 
 	imgIcon = new QLabel(this);
@@ -104,7 +96,7 @@ QHBoxLayout *hbox1, *hbox2;
 //	labelHint->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 	labelHint->setWordWrap(true);
 #ifndef QT_NO_STATUSTIP
-	labelHint->setStatusTip(trUtf8("Hover mouse pointer over dialog elements to get additional help"));
+	labelHint->setStatusTip(tr("Hover mouse pointer over dialog elements to get additional help"));
 #endif // QT_NO_STATUSTIP
 
 	lineVertical = new QFrame(this);
@@ -120,7 +112,7 @@ QHBoxLayout *hbox1, *hbox2;
 	hbox1->addWidget(bgWhite);
 
 	vbox1 = static_cast<QVBoxLayout *>(tabGeneral->layout());
-	vbox1->insertWidget(vbox2->indexOf(cbUseNativeDialogs) + 1, cbSaveState);
+	vbox1->insertWidget(vbox1->indexOf(cbUseNativeDialogs) + 1, cbSaveState);
 
 	// Bottom part (with grey bg)
 	hbox2 = new QHBoxLayout(bgGrey);
@@ -151,16 +143,20 @@ QHBoxLayout *hbox1, *hbox2;
 
 	settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
 
-	spinRandMin->setMaximum(MAX_RAND_VALUE);
-	spinRandMin->setValue(settings->value("MinCost",DEF_RAND_MIN).toInt());
-	spinRandMax->setMaximum(MAX_RAND_VALUE);
-	spinRandMax->setValue(settings->value("MaxCost",DEF_RAND_MAX).toInt());
-	cbFractionalRandom->setChecked(settings->value("FractionalRandom", DEF_FRACTIONAL_RANDOM).toBool());
 	cbAutosize->setChecked(settings->value("Autosize", DEF_AUTOSIZE).toBool());
 	cbUseNativeDialogs->setChecked(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool());
 #ifndef Q_OS_WINCE
 	cbSaveState->setChecked(settings->value("SavePos", DEF_SAVEPOS).toBool());
 #endif // Q_OS_WINCE
+
+	settings->beginGroup("Task");
+	spinFractionalAccuracy->setValue(settings->value("FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
+	spinRandMin->setMaximum(MAX_RAND_VALUE);
+	spinRandMin->setValue(settings->value("RandMin",DEF_RAND_MIN).toInt());
+	spinRandMax->setMaximum(MAX_RAND_VALUE);
+	spinRandMax->setValue(settings->value("RandMax",DEF_RAND_MAX).toInt());
+	cbFractionalRandom->setChecked(settings->value("FractionalRandom", DEF_FRACTIONAL_RANDOM).toBool());
+	settings->endGroup();
 
 	settings->beginGroup("Output");
 	cbShowMatrix->setChecked(settings->value("ShowMatrix", DEF_SHOW_MATRIX).toBool());
@@ -205,9 +201,13 @@ void SettingsDialog::accept()
 #endif // Q_OS_WINCE
 	settings->setValue("UseNativeDialogs", cbUseNativeDialogs->isChecked());
 	settings->setValue("Autosize", cbAutosize->isChecked());
-	settings->setValue("MinCost", spinRandMin->value());
-	settings->setValue("MaxCost", spinRandMax->value());
+
+	settings->beginGroup("Task");
+	settings->setValue("FractionalAccuracy", spinFractionalAccuracy->value());
+	settings->setValue("RandMin", spinRandMin->value());
+	settings->setValue("RandMax", spinRandMax->value());
 	settings->setValue("FractionalRandom", cbFractionalRandom->isChecked());
+	settings->endGroup();
 
 	settings->beginGroup("Output");
 	settings->setValue("ShowMatrix", cbShowMatrix->isChecked());

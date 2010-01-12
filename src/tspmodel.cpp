@@ -1,6 +1,6 @@
 /*
  *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2009 Lёppa <contacts[at]oleksii[dot]name>
+ *  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -81,7 +81,7 @@ QFont font;
 	} else if (role == Qt::DisplayRole || role == Qt::EditRole) {
 		if (index.row() < nCities && index.column() < nCities)
 			if (table[index.row()][index.column()] == INFINITY)
-				return trUtf8(INFSTR);
+				return tr(INFSTR);
 			else
 //! \hack HACK: Converting to string to prevent spinbox in edit mode
 				return QVariant(table[index.row()][index.column()]).toString();
@@ -118,9 +118,9 @@ QVariant CTSPModel::headerData(int section, Qt::Orientation orientation, int rol
 {
 	if (role == Qt::DisplayRole) {
 		if (orientation == Qt::Vertical)
-			return trUtf8("City %1").arg(section + 1);
+			return tr("City %1").arg(section + 1);
 		else
-			return trUtf8("%1").arg(section + 1);
+			return tr("%1").arg(section + 1);
 	}
 	return QVariant();
 }
@@ -138,7 +138,7 @@ bool CTSPModel::loadTask(const QString &fname)
 QFile f(fname);
 	if (!f.open(QIODevice::ReadOnly)) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),QString(trUtf8("Unable to open task file.\nError: %1")).arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Load"),QString(tr("Unable to open task file.\nError: %1")).arg(f.errorString()),QMessageBox::Ok).exec();
 		return false;
 	}
 QDataStream ds(&f);
@@ -162,7 +162,7 @@ quint32 sig;
 	} else {
 		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("Unknown file format or file is corrupted."),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + tr("Unknown file format or file is corrupted."),QMessageBox::Ok).exec();
 		return false;
 	}
 	f.close();
@@ -190,8 +190,8 @@ quint16 CTSPModel::numCities() const
  */
 void CTSPModel::randomize()
 {
-int randMin = settings->value("MinCost",DEF_RAND_MIN).toInt();
-int randMax = settings->value("MaxCost",DEF_RAND_MAX).toInt();
+int randMin = settings->value("Task/RandMin",DEF_RAND_MIN).toInt();
+int randMax = settings->value("Task/RandMax",DEF_RAND_MAX).toInt();
 	for (int r = 0; r < nCities; r++)
 		for (int c = 0; c < nCities; c++)
 			if (r != c)
@@ -225,7 +225,7 @@ bool CTSPModel::saveTask(const QString &fname)
 QFile f(fname);
 	if (!f.open(QIODevice::WriteOnly)) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),QString(trUtf8("Unable to create task file.\nError: %1\nMaybe, file is read-only?")).arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Save"),QString(tr("Unable to create task file.\nError: %1\nMaybe, file is read-only?")).arg(f.errorString()),QMessageBox::Ok).exec();
 		return false;
 	}
 QDataStream ds(&f);
@@ -233,7 +233,7 @@ QDataStream ds(&f);
 	if (f.error() != QFile::NoError) {
 		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		return false;
 	}
 	// File signature
@@ -241,7 +241,7 @@ QDataStream ds(&f);
 	if (f.error() != QFile::NoError) {
 		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		return false;
 	}
 	// File version
@@ -249,7 +249,7 @@ QDataStream ds(&f);
 	if (f.error() != QFile::NoError) {
 		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		return false;
 	}
 	// File metadata version
@@ -257,7 +257,7 @@ QDataStream ds(&f);
 	if (f.error() != QFile::NoError) {
 		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		return false;
 	}
 	// Metadata
@@ -265,7 +265,7 @@ QDataStream ds(&f);
 	if (f.error() != QFile::NoError) {
 		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		return false;
 	}
 	// Number of cities
@@ -273,18 +273,18 @@ QDataStream ds(&f);
 	if (f.error() != QFile::NoError) {
 		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 		return false;
 	}
 	// Costs
 	for (int r = 0; r < nCities; r++)
 		for (int c = 0; c < nCities; c++)
 			if (r != c) {
-				ds << table[r][c];
+				ds << static_cast<double>(table[r][c]); // We cast to double because qreal may be float on some platforms and we store double values in file
 				if (f.error() != QFile::NoError) {
 					f.close();
 					QApplication::restoreOverrideCursor();
-					QMessageBox(QMessageBox::Critical,trUtf8("Task Save"),trUtf8("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+					QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
 					return false;
 				}
 			}
@@ -311,7 +311,7 @@ bool CTSPModel::setData(const QModelIndex &index, const QVariant &value, int rol
 			table[index.row()][index.column()] = INFINITY;
 		else {
 bool ok;
-double tmp = value.toDouble(&ok);
+qreal tmp = value.toReal(&ok);
 			if (!ok || tmp < 0)
 				return false;
 			else
@@ -353,13 +353,13 @@ QString err;
 	if (status == QDataStream::Ok)
 		return false;
 	else if (status == QDataStream::ReadPastEnd)
-		err = trUtf8("Unexpected end of file.");
+		err = tr("Unexpected end of file.");
 	else if (status == QDataStream::ReadCorruptData)
-		err = trUtf8("Corrupt data read. File possibly corrupted.");
+		err = tr("Corrupt data read. File possibly corrupted.");
 	else
-		err = trUtf8("Unknown error.");
+		err = tr("Unknown error.");
 	QApplication::restoreOverrideCursor();
-	QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + err,QMessageBox::Ok).exec();
+	QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + err,QMessageBox::Ok).exec();
 	return true;
 }
 
@@ -376,7 +376,7 @@ quint8 version;
 		return false;
 	if (version > TSPT_VERSION) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("File version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
 		return false;
 	}
 	// Skipping metadata
@@ -390,18 +390,21 @@ quint16 size;
 		return false;
 	if ((size < 3) || (size > MAX_NUM_CITIES)) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("Unexpected data read.\nFile is possibly corrupted."),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."),QMessageBox::Ok).exec();
 		return false;
 	}
 	if (nCities != size) {
 		setNumCities(size);
 		emit numCitiesChanged(size);
 	}
+
+double x; // We need this as qreal may be float on some platforms and we store double values in file
 	// Travel costs
 	for (int r = 0; r < size; r++)
 		for (int c = 0; c < size; c++)
 			if (r != c) {
-				*ds >> table[r][c];
+				*ds >> x;
+				table[r][c] = x;
 				if (loadError(ds->status())) {
 					clear();
 					return false;
@@ -425,7 +428,7 @@ quint16 version;
 		return false;
 	if (version > ZKT_VERSION) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("File version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
 		return false;
 	}
 	// Number of cities
@@ -435,7 +438,7 @@ quint8 size;
 		return false;
 	if ((size < 3) || (size > 5)) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,trUtf8("Task Load"),trUtf8("Unable to load task:") + "\n" + trUtf8("Unexpected data read.\nFile is possibly corrupted."),QMessageBox::Ok).exec();
+		QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."),QMessageBox::Ok).exec();
 		return false;
 	}
 	if (nCities != size) {
@@ -443,10 +446,10 @@ quint8 size;
 		emit numCitiesChanged(size);
 	}
 	// Travel costs
-double val;
+qreal val;
 	for (int r = 0; r < 5; r++)
 		for (int c = 0; c < 5; c++)
-			if ((r != c) && (r < size)) {
+			if ((r != c) && (r < size) && (c < size)) {
 				ds->readRawData(reinterpret_cast<char *>(&val),8);
 				if (loadError(ds->status())) {
 					clear();
@@ -465,12 +468,13 @@ double val;
 	return true;
 }
 
-inline double CTSPModel::rand(int min, int max) const
+inline qreal CTSPModel::rand(int min, int max) const
 {
-double r;
-	if (settings->value("FractionalRandom", DEF_FRACTIONAL_RANDOM).toBool())
-		r = (double)qRound((double)qrand() / RAND_MAX * (max - min) * 100) / 100;
-	else
-		r = qRound((double)qrand() / RAND_MAX * (max - min));
+qreal r;
+	if (settings->value("Task/FractionalRandom", DEF_FRACTIONAL_RANDOM).toBool()) {
+qreal x = qPow(10, settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
+		r = (qreal)qRound((qreal)qrand() / RAND_MAX * (max - min) * x) / x;
+	} else
+		r = qRound((qreal)qrand() / RAND_MAX * (max - min));
 	return min + r;
 }
