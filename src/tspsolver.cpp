@@ -122,6 +122,7 @@ double check;
 
 		// Route with (nRow,nCol) path
 		right = new SStep();
+		right->pNode = step;
 		right->matrix = step->matrix;
 		for (int k = 0; k < nCities; k++) {
 			if (k != nCol)
@@ -136,6 +137,7 @@ double check;
 
 		// Route without (nRow,nCol) path
 		left = new SStep();
+		left->pNode = step;
 		left->matrix = step->matrix;
 		left->matrix[nRow][nCol] = INFINITY;
  		left->price = step->price + align(left->matrix);
@@ -182,7 +184,7 @@ double check;
 CTSPSolver::~CTSPSolver()
 {
 	if (root != NULL)
-		deleteNode(root);
+		deleteTree(root);
 }
 
 /* Privates **********************************************************/
@@ -214,23 +216,41 @@ void CTSPSolver::cleanup()
 	route.clear();
 	mayNotBeOptimal = false;
 	if (root != NULL)
-		deleteNode(root);
+		deleteTree(root);
 	QApplication::restoreOverrideCursor();
 }
 
-void CTSPSolver::deleteNode(SStep *&node)
+void CTSPSolver::deleteTree(SStep *&root)
 {
-//static int x;
-//	x++;
-//qDebug() << ">>>" << x;
-	if (node->plNode != NULL)
-		deleteNode(node->plNode);
-	if (node->prNode != NULL)
-		deleteNode(node->prNode);
-	delete node;
-	node = NULL;
-//qDebug() << "<<<" << x;
-//	x--;
+	if (root == NULL)
+		return;
+SStep *step = root;
+SStep *parent;
+	forever {
+		if (step->plNode != NULL) {
+			// We have left child node - going inside it
+			step = step->plNode;
+			step->pNode->plNode = NULL;
+			continue;
+		} else if (step->prNode != NULL) {
+			// We have right child node - going inside it
+			step = step->prNode;
+			step->pNode->prNode = NULL;
+			continue;
+		} else {
+			// We have no child nodes. Deleting current one.
+			parent = step->pNode;
+			delete step;
+			if (parent != NULL) {
+				// Going back to the parent node.
+				step = parent;
+			} else {
+				// We came back to the root node. Finishing.
+				root = NULL;
+				break;
+			}
+		}
+	}
 }
 
 QList<SCandidate> CTSPSolver::findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const

@@ -76,32 +76,32 @@
 #elif defined Q_OS_CYGWIN
 	#define OS "Cygwin"ARCH
 	#define OSID quint8(4)
-#elif defined Q_OS_DARWIN
-	#define OS "Darwin OS"ARCH
-	#define OSID quint8(5)
 #elif defined Q_OS_DGUX
 	#define OS "DG/UX"ARCH
-	#define OSID quint8(6)
+	#define OSID quint8(5)
 #elif defined Q_OS_DYNIX
 	#define OS "DYNIX/ptx"ARCH
-	#define OSID quint8(7)
+	#define OSID quint8(6)
 #elif defined Q_OS_FREEBSD
 	#define OS "FreeBSD"ARCH
-	#define OSID quint8(8)
+	#define OSID quint8(7)
 #elif defined Q_OS_HPUX
 	#define OS "HP-UX"ARCH
-	#define OSID quint8(9)
+	#define OSID quint8(8)
 #elif defined Q_OS_HURD
 	#define OS "GNU Hurd"ARCH
-	#define OSID quint8(10)
+	#define OSID quint8(9)
 #elif defined Q_OS_IRIX
 	#define OS "SGI Irix"ARCH
-	#define OSID quint8(11)
+	#define OSID quint8(10)
 #elif defined Q_OS_LINUX
 	#define OS "Linux"ARCH
-	#define OSID quint8(12)
+	#define OSID quint8(11)
 #elif defined Q_OS_LYNX
 	#define OS "LynxOS"ARCH
+	#define OSID quint8(12)
+#elif defined Q_OS_MAC
+	#define OS "Mac OS (Darwin)"ARCH
 	#define OSID quint8(13)
 #elif defined Q_OS_MSDOS
 	#define OS "MS-DOS"ARCH
@@ -121,20 +121,20 @@
 #elif defined Q_OS_OSF
 	#define OS "HP Tru64 UNIX"ARCH
 	#define OSID quint8(19)
-#elif defined Q_OS_QNX6
-	#define OS "QNX RTP 6.1"ARCH
-	#define OSID quint8(20)
 #elif defined Q_OS_QNX
-	#define OS "QNX"ARCH
-	#define OSID quint8(21)
+	#define OS "QNX Neutrino"ARCH
+	#define OSID quint8(20)
 #elif defined Q_OS_RELIANT
 	#define OS "Reliant UNIX"ARCH
-	#define OSID quint8(22)
+	#define OSID quint8(21)
 #elif defined Q_OS_SCO
 	#define OS "SCO OpenServer 5"ARCH
-	#define OSID quint8(23)
+	#define OSID quint8(22)
 #elif defined Q_OS_SOLARIS
 	#define OS "Sun Solaris"ARCH
+	#define OSID quint8(23)
+#elif defined Q_OS_SYMBIAN
+	#define OS "Symbian"ARCH
 	#define OSID quint8(24)
 #elif defined Q_OS_ULTRIX
 	#define OS "DEC Ultrix"ARCH

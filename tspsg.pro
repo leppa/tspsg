@@ -1,12 +1,12 @@
 ######################################################################
 #
-# TSPSG: TSP Solver and Generator
-# Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+#  TSPSG: TSP Solver and Generator
+#  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
 #
-# $Id$
-# $URL$
+#  $Id$
+#  $URL$
 #
-# This file is part of TSPSG.
+#  This file is part of TSPSG.
 #
 ######################################################################
 

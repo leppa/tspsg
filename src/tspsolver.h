@@ -62,21 +62,20 @@ struct SStep {
 	double price; //!< The price of travel to this step
 	SCandidate candidate; //!< A candiadate for branching in the current matrix
 	QList<SCandidate> alts; //!< A list of alternative branching candidates
+	SStep *pNode; //!< Pointer to the parent step
 	SStep *plNode; //!< Pointer to the left branch step
 	SStep *prNode; //!< Pointer to the right branch step
 
 	//! Assigns default values
 	SStep() {
 		price = -1;
-		plNode = prNode = NULL;
+		pNode = plNode = prNode = NULL;
 	}
 };
 
 /*!
  * \brief This class solves Travelling Salesman Problem task.
  * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
- *
- * \todo TODO: Deletion of solution tree on destroy and cleanup.
  */
 class CTSPSolver
 {
@@ -99,7 +98,7 @@ private:
 
 	double align(TMatrix &matrix);
 	void cleanup();
-	void deleteNode(SStep *&node);
+	void deleteTree(SStep *&root);
 	QList<SCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
 	double findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
 	double findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
