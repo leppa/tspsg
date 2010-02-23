@@ -56,7 +56,7 @@
  * \def PATH_DOCS
  * \brief Bath to documentation files.
  */
-#if defined(Q_OS_LINUX) || defined(Q_OS_UNIX)
+#if defined(Q_OS_LINUX) || (defined(Q_OS_UNIX) && !defined(Q_OS_SYMBIAN))
 	#define PATH_I18N "/usr/share/tspsg/i18n"
 	#define PATH_DOCS "/usr/share/doc/tspsg"
 #else

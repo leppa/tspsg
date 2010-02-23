@@ -16,6 +16,7 @@ TEMPLATE = app
 TARGET = tspsg
 DEPENDPATH += .
 INCLUDEPATH += .
+VERSOIN = 0.1.2
 
 # A hack to determine whether we have static or dynamic Qt build
 PRL = $$[QT_INSTALL_LIBS] QtCore.prl
@@ -48,7 +49,7 @@ include(tspsg.pri)
 #   - translations go to $(INSTALL_ROOT)/share/tspsg/i18n
 #   - docs (none, yet) go to $(INSTALL_ROOT)/share/doc/tspsg
 # Usually, $(INSTALL_ROOT) is /usr or /usr/local
-unix {
+unix:!symbian {
 	target.path = /bin
 	share.path = /share/tspsg
 	share.files = COPYING README
@@ -74,6 +75,8 @@ win32 {
 	docs.path = "\tspsg\help"
 #	docs.files = docs\*
 	INSTALLS += target i18n docs share
+
+	RC_FILE = resources/tspsg.rc
 }
 
 # TODO: MacOSX
@@ -90,5 +93,25 @@ wince {
 	DEPLOYMENT += deploy share i18n # docs
 }
 
-#Windows resource file
-win32:RC_FILE = resources/tspsg.rc
+# Symbian
+symbian {
+	share.pkg_prerules = \
+		"\"README\" - \"\", FILETEXT, TEXTCONTINUE" \
+		"\"COPYING\" - \"\", FILETEXT, TEXTEXIT"
+	share.sources = COPYING README
+	i18n.sources = i18n/languages.ini i18n/*.qm
+	i18n.path = i18n
+#	docs.sources = docs/*
+#	docs.path = help
+	DEPLOYMENT += share i18n # docs
+
+	ICON = resources/tspsg.svg
+
+	appinfo = \
+		"$$LITERAL_HASH{\"TSPSG\"},(0xEb9dce0e),0,1,2"
+	vendorinfo = \
+		"%{\"l-homes.org\"}" \
+		":\"l-homes.org\""
+	default_deployment.pkg_prerules = appinfo vendorinfo
+	DEPLOYMENT.installer_header = "$${LITERAL_HASH}{\"TSPSG Installer\"},(0xA000D7CE),1,0,0"
+}

@@ -105,7 +105,7 @@ SStep *step = new SStep();
 SStep *left, *right;
 int nRow, nCol;
 bool firstStep = true;
-double check;
+double check = INFINITY;
 	while (this->route.size() < nCities) {
 //		forbidden.clear();
 		step->alts = findCandidate(step->matrix,nRow,nCol);
@@ -140,7 +140,7 @@ double check;
 		left->pNode = step;
 		left->matrix = step->matrix;
 		left->matrix[nRow][nCol] = INFINITY;
- 		left->price = step->price + align(left->matrix);
+		left->price = step->price + align(left->matrix);
 
 		step->candidate.nRow = nRow;
 		step->candidate.nCol = nCol;

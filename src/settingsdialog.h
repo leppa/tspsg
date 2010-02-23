@@ -58,11 +58,11 @@ private:
 #ifdef Q_OS_WIN32
 	QCheckBox *cbUseTranslucency;
 #endif // Q_OS_WIN32
-#ifndef Q_OS_WINCE
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
 	QCheckBox *cbSaveState;
 	QLabel *imgIcon;
-	QLabel *labelHint;
 	QFrame *lineVertical;
+	QLabel *labelHint;
 
 	bool event(QEvent *ev);
 #endif

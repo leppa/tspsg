@@ -32,8 +32,6 @@
 	#endif
 #endif
 
-#include "qtwin.h"
-
 #ifdef STATIC_BUILD
 	Q_IMPORT_PLUGIN(qjpeg)
 	Q_IMPORT_PLUGIN(qsvg)

@@ -41,7 +41,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	buttonBox->button(QDialogButtonBox::Cancel)->setStatusTip(tr("Close without saving preferences"));
 	buttonBox->button(QDialogButtonBox::Cancel)->setCursor(QCursor(Qt::PointingHandCursor));
 
-#ifdef Q_OS_WINCE
+#if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
 	// Layout helper elements
 QVBoxLayout *vbox1;
 QHBoxLayout *hbox1;
@@ -54,7 +54,6 @@ QHBoxLayout *hbox1;
 	hbox1->setSpacing(6);
 	hbox1->addWidget(buttonHelp);
 	hbox1->addStretch();
-	hbox1->addWidget(buttonBox);
 
 	// Central layout
 	vbox1 = new QVBoxLayout(this);
@@ -150,7 +149,7 @@ QHBoxLayout *hbox1, *hbox2;
 	connect(buttonColor,SIGNAL(clicked()),this,SLOT(buttonColorClicked()));
 //	setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint);
 	setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
-#ifndef Q_OS_WINCE
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
 	// Setting initial text of dialog hint label to own status tip text.
 	labelHint->setText(labelHint->statusTip());
 #endif // Q_OS_WINCE
@@ -163,7 +162,7 @@ QHBoxLayout *hbox1, *hbox2;
 	if (QtWin::isCompositionEnabled())
 		cbUseTranslucency->setChecked(settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool());
 #endif // Q_OS_WIN32
-#ifndef Q_OS_WINCE
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
 	cbSaveState->setChecked(settings->value("SavePos", DEF_SAVEPOS).toBool());
 #endif // Q_OS_WINCE
 
@@ -222,7 +221,7 @@ qint8 SettingsDialog::translucencyChanged() const
 
 void SettingsDialog::accept()
 {
-#ifndef Q_OS_WINCE
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
 	settings->setValue("SavePos", cbSaveState->isChecked());
 #endif // Q_OS_WINCE
 #ifdef Q_OS_WIN32
@@ -281,7 +280,7 @@ void SettingsDialog::spinRandMinValueChanged(int val) {
 	spinRandMax->setMinimum(val);
 }
 
-#ifndef Q_OS_WINCE
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
 bool SettingsDialog::event(QEvent *ev)
 {
 	// Checking for StatusTip event and if tip text is not empty string

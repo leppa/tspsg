@@ -63,22 +63,22 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(buttonBackToTask,SIGNAL(clicked()),this,SLOT(buttonBackToTaskClicked()));
 	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(spinCitiesValueChanged(int)));
 
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
 	if (settings->value("SavePos", DEF_SAVEPOS).toBool()) {
 		// Loading of saved window state
 		settings->beginGroup("MainWindow");
-#ifndef Q_OS_WINCE
 		restoreGeometry(settings->value("Geometry").toByteArray());
-#endif // Q_OS_WINCE
 		restoreState(settings->value("State").toByteArray());
 		settings->endGroup();
-#ifndef Q_OS_WINCE
 	} else {
 		// Centering main window
 QRect rect = geometry();
 		rect.moveCenter(QApplication::desktop()->availableGeometry(this).center());
 		setGeometry(rect);
-#endif // Q_OS_WINCE
 	}
+#else
+	setWindowState(windowState() | Qt::WindowMaximized);
+#endif // Q_OS_WINCE
 
 	tspmodel = new CTSPModel(this);
 	taskView->setModel(tspmodel);
@@ -296,7 +296,7 @@ void MainWindow::actionHelpAboutTriggered()
 {
 //! \todo TODO: Normal about window :-)
 QString title;
-#ifdef Q_OS_WINCE
+#if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
 	title += QString::fromUtf8("<b>TSPSG<br>TSP Solver and Generator</b><br>");
 #else
 	title += QString::fromUtf8("<b>TSPSG: TSP Solver and Generator</b><br>");
@@ -454,7 +454,7 @@ QString alts;
 		output.append("<p>" + tr("Resulting path:") + "</p>");
 	output.append("<p>&nbsp;&nbsp;" + solver.getSortedPath() + "</p>");
 	if (isInteger(step->price))
-		output.append("<p>" + tr("The price is <b>%n</b> unit(s).", "", step->price) + "</p>");
+		output.append("<p>" + tr("The price is <b>%n</b> unit(s).", "", qRound(step->price)) + "</p>");
 	else
 		output.append("<p>" + tr("The price is <b>%1</b> units.").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()) + "</p>");
 	if (!solver.isOptimal()) {
@@ -530,7 +530,7 @@ void MainWindow::closeEvent(QCloseEvent *ev)
 	// Saving Main Window state
 	if (settings->value("SavePos", DEF_SAVEPOS).toBool()) {
 		settings->beginGroup("MainWindow");
-#ifndef Q_OS_WINCE
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
 		settings->setValue("Geometry", saveGeometry());
 #endif // Q_OS_WINCE
 		settings->setValue("State", saveState());
@@ -554,12 +554,12 @@ QColor hilight;
 
 void MainWindow::loadLangList()
 {
-QSettings langinfo(PATH_I18N"/languages.ini",QSettings::IniFormat);
+QSettings langinfo(PATH_I18N"/languages.ini", QSettings::IniFormat);
 #if QT_VERSION >= 0x040500
 	// In Qt < 4.5 QSettings doesn't have method setIniCodec.
 	langinfo.setIniCodec("UTF-8");
 #endif
-QDir dir(PATH_I18N,"*.qm",QDir::Name | QDir::IgnoreCase,QDir::Files);
+QDir dir(PATH_I18N, "*.qm", QDir::Name | QDir::IgnoreCase, QDir::Files);
 	if (!dir.exists())
 		return;
 QFileInfoList langs = dir.entryInfoList();
@@ -570,16 +570,16 @@ QAction *a;
 		QFileInfo lang = langs.at(k);
 		if (!lang.completeBaseName().startsWith("qt_") && lang.completeBaseName().compare("en")) {
 #if QT_VERSION >= 0x040500
-			a = menuSettingsLanguage->addAction(langinfo.value(lang.completeBaseName() + "/NativeName",lang.completeBaseName()).toString());
+			a = menuSettingsLanguage->addAction(langinfo.value(lang.completeBaseName() + "/NativeName", lang.completeBaseName()).toString());
 #else
 			// We use Name if Qt < 4.5 because NativeName is in UTF-8, QSettings
 			// reads .ini file as ASCII and there is no way to set file encoding.
-			a = menuSettingsLanguage->addAction(langinfo.value(lang.completeBaseName() + "/Name",lang.completeBaseName()).toString());
+			a = menuSettingsLanguage->addAction(langinfo.value(lang.completeBaseName() + "/Name", lang.completeBaseName()).toString());
 #endif
 			a->setData(lang.completeBaseName());
 			a->setCheckable(true);
 			a->setActionGroup(groupSettingsLanguageList);
-			if (settings->value("Language",QLocale::system().name()).toString().startsWith(lang.completeBaseName()))
+			if (settings->value("Language", QLocale::system().name()).toString().startsWith(lang.completeBaseName()))
 				a->setChecked(true);
 		}
 	}
@@ -591,8 +591,8 @@ bool MainWindow::loadLanguage(const QString &lang)
 bool ad = false;
 QString lng = lang;
 	if (lng.isEmpty()) {
-		ad = settings->value("Language","").toString().isEmpty();
-		lng = settings->value("Language",QLocale::system().name()).toString();
+		ad = settings->value("Language", "").toString().isEmpty();
+		lng = settings->value("Language", QLocale::system().name()).toString();
 	}
 static QTranslator *qtTranslator; // Qt library translator
 	if (qtTranslator) {
@@ -612,11 +612,11 @@ static QTranslator *translator; // Application translator
 
 	// Trying to load system Qt library translation...
 	qtTranslator = new QTranslator(this);
-	if (qtTranslator->load("qt_" + lng,QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+	if (qtTranslator->load("qt_" + lng, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
 		qApp->installTranslator(qtTranslator);
 	else {
 		// No luck. Let's try to load a bundled one.
-		if (qtTranslator->load("qt_" + lng,PATH_I18N))
+		if (qtTranslator->load("qt_" + lng, PATH_I18N))
 			qApp->installTranslator(qtTranslator);
 		else {
 			// Qt library translation unavailable
@@ -627,13 +627,13 @@ static QTranslator *translator; // Application translator
 
 	// Now let's load application translation.
 	translator = new QTranslator(this);
-	if (translator->load(lng,PATH_I18N))
+	if (translator->load(lng, PATH_I18N))
 		qApp->installTranslator(translator);
 	else {
 		delete translator;
 		translator = NULL;
 		if (!ad)
-			QMessageBox(QMessageBox::Warning,tr("Language Change"),tr("Unable to load translation language."),QMessageBox::Ok,this).exec();
+			QMessageBox::warning(this, tr("Language Change"), tr("Unable to load translation language."));
 		return false;
 	}
 	return true;
@@ -760,7 +760,7 @@ void MainWindow::setupUi()
 	setToolButtonStyle(Qt::ToolButtonFollowStyle);
 #endif
 
-#ifndef Q_OS_WINCE
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
 QStatusBar *statusbar = new QStatusBar(this);
 	statusbar->setObjectName("statusbar");
 	setStatusBar(statusbar);
@@ -770,9 +770,11 @@ QStatusBar *statusbar = new QStatusBar(this);
 	menuBar()->setDefaultAction(menuFile->menuAction());
 #endif // Q_OS_WINCE
 
-#ifdef Q_OS_WINCE
 	//! \hack HACK: A little hack for toolbar icons to have a sane size.
+#ifdef Q_OS_WINCE
 	toolBar->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
+#elif defined(Q_OS_SYMBIAN)
+	toolBar->setIconSize(QSize(logicalDpiX() / 5, logicalDpiY() / 5));
 #endif // Q_OS_WINCE
 
 	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());

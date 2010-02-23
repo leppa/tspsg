@@ -76,8 +76,15 @@
 #else
 	#define DEF_FONT_FAMILY "Courier New"
 #endif
-//! Default font size
-#define DEF_FONT_SIZE 10
+/*!
+ * \def DEF_FONT_SIZE
+ * \brief Default font size
+ */
+#ifdef Q_OS_SYMBIAN
+	#define DEF_FONT_SIZE 8
+#else
+	#define DEF_FONT_SIZE 10
+#endif // Q_OS_SYMBIAN
 //! Default font color
 #define DEF_FONT_COLOR Qt::black
 
