@@ -38,6 +38,8 @@
 #include "os.h"
 // TSPSG Defaults
 #include "defaults.h"
+// Vista/7 Eyecandy
+#include "qtwin.h"
 
 // DEFINES
 //! Maximum available number of cities

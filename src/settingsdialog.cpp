@@ -30,7 +30,7 @@
  * Initializes Settings Dialog and creates its layout based on target OS.
  */
 SettingsDialog::SettingsDialog(QWidget *parent)
-	: QDialog(parent), newFont(false), newColor(false)
+	: QDialog(parent), _newFont(false), _newColor(false), _translucency(0)
 {
 	setupUi(this);
 
@@ -67,6 +67,16 @@ QHBoxLayout *hbox1;
 	// Layout helper elements
 QVBoxLayout *vbox1, *vbox2;
 QHBoxLayout *hbox1, *hbox2;
+
+	if (QtWin::isCompositionEnabled()) {
+		cbUseTranslucency = new QCheckBox(bgWhite);
+		cbUseTranslucency->setObjectName("cbUseTranslucency");
+#ifndef QT_NO_STATUSTIP
+		cbUseTranslucency->setStatusTip(tr("Use translucent effect on the Main Window under Windows Vista and 7"));
+#endif // QT_NO_STATUSTIP
+		cbUseTranslucency->setText(tr("Use translucency effects"));
+		cbUseTranslucency->setCursor(QCursor(Qt::PointingHandCursor));
+	}
 
 	cbSaveState = new QCheckBox(bgWhite);
 	cbSaveState->setObjectName("cbSaveState");
@@ -113,6 +123,10 @@ QHBoxLayout *hbox1, *hbox2;
 
 	vbox1 = static_cast<QVBoxLayout *>(tabGeneral->layout());
 	vbox1->insertWidget(vbox1->indexOf(cbUseNativeDialogs) + 1, cbSaveState);
+#ifdef Q_OS_WIN32
+	if (QtWin::isCompositionEnabled())
+		vbox1->insertWidget(vbox1->indexOf(cbUseNativeDialogs) + 1, cbUseTranslucency);
+#endif // Q_OS_WIN32
 
 	// Bottom part (with grey bg)
 	hbox2 = new QHBoxLayout(bgGrey);
@@ -145,6 +159,10 @@ QHBoxLayout *hbox1, *hbox2;
 
 	cbAutosize->setChecked(settings->value("Autosize", DEF_AUTOSIZE).toBool());
 	cbUseNativeDialogs->setChecked(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool());
+#ifdef Q_OS_WIN32
+	if (QtWin::isCompositionEnabled())
+		cbUseTranslucency->setChecked(settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool());
+#endif // Q_OS_WIN32
 #ifndef Q_OS_WINCE
 	cbSaveState->setChecked(settings->value("SavePos", DEF_SAVEPOS).toBool());
 #endif // Q_OS_WINCE
@@ -180,7 +198,7 @@ QHBoxLayout *hbox1, *hbox2;
  */
 bool SettingsDialog::colorChanged() const
 {
-	return newColor;
+	return _newColor;
 }
 
 /*!
@@ -189,7 +207,15 @@ bool SettingsDialog::colorChanged() const
  */
 bool SettingsDialog::fontChanged() const
 {
-	return newFont;
+	return _newFont;
+}
+
+/*!
+ *
+ */
+qint8 SettingsDialog::translucencyChanged() const
+{
+	return _translucency;
 }
 
 /* Privates **********************************************************/
@@ -199,8 +225,17 @@ void SettingsDialog::accept()
 #ifndef Q_OS_WINCE
 	settings->setValue("SavePos", cbSaveState->isChecked());
 #endif // Q_OS_WINCE
+#ifdef Q_OS_WIN32
+	if (QtWin::isCompositionEnabled()) {
+bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
+		if ((!old && cbUseTranslucency->isChecked()) || (old && !cbUseTranslucency->isChecked())) {
+			_translucency = old ? -1 : 1;
+		} else
+			_translucency = 0;
+		settings->setValue("UseTranslucency", cbUseTranslucency->isChecked());
+	}
+#endif // Q_OS_WIN32
 	settings->setValue("UseNativeDialogs", cbUseNativeDialogs->isChecked());
-	settings->setValue("Autosize", cbAutosize->isChecked());
 
 	settings->beginGroup("Task");
 	settings->setValue("FractionalAccuracy", spinFractionalAccuracy->value());
@@ -215,9 +250,9 @@ void SettingsDialog::accept()
 	if (cbCitiesLimit->isChecked())
 		settings->setValue("ShowMatrixLimit", spinCitiesLimit->value());
 	settings->setValue("ScrollToEnd", cbScrollToEnd->isChecked());
-	if (newFont)
+	if (_newFont)
 		settings->setValue("Font", font);
-	if (newColor)
+	if (_newColor)
 		settings->setValue("Color", color);
 	settings->endGroup();
 	QDialog::accept();
@@ -228,7 +263,7 @@ void SettingsDialog::buttonColorClicked()
 QColor color = QColorDialog::getColor(this->color,this);
 	if (color.isValid() && (this->color != color)) {
 		this->color = color;
-		newColor = true;
+		_newColor = true;
 	}
 }
 
@@ -238,7 +273,7 @@ bool ok;
 QFont font = QFontDialog::getFont(&ok,this->font,this);
 	if (ok && (this->font != font)) {
 		this->font = font;
-		newFont = true;
+		_newFont = true;
 	}
 }
 

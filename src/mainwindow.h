@@ -100,6 +100,7 @@ private:
 	void setFileName(const QString &fileName = tr("Untitled") + ".tspt");
 	void setupUi();
 	void toggleSolutionActions(bool enable = true);
+	void toggleTranclucency(bool enable);
 };
 
 #endif // MAINWINDOW_H

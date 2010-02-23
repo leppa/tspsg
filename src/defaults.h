@@ -45,6 +45,8 @@
 #endif // Q_OS_WINCE
 //! Default for "Save main window state and position"
 #define DEF_SAVEPOS false
+//! Default for "Use translucency effects in Vista/7"
+#define DEF_USE_TRANSLUCENCY true
 
 //////// TASK
 //! Default for "Accuracy of the fractional values"

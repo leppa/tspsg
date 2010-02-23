@@ -224,8 +224,8 @@ QTextStream ts(&file);
 void MainWindow::actionFilePrintPreviewTriggered()
 {
 QPrintPreviewDialog ppd(printer, this);
-    connect(&ppd,SIGNAL(paintRequested(QPrinter *)),SLOT(printPreview(QPrinter *)));
-    ppd.exec();
+	connect(&ppd,SIGNAL(paintRequested(QPrinter *)),SLOT(printPreview(QPrinter *)));
+	ppd.exec();
 }
 
 void MainWindow::actionFilePrintTriggered()
@@ -257,6 +257,9 @@ SettingsDialog sd(this);
 			solutionText->setHtml(output.join(""));
 			QApplication::restoreOverrideCursor();
 		}
+	}
+	if (sd.translucencyChanged() != 0) {
+		toggleTranclucency(sd.translucencyChanged() == 1);
 	}
 }
 
@@ -351,6 +354,8 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	txtAbout->setHtml(about);
 	txtAbout->moveCursor(QTextCursor::Start);
 
+	bb->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
+
 	vb->addLayout(hb);
 	vb->addWidget(txtAbout);
 	vb->addWidget(bb);
@@ -360,6 +365,11 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	dlg->setLayout(vb);
 
 	connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
+
+	// Adding some eyecandy in Vista and 7 :-)
+	if (QtWin::isCompositionEnabled())  {
+		QtWin::enableBlurBehindWindow(dlg, true);
+	}
 
 	dlg->resize(410, 300);
 	dlg->exec();
@@ -757,9 +767,13 @@ QStatusBar *statusbar = new QStatusBar(this);
 #endif // Q_OS_WINCE
 
 #ifdef Q_OS_WINCE
+	menuBar()->setDefaultAction(menuFile->menuAction());
+#endif // Q_OS_WINCE
+
+#ifdef Q_OS_WINCE
 	//! \hack HACK: A little hack for toolbar icons to have a sane size.
 	toolBar->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
-#endif
+#endif // Q_OS_WINCE
 
 	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
 	solutionText->setTextColor(settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>());
@@ -793,7 +807,10 @@ QStatusBar *statusbar = new QStatusBar(this);
 
 	retranslateUi(false);
 
-	setCentralWidget(tabWidget);
+	// Adding some eyecandy in Vista and 7 :-)
+	if (QtWin::isCompositionEnabled() && settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool())  {
+		toggleTranclucency(true);
+	}
 }
 
 void MainWindow::toggleSolutionActions(bool enable)
@@ -807,4 +824,15 @@ void MainWindow::toggleSolutionActions(bool enable)
 	actionFilePrint->setEnabled(enable);
 	actionFilePrintPreview->setEnabled(enable);
 #endif // QT_NO_PRINTER
+}
+
+void MainWindow::toggleTranclucency(bool enable)
+{
+	QtWin::enableBlurBehindWindow(this, enable);
+	QtWin::enableBlurBehindWindow(tabWidget, enable);
+
+	if (QtWin::enableBlurBehindWindow(tabTask, enable))
+		tabTask->setAutoFillBackground(enable);
+	if (QtWin::enableBlurBehindWindow(tabSolution, enable))
+		tabSolution->setAutoFillBackground(enable);
 }

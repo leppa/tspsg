@@ -19,14 +19,16 @@ HEADERS += src/globals.h \
 	src/settingsdialog.h \
 	src/tspmodel.h \
 	src/tspsolver.h \
-	src/resource.h
+	src/resource.h \
+	src/qtwin.h
 
 #Source files
 SOURCES += src/main.cpp \
 	src/mainwindow.cpp \
 	src/settingsdialog.cpp \
 	src/tspmodel.cpp \
-	src/tspsolver.cpp
+	src/tspsolver.cpp \
+	src/qtwin.cpp
 
 #Forms
 FORMS += ui/mainwindow.ui \

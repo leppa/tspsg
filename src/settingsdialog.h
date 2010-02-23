@@ -43,14 +43,21 @@ public:
 	SettingsDialog(QWidget *parent = 0);
 	bool colorChanged() const;
 	bool fontChanged() const;
+	qint8 translucencyChanged() const;
 
 private:
+	bool _newFont;
+	bool _newColor;
+	qint8 _translucency;
+
 	QColor color;
 	QFont font;
-	bool newFont;
-	bool newColor;
+
 	QSettings *settings;
 	QHBoxLayout *layoutCitiesLimit;
+#ifdef Q_OS_WIN32
+	QCheckBox *cbUseTranslucency;
+#endif // Q_OS_WIN32
 #ifndef Q_OS_WINCE
 	QCheckBox *cbSaveState;
 	QLabel *imgIcon;
@@ -58,7 +65,7 @@ private:
 	QFrame *lineVertical;
 
 	bool event(QEvent *ev);
-#endif // Q_OS_WINCE
+#endif
 
 private slots:
 	void accept();
