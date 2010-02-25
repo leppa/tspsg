@@ -58,19 +58,24 @@ private:
 #ifdef Q_OS_WIN32
 	QCheckBox *cbUseTranslucency;
 #endif // Q_OS_WIN32
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifdef Q_OS_WINCE
+	QRect currentGeometry;
+#elif !defined(Q_OS_SYMBIAN)
 	QCheckBox *cbSaveState;
 	QLabel *imgIcon;
 	QFrame *lineVertical;
 	QLabel *labelHint;
 
 	bool event(QEvent *ev);
-#endif
+#endif // Q_OS_WINCE
 
 private slots:
 	void accept();
 	void buttonColorClicked();
 	void buttonFontClicked();
+#ifdef Q_OS_WINCE
+	void desktopResized(int screen);
+#endif // Q_OS_WINCE
 	void spinRandMinValueChanged(int val);
 };
 

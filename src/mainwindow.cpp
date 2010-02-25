@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
 {
 	settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
+
 	loadLanguage();
 	setupUi();
 
@@ -43,6 +44,11 @@ MainWindow::MainWindow(QWidget *parent)
 	printer = new QPrinter(QPrinter::HighResolution);
 #endif // QT_NO_PRINTER
 
+#ifdef Q_OS_WINCE
+	currentGeometry = QApplication::desktop()->availableGeometry(0);
+	// We need to react to SIP show/hide and resize the window appropriately
+	connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
+#endif // Q_OS_WINCE
 	connect(actionFileNew,SIGNAL(triggered()),this,SLOT(actionFileNewTriggered()));
 	connect(actionFileOpen,SIGNAL(triggered()),this,SLOT(actionFileOpenTriggered()));
 	connect(actionFileSave,SIGNAL(triggered()),this,SLOT(actionFileSaveTriggered()));
@@ -77,7 +83,7 @@ QRect rect = geometry();
 		setGeometry(rect);
 	}
 #else
-	setWindowState(windowState() | Qt::WindowMaximized);
+	setWindowState(Qt::WindowMaximized);
 #endif // Q_OS_WINCE
 
 	tspmodel = new CTSPModel(this);
@@ -267,9 +273,9 @@ void MainWindow::actionSettingsLanguageAutodetectTriggered(bool checked)
 {
 	if (checked) {
 		settings->remove("Language");
-		QMessageBox(QMessageBox::Information,tr("Language change"),tr("Language will be autodetected on next application start."),QMessageBox::Ok,this).exec();
+		QMessageBox::information(this, tr("Language change"), tr("Language will be autodetected on next application start."));
 	} else
-		settings->setValue("Language",groupSettingsLanguageList->checkedAction()->data().toString());
+		settings->setValue("Language", groupSettingsLanguageList->checkedAction()->data().toString());
 }
 
 void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
@@ -492,6 +498,31 @@ void MainWindow::dataChanged(const QModelIndex &tl, const QModelIndex &br)
 	}
 }
 
+#ifdef Q_OS_WINCE
+void MainWindow::desktopResized(int screen)
+{
+	if (screen != 0)
+		return;
+
+QRect availableGeometry = QApplication::desktop()->availableGeometry(0);
+	if (currentGeometry != availableGeometry) {
+		/*!
+		 * \hack HACK: This hack checks whether \link QDesktopWidget::availableGeometry() availableGeometry()\endlink's \c top + \c hegiht = \link QDesktopWidget::screenGeometry() screenGeometry()\endlink's \c height.
+		 *  If \c true, the window gets maximized. If we used \c setGeometry() in this case, the bottom of the
+		 *  window would end up being behind the soft buttons. Is this a bug in Qt or Windows Mobile?
+		 */
+		if ((availableGeometry.top() + availableGeometry.height()) == QApplication::desktop()->screenGeometry().height()) {
+			setWindowState(windowState() | Qt::WindowMaximized);
+		} else {
+			if (windowState() & Qt::WindowMaximized)
+				setWindowState(windowState() ^ Qt::WindowMaximized);
+			setGeometry(availableGeometry);
+		}
+	}
+	currentGeometry = availableGeometry;
+}
+#endif // Q_OS_WINCE
+
 void MainWindow::numCitiesChanged(int nCities)
 {
 	blockSignals(true);
@@ -554,32 +585,25 @@ QColor hilight;
 
 void MainWindow::loadLangList()
 {
-QSettings langinfo(PATH_I18N"/languages.ini", QSettings::IniFormat);
-#if QT_VERSION >= 0x040500
-	// In Qt < 4.5 QSettings doesn't have method setIniCodec.
-	langinfo.setIniCodec("UTF-8");
-#endif
-QDir dir(PATH_I18N, "*.qm", QDir::Name | QDir::IgnoreCase, QDir::Files);
+QDir dir(PATH_I18N, "tspsg_*.qm", QDir::Name | QDir::IgnoreCase, QDir::Files);
 	if (!dir.exists())
 		return;
 QFileInfoList langs = dir.entryInfoList();
 	if (langs.size() <= 0)
 		return;
 QAction *a;
+QTranslator t;
+QString name;
 	for (int k = 0; k < langs.size(); k++) {
 		QFileInfo lang = langs.at(k);
-		if (!lang.completeBaseName().startsWith("qt_") && lang.completeBaseName().compare("en")) {
-#if QT_VERSION >= 0x040500
-			a = menuSettingsLanguage->addAction(langinfo.value(lang.completeBaseName() + "/NativeName", lang.completeBaseName()).toString());
-#else
-			// We use Name if Qt < 4.5 because NativeName is in UTF-8, QSettings
-			// reads .ini file as ASCII and there is no way to set file encoding.
-			a = menuSettingsLanguage->addAction(langinfo.value(lang.completeBaseName() + "/Name", lang.completeBaseName()).toString());
-#endif
-			a->setData(lang.completeBaseName());
+		if (lang.completeBaseName().compare("tspsg_en", Qt::CaseInsensitive) && t.load(lang.completeBaseName(), PATH_I18N)) {
+			name = t.translate("--------", "LANGNAME", "Please, provide a native name of your translation language here.");
+			a = menuSettingsLanguage->addAction(name);
+			a->setStatusTip(QString("Set application language to %1").arg(name));
+			a->setData(lang.completeBaseName().mid(6));
 			a->setCheckable(true);
 			a->setActionGroup(groupSettingsLanguageList);
-			if (settings->value("Language", QLocale::system().name()).toString().startsWith(lang.completeBaseName()))
+			if (settings->value("Language", QLocale::system().name()).toString().startsWith(lang.completeBaseName().mid(6)))
 				a->setChecked(true);
 		}
 	}
@@ -627,13 +651,20 @@ static QTranslator *translator; // Application translator
 
 	// Now let's load application translation.
 	translator = new QTranslator(this);
-	if (translator->load(lng, PATH_I18N))
+	if (translator->load("tspsg_" + lng, PATH_I18N))
 		qApp->installTranslator(translator);
 	else {
 		delete translator;
 		translator = NULL;
-		if (!ad)
-			QMessageBox::warning(this, tr("Language Change"), tr("Unable to load translation language."));
+		if (!ad) {
+			settings->remove("Language");
+			if (QApplication::overrideCursor() != 0)
+				QApplication::restoreOverrideCursor();
+			if (isVisible())
+				QMessageBox::warning(this, tr("Language Change"), tr("Unable to load the translation language.\nFalling back to autodetection."));
+			else
+				QMessageBox::warning(NULL, tr("Language Change"), tr("Unable to load the translation language.\nFalling back to autodetection."));
+		}
 		return false;
 	}
 	return true;
@@ -704,6 +735,8 @@ void MainWindow::retranslateUi(bool all)
 	if (all)
 		Ui::MainWindow::retranslateUi(this);
 
+	actionSettingsLanguageEnglish->setStatusTip(tr("Set application language to %1").arg("English"));
+
 #ifndef QT_NO_PRINTER
 	actionFilePrintPreview->setText(QApplication::translate("MainWindow", "P&rint Preview...", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
@@ -768,6 +801,13 @@ QStatusBar *statusbar = new QStatusBar(this);
 
 #ifdef Q_OS_WINCE
 	menuBar()->setDefaultAction(menuFile->menuAction());
+
+QScrollArea *scrollArea = new QScrollArea(this);
+	scrollArea->setFrameShape(QFrame::NoFrame);
+	scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	scrollArea->setWidgetResizable(true);
+	scrollArea->setWidget(tabWidget);
+	setCentralWidget(scrollArea);
 #endif // Q_OS_WINCE
 
 	//! \hack HACK: A little hack for toolbar icons to have a sane size.
@@ -803,7 +843,7 @@ QStatusBar *statusbar = new QStatusBar(this);
 	actionSettingsLanguageEnglish->setData("en");
 	actionSettingsLanguageEnglish->setActionGroup(groupSettingsLanguageList);
 	loadLangList();
-	actionSettingsLanguageAutodetect->setChecked(settings->value("Language","").toString().isEmpty());
+	actionSettingsLanguageAutodetect->setChecked(settings->value("Language", "").toString().isEmpty());
 
 	spinCities->setMaximum(MAX_NUM_CITIES);
 

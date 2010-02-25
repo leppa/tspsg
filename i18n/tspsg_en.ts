@@ -3,6 +3,15 @@
 <TS version="2.0" language="en" sourcelanguage="en">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
+    <name>--------</name>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="600"/>
+        <source>LANGNAME</source>
+        <comment>Please, provide a native name of your translation language here.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CTSPModel</name>
     <message>
         <location filename="../src/tspmodel.cpp" line="121"/>
@@ -125,12 +134,12 @@ Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tspsolver.cpp" line="170"/>
+        <location filename="../src/tspsolver.cpp" line="172"/>
         <source>Solution Result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tspsolver.cpp" line="170"/>
+        <location filename="../src/tspsolver.cpp" line="172"/>
         <source>Unable to find solution.
 Maybe, this task has no solutions.</source>
         <translation type="unfinished"></translation>
@@ -146,83 +155,79 @@ Maybe, this task has no solutions.</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="267"/>
         <location filename="../src/mainwindow.cpp" line="276"/>
+        <location filename="../src/mainwindow.cpp" line="285"/>
         <source>Language change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="626"/>
-        <source>Unable to load translation language.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="636"/>
+        <location filename="../src/mainwindow.cpp" line="677"/>
         <source>Would you like to save changes in current task?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="15"/>
-        <location filename="../src/mainwindow.cpp" line="742"/>
+        <location filename="../src/mainwindow.cpp" line="785"/>
         <source>Travelling Salesman Problem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="626"/>
+        <location filename="../src/mainwindow.cpp" line="664"/>
+        <location filename="../src/mainwindow.cpp" line="666"/>
         <source>Language Change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="636"/>
+        <location filename="../src/mainwindow.cpp" line="677"/>
         <source>Unsaved Changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="126"/>
+        <location filename="../src/mainwindow.cpp" line="132"/>
         <source>All Supported Formats</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="127"/>
-        <location filename="../src/mainwindow.cpp" line="128"/>
+        <location filename="../src/mainwindow.cpp" line="133"/>
+        <location filename="../src/mainwindow.cpp" line="134"/>
         <source>%1 Task Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="129"/>
-        <location filename="../src/mainwindow.cpp" line="185"/>
-        <location filename="../src/mainwindow.cpp" line="719"/>
+        <location filename="../src/mainwindow.cpp" line="135"/>
+        <location filename="../src/mainwindow.cpp" line="191"/>
+        <location filename="../src/mainwindow.cpp" line="762"/>
         <source>All Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="179"/>
+        <location filename="../src/mainwindow.cpp" line="185"/>
         <source>PDF Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="181"/>
+        <location filename="../src/mainwindow.cpp" line="187"/>
         <source>HTML Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="183"/>
+        <location filename="../src/mainwindow.cpp" line="189"/>
         <source>OpenDocument Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="420"/>
+        <location filename="../src/mainwindow.cpp" line="436"/>
         <source>Selected candidate for branching: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="420"/>
-        <location filename="../src/mainwindow.cpp" line="427"/>
+        <location filename="../src/mainwindow.cpp" line="436"/>
+        <location filename="../src/mainwindow.cpp" line="443"/>
         <source>(%1;%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="429"/>
+        <location filename="../src/mainwindow.cpp" line="445"/>
         <source>%n alternate candidate(s) for branching: %1.</source>
         <translation>
             <numerusform>%n alternate candidate for branching: %1.</numerusform>
@@ -230,7 +235,7 @@ Maybe, this task has no solutions.</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="447"/>
+        <location filename="../src/mainwindow.cpp" line="463"/>
         <source>The price is &lt;b&gt;%n&lt;/b&gt; unit(s).</source>
         <translation>
             <numerusform>The price is &lt;b&gt;%n&lt;/b&gt; unit.</numerusform>
@@ -238,427 +243,439 @@ Maybe, this task has no solutions.</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="718"/>
+        <location filename="../src/mainwindow.cpp" line="761"/>
         <source>%1 Task File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="254"/>
+        <location filename="../src/mainwindow.cpp" line="260"/>
         <source>Settings Changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="132"/>
+        <location filename="../src/mainwindow.cpp" line="138"/>
         <source>Task Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="254"/>
+        <location filename="../src/mainwindow.cpp" line="260"/>
         <source>You have changed color settings.
 Do you wish to apply them to current solution text?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="359"/>
+        <location filename="../src/mainwindow.cpp" line="370"/>
         <source>About TSPSG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="393"/>
+        <location filename="../src/mainwindow.cpp" line="409"/>
         <source>Data error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="393"/>
+        <location filename="../src/mainwindow.cpp" line="409"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="406"/>
+        <location filename="../src/mainwindow.cpp" line="422"/>
         <source>Variant #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="407"/>
+        <location filename="../src/mainwindow.cpp" line="423"/>
         <source>Task:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="410"/>
-        <location filename="../src/mainwindow.cpp" line="457"/>
+        <location filename="../src/mainwindow.cpp" line="426"/>
+        <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Solution of Variant #%1 task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="416"/>
+        <location filename="../src/mainwindow.cpp" line="432"/>
         <source>Step #%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="442"/>
+        <location filename="../src/mainwindow.cpp" line="458"/>
         <source>Optimal path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="444"/>
+        <location filename="../src/mainwindow.cpp" line="460"/>
         <source>Resulting path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="449"/>
+        <location filename="../src/mainwindow.cpp" line="465"/>
         <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="452"/>
+        <location filename="../src/mainwindow.cpp" line="468"/>
         <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="727"/>
+        <location filename="../src/mainwindow.cpp" line="664"/>
+        <location filename="../src/mainwindow.cpp" line="666"/>
+        <source>Unable to load the translation language.
+Falling back to autodetection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="738"/>
+        <source>Set application language to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="770"/>
         <source>Task Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="267"/>
+        <location filename="../src/mainwindow.cpp" line="276"/>
         <source>Language will be autodetected on next application start.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="276"/>
+        <location filename="../src/mainwindow.cpp" line="285"/>
         <source>You have language autodetection turned on.
 It needs to be off.
 Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.h" line="100"/>
-        <location filename="../src/mainwindow.cpp" line="146"/>
-        <location filename="../src/mainwindow.cpp" line="162"/>
-        <location filename="../src/mainwindow.cpp" line="281"/>
+        <location filename="../src/mainwindow.h" line="106"/>
+        <location filename="../src/mainwindow.cpp" line="152"/>
+        <location filename="../src/mainwindow.cpp" line="168"/>
+        <location filename="../src/mainwindow.cpp" line="290"/>
         <source>Untitled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="45"/>
+        <location filename="../ui/mainwindow.ui" line="24"/>
         <source>Task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="66"/>
+        <location filename="../ui/mainwindow.ui" line="45"/>
         <source>&amp;Variant:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="79"/>
+        <location filename="../ui/mainwindow.ui" line="58"/>
         <source>Number of variant</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="89"/>
+        <location filename="../ui/mainwindow.ui" line="68"/>
         <source>&amp;Cities:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="102"/>
+        <location filename="../ui/mainwindow.ui" line="81"/>
         <source>Number of cities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="130"/>
+        <location filename="../ui/mainwindow.ui" line="109"/>
         <source>Cost of travel from city to city</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="158"/>
+        <location filename="../ui/mainwindow.ui" line="137"/>
         <source>Fill table with random numbers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="161"/>
+        <location filename="../ui/mainwindow.ui" line="140"/>
         <source>Random</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="175"/>
+        <location filename="../ui/mainwindow.ui" line="154"/>
         <source>Solve current task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="178"/>
+        <location filename="../ui/mainwindow.ui" line="157"/>
         <source>Solve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="192"/>
+        <location filename="../ui/mainwindow.ui" line="171"/>
         <source>Solution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="201"/>
+        <location filename="../ui/mainwindow.ui" line="180"/>
         <source>Solution steps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="222"/>
-        <location filename="../ui/mainwindow.ui" line="377"/>
+        <location filename="../ui/mainwindow.ui" line="201"/>
+        <location filename="../ui/mainwindow.ui" line="355"/>
         <source>Save solution to a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="225"/>
+        <location filename="../ui/mainwindow.ui" line="204"/>
         <source>Save Solution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="252"/>
+        <location filename="../ui/mainwindow.ui" line="231"/>
         <source>Go back to Task tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="255"/>
+        <location filename="../ui/mainwindow.ui" line="234"/>
         <source>Back to Task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="285"/>
+        <location filename="../ui/mainwindow.ui" line="263"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="317"/>
+        <location filename="../ui/mainwindow.ui" line="295"/>
         <source>&amp;Language</source>
         <comment>Please, append &quot; / Language&quot; when translating this string.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="455"/>
+        <location filename="../ui/mainwindow.ui" line="433"/>
         <source>Context &amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="470"/>
+        <location filename="../ui/mainwindow.ui" line="448"/>
         <source>&amp;About TSPSG...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="536"/>
+        <location filename="../ui/mainwindow.ui" line="514"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="307"/>
+        <location filename="../ui/mainwindow.ui" line="285"/>
         <source>&amp;Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="333"/>
+        <location filename="../ui/mainwindow.ui" line="311"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="374"/>
+        <location filename="../ui/mainwindow.ui" line="352"/>
         <source>Save solution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="386"/>
+        <location filename="../ui/mainwindow.ui" line="364"/>
         <source>&amp;New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="389"/>
+        <location filename="../ui/mainwindow.ui" line="367"/>
         <source>New task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="392"/>
+        <location filename="../ui/mainwindow.ui" line="370"/>
         <source>Create new task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="395"/>
+        <location filename="../ui/mainwindow.ui" line="373"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="404"/>
+        <location filename="../ui/mainwindow.ui" line="382"/>
         <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="407"/>
+        <location filename="../ui/mainwindow.ui" line="385"/>
         <source>Open task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="410"/>
+        <location filename="../ui/mainwindow.ui" line="388"/>
         <source>Open saved task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="413"/>
+        <location filename="../ui/mainwindow.ui" line="391"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="422"/>
+        <location filename="../ui/mainwindow.ui" line="400"/>
         <source>&amp;Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="425"/>
+        <location filename="../ui/mainwindow.ui" line="403"/>
         <source>Application preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="437"/>
+        <location filename="../ui/mainwindow.ui" line="415"/>
         <source>&amp;Contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="440"/>
+        <location filename="../ui/mainwindow.ui" line="418"/>
         <source>Open help contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="443"/>
+        <location filename="../ui/mainwindow.ui" line="421"/>
         <source>Ctrl+F1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="458"/>
+        <location filename="../ui/mainwindow.ui" line="436"/>
         <source>Open context help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="461"/>
+        <location filename="../ui/mainwindow.ui" line="439"/>
         <source>F1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="473"/>
+        <location filename="../ui/mainwindow.ui" line="451"/>
         <source>About application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="482"/>
+        <location filename="../ui/mainwindow.ui" line="460"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="485"/>
+        <location filename="../ui/mainwindow.ui" line="463"/>
         <source>Exit application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="490"/>
+        <location filename="../ui/mainwindow.ui" line="468"/>
         <source>&amp;Task...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="493"/>
-        <location filename="../ui/mainwindow.ui" line="539"/>
+        <location filename="../ui/mainwindow.ui" line="471"/>
+        <location filename="../ui/mainwindow.ui" line="517"/>
         <source>Save task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="496"/>
+        <location filename="../ui/mainwindow.ui" line="474"/>
         <source>Save task to file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="545"/>
+        <location filename="../ui/mainwindow.ui" line="523"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="507"/>
+        <location filename="../ui/mainwindow.ui" line="485"/>
         <source>&amp;Autodetect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="542"/>
+        <location filename="../ui/mainwindow.ui" line="520"/>
         <source>Save current task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="554"/>
+        <location filename="../ui/mainwindow.ui" line="532"/>
         <source>About &amp;Qt...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="557"/>
+        <location filename="../ui/mainwindow.ui" line="535"/>
         <source>About Qt library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="311"/>
+        <location filename="../ui/mainwindow.ui" line="289"/>
         <source>Select language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="289"/>
+        <location filename="../ui/mainwindow.ui" line="267"/>
         <source>Save &amp;As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="314"/>
+        <location filename="../ui/mainwindow.ui" line="292"/>
         <source>Select application language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="706"/>
+        <location filename="../src/mainwindow.cpp" line="749"/>
         <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="713"/>
+        <location filename="../src/mainwindow.cpp" line="756"/>
         <source>Ctrl+P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="371"/>
+        <location filename="../ui/mainwindow.ui" line="349"/>
         <source>&amp;Solution...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="510"/>
+        <location filename="../ui/mainwindow.ui" line="488"/>
         <source>Detect language automatically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="350"/>
+        <location filename="../ui/mainwindow.ui" line="328"/>
         <source>Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="698"/>
+        <location filename="../src/mainwindow.cpp" line="741"/>
         <source>P&amp;rint Preview...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="700"/>
+        <location filename="../src/mainwindow.cpp" line="743"/>
         <source>Preview solution results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="703"/>
+        <location filename="../src/mainwindow.cpp" line="746"/>
         <source>Preview current solution results before printing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="708"/>
+        <location filename="../src/mainwindow.cpp" line="751"/>
         <source>Print solution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="711"/>
+        <location filename="../src/mainwindow.cpp" line="754"/>
         <source>Print current solution results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="513"/>
+        <location filename="../ui/mainwindow.ui" line="491"/>
         <source>Detect language automatically based on regional settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -666,179 +683,179 @@ Do you wish to turn it off?</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="7"/>
+        <location filename="../ui/settingsdialog.ui" line="15"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="208"/>
+        <location filename="../ui/settingsdialog.ui" line="237"/>
         <source>Task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="211"/>
+        <location filename="../ui/settingsdialog.ui" line="240"/>
         <source>Task generation and solving settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="219"/>
+        <location filename="../ui/settingsdialog.ui" line="248"/>
         <source>Fractional accuracy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="232"/>
+        <location filename="../ui/settingsdialog.ui" line="258"/>
         <source>Accuracy of the fractional values (in decimal places)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="259"/>
+        <location filename="../ui/settingsdialog.ui" line="285"/>
         <source>Random numbers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="270"/>
+        <location filename="../ui/settingsdialog.ui" line="296"/>
         <source>&amp;Minimal:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="283"/>
+        <location filename="../ui/settingsdialog.ui" line="309"/>
         <source>Minimum for random number generation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="290"/>
+        <location filename="../ui/settingsdialog.ui" line="316"/>
         <source>Ma&amp;ximal:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="303"/>
+        <location filename="../ui/settingsdialog.ui" line="329"/>
         <source>Maximum for random number generation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="315"/>
+        <location filename="../ui/settingsdialog.ui" line="341"/>
         <source>Generate fractional random values with the Fractional accuracy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="456"/>
+        <location filename="../ui/settingsdialog.ui" line="482"/>
         <source>Output font settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="485"/>
+        <location filename="../ui/settingsdialog.ui" line="511"/>
         <source>&amp;Color...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="171"/>
+        <location filename="../ui/settingsdialog.ui" line="200"/>
         <source>Automatically resize rows and columns to their contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="159"/>
+        <location filename="../ui/settingsdialog.ui" line="188"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="162"/>
+        <location filename="../ui/settingsdialog.ui" line="191"/>
         <source>General TSPSG settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="174"/>
+        <location filename="../ui/settingsdialog.ui" line="203"/>
         <source>Autosize of rows and columns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="184"/>
+        <location filename="../ui/settingsdialog.ui" line="213"/>
         <source>Use native File Open and File Save dialogs (uncheck to use Qt&apos;s Dialogs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="357"/>
+        <location filename="../ui/settingsdialog.ui" line="383"/>
         <source>Output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="360"/>
+        <location filename="../ui/settingsdialog.ui" line="386"/>
         <source>Solution output settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="369"/>
+        <location filename="../ui/settingsdialog.ui" line="395"/>
         <source>Show solution steps&apos; matrices for every solution step</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="372"/>
+        <location filename="../ui/settingsdialog.ui" line="398"/>
         <source>Show solution steps&apos; matrices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="403"/>
+        <location filename="../ui/settingsdialog.ui" line="429"/>
         <source>Show or hide solution steps&apos; matrices based on number of cities in the task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="413"/>
+        <location filename="../ui/settingsdialog.ui" line="439"/>
         <source>Maximum number of cities to show solution steps&apos; matrices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="465"/>
+        <location filename="../ui/settingsdialog.ui" line="491"/>
         <source>Font face for solution output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="482"/>
+        <location filename="../ui/settingsdialog.ui" line="508"/>
         <source>Font color for solution output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="318"/>
+        <location filename="../ui/settingsdialog.ui" line="344"/>
         <source>Fractional random values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="444"/>
+        <location filename="../ui/settingsdialog.ui" line="470"/>
         <source>Scroll to the end of solution output after solving</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="447"/>
+        <location filename="../ui/settingsdialog.ui" line="473"/>
         <source>Scroll to solution end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="187"/>
+        <location filename="../ui/settingsdialog.ui" line="216"/>
         <source>Use native file dialogs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="406"/>
+        <location filename="../ui/settingsdialog.ui" line="432"/>
         <source>Only when &lt;=</source>
         <translation>Only when ≤</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="416"/>
+        <location filename="../ui/settingsdialog.ui" line="442"/>
         <source> cities</source>
         <comment>Don&apos;t forget a space at the beginning!</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="468"/>
+        <location filename="../ui/settingsdialog.ui" line="494"/>
         <source>&amp;Font...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="85"/>
-        <location filename="../ui/settingsdialog.ui" line="91"/>
+        <location filename="../ui/settingsdialog.ui" line="111"/>
+        <location filename="../ui/settingsdialog.ui" line="117"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="88"/>
+        <location filename="../ui/settingsdialog.ui" line="114"/>
         <source>Get preferences help</source>
         <translation type="unfinished"></translation>
     </message>
@@ -853,17 +870,27 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="74"/>
+        <location filename="../src/settingsdialog.cpp" line="80"/>
+        <source>Use translucent effect on the Main Window under Windows Vista and 7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsdialog.cpp" line="82"/>
+        <source>Use translucency effects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsdialog.cpp" line="89"/>
         <source>Restore main window state and position on application restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="76"/>
+        <location filename="../src/settingsdialog.cpp" line="91"/>
         <source>Save main window state and position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="99"/>
+        <location filename="../src/settingsdialog.cpp" line="113"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation type="unfinished"></translation>
     </message>

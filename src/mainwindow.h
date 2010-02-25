@@ -70,6 +70,9 @@ private slots:
 
 	void dataChanged();
 	void dataChanged(const QModelIndex &tl, const QModelIndex &br);
+#ifdef Q_OS_WINCE
+	void desktopResized(int screen);
+#endif // Q_OS_WINCE
 	void numCitiesChanged(int nCities);
 #ifndef QT_NO_PRINTER
 	void printPreview(QPrinter *printer);
@@ -87,6 +90,9 @@ private:
 #endif // QT_NO_PRINTER
 	QSettings *settings;
 	CTSPModel *tspmodel;
+#ifdef Q_OS_WINCE
+	QRect currentGeometry;
+#endif // Q_OS_WINCE
 
 	void closeEvent(QCloseEvent *ev);
 	void initDocStyleSheet();

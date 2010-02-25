@@ -10,23 +10,6 @@
    <iconset resource="../resources/tspsg.qrc">
     <normaloff>:/images/icons/preferences_system.png</normaloff>:/images/icons/preferences_system.png</iconset>
   </property>
-  <widget class="Line" name="lineHorizontal">
-   <property name="maximumSize">
-    <size>
-     <width>16777215</width>
-     <height>2</height>
-    </size>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Plain</enum>
-   </property>
-   <property name="lineWidth">
-    <number>2</number>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
   <widget class="QWidget" name="bgGrey" native="true">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -74,41 +57,76 @@
    <property name="autoFillBackground">
     <bool>true</bool>
    </property>
-   <widget class="QToolButton" name="buttonHelp">
-    <property name="enabled">
-     <bool>false</bool>
+   <layout class="QVBoxLayout" name="_2">
+    <property name="spacing">
+     <number>0</number>
     </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
+    <property name="margin">
+     <number>0</number>
     </property>
-    <property name="toolTip">
-     <string>Help</string>
-    </property>
-    <property name="statusTip">
-     <string>Get preferences help</string>
-    </property>
-    <property name="text">
-     <string>Help</string>
-    </property>
-    <property name="icon">
-     <iconset resource="../resources/tspsg.qrc">
-      <normaloff>:/images/icons/help_hint.png</normaloff>:/images/icons/help_hint.png</iconset>
-    </property>
-    <property name="autoRaise">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QDialogButtonBox" name="buttonBox">
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="standardButtons">
-     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
-    </property>
-   </widget>
+    <item>
+     <widget class="Line" name="lineHorizontal">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>2</height>
+       </size>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>2</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="buttons">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <property name="margin">
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QToolButton" name="buttonHelp">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Help</string>
+        </property>
+        <property name="statusTip">
+         <string>Get preferences help</string>
+        </property>
+        <property name="text">
+         <string>Help</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources/tspsg.qrc">
+          <normaloff>:/images/icons/help_hint.png</normaloff>:/images/icons/help_hint.png</iconset>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDialogButtonBox" name="buttonBox">
+        <property name="standardButtons">
+         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QWidget" name="bgWhite" native="true">
    <property name="palette">
@@ -151,7 +169,7 @@
    <property name="autoFillBackground">
     <bool>true</bool>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_3">
+   <layout class="QHBoxLayout" name="_3">
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <widget class="QWidget" name="tabGeneral">
@@ -161,7 +179,7 @@
        <attribute name="toolTip">
         <string>General TSPSG settings</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="_4">
         <item>
          <widget class="QCheckBox" name="cbAutosize">
           <property name="cursor">
@@ -189,7 +207,7 @@
          </widget>
         </item>
         <item>
-         <spacer name="verticalSpacer_2">
+         <spacer name="spacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -210,16 +228,13 @@
        <attribute name="toolTip">
         <string>Task generation and solving settings</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QVBoxLayout" name="_5">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <layout class="QHBoxLayout" name="_10">
           <item>
            <widget class="QLabel" name="labelFractionalAccuracy">
             <property name="text">
              <string>Fractional accuracy:</string>
-            </property>
-            <property name="buddy">
-             <cstring>spinFractionalAccuracy</cstring>
             </property>
            </widget>
           </item>
@@ -237,7 +252,7 @@
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer_5">
+           <spacer name="spacer_3">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -252,15 +267,15 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QHBoxLayout" name="_7">
           <item>
            <widget class="QGroupBox" name="groupBox">
             <property name="title">
              <string>Random numbers</string>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_5">
+            <layout class="QVBoxLayout" name="_8">
              <item>
-              <layout class="QFormLayout" name="formLayout">
+              <layout class="QFormLayout" name="_9">
                <property name="fieldGrowthPolicy">
                 <enum>QFormLayout::ExpandingFieldsGrow</enum>
                </property>
@@ -323,7 +338,7 @@
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer">
+           <spacer name="spacer_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -338,14 +353,14 @@
          </layout>
         </item>
         <item>
-         <spacer name="verticalSpacer_3">
+         <spacer name="spacer_5">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
             <width>0</width>
-            <height>1</height>
+            <height>0</height>
            </size>
           </property>
          </spacer>
@@ -359,7 +374,7 @@
        <attribute name="toolTip">
         <string>Solution output settings</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout">
+       <layout class="QVBoxLayout" name="_6">
         <item>
          <widget class="QCheckBox" name="cbShowMatrix">
           <property name="cursor">
@@ -379,7 +394,7 @@
            <number>0</number>
           </property>
           <item>
-           <spacer name="horizontalSpacer_3">
+           <spacer name="spacer_4">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -421,7 +436,7 @@
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer_4">
+           <spacer name="spacer_6">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -449,9 +464,9 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <layout class="QHBoxLayout" name="_11">
           <item>
-           <widget class="QGroupBox" name="groupBox_2">
+           <widget class="QGroupBox" name="groupOutput">
             <property name="title">
              <string>Output font settings</string>
             </property>
@@ -494,7 +509,7 @@
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer_2">
+           <spacer name="spacer_7">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -539,8 +554,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>155</x>
-     <y>252</y>
+     <x>190</x>
+     <y>30</y>
     </hint>
     <hint type="destinationlabel">
      <x>306</x>
@@ -555,8 +570,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>155</x>
-     <y>252</y>
+     <x>190</x>
+     <y>30</y>
     </hint>
     <hint type="destinationlabel">
      <x>262</x>
@@ -571,12 +586,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>81</x>
-     <y>8</y>
+     <x>80</x>
+     <y>150</y>
     </hint>
     <hint type="destinationlabel">
-     <x>46</x>
-     <y>8</y>
+     <x>91</x>
+     <y>175</y>
     </hint>
    </hints>
   </connection>
@@ -587,12 +602,12 @@
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>81</x>
-     <y>8</y>
+     <x>80</x>
+     <y>150</y>
     </hint>
     <hint type="destinationlabel">
-     <x>46</x>
-     <y>8</y>
+     <x>91</x>
+     <y>175</y>
     </hint>
    </hints>
   </connection>
@@ -603,12 +618,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>46</x>
-     <y>8</y>
+     <x>91</x>
+     <y>175</y>
     </hint>
     <hint type="destinationlabel">
-     <x>29</x>
-     <y>9</y>
+     <x>184</x>
+     <y>174</y>
     </hint>
    </hints>
   </connection>

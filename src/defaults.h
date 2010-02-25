@@ -68,7 +68,7 @@
 //! Default for "Scroll to the end of output after solving"
 #define DEF_SCROLL_TO_END true
 /*!
- * \def DEF_FON_FAMILY
+ * \def DEF_FONT_FAMILY
  * \brief Default font name.
  */
 #ifdef Q_OS_WINCE

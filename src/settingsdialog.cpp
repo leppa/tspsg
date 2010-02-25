@@ -42,30 +42,36 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	buttonBox->button(QDialogButtonBox::Cancel)->setCursor(QCursor(Qt::PointingHandCursor));
 
 #if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
-	// Layout helper elements
-QVBoxLayout *vbox1;
-QHBoxLayout *hbox1;
+QVBoxLayout *vbox1; // Layout helper
+
+#ifdef Q_OS_WINCE
+	// On screens with small height when SIP is shown and the window is resized
+	// there is not enought space for all elements.
+	//  So we show scrollbars to be able to access them.
+QScrollArea *scrollArea = new QScrollArea(this);
+	scrollArea->setFrameShape(QFrame::NoFrame);
+	scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	scrollArea->setWidgetResizable(true);
+	scrollArea->setWidget(bgWhite);
+#endif // Q_OS_WINCE
 
 	bgWhite->layout()->setMargin(0);
-
-	// Bottom part (with grey bg)
-	hbox1 = new QHBoxLayout(bgGrey);
-	hbox1->setMargin(6);
-	hbox1->setSpacing(6);
-	hbox1->addWidget(buttonHelp);
-	hbox1->addStretch();
 
 	// Central layout
 	vbox1 = new QVBoxLayout(this);
 	vbox1->setMargin(0);
 	vbox1->setSpacing(0);
+#ifdef Q_OS_WINCE
+	vbox1->addWidget(scrollArea);
+#else
 	vbox1->addWidget(bgWhite);
-	vbox1->addWidget(lineHorizontal);
+#endif // Q_OS_WINCE
 	vbox1->addWidget(bgGrey);
+	setLayout(vbox1);
 #else
 	// Layout helper elements
 QVBoxLayout *vbox1, *vbox2;
-QHBoxLayout *hbox1, *hbox2;
+QHBoxLayout *hbox1;
 
 	if (QtWin::isCompositionEnabled()) {
 		cbUseTranslucency = new QCheckBox(bgWhite);
@@ -88,8 +94,7 @@ QHBoxLayout *hbox1, *hbox2;
 	imgIcon = new QLabel(this);
 	imgIcon->setObjectName("imgIcon");
 	imgIcon->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Expanding);
-	imgIcon->setFrameShape(QFrame::Panel);
-	imgIcon->setLineWidth(0);
+	imgIcon->setFrameShape(QFrame::NoFrame);
 	imgIcon->setPixmap(QPixmap(":/images/icons/preferences_system.png"));
 	imgIcon->setStyleSheet("background-color: #0080C0; padding-top: 11px;");
 	imgIcon->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
@@ -127,23 +132,23 @@ QHBoxLayout *hbox1, *hbox2;
 		vbox1->insertWidget(vbox1->indexOf(cbUseNativeDialogs) + 1, cbUseTranslucency);
 #endif // Q_OS_WIN32
 
-	// Bottom part (with grey bg)
-	hbox2 = new QHBoxLayout(bgGrey);
-	hbox2->setMargin(6);
-	hbox2->setSpacing(6);
-	hbox2->addWidget(buttonHelp);
-	hbox2->addWidget(labelHint);
-	hbox2->addWidget(buttonBox);
+	// Inserting label for hints to the bottom part (with grey bg)
+	buttons->insertWidget(buttons->indexOf(buttonHelp) + 1, labelHint, 1);
 
 	// Central layout
 	vbox2 = new QVBoxLayout(this);
 	vbox2->setMargin(0);
 	vbox2->setSpacing(0);
 	vbox2->addLayout(hbox1);
-	vbox2->addWidget(lineHorizontal);
 	vbox2->addWidget(bgGrey);
+	setLayout(vbox2);
 #endif // Q_OS_WINCE
 
+#ifdef Q_OS_WINCE
+	currentGeometry = QApplication::desktop()->availableGeometry(0);
+	// We need to react to SIP show/hide and resize the window appropriately
+	connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
+#endif // Q_OS_WINCE
 	connect(spinRandMin,SIGNAL(valueChanged(int)),this,SLOT(spinRandMinValueChanged(int)));
 	connect(buttonFont,SIGNAL(clicked()),this,SLOT(buttonFontClicked()));
 	connect(buttonColor,SIGNAL(clicked()),this,SLOT(buttonColorClicked()));
@@ -210,7 +215,10 @@ bool SettingsDialog::fontChanged() const
 }
 
 /*!
- *
+ * \brief Indicates whether and how the translucency setting was changed
+ * \retval -1 the translucency was \em disabled.
+ * \retval  0 the translucency was <em>not changed</em>.
+ * \retval  1 the translucency was \em enabled.
  */
 qint8 SettingsDialog::translucencyChanged() const
 {
@@ -275,6 +283,31 @@ QFont font = QFontDialog::getFont(&ok,this->font,this);
 		_newFont = true;
 	}
 }
+
+#ifdef Q_OS_WINCE
+void SettingsDialog::desktopResized(int screen)
+{
+	if (screen != 0)
+		return;
+
+QRect availableGeometry = QApplication::desktop()->availableGeometry(0);
+	if (currentGeometry != availableGeometry) {
+		/*!
+		 * \hack HACK: This hack checks whether \link QDesktopWidget::availableGeometry() availableGeometry()\endlink's \c top + \c hegiht = \link QDesktopWidget::screenGeometry() screenGeometry()\endlink's \c height.
+		 *  If \c true, the window gets maximized. If we used \c setGeometry() in this case, the bottom of the
+		 *  window would end up being behind the soft buttons. Is this a bug in Qt or Windows Mobile?
+		 */
+		if ((availableGeometry.top() + availableGeometry.height()) == QApplication::desktop()->screenGeometry().height()) {
+			setWindowState(windowState() | Qt::WindowMaximized);
+		} else {
+			if (windowState() & Qt::WindowMaximized)
+				setWindowState(windowState() ^ Qt::WindowMaximized);
+			setGeometry(availableGeometry);
+		}
+	}
+	currentGeometry = availableGeometry;
+}
+#endif // Q_OS_WINCE
 
 void SettingsDialog::spinRandMinValueChanged(int val) {
 	spinRandMax->setMinimum(val);
