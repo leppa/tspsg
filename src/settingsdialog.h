@@ -75,6 +75,7 @@ private slots:
 	void buttonFontClicked();
 #ifdef Q_OS_WINCE
 	void desktopResized(int screen);
+	void showEvent(QShowEvent *ev);
 #endif // Q_OS_WINCE
 	void spinRandMinValueChanged(int val);
 };

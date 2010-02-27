@@ -190,13 +190,19 @@ quint16 CTSPModel::numCities() const
  */
 void CTSPModel::randomize()
 {
-int randMin = settings->value("Task/RandMin",DEF_RAND_MIN).toInt();
-int randMax = settings->value("Task/RandMax",DEF_RAND_MAX).toInt();
-	for (int r = 0; r < nCities; r++)
-		for (int c = 0; c < nCities; c++)
-			if (r != c)
-				table[r][c] = rand(randMin,randMax);
-	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+int randMin = settings->value("Task/RandMin", DEF_RAND_MIN).toInt();
+int randMax = settings->value("Task/RandMax", DEF_RAND_MAX).toInt();
+	if (settings->value("Task/SymmetricMode", DEF_SYMMETRIC_MODE).toBool()) {
+		for (int r = 0; r < nCities; r++)
+			for (int c = 0; c < r; c++)
+				table[c][r] = table[r][c] = rand(randMin, randMax);
+	} else {
+		for (int r = 0; r < nCities; r++)
+			for (int c = 0; c < nCities; c++)
+				if (r != c)
+					table[r][c] = rand(randMin, randMax);
+	}
+	emit dataChanged(index(0,0), index(nCities - 1, nCities - 1));
 }
 
 /*!
@@ -314,8 +320,11 @@ bool ok;
 double tmp = value.toDouble(&ok);
 			if (!ok || tmp < 0)
 				return false;
-			else
+			else {
 				table[index.row()][index.column()] = tmp;
+				if (settings->value("Task/SymmetricMode", DEF_SYMMETRIC_MODE).toBool())
+					table[index.column()][index.row()] = tmp;
+			}
 		}
 		emit dataChanged(index,index);
 		return true;

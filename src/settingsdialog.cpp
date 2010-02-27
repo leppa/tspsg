@@ -53,6 +53,8 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	scrollArea->setWidgetResizable(true);
 	scrollArea->setWidget(bgWhite);
+#else
+	buttons->insertStretch(buttons->indexOf(buttonHelp) + 1);
 #endif // Q_OS_WINCE
 
 	bgWhite->layout()->setMargin(0);
@@ -145,14 +147,12 @@ QHBoxLayout *hbox1;
 #endif // Q_OS_WINCE
 
 #ifdef Q_OS_WINCE
-	currentGeometry = QApplication::desktop()->availableGeometry(0);
 	// We need to react to SIP show/hide and resize the window appropriately
 	connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
 #endif // Q_OS_WINCE
 	connect(spinRandMin,SIGNAL(valueChanged(int)),this,SLOT(spinRandMinValueChanged(int)));
 	connect(buttonFont,SIGNAL(clicked()),this,SLOT(buttonFontClicked()));
 	connect(buttonColor,SIGNAL(clicked()),this,SLOT(buttonColorClicked()));
-//	setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint);
 	setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
 #if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
 	// Setting initial text of dialog hint label to own status tip text.
@@ -160,6 +160,7 @@ QHBoxLayout *hbox1;
 #endif // Q_OS_WINCE
 
 	settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
+	settings->remove("SettingsReset");
 
 	cbAutosize->setChecked(settings->value("Autosize", DEF_AUTOSIZE).toBool());
 	cbUseNativeDialogs->setChecked(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool());
@@ -172,6 +173,7 @@ QHBoxLayout *hbox1;
 #endif // Q_OS_WINCE
 
 	settings->beginGroup("Task");
+	cbSymmetricMode->setChecked(settings->value("SymmetricMode", DEF_SYMMETRIC_MODE).toBool());
 	spinFractionalAccuracy->setValue(settings->value("FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
 	spinRandMin->setMaximum(MAX_RAND_VALUE);
 	spinRandMin->setValue(settings->value("RandMin",DEF_RAND_MIN).toInt());
@@ -193,7 +195,9 @@ QHBoxLayout *hbox1;
 	color = settings->value("Color",DEF_FONT_COLOR).value<QColor>();
 	settings->endGroup();
 
+#ifndef Q_OS_WINCE
 	adjustSize();
+#endif // Q_OS_WINCE
 }
 
 /*!
@@ -229,6 +233,18 @@ qint8 SettingsDialog::translucencyChanged() const
 
 void SettingsDialog::accept()
 {
+	if (QApplication::keyboardModifiers() & Qt::ShiftModifier) {
+		if (QMessageBox::question(this, tr("Settings Reset"), tr("Do you really want to <b>reset all application settings to their defaults</b>?"), QMessageBox::RestoreDefaults | QMessageBox::Cancel) == QMessageBox::RestoreDefaults) {
+			_newFont = (font != QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE));
+			_newColor = (color != DEF_FONT_COLOR);
+			settings->remove("");
+			settings->setValue("SettingsReset", true);
+			QDialog::accept();
+			QMessageBox::information(this, tr("Settings Reset"), tr("All settings where successfully reset to their defaults.\nIt is recommended to restart the application now."));
+			return;
+		} else
+			return;
+	}
 #if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
 	settings->setValue("SavePos", cbSaveState->isChecked());
 #endif // Q_OS_WINCE
@@ -245,6 +261,7 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
 	settings->setValue("UseNativeDialogs", cbUseNativeDialogs->isChecked());
 
 	settings->beginGroup("Task");
+	settings->setValue("SymmetricMode", cbSymmetricMode->isChecked());
 	settings->setValue("FractionalAccuracy", spinFractionalAccuracy->value());
 	settings->setValue("RandMin", spinRandMin->value());
 	settings->setValue("RandMax", spinRandMax->value());
@@ -292,6 +309,7 @@ void SettingsDialog::desktopResized(int screen)
 
 QRect availableGeometry = QApplication::desktop()->availableGeometry(0);
 	if (currentGeometry != availableGeometry) {
+		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 		/*!
 		 * \hack HACK: This hack checks whether \link QDesktopWidget::availableGeometry() availableGeometry()\endlink's \c top + \c hegiht = \link QDesktopWidget::screenGeometry() screenGeometry()\endlink's \c height.
 		 *  If \c true, the window gets maximized. If we used \c setGeometry() in this case, the bottom of the
@@ -304,8 +322,16 @@ QRect availableGeometry = QApplication::desktop()->availableGeometry(0);
 				setWindowState(windowState() ^ Qt::WindowMaximized);
 			setGeometry(availableGeometry);
 		}
+		currentGeometry = availableGeometry;
+		QApplication::restoreOverrideCursor();
 	}
-	currentGeometry = availableGeometry;
+}
+
+void SettingsDialog::showEvent(QShowEvent *ev)
+{
+	desktopResized(0);
+
+	QWidget::showEvent(ev);
 }
 #endif // Q_OS_WINCE
 

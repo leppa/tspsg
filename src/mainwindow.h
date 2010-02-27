@@ -71,6 +71,7 @@ private slots:
 	void dataChanged();
 	void dataChanged(const QModelIndex &tl, const QModelIndex &br);
 #ifdef Q_OS_WINCE
+	void changeEvent(QEvent *ev);
 	void desktopResized(int screen);
 #endif // Q_OS_WINCE
 	void numCitiesChanged(int nCities);

@@ -44,7 +44,7 @@
 	#define DEF_USE_NATIVE_DIALOGS true
 #endif // Q_OS_WINCE
 //! Default for "Save main window state and position"
-#define DEF_SAVEPOS false
+#define DEF_SAVEPOS true
 //! Default for "Use translucency effects in Vista/7"
 #define DEF_USE_TRANSLUCENCY true
 
@@ -57,6 +57,8 @@
 #define DEF_RAND_MAX 10
 //! Default for "Fractional random values"
 #define DEF_FRACTIONAL_RANDOM false
+//! Default for "Symmetric tasks mode"
+#define DEF_SYMMETRIC_MODE false
 
 //////// OUTPUT
 //! Default for "Show solution steps' matrices for every solution step"
@@ -66,7 +68,7 @@
 //! Default for "Maximum number of cities to show solution steps' matrices"
 #define DEF_SHOW_MATRIX_LIMIT 15
 //! Default for "Scroll to the end of output after solving"
-#define DEF_SCROLL_TO_END true
+#define DEF_SCROLL_TO_END false
 /*!
  * \def DEF_FONT_FAMILY
  * \brief Default font name.

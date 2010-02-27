@@ -70,17 +70,16 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(spinCitiesValueChanged(int)));
 
 #if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+	// Centering main window
+QRect rect = geometry();
+	rect.moveCenter(QApplication::desktop()->availableGeometry(this).center());
+	setGeometry(rect);
 	if (settings->value("SavePos", DEF_SAVEPOS).toBool()) {
 		// Loading of saved window state
 		settings->beginGroup("MainWindow");
 		restoreGeometry(settings->value("Geometry").toByteArray());
 		restoreState(settings->value("State").toByteArray());
 		settings->endGroup();
-	} else {
-		// Centering main window
-QRect rect = geometry();
-		rect.moveCenter(QApplication::desktop()->availableGeometry(this).center());
-		setGeometry(rect);
 	}
 #else
 	setWindowState(Qt::WindowMaximized);
@@ -499,13 +498,22 @@ void MainWindow::dataChanged(const QModelIndex &tl, const QModelIndex &br)
 }
 
 #ifdef Q_OS_WINCE
+void MainWindow::changeEvent(QEvent *ev)
+{
+	if ((ev->type() == QEvent::ActivationChange) && isActiveWindow())
+		desktopResized(0);
+
+	QWidget::changeEvent(ev);
+}
+
 void MainWindow::desktopResized(int screen)
 {
-	if (screen != 0)
+	if ((screen != 0) || !isActiveWindow())
 		return;
 
 QRect availableGeometry = QApplication::desktop()->availableGeometry(0);
 	if (currentGeometry != availableGeometry) {
+		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 		/*!
 		 * \hack HACK: This hack checks whether \link QDesktopWidget::availableGeometry() availableGeometry()\endlink's \c top + \c hegiht = \link QDesktopWidget::screenGeometry() screenGeometry()\endlink's \c height.
 		 *  If \c true, the window gets maximized. If we used \c setGeometry() in this case, the bottom of the
@@ -518,8 +526,9 @@ QRect availableGeometry = QApplication::desktop()->availableGeometry(0);
 				setWindowState(windowState() ^ Qt::WindowMaximized);
 			setGeometry(availableGeometry);
 		}
+		currentGeometry = availableGeometry;
+		QApplication::restoreOverrideCursor();
 	}
-	currentGeometry = availableGeometry;
 }
 #endif // Q_OS_WINCE
 
@@ -556,16 +565,20 @@ void MainWindow::closeEvent(QCloseEvent *ev)
 		ev->ignore();
 		return;
 	}
-	settings->setValue("NumCities", spinCities->value());
+	if (!settings->value("SettingsReset", false).toBool()) {
+		settings->setValue("NumCities", spinCities->value());
 
-	// Saving Main Window state
-	if (settings->value("SavePos", DEF_SAVEPOS).toBool()) {
-		settings->beginGroup("MainWindow");
+		// Saving Main Window state
+		if (settings->value("SavePos", DEF_SAVEPOS).toBool()) {
+			settings->beginGroup("MainWindow");
 #if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
-		settings->setValue("Geometry", saveGeometry());
+			settings->setValue("Geometry", saveGeometry());
 #endif // Q_OS_WINCE
-		settings->setValue("State", saveState());
-		settings->endGroup();
+			settings->setValue("State", saveState());
+			settings->endGroup();
+		}
+	} else {
+		settings->remove("SettingsReset");
 	}
 
 	QMainWindow::closeEvent(ev);
