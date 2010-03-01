@@ -16,10 +16,30 @@ TEMPLATE = app
 TARGET = tspsg
 DEPENDPATH += .
 INCLUDEPATH += .
-VERSOIN = 0.1.2
+
+# Versioning
+BUILD_VERSION_MAJOR = 0
+BUILD_VERSION_MINOR = 1
+BUILD_RELEASE = 2
+
+# This one is only defined on releases
+#DEFINES += TSPSG_RELEASE_BUILD
+
+REVISION = $$system(svnversion)
+REVISION = $$replace(REVISION,"M","")
+VERSION = $$sprintf("%1.%2.%3",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE)
+
+DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
+	BUILD_VERSION_MINOR=$$BUILD_VERSION_MINOR \
+	BUILD_RELEASE=$$BUILD_RELEASE \
+	BUILD_NUMBER=$$REVISION
 
 # A hack to determine whether we have static or dynamic Qt build
-PRL = $$[QT_INSTALL_LIBS] QtCore.prl
+unix:!symbian {
+	PRL = $$[QT_INSTALL_LIBS] libQtCore.prl
+} else:unix {
+	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
+}
 include($$join(PRL, "/"))
 contains(QMAKE_PRL_CONFIG, static) {
 # We "embed" SVG and JPEG support on static build
@@ -33,6 +53,7 @@ CONFIG(release, debug|release) {
 } else {
 	OBJECTS_DIR = debug
 	DESTDIR = debug
+	DEFINES += DEBUG
 }
 
 # Saving all intermediate files to tmp directory.
@@ -40,70 +61,69 @@ MOC_DIR = ./tmp
 RCC_DIR = ./tmp
 UI_DIR = ./tmp
 
-#Include file(s)
+# Include file(s)
 include(tspsg.pri)
 
+# Installation and deployment
+# Common rules
+#share.files =
+l10n.files = l10n/*.qm
+docs.files = COPYING README
+INSTALLS += target l10n share docs
+
 # For *nix:
-#   - executable goes to $(INSTALL_ROOT)/bin
-#   - COPYING and README go to $(INSTALL_ROOT)/share/tspsg
-#   - translations go to $(INSTALL_ROOT)/share/tspsg/i18n
-#   - docs (none, yet) go to $(INSTALL_ROOT)/share/doc/tspsg
-# Usually, $(INSTALL_ROOT) is /usr or /usr/local
+#   - executable goes to /usr/bin
+#   - COPYING and README go to /usr/share/tspsg
+#   - translations go to /usr/share/tspsg/l10n
+#   - docs (none, yet) go to /usr/share/doc/tspsg
 unix:!symbian {
-	target.path = /bin
-	share.path = /share/tspsg
-	share.files = COPYING README
-	i18n.path = /share/tspsg/i18n
-	i18n.files = i18n/*.qm
-	docs.path = /share/doc/tspsg
-#	docs.files = docs/*
-	apps.path = /share/applications/
+	PREFIX = /usr
+	CONFIG(release, debug|release) {
+		DEFINES += PATH_L10N=\\\"$$PREFIX/share/tspsg/l10n\\\"
+		DEFINES += PATH_DOCS=\\\"$$PREFIX/share/tspsg/docs\\\"
+	}
+
+	target.path = $$PREFIX/bin
+	share.path = $$PREFIX/share/tspsg
+	l10n.path = $$PREFIX/share/tspsg/l10n
+	docs.path = $$PREFIX/share/doc/tspsg-$$VERSION
+	apps.path = $$PREFIX/share/applications/
 	apps.files = resources/tspsg.desktop
-	icon.path = /share/pixmaps
+	icon.path = $$PREFIX/share/pixmaps
 	icon.files = resources/tspsg.png
-	INSTALLS += target i18n docs share icon apps
-}
-
-# For win32: everything goes to $(INSTALL_ROOT)\tspsg and subfolders.
-# Usually, $(INSTALL_ROOT) is "C:\Program Files"
-win32 {
-	target.path = "\tspsg"
-	share.path = "\tspsg"
-	share.files = COPYING README
-	i18n.path = "\tspsg\i18n"
-	i18n.files = i18n/*.qm
-	docs.path = "\tspsg\help"
-#	docs.files = docs\*
-	INSTALLS += target i18n docs share
-
-	RC_FILE = resources/tspsg.rc
+	INSTALLS += apps icon
 }
 
 # TODO: MacOSX
 
+# For win32: everything goes to "C:\Program Files\tspsg" and subfolders.
+win32 {
+	PREFIX = "C:\Program Files"
+}
+
 # For wince: we are deploying to \Storage Card\Program Files\tspsg.
 wince {
-	deploy.path = "\Storage Card\Program Files\tspsg"
-	share.sources = COPYING README
-	share.path = "\Storage Card\Program Files\tspsg"
-	i18n.sources = i18n/*.qm
-	i18n.path = "\Storage Card\Program Files\tspsg\i18n"
-#	docs.sources = docs\*
-#	docs.path = "\Storage Card\Program Files\tspsg\help"
-	DEPLOYMENT += deploy share i18n # docs
+	PREFIX = "\Storage Card\Program Files"
+	DEPLOYMENT += target share l10n docs
+}
+
+# win32 and wince common
+win* {
+	target.path = "$$PREFIX\tspsg"
+	share.path = "$$PREFIX\tspsg"
+	l10n.path = "$$PREFIX\tspsg\l10n"
+	docs.path = "$$PREFIX\tspsg"
+
+	RC_FILE = resources/tspsg.rc
 }
 
 # Symbian
 symbian {
-	share.pkg_prerules = \
+	l10n.path = l10n
+	docs.pkg_prerules = \
 		"\"README\" - \"\", FILETEXT, TEXTCONTINUE" \
 		"\"COPYING\" - \"\", FILETEXT, TEXTEXIT"
-	share.sources = COPYING README
-	i18n.sources = i18n/*.qm
-	i18n.path = i18n
-#	docs.sources = docs/*
-#	docs.path = help
-	DEPLOYMENT += share i18n # docs
+	DEPLOYMENT += share l10n docs
 
 	ICON = resources/tspsg.svg
 

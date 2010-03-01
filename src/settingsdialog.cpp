@@ -75,6 +75,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
 QVBoxLayout *vbox1, *vbox2;
 QHBoxLayout *hbox1;
 
+#ifdef Q_OS_WIN32
 	if (QtWin::isCompositionEnabled()) {
 		cbUseTranslucency = new QCheckBox(bgWhite);
 		cbUseTranslucency->setObjectName("cbUseTranslucency");
@@ -84,6 +85,7 @@ QHBoxLayout *hbox1;
 		cbUseTranslucency->setText(tr("Use translucency effects"));
 		cbUseTranslucency->setCursor(QCursor(Qt::PointingHandCursor));
 	}
+#endif // Q_OS_WIN32
 
 	cbSaveState = new QCheckBox(bgWhite);
 	cbSaveState->setObjectName("cbSaveState");

@@ -53,7 +53,7 @@ QApplication app(argc, argv);
 	qsrand(QDateTime::currentDateTime().toTime_t() ^ QCursor::pos().x() ^ QCursor::pos().y());
 
 QTranslator en;
-	if (en.load("tspsg_en", PATH_I18N))
+	if (en.load("tspsg_en", PATH_L10N))
 		app.installTranslator(&en);
 
 MainWindow mainwindow;

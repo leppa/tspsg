@@ -114,6 +114,8 @@ bool QtWin::isCompositionEnabled()
 bool QtWin::enableBlurBehindWindow(QWidget *widget, bool enable)
 {
     Q_ASSERT(widget);
+    Q_UNUSED(widget);
+    Q_UNUSED(enable);
     bool result = false;
 #ifdef Q_WS_WIN
     if (resolveLibs()) {
@@ -150,6 +152,7 @@ bool QtWin::extendFrameIntoClientArea(QWidget *widget, int left, int top, int ri
 {
 
     Q_ASSERT(widget);
+    Q_UNUSED(widget);
     Q_UNUSED(left);
     Q_UNUSED(top);
     Q_UNUSED(right);

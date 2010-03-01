@@ -38,8 +38,10 @@
 #include "os.h"
 // TSPSG Defaults
 #include "defaults.h"
-// Vista/7 Eyecandy
-#include "qtwin.h"
+#ifdef Q_OS_WIN32
+	// Vista/7 Eyecandy
+	#include "qtwin.h"
+#endif // Q_OS_WIN32
 
 // DEFINES
 //! Maximum available number of cities
@@ -49,20 +51,19 @@
 
 // Paths
 /*!
- * \def PATH_I18N
+ * \def PATH_L10N
  * \brief Bath to internationalization files.
  */
+#ifndef PATH_L10N
+	#define PATH_L10N "l10n"
+#endif // PATH_L10N
 /*!
  * \def PATH_DOCS
  * \brief Bath to documentation files.
  */
-#if defined(Q_OS_LINUX) || (defined(Q_OS_UNIX) && !defined(Q_OS_SYMBIAN))
-	#define PATH_I18N "/usr/share/tspsg/i18n"
-	#define PATH_DOCS "/usr/share/doc/tspsg"
-#else
-	#define PATH_I18N "i18n"
+#ifndef PATH_DOCS
 	#define PATH_DOCS "help"
-#endif // Q_OS_LINUX
+#endif // PATH_DOCS
 
 //! TSPSG Task file signature - letters \c TSPT
 #define TSPT quint32(0x54535054)

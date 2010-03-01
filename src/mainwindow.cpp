@@ -148,7 +148,8 @@ QString file = QFileDialog::getOpenFileName(this, tr("Task Load"), QString(), fi
 
 void MainWindow::actionFileSaveTriggered()
 {
-	if ((fileName == tr("Untitled") + ".tspt") || (!fileName.endsWith(".tspt",Qt::CaseInsensitive)))
+	qDebug() << tr("Untitled");
+	if ((fileName == tr("Untitled") + ".tspt") || (!fileName.endsWith(".tspt", Qt::CaseInsensitive)))
 		saveTask();
 	else
 		if (tspmodel->saveTask(fileName))
@@ -310,7 +311,7 @@ QString title;
 	title += QString::fromUtf8("<b>&copy; 2007-%1 Lёppa</b><br>").arg(QDate::currentDate().toString("yyyy"));
 	title += QString::fromUtf8("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sf.net/</a></b><br>");
 QString about;
-	about += QString::fromUtf8("Target OS: <b>%1</b><br>").arg(OS);
+	about += QString::fromUtf8("Target OS (ARCH): <b>%1</b><br>").arg(OS);
 #ifndef STATIC_BUILD
 	about += "Qt library (shared):<br>";
 	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Build time: <b>%1</b><br>").arg(QT_VERSION_STR);
@@ -319,8 +320,8 @@ QString about;
 	about += QString::fromUtf8("Qt library: <b>%1</b> (static)<br>").arg(QT_VERSION_STR);
 #endif // STATIC_BUILD
 	about += QString::fromUtf8("Built on <b>%1</b> at <b>%2</b><br>").arg(__DATE__).arg(__TIME__);
-	about += "<br>";
-	about += QString::fromUtf8("Id: <b>"VERSIONID"</b><br>");
+//	about += "<br>";
+//	about += QString::fromUtf8("Id: <b>"VERSIONID"</b><br>");
 	about += QString::fromUtf8("Algorithm: <b>%1</b><br>").arg(CTSPSolver::getVersionId());
 	about += "<br>";
 	about += "TSPSG is free software: you can redistribute it and/or modify it<br>"
@@ -371,12 +372,14 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 
 	connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
 
+#ifdef Q_OS_WIN32
 	// Adding some eyecandy in Vista and 7 :-)
 	if (QtWin::isCompositionEnabled())  {
 		QtWin::enableBlurBehindWindow(dlg, true);
 	}
+#endif // Q_OS_WIN32
 
-	dlg->resize(410, 300);
+	dlg->resize(480, 400);
 	dlg->exec();
 
 	delete dlg;
@@ -598,7 +601,7 @@ QColor hilight;
 
 void MainWindow::loadLangList()
 {
-QDir dir(PATH_I18N, "tspsg_*.qm", QDir::Name | QDir::IgnoreCase, QDir::Files);
+QDir dir(PATH_L10N, "tspsg_*.qm", QDir::Name | QDir::IgnoreCase, QDir::Files);
 	if (!dir.exists())
 		return;
 QFileInfoList langs = dir.entryInfoList();
@@ -609,7 +612,7 @@ QTranslator t;
 QString name;
 	for (int k = 0; k < langs.size(); k++) {
 		QFileInfo lang = langs.at(k);
-		if (lang.completeBaseName().compare("tspsg_en", Qt::CaseInsensitive) && t.load(lang.completeBaseName(), PATH_I18N)) {
+		if (lang.completeBaseName().compare("tspsg_en", Qt::CaseInsensitive) && t.load(lang.completeBaseName(), PATH_L10N)) {
 			name = t.translate("--------", "LANGNAME", "Please, provide a native name of your translation language here.");
 			a = menuSettingsLanguage->addAction(name);
 			a->setStatusTip(QString("Set application language to %1").arg(name));
@@ -653,7 +656,7 @@ static QTranslator *translator; // Application translator
 		qApp->installTranslator(qtTranslator);
 	else {
 		// No luck. Let's try to load a bundled one.
-		if (qtTranslator->load("qt_" + lng, PATH_I18N))
+		if (qtTranslator->load("qt_" + lng, PATH_L10N))
 			qApp->installTranslator(qtTranslator);
 		else {
 			// Qt library translation unavailable
@@ -664,7 +667,7 @@ static QTranslator *translator; // Application translator
 
 	// Now let's load application translation.
 	translator = new QTranslator(this);
-	if (translator->load("tspsg_" + lng, PATH_I18N))
+	if (translator->load("tspsg_" + lng, PATH_L10N))
 		qApp->installTranslator(translator);
 	else {
 		delete translator;
@@ -862,10 +865,12 @@ QScrollArea *scrollArea = new QScrollArea(this);
 
 	retranslateUi(false);
 
+#ifdef Q_OS_WIN32
 	// Adding some eyecandy in Vista and 7 :-)
 	if (QtWin::isCompositionEnabled() && settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool())  {
 		toggleTranclucency(true);
 	}
+#endif // Q_OS_WIN32
 }
 
 void MainWindow::toggleSolutionActions(bool enable)
@@ -883,6 +888,7 @@ void MainWindow::toggleSolutionActions(bool enable)
 
 void MainWindow::toggleTranclucency(bool enable)
 {
+#ifdef Q_OS_WIN32
 	QtWin::enableBlurBehindWindow(this, enable);
 	QtWin::enableBlurBehindWindow(tabWidget, enable);
 
@@ -890,4 +896,7 @@ void MainWindow::toggleTranclucency(bool enable)
 		tabTask->setAutoFillBackground(enable);
 	if (QtWin::enableBlurBehindWindow(tabSolution, enable))
 		tabSolution->setAutoFillBackground(enable);
+#else
+	Q_UNUSED(enable);
+#endif // Q_OS_WIN32
 }
