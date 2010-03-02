@@ -1,6 +1,6 @@
 /*!
  * \file resource.h
- * \author Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -8,7 +8,7 @@
  * \brief Contains windows resource IDs.
  *
  *  <b>TSPSG: TSP Solver and Generator</b>
- *  
+ *
  *  This file is part of TSPSG.
  *
  *  TSPSG is free software: you can redistribute it and/or modify

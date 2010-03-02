@@ -1,25 +1,25 @@
-/****************************************************************************
-**
-** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
-**
-** Use, modification and distribution is allowed without limitation,
-** warranty, liability or support of any kind.
-**
-****************************************************************************/
+/*!
+ * \file qtwin.h
+ *
+ * \author Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies).
+ *
+ *  Use, modification and distribution is allowed without limitation,
+ *  warranty, liability or support of any kind.
+ */
 
 #ifndef QTWIN_H
 #define QTWIN_H
 
 #include <QColor>
 #include <QWidget>
-/**
-  * This is a helper class for using the Desktop Window Manager
-  * functionality on Windows 7 and Windows Vista. On other platforms
-  * these functions will simply not do anything.
-  */
 
 class WindowNotifier;
 
+/*!
+ *  This is a helper class for using the Desktop Window Manager
+ *  functionality on Windows 7 and Windows Vista. On other platforms
+ *  these functions will simply not do anything.
+ */
 class QtWin
 {
 public:

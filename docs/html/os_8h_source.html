@@ -117,32 +117,32 @@ window.onload = initDynSections;
 <a name="l00076"></a>00076 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_CYGWIN</span>
 <a name="l00077"></a>00077 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Cygwin&quot;ARCH</span>
 <a name="l00078"></a>00078 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(4)</span>
-<a name="l00079"></a>00079 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_DARWIN</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Darwin OS&quot;ARCH</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_DGUX</span>
+<a name="l00080"></a>00080 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;DG/UX&quot;ARCH</span>
 <a name="l00081"></a>00081 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(5)</span>
-<a name="l00082"></a>00082 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_DGUX</span>
-<a name="l00083"></a>00083 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;DG/UX&quot;ARCH</span>
+<a name="l00082"></a>00082 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_DYNIX</span>
+<a name="l00083"></a>00083 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;DYNIX/ptx&quot;ARCH</span>
 <a name="l00084"></a>00084 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(6)</span>
-<a name="l00085"></a>00085 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_DYNIX</span>
-<a name="l00086"></a>00086 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;DYNIX/ptx&quot;ARCH</span>
+<a name="l00085"></a>00085 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_FREEBSD</span>
+<a name="l00086"></a>00086 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;FreeBSD&quot;ARCH</span>
 <a name="l00087"></a>00087 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(7)</span>
-<a name="l00088"></a>00088 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_FREEBSD</span>
-<a name="l00089"></a>00089 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;FreeBSD&quot;ARCH</span>
+<a name="l00088"></a>00088 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_HPUX</span>
+<a name="l00089"></a>00089 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;HP-UX&quot;ARCH</span>
 <a name="l00090"></a>00090 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(8)</span>
-<a name="l00091"></a>00091 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_HPUX</span>
-<a name="l00092"></a>00092 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;HP-UX&quot;ARCH</span>
+<a name="l00091"></a>00091 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_HURD</span>
+<a name="l00092"></a>00092 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;GNU Hurd&quot;ARCH</span>
 <a name="l00093"></a>00093 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(9)</span>
-<a name="l00094"></a>00094 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_HURD</span>
-<a name="l00095"></a>00095 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;GNU Hurd&quot;ARCH</span>
+<a name="l00094"></a>00094 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_IRIX</span>
+<a name="l00095"></a>00095 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;SGI Irix&quot;ARCH</span>
 <a name="l00096"></a>00096 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(10)</span>
-<a name="l00097"></a>00097 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_IRIX</span>
-<a name="l00098"></a>00098 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;SGI Irix&quot;ARCH</span>
+<a name="l00097"></a>00097 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_LINUX</span>
+<a name="l00098"></a>00098 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Linux&quot;ARCH</span>
 <a name="l00099"></a>00099 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(11)</span>
-<a name="l00100"></a>00100 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_LINUX</span>
-<a name="l00101"></a>00101 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Linux&quot;ARCH</span>
+<a name="l00100"></a>00100 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_LYNX</span>
+<a name="l00101"></a>00101 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;LynxOS&quot;ARCH</span>
 <a name="l00102"></a>00102 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(12)</span>
-<a name="l00103"></a>00103 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_LYNX</span>
-<a name="l00104"></a>00104 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;LynxOS&quot;ARCH</span>
+<a name="l00103"></a>00103 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_MAC</span>
+<a name="l00104"></a>00104 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Mac OS (Darwin)&quot;ARCH</span>
 <a name="l00105"></a>00105 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(13)</span>
 <a name="l00106"></a>00106 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_MSDOS</span>
 <a name="l00107"></a>00107 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;MS-DOS&quot;ARCH</span>
@@ -162,20 +162,20 @@ window.onload = initDynSections;
 <a name="l00121"></a>00121 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_OSF</span>
 <a name="l00122"></a>00122 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;HP Tru64 UNIX&quot;ARCH</span>
 <a name="l00123"></a>00123 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(19)</span>
-<a name="l00124"></a>00124 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_QNX6</span>
-<a name="l00125"></a>00125 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;QNX RTP 6.1&quot;ARCH</span>
+<a name="l00124"></a>00124 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_QNX</span>
+<a name="l00125"></a>00125 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;QNX Neutrino&quot;ARCH</span>
 <a name="l00126"></a>00126 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(20)</span>
-<a name="l00127"></a>00127 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_QNX</span>
-<a name="l00128"></a>00128 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;QNX&quot;ARCH</span>
+<a name="l00127"></a>00127 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_RELIANT</span>
+<a name="l00128"></a>00128 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Reliant UNIX&quot;ARCH</span>
 <a name="l00129"></a>00129 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(21)</span>
-<a name="l00130"></a>00130 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_RELIANT</span>
-<a name="l00131"></a>00131 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Reliant UNIX&quot;ARCH</span>
+<a name="l00130"></a>00130 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_SCO</span>
+<a name="l00131"></a>00131 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;SCO OpenServer 5&quot;ARCH</span>
 <a name="l00132"></a>00132 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(22)</span>
-<a name="l00133"></a>00133 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_SCO</span>
-<a name="l00134"></a>00134 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;SCO OpenServer 5&quot;ARCH</span>
+<a name="l00133"></a>00133 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_SOLARIS</span>
+<a name="l00134"></a>00134 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Sun Solaris&quot;ARCH</span>
 <a name="l00135"></a>00135 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(23)</span>
-<a name="l00136"></a>00136 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_SOLARIS</span>
-<a name="l00137"></a>00137 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Sun Solaris&quot;ARCH</span>
+<a name="l00136"></a>00136 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_SYMBIAN</span>
+<a name="l00137"></a>00137 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Symbian&quot;ARCH</span>
 <a name="l00138"></a>00138 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(24)</span>
 <a name="l00139"></a>00139 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_ULTRIX</span>
 <a name="l00140"></a>00140 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;DEC Ultrix&quot;ARCH</span>
@@ -187,14 +187,14 @@ window.onload = initDynSections;
 <a name="l00146"></a>00146 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;UnixWare 7/Open UNIX 8&quot;ARCH</span>
 <a name="l00147"></a>00147 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(27)</span>
 <a name="l00148"></a>00148 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_WIN32</span>
-<a name="l00149"></a>00149 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Windows&quot;ARCH</span>
-<a name="l00150"></a>00150 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(28)</span>
+<a name="l00149"></a><a class="code" href="os_8h.html#a3324dbb5e25daac23e988901bb085447">00149</a> <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Windows&quot;ARCH</span>
+<a name="l00150"></a><a class="code" href="os_8h.html#a1dd5b94c3a8ca1350a4037270084df73">00150</a> <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(28)</span>
 <a name="l00151"></a>00151 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_WINCE</span>
 <a name="l00152"></a>00152 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Windows CE&quot;ARCH</span>
 <a name="l00153"></a>00153 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(29)</span>
 <a name="l00154"></a>00154 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00155"></a><a class="code" href="os_8h.html#a3324dbb5e25daac23e988901bb085447">00155</a> <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Unknown&quot;ARCH</span>
-<a name="l00156"></a><a class="code" href="os_8h.html#a1dd5b94c3a8ca1350a4037270084df73">00156</a> <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(255)</span>
+<a name="l00155"></a>00155 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Unknown&quot;ARCH</span>
+<a name="l00156"></a>00156 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(255)</span>
 <a name="l00157"></a>00157 <span class="preprocessor"></span><span class="preprocessor">#endif // OS</span>
 <a name="l00158"></a>00158 <span class="preprocessor"></span>
 <a name="l00159"></a>00159 <span class="preprocessor">#endif // OS_H</span>
@@ -213,7 +213,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Jan 7 18:22:42 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Mar 3 01:46:35 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

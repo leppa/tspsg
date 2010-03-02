@@ -98,31 +98,44 @@ window.onload = initDynSections;
 <a name="l00043"></a>00043     <a class="code" href="class_settings_dialog.html#a9933956b777b2c0451e9119581cc22fb" title="Class constructor.">SettingsDialog</a>(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qwidget.html">QWidget</a> *parent = 0);
 <a name="l00044"></a>00044     <span class="keywordtype">bool</span> <a class="code" href="class_settings_dialog.html#a582255a7b2b320d0efa7e97a97e432c1" title="Indicates whether or not the font color has been changed.">colorChanged</a>() <span class="keyword">const</span>;
 <a name="l00045"></a>00045     <span class="keywordtype">bool</span> <a class="code" href="class_settings_dialog.html#a3bbdd390758bf15a2c5e1fa69586560d" title="Indicates whether or not the font properties have been changed.">fontChanged</a>() <span class="keyword">const</span>;
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="keyword">private</span>:
-<a name="l00048"></a>00048     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qcolor.html">QColor</a> color;
-<a name="l00049"></a>00049     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qfont.html">QFont</a> font;
-<a name="l00050"></a>00050     <span class="keywordtype">bool</span> newFont;
-<a name="l00051"></a>00051     <span class="keywordtype">bool</span> newColor;
-<a name="l00052"></a>00052     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qsettings.html">QSettings</a> *settings;
-<a name="l00053"></a>00053     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qhboxlayout.html">QHBoxLayout</a> *layoutCitiesLimit;
-<a name="l00054"></a>00054 <span class="preprocessor">#ifndef Q_OS_WINCE</span>
-<a name="l00055"></a>00055 <span class="preprocessor"></span>    <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qcheckbox.html">QCheckBox</a> *cbSaveState;
-<a name="l00056"></a>00056     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlabel.html">QLabel</a> *imgIcon;
-<a name="l00057"></a>00057     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlabel.html">QLabel</a> *labelHint;
-<a name="l00058"></a>00058     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qframe.html">QFrame</a> *lineVertical;
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060     <span class="keywordtype">bool</span> event(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qevent.html">QEvent</a> *ev);
-<a name="l00061"></a>00061 <span class="preprocessor">#endif // Q_OS_WINCE</span>
-<a name="l00062"></a>00062 <span class="preprocessor"></span>
-<a name="l00063"></a>00063 <span class="keyword">private</span> slots:
-<a name="l00064"></a>00064     <span class="keywordtype">void</span> accept();
-<a name="l00065"></a>00065     <span class="keywordtype">void</span> buttonColorClicked();
-<a name="l00066"></a>00066     <span class="keywordtype">void</span> buttonFontClicked();
-<a name="l00067"></a>00067     <span class="keywordtype">void</span> spinRandMinValueChanged(<span class="keywordtype">int</span> val);
-<a name="l00068"></a>00068 };
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="preprocessor">#endif // SETTINGSDIALOG_H</span>
+<a name="l00046"></a>00046     qint8 <a class="code" href="class_settings_dialog.html#aaaee67d735da21a6a5ebe95be35fe430" title="Indicates whether and how the translucency setting was changed.">translucencyChanged</a>() <span class="keyword">const</span>;
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048 <span class="keyword">private</span>:
+<a name="l00049"></a>00049     <span class="keywordtype">bool</span> _newFont;
+<a name="l00050"></a>00050     <span class="keywordtype">bool</span> _newColor;
+<a name="l00051"></a>00051     qint8 _translucency;
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qcolor.html">QColor</a> color;
+<a name="l00054"></a>00054     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qfont.html">QFont</a> font;
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qsettings.html">QSettings</a> *settings;
+<a name="l00057"></a>00057     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qhboxlayout.html">QHBoxLayout</a> *layoutCitiesLimit;
+<a name="l00058"></a>00058 <span class="preprocessor">#ifdef Q_OS_WIN32</span>
+<a name="l00059"></a>00059 <span class="preprocessor"></span>    <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qcheckbox.html">QCheckBox</a> *cbUseTranslucency;
+<a name="l00060"></a>00060 <span class="preprocessor">#endif // Q_OS_WIN32</span>
+<a name="l00061"></a>00061 <span class="preprocessor"></span><span class="preprocessor">#ifdef Q_OS_WINCE</span>
+<a name="l00062"></a>00062 <span class="preprocessor"></span>    <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qrect.html">QRect</a> currentGeometry;
+<a name="l00063"></a>00063 <span class="preprocessor">#elif !defined(Q_OS_SYMBIAN)</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span>    <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qcheckbox.html">QCheckBox</a> *cbSaveState;
+<a name="l00065"></a>00065     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlabel.html">QLabel</a> *imgIcon;
+<a name="l00066"></a>00066     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qframe.html">QFrame</a> *lineVertical;
+<a name="l00067"></a>00067     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlabel.html">QLabel</a> *labelHint;
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069     <span class="keywordtype">bool</span> event(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qevent.html">QEvent</a> *ev);
+<a name="l00070"></a>00070 <span class="preprocessor">#endif // Q_OS_WINCE</span>
+<a name="l00071"></a>00071 <span class="preprocessor"></span>
+<a name="l00072"></a>00072 <span class="keyword">private</span> slots:
+<a name="l00073"></a>00073     <span class="keywordtype">void</span> accept();
+<a name="l00074"></a>00074     <span class="keywordtype">void</span> buttonColorClicked();
+<a name="l00075"></a>00075     <span class="keywordtype">void</span> buttonFontClicked();
+<a name="l00076"></a>00076 <span class="preprocessor">#ifdef Q_OS_WINCE</span>
+<a name="l00077"></a>00077 <span class="preprocessor"></span>    <span class="keywordtype">void</span> desktopResized(<span class="keywordtype">int</span> screen);
+<a name="l00078"></a>00078     <span class="keywordtype">void</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qdialog.html#showEvent">showEvent</a>(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qshowevent.html">QShowEvent</a> *ev);
+<a name="l00079"></a>00079 <span class="preprocessor">#endif // Q_OS_WINCE</span>
+<a name="l00080"></a>00080 <span class="preprocessor"></span>    <span class="keywordtype">void</span> spinRandMinValueChanged(<span class="keywordtype">int</span> val);
+<a name="l00081"></a>00081 };
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="preprocessor">#endif // SETTINGSDIALOG_H</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -138,7 +151,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Jan 7 18:22:42 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Mar 3 01:46:35 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

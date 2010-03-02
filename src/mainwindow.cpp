@@ -379,7 +379,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	}
 #endif // Q_OS_WIN32
 
-	dlg->resize(480, 400);
+	dlg->resize(450, 400);
 	dlg->exec();
 
 	delete dlg;
@@ -889,13 +889,8 @@ void MainWindow::toggleSolutionActions(bool enable)
 void MainWindow::toggleTranclucency(bool enable)
 {
 #ifdef Q_OS_WIN32
+	tabWidget->setDocumentMode(enable);
 	QtWin::enableBlurBehindWindow(this, enable);
-	QtWin::enableBlurBehindWindow(tabWidget, enable);
-
-	if (QtWin::enableBlurBehindWindow(tabTask, enable))
-		tabTask->setAutoFillBackground(enable);
-	if (QtWin::enableBlurBehindWindow(tabSolution, enable))
-		tabSolution->setAutoFillBackground(enable);
 #else
 	Q_UNUSED(enable);
 #endif // Q_OS_WIN32

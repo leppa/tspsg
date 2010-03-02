@@ -42,3 +42,6 @@ CODECFORTR = UTF-8
 TRANSLATIONS += l10n/tspsg_en.ts \
 	l10n/tspsg_ru.ts \
 	l10n/tspsg_uk.ts
+
+# Precompiled header
+PRECOMPILED_HEADER = src/pch.h

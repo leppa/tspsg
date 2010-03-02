@@ -39,6 +39,8 @@ unix:!symbian {
 	PRL = $$[QT_INSTALL_LIBS] libQtCore.prl
 } else:unix {
 	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
+} else {
+	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
 }
 include($$join(PRL, "/"))
 contains(QMAKE_PRL_CONFIG, static) {
@@ -66,27 +68,27 @@ include(tspsg.pri)
 
 # Installation and deployment
 # Common rules
-#share.files =
 l10n.files = l10n/*.qm
+#share.files =
 docs.files = COPYING README
 INSTALLS += target l10n share docs
 
 # For *nix:
 #   - executable goes to /usr/bin
-#   - COPYING and README go to /usr/share/tspsg
-#   - translations go to /usr/share/tspsg/l10n
-#   - docs (none, yet) go to /usr/share/doc/tspsg
+#   - COPYING and README go to /usr/share/TSPSG
+#   - translations go to /usr/share/TSPSG/l10n
+#   - docs go to /usr/share/doc/TSPSG-x.x.x
 unix:!symbian {
 	PREFIX = /usr
 	CONFIG(release, debug|release) {
-		DEFINES += PATH_L10N=\\\"$$PREFIX/share/tspsg/l10n\\\"
-		DEFINES += PATH_DOCS=\\\"$$PREFIX/share/tspsg/docs\\\"
+		DEFINES += PATH_L10N=\\\"$$PREFIX/share/TSPSG/l10n\\\"
+		DEFINES += PATH_DOCS=\\\"$$PREFIX/share/TSPSG/docs\\\"
 	}
 
 	target.path = $$PREFIX/bin
-	share.path = $$PREFIX/share/tspsg
-	l10n.path = $$PREFIX/share/tspsg/l10n
-	docs.path = $$PREFIX/share/doc/tspsg-$$VERSION
+	share.path = $$PREFIX/share/TSPSG
+	l10n.path = $$PREFIX/share/TSPSG/l10n
+	docs.path = $$PREFIX/share/doc/TSPSG-$$VERSION
 	apps.path = $$PREFIX/share/applications/
 	apps.files = resources/tspsg.desktop
 	icon.path = $$PREFIX/share/pixmaps
@@ -96,23 +98,34 @@ unix:!symbian {
 
 # TODO: MacOSX
 
-# For win32: everything goes to "C:\Program Files\tspsg" and subfolders.
+# For win32: everything goes to "C:\Program Files\TSPSG" and subfolders.
 win32 {
 	PREFIX = "C:\Program Files"
+
+	CONFIG(release, debug|release) {
+		imageformats.files = $$[QT_INSTALL_PLUGINS]/imageformats/qsvg4.dll \
+			$$[QT_INSTALL_PLUGINS]/imageformats/qjpeg4.dll
+	} else {
+		imageformats.files = $$[QT_INSTALL_PLUGINS]/imageformats/qsvgd4.dll \
+			$$[QT_INSTALL_PLUGINS]/imageformats/qjpegd4.dll
+	}
+	imageformats.path = $$PREFIX/TSPSG/imageformats
+	INSTALLS += imageformats
 }
 
-# For wince: we are deploying to \Storage Card\Program Files\tspsg.
+# For wince: we are deploying to \Program Files\TSPSG.
 wince {
-	PREFIX = "\Storage Card\Program Files"
+	PREFIX = "\Program Files"
 	DEPLOYMENT += target share l10n docs
+	DEPLOYMENT_PLUGIN += qjpeg qsvg
 }
 
 # win32 and wince common
 win* {
-	target.path = "$$PREFIX\tspsg"
-	share.path = "$$PREFIX\tspsg"
-	l10n.path = "$$PREFIX\tspsg\l10n"
-	docs.path = "$$PREFIX\tspsg"
+	target.path = $$PREFIX/TSPSG
+	share.path = $$PREFIX/TSPSG
+	l10n.path = $$PREFIX/TSPSG/l10n
+	docs.path = $$PREFIX/TSPSG
 
 	RC_FILE = resources/tspsg.rc
 }
@@ -124,6 +137,7 @@ symbian {
 		"\"README\" - \"\", FILETEXT, TEXTCONTINUE" \
 		"\"COPYING\" - \"\", FILETEXT, TEXTEXIT"
 	DEPLOYMENT += share l10n docs
+	DEPLOYMENT_PLUGIN += qjpeg qsvg
 
 	ICON = resources/tspsg.svg
 

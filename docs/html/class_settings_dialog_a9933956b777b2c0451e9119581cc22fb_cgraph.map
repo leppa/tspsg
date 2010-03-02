@@ -1,5 +1,9 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="qt-4.6.tag$qsettings.html#beginGroup" title="QSettings::beginGroup" alt="" coords="252,5,404,33"/>
-<area shape="rect" id="node5" href="qt-4.6.tag$qsettings.html#endGroup" title="QSettings::endGroup" alt="" coords="256,55,400,83"/>
-<area shape="rect" id="node7" href="qt-4.6.tag$qsettings.html#value" title="QSettings::value" alt="" coords="271,106,385,134"/>
+<area shape="rect" id="node3" href="qt-4.6.tag$qsettings.html#beginGroup" title="QSettings::beginGroup" alt="" coords="273,5,425,33"/>
+<area shape="rect" id="node5" href="qt-4.6.tag$qapplication.html#desktop" title="QApplication::desktop" alt="" coords="275,55,424,83"/>
+<area shape="rect" id="node7" href="qt-4.6.tag$qsettings.html#endGroup" title="QSettings::endGroup" alt="" coords="277,106,421,134"/>
+<area shape="rect" id="node9" href="$class_qt_win.html#ad90dbf318593dd8b4d29c4f7dc8c887f" title="Chekcs and returns true if Windows DWM composition is currently enabled on the system..." alt="" coords="252,157,447,185"/>
+<area shape="rect" id="node11" href="qt-4.6.tag$qsettings.html#remove" title="QSettings::remove" alt="" coords="285,207,413,235"/>
+<area shape="rect" id="node13" href="qt-4.6.tag$qscrollarea.html#setWidget" title="QScrollArea::setWidget" alt="" coords="271,258,428,286"/>
+<area shape="rect" id="node15" href="qt-4.6.tag$qsettings.html#value" title="QSettings::value" alt="" coords="292,309,407,337"/>
 </map>
