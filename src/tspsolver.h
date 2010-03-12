@@ -107,4 +107,8 @@ private:
 	void subRow(TMatrix &matrix, int nRow, double val);
 };
 
+#ifdef DEBUG
+QDebug operator<<(QDebug dbg, const TMatrix &matrix);
+#endif
+
 #endif // TSPSOLVER_H

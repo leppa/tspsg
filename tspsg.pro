@@ -10,7 +10,7 @@
 #
 ######################################################################
 
-QT += svg
+#QT += svg
 
 TEMPLATE = app
 TARGET = tspsg
@@ -22,8 +22,9 @@ BUILD_VERSION_MAJOR = 0
 BUILD_VERSION_MINOR = 1
 BUILD_RELEASE = 2
 
-# This one is only defined on releases
+# These are only defined on releases
 #DEFINES += TSPSG_RELEASE_BUILD
+#DEFINES += BUILD_STATUS="\"(alpha 2)\""
 
 REVISION = $$system(svnversion)
 REVISION = $$replace(REVISION,"M","")
@@ -45,17 +46,19 @@ unix:!symbian {
 include($$join(PRL, "/"))
 contains(QMAKE_PRL_CONFIG, static) {
 # We "embed" SVG and JPEG support on static build
-	QTPLUGIN += qjpeg qsvg
+#	QTPLUGIN += qjpeg qsvg
 	DEFINES += STATIC_BUILD
 }
 
 CONFIG(release, debug|release) {
 	OBJECTS_DIR = release
 	DESTDIR = release
+	D = d
 } else {
 	OBJECTS_DIR = debug
 	DESTDIR = debug
 	DEFINES += DEBUG
+	D =
 }
 
 # Saving all intermediate files to tmp directory.
@@ -89,26 +92,24 @@ unix:!symbian {
 	share.path = $$PREFIX/share/TSPSG
 	l10n.path = $$PREFIX/share/TSPSG/l10n
 	docs.path = $$PREFIX/share/doc/TSPSG-$$VERSION
-	apps.path = $$PREFIX/share/applications/
 	apps.files = resources/tspsg.desktop
-	icon.path = $$PREFIX/share/pixmaps
+	apps.path = $$PREFIX/share/applications/
 	icon.files = resources/tspsg.png
+	icon.path = $$PREFIX/share/pixmaps
 	INSTALLS += apps icon
 }
 
 # TODO: MacOSX
 
-# For win32: everything goes to "C:\Program Files\TSPSG" and subfolders.
+# For win32: everything goes to "%PROGRAMFILES%\TSPSG" and subfolders.
 win32 {
-	PREFIX = "C:\Program Files"
+	PREFIX = "$$(PROGRAMFILES)"
 
-	CONFIG(release, debug|release) {
-		imageformats.files = $$[QT_INSTALL_PLUGINS]/imageformats/qsvg4.dll \
-			$$[QT_INSTALL_PLUGINS]/imageformats/qjpeg4.dll
-	} else {
-		imageformats.files = $$[QT_INSTALL_PLUGINS]/imageformats/qsvgd4.dll \
-			$$[QT_INSTALL_PLUGINS]/imageformats/qjpegd4.dll
-	}
+	share.files = $$[QT_INSTALL_LIBS]/QtCore$${D}4.dll \
+		$$[QT_INSTALL_LIBS]/QtGui$${D}4.dll \
+		$$[QT_INSTALL_LIBS]/QtSvg$${D}4.dll
+	imageformats.files = $$[QT_INSTALL_PLUGINS]/imageformats/qsvg$${D}4.dll \
+		$$[QT_INSTALL_PLUGINS]/imageformats/qjpeg$${D}4.dll
 	imageformats.path = $$PREFIX/TSPSG/imageformats
 	INSTALLS += imageformats
 }
@@ -116,8 +117,12 @@ win32 {
 # For wince: we are deploying to \Program Files\TSPSG.
 wince {
 	PREFIX = "\Program Files"
+	share.sources = $$share.files
+	l10n.sources = $$l10n.files
+	docs.sources = $$docs.files
+
 	DEPLOYMENT += target share l10n docs
-	DEPLOYMENT_PLUGIN += qjpeg qsvg
+#	DEPLOYMENT_PLUGIN += qjpeg qsvg
 }
 
 # win32 and wince common
@@ -132,17 +137,21 @@ win* {
 
 # Symbian
 symbian {
+	# qmake for Symbian (as of Qt 4.6.2) has a bug: file masks doesn't work, so we need to specify all files manually
+	share.sources = $$share.files
+	l10n.sources = l10n/qt_ru.qm l10n/qt_uk.qm l10n/tspsg_en.qm l10n/tspsg_ru.qm l10n/tspsg_uk.qm
 	l10n.path = l10n
+	docs.sources = $$docs.files
 	docs.pkg_prerules = \
 		"\"README\" - \"\", FILETEXT, TEXTCONTINUE" \
 		"\"COPYING\" - \"\", FILETEXT, TEXTEXIT"
 	DEPLOYMENT += share l10n docs
-	DEPLOYMENT_PLUGIN += qjpeg qsvg
+#	DEPLOYMENT_PLUGIN += qjpeg qsvg
 
 	ICON = resources/tspsg.svg
 
 	appinfo = \
-		"$$LITERAL_HASH{\"TSPSG\"},(0xEb9dce0e),0,1,2"
+		"$$LITERAL_HASH{\"TSPSG\"},(0xEb9dce0e),$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE"
 	vendorinfo = \
 		"%{\"l-homes.org\"}" \
 		":\"l-homes.org\""

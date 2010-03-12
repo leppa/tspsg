@@ -10,6 +10,11 @@
         <comment>Please, provide a native name of your translation language here.</comment>
         <translation>Русский</translation>
     </message>
+    <message>
+        <source>TRANSLATION</source>
+        <comment>Please, provide translator credits here.</comment>
+        <translation>Русский перевод:&lt;br&gt;&lt;a href=&quot;http://oleksii.name/&quot;&gt;Алексей Lёppa Сердюк&lt;/a&gt;</translation>
+    </message>
 </context>
 <context>
     <name>CTSPModel</name>

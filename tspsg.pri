@@ -24,6 +24,7 @@ HEADERS += src/globals.h \
 
 #Source files
 SOURCES += src/main.cpp \
+	src/globals.cpp \
 	src/mainwindow.cpp \
 	src/settingsdialog.cpp \
 	src/tspmodel.cpp \

@@ -26,15 +26,5 @@
  */
 
 #ifdef __cplusplus
-	// Qt Libraries
-	#include <QtCore>
-	#include <QtGui>
-	#include <QtSvg>
-
-	// Rarely modified parts
-	#include "version.h"
-	#include "os.h"
-	#ifdef Q_OS_WIN32
-		#include "qtwin.h"
-	#endif // Q_OS_WIN32
+	#include "globals.h"
 #endif // __cplusplus

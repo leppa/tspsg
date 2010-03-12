@@ -57,42 +57,24 @@
 	//! Minor version of current TSPSG build
 	#define BUILD_VERSION_MINOR 0
 #endif // BUILD_VERSION_MINOR
-/*!
- * \brief TSPSG release number
- *
- *  Release number meanings:
- *    - 1  --  3: <b>alpha</b> 1 to 3
- *    - 4  --  7: <b>beta</b> 1 to 4
- *    - 8  -- 10: <b>rc</b> 1 to 3
- *    - 11 --  x: <b>release</b> 1 to x-10
- */
 #ifndef BUILD_RELEASE
+	//! TSPSG release number
 	#define BUILD_RELEASE 0
 #endif // BUILD_RELEASE
 
-/*!
- * \brief Current TSPSG build number
- *
- *  This will only change on releases and will be the same as revision number.
- */
 #ifndef BUILD_NUMBER
+	//! Current TSPSG build number
 	#define BUILD_NUMBER 0
 #endif // BUILD_NUMBER
 
 /*!
  * \def BUILD_STATUS
  * \brief TSPSG build status
- *
- * Determined based on BUILD_NUMBER and BUILD_RELEASE.
  */
-#ifndef TSPSG_RELEASE_BUILD
+#if !defined(TSPSG_RELEASE_BUILD)
 	#define BUILD_STATUS (dev build)
-#elif BUILD_RELEASE < 4
-	#define BUILD_STATUS (alpha)
-#elif BUILD_RELEASE < 8
-	#define BUILD_STATUS (beta)
-#elif BUILD_RELEASE < 11
-	#define BUILD_STATUS (rc)
+#elif !defined(BUILD_STATUS)
+	#define BUILD_STATUS (build BUILD_NUMBER)
 #endif // TSPSG_RELEASE_BUILD
 
 //! \internal \brief A helper for QUOTE(x).
@@ -100,14 +82,7 @@
 //! Used for "conversion" of \a x to quoted string
 #define QUOTE(x) QUOTE_X(x)
 
-/*!
- * \def BUILD_VERSION
- * \brief Full version of TSPSG in the form: \c major.minor.release.build [\c status].
- */
-#ifndef BUILD_STATUS
-	#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE.BUILD_NUMBER)
-#else
-	#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE.BUILD_NUMBER BUILD_STATUS)
-#endif
+//! Full version of TSPSG in the form: \c major.minor.release.build \c status.
+#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE BUILD_STATUS)
 
 #endif // VERSION_H

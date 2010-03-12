@@ -31,6 +31,7 @@
 // INCLUDES
 #include <QtCore>
 #include <QtGui>
+#include <limits>
 
 // Version info
 #include "version.h"
@@ -88,7 +89,7 @@
 #ifdef INFINITY
 	#undef INFINITY
 #endif
-#define INFINITY 1.7E+308
+#define INFINITY std::numeric_limits<double>::infinity()
 //! This string represents infinite value in the table
 #define INFSTR "---"
 
@@ -103,6 +104,17 @@ inline bool isInteger(double x)
 double i;
 	return (modf(x, &i) == 0.0);
 }
+
+#ifdef Q_OS_WIN32
+/*!
+ * \brief Enables or disables a mask for the \a widget.
+ * \param widget A widget to toggle mask on.
+ * \param enable Set to \c true to enable mask or \c false to disable it.
+ *
+ *  This function is used to enable an outlined font effect for \c QLabel with a static text.
+ */
+void toggleStyle(QWidget *widget, bool enable);
+#endif // Q_OS_WIN32
 
 // Sanity checks
 // Check that default number of cities is sane (<= MAX_NUM_CITIES)

@@ -294,6 +294,12 @@ bool untitled = (fileName == tr("Untitled") + ".tspt");
 		retranslateUi();
 		if (untitled)
 			setFileName();
+#ifdef Q_OS_WIN32
+		if (QtWin::isCompositionEnabled() && settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool())  {
+			toggleStyle(labelVariant, true);
+			toggleStyle(labelCities, true);
+		}
+#endif
 		QApplication::restoreOverrideCursor();
 	}
 }
@@ -303,28 +309,31 @@ void MainWindow::actionHelpAboutTriggered()
 //! \todo TODO: Normal about window :-)
 QString title;
 #if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
-	title += QString::fromUtf8("<b>TSPSG<br>TSP Solver and Generator</b><br>");
+	title += QString("<b>TSPSG<br>TSP Solver and Generator</b><br>");
 #else
-	title += QString::fromUtf8("<b>TSPSG: TSP Solver and Generator</b><br>");
-#endif // Q_OS_WINCE
-	title += QString::fromUtf8("Version: <b>"BUILD_VERSION"</b><br>");
-	title += QString::fromUtf8("<b>&copy; 2007-%1 Lёppa</b><br>").arg(QDate::currentDate().toString("yyyy"));
-	title += QString::fromUtf8("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sf.net/</a></b><br>");
+	title += QString("<b>TSPSG: TSP Solver and Generator</b><br>");
+#endif // Q_OS_WINCE || Q_OS_SYMBIAN
+	title += QString("%1: <b>%2</b><br>").arg(tr("Version"), BUILD_VERSION);
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+	title += QString("<b>&copy; 2007-%1 Oleksii \"Lёppa\" Serdiuk</b><br>").arg(QDate::currentDate().toString("yyyy"));
+	title += QString("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sourceforge.net/</a></b>");
+#else
+	title += QString("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sf.net/</a></b>");
+#endif // Q_OS_WINCE && Q_OS_SYMBIAN
+
 QString about;
-	about += QString::fromUtf8("Target OS (ARCH): <b>%1</b><br>").arg(OS);
+	about += QString("%1: <b>%2</b><br>").arg(tr("Target OS (ARCH)"), OS);
 #ifndef STATIC_BUILD
-	about += "Qt library (shared):<br>";
-	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Build time: <b>%1</b><br>").arg(QT_VERSION_STR);
-	about += QString::fromUtf8("&nbsp;&nbsp;&nbsp;&nbsp;Runtime: <b>%1</b><br>").arg(qVersion());
+	about += QString("%1 (%2):<br>").arg(tr("Qt library"), tr("shared"));
+	about += QString("&nbsp;&nbsp;&nbsp;&nbsp;%1: <b>%2</b><br>").arg(tr("Build time"), QT_VERSION_STR);
+	about += QString("&nbsp;&nbsp;&nbsp;&nbsp;%1: <b>%2</b><br>").arg(tr("Runtime"), qVersion());
 #else
-	about += QString::fromUtf8("Qt library: <b>%1</b> (static)<br>").arg(QT_VERSION_STR);
+	about += QString("%1: <b>%2</b> (%3)<br>").arg(tr("Qt library"), QT_VERSION_STR, tr("static"));
 #endif // STATIC_BUILD
-	about += QString::fromUtf8("Built on <b>%1</b> at <b>%2</b><br>").arg(__DATE__).arg(__TIME__);
-//	about += "<br>";
-//	about += QString::fromUtf8("Id: <b>"VERSIONID"</b><br>");
-	about += QString::fromUtf8("Algorithm: <b>%1</b><br>").arg(CTSPSolver::getVersionId());
+	about += tr("Buid <b>%1</b>, built on <b>%2</b> at <b>%3</b>").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__) + "<br>";
+	about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), CTSPSolver::getVersionId());
 	about += "<br>";
-	about += "TSPSG is free software: you can redistribute it and/or modify it<br>"
+	about += tr("TSPSG is free software: you can redistribute it and/or modify it<br>"
 		"under the terms of the GNU General Public License as published<br>"
 		"by the Free Software Foundation, either version 3 of the License,<br>"
 		"or (at your option) any later version.<br>"
@@ -335,38 +344,72 @@ QString about;
 		"GNU General Public License for more details.<br>"
 		"<br>"
 		"You should have received a copy of the GNU General Public License<br>"
-		"along with TSPSG.  If not, see <a href=\"http://www.gnu.org/licenses/\">http://www.gnu.org/licenses/</a>.";
+		"along with TSPSG.  If not, see <a href=\"http://www.gnu.org/licenses/\">http://www.gnu.org/licenses/</a>.");
 
 QDialog *dlg = new QDialog(this);
 QLabel *lblIcon = new QLabel(dlg),
-	*lblTitle = new QLabel(dlg);
+	*lblTitle = new QLabel(dlg),
+	*lblTranslated = new QLabel(dlg);
+#if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
+QLabel *lblSubTitle = new QLabel(QString("<b>&copy; 2007-%1 Oleksii \"Lёppa\" Serdiuk</b>").arg(QDate::currentDate().toString("yyyy")), dlg);
+#endif // Q_OS_WINCE || Q_OS_SYMBIAN
 QTextBrowser *txtAbout = new QTextBrowser(dlg);
 QVBoxLayout *vb = new QVBoxLayout();
-QHBoxLayout *hb = new QHBoxLayout();
+QHBoxLayout *hb1 = new QHBoxLayout(),
+	*hb2 = new QHBoxLayout();
 QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal, dlg);
 
 	lblIcon->setPixmap(QPixmap(":/images/tspsg.png").scaledToWidth(logicalDpiX() * 2 / 3, Qt::SmoothTransformation));
 	lblIcon->setAlignment(Qt::AlignTop);
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+	lblIcon->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().window().color().name(), palette().windowText().color().name()));
+#endif
+
 	lblTitle->setOpenExternalLinks(true);
 	lblTitle->setText(title);
+	lblTitle->setAlignment(Qt::AlignTop);
+	lblTitle->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+	lblTitle->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().window().color().name(), palette().shadow().color().name()));
+#endif
 
-	hb->addWidget(lblIcon);
-	hb->addWidget(lblTitle);
-	hb->addStretch();
+	hb1->addWidget(lblIcon);
+	hb1->addWidget(lblTitle);
 
-//	txtAbout->setTextInteractionFlags(txtAbout->textInteractionFlags() ^ Qt::TextEditable);
 	txtAbout->setWordWrapMode(QTextOption::NoWrap);
 	txtAbout->setOpenExternalLinks(true);
 	txtAbout->setHtml(about);
 	txtAbout->moveCursor(QTextCursor::Start);
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+	txtAbout->setStyleSheet(QString("QTextBrowser {border-color: %1; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().shadow().color().name()));
+#endif
 
 	bb->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
 
-	vb->addLayout(hb);
-	vb->addWidget(txtAbout);
-	vb->addWidget(bb);
+	lblTranslated->setText(QApplication::translate("--------", "TRANSLATION", "Please, provide translator credits here."));
+	if (lblTranslated->text() == "TRANSLATION")
+		lblTranslated->hide();
+	else {
+		lblTranslated->setOpenExternalLinks(true);
+#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+		lblTranslated->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().window().color().name(), palette().shadow().color().name()));
+#endif
+		hb2->addWidget(lblTranslated);
+	}
 
-	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+	hb2->addWidget(bb);
+
+#if defined(Q_OS_WINCE)
+	vb->setMargin(3);
+#endif
+	vb->addLayout(hb1);
+#if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
+	vb->addWidget(lblSubTitle);
+#endif // Q_OS_WINCE || Q_OS_SYMBIAN
+	vb->addWidget(txtAbout);
+	vb->addLayout(hb2);
+
+	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
 	dlg->setWindowTitle(tr("About TSPSG"));
 	dlg->setLayout(vb);
 
@@ -379,7 +422,8 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	}
 #endif // Q_OS_WIN32
 
-	dlg->resize(450, 400);
+	dlg->resize(450, 350);
+
 	dlg->exec();
 
 	delete dlg;
@@ -824,6 +868,8 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	scrollArea->setWidgetResizable(true);
 	scrollArea->setWidget(tabWidget);
 	setCentralWidget(scrollArea);
+#else
+	setCentralWidget(tabWidget);
 #endif // Q_OS_WINCE
 
 	//! \hack HACK: A little hack for toolbar icons to have a sane size.
@@ -889,6 +935,9 @@ void MainWindow::toggleSolutionActions(bool enable)
 void MainWindow::toggleTranclucency(bool enable)
 {
 #ifdef Q_OS_WIN32
+	toggleStyle(labelVariant, enable);
+	toggleStyle(labelCities, enable);
+	toggleStyle(statusBar(), enable);
 	tabWidget->setDocumentMode(enable);
 	QtWin::enableBlurBehindWindow(this, enable);
 #else

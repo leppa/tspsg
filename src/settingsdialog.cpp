@@ -70,7 +70,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
 #endif // Q_OS_WINCE
 	vbox1->addWidget(bgGrey);
 	setLayout(vbox1);
-#else
+#else // Q_OS_WINCE || Q_OS_SYMBIAN
 	// Layout helper elements
 QVBoxLayout *vbox1, *vbox2;
 QHBoxLayout *hbox1;

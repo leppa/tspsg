@@ -325,3 +325,13 @@ void CTSPSolver::subRow(TMatrix &matrix, int nRow, double val)
 		if (k != nRow)
 			matrix[nRow][k] -= val;
 }
+
+QDebug operator<<(QDebug dbg, const TMatrix &matrix)
+{
+	for (int r = 0; r < matrix.count(); r++) {
+		for (int c = 0; c < matrix.at(r).count(); c++)
+			dbg.space() << matrix.at(r).at(c);
+		dbg << endl;
+	}
+	return dbg;
+}
