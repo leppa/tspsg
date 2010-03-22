@@ -52,7 +52,7 @@ private slots:
 // Actions
 	void actionFileNewTriggered();
 	void actionFileOpenTriggered();
-	void actionFileSaveTriggered();
+	bool actionFileSaveTriggered();
 	void actionFileSaveAsTaskTriggered();
 	void actionFileSaveAsSolutionTriggered();
 #ifndef QT_NO_PRINTER
@@ -62,6 +62,9 @@ private slots:
 	void actionSettingsPreferencesTriggered();
 	void actionSettingsLanguageAutodetectTriggered(bool checked);
 	void groupSettingsLanguageListTriggered(QAction *action);
+#ifdef Q_OS_WIN32
+	void actionHelpCheck4UpdatesTriggered();
+#endif // Q_OS_WIN32
 	void actionHelpAboutTriggered();
 // Buttons
 	void buttonBackToTaskClicked();
@@ -83,12 +86,14 @@ private slots:
 private:
 	QString fileName;
 	QActionGroup *groupSettingsLanguageList;
-	QStringList output;
 #ifndef QT_NO_PRINTER
 	QPrinter *printer;
 	QAction *actionFilePrintPreview;
 	QAction *actionFilePrint;
 #endif // QT_NO_PRINTER
+#ifdef Q_OS_WIN32
+	QAction *actionHelpCheck4Updates;
+#endif // Q_OS_WIN32
 	QSettings *settings;
 	CTSPModel *tspmodel;
 #ifdef Q_OS_WINCE
@@ -96,12 +101,13 @@ private:
 #endif // Q_OS_WINCE
 
 	void closeEvent(QCloseEvent *ev);
+	bool hasUpdater() const;
 	void initDocStyleSheet();
 	void loadLangList();
 	bool loadLanguage(const QString &lang = QString());
 	bool maybeSave();
-	void outputMatrix(const TMatrix &matrix, QStringList &output);
-	void outputMatrix(const SStep &step, QStringList &output);
+	QString outputMatrix(const TMatrix &matrix) const;
+	QString outputMatrix(const SStep &step) const;
 	void retranslateUi(bool all = true);
 	bool saveTask();
 	void setFileName(const QString &fileName = tr("Untitled") + ".tspt");

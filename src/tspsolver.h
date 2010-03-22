@@ -77,38 +77,53 @@ struct SStep {
  * \brief This class solves Travelling Salesman Problem task.
  * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  */
-class CTSPSolver
+class CTSPSolver: public QObject
 {
-	Q_DECLARE_TR_FUNCTIONS(CTSPSolver)
+	Q_OBJECT
 
 public:
-	CTSPSolver();
-	QString getSortedPath() const;
 	static QString getVersionId();
+
+	CTSPSolver(QObject *parent = NULL);
+	void cleanup(bool processEvents = false);
+	QString getSortedPath() const;
 	bool isOptimal() const;
-	SStep *solve(int numCities, TMatrix task, QWidget *parent = 0);
+	SStep *solve(int numCities, const TMatrix &task);
+	bool wasCanceled() const;
 	~CTSPSolver();
 
+public slots:
+	void cancel();
+
+signals:
+	/*!
+	 * \brief This signal is emitted once every time a part of the route is found.
+	 * \param n Indicates the number of the route parts found.
+	 */
+	void routePartFound(int n);
+
 private:
-	bool mayNotBeOptimal;
+	bool mayNotBeOptimal, canceled;
 	int nCities;
 	SStep *root;
 	QHash<int,int> route;
-//	QHash<int,int> forbidden;
+	mutable QMutex mutex;
 
 	double align(TMatrix &matrix);
-	void cleanup();
-	void deleteTree(SStep *&root);
+	void deleteTree(SStep *&root, bool processEvents = false);
+	void denormalize(TMatrix &matrix) const;
 	QList<SCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
 	double findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
 	double findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
 	bool hasSubCycles(int nRow, int nCol) const;
+	void normalize(TMatrix &matrix) const;
 	void subCol(TMatrix &matrix, int nCol, double val);
 	void subRow(TMatrix &matrix, int nRow, double val);
 };
 
 #ifdef DEBUG
 QDebug operator<<(QDebug dbg, const TMatrix &matrix);
-#endif
+QDebug operator<<(QDebug dbg, const SCandidate &candidate);
+#endif // DEBUG
 
 #endif // TSPSOLVER_H

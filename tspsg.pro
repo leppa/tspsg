@@ -13,9 +13,6 @@
 #QT += svg
 
 TEMPLATE = app
-TARGET = tspsg
-DEPENDPATH += .
-INCLUDEPATH += .
 
 # Versioning
 BUILD_VERSION_MAJOR = 0
@@ -50,16 +47,17 @@ contains(QMAKE_PRL_CONFIG, static) {
 	DEFINES += STATIC_BUILD
 }
 
-CONFIG(release, debug|release) {
+build_pass:CONFIG(release, debug|release) {
 	OBJECTS_DIR = release
 	DESTDIR = release
-	D = d
+	D =
 } else {
 	OBJECTS_DIR = debug
 	DESTDIR = debug
 	DEFINES += DEBUG
-	D =
+	D = d
 }
+TARGET = tspsg$${D}
 
 # Saving all intermediate files to tmp directory.
 MOC_DIR = ./tmp

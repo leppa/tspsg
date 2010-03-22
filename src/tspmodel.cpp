@@ -80,11 +80,11 @@ QFont font;
 		return font;
 	} else if (role == Qt::DisplayRole || role == Qt::EditRole) {
 		if (index.row() < nCities && index.column() < nCities)
-			if (table[index.row()][index.column()] == INFINITY)
+			if (table.at(index.row()).at(index.column()) == INFINITY)
 				return tr(INFSTR);
 			else
 //! \hack HACK: Converting to string to prevent spinbox in edit mode
-				return QVariant(table[index.row()][index.column()]).toString();
+				return QVariant(table.at(index.row()).at(index.column())).toString();
 		else
 			return QVariant();
 	} else if (role == Qt::UserRole)
@@ -138,7 +138,9 @@ bool CTSPModel::loadTask(const QString &fname)
 QFile f(fname);
 	if (!f.open(QIODevice::ReadOnly)) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Load"),QString(tr("Unable to open task file.\nError: %1")).arg(f.errorString()),QMessageBox::Ok).exec();
+		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), QString(tr("Unable to open task file.\nError: %1")).arg(f.errorString()));
+		QApplication::restoreOverrideCursor();
 		return false;
 	}
 QDataStream ds(&f);
@@ -162,7 +164,9 @@ quint32 sig;
 	} else {
 		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + tr("Unknown file format or file is corrupted."),QMessageBox::Ok).exec();
+		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unknown file format or file is corrupted."));
+		QApplication::restoreOverrideCursor();
 		return false;
 	}
 	f.close();
@@ -231,55 +235,62 @@ bool CTSPModel::saveTask(const QString &fname)
 QFile f(fname);
 	if (!f.open(QIODevice::WriteOnly)) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Save"),QString(tr("Unable to create task file.\nError: %1\nMaybe, file is read-only?")).arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), QString(tr("Unable to create task file.\nError: %1\nMaybe, file is read-only?")).arg(f.errorString()));
+		f.remove();
 		return false;
 	}
 QDataStream ds(&f);
 	ds.setVersion(QDataStream::Qt_4_4);
 	if (f.error() != QFile::NoError) {
-		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+		f.close();
+		f.remove();
 		return false;
 	}
 	// File signature
 	ds << TSPT;
 	if (f.error() != QFile::NoError) {
-		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+		f.close();
+		f.remove();
 		return false;
 	}
 	// File version
 	ds << TSPT_VERSION;
 	if (f.error() != QFile::NoError) {
-		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+		f.close();
+		f.remove();
 		return false;
 	}
 	// File metadata version
 	ds << TSPT_META_VERSION;
 	if (f.error() != QFile::NoError) {
-		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+		f.close();
+		f.remove();
 		return false;
 	}
 	// Metadata
 	ds << OSID;
 	if (f.error() != QFile::NoError) {
-		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+		f.close();
+		f.remove();
 		return false;
 	}
 	// Number of cities
 	ds << nCities;
 	if (f.error() != QFile::NoError) {
-		f.close();
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+		f.close();
+		f.remove();
 		return false;
 	}
 	// Costs
@@ -288,9 +299,10 @@ QDataStream ds(&f);
 			if (r != c) {
 				ds << static_cast<double>(table[r][c]); // We cast to double because double may be float on some platforms and we store double values in file
 				if (f.error() != QFile::NoError) {
-					f.close();
 					QApplication::restoreOverrideCursor();
-					QMessageBox(QMessageBox::Critical,tr("Task Save"),tr("Unable to save task.\nError: %1").arg(f.errorString()),QMessageBox::Ok).exec();
+					QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+					f.close();
+					f.remove();
 					return false;
 				}
 			}
@@ -368,7 +380,9 @@ QString err;
 	else
 		err = tr("Unknown error.");
 	QApplication::restoreOverrideCursor();
-	QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + err,QMessageBox::Ok).exec();
+	QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+	QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + err);
+	QApplication::restoreOverrideCursor();
 	return true;
 }
 
@@ -385,7 +399,9 @@ quint8 version;
 		return false;
 	if (version > TSPT_VERSION) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
+		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."));
+		QApplication::restoreOverrideCursor();
 		return false;
 	}
 	// Skipping metadata
@@ -399,7 +415,9 @@ quint16 size;
 		return false;
 	if ((size < 3) || (size > MAX_NUM_CITIES)) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."),QMessageBox::Ok).exec();
+		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."));
+		QApplication::restoreOverrideCursor();
 		return false;
 	}
 	if (nCities != size) {
@@ -437,7 +455,9 @@ quint16 version;
 		return false;
 	if (version > ZKT_VERSION) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."),QMessageBox::Ok).exec();
+		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."));
+		QApplication::restoreOverrideCursor();
 		return false;
 	}
 	// Number of cities
@@ -447,7 +467,9 @@ quint8 size;
 		return false;
 	if ((size < 3) || (size > 5)) {
 		QApplication::restoreOverrideCursor();
-		QMessageBox(QMessageBox::Critical,tr("Task Load"),tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."),QMessageBox::Ok).exec();
+		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."));
+		QApplication::restoreOverrideCursor();
 		return false;
 	}
 	if (nCities != size) {

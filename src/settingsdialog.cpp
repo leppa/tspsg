@@ -188,7 +188,7 @@ QHBoxLayout *hbox1;
 	cbShowMatrix->setChecked(settings->value("ShowMatrix", DEF_SHOW_MATRIX).toBool());
 	cbCitiesLimit->setEnabled(cbShowMatrix->isChecked());
 	cbCitiesLimit->setChecked(settings->value("UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT && cbShowMatrix->isChecked()).toBool());
-	spinCitiesLimit->setEnabled(cbShowMatrix->isChecked());
+	spinCitiesLimit->setEnabled(cbShowMatrix->isChecked() && cbCitiesLimit->isChecked());
 	spinCitiesLimit->setValue(settings->value("ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt());
 	spinCitiesLimit->setMaximum(MAX_NUM_CITIES);
 	cbScrollToEnd->setChecked(settings->value("ScrollToEnd", DEF_SCROLL_TO_END).toBool());

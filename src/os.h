@@ -148,9 +148,12 @@
 #elif defined Q_OS_WIN32
 	#define OS "Windows"ARCH
 	#define OSID quint8(28)
+#elif defined Q_OS_WINCE_WM
+	#define OS "Windows Mobile"ARCH
+	#define OSID quint8(29)
 #elif defined Q_OS_WINCE
 	#define OS "Windows CE"ARCH
-	#define OSID quint8(29)
+	#define OSID quint8(30)
 #else
 	#define OS "Unknown"ARCH
 	#define OSID quint8(255)

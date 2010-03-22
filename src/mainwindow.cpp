@@ -59,6 +59,9 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(actionFilePrint,SIGNAL(triggered()),this,SLOT(actionFilePrintTriggered()));
 #endif // QT_NO_PRINTER
 	connect(actionSettingsPreferences,SIGNAL(triggered()),this,SLOT(actionSettingsPreferencesTriggered()));
+#ifdef Q_OS_WIN32
+	connect(actionHelpCheck4Updates, SIGNAL(triggered()), SLOT(actionHelpCheck4UpdatesTriggered()));
+#endif // Q_OS_WIN32
 	connect(actionSettingsLanguageAutodetect,SIGNAL(triggered(bool)),this,SLOT(actionSettingsLanguageAutodetectTriggered(bool)));
 	connect(groupSettingsLanguageList,SIGNAL(triggered(QAction *)),this,SLOT(groupSettingsLanguageListTriggered(QAction *)));
 	connect(actionHelpAboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
@@ -133,8 +136,9 @@ QStringList filters(tr("All Supported Formats") + " (*.tspt *.zkt)");
 	filters.append(tr("%1 Task Files").arg("ZKomModRd") + " (*.zkt)");
 	filters.append(tr("All Files") + " (*)");
 
+QString file = QFileInfo(fileName).canonicalPath();
 QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
-QString file = QFileDialog::getOpenFileName(this, tr("Task Load"), QString(), filters.join(";;"), NULL, opts);
+	file = QFileDialog::getOpenFileName(this, tr("Task Load"), file, filters.join(";;"), NULL, opts);
 	if (file.isEmpty() || !QFileInfo(file).isFile())
 		return;
 	if (!tspmodel->loadTask(file))
@@ -146,14 +150,16 @@ QString file = QFileDialog::getOpenFileName(this, tr("Task Load"), QString(), fi
 	toggleSolutionActions(false);
 }
 
-void MainWindow::actionFileSaveTriggered()
+bool MainWindow::actionFileSaveTriggered()
 {
-	qDebug() << tr("Untitled");
 	if ((fileName == tr("Untitled") + ".tspt") || (!fileName.endsWith(".tspt", Qt::CaseInsensitive)))
-		saveTask();
+		return saveTask();
 	else
-		if (tspmodel->saveTask(fileName))
+		if (tspmodel->saveTask(fileName)) {
 			setWindowModified(false);
+			return true;
+		} else
+			return false;
 }
 
 void MainWindow::actionFileSaveAsTaskTriggered()
@@ -164,20 +170,24 @@ void MainWindow::actionFileSaveAsTaskTriggered()
 void MainWindow::actionFileSaveAsSolutionTriggered()
 {
 static QString selectedFile;
-	if (selectedFile.isEmpty()) {
-		if (fileName == tr("Untitled") + ".tspt") {
+	if (selectedFile.isEmpty())
+		selectedFile = QFileInfo(fileName).canonicalPath();
+	else
+		selectedFile = QFileInfo(selectedFile).canonicalPath();
+	if (!selectedFile.isEmpty())
+		selectedFile += "/";
+	if (fileName == tr("Untitled") + ".tspt") {
 #ifndef QT_NO_PRINTER
-			selectedFile = "solution.pdf";
+		selectedFile += "solution.pdf";
 #else
-			selectedFile = "solution.html";
+		selectedFile += "solution.html";
 #endif // QT_NO_PRINTER
-		} else {
+	} else {
 #ifndef QT_NO_PRINTER
-			selectedFile = QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".pdf";
+		selectedFile += QFileInfo(fileName).completeBaseName() + ".pdf";
 #else
-			selectedFile = QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".html";
+		selectedFile += QFileInfo(fileName).completeBaseName() + ".html";
 #endif // QT_NO_PRINTER
-		}
 	}
 
 QStringList filters;
@@ -190,7 +200,7 @@ QStringList filters;
 #endif // QT_VERSION >= 0x040500
 	filters.append(tr("All Files") + " (*)");
 
-QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
+QFileDialog::Options opts(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog);
 QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filters.join(";;"), NULL, opts);
 	if (file.isEmpty())
 		return;
@@ -210,12 +220,14 @@ QPrinter printer(QPrinter::HighResolution);
 QTextDocumentWriter dw(selectedFile);
 	if (!(selectedFile.endsWith(".htm",Qt::CaseInsensitive) || selectedFile.endsWith(".html",Qt::CaseInsensitive) || selectedFile.endsWith(".odt",Qt::CaseInsensitive) || selectedFile.endsWith(".txt",Qt::CaseInsensitive)))
 		dw.setFormat("plaintext");
-	dw.write(solutionText->document());
-#else
+	if (!dw.write(solutionText->document()))
+		QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution.\nError: %1").arg(dw.device()->errorString()));
+#else // QT_VERSION >= 0x040500
 	// Qt < 4.5 has no QTextDocumentWriter class
 QFile file(selectedFile);
 	if (!file.open(QFile::WriteOnly)) {
 		QApplication::restoreOverrideCursor();
+		QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution.\nError: %1").arg(file->errorString()));
 		return;
 	}
 QTextStream ts(&file);
@@ -257,16 +269,11 @@ SettingsDialog sd(this);
 		return;
 	if (sd.colorChanged() || sd.fontChanged()) {
 		initDocStyleSheet();
-		if (!output.isEmpty() && sd.colorChanged() && (QMessageBox(QMessageBox::Question,tr("Settings Changed"),tr("You have changed color settings.\nDo you wish to apply them to current solution text?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes)) {
-			QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-			solutionText->clear();
-			solutionText->setHtml(output.join(""));
-			QApplication::restoreOverrideCursor();
-		}
+		if (!solutionText->document()->isEmpty() && sd.colorChanged())
+			QMessageBox::information(this, tr("Settings Changed"), tr("You have changed color settings.\nThey will be applied to the next solution output."));
 	}
-	if (sd.translucencyChanged() != 0) {
+	if (sd.translucencyChanged() != 0)
 		toggleTranclucency(sd.translucencyChanged() == 1);
-	}
 }
 
 void MainWindow::actionSettingsLanguageAutodetectTriggered(bool checked)
@@ -282,7 +289,7 @@ void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
 {
 	if (actionSettingsLanguageAutodetect->isChecked()) {
 		// We have language autodetection. It needs to be disabled to change language.
-		if (QMessageBox(QMessageBox::Question,tr("Language change"),tr("You have language autodetection turned on.\nIt needs to be off.\nDo you wish to turn it off?"),QMessageBox::Yes | QMessageBox::No,this).exec() == QMessageBox::Yes) {
+		if (QMessageBox::question(this, tr("Language change"), tr("You have language autodetection turned on.\nIt needs to be off.\nDo you wish to turn it off?"), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
 			actionSettingsLanguageAutodetect->trigger();
 		} else
 			return;
@@ -301,21 +308,35 @@ bool untitled = (fileName == tr("Untitled") + ".tspt");
 		}
 #endif
 		QApplication::restoreOverrideCursor();
+		QMessageBox::information(this, tr("Settings Changed"), tr("You have changed the application language.\nTo get current solution output in the new language\nyou need to re-run the solution process."));
 	}
 }
 
+#ifdef Q_OS_WIN32
+void MainWindow::actionHelpCheck4UpdatesTriggered()
+{
+	if (!hasUpdater()) {
+		QMessageBox::warning(this, tr("Unsupported Feature"), tr("Sorry, but this feature is not supported on your platform\nor support for this feature was not installed."));
+		return;
+	}
+
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	QProcess::execute("updater/Update.exe -name=\"TSPSG: TSP Solver and Generator\" -check=\"freeupdate\"");
+	QApplication::restoreOverrideCursor();
+}
+#endif // Q_OS_WIN32
+
 void MainWindow::actionHelpAboutTriggered()
 {
-//! \todo TODO: Normal about window :-)
 QString title;
 #if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
 	title += QString("<b>TSPSG<br>TSP Solver and Generator</b><br>");
 #else
 	title += QString("<b>TSPSG: TSP Solver and Generator</b><br>");
 #endif // Q_OS_WINCE || Q_OS_SYMBIAN
-	title += QString("%1: <b>%2</b><br>").arg(tr("Version"), BUILD_VERSION);
+	title += QString("%1: <b>%2</b><br>").arg(tr("Version"), QApplication::applicationVersion());
 #if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
-	title += QString("<b>&copy; 2007-%1 Oleksii \"Lёppa\" Serdiuk</b><br>").arg(QDate::currentDate().toString("yyyy"));
+	title += QString("<b>&copy; 2007-%1 <a href=\"http://%2/\">%3</a></b><br>").arg(QDate::currentDate().toString("yyyy"), QApplication::organizationDomain(), QApplication::organizationName());
 	title += QString("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sourceforge.net/</a></b>");
 #else
 	title += QString("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sf.net/</a></b>");
@@ -409,7 +430,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	vb->addWidget(txtAbout);
 	vb->addLayout(hb2);
 
-	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
+	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
 	dlg->setWindowTitle(tr("About TSPSG"));
 	dlg->setLayout(vb);
 
@@ -452,34 +473,66 @@ bool ok;
 		for (int c = 0; c < n; c++) {
 			row.append(tspmodel->index(r,c).data(Qt::UserRole).toDouble(&ok));
 			if (!ok) {
-				QMessageBox(QMessageBox::Critical,tr("Data error"),tr("Error in cell [Row %1; Column %2]: Invalid data format.").arg(r + 1).arg(c + 1),QMessageBox::Ok,this).exec();
+				QMessageBox::critical(this, tr("Data error"), tr("Error in cell [Row %1; Column %2]: Invalid data format.").arg(r + 1).arg(c + 1));
 				return;
 			}
 		}
 		matrix.append(row);
 	}
+
+QProgressDialog pd(this);
+QProgressBar *pb = new QProgressBar(&pd);
+	pb->setAlignment(Qt::AlignCenter);
+	pb->setFormat(tr("%v of %1 parts found").arg(n));
+	pd.setBar(pb);
+	pd.setMaximum(n * 2 + 3);
+	pd.setMinimumDuration(1000);
+	pd.setLabelText(tr("Calculating optimal route..."));
+	pd.setWindowTitle(tr("Solution Progress"));
+	pd.setWindowModality(Qt::ApplicationModal);
+	pd.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+	pd.setValue(0);
+
 CTSPSolver solver;
-SStep *root = solver.solve(n,matrix,this);
-	if (!root)
+	connect(&solver, SIGNAL(routePartFound(int)), &pd, SLOT(setValue(int)));
+	connect(&pd, SIGNAL(canceled()), &solver, SLOT(cancel()));
+SStep *root = solver.solve(n, matrix);
+	disconnect(&solver, SIGNAL(routePartFound(int)), &pd, SLOT(setValue(int)));
+	disconnect(&pd, SIGNAL(canceled()), &solver, SLOT(cancel()));
+	if (!root) {
+		pd.reset();
+		if (!solver.wasCanceled())
+			QMessageBox::warning(this, tr("Solution Result"), tr("Unable to find a solution.\nMaybe, this task has no solution."));
 		return;
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
-	output.clear();
-	output.append("<p>" + tr("Variant #%1").arg(spinVariant->value()) + "</p>");
-	output.append("<p>" + tr("Task:") + "</p>");
-	outputMatrix(matrix, output);
-	output.append("<hr>");
-	output.append("<p>" + tr("Solution of Variant #%1 task").arg(spinVariant->value()) + "</p>");
+	}
+	pb->setFormat("%p%");
+	pd.setLabelText(tr("Generating solution output..."));
+	pd.setValue(n + 1);
+
+	solutionText->clear();
+	pd.setValue(n + 2);
+
+	solutionText->setDocumentTitle(tr("Solution of Variant #%1 task").arg(spinVariant->value()));
+	solutionText->append("<p>" + tr("Variant #%1").arg(spinVariant->value()) + "</p>");
+	solutionText->append("<p>" + tr("Task:") + "</p>");
+	solutionText->append(outputMatrix(matrix));
+	solutionText->append("<hr><p>" + tr("Solution of Variant #%1 task").arg(spinVariant->value()) + "</p>");
 SStep *step = root;
 	n = 1;
 	while (n <= spinCities->value()) {
+		if (pd.wasCanceled()) {
+			solutionText->clear();
+			return;
+		}
+		pd.setValue(spinCities->value() + 2 + n);
+
 		if (step->prNode->prNode != NULL || ((step->prNode->prNode == NULL) && (step->plNode->prNode == NULL))) {
 			if (n != spinCities->value()) {
-				output.append("<p>" + tr("Step #%1").arg(n++) + "</p>");
+				solutionText->append("<p>" + tr("Step #%1").arg(n++) + "</p>");
 				if (settings->value("Output/ShowMatrix", DEF_SHOW_MATRIX).toBool() && (!settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() || (settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() && (spinCities->value() <= settings->value("Output/ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt())))) {
-					outputMatrix(*step, output);
+					solutionText->append(outputMatrix(*step));
 				}
-				output.append("<p>" + tr("Selected candidate for branching: %1.").arg(tr("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)) + "</p>");
+				solutionText->append("<p>" + tr("Selected candidate for branching: %1.").arg(tr("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)) + "</p>");
 				if (!step->alts.empty()) {
 SCandidate cand;
 QString alts;
@@ -488,9 +541,9 @@ QString alts;
 							alts += ", ";
 						alts += tr("(%1;%2)").arg(cand.nRow + 1).arg(cand.nCol + 1);
 					}
-					output.append("<p class=\"hasalts\">" + tr("%n alternate candidate(s) for branching: %1.","",step->alts.count()).arg(alts) + "</p>");
+					solutionText->append("<p class=\"hasalts\">" + tr("%n alternate candidate(s) for branching: %1.","",step->alts.count()).arg(alts) + "</p>");
 				}
-				output.append("<p>&nbsp;</p>");
+				solutionText->append("<p>&nbsp;</p>");
 			}
 		}
 		if (step->prNode->prNode != NULL)
@@ -500,32 +553,36 @@ QString alts;
 		else
 			break;
 	}
-	if (solver.isOptimal())
-		output.append("<p>" + tr("Optimal path:") + "</p>");
-	else
-		output.append("<p>" + tr("Resulting path:") + "</p>");
-	output.append("<p>&nbsp;&nbsp;" + solver.getSortedPath() + "</p>");
-	if (isInteger(step->price))
-		output.append("<p>" + tr("The price is <b>%n</b> unit(s).", "", qRound(step->price)) + "</p>");
-	else
-		output.append("<p>" + tr("The price is <b>%1</b> units.").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()) + "</p>");
-	if (!solver.isOptimal()) {
-		output.append("<p>&nbsp;</p>");
-		output.append("<p>" + tr("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
-	}
-	output.append("<p></p>");
+	pd.setValue(spinCities->value() + 2 + n);
 
-	solutionText->setHtml(output.join(""));
-	solutionText->setDocumentTitle(tr("Solution of Variant #%1 task").arg(spinVariant->value()));
+	if (solver.isOptimal())
+		solutionText->append("<p>" + tr("Optimal path:") + "</p>");
+	else
+		solutionText->append("<p>" + tr("Resulting path:") + "</p>");
+	solutionText->append("<p>&nbsp;&nbsp;" + solver.getSortedPath() + "</p>");
+	if (isInteger(step->price))
+		solutionText->append("<p>" + tr("The price is <b>%n</b> unit(s).", "", qRound(step->price)) + "</p>");
+	else
+		solutionText->append("<p>" + tr("The price is <b>%1</b> units.").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()) + "</p>");
+	if (!solver.isOptimal()) {
+		solutionText->append("<p>&nbsp;</p>");
+		solutionText->append("<p>" + tr("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
+	}
 
 	if (settings->value("Output/ScrollToEnd", DEF_SCROLL_TO_END).toBool()) {
 		// Scrolling to the end of text.
 		solutionText->moveCursor(QTextCursor::End);
-	}
+	} else
+		solutionText->moveCursor(QTextCursor::Start);
 
+	pd.setLabelText(tr("Cleaning up..."));
+	pd.setMaximum(0);
+	pd.setCancelButton(NULL);
+	pd.adjustSize();
+	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+	solver.cleanup(true);
 	toggleSolutionActions();
 	tabWidget->setCurrentIndex(1);
-	QApplication::restoreOverrideCursor();
 }
 
 void MainWindow::dataChanged()
@@ -631,6 +688,15 @@ void MainWindow::closeEvent(QCloseEvent *ev)
 	QMainWindow::closeEvent(ev);
 }
 
+bool MainWindow::hasUpdater() const
+{
+#ifdef Q_OS_WIN32
+	return QFile::exists("updater/Update.exe");
+#else // Q_OS_WIN32
+	return false;
+#endif // Q_OS_WIN32
+}
+
 void MainWindow::initDocStyleSheet()
 {
 QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
@@ -718,12 +784,12 @@ static QTranslator *translator; // Application translator
 		translator = NULL;
 		if (!ad) {
 			settings->remove("Language");
-			if (QApplication::overrideCursor() != 0)
-				QApplication::restoreOverrideCursor();
+			QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
 			if (isVisible())
 				QMessageBox::warning(this, tr("Language Change"), tr("Unable to load the translation language.\nFalling back to autodetection."));
 			else
 				QMessageBox::warning(NULL, tr("Language Change"), tr("Unable to load the translation language.\nFalling back to autodetection."));
+			QApplication::restoreOverrideCursor();
 		}
 		return false;
 	}
@@ -734,19 +800,19 @@ bool MainWindow::maybeSave()
 {
 	if (!isWindowModified())
 		return true;
-int res = QMessageBox(QMessageBox::Warning,tr("Unsaved Changes"),tr("Would you like to save changes in current task?"),QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,this).exec();
+int res = QMessageBox::warning(this, tr("Unsaved Changes"), tr("Would you like to save changes in the current task?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
 	if (res == QMessageBox::Save)
-		return saveTask();
+		return actionFileSaveTriggered();
 	else if (res == QMessageBox::Cancel)
 		return false;
 	else
 		return true;
 }
 
-void MainWindow::outputMatrix(const TMatrix &matrix, QStringList &output)
+QString MainWindow::outputMatrix(const TMatrix &matrix) const
 {
 int n = spinCities->value();
-QString line="";
+QString output(""), line;
 	output.append("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
 	for (int r = 0; r < n; r++) {
 		line = "<tr>";
@@ -760,12 +826,13 @@ QString line="";
 		output.append(line);
 	}
 	output.append("</table>");
+	return output;
 }
 
-void MainWindow::outputMatrix(const SStep &step, QStringList &output)
+QString MainWindow::outputMatrix(const SStep &step) const
 {
 int n = spinCities->value();
-QString line="";
+QString output(""), line;
 	output.append("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
 	for (int r = 0; r < n; r++) {
 		line = "<tr>";
@@ -788,6 +855,7 @@ SCandidate cand;
 		output.append(line);
 	}
 	output.append("</table>");
+	return output;
 }
 
 void MainWindow::retranslateUi(bool all)
@@ -815,6 +883,15 @@ void MainWindow::retranslateUi(bool all)
 #endif // QT_NO_STATUSTIP
 	actionFilePrint->setShortcut(QApplication::translate("MainWindow", "Ctrl+P", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_PRINTER
+#ifdef Q_OS_WIN32
+	actionHelpCheck4Updates->setText(tr("Check for &Updates..."));
+#ifndef QT_NO_TOOLTIP
+	actionHelpCheck4Updates->setToolTip(tr("Check for %1 updates").arg(QApplication::applicationName()));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+	actionHelpCheck4Updates->setStatusTip(tr("Check for %1 updates").arg(QApplication::applicationName()));
+#endif // QT_NO_STATUSTIP
+#endif // Q_OS_WIN32
 }
 
 bool MainWindow::saveTask() {
@@ -900,6 +977,12 @@ QScrollArea *scrollArea = new QScrollArea(this);
 
 	toolBar->insertAction(actionSettingsPreferences,actionFilePrint);
 #endif // QT_NO_PRINTER
+#ifdef Q_OS_WIN32
+	actionHelpCheck4Updates = new QAction(this);
+	actionHelpCheck4Updates->setEnabled(hasUpdater());
+	menuHelp->insertAction(actionHelpAboutQt, actionHelpCheck4Updates);
+	menuHelp->insertSeparator(actionHelpAboutQt);
+#endif // Q_OS_WIN32
 
 	groupSettingsLanguageList = new QActionGroup(this);
 	actionSettingsLanguageEnglish->setData("en");
@@ -924,8 +1007,6 @@ void MainWindow::toggleSolutionActions(bool enable)
 	buttonSaveSolution->setEnabled(enable);
 	actionFileSaveAsSolution->setEnabled(enable);
 	solutionText->setEnabled(enable);
-	if (!enable)
-		output.clear();
 #ifndef QT_NO_PRINTER
 	actionFilePrint->setEnabled(enable);
 	actionFilePrintPreview->setEnabled(enable);

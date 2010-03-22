@@ -44,8 +44,8 @@ QApplication app(argc, argv);
 	QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf8"));
 	QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf8"));
 	QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
-	app.setOrganizationName("..::Lёppsville::.. Homes");
-	app.setOrganizationDomain("l-homes.org");
+	app.setOrganizationName("Oleksii \"Lёppa\" Serdiuk");
+	app.setOrganizationDomain("oleksii.name");
 	app.setApplicationName("TSPSG");
 	app.setApplicationVersion(BUILD_VERSION);
 
