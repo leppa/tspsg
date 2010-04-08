@@ -1,0 +1,313 @@
+==========================
+ TSPSG Installation Guide
+==========================
+
+$Id$
+$URL$
+
+Thank you for trying TSPSG. This document will guide you through the
+steps necessary to compile and run TSPSG.
+
+TABLE OF CONTENTS:
+
+  1. REQUIREMENTS
+  2. ASSUMPTIONS
+  3. SUPPORTED PLATFORMS
+  4. BUILDING AND INSTALLATION
+     4.1. GENERAL PROCEDURE
+     4.2. LINUX/UNIX
+     4.3. WINDOWS
+          4.3.1. USING MINGW
+          4.3.2. USING VISUAL STUDIO
+     4.4. WINDOWS MOBILE
+     4.5. SYMBIAN
+     4.6. OTHER PLATFORMS, SUPPORTED BY QT
+  5. UNINSTALLATION
+  6. TROUBLESHOOTING
+     6.1. WINDRES.EXE CRASH
+  7. NOTES
+  8. REFERENCES
+
+
+
+1. REQUIREMENTS
+===============
+
+To be able compile TSPSG you need to have Qt libraries. The minimum
+supported version of Qt is 4.4.0. The recommended version is 4.5.x
+or higher.
+
+
+
+2. ASSUMPTIONS
+==============
+
+This guide assumes that you already have Qt libraries and all necessary
+prerequisites installed.
+
+Also, the following assumptions are made:
+
+  - For Linux/UNIX: lrelease and qmake are avilable in $PATH.
+
+  - For Windows (minGW) and Symbian: you have installed Qt SDK or
+    prebuilt libraries and have Start Menu items for Qt tools.
+
+  - For Windows (Visual Studio) and Windows Mobile: the Qt libraries
+    reside in C:\Qt\.
+
+  - For Windows Mobile: Windows Mobile 5.0 Pocket PC SDK or later is
+    installed.
+
+
+
+3. SUPPORTED PLATFORMS
+======================
+
+TSPSG is oficially supported and tested on the following platforms:
+
+  - Linux: Gentoo AMD64 and Kubuntu 9.10 64-bit AMD.
+
+  - Windows: Windows XP 32-bit and Windows 7 64-bit.
+
+  - Windows Mobile: Windows Mobile 6.5 Professional Edition.
+
+
+
+4. BUILDING AND INSTALLATION
+============================
+
+4.1 GENERAL PROCEDURE
+
+On most platforms the general building and installation procedure is:
+
+  1. Run lrelease to generate binary translation files (.qm) from the
+     source (.ts).
+
+  2. Run qmake with CONFIG+=release parameter to generate makefiles.
+
+  3. Run make utility (e.g., make, nmake, mingw32-make) to build TSPSG.
+
+  4. Run make utility with 'install' parameter (without quotes).
+
+NOTE: It is important to run lrelease before qmake, or qmake will not
+"pick up" the translations when generating installation rules.
+
+
+4.2. LINUX/UNIX
+---------------
+
+Open a shell, navigate to the directory where you have TSPSG source
+downloaded and type
+
+    tar xvjf tspsg-<VERSION>-src.tar.bz2
+    cd tspsg-<VERSION>-src
+
+where <VERSION> is the version of TSPSG you downloaded. Now run
+
+    lrelease tspsg.pro
+    qmake tspsg.pro
+    make
+
+In some cases you may need to type
+
+    qmake tspsg.pro CONFIG+=release
+
+
+If make step finished without errors you can install TSPSG by running
+
+    sudo make install
+
+or
+
+    su
+    make install
+
+depending on your distribution.
+
+By default, executable will go to /usr/bin, COPYING and README will go
+to /usr/share/TSPSG, translations will go /usr/share/TSPSG/l10n, docs
+will go to /usr/share/doc/TSPSG-<VERSION>.
+
+
+4.3. WINDOWS
+------------
+
+NOTE: Please, read the Section 7 after reading this Section.
+
+4.3.1. USING MINGW
+~~~~~~~~~~~~~~~~~~
+
+Unpack the downloaded source code of TSPSG with your favourite
+compression software. Now launch the Qt Command Prompt from the Start
+Menu, navigate to the directory where you unpacked the source and run
+
+    lrelease tspsg.pro
+    qmake tspsg.pro CONFIG+=release
+    mingw32-make
+
+NOTE: Make process may fail with a crash of windres.exe. If you've run
+into this issue, please, read the Section 6.1.
+
+If make step finished without errors you can install TSPSG by running
+
+    mingw32-make install
+
+TSPSG will be installed to %PROGRAMFILES%\TSPSG folder (usually, it is
+C:\Program Files\TSPSG).
+
+
+4.3.2. USING VISUAL STUDIO
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Unpack the downloaded source code of TSPSG with your favourite
+compression software. Now launch the Visual Studio Command Prompt from
+the Start Menu, navigate to the directory where you unpacked the source
+and run
+
+    C:\Qt\bin\lrelease tspsg.pro
+    C:\Qt\bin\qmake tspsg.pro CONFIG+=release
+	nmake
+
+If make step finished without errors you can install TSPSG by running
+
+    nmake install
+
+TSPSG will be installed to %PROGRAMFILES%\TSPSG folder (usually, it is
+C:\Program Files\TSPSG).
+
+
+4.4. WINDOWS CE/MOBILE
+----------------------
+
+Unpack the downloaded source code of TSPSG with your favourite
+compression software. Now launch the Visual Studio Command Prompt from
+the Start Menu and run
+
+    set PATH=C:\Qt\bin;%PATH%
+    setcepaths wincewm50pocket-msvc2008
+
+Now navigate to the directory where you unpacked the source and run
+
+    lrelease tspsg.pro
+    qmake tspsg.pro CONFIG+=release
+	nmake
+
+There is no automated installation process for Windows Mobile build. To
+install TSPSG on your PDA you need to create a folder on your device
+and copy the following files to it:
+
+  - tspsg.exe from release folder in the source directory.
+
+  - QtCore4.dll and QtGui4.dll from C:\Qt\bin folder.
+
+  - msvcr90.dll from
+    C:\Program Files\Microsoft Visual Studio 9.0\VC\ce\dll\armv4i folder.
+
+  - all *.qm files from l10n folder in the source directory to l10n
+    subfolder.
+
+
+4.5. SYMBIAN
+------------
+
+Unpack the downloaded source code of TSPSG with your favourite
+compression software. Now launch the Qt for Symbian Command Prompt from
+the Start Menu, navigate to the directory where you unpacked the source
+and run
+
+    lrelease tspsg.pro
+    qmake tspsg.pro CONFIG+=release
+    make release-gcce
+
+NOTE: You need to unpack the source on the same drive as Qt and Symbian
+development tools.
+
+If make step finished without errors you can generate sis installation
+file by running
+
+    make sis
+
+You'll get tspsg.sis file in the source directory. Copy it to your
+phone and run or install using Nokia PC Suite.
+
+NOTE: You need to install Qt libraries on your device before installing
+TSPSG. Usually, it should be enough to install qt_installer.sis from
+the Qt installation directory.
+
+Alternatively, if you have installed Nokia Smart Installer you can run
+
+    make installer_sis
+
+You'll get an tspsg_installer.sis that will automatically download and
+install the required Qt libraries on TSPSG installation.
+
+NOTE: Please, be aware that you have to sign the sis file to be able to
+install it on your device. You can use Open Signed Online[2] to quickly
+sign the sis file for your device. Alternatively, you can try to enable
+the installation of self-signed files in the phone settings. Please,
+reffer to your phone manual on the instructions how to do this.
+
+
+4.6. OTHER PLATFORMS, SUPPORTED BY QT
+-------------------------------------
+
+While TSPSG is oficially supported only on Linux, Windows and Windows
+Mobile it should be possible to compile it on any platform, supported
+by Qt. To do so, please, refer to the Section 4.1 for the general build
+and installation procedure.
+
+
+
+5. UNINSTALLATION
+=================
+
+Usually, it is enough to replace 'install' parameter with 'uninstall'
+in the installation command from the Section 4. Also, you can manually
+delete all installed TSPSG files and directories.
+
+
+
+6. TROUBLESHOOTING
+==================
+
+6.1. WINDRES.EXE CRASH
+----------------------
+
+When building under Windows using minGW toolchain make process may fail
+with windres.exe crash (access violation). This is a known bug in
+windres.exe regarding processing resource files with UTF-8 (cp65001)
+encoding [1]. To be able to successfully build TSPSG you will need to
+download and replace windres.exe with a fixed version. To do this:
+
+  1. Open https://sourceforge.net/projects/mingw/files/ in your
+     favourite browser.
+
+  2. Find and download the latest version of GNU Binutils. At the time
+     of writing this guide it was binutils-2.20.1-2-mingw32-bin.tar.gz.
+
+  3. Unpack the file bin\windres.exe from the downloaded archive to
+     <Your Qt installation path>\mingw\bin\ replacing the existing one.
+
+  4. Now run
+
+         mingw32-make distclean
+
+     in the TSPSG directory and repeat the installation process.
+
+
+
+7. NOTES
+========
+
+qmake doesn't always enclose installation paths in quotes. This may
+cause some files not to be installed or removed when their path
+contains quotes. In this case it is safe to delete this files and TSPSG
+installation directory manually.
+
+
+
+8. REFERNECES
+=============
+
+[1] http://sourceware.org/bugzilla/show_bug.cgi?id=10165
+[2] https://www.symbiansigned.com/app/page/public/openSignedOnline.do

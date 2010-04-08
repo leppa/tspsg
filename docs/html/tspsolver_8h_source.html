@@ -120,37 +120,52 @@ window.onload = initDynSections;
 <a name="l00073"></a>00073     }
 <a name="l00074"></a>00074 };
 <a name="l00075"></a>00075 
-<a name="l00080"></a><a class="code" href="class_c_t_s_p_solver.html">00080</a> <span class="keyword">class </span><a class="code" href="class_c_t_s_p_solver.html" title="This class solves Travelling Salesman Problem task.">CTSPSolver</a>
+<a name="l00080"></a><a class="code" href="class_c_t_s_p_solver.html">00080</a> <span class="keyword">class </span><a class="code" href="class_c_t_s_p_solver.html" title="This class solves Travelling Salesman Problem task.">CTSPSolver</a>: <span class="keyword">public</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qobject.html">QObject</a>
 <a name="l00081"></a>00081 {
-<a name="l00082"></a>00082     Q_DECLARE_TR_FUNCTIONS(<a class="code" href="class_c_t_s_p_solver.html" title="This class solves Travelling Salesman Problem task.">CTSPSolver</a>)
+<a name="l00082"></a>00082     Q_OBJECT
 <a name="l00083"></a>00083 
 <a name="l00084"></a>00084 <span class="keyword">public</span>:
-<a name="l00085"></a>00085     <a class="code" href="class_c_t_s_p_solver.html#aa5e45813d8f5e1c039b1bb9746d367bd" title="Class constructor.">CTSPSolver</a>();
-<a name="l00086"></a>00086     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> <a class="code" href="class_c_t_s_p_solver.html#a57556c971a25e3556c4aa3cc1fd2d3d0" title="Returns the sorted optimal path, starting from City 1.">getSortedPath</a>() <span class="keyword">const</span>;
-<a name="l00087"></a>00087     <span class="keyword">static</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> <a class="code" href="class_c_t_s_p_solver.html#a677a878c4c8a06316a5d8d5a4fc8ab65" title="Returns CTSPSolver&amp;#39;s version ID.">getVersionId</a>();
-<a name="l00088"></a>00088     <span class="keywordtype">bool</span> <a class="code" href="class_c_t_s_p_solver.html#a28d546e840cf53c639b45c0f26419f7a" title="Returns whether or not the solution is definitely optimal.">isOptimal</a>() <span class="keyword">const</span>;
-<a name="l00089"></a>00089     <a class="code" href="struct_s_step.html" title="This structure represents one step of solving.">SStep</a> *<a class="code" href="class_c_t_s_p_solver.html#a9a6545dd05e449151aabe325f4058edd" title="Solves the given task.">solve</a>(<span class="keywordtype">int</span> numCities, <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> task, <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qwidget.html">QWidget</a> *parent = 0);
-<a name="l00090"></a>00090     ~<a class="code" href="class_c_t_s_p_solver.html" title="This class solves Travelling Salesman Problem task.">CTSPSolver</a>();
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 <span class="keyword">private</span>:
-<a name="l00093"></a>00093     <span class="keywordtype">bool</span> mayNotBeOptimal;
-<a name="l00094"></a>00094     <span class="keywordtype">int</span> nCities;
-<a name="l00095"></a>00095     <a class="code" href="struct_s_step.html" title="This structure represents one step of solving.">SStep</a> *root;
-<a name="l00096"></a>00096     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qhash.html">QHash&lt;int,int&gt;</a> route;
-<a name="l00097"></a>00097 <span class="comment">//  QHash&lt;int,int&gt; forbidden;</span>
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099     <span class="keywordtype">double</span> align(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix);
-<a name="l00100"></a>00100     <span class="keywordtype">void</span> cleanup();
-<a name="l00101"></a>00101     <span class="keywordtype">void</span> deleteTree(<a class="code" href="struct_s_step.html" title="This structure represents one step of solving.">SStep</a> *&amp;root);
-<a name="l00102"></a>00102     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">QList&lt;SCandidate&gt;</a> findCandidate(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <span class="keywordtype">int</span> &amp;nRow, <span class="keywordtype">int</span> &amp;nCol) <span class="keyword">const</span>;
-<a name="l00103"></a>00103     <span class="keywordtype">double</span> findMinInCol(<span class="keywordtype">int</span> nCol, <span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <span class="keywordtype">int</span> exr = -1) <span class="keyword">const</span>;
-<a name="l00104"></a>00104     <span class="keywordtype">double</span> findMinInRow(<span class="keywordtype">int</span> nRow, <span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <span class="keywordtype">int</span> exc = -1) <span class="keyword">const</span>;
-<a name="l00105"></a>00105     <span class="keywordtype">bool</span> hasSubCycles(<span class="keywordtype">int</span> nRow, <span class="keywordtype">int</span> nCol) <span class="keyword">const</span>;
-<a name="l00106"></a>00106     <span class="keywordtype">void</span> subCol(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <span class="keywordtype">int</span> nCol, <span class="keywordtype">double</span> val);
-<a name="l00107"></a>00107     <span class="keywordtype">void</span> subRow(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <span class="keywordtype">int</span> nRow, <span class="keywordtype">double</span> val);
-<a name="l00108"></a>00108 };
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110 <span class="preprocessor">#endif // TSPSOLVER_H</span>
+<a name="l00085"></a>00085     <span class="keyword">static</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> <a class="code" href="class_c_t_s_p_solver.html#a677a878c4c8a06316a5d8d5a4fc8ab65" title="Returns CTSPSolver&amp;#39;s version ID.">getVersionId</a>();
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087     <a class="code" href="class_c_t_s_p_solver.html#a4a519caa89db1683693759a92a65319c" title="Constructs CTSPSolver object.">CTSPSolver</a>(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qobject.html">QObject</a> *<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qobject.html#parent">parent</a> = NULL);
+<a name="l00088"></a>00088     <span class="keywordtype">void</span> <a class="code" href="class_c_t_s_p_solver.html#acf86422c1b8ff8e5b9bc88e09c57c48b" title="Cleans up the object and frees up memory used by the solution tree.">cleanup</a>(<span class="keywordtype">bool</span> processEvents = <span class="keyword">false</span>);
+<a name="l00089"></a>00089     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qstring.html">QString</a> <a class="code" href="class_c_t_s_p_solver.html#a57556c971a25e3556c4aa3cc1fd2d3d0" title="Returns the sorted optimal path, starting from City 1.">getSortedPath</a>() <span class="keyword">const</span>;
+<a name="l00090"></a>00090     <span class="keywordtype">bool</span> <a class="code" href="class_c_t_s_p_solver.html#a28d546e840cf53c639b45c0f26419f7a" title="Indicates whether or not the solution is definitely optimal.">isOptimal</a>() <span class="keyword">const</span>;
+<a name="l00091"></a>00091     <a class="code" href="struct_s_step.html" title="This structure represents one step of solving.">SStep</a> *<a class="code" href="class_c_t_s_p_solver.html#a0f0f0aa60d05c97f3b0e867a381de558" title="Solves the given task.">solve</a>(<span class="keywordtype">int</span> numCities, <span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;task);
+<a name="l00092"></a>00092     <span class="keywordtype">bool</span> <a class="code" href="class_c_t_s_p_solver.html#a80cff5d533711ab1929de1fdf09495b7" title="Indicates whether or not the solution process was canceled.">wasCanceled</a>() <span class="keyword">const</span>;
+<a name="l00093"></a>00093     ~<a class="code" href="class_c_t_s_p_solver.html" title="This class solves Travelling Salesman Problem task.">CTSPSolver</a>();
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 <span class="keyword">public</span> slots:
+<a name="l00096"></a>00096     <span class="keywordtype">void</span> <a class="code" href="class_c_t_s_p_solver.html#a996ac169e8ed087170bd8610fa4aa715" title="Cancels the solution process.">cancel</a>();
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 signals:
+<a name="l00103"></a>00103     <span class="keywordtype">void</span> <a class="code" href="class_c_t_s_p_solver.html#ae12895fa529a965b57204e355b9012d7" title="This signal is emitted once every time a part of the route is found.">routePartFound</a>(<span class="keywordtype">int</span> n);
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 <span class="keyword">private</span>:
+<a name="l00106"></a>00106     <span class="keywordtype">bool</span> mayNotBeOptimal, canceled;
+<a name="l00107"></a>00107     <span class="keywordtype">int</span> nCities;
+<a name="l00108"></a>00108     <a class="code" href="struct_s_step.html" title="This structure represents one step of solving.">SStep</a> *root;
+<a name="l00109"></a>00109     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qhash.html">QHash&lt;int,int&gt;</a> route;
+<a name="l00110"></a>00110     <span class="keyword">mutable</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qmutex.html">QMutex</a> mutex;
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112     <span class="keywordtype">double</span> align(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix);
+<a name="l00113"></a>00113     <span class="keywordtype">void</span> deleteTree(<a class="code" href="struct_s_step.html" title="This structure represents one step of solving.">SStep</a> *&amp;root, <span class="keywordtype">bool</span> processEvents = <span class="keyword">false</span>);
+<a name="l00114"></a>00114     <span class="keywordtype">void</span> denormalize(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix) <span class="keyword">const</span>;
+<a name="l00115"></a>00115     <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">QList&lt;SCandidate&gt;</a> findCandidate(<span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <span class="keywordtype">int</span> &amp;nRow, <span class="keywordtype">int</span> &amp;nCol) <span class="keyword">const</span>;
+<a name="l00116"></a>00116     <span class="keywordtype">double</span> findMinInCol(<span class="keywordtype">int</span> nCol, <span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <span class="keywordtype">int</span> exr = -1) <span class="keyword">const</span>;
+<a name="l00117"></a>00117     <span class="keywordtype">double</span> findMinInRow(<span class="keywordtype">int</span> nRow, <span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <span class="keywordtype">int</span> exc = -1) <span class="keyword">const</span>;
+<a name="l00118"></a>00118     <span class="keywordtype">bool</span> hasSubCycles(<span class="keywordtype">int</span> nRow, <span class="keywordtype">int</span> nCol) <span class="keyword">const</span>;
+<a name="l00119"></a>00119     <span class="keywordtype">void</span> normalize(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix) <span class="keyword">const</span>;
+<a name="l00120"></a>00120     <span class="keywordtype">void</span> subCol(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <span class="keywordtype">int</span> nCol, <span class="keywordtype">double</span> val);
+<a name="l00121"></a>00121     <span class="keywordtype">void</span> subRow(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix, <span class="keywordtype">int</span> nRow, <span class="keywordtype">double</span> val);
+<a name="l00122"></a>00122 };
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 <span class="preprocessor">#ifdef DEBUG</span>
+<a name="l00125"></a>00125 <span class="preprocessor"></span><a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qdebug.html">QDebug</a> operator&lt;&lt;(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qdebug.html">QDebug</a> dbg, <span class="keyword">const</span> <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlist.html">TMatrix</a> &amp;matrix);
+<a name="l00126"></a>00126 <a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qdebug.html">QDebug</a> operator&lt;&lt;(<a class="codeRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qdebug.html">QDebug</a> dbg, <span class="keyword">const</span> <a class="code" href="struct_s_candidate.html" title="A structure that represents a candidate for branching.">SCandidate</a> &amp;candidate);
+<a name="l00127"></a>00127 <span class="preprocessor">#endif // DEBUG</span>
+<a name="l00128"></a>00128 <span class="preprocessor"></span>
+<a name="l00129"></a>00129 <span class="preprocessor">#endif // TSPSOLVER_H</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -166,7 +181,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Mar 3 01:46:35 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Apr 8 23:15:53 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

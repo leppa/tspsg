@@ -1,4 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1" href="qt-4.6.tag$qmainwindow.html" title="QMainWindow" alt="" coords="7,5,111,33"/>
-<area shape="rect" id="node3" href="$class_main_window.html" title="Class for handling Main Window UI and logic." alt="" coords="160,5,256,33"/>
+<area shape="rect" id="node1" href="qt-4.6.tag$qobject.html" title="QObject" alt="" coords="5,5,75,33"/>
+<area shape="rect" id="node3" href="$class_c_t_s_p_solver.html" title="This class solves Travelling Salesman Problem task." alt="" coords="123,5,213,33"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="qt-4.6.tag$qstring.html#arg" title="QString::arg" alt="" coords="248,5,339,33"/>
-<area shape="rect" id="node5" href="qt-4.6.tag$qhash.html#isEmpty" title="QHash::isEmpty" alt="" coords="235,55,352,83"/>
-<area shape="rect" id="node7" href="qt-4.6.tag$qhash.html#size" title="QHash::size" alt="" coords="247,106,340,134"/>
+<area shape="rect" id="node3" href="qt-4.6.tag$qhash.html#isEmpty" title="QHash::isEmpty" alt="" coords="235,5,352,33"/>
+<area shape="rect" id="node5" href="qt-4.6.tag$qhash.html#size" title="QHash::size" alt="" coords="247,55,340,83"/>
+<area shape="rect" id="node7" href="qt-4.6.tag$qobject.html#tr" title="QObject::tr" alt="" coords="251,106,336,134"/>
 </map>

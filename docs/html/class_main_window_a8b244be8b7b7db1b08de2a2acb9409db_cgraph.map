@@ -4,14 +4,16 @@
 <area shape="rect" id="node7" href="qt-4.6.tag$qapplication.html#desktop" title="QApplication::desktop" alt="" coords="253,106,403,134"/>
 <area shape="rect" id="node9" href="qt-4.6.tag$qsettings.html#endGroup" title="QSettings::endGroup" alt="" coords="256,157,400,185"/>
 <area shape="rect" id="node11" href="$class_c_t_s_p_model.html#ae25b1d25b13488fde89e381152c62549" title="Loads a task from fname." alt="" coords="253,207,403,235"/>
-<area shape="rect" id="node27" href="qt-4.6.tag$qrect.html#moveCenter" title="QRect::moveCenter" alt="" coords="261,258,395,286"/>
-<area shape="rect" id="node29" href="qt-4.6.tag$qmainwindow.html#restoreState" title="QMainWindow::restoreState" alt="" coords="236,309,420,337"/>
-<area shape="rect" id="node31" href="qt-4.6.tag$qsettings.html#value" title="QSettings::value" alt="" coords="271,359,385,387"/>
-<area shape="rect" id="node13" href="qt-4.6.tag$qfile.html#close" title="QFile::close" alt="" coords="541,55,632,83"/>
-<area shape="rect" id="node15" href="qt-4.6.tag$qdatastream.html#device" title="QDataStream::device" alt="" coords="515,106,659,134"/>
-<area shape="rect" id="node17" href="qt-4.6.tag$qfile.html#open" title="QFile::open" alt="" coords="543,157,631,185"/>
-<area shape="rect" id="node19" href="qt-4.6.tag$qapplication.html#restoreOverrideCursor" title="QApplication::restoreOverrideCursor" alt="" coords="473,207,700,235"/>
-<area shape="rect" id="node21" href="qt-4.6.tag$qapplication.html#setOverrideCursor" title="QApplication::setOverrideCursor" alt="" coords="484,258,689,286"/>
-<area shape="rect" id="node23" href="qt-4.6.tag$qdatastream.html#setVersion" title="QDataStream::setVersion" alt="" coords="501,309,672,337"/>
-<area shape="rect" id="node25" href="qt-4.6.tag$qdatastream.html#status" title="QDataStream::status" alt="" coords="515,359,659,387"/>
+<area shape="rect" id="node31" href="qt-4.6.tag$qrect.html#moveCenter" title="QRect::moveCenter" alt="" coords="261,258,395,286"/>
+<area shape="rect" id="node33" href="qt-4.6.tag$qmainwindow.html#restoreState" title="QMainWindow::restoreState" alt="" coords="236,309,420,337"/>
+<area shape="rect" id="node35" href="qt-4.6.tag$qsettings.html#value" title="QSettings::value" alt="" coords="271,359,385,387"/>
+<area shape="rect" id="node13" href="qt-4.6.tag$qapplication.html#activeWindow" title="QApplication::activeWindow" alt="" coords="496,5,677,33"/>
+<area shape="rect" id="node15" href="qt-4.6.tag$qfile.html#close" title="QFile::close" alt="" coords="541,55,632,83"/>
+<area shape="rect" id="node17" href="qt-4.6.tag$qmessagebox.html#critical" title="QMessageBox::critical" alt="" coords="511,106,663,134"/>
+<area shape="rect" id="node19" href="qt-4.6.tag$qdatastream.html#device" title="QDataStream::device" alt="" coords="515,157,659,185"/>
+<area shape="rect" id="node21" href="qt-4.6.tag$qfile.html#open" title="QFile::open" alt="" coords="543,207,631,235"/>
+<area shape="rect" id="node23" href="qt-4.6.tag$qapplication.html#restoreOverrideCursor" title="QApplication::restoreOverrideCursor" alt="" coords="473,258,700,286"/>
+<area shape="rect" id="node25" href="qt-4.6.tag$qapplication.html#setOverrideCursor" title="QApplication::setOverrideCursor" alt="" coords="484,309,689,337"/>
+<area shape="rect" id="node27" href="qt-4.6.tag$qdatastream.html#setVersion" title="QDataStream::setVersion" alt="" coords="501,359,672,387"/>
+<area shape="rect" id="node29" href="qt-4.6.tag$qdatastream.html#status" title="QDataStream::status" alt="" coords="515,410,659,438"/>
 </map>

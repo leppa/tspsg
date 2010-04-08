@@ -44,11 +44,11 @@ MainWindow::MainWindow(QWidget *parent)
 	printer = new QPrinter(QPrinter::HighResolution);
 #endif // QT_NO_PRINTER
 
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 	currentGeometry = QApplication::desktop()->availableGeometry(0);
 	// We need to react to SIP show/hide and resize the window appropriately
 	connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 	connect(actionFileNew,SIGNAL(triggered()),this,SLOT(actionFileNewTriggered()));
 	connect(actionFileOpen,SIGNAL(triggered()),this,SLOT(actionFileOpenTriggered()));
 	connect(actionFileSave,SIGNAL(triggered()),this,SLOT(actionFileSaveTriggered()));
@@ -72,7 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(buttonBackToTask,SIGNAL(clicked()),this,SLOT(buttonBackToTaskClicked()));
 	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(spinCitiesValueChanged(int)));
 
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 	// Centering main window
 QRect rect = geometry();
 	rect.moveCenter(QApplication::desktop()->availableGeometry(this).center());
@@ -86,7 +86,7 @@ QRect rect = geometry();
 	}
 #else
 	setWindowState(Qt::WindowMaximized);
-#endif // Q_OS_WINCE
+#endif // HANDHELD
 
 	tspmodel = new CTSPModel(this);
 	taskView->setModel(tspmodel);
@@ -268,9 +268,9 @@ SettingsDialog sd(this);
 	if (sd.exec() != QDialog::Accepted)
 		return;
 	if (sd.colorChanged() || sd.fontChanged()) {
-		initDocStyleSheet();
 		if (!solutionText->document()->isEmpty() && sd.colorChanged())
 			QMessageBox::information(this, tr("Settings Changed"), tr("You have changed color settings.\nThey will be applied to the next solution output."));
+		initDocStyleSheet();
 	}
 	if (sd.translucencyChanged() != 0)
 		toggleTranclucency(sd.translucencyChanged() == 1);
@@ -280,7 +280,7 @@ void MainWindow::actionSettingsLanguageAutodetectTriggered(bool checked)
 {
 	if (checked) {
 		settings->remove("Language");
-		QMessageBox::information(this, tr("Language change"), tr("Language will be autodetected on next application start."));
+		QMessageBox::information(this, tr("Language change"), tr("Language will be autodetected on the next application start."));
 	} else
 		settings->setValue("Language", groupSettingsLanguageList->checkedAction()->data().toString());
 }
@@ -308,7 +308,8 @@ bool untitled = (fileName == tr("Untitled") + ".tspt");
 		}
 #endif
 		QApplication::restoreOverrideCursor();
-		QMessageBox::information(this, tr("Settings Changed"), tr("You have changed the application language.\nTo get current solution output in the new language\nyou need to re-run the solution process."));
+		if (!solutionText->document()->isEmpty())
+			QMessageBox::information(this, tr("Settings Changed"), tr("You have changed the application language.\nTo get current solution output in the new language\nyou need to re-run the solution process."));
 	}
 }
 
@@ -329,18 +330,18 @@ void MainWindow::actionHelpCheck4UpdatesTriggered()
 void MainWindow::actionHelpAboutTriggered()
 {
 QString title;
-#if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
+#ifdef HANDHELD
 	title += QString("<b>TSPSG<br>TSP Solver and Generator</b><br>");
 #else
 	title += QString("<b>TSPSG: TSP Solver and Generator</b><br>");
-#endif // Q_OS_WINCE || Q_OS_SYMBIAN
+#endif // HANDHELD
 	title += QString("%1: <b>%2</b><br>").arg(tr("Version"), QApplication::applicationVersion());
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 	title += QString("<b>&copy; 2007-%1 <a href=\"http://%2/\">%3</a></b><br>").arg(QDate::currentDate().toString("yyyy"), QApplication::organizationDomain(), QApplication::organizationName());
 	title += QString("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sourceforge.net/</a></b>");
 #else
 	title += QString("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sf.net/</a></b>");
-#endif // Q_OS_WINCE && Q_OS_SYMBIAN
+#endif // Q_OS_WINCE_WM && Q_OS_SYMBIAN
 
 QString about;
 	about += QString("%1: <b>%2</b><br>").arg(tr("Target OS (ARCH)"), OS);
@@ -371,28 +372,28 @@ QDialog *dlg = new QDialog(this);
 QLabel *lblIcon = new QLabel(dlg),
 	*lblTitle = new QLabel(dlg),
 	*lblTranslated = new QLabel(dlg);
-#if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
-QLabel *lblSubTitle = new QLabel(QString("<b>&copy; 2007-%1 Oleksii \"Lёppa\" Serdiuk</b>").arg(QDate::currentDate().toString("yyyy")), dlg);
-#endif // Q_OS_WINCE || Q_OS_SYMBIAN
+#ifdef HANDHELD
+QLabel *lblSubTitle = new QLabel(QString("<b>&copy; 2007-%1 <a href=\"http://%2/\">%3</a></b>").arg(QDate::currentDate().toString("yyyy"), QApplication::organizationDomain(), QApplication::organizationName()), dlg);
+#endif // HANDHELD
 QTextBrowser *txtAbout = new QTextBrowser(dlg);
 QVBoxLayout *vb = new QVBoxLayout();
 QHBoxLayout *hb1 = new QHBoxLayout(),
 	*hb2 = new QHBoxLayout();
 QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal, dlg);
 
-	lblIcon->setPixmap(QPixmap(":/images/tspsg.png").scaledToWidth(logicalDpiX() * 2 / 3, Qt::SmoothTransformation));
-	lblIcon->setAlignment(Qt::AlignTop);
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
-	lblIcon->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().window().color().name(), palette().windowText().color().name()));
-#endif
-
 	lblTitle->setOpenExternalLinks(true);
 	lblTitle->setText(title);
 	lblTitle->setAlignment(Qt::AlignTop);
 	lblTitle->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 	lblTitle->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().window().color().name(), palette().shadow().color().name()));
-#endif
+#endif // HANDHELD
+
+	lblIcon->setPixmap(QPixmap(":/images/tspsg.png").scaledToHeight(lblTitle->sizeHint().height(), Qt::SmoothTransformation));
+	lblIcon->setAlignment(Qt::AlignVCenter);
+#ifndef HANDHELD
+	lblIcon->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().window().color().name(), palette().windowText().color().name()));
+#endif // HANDHELD
 
 	hb1->addWidget(lblIcon);
 	hb1->addWidget(lblTitle);
@@ -401,9 +402,9 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	txtAbout->setOpenExternalLinks(true);
 	txtAbout->setHtml(about);
 	txtAbout->moveCursor(QTextCursor::Start);
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 	txtAbout->setStyleSheet(QString("QTextBrowser {border-color: %1; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().shadow().color().name()));
-#endif
+#endif // HANDHELD
 
 	bb->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -412,21 +413,21 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 		lblTranslated->hide();
 	else {
 		lblTranslated->setOpenExternalLinks(true);
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 		lblTranslated->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().window().color().name(), palette().shadow().color().name()));
-#endif
+#endif // HANDHELD
 		hb2->addWidget(lblTranslated);
 	}
 
 	hb2->addWidget(bb);
 
-#if defined(Q_OS_WINCE)
+#ifdef Q_OS_WINCE_WM
 	vb->setMargin(3);
-#endif
+#endif // Q_OS_WINCE_WM
 	vb->addLayout(hb1);
-#if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
+#ifdef HANDHELD
 	vb->addWidget(lblSubTitle);
-#endif // Q_OS_WINCE || Q_OS_SYMBIAN
+#endif // HANDHELD
 	vb->addWidget(txtAbout);
 	vb->addLayout(hb2);
 
@@ -485,13 +486,13 @@ QProgressBar *pb = new QProgressBar(&pd);
 	pb->setAlignment(Qt::AlignCenter);
 	pb->setFormat(tr("%v of %1 parts found").arg(n));
 	pd.setBar(pb);
-	pd.setMaximum(n * 2 + 3);
-	pd.setMinimumDuration(1000);
+	pd.setMaximum(n);
+	pd.setAutoReset(false);
 	pd.setLabelText(tr("Calculating optimal route..."));
 	pd.setWindowTitle(tr("Solution Progress"));
 	pd.setWindowModality(Qt::ApplicationModal);
 	pd.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
-	pd.setValue(0);
+	pd.show();
 
 CTSPSolver solver;
 	connect(&solver, SIGNAL(routePartFound(int)), &pd, SLOT(setValue(int)));
@@ -505,13 +506,12 @@ SStep *root = solver.solve(n, matrix);
 			QMessageBox::warning(this, tr("Solution Result"), tr("Unable to find a solution.\nMaybe, this task has no solution."));
 		return;
 	}
-	pb->setFormat("%p%");
+	pb->setFormat(tr("Generating header"));
 	pd.setLabelText(tr("Generating solution output..."));
-	pd.setValue(n + 1);
+	pd.setMaximum(n);
+	pd.setValue(0);
 
 	solutionText->clear();
-	pd.setValue(n + 2);
-
 	solutionText->setDocumentTitle(tr("Solution of Variant #%1 task").arg(spinVariant->value()));
 	solutionText->append("<p>" + tr("Variant #%1").arg(spinVariant->value()) + "</p>");
 	solutionText->append("<p>" + tr("Task:") + "</p>");
@@ -519,12 +519,13 @@ SStep *root = solver.solve(n, matrix);
 	solutionText->append("<hr><p>" + tr("Solution of Variant #%1 task").arg(spinVariant->value()) + "</p>");
 SStep *step = root;
 	n = 1;
-	while (n <= spinCities->value()) {
+	pb->setFormat(tr("Generating step %v"));
+	while (n < spinCities->value()) {
 		if (pd.wasCanceled()) {
 			solutionText->clear();
 			return;
 		}
-		pd.setValue(spinCities->value() + 2 + n);
+		pd.setValue(n);
 
 		if (step->prNode->prNode != NULL || ((step->prNode->prNode == NULL) && (step->plNode->prNode == NULL))) {
 			if (n != spinCities->value()) {
@@ -553,7 +554,8 @@ QString alts;
 		else
 			break;
 	}
-	pd.setValue(spinCities->value() + 2 + n);
+	pb->setFormat(tr("Generating footer"));
+	pd.setValue(n);
 
 	if (solver.isOptimal())
 		solutionText->append("<p>" + tr("Optimal path:") + "</p>");
@@ -578,7 +580,6 @@ QString alts;
 	pd.setLabelText(tr("Cleaning up..."));
 	pd.setMaximum(0);
 	pd.setCancelButton(NULL);
-	pd.adjustSize();
 	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	solver.cleanup(true);
 	toggleSolutionActions();
@@ -601,7 +602,7 @@ void MainWindow::dataChanged(const QModelIndex &tl, const QModelIndex &br)
 	}
 }
 
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 void MainWindow::changeEvent(QEvent *ev)
 {
 	if ((ev->type() == QEvent::ActivationChange) && isActiveWindow())
@@ -634,7 +635,7 @@ QRect availableGeometry = QApplication::desktop()->availableGeometry(0);
 		QApplication::restoreOverrideCursor();
 	}
 }
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 
 void MainWindow::numCitiesChanged(int nCities)
 {
@@ -675,9 +676,9 @@ void MainWindow::closeEvent(QCloseEvent *ev)
 		// Saving Main Window state
 		if (settings->value("SavePos", DEF_SAVEPOS).toBool()) {
 			settings->beginGroup("MainWindow");
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 			settings->setValue("Geometry", saveGeometry());
-#endif // Q_OS_WINCE
+#endif // HANDHELD
 			settings->setValue("State", saveState());
 			settings->endGroup();
 		}
@@ -930,13 +931,13 @@ void MainWindow::setupUi()
 	setToolButtonStyle(Qt::ToolButtonFollowStyle);
 #endif
 
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 QStatusBar *statusbar = new QStatusBar(this);
 	statusbar->setObjectName("statusbar");
 	setStatusBar(statusbar);
-#endif // Q_OS_WINCE
+#endif // HANDHELD
 
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 	menuBar()->setDefaultAction(menuFile->menuAction());
 
 QScrollArea *scrollArea = new QScrollArea(this);
@@ -947,14 +948,14 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	setCentralWidget(scrollArea);
 #else
 	setCentralWidget(tabWidget);
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 
 	//! \hack HACK: A little hack for toolbar icons to have a sane size.
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 	toolBar->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
 #elif defined(Q_OS_SYMBIAN)
 	toolBar->setIconSize(QSize(logicalDpiX() / 5, logicalDpiY() / 5));
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 
 	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
 	solutionText->setTextColor(settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>());

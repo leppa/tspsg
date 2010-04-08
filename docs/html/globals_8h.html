@@ -90,6 +90,7 @@ window.onload = initDynSections;
 <a href="#_details">More...</a></p>
 <code>#include &lt;QtCore&gt;</code><br/>
 <code>#include &lt;QtGui&gt;</code><br/>
+<code>#include &lt;limits&gt;</code><br/>
 <code>#include &quot;<a class="el" href="version_8h_source.html">version.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="os_8h_source.html">os.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="defaults_8h_source.html">defaults.h</a>&quot;</code><br/>
@@ -99,7 +100,7 @@ Include dependency graph for globals.h:</div>
 <div class="dynsection">
 <div class="center"><img src="globals_8h__incl.png" border="0" usemap="#src_2globals_8h_map" alt=""/></div>
 <map name="src_2globals_8h_map" id="src_2globals_8h">
-<area shape="rect" id="node7" href="version_8h.html" title="Contains TSPSG version information defines." alt="" coords="171,83,243,111"/><area shape="rect" id="node9" href="os_8h.html" title="Contains TSPSG target CPU architecture and OS detection." alt="" coords="267,83,312,111"/><area shape="rect" id="node11" href="defaults_8h.html" title="Contains TSPSG defaults." alt="" coords="336,83,413,111"/><area shape="rect" id="node13" href="qtwin_8h.html" title="qtwin.h" alt="" coords="437,83,499,111"/></map>
+<area shape="rect" id="node9" href="version_8h.html" title="Contains TSPSG version information defines." alt="" coords="245,83,317,111"/><area shape="rect" id="node11" href="os_8h.html" title="Contains TSPSG target CPU architecture and OS detection." alt="" coords="341,83,387,111"/><area shape="rect" id="node13" href="defaults_8h.html" title="Contains TSPSG defaults." alt="" coords="411,83,488,111"/><area shape="rect" id="node15" href="qtwin_8h.html" title="qtwin.h" alt="" coords="512,83,573,111"/></map>
 </div>
 <div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -120,7 +121,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Maximum allowed value for random generation limits. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27fa861afe50713394493c32c26741b9"></a><!-- doxytag: member="globals.h::PATH_L10N" ref="a27fa861afe50713394493c32c26741b9" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a27fa861afe50713394493c32c26741b9">PATH_L10N</a>&nbsp;&nbsp;&nbsp;&quot;l10n&quot;</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bath to internationalization files. <br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/phonon-path.html">Path</a> to internationalization files. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93de9563d724c12880c908961ca78dae"></a><!-- doxytag: member="globals.h::PATH_DOCS" ref="a93de9563d724c12880c908961ca78dae" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a93de9563d724c12880c908961ca78dae">PATH_DOCS</a>&nbsp;&nbsp;&nbsp;&quot;help&quot;</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bath to documentation files. <br/></td></tr>
@@ -142,7 +143,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6d630d0a03e4e53fceb0567653ca629"></a><!-- doxytag: member="globals.h::ZKT_VERSION" ref="ab6d630d0a03e4e53fceb0567653ca629" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#ab6d630d0a03e4e53fceb0567653ca629">ZKT_VERSION</a>&nbsp;&nbsp;&nbsp;quint8(1)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ZKomModRd Task file version. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a956e2723d559858d08644ac99146e910">INFINITY</a>&nbsp;&nbsp;&nbsp;1.7E+308</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a956e2723d559858d08644ac99146e910">INFINITY</a>&nbsp;&nbsp;&nbsp;std::numeric_limits&lt;double&gt;::infinity()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This value means infinity :-).  <a href="#a956e2723d559858d08644ac99146e910"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ae8033146e07fa0bae37f148b90cd6b"></a><!-- doxytag: member="globals.h::INFSTR" ref="a1ae8033146e07fa0bae37f148b90cd6b" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a1ae8033146e07fa0bae37f148b90cd6b">INFSTR</a>&nbsp;&nbsp;&nbsp;&quot;---&quot;</td></tr>
@@ -150,11 +151,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a594842d2fcaf774c3c42b944f3f031d2">isInteger</a> (double x)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Checks whether <em>x</em> contains an integer value.  <a href="#a594842d2fcaf774c3c42b944f3f031d2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a3ffe98116f42de97041cde4a2b0404e6">toggleStyle</a> (<a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qwidget.html">QWidget</a> *widget, bool enable)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enables or disables a mask for the <em>widget</em>.  <a href="#a3ffe98116f42de97041cde4a2b0404e6"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Contains TSPSG global defines. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Copyright &copy; 2007-2010 Lёppa &lt;contacts[at]oleksii[dot]name&gt;</dd></dl>
-<dl class="rcs"><dt><b>Id</b></dt><dd><a class="el" href="globals_8h.html" title="Contains TSPSG global defines.">globals.h</a> 96 2010-03-01 13:13:23Z laleppa </dd></dl>
+<dl class="rcs"><dt><b>Id</b></dt><dd><a class="el" href="globals_8h.html" title="Contains TSPSG global defines.">globals.h</a> 98 2010-03-12 19:28:42Z laleppa </dd></dl>
 <dl class="rcs"><dt><b>URL</b></dt><dd><a href="https://tspsg.svn.sourceforge.net/svnroot/tspsg/trunk/src/globals.h">https://tspsg.svn.sourceforge.net/svnroot/tspsg/trunk/src/globals.h</a> </dd></dl>
 <p><b>TSPSG: TSP Solver and Generator</b></p>
 <p>This file is part of TSPSG.</p>
@@ -167,7 +170,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define INFINITY&nbsp;&nbsp;&nbsp;1.7E+308</td>
+          <td class="memname">#define INFINITY&nbsp;&nbsp;&nbsp;std::numeric_limits&lt;double&gt;::infinity()</td>
         </tr>
       </table>
 </div>
@@ -206,6 +209,52 @@ This graph shows which files directly or indirectly include this file:</div>
 
 </div>
 </div>
+<a class="anchor" id="a3ffe98116f42de97041cde4a2b0404e6"></a><!-- doxytag: member="globals.h::toggleStyle" ref="a3ffe98116f42de97041cde4a2b0404e6" args="(QWidget *widget, bool enable)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void toggleStyle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qwidget.html">QWidget</a> *&nbsp;</td>
+          <td class="paramname"> <em>widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>enable</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Enables or disables a mask for the <em>widget</em>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>widget</em>&nbsp;</td><td>A widget to toggle mask on. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>enable</em>&nbsp;</td><td>Set to <code>true</code> to enable mask or <code>false</code> to disable it.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function is used to enable an outlined font effect for <code><a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qlabel.html">QLabel</a></code> with a static text. </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dynsection">
+<div class="center"><img src="globals_8h_a3ffe98116f42de97041cde4a2b0404e6_cgraph.png" border="0" usemap="#globals_8h_a3ffe98116f42de97041cde4a2b0404e6_cgraph_map" alt=""></div>
+<map name="globals_8h_a3ffe98116f42de97041cde4a2b0404e6_cgraph_map" id="globals_8h_a3ffe98116f42de97041cde4a2b0404e6_cgraph">
+<area shape="rect" id="node3" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qwidget.html#window" title="QWidget::window" alt="" coords="141,5,264,33"/></map>
+</div>
+</p>
+
+</div>
+</div>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -221,7 +270,7 @@ This graph shows which files directly or indirectly include this file:</div>
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Mar 3 01:46:35 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Apr 8 23:15:53 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

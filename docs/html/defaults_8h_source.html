@@ -89,41 +89,44 @@ window.onload = initDynSections;
 <a name="l00030"></a>00030 <span class="preprocessor"></span>
 <a name="l00032"></a><a class="code" href="defaults_8h.html#a4d1fa8b5b2b213595f30e55d75070ed2">00032</a> <span class="preprocessor">#define DEF_NUM_CITIES 5</span>
 <a name="l00033"></a>00033 <span class="preprocessor"></span>
-<a name="l00036"></a><a class="code" href="defaults_8h.html#a26cf35c10c1ed2eab930d839284842c6">00036</a> <span class="preprocessor">#define DEF_AUTOSIZE true</span>
-<a name="l00037"></a>00037 <span class="preprocessor"></span>
-<a name="l00041"></a>00041 <span class="preprocessor">#ifdef Q_OS_WINCE</span>
-<a name="l00042"></a>00042 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_USE_NATIVE_DIALOGS false</span>
-<a name="l00043"></a>00043 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00044"></a><a class="code" href="defaults_8h.html#a6bbdc41d8e9d2d8050fb973f058a5521">00044</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_USE_NATIVE_DIALOGS true</span>
-<a name="l00045"></a>00045 <span class="preprocessor"></span><span class="preprocessor">#endif // Q_OS_WINCE</span>
-<a name="l00047"></a><a class="code" href="defaults_8h.html#ad983bd19a9662c6cb6fe5ba981cbdbf4">00047</a> <span class="preprocessor">#define DEF_SAVEPOS true</span>
-<a name="l00049"></a><a class="code" href="defaults_8h.html#a1514694a06d7bb7c282913d8474be546">00049</a> <span class="preprocessor">#define DEF_USE_TRANSLUCENCY true</span>
-<a name="l00050"></a>00050 <span class="preprocessor"></span>
-<a name="l00053"></a><a class="code" href="defaults_8h.html#afd1234d6d4416db1f37831403b3e2dbe">00053</a> <span class="preprocessor">#define DEF_FRACTIONAL_ACCURACY 2</span>
-<a name="l00055"></a><a class="code" href="defaults_8h.html#a21dd408136bbab225a4f5e2c42f85643">00055</a> <span class="preprocessor">#define DEF_RAND_MIN 1</span>
-<a name="l00057"></a><a class="code" href="defaults_8h.html#af9914e148840572bac46f451db4cb6e5">00057</a> <span class="preprocessor">#define DEF_RAND_MAX 10</span>
-<a name="l00059"></a><a class="code" href="defaults_8h.html#a4a1e6c04461eabfc0cc0941d342ecfb4">00059</a> <span class="preprocessor">#define DEF_FRACTIONAL_RANDOM false</span>
-<a name="l00061"></a><a class="code" href="defaults_8h.html#af249ec8d65a40ef0b19738492d12948a">00061</a> <span class="preprocessor">#define DEF_SYMMETRIC_MODE false</span>
-<a name="l00062"></a>00062 <span class="preprocessor"></span>
-<a name="l00065"></a><a class="code" href="defaults_8h.html#a616d74fa946123f424193b007d5a6382">00065</a> <span class="preprocessor">#define DEF_SHOW_MATRIX true</span>
-<a name="l00067"></a><a class="code" href="defaults_8h.html#ae37fe7eb909d7fd076f067900e900c0e">00067</a> <span class="preprocessor">#define DEF_USE_SHOW_MATRIX_LIMIT true</span>
-<a name="l00069"></a><a class="code" href="defaults_8h.html#a261331d449328e53926027d021757d57">00069</a> <span class="preprocessor">#define DEF_SHOW_MATRIX_LIMIT 15</span>
-<a name="l00071"></a><a class="code" href="defaults_8h.html#a6831bc2c2f11c3a14382c8fbe8d87efe">00071</a> <span class="preprocessor">#define DEF_SCROLL_TO_END false</span>
-<a name="l00072"></a>00072 <span class="preprocessor"></span>
-<a name="l00076"></a>00076 <span class="preprocessor">#ifdef Q_OS_WINCE</span>
-<a name="l00077"></a>00077 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_FAMILY &quot;Tahoma&quot;</span>
-<a name="l00078"></a>00078 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00079"></a><a class="code" href="defaults_8h.html#a2982eb0f2aea4cff78bd4aa767ff1988">00079</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_FAMILY &quot;Courier New&quot;</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00081"></a>00081 <span class="preprocessor"></span>
-<a name="l00085"></a>00085 <span class="preprocessor">#ifdef Q_OS_SYMBIAN</span>
-<a name="l00086"></a>00086 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_SIZE 8</span>
-<a name="l00087"></a>00087 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00088"></a><a class="code" href="defaults_8h.html#ab73bf542bad61b0b720c0495ef612105">00088</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_SIZE 10</span>
-<a name="l00089"></a>00089 <span class="preprocessor"></span><span class="preprocessor">#endif // Q_OS_SYMBIAN</span>
-<a name="l00091"></a><a class="code" href="defaults_8h.html#a6bbeb8fbbb2c6ec31993ff56f6b695e3">00091</a> <span class="preprocessor">#define DEF_FONT_COLOR Qt::black</span>
-<a name="l00092"></a>00092 <span class="preprocessor"></span>
-<a name="l00093"></a>00093 <span class="preprocessor">#endif // DEFAULTS_H</span>
+<a name="l00035"></a>00035 
+<a name="l00037"></a><a class="code" href="defaults_8h.html#a26cf35c10c1ed2eab930d839284842c6">00037</a> <span class="preprocessor">#define DEF_AUTOSIZE true</span>
+<a name="l00038"></a>00038 <span class="preprocessor"></span>
+<a name="l00042"></a>00042 <span class="preprocessor">#ifdef Q_OS_WINCE</span>
+<a name="l00043"></a>00043 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_USE_NATIVE_DIALOGS false</span>
+<a name="l00044"></a>00044 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00045"></a><a class="code" href="defaults_8h.html#a6bbdc41d8e9d2d8050fb973f058a5521">00045</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_USE_NATIVE_DIALOGS true</span>
+<a name="l00046"></a>00046 <span class="preprocessor"></span><span class="preprocessor">#endif // Q_OS_WINCE</span>
+<a name="l00048"></a><a class="code" href="defaults_8h.html#ad983bd19a9662c6cb6fe5ba981cbdbf4">00048</a> <span class="preprocessor">#define DEF_SAVEPOS true</span>
+<a name="l00050"></a><a class="code" href="defaults_8h.html#a1514694a06d7bb7c282913d8474be546">00050</a> <span class="preprocessor">#define DEF_USE_TRANSLUCENCY true</span>
+<a name="l00051"></a>00051 <span class="preprocessor"></span>
+<a name="l00053"></a>00053 
+<a name="l00055"></a><a class="code" href="defaults_8h.html#afd1234d6d4416db1f37831403b3e2dbe">00055</a> <span class="preprocessor">#define DEF_FRACTIONAL_ACCURACY 2</span>
+<a name="l00057"></a><a class="code" href="defaults_8h.html#a21dd408136bbab225a4f5e2c42f85643">00057</a> <span class="preprocessor">#define DEF_RAND_MIN 1</span>
+<a name="l00059"></a><a class="code" href="defaults_8h.html#af9914e148840572bac46f451db4cb6e5">00059</a> <span class="preprocessor">#define DEF_RAND_MAX 10</span>
+<a name="l00061"></a><a class="code" href="defaults_8h.html#a4a1e6c04461eabfc0cc0941d342ecfb4">00061</a> <span class="preprocessor">#define DEF_FRACTIONAL_RANDOM false</span>
+<a name="l00063"></a><a class="code" href="defaults_8h.html#af249ec8d65a40ef0b19738492d12948a">00063</a> <span class="preprocessor">#define DEF_SYMMETRIC_MODE false</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span>
+<a name="l00066"></a>00066 
+<a name="l00068"></a><a class="code" href="defaults_8h.html#a616d74fa946123f424193b007d5a6382">00068</a> <span class="preprocessor">#define DEF_SHOW_MATRIX true</span>
+<a name="l00070"></a><a class="code" href="defaults_8h.html#ae37fe7eb909d7fd076f067900e900c0e">00070</a> <span class="preprocessor">#define DEF_USE_SHOW_MATRIX_LIMIT true</span>
+<a name="l00072"></a><a class="code" href="defaults_8h.html#a261331d449328e53926027d021757d57">00072</a> <span class="preprocessor">#define DEF_SHOW_MATRIX_LIMIT 15</span>
+<a name="l00074"></a><a class="code" href="defaults_8h.html#a6831bc2c2f11c3a14382c8fbe8d87efe">00074</a> <span class="preprocessor">#define DEF_SCROLL_TO_END false</span>
+<a name="l00075"></a>00075 <span class="preprocessor"></span>
+<a name="l00079"></a>00079 <span class="preprocessor">#ifdef Q_OS_WINCE_WM</span>
+<a name="l00080"></a>00080 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_FAMILY &quot;Tahoma&quot;</span>
+<a name="l00081"></a>00081 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00082"></a><a class="code" href="defaults_8h.html#a2982eb0f2aea4cff78bd4aa767ff1988">00082</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_FAMILY &quot;Courier New&quot;</span>
+<a name="l00083"></a>00083 <span class="preprocessor"></span><span class="preprocessor">#endif // Q_OS_WINCE_WM</span>
+<a name="l00084"></a>00084 <span class="preprocessor"></span>
+<a name="l00088"></a>00088 <span class="preprocessor">#ifdef Q_OS_SYMBIAN</span>
+<a name="l00089"></a>00089 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_SIZE 8</span>
+<a name="l00090"></a>00090 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00091"></a><a class="code" href="defaults_8h.html#ab73bf542bad61b0b720c0495ef612105">00091</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_SIZE 10</span>
+<a name="l00092"></a>00092 <span class="preprocessor"></span><span class="preprocessor">#endif // Q_OS_SYMBIAN</span>
+<a name="l00094"></a><a class="code" href="defaults_8h.html#a6bbeb8fbbb2c6ec31993ff56f6b695e3">00094</a> <span class="preprocessor">#define DEF_FONT_COLOR Qt::black</span>
+<a name="l00095"></a>00095 <span class="preprocessor"></span>
+<a name="l00096"></a>00096 <span class="preprocessor">#endif // DEFAULTS_H</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -139,7 +142,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Mar 3 01:46:34 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Apr 8 23:15:53 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

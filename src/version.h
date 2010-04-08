@@ -71,11 +71,17 @@
  * \def BUILD_STATUS
  * \brief TSPSG build status
  */
-#if !defined(TSPSG_RELEASE_BUILD)
-	#define BUILD_STATUS (dev build)
-#elif !defined(BUILD_STATUS)
-	#define BUILD_STATUS (build BUILD_NUMBER)
-#endif // TSPSG_RELEASE_BUILD
+#ifdef DEBUG
+	#ifndef BUILD_STATUS
+		#define BUILD_STATUS (debug build BUILD_NUMBER)
+	#endif
+#else
+	#if !defined(TSPSG_RELEASE_BUILD)
+		#define BUILD_STATUS (dev build)
+	#elif !defined(BUILD_STATUS)
+		#define BUILD_STATUS (build BUILD_NUMBER)
+	#endif // TSPSG_RELEASE_BUILD
+#endif // DEBUG
 
 //! \internal \brief A helper for QUOTE(x).
 #define QUOTE_X(x) #x

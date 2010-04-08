@@ -7,7 +7,7 @@
   </compound>
   <compound kind="file">
     <name>defaults.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>defaults_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -131,7 +131,7 @@
   </compound>
   <compound kind="file">
     <name>globals.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>globals_8h</filename>
     <includes id="version_8h" name="version.h" local="yes" imported="no">version.h</includes>
     <includes id="os_8h" name="os.h" local="yes" imported="no">os.h</includes>
@@ -228,10 +228,17 @@
       <anchor>a594842d2fcaf774c3c42b944f3f031d2</anchor>
       <arglist>(double x)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>toggleStyle</name>
+      <anchorfile>globals_8h.html</anchorfile>
+      <anchor>a3ffe98116f42de97041cde4a2b0404e6</anchor>
+      <arglist>(QWidget *widget, bool enable)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>mainwindow.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>mainwindow_8h</filename>
     <includes id="globals_8h" name="globals.h" local="yes" imported="no">globals.h</includes>
     <includes id="settingsdialog_8h" name="settingsdialog.h" local="yes" imported="no">settingsdialog.h</includes>
@@ -241,7 +248,7 @@
   </compound>
   <compound kind="file">
     <name>os.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>os_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -267,18 +274,18 @@
   </compound>
   <compound kind="file">
     <name>pch.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>pch_8h</filename>
   </compound>
   <compound kind="file">
     <name>qtwin.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>qtwin_8h</filename>
     <class kind="class">QtWin</class>
   </compound>
   <compound kind="file">
     <name>resource.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>resource_8h</filename>
     <includes id="version_8h" name="version.h" local="yes" imported="no">version.h</includes>
     <member kind="define">
@@ -298,21 +305,21 @@
   </compound>
   <compound kind="file">
     <name>settingsdialog.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>settingsdialog_8h</filename>
     <includes id="globals_8h" name="globals.h" local="yes" imported="no">globals.h</includes>
     <class kind="class">SettingsDialog</class>
   </compound>
   <compound kind="file">
     <name>tspmodel.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>tspmodel_8h</filename>
     <includes id="globals_8h" name="globals.h" local="yes" imported="no">globals.h</includes>
     <class kind="class">CTSPModel</class>
   </compound>
   <compound kind="file">
     <name>tspsolver.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>tspsolver_8h</filename>
     <includes id="globals_8h" name="globals.h" local="yes" imported="no">globals.h</includes>
     <includes id="tspmodel_8h" name="tspmodel.h" local="yes" imported="no">tspmodel.h</includes>
@@ -329,7 +336,7 @@
   </compound>
   <compound kind="file">
     <name>version.h</name>
-    <path>W:/Projects/Cpp/tspsg/trunk/src/</path>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>version_8h</filename>
     <member kind="define">
       <type>#define</type>
@@ -494,12 +501,34 @@
   <compound kind="class">
     <name>CTSPSolver</name>
     <filename>class_c_t_s_p_solver.html</filename>
+    <base>QObject</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>cancel</name>
+      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
+      <anchor>a996ac169e8ed087170bd8610fa4aa715</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>routePartFound</name>
+      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
+      <anchor>ae12895fa529a965b57204e355b9012d7</anchor>
+      <arglist>(int n)</arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>CTSPSolver</name>
       <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>aa5e45813d8f5e1c039b1bb9746d367bd</anchor>
-      <arglist>()</arglist>
+      <anchor>a4a519caa89db1683693759a92a65319c</anchor>
+      <arglist>(QObject *parent=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>cleanup</name>
+      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
+      <anchor>acf86422c1b8ff8e5b9bc88e09c57c48b</anchor>
+      <arglist>(bool processEvents=false)</arglist>
     </member>
     <member kind="function">
       <type>QString</type>
@@ -519,8 +548,15 @@
       <type>SStep *</type>
       <name>solve</name>
       <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>a9a6545dd05e449151aabe325f4058edd</anchor>
-      <arglist>(int numCities, TMatrix task, QWidget *parent=0)</arglist>
+      <anchor>a0f0f0aa60d05c97f3b0e867a381de558</anchor>
+      <arglist>(int numCities, const TMatrix &amp;task)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>wasCanceled</name>
+      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
+      <anchor>a80cff5d533711ab1929de1fdf09495b7</anchor>
+      <arglist>() const </arglist>
     </member>
     <member kind="function" static="yes">
       <type>static QString</type>

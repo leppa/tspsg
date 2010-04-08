@@ -20,12 +20,18 @@ BUILD_VERSION_MINOR = 1
 BUILD_RELEASE = 2
 
 # These are only defined on releases
-#DEFINES += TSPSG_RELEASE_BUILD
-#DEFINES += BUILD_STATUS="\"(alpha 2)\""
+DEFINES += TSPSG_RELEASE_BUILD
+!symbian {
+	DEFINES += BUILD_STATUS="\"(alpha 2)\""
+} else {
+	# Symbian doesn't handle spaces in defines well
+	DEFINES += BUILD_STATUS="(alpha2)"
+}
 
-REVISION = $$system(svnversion)
-REVISION = $$replace(REVISION,"M","")
-VERSION = $$sprintf("%1.%2.%3",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE)
+#REVISION = $$system(svnversion)
+#REVISION = $$replace(REVISION,"M","")
+REVISION = 100
+VERSION = $$sprintf("%1.%2.%3.%4",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE,$$REVISION)
 
 DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
 	BUILD_VERSION_MINOR=$$BUILD_VERSION_MINOR \
@@ -47,7 +53,7 @@ contains(QMAKE_PRL_CONFIG, static) {
 	DEFINES += STATIC_BUILD
 }
 
-build_pass:CONFIG(release, debug|release) {
+CONFIG(release, debug|release) {
 	OBJECTS_DIR = release
 	DESTDIR = release
 	D =
@@ -103,9 +109,14 @@ unix:!symbian {
 win32 {
 	PREFIX = "$$(PROGRAMFILES)"
 
-	share.files = $$[QT_INSTALL_LIBS]/QtCore$${D}4.dll \
-		$$[QT_INSTALL_LIBS]/QtGui$${D}4.dll \
-		$$[QT_INSTALL_LIBS]/QtSvg$${D}4.dll
+	share.files = $$[QT_INSTALL_BINS]/QtCore$${D}4.dll \
+		$$[QT_INSTALL_BINS]/QtGui$${D}4.dll
+#		$$[QT_INSTALL_BINS]/QtSvg$${D}4.dll
+	l10n.files += $$[QT_INSTALL_TRANSLATIONS]/*.qm
+	win32-g++ {
+		share.files += $$[QT_INSTALL_BINS]/mingwm10.dll \
+			$$[QT_INSTALL_BINS]/libgcc_s_dw2-1.dll
+	}
 	imageformats.files = $$[QT_INSTALL_PLUGINS]/imageformats/qsvg$${D}4.dll \
 		$$[QT_INSTALL_PLUGINS]/imageformats/qjpeg$${D}4.dll
 	imageformats.path = $$PREFIX/TSPSG/imageformats
@@ -116,7 +127,8 @@ win32 {
 wince {
 	PREFIX = "\Program Files"
 	share.sources = $$share.files
-	l10n.sources = $$l10n.files
+	l10n.sources = $$l10n.files \
+		$$[QT_INSTALL_TRANSLATIONS]/*.qm
 	docs.sources = $$docs.files
 
 	DEPLOYMENT += target share l10n docs
@@ -137,7 +149,9 @@ win* {
 symbian {
 	# qmake for Symbian (as of Qt 4.6.2) has a bug: file masks doesn't work, so we need to specify all files manually
 	share.sources = $$share.files
-	l10n.sources = l10n/qt_ru.qm l10n/qt_uk.qm l10n/tspsg_en.qm l10n/tspsg_ru.qm l10n/tspsg_uk.qm
+	l10n.sources = $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm \
+		$$[QT_INSTALL_TRANSLATIONS]/qt_uk.qm \
+		l10n/tspsg_en.qm l10n/tspsg_ru.qm l10n/tspsg_uk.qm
 	l10n.path = l10n
 	docs.sources = $$docs.files
 	docs.pkg_prerules = \

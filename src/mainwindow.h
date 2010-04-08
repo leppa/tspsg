@@ -73,10 +73,10 @@ private slots:
 
 	void dataChanged();
 	void dataChanged(const QModelIndex &tl, const QModelIndex &br);
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 	void changeEvent(QEvent *ev);
 	void desktopResized(int screen);
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 	void numCitiesChanged(int nCities);
 #ifndef QT_NO_PRINTER
 	void printPreview(QPrinter *printer);
@@ -96,9 +96,9 @@ private:
 #endif // Q_OS_WIN32
 	QSettings *settings;
 	CTSPModel *tspmodel;
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 	QRect currentGeometry;
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 
 	void closeEvent(QCloseEvent *ev);
 	bool hasUpdater() const;

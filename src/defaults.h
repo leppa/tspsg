@@ -32,6 +32,7 @@
 #define DEF_NUM_CITIES 5
 
 //////// GENERAL
+
 //! Default for "Automatically resize rows and columns to their contents"
 #define DEF_AUTOSIZE true
 /*!
@@ -49,6 +50,7 @@
 #define DEF_USE_TRANSLUCENCY true
 
 //////// TASK
+
 //! Default for "Accuracy of the fractional values"
 #define DEF_FRACTIONAL_ACCURACY 2
 //! Default minimum for random numbers generation
@@ -61,6 +63,7 @@
 #define DEF_SYMMETRIC_MODE false
 
 //////// OUTPUT
+
 //! Default for "Show solution steps' matrices for every solution step"
 #define DEF_SHOW_MATRIX true
 //! Default for "Show or hide solution steps' matrices based on number of cities in the task"
@@ -73,11 +76,11 @@
  * \def DEF_FONT_FAMILY
  * \brief Default font name.
  */
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 	#define DEF_FONT_FAMILY "Tahoma"
 #else
 	#define DEF_FONT_FAMILY "Courier New"
-#endif
+#endif // Q_OS_WINCE_WM
 /*!
  * \def DEF_FONT_SIZE
  * \brief Default font size

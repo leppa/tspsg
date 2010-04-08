@@ -41,13 +41,13 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	buttonBox->button(QDialogButtonBox::Cancel)->setStatusTip(tr("Close without saving preferences"));
 	buttonBox->button(QDialogButtonBox::Cancel)->setCursor(QCursor(Qt::PointingHandCursor));
 
-#if defined(Q_OS_WINCE) || defined(Q_OS_SYMBIAN)
+#ifdef HANDHELD
 QVBoxLayout *vbox1; // Layout helper
 
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 	// On screens with small height when SIP is shown and the window is resized
 	// there is not enought space for all elements.
-	//  So we show scrollbars to be able to access them.
+	// So we show the scrollbars to be able to access them.
 QScrollArea *scrollArea = new QScrollArea(this);
 	scrollArea->setFrameShape(QFrame::NoFrame);
 	scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -55,7 +55,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	scrollArea->setWidget(bgWhite);
 #else
 	buttons->insertStretch(buttons->indexOf(buttonHelp) + 1);
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 
 	bgWhite->layout()->setMargin(0);
 
@@ -63,14 +63,14 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	vbox1 = new QVBoxLayout(this);
 	vbox1->setMargin(0);
 	vbox1->setSpacing(0);
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 	vbox1->addWidget(scrollArea);
 #else
 	vbox1->addWidget(bgWhite);
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 	vbox1->addWidget(bgGrey);
 	setLayout(vbox1);
-#else // Q_OS_WINCE || Q_OS_SYMBIAN
+#else // HANDHELD
 	// Layout helper elements
 QVBoxLayout *vbox1, *vbox2;
 QHBoxLayout *hbox1;
@@ -146,20 +146,20 @@ QHBoxLayout *hbox1;
 	vbox2->addLayout(hbox1);
 	vbox2->addWidget(bgGrey);
 	setLayout(vbox2);
-#endif // Q_OS_WINCE
+#endif // HANDHELD
 
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 	// We need to react to SIP show/hide and resize the window appropriately
 	connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 	connect(spinRandMin,SIGNAL(valueChanged(int)),this,SLOT(spinRandMinValueChanged(int)));
 	connect(buttonFont,SIGNAL(clicked()),this,SLOT(buttonFontClicked()));
 	connect(buttonColor,SIGNAL(clicked()),this,SLOT(buttonColorClicked()));
 	setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 	// Setting initial text of dialog hint label to own status tip text.
 	labelHint->setText(labelHint->statusTip());
-#endif // Q_OS_WINCE
+#endif // HANDHELD
 
 	settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
 	settings->remove("SettingsReset");
@@ -170,9 +170,9 @@ QHBoxLayout *hbox1;
 	if (QtWin::isCompositionEnabled())
 		cbUseTranslucency->setChecked(settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool());
 #endif // Q_OS_WIN32
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 	cbSaveState->setChecked(settings->value("SavePos", DEF_SAVEPOS).toBool());
-#endif // Q_OS_WINCE
+#endif // HANDHELD
 
 	settings->beginGroup("Task");
 	cbSymmetricMode->setChecked(settings->value("SymmetricMode", DEF_SYMMETRIC_MODE).toBool());
@@ -197,9 +197,9 @@ QHBoxLayout *hbox1;
 	color = settings->value("Color",DEF_FONT_COLOR).value<QColor>();
 	settings->endGroup();
 
-#ifndef Q_OS_WINCE
+#ifndef Q_OS_WINCE_WM
 	adjustSize();
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 }
 
 /*!
@@ -247,9 +247,9 @@ void SettingsDialog::accept()
 		} else
 			return;
 	}
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 	settings->setValue("SavePos", cbSaveState->isChecked());
-#endif // Q_OS_WINCE
+#endif // HANDHELD
 #ifdef Q_OS_WIN32
 	if (QtWin::isCompositionEnabled()) {
 bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
@@ -303,7 +303,7 @@ QFont font = QFontDialog::getFont(&ok,this->font,this);
 	}
 }
 
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 void SettingsDialog::desktopResized(int screen)
 {
 	if (screen != 0)
@@ -335,13 +335,13 @@ void SettingsDialog::showEvent(QShowEvent *ev)
 
 	QWidget::showEvent(ev);
 }
-#endif // Q_OS_WINCE
+#endif // Q_OS_WINCE_WM
 
 void SettingsDialog::spinRandMinValueChanged(int val) {
 	spinRandMax->setMinimum(val);
 }
 
-#if !defined(Q_OS_WINCE) && !defined(Q_OS_SYMBIAN)
+#ifndef HANDHELD
 bool SettingsDialog::event(QEvent *ev)
 {
 	// Checking for StatusTip event and if tip text is not empty string
@@ -357,4 +357,4 @@ QString tip = static_cast<QStatusTipEvent *>(ev)->tip();
 	} else
 		return QDialog::event(ev);
 }
-#endif // Q_OS_WINCE
+#endif // HANDHELD

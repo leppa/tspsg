@@ -83,7 +83,7 @@ QFont font;
 			if (table.at(index.row()).at(index.column()) == INFINITY)
 				return tr(INFSTR);
 			else
-//! \hack HACK: Converting to string to prevent spinbox in edit mode
+				//! \hack HACK: Converting to string to prevent spinbox in edit mode
 				return QVariant(table.at(index.row()).at(index.column())).toString();
 		else
 			return QVariant();

@@ -93,7 +93,7 @@ window.onload = initDynSections;
 <a name="l00042"></a>00042 <span class="preprocessor"></span><span class="preprocessor">#elif defined(__ia64__) || defined(_M_IA64)</span>
 <a name="l00043"></a>00043 <span class="preprocessor"></span><span class="preprocessor">    #define ARCH &quot; (Intel 64-bit)&quot;</span>
 <a name="l00044"></a>00044 <span class="preprocessor"></span><span class="preprocessor">#elif defined(__i386__) || defined(_M_IX86) || defined(_X86_)</span>
-<a name="l00045"></a>00045 <span class="preprocessor"></span><span class="preprocessor">    #define ARCH &quot; (Intel x86)&quot;</span>
+<a name="l00045"></a><a class="code" href="os_8h.html#a63e66b419dba650abc74240836e8447a">00045</a> <span class="preprocessor"></span><span class="preprocessor">    #define ARCH &quot; (Intel x86)&quot;</span>
 <a name="l00046"></a>00046 <span class="preprocessor"></span><span class="preprocessor">#elif defined(__powerpc__) || defined(_M_PPC)</span>
 <a name="l00047"></a>00047 <span class="preprocessor"></span><span class="preprocessor">    #define ARCH &quot; (PowerPC)&quot;</span>
 <a name="l00048"></a>00048 <span class="preprocessor"></span><span class="preprocessor">#elif defined(__arm__) || defined(_M_ARM)</span>
@@ -101,7 +101,7 @@ window.onload = initDynSections;
 <a name="l00050"></a>00050 <span class="preprocessor"></span><span class="preprocessor">#elif defined(__mips__) || defined(_M_MRX000)</span>
 <a name="l00051"></a>00051 <span class="preprocessor"></span><span class="preprocessor">    #define ARCH &quot; (MIPS)&quot;</span>
 <a name="l00052"></a>00052 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00053"></a><a class="code" href="os_8h.html#a63e66b419dba650abc74240836e8447a">00053</a> <span class="preprocessor"></span><span class="preprocessor">    #define ARCH &quot;&quot;</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span><span class="preprocessor">    #define ARCH &quot;&quot;</span>
 <a name="l00054"></a>00054 <span class="preprocessor"></span><span class="preprocessor">#endif // ARCH</span>
 <a name="l00055"></a>00055 <span class="preprocessor"></span>
 <a name="l00056"></a>00056 <span class="comment">// Target OS detection. Done by Qt, so should work for any compiler.</span>
@@ -189,15 +189,18 @@ window.onload = initDynSections;
 <a name="l00148"></a>00148 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_WIN32</span>
 <a name="l00149"></a><a class="code" href="os_8h.html#a3324dbb5e25daac23e988901bb085447">00149</a> <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Windows&quot;ARCH</span>
 <a name="l00150"></a><a class="code" href="os_8h.html#a1dd5b94c3a8ca1350a4037270084df73">00150</a> <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(28)</span>
-<a name="l00151"></a>00151 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_WINCE</span>
-<a name="l00152"></a>00152 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Windows CE&quot;ARCH</span>
+<a name="l00151"></a>00151 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_WINCE_WM</span>
+<a name="l00152"></a>00152 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Windows Mobile&quot;ARCH</span>
 <a name="l00153"></a>00153 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(29)</span>
-<a name="l00154"></a>00154 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00155"></a>00155 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Unknown&quot;ARCH</span>
-<a name="l00156"></a>00156 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(255)</span>
-<a name="l00157"></a>00157 <span class="preprocessor"></span><span class="preprocessor">#endif // OS</span>
-<a name="l00158"></a>00158 <span class="preprocessor"></span>
-<a name="l00159"></a>00159 <span class="preprocessor">#endif // OS_H</span>
+<a name="l00154"></a>00154 <span class="preprocessor"></span><span class="preprocessor">#elif defined Q_OS_WINCE</span>
+<a name="l00155"></a>00155 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Windows CE&quot;ARCH</span>
+<a name="l00156"></a>00156 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(30)</span>
+<a name="l00157"></a>00157 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00158"></a>00158 <span class="preprocessor"></span><span class="preprocessor">    #define OS &quot;Unknown&quot;ARCH</span>
+<a name="l00159"></a>00159 <span class="preprocessor"></span><span class="preprocessor">    #define OSID quint8(255)</span>
+<a name="l00160"></a>00160 <span class="preprocessor"></span><span class="preprocessor">#endif // OS</span>
+<a name="l00161"></a>00161 <span class="preprocessor"></span>
+<a name="l00162"></a>00162 <span class="preprocessor">#endif // OS_H</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -213,7 +216,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Mar 3 01:46:35 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Apr 8 23:15:53 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

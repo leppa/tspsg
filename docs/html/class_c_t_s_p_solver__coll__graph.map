@@ -1,7 +1,9 @@
 <map id="G" name="G">
-<area shape="rect" id="node2" href="$struct_s_step.html" title="This structure represents one step of solving." alt="" coords="241,109,297,137"/>
-<area shape="rect" id="node4" href="qt-4.6.tag$qlist.html" title="QList\&lt; QList\&lt; double \&gt; \&gt;" alt="" coords="5,6,173,34"/>
-<area shape="rect" id="node7" href="qt-4.6.tag$qlist.html" title="QList\&lt; SCandidate \&gt;" alt="" coords="197,6,341,34"/>
-<area shape="rect" id="node9" href="$struct_s_candidate.html" title="A structure that represents a candidate for branching." alt="" coords="365,6,453,34"/>
-<area shape="rect" id="node11" href="qt-4.6.tag$qhash.html" title="QHash\&lt; int, int \&gt;" alt="" coords="387,109,507,137"/>
+<area shape="rect" id="node2" href="qt-4.6.tag$qobject.html" title="QObject" alt="" coords="148,109,217,137"/>
+<area shape="rect" id="node4" href="$struct_s_step.html" title="This structure represents one step of solving." alt="" coords="241,109,297,137"/>
+<area shape="rect" id="node6" href="qt-4.6.tag$qlist.html" title="QList\&lt; QList\&lt; double \&gt; \&gt;" alt="" coords="5,6,173,34"/>
+<area shape="rect" id="node9" href="qt-4.6.tag$qlist.html" title="QList\&lt; SCandidate \&gt;" alt="" coords="197,6,341,34"/>
+<area shape="rect" id="node11" href="$struct_s_candidate.html" title="A structure that represents a candidate for branching." alt="" coords="365,6,453,34"/>
+<area shape="rect" id="node13" href="qt-4.6.tag$qhash.html" title="QHash\&lt; int, int \&gt;" alt="" coords="387,109,507,137"/>
+<area shape="rect" id="node15" href="qt-4.6.tag$qmutex.html" title="QMutex" alt="" coords="531,109,597,137"/>
 </map>
