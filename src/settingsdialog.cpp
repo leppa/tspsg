@@ -41,6 +41,14 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	buttonBox->button(QDialogButtonBox::Cancel)->setStatusTip(tr("Close without saving preferences"));
 	buttonBox->button(QDialogButtonBox::Cancel)->setCursor(QCursor(Qt::PointingHandCursor));
 
+QPalette p = bgWhite->palette();
+	p.setColor(QPalette::Window, p.color(QPalette::Base));
+	bgWhite->setPalette(p);
+
+	p = lineHorizontal->palette();
+	p.setColor(QPalette::Window, p.color(QPalette::Text));
+	lineHorizontal->setPalette(p);
+
 #ifdef HANDHELD
 QVBoxLayout *vbox1; // Layout helper
 
@@ -194,7 +202,7 @@ QHBoxLayout *hbox1;
 	cbScrollToEnd->setChecked(settings->value("ScrollToEnd", DEF_SCROLL_TO_END).toBool());
 
 	font = settings->value("Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>();
-	color = settings->value("Color",DEF_FONT_COLOR).value<QColor>();
+	color = settings->value("Colors/Text", DEF_TEXT_COLOR).value<QColor>();
 	settings->endGroup();
 
 #ifndef Q_OS_WINCE_WM
@@ -238,7 +246,7 @@ void SettingsDialog::accept()
 	if (QApplication::keyboardModifiers() & Qt::ShiftModifier) {
 		if (QMessageBox::question(this, tr("Settings Reset"), tr("Do you really want to <b>reset all application settings to their defaults</b>?"), QMessageBox::RestoreDefaults | QMessageBox::Cancel) == QMessageBox::RestoreDefaults) {
 			_newFont = (font != QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE));
-			_newColor = (color != DEF_FONT_COLOR);
+			_newColor = (color != DEF_TEXT_COLOR);
 			settings->remove("");
 			settings->setValue("SettingsReset", true);
 			QDialog::accept();
@@ -279,7 +287,7 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
 	if (_newFont)
 		settings->setValue("Font", font);
 	if (_newColor)
-		settings->setValue("Color", color);
+		settings->setValue("Colors/Text", color);
 	settings->endGroup();
 	QDialog::accept();
 }

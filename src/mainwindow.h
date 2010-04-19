@@ -100,14 +100,23 @@ private:
 	QRect currentGeometry;
 #endif // Q_OS_WINCE_WM
 
+	// Formats
+	QTextTableFormat fmt_table;
+	QTextBlockFormat fmt_paragraph,
+		fmt_center;
+	QTextCharFormat fmt_default,
+		fmt_selected,
+		fmt_alternate,
+		fmt_altlist;
+
 	void closeEvent(QCloseEvent *ev);
 	bool hasUpdater() const;
 	void initDocStyleSheet();
 	void loadLangList();
 	bool loadLanguage(const QString &lang = QString());
 	bool maybeSave();
-	QString outputMatrix(const TMatrix &matrix) const;
-	QString outputMatrix(const SStep &step) const;
+	void outputMatrix(QTextCursor &cur, const TMatrix &matrix);
+	void outputMatrix(QTextCursor &cur, const SStep &step);
 	void retranslateUi(bool all = true);
 	bool saveTask();
 	void setFileName(const QString &fileName = tr("Untitled") + ".tspt");

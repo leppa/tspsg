@@ -1,8 +1,8 @@
-TSPSG: TSP Solver and Generator
-Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+=================================
+ TSPSG: TSP Solver and Generator
+=================================
 
-$Id$
-$URL$
+Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
 
 TSPSG is intended to generate and solve Travelling Salesman Problem
 (TSP) tasks. It uses Branch and Bound method for solving. An input
@@ -31,9 +31,14 @@ You should have received a copy of the GNU General Public License
 along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
 
 Third parties:
-* This software is created using opensource version of Qt toolkit,
-  see http://qt.nokia.com/
-* The icons used in this software are part of Oxygen Icons project
-  licensed according to the GNU Lesser General Public License,
-  see http://www.oxygen-icons.org/
 
+  * This software is created using opensource version of Qt toolkit,
+    see http://qt.nokia.com/
+
+  * The icons used in this software are part of Oxygen Icons project
+    licensed according to the GNU Lesser General Public License,
+    see http://www.oxygen-icons.org/
+
+
+$Id$
+$URL$

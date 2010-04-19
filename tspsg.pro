@@ -17,20 +17,20 @@ TEMPLATE = app
 # Versioning
 BUILD_VERSION_MAJOR = 0
 BUILD_VERSION_MINOR = 1
-BUILD_RELEASE = 2
+BUILD_RELEASE = 3
 
 # These are only defined on releases
-DEFINES += TSPSG_RELEASE_BUILD
-!symbian {
-	DEFINES += BUILD_STATUS="\"(alpha 2)\""
-} else {
-	# Symbian doesn't handle spaces in defines well
-	DEFINES += BUILD_STATUS="(alpha2)"
-}
+#DEFINES += TSPSG_RELEASE_BUILD
+#!symbian {
+#      DEFINES += BUILD_STATUS="\"(alpha 2)\""
+#} else {
+#      # Symbian doesn't handle spaces in defines well
+#      DEFINES += BUILD_STATUS="(alpha2)"
+#}
 
-#REVISION = $$system(svnversion)
-#REVISION = $$replace(REVISION,"M","")
-REVISION = 100
+#REVISION = 100
+REVISION = $$system(svnversion)
+REVISION = $$replace(REVISION,"M","")
 VERSION = $$sprintf("%1.%2.%3.%4",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE,$$REVISION)
 
 DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
@@ -61,6 +61,7 @@ CONFIG(release, debug|release) {
 	OBJECTS_DIR = debug
 	DESTDIR = debug
 	DEFINES += DEBUG
+#	CONFIG += console
 	D = d
 }
 TARGET = tspsg$${D}
@@ -77,7 +78,7 @@ include(tspsg.pri)
 # Common rules
 l10n.files = l10n/*.qm
 #share.files =
-docs.files = COPYING README
+docs.files = COPYING README.txt
 INSTALLS += target l10n share docs
 
 # For *nix:
@@ -155,7 +156,7 @@ symbian {
 	l10n.path = l10n
 	docs.sources = $$docs.files
 	docs.pkg_prerules = \
-		"\"README\" - \"\", FILETEXT, TEXTCONTINUE" \
+		"\"README.txt\" - \"\", FILETEXT, TEXTCONTINUE" \
 		"\"COPYING\" - \"\", FILETEXT, TEXTEXIT"
 	DEPLOYMENT += share l10n docs
 #	DEPLOYMENT_PLUGIN += qjpeg qsvg

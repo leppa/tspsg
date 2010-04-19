@@ -511,29 +511,58 @@ SStep *root = solver.solve(n, matrix);
 	pd.setMaximum(n);
 	pd.setValue(0);
 
+#ifdef DEBUG
+QTime t;
+	t.start();
+#endif
 	solutionText->clear();
-	solutionText->setDocumentTitle(tr("Solution of Variant #%1 task").arg(spinVariant->value()));
-	solutionText->append("<p>" + tr("Variant #%1").arg(spinVariant->value()) + "</p>");
-	solutionText->append("<p>" + tr("Task:") + "</p>");
-	solutionText->append(outputMatrix(matrix));
-	solutionText->append("<hr><p>" + tr("Solution of Variant #%1 task").arg(spinVariant->value()) + "</p>");
+#ifdef DEBUG
+	qDebug() << "Clear:" << t.elapsed();
+	t.restart();
+#endif
+	solutionText->setDocumentTitle(tr("Solution of Variant #%1 Task").arg(spinVariant->value()));
+
+QTextDocument *doc = solutionText->document();
+QTextCursor cur(doc);
+
+	cur.beginEditBlock();
+	cur.setBlockFormat(fmt_paragraph);
+	cur.insertText(tr("Variant #%1").arg(spinVariant->value()), fmt_default);
+	cur.insertBlock(fmt_paragraph);
+	cur.insertText(tr("Task:"));
+	outputMatrix(cur, matrix);
+	cur.insertHtml("<hr>");
+	cur.insertBlock(fmt_paragraph);
+	cur.insertText(tr("Solution of Variant #%1 Task").arg(spinVariant->value()), fmt_default);
+	cur.endEditBlock();
+
 SStep *step = root;
 	n = 1;
 	pb->setFormat(tr("Generating step %v"));
 	while (n < spinCities->value()) {
 		if (pd.wasCanceled()) {
+			pd.setLabelText(tr("Cleaning up..."));
+			pd.setMaximum(0);
+			pd.setCancelButton(NULL);
+			pd.show();
+			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+			solver.cleanup(true);
 			solutionText->clear();
+			toggleSolutionActions(false);
 			return;
 		}
 		pd.setValue(n);
 
 		if (step->prNode->prNode != NULL || ((step->prNode->prNode == NULL) && (step->plNode->prNode == NULL))) {
 			if (n != spinCities->value()) {
-				solutionText->append("<p>" + tr("Step #%1").arg(n++) + "</p>");
+				cur.beginEditBlock();
+				cur.insertBlock(fmt_paragraph);
+				cur.insertText(tr("Step #%1").arg(n++));
 				if (settings->value("Output/ShowMatrix", DEF_SHOW_MATRIX).toBool() && (!settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() || (settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() && (spinCities->value() <= settings->value("Output/ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt())))) {
-					solutionText->append(outputMatrix(*step));
+					outputMatrix(cur, *step);
 				}
-				solutionText->append("<p>" + tr("Selected candidate for branching: %1.").arg(tr("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)) + "</p>");
+				cur.insertBlock(fmt_paragraph);
+				cur.insertText(tr("Selected candidate for branching: %1.").arg(tr("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)), fmt_default);
 				if (!step->alts.empty()) {
 SCandidate cand;
 QString alts;
@@ -542,9 +571,12 @@ QString alts;
 							alts += ", ";
 						alts += tr("(%1;%2)").arg(cand.nRow + 1).arg(cand.nCol + 1);
 					}
-					solutionText->append("<p class=\"hasalts\">" + tr("%n alternate candidate(s) for branching: %1.","",step->alts.count()).arg(alts) + "</p>");
+					cur.insertBlock(fmt_paragraph);
+					cur.insertText(tr("%n alternate candidate(s) for branching: %1.", "", step->alts.count()).arg(alts), fmt_altlist);
 				}
-				solutionText->append("<p>&nbsp;</p>");
+				cur.insertBlock(fmt_paragraph);
+				cur.insertText(" ", fmt_default);
+				cur.endEditBlock();
 			}
 		}
 		if (step->prNode->prNode != NULL)
@@ -557,22 +589,34 @@ QString alts;
 	pb->setFormat(tr("Generating footer"));
 	pd.setValue(n);
 
+	cur.beginEditBlock();
+	cur.insertBlock(fmt_paragraph);
 	if (solver.isOptimal())
-		solutionText->append("<p>" + tr("Optimal path:") + "</p>");
+		cur.insertText(tr("Optimal path:"));
 	else
-		solutionText->append("<p>" + tr("Resulting path:") + "</p>");
-	solutionText->append("<p>&nbsp;&nbsp;" + solver.getSortedPath() + "</p>");
+		cur.insertText(tr("Resulting path:"));
+
+	cur.insertBlock(fmt_paragraph);
+	cur.insertText("  " + solver.getSortedPath());
+
+	cur.insertBlock(fmt_paragraph);
 	if (isInteger(step->price))
-		solutionText->append("<p>" + tr("The price is <b>%n</b> unit(s).", "", qRound(step->price)) + "</p>");
+		cur.insertHtml("<p>" + tr("The price is <b>%n</b> unit(s).", "", qRound(step->price)) + "</p>");
 	else
-		solutionText->append("<p>" + tr("The price is <b>%1</b> units.").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()) + "</p>");
+		cur.insertHtml("<p>" + tr("The price is <b>%1</b> units.").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()) + "</p>");
 	if (!solver.isOptimal()) {
-		solutionText->append("<p>&nbsp;</p>");
-		solutionText->append("<p>" + tr("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
+		cur.insertBlock(fmt_paragraph);
+		cur.insertText(" ");
+		cur.insertBlock(fmt_paragraph);
+		cur.insertHtml("<p>" + tr("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
 	}
+	cur.endEditBlock();
+#ifdef DEBUG
+	qDebug() << "Generate:" << t.elapsed();
+#endif
 
 	if (settings->value("Output/ScrollToEnd", DEF_SCROLL_TO_END).toBool()) {
-		// Scrolling to the end of text.
+		// Scrolling to the end of the text.
 		solutionText->moveCursor(QTextCursor::End);
 	} else
 		solutionText->moveCursor(QTextCursor::Start);
@@ -700,14 +744,41 @@ bool MainWindow::hasUpdater() const
 
 void MainWindow::initDocStyleSheet()
 {
-QColor color = settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>();
+	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>());
+
+	fmt_paragraph.setTopMargin(0);
+	fmt_paragraph.setRightMargin(10);
+	fmt_paragraph.setBottomMargin(0);
+	fmt_paragraph.setLeftMargin(10);
+
+	fmt_table.setTopMargin(5);
+	fmt_table.setRightMargin(10);
+	fmt_table.setBottomMargin(5);
+	fmt_table.setLeftMargin(10);
+	fmt_table.setBorder(0);
+	fmt_table.setBorderStyle(QTextFrameFormat::BorderStyle_None);
+	fmt_table.setCellSpacing(5);
+
+	fmt_center.setAlignment(Qt::AlignHCenter);
+
+QColor color = settings->value("Output/Colors/Text", DEF_TEXT_COLOR).value<QColor>();
 QColor hilight;
 	if (color.value() < 192)
-		hilight.setHsv(color.hue(),color.saturation(),127 + qRound(color.value() / 2));
+		hilight.setHsv(color.hue(), color.saturation(), 127 + qRound(color.value() / 2));
 	else
-		hilight.setHsv(color.hue(),color.saturation(),color.value() / 2);
-	solutionText->document()->setDefaultStyleSheet("* {color: " + color.name() +";} p {margin: 0px 10px;} table {margin: 5px;} td {padding: 1px 5px;} .hasalts {color: " + hilight.name() + ";} .selected {color: #A00000; font-weight: bold;} .alternate {color: #008000; font-weight: bold;}");
-	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
+		hilight.setHsv(color.hue(), color.saturation(), color.value() / 2);
+
+	solutionText->document()->setDefaultStyleSheet(QString("* {color: %1;}").arg(color.name()));
+	fmt_default.setForeground(QBrush(color));
+
+	fmt_selected.setForeground(QBrush(settings->value("Output/Colors/Selected", DEF_SELECTED_COLOR).value<QColor>()));
+	fmt_selected.setFontWeight(QFont::Bold);
+
+	fmt_alternate.setForeground(QBrush(settings->value("Output/Colors/Alternate", DEF_ALTERNATE_COLOR).value<QColor>()));
+	fmt_alternate.setFontWeight(QFont::Bold);
+	fmt_altlist.setForeground(QBrush(hilight));
+
+	solutionText->setTextColor(color);
 }
 
 void MainWindow::loadLangList()
@@ -810,53 +881,53 @@ int res = QMessageBox::warning(this, tr("Unsaved Changes"), tr("Would you like t
 		return true;
 }
 
-QString MainWindow::outputMatrix(const TMatrix &matrix) const
+void MainWindow::outputMatrix(QTextCursor &cur, const TMatrix &matrix)
 {
 int n = spinCities->value();
-QString output(""), line;
-	output.append("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+QTextTable *table = cur.insertTable(n, n, fmt_table);
+
 	for (int r = 0; r < n; r++) {
-		line = "<tr>";
 		for (int c = 0; c < n; c++) {
+			cur = table->cellAt(r, c).firstCursorPosition();
+			cur.setBlockFormat(fmt_center);
+			cur.setBlockCharFormat(fmt_default);
 			if (matrix.at(r).at(c) == INFINITY)
-				line += "<td align=\"center\">"INFSTR"</td>";
+				cur.insertText(INFSTR);
 			else
-				line += isInteger(matrix.at(r).at(c)) ? QString("<td align=\"center\">%1</td>").arg(matrix.at(r).at(c)) : QString("<td align=\"center\">%1</td>").arg(matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
+				cur.insertText(isInteger(matrix.at(r).at(c)) ? QString("%1").arg(matrix.at(r).at(c)) : QString("%1").arg(matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()));
 		}
-		line += "</tr>";
-		output.append(line);
+		QApplication::processEvents();
 	}
-	output.append("</table>");
-	return output;
+	cur.movePosition(QTextCursor::End);
 }
 
-QString MainWindow::outputMatrix(const SStep &step) const
+void MainWindow::outputMatrix(QTextCursor &cur, const SStep &step)
 {
 int n = spinCities->value();
-QString output(""), line;
-	output.append("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+QTextTable *table = cur.insertTable(n, n, fmt_table);
+
 	for (int r = 0; r < n; r++) {
-		line = "<tr>";
 		for (int c = 0; c < n; c++) {
+			cur = table->cellAt(r, c).firstCursorPosition();
+			cur.setBlockFormat(fmt_center);
 			if (step.matrix.at(r).at(c) == INFINITY)
-				line += "<td align=\"center\">"INFSTR"</td>";
+				cur.insertText(INFSTR, fmt_default);
 			else if ((r == step.candidate.nRow) && (c == step.candidate.nCol))
-				line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\" class=\"selected\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\" class=\"selected\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
+				cur.insertText(isInteger(step.matrix.at(r).at(c)) ? QString("%1").arg(step.matrix.at(r).at(c)) : QString("%1").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()), fmt_selected);
 			else {
 SCandidate cand;
 				cand.nRow = r;
 				cand.nCol = c;
 				if (step.alts.contains(cand))
-					line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\" class=\"alternate\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\" class=\"alternate\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
+					cur.insertText(isInteger(step.matrix.at(r).at(c)) ? QString("%1").arg(step.matrix.at(r).at(c)) : QString("%1").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()), fmt_alternate);
 				else
-					line += isInteger(step.matrix.at(r).at(c)) ? QString("<td align=\"center\">%1</td>").arg(step.matrix.at(r).at(c)) : QString("<td align=\"center\">%1</td>").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
+					cur.insertText(isInteger(step.matrix.at(r).at(c)) ? QString("%1").arg(step.matrix.at(r).at(c)) : QString("%1").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()), fmt_default);
 			}
 		}
-		line += "</tr>";
-		output.append(line);
+		QApplication::processEvents();
 	}
-	output.append("</table>");
-	return output;
+
+	cur.movePosition(QTextCursor::End);
 }
 
 void MainWindow::retranslateUi(bool all)
@@ -957,8 +1028,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	toolBar->setIconSize(QSize(logicalDpiX() / 5, logicalDpiY() / 5));
 #endif // Q_OS_WINCE_WM
 
-	solutionText->document()->setDefaultFont(settings->value("Output/Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>());
-	solutionText->setTextColor(settings->value("Output/Color",DEF_FONT_COLOR).value<QColor>());
+	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>());
 	solutionText->setWordWrapMode(QTextOption::WordWrap);
 
 #ifndef QT_NO_PRINTER

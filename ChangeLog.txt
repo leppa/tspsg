@@ -2,8 +2,6 @@
  TSPSG: TSP Solver and Generator Changelog
 ===========================================
 
-$Id$
-$URL$
 
 TSPSG v0.1.2 alpha 2 (build 100)
 ================================
@@ -91,3 +89,7 @@ FEATURES
   * Importing tasks from ZKomModRd.
   * Multilinguality: English, Russian and Ukrainian languages.
   * Linux/UNIX, Windows and Windows Mobile support.
+
+
+$Id$
+$URL$

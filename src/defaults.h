@@ -90,7 +90,11 @@
 #else
 	#define DEF_FONT_SIZE 10
 #endif // Q_OS_SYMBIAN
-//! Default font color
-#define DEF_FONT_COLOR Qt::black
+//! Default text color
+#define DEF_TEXT_COLOR QPalette().color(QPalette::Text)
+//! Default selected candidate color
+#define DEF_SELECTED_COLOR QColor(0x008000)
+//! Default alternate candidate color
+#define DEF_ALTERNATE_COLOR QColor(0xA00000)
 
 #endif // DEFAULTS_H

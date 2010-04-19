@@ -2,9 +2,6 @@
  TSPSG Installation Guide
 ==========================
 
-$Id$
-$URL$
-
 Thank you for trying TSPSG. This document will guide you through the
 steps necessary to compile and run TSPSG.
 
@@ -311,3 +308,7 @@ installation directory manually.
 
 [1] http://sourceware.org/bugzilla/show_bug.cgi?id=10165
 [2] https://www.symbiansigned.com/app/page/public/openSignedOnline.do
+
+
+$Id$
+$URL$

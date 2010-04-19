@@ -182,6 +182,9 @@
 	   <property name="statusTip">
 		<string>Solution steps</string>
 	   </property>
+	   <property name="undoRedoEnabled">
+		<bool>false</bool>
+	   </property>
 	   <property name="readOnly">
 		<bool>true</bool>
 	   </property>
