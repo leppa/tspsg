@@ -100,10 +100,13 @@ private:
 	QRect currentGeometry;
 #endif // Q_OS_WINCE_WM
 
+	// The solution graph SVG
+	QPicture graph;
+
 	// Formats
 	QTextTableFormat fmt_table;
 	QTextBlockFormat fmt_paragraph,
-		fmt_center;
+		fmt_cell;
 	QTextCharFormat fmt_default,
 		fmt_selected,
 		fmt_alternate,
@@ -111,6 +114,7 @@ private:
 
 	void closeEvent(QCloseEvent *ev);
 	void dragEnterEvent(QDragEnterEvent *ev);
+	void drawNode(QPainter &pic, int nstep, bool left = false, SStep *step = NULL);
 	void dropEvent(QDropEvent *ev);
 	bool hasUpdater() const;
 	void initDocStyleSheet();

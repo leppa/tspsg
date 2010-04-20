@@ -512,29 +512,27 @@ SStep *root = solver.solve(n, matrix);
 	pd.setMaximum(n);
 	pd.setValue(0);
 
-#ifdef DEBUG
-QTime t;
-	t.start();
-#endif
 	solutionText->clear();
-#ifdef DEBUG
-	qDebug() << "Clear:" << t.elapsed();
-	t.restart();
-#endif
 	solutionText->setDocumentTitle(tr("Solution of Variant #%1 Task").arg(spinVariant->value()));
+
+QPainter pic;
+	pic.begin(&graph);
+	pic.setRenderHint(QPainter::Antialiasing);
 
 QTextDocument *doc = solutionText->document();
 QTextCursor cur(doc);
 
 	cur.beginEditBlock();
 	cur.setBlockFormat(fmt_paragraph);
-	cur.insertText(tr("Variant #%1").arg(spinVariant->value()), fmt_default);
+	cur.insertText(tr("Variant #%1 Task").arg(spinVariant->value()), fmt_default);
 	cur.insertBlock(fmt_paragraph);
 	cur.insertText(tr("Task:"));
 	outputMatrix(cur, matrix);
+	drawNode(pic, 0);
 	cur.insertHtml("<hr>");
 	cur.insertBlock(fmt_paragraph);
-	cur.insertText(tr("Solution of Variant #%1 Task").arg(spinVariant->value()), fmt_default);
+int imgpos = cur.position();
+	cur.insertText(tr("Variant #%1 Solution").arg(spinVariant->value()), fmt_default);
 	cur.endEditBlock();
 
 SStep *step = root;
@@ -580,11 +578,17 @@ QString alts;
 				cur.endEditBlock();
 			}
 		}
-		if (step->prNode->prNode != NULL)
+		if (n < spinCities->value()) {
+			if (step->prNode != NULL)
+				drawNode(pic, n - 1, false, step->prNode);
+			if (step->plNode != NULL)
+				drawNode(pic, n - 1, true, step->plNode);
+		}
+		if (step->prNode->prNode != NULL) {
 			step = step->prNode;
-		else if (step->plNode->prNode != NULL)
+		} else if (step->plNode->prNode != NULL) {
 			step = step->plNode;
-		else
+		} else
 			break;
 	}
 	pb->setFormat(tr("Generating footer"));
@@ -612,9 +616,20 @@ QString alts;
 		cur.insertHtml("<p>" + tr("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
 	}
 	cur.endEditBlock();
-#ifdef DEBUG
-	qDebug() << "Generate:" << t.elapsed();
-#endif
+	pic.end();
+
+QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
+	i.fill(0);
+	pic.begin(&i);
+	pic.drawPicture(1, 1, graph);
+	pic.end();
+	doc->addResource(QTextDocument::ImageResource, QUrl("tspsg://graph.pic"), i);
+
+QTextImageFormat img;
+	img.setName("tspsg://graph.pic");
+
+	cur.setPosition(imgpos);
+	cur.insertImage(img, QTextFrameFormat::FloatRight);
 
 	if (settings->value("Output/ScrollToEnd", DEF_SCROLL_TO_END).toBool()) {
 		// Scrolling to the end of the text.
@@ -743,6 +758,44 @@ QFileInfo fi(ev->mimeData()->urls().first().toLocalFile());
 	}
 }
 
+void MainWindow::drawNode(QPainter &pic, int nstep, bool left, SStep *step)
+{
+const int r = 35;
+qreal x, y;
+	if (step != NULL)
+		x = left ? r : r * 3.5;
+	else
+		x = r * 2.25;
+	y = r * (3 * nstep + 1);
+
+	pic.drawEllipse(QPointF(x, y), r, r);
+
+	if (step != NULL) {
+QFont font;
+		if (left) {
+			font = pic.font();
+			font.setStrikeOut(true);
+			pic.setFont(font);
+		}
+		pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, tr("(%1;%2)").arg(step->pNode->candidate.nRow + 1).arg(step->pNode->candidate.nCol + 1) + "\n");
+		if (left) {
+			font.setStrikeOut(false);
+			pic.setFont(font);
+		}
+		pic.setBackgroundMode(Qt::OpaqueMode);
+		pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, isInteger(step->price) ?  QString("\n%1").arg(step->price) : QString("\n%1").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()));
+		pic.setBackgroundMode(Qt::TransparentMode);
+	} else {
+		pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, tr("Root"));
+	}
+
+	if (nstep == 1)
+		pic.drawLine(QPointF(r * 2.25, r * (3 * (nstep - 1) + 2)), QPointF(x, y - r));
+	else
+		pic.drawLine(QPointF(r * 3.5, r * (3 * (nstep - 1) + 2)), QPointF(x, y - r));
+
+}
+
 void MainWindow::dropEvent(QDropEvent *ev)
 {
 	if (maybeSave() && tspmodel->loadTask(ev->mimeData()->urls().first().toLocalFile())) {
@@ -782,7 +835,7 @@ void MainWindow::initDocStyleSheet()
 	fmt_table.setBorderStyle(QTextFrameFormat::BorderStyle_None);
 	fmt_table.setCellSpacing(5);
 
-	fmt_center.setAlignment(Qt::AlignHCenter);
+	fmt_cell.setAlignment(Qt::AlignHCenter);
 
 QColor color = settings->value("Output/Colors/Text", DEF_TEXT_COLOR).value<QColor>();
 QColor hilight;
@@ -912,7 +965,7 @@ QTextTable *table = cur.insertTable(n, n, fmt_table);
 	for (int r = 0; r < n; r++) {
 		for (int c = 0; c < n; c++) {
 			cur = table->cellAt(r, c).firstCursorPosition();
-			cur.setBlockFormat(fmt_center);
+			cur.setBlockFormat(fmt_cell);
 			cur.setBlockCharFormat(fmt_default);
 			if (matrix.at(r).at(c) == INFINITY)
 				cur.insertText(INFSTR);
@@ -932,7 +985,7 @@ QTextTable *table = cur.insertTable(n, n, fmt_table);
 	for (int r = 0; r < n; r++) {
 		for (int c = 0; c < n; c++) {
 			cur = table->cellAt(r, c).firstCursorPosition();
-			cur.setBlockFormat(fmt_center);
+			cur.setBlockFormat(fmt_cell);
 			if (step.matrix.at(r).at(c) == INFINITY)
 				cur.insertText(INFSTR, fmt_default);
 			else if ((r == step.candidate.nRow) && (c == step.candidate.nCol))
