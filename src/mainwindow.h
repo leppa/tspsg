@@ -110,6 +110,8 @@ private:
 		fmt_altlist;
 
 	void closeEvent(QCloseEvent *ev);
+	void dragEnterEvent(QDragEnterEvent *ev);
+	void dropEvent(QDropEvent *ev);
 	bool hasUpdater() const;
 	void initDocStyleSheet();
 	void loadLangList();

@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 	loadLanguage();
 	setupUi();
+	setAcceptDrops(true);
 
 	initDocStyleSheet();
 
@@ -731,6 +732,28 @@ void MainWindow::closeEvent(QCloseEvent *ev)
 	}
 
 	QMainWindow::closeEvent(ev);
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *ev)
+{
+	if (ev->mimeData()->hasUrls() && (ev->mimeData()->urls().count() == 1)) {
+QFileInfo fi(ev->mimeData()->urls().first().toLocalFile());
+		if ((fi.suffix() == "tspt") || (fi.suffix() == "zkt"))
+			ev->acceptProposedAction();
+	}
+}
+
+void MainWindow::dropEvent(QDropEvent *ev)
+{
+	if (maybeSave() && tspmodel->loadTask(ev->mimeData()->urls().first().toLocalFile())) {
+		setFileName(ev->mimeData()->urls().first().toLocalFile());
+		tabWidget->setCurrentIndex(0);
+		setWindowModified(false);
+		solutionText->clear();
+		toggleSolutionActions(false);
+
+		ev->acceptProposedAction();
+	}
 }
 
 bool MainWindow::hasUpdater() const
