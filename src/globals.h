@@ -31,7 +31,6 @@
 // INCLUDES
 #include <QtCore>
 #include <QtGui>
-#include <limits>
 
 // Version info
 #include "version.h"
@@ -39,6 +38,8 @@
 #include "os.h"
 // TSPSG Defaults
 #include "defaults.h"
+// TSPSolver
+#include "tspsolver.h"
 #ifdef Q_OS_WIN32
 	// Vista/7 Eyecandy
 	#include "qtwin.h"
@@ -79,17 +80,6 @@
 //! ZKomModRd Task file version
 #define ZKT_VERSION quint8(1)
 
-/*!
- * \def INFINITY
- * \brief This value means infinity :-)
- *
- *  Some libraries already have \c INFINITY defined.
- *  We need to redefine it for the \c INFINITY to always have the same value.
- */
-#ifdef INFINITY
-	#undef INFINITY
-#endif
-#define INFINITY std::numeric_limits<double>::infinity()
 //! This string represents infinite value in the table
 #define INFSTR "---"
 

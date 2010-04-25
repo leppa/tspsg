@@ -288,6 +288,19 @@
 	   </attribute>
 	   <layout class="QVBoxLayout" name="_6">
 		<item>
+		 <widget class="QCheckBox" name="cbShowGraph">
+		  <property name="cursor">
+		   <cursorShape>PointingHandCursor</cursorShape>
+		  </property>
+		  <property name="statusTip">
+		   <string>Show graphical representation of the solution</string>
+		  </property>
+		  <property name="text">
+		   <string>Show solution graph</string>
+		  </property>
+		 </widget>
+		</item>
+		<item>
 		 <widget class="QCheckBox" name="cbShowMatrix">
 		  <property name="cursor">
 		   <cursorShape>PointingHandCursor</cursorShape>

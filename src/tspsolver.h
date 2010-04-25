@@ -5,7 +5,7 @@
  *  $Id$
  *  $URL$
  *
- * \brief Defines #TMatrix typedef, SCandidate and SStep structs and CTSPSolver class.
+ * \brief Defines TSPSolver namespace and everything needed for solving TSP tasks.
  *
  *  <b>TSPSG: TSP Solver and Generator</b>
  *
@@ -28,29 +28,30 @@
 #ifndef TSPSOLVER_H
 #define TSPSOLVER_H
 
-#include "globals.h"
-
-#include "tspmodel.h"
-
-//! A matrix of city-to-city travel costs.
-typedef QList<QList<double> > TMatrix;
+#include <QtCore>
+#include <limits>
 
 /*!
- * \brief A structure that represents a candidate for branching.
+ * \def INFINITY
+ * \brief This value means infinity :-)
+ *
+ *  Some libraries already have \c INFINITY defined.
+ *  We need to redefine it for the \c INFINITY to always have the same value.
  */
-struct SCandidate {
-	int nRow; //!< A zero-based row number of the candidate
-	int nCol; //!< A zero-based column number of the candidate
+#ifdef INFINITY
+	#undef INFINITY
+#endif
+#define INFINITY std::numeric_limits<double>::infinity()
 
-	//! Assigns default values
-	SCandidate() {
-		nCol = nRow = -1;
-	}
-	//! An operator == implementation
-	bool operator ==(const SCandidate &cand) const {
-		return ((cand.nRow == nRow) && (cand.nCol == nCol));
-	}
-};
+/*!
+ * \brief A TSP Solver namespace.
+ *
+ *  This namespace contains all the stuff required for solving TSP tasks.
+ */
+namespace TSPSolver {
+
+//! A matrix of city-to-city travel costs
+typedef QList<QList<double> > TMatrix;
 
 /*!
  * \brief This structure represents one step of solving.
@@ -58,18 +59,43 @@ struct SCandidate {
  *  A tree of such elements will represent the solving process.
  */
 struct SStep {
+	//! A structure that represents a candidate for branching
+	struct SCandidate {
+		int nRow; //!< A zero-based row number of the candidate
+		int nCol; //!< A zero-based column number of the candidate
+
+		//! Assigns default values
+		SCandidate() {
+			nCol = nRow = -1;
+		}
+		//! An operator == implementation
+		bool operator ==(const SCandidate &cand) const {
+			return ((cand.nRow == nRow) && (cand.nCol == nCol));
+		}
+	};
+
+	//! An enum that describes possible selection of the next step
+	enum NextStep {
+		NoNextStep, //!< No next step (end of solution)
+		LeftBranch, //!< Left branch was selected for the next step
+		RightBranch //!< Right branch was selected for the next step
+	};
+
 	TMatrix matrix; //!< This step's matrix
 	double price; //!< The price of travel to this step
-	SCandidate candidate; //!< A candiadate for branching in the current matrix
+
+	SCandidate candidate; //!< A candiadate for branching in the current step
 	QList<SCandidate> alts; //!< A list of alternative branching candidates
 	SStep *pNode; //!< Pointer to the parent step
 	SStep *plNode; //!< Pointer to the left branch step
 	SStep *prNode; //!< Pointer to the right branch step
+	NextStep next; //!< Indicates what branch was selected for the next step
 
 	//! Assigns default values
 	SStep() {
 		price = -1;
 		pNode = plNode = prNode = NULL;
+		next = NoNextStep;
 	}
 };
 
@@ -87,6 +113,7 @@ public:
 	CTSPSolver(QObject *parent = NULL);
 	void cleanup(bool processEvents = false);
 	QString getSortedPath() const;
+	int getTotalSteps() const;
 	bool isOptimal() const;
 	SStep *solve(int numCities, const TMatrix &task);
 	bool wasCanceled() const;
@@ -104,7 +131,7 @@ signals:
 
 private:
 	bool mayNotBeOptimal, canceled;
-	int nCities;
+	int nCities, total;
 	SStep *root;
 	QHash<int,int> route;
 	mutable QMutex mutex;
@@ -112,18 +139,21 @@ private:
 	double align(TMatrix &matrix);
 	void deleteTree(SStep *&root, bool processEvents = false);
 	void denormalize(TMatrix &matrix) const;
-	QList<SCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
+	QList<SStep::SCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
 	double findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
 	double findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
+	void finishRoute();
 	bool hasSubCycles(int nRow, int nCol) const;
 	void normalize(TMatrix &matrix) const;
 	void subCol(TMatrix &matrix, int nCol, double val);
 	void subRow(TMatrix &matrix, int nRow, double val);
 };
 
+}
+
 #ifdef DEBUG
-QDebug operator<<(QDebug dbg, const TMatrix &matrix);
-QDebug operator<<(QDebug dbg, const SCandidate &candidate);
+QDebug operator<<(QDebug dbg, const TSPSolver::TMatrix &matrix);
+QDebug operator<<(QDebug dbg, const TSPSolver::SStep::SCandidate &candidate);
 #endif // DEBUG
 
 #endif // TSPSOLVER_H

@@ -193,6 +193,7 @@ QHBoxLayout *hbox1;
 	settings->endGroup();
 
 	settings->beginGroup("Output");
+	cbShowGraph->setChecked(settings->value("ShowGraph", DEF_SHOW_GRAPH).toBool());
 	cbShowMatrix->setChecked(settings->value("ShowMatrix", DEF_SHOW_MATRIX).toBool());
 	cbCitiesLimit->setEnabled(cbShowMatrix->isChecked());
 	cbCitiesLimit->setChecked(settings->value("UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT && cbShowMatrix->isChecked()).toBool());
@@ -279,6 +280,7 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
 	settings->endGroup();
 
 	settings->beginGroup("Output");
+	settings->setValue("ShowGraph", cbShowGraph->isChecked());
 	settings->setValue("ShowMatrix", cbShowMatrix->isChecked());
 	settings->setValue("UseShowMatrixLimit", cbShowMatrix->isChecked() && cbCitiesLimit->isChecked());
 	if (cbCitiesLimit->isChecked())

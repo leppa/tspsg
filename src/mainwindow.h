@@ -33,8 +33,9 @@
 #include "ui_mainwindow.h"
 #include "settingsdialog.h"
 
-#include "tspsolver.h"
 #include "tspmodel.h"
+
+using namespace TSPSolver;
 
 /*!
  * \brief Class for handling Main Window UI and logic.

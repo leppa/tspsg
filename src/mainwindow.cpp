@@ -509,15 +509,17 @@ SStep *root = solver.solve(n, matrix);
 	}
 	pb->setFormat(tr("Generating header"));
 	pd.setLabelText(tr("Generating solution output..."));
-	pd.setMaximum(n);
+	pd.setMaximum(solver.getTotalSteps() + 1);
 	pd.setValue(0);
 
 	solutionText->clear();
 	solutionText->setDocumentTitle(tr("Solution of Variant #%1 Task").arg(spinVariant->value()));
 
 QPainter pic;
-	pic.begin(&graph);
-	pic.setRenderHint(QPainter::Antialiasing);
+	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
+		pic.begin(&graph);
+		pic.setRenderHint(QPainter::Antialiasing);
+	}
 
 QTextDocument *doc = solutionText->document();
 QTextCursor cur(doc);
@@ -528,7 +530,8 @@ QTextCursor cur(doc);
 	cur.insertBlock(fmt_paragraph);
 	cur.insertText(tr("Task:"));
 	outputMatrix(cur, matrix);
-	drawNode(pic, 0);
+	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool())
+		drawNode(pic, 0);
 	cur.insertHtml("<hr>");
 	cur.insertBlock(fmt_paragraph);
 int imgpos = cur.position();
@@ -536,9 +539,9 @@ int imgpos = cur.position();
 	cur.endEditBlock();
 
 SStep *step = root;
-	n = 1;
+int c = n = 1;
 	pb->setFormat(tr("Generating step %v"));
-	while (n < spinCities->value()) {
+	while ((step->next != SStep::NoNextStep) && (c < spinCities->value())) {
 		if (pd.wasCanceled()) {
 			pd.setLabelText(tr("Cleaning up..."));
 			pd.setMaximum(0);
@@ -552,41 +555,41 @@ SStep *step = root;
 		}
 		pd.setValue(n);
 
-		if (step->prNode->prNode != NULL || ((step->prNode->prNode == NULL) && (step->plNode->prNode == NULL))) {
-			if (n != spinCities->value()) {
-				cur.beginEditBlock();
-				cur.insertBlock(fmt_paragraph);
-				cur.insertText(tr("Step #%1").arg(n++));
-				if (settings->value("Output/ShowMatrix", DEF_SHOW_MATRIX).toBool() && (!settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() || (settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() && (spinCities->value() <= settings->value("Output/ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt())))) {
-					outputMatrix(cur, *step);
-				}
-				cur.insertBlock(fmt_paragraph);
-				cur.insertText(tr("Selected candidate for branching: %1.").arg(tr("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)), fmt_default);
-				if (!step->alts.empty()) {
-SCandidate cand;
-QString alts;
-					foreach(cand, step->alts) {
-						if (!alts.isEmpty())
-							alts += ", ";
-						alts += tr("(%1;%2)").arg(cand.nRow + 1).arg(cand.nCol + 1);
-					}
-					cur.insertBlock(fmt_paragraph);
-					cur.insertText(tr("%n alternate candidate(s) for branching: %1.", "", step->alts.count()).arg(alts), fmt_altlist);
-				}
-				cur.insertBlock(fmt_paragraph);
-				cur.insertText(" ", fmt_default);
-				cur.endEditBlock();
+		cur.beginEditBlock();
+		cur.insertBlock(fmt_paragraph);
+		cur.insertText(tr("Step #%1").arg(n));
+		if (settings->value("Output/ShowMatrix", DEF_SHOW_MATRIX).toBool() && (!settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() || (settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() && (spinCities->value() <= settings->value("Output/ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt())))) {
+			outputMatrix(cur, *step);
+		}
+		cur.insertBlock(fmt_paragraph);
+		cur.insertText(tr("Selected route %1 %2 part.").arg((step->next == SStep::RightBranch) ? tr("with") : tr("without")).arg(tr("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)), fmt_default);
+		if (!step->alts.empty()) {
+			SStep::SCandidate cand;
+			QString alts;
+			foreach(cand, step->alts) {
+				if (!alts.isEmpty())
+					alts += ", ";
+				alts += tr("(%1;%2)").arg(cand.nRow + 1).arg(cand.nCol + 1);
 			}
+			cur.insertBlock(fmt_paragraph);
+			cur.insertText(tr("%n alternate candidate(s) for branching: %1.", "", step->alts.count()).arg(alts), fmt_altlist);
 		}
-		if (n < spinCities->value()) {
+		cur.insertBlock(fmt_paragraph);
+		cur.insertText(" ", fmt_default);
+		cur.endEditBlock();
+
+		if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
 			if (step->prNode != NULL)
-				drawNode(pic, n - 1, false, step->prNode);
+				drawNode(pic, n, false, step->prNode);
 			if (step->plNode != NULL)
-				drawNode(pic, n - 1, true, step->plNode);
+				drawNode(pic, n, true, step->plNode);
 		}
-		if (step->prNode->prNode != NULL) {
+		n++;
+
+		if (step->next == SStep::RightBranch) {
+			c++;
 			step = step->prNode;
-		} else if (step->plNode->prNode != NULL) {
+		} else if (step->next == SStep::LeftBranch) {
 			step = step->plNode;
 		} else
 			break;
@@ -616,20 +619,23 @@ QString alts;
 		cur.insertHtml("<p>" + tr("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
 	}
 	cur.endEditBlock();
-	pic.end();
+
+	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
+		pic.end();
 
 QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
-	i.fill(0);
-	pic.begin(&i);
-	pic.drawPicture(1, 1, graph);
-	pic.end();
-	doc->addResource(QTextDocument::ImageResource, QUrl("tspsg://graph.pic"), i);
+		i.fill(0);
+		pic.begin(&i);
+		pic.drawPicture(1, 1, graph);
+		pic.end();
+		doc->addResource(QTextDocument::ImageResource, QUrl("tspsg://graph.pic"), i);
 
 QTextImageFormat img;
-	img.setName("tspsg://graph.pic");
+		img.setName("tspsg://graph.pic");
 
-	cur.setPosition(imgpos);
-	cur.insertImage(img, QTextFrameFormat::FloatRight);
+		cur.setPosition(imgpos);
+		cur.insertImage(img, QTextFrameFormat::FloatRight);
+	}
 
 	if (settings->value("Output/ScrollToEnd", DEF_SCROLL_TO_END).toBool()) {
 		// Scrolling to the end of the text.
@@ -783,16 +789,21 @@ QFont font;
 			pic.setFont(font);
 		}
 		pic.setBackgroundMode(Qt::OpaqueMode);
-		pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, isInteger(step->price) ?  QString("\n%1").arg(step->price) : QString("\n%1").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()));
+		if (step->price != INFINITY) {
+			pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, isInteger(step->price) ?  QString("\n%1").arg(step->price) : QString("\n%1").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()));
+		} else {
+			pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, "\n"INFSTR);
+		}
 		pic.setBackgroundMode(Qt::TransparentMode);
 	} else {
 		pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, tr("Root"));
 	}
 
-	if (nstep == 1)
-		pic.drawLine(QPointF(r * 2.25, r * (3 * (nstep - 1) + 2)), QPointF(x, y - r));
-	else
-		pic.drawLine(QPointF(r * 3.5, r * (3 * (nstep - 1) + 2)), QPointF(x, y - r));
+	if (nstep == 1) {
+		pic.drawLine(QPointF(x, y - r), QPointF(r * 2.25, y - 2 * r));
+	} else if (nstep > 1) {
+		pic.drawLine(QPointF(x, y - r), QPointF((step->pNode->next == SStep::RightBranch) ? r * 3.5 : r, y - 2 * r));
+	}
 
 }
 
@@ -805,7 +816,8 @@ void MainWindow::dropEvent(QDropEvent *ev)
 		solutionText->clear();
 		toggleSolutionActions(false);
 
-		ev->acceptProposedAction();
+		ev->setDropAction(Qt::CopyAction);
+		ev->accept();
 	}
 }
 
@@ -991,7 +1003,7 @@ QTextTable *table = cur.insertTable(n, n, fmt_table);
 			else if ((r == step.candidate.nRow) && (c == step.candidate.nCol))
 				cur.insertText(isInteger(step.matrix.at(r).at(c)) ? QString("%1").arg(step.matrix.at(r).at(c)) : QString("%1").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()), fmt_selected);
 			else {
-SCandidate cand;
+SStep::SCandidate cand;
 				cand.nRow = r;
 				cand.nCol = c;
 				if (step.alts.contains(cand))
