@@ -31,6 +31,7 @@
 // INCLUDES
 #include <QtCore>
 #include <QtGui>
+#include <QtSvg>
 
 // Version info
 #include "version.h"

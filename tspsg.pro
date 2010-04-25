@@ -10,7 +10,7 @@
 #
 ######################################################################
 
-#QT += svg
+QT += svg
 
 TEMPLATE = app
 
@@ -49,7 +49,7 @@ unix:!symbian {
 include($$join(PRL, "/"))
 contains(QMAKE_PRL_CONFIG, static) {
 # We "embed" SVG and JPEG support on static build
-#	QTPLUGIN += qjpeg qsvg
+	QTPLUGIN += qjpeg qsvg
 	DEFINES += STATIC_BUILD
 }
 
@@ -112,7 +112,7 @@ win32 {
 
 	share.files = $$[QT_INSTALL_BINS]/QtCore$${D}4.dll \
 		$$[QT_INSTALL_BINS]/QtGui$${D}4.dll
-#		$$[QT_INSTALL_BINS]/QtSvg$${D}4.dll
+		$$[QT_INSTALL_BINS]/QtSvg$${D}4.dll
 	l10n.files += $$[QT_INSTALL_TRANSLATIONS]/*.qm
 	win32-g++ {
 		share.files += $$[QT_INSTALL_BINS]/mingwm10.dll \
@@ -133,7 +133,7 @@ wince {
 	docs.sources = $$docs.files
 
 	DEPLOYMENT += target share l10n docs
-#	DEPLOYMENT_PLUGIN += qjpeg qsvg
+	DEPLOYMENT_PLUGIN += qjpeg qsvg
 }
 
 # win32 and wince common
@@ -159,7 +159,7 @@ symbian {
 		"\"README.txt\" - \"\", FILETEXT, TEXTCONTINUE" \
 		"\"COPYING\" - \"\", FILETEXT, TEXTEXIT"
 	DEPLOYMENT += share l10n docs
-#	DEPLOYMENT_PLUGIN += qjpeg qsvg
+	DEPLOYMENT_PLUGIN += qjpeg qsvg
 
 	ICON = resources/tspsg.svg
 

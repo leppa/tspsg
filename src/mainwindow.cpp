@@ -217,25 +217,41 @@ QPrinter printer(QPrinter::HighResolution);
 		return;
 	}
 #endif
-#if QT_VERSION >= 0x040500
-QTextDocumentWriter dw(selectedFile);
-	if (!(selectedFile.endsWith(".htm",Qt::CaseInsensitive) || selectedFile.endsWith(".html",Qt::CaseInsensitive) || selectedFile.endsWith(".odt",Qt::CaseInsensitive) || selectedFile.endsWith(".txt",Qt::CaseInsensitive)))
-		dw.setFormat("plaintext");
-	if (!dw.write(solutionText->document()))
-		QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution.\nError: %1").arg(dw.device()->errorString()));
-#else // QT_VERSION >= 0x040500
-	// Qt < 4.5 has no QTextDocumentWriter class
+	if (selectedFile.endsWith(".htm", Qt::CaseInsensitive) || selectedFile.endsWith(".html", Qt::CaseInsensitive)) {
 QFile file(selectedFile);
-	if (!file.open(QFile::WriteOnly)) {
-		QApplication::restoreOverrideCursor();
-		QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution.\nError: %1").arg(file->errorString()));
-		return;
-	}
+		if (!file.open(QFile::WriteOnly)) {
+			QApplication::restoreOverrideCursor();
+			QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution.\nError: %1").arg(file.errorString()));
+			return;
+		}
+QFileInfo fi(selectedFile);
+QString html = solutionText->document()->toHtml("UTF-8"),
+		img = fi.completeBaseName() + ".svg";
+		html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"%1\" width=\"%2\" height=\"%3\" alt=\"%4\"").arg(img).arg(graph.width() + 1).arg(graph.height() + 1).arg(tr("Solution Graph")));
+		// Saving solution text as HTML
 QTextStream ts(&file);
-	ts.setCodec(QTextCodec::codecForName("UTF-8"));
-	ts << solutionText->document()->toHtml("UTF-8");
-	file.close();
+		ts.setCodec(QTextCodec::codecForName("UTF-8"));
+		ts << html;
+		file.close();
+		// Saving solution graph as SVG
+QSvgGenerator svg;
+		svg.setFileName(fi.path() + "/" + img);
+		svg.setTitle(tr("Solution Graph"));
+QPainter p;
+		p.begin(&svg);
+		graph.play(&p);
+		p.end();
+
+// Qt < 4.5 has no QTextDocumentWriter class
+#if QT_VERSION >= 0x040500
+	} else {
+QTextDocumentWriter dw(selectedFile);
+		if (!selectedFile.endsWith(".odt",Qt::CaseInsensitive))
+			dw.setFormat("plaintext");
+		if (!dw.write(solutionText->document()))
+			QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution.\nError: %1").arg(dw.device()->errorString()));
 #endif // QT_VERSION >= 0x040500
+	}
 	QApplication::restoreOverrideCursor();
 }
 
