@@ -66,6 +66,15 @@
 
 //! Default for "Show solution graph"
 #define DEF_SHOW_GRAPH true
+/*!
+ * \def DEF_GRAPH_IMAGE_FORMAT
+ * \brief Default for "Save solution graph as"
+ */
+#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+	#define DEF_GRAPH_IMAGE_FORMAT "svg"
+#else
+	#define DEF_GRAPH_IMAGE_FORMAT "png"
+#endif // NOSVG && QT_VERSION >= 0x040500
 //! Default for "Show solution steps' matrices for every solution step"
 #define DEF_SHOW_MATRIX true
 //! Default for "Show or hide solution steps' matrices based on number of cities in the task"

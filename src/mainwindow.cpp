@@ -225,22 +225,63 @@ QFile file(selectedFile);
 			return;
 		}
 QFileInfo fi(selectedFile);
+QString format = settings->value("Output/GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT).toString();
+#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+	if (!QImageWriter::supportedImageFormats().contains(format.toAscii()) && (format != "svg")) {
+#else // NOSVG && QT_VERSION >= 0x040500
+	if (!QImageWriter::supportedImageFormats().contains(format.toAscii())) {
+#endif // NOSVG && QT_VERSION >= 0x040500
+		format = DEF_GRAPH_IMAGE_FORMAT;
+		settings->remove("Output/GraphImageFormat");
+	}
 QString html = solutionText->document()->toHtml("UTF-8"),
-		img = fi.completeBaseName() + ".svg";
-		html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"%1\" width=\"%2\" height=\"%3\" alt=\"%4\"").arg(img).arg(graph.width() + 1).arg(graph.height() + 1).arg(tr("Solution Graph")));
+		img =  fi.completeBaseName() + "." + format;
+		html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"%1\" width=\"%2\" height=\"%3\" alt=\"%4\"").arg(img).arg(graph.width() + 2).arg(graph.height() + 2).arg(tr("Solution Graph")));
+
 		// Saving solution text as HTML
 QTextStream ts(&file);
 		ts.setCodec(QTextCodec::codecForName("UTF-8"));
 		ts << html;
 		file.close();
-		// Saving solution graph as SVG
+
+		// Saving solution graph as SVG or PNG (depending on settings and SVG support)
+#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+		if (format == "svg") {
 QSvgGenerator svg;
-		svg.setFileName(fi.path() + "/" + img);
-		svg.setTitle(tr("Solution Graph"));
+			svg.setSize(QSize(graph.width(), graph.height()));
+			svg.setResolution(graph.logicalDpiX());
+			svg.setFileName(fi.path() + "/" + img);
+			svg.setTitle(tr("Solution Graph"));
+			svg.setDescription(tr("Generated with %1").arg(QApplication::applicationName()));
 QPainter p;
-		p.begin(&svg);
-		graph.play(&p);
-		p.end();
+			p.begin(&svg);
+			p.drawPicture(1, 1, graph);
+			p.end();
+		} else {
+#endif // NOSVG && QT_VERSION >= 0x040500
+QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
+			i.fill(0x00FFFFFF);
+QPainter p;
+			p.begin(&i);
+			p.drawPicture(1, 1, graph);
+			p.end();
+QImageWriter pic(fi.path() + "/" + img);
+			if (pic.supportsOption(QImageIOHandler::Description)) {
+				pic.setText("Title", "Solution Graph");
+				pic.setText("Software", QApplication::applicationName());
+			}
+			if (format == "png")
+				pic.setQuality(5);
+			else if (format == "jpeg")
+				pic.setQuality(80);
+			if (!pic.write(i)) {
+				QApplication::restoreOverrideCursor();
+				QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution graph.\nError: %1").arg(pic.errorString()));
+				return;
+			}
+#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+		}
+#endif // NOSVG && QT_VERSION >= 0x040500
 
 // Qt < 4.5 has no QTextDocumentWriter class
 #if QT_VERSION >= 0x040500
@@ -350,7 +391,7 @@ QString title;
 #ifdef HANDHELD
 	title += QString("<b>TSPSG<br>TSP Solver and Generator</b><br>");
 #else
-	title += QString("<b>TSPSG: TSP Solver and Generator</b><br>");
+	title += QString("<b>%1</b><br>").arg(QApplication::applicationName());
 #endif // HANDHELD
 	title += QString("%1: <b>%2</b><br>").arg(tr("Version"), QApplication::applicationVersion());
 #ifndef HANDHELD
@@ -535,6 +576,9 @@ QPainter pic;
 	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
 		pic.begin(&graph);
 		pic.setRenderHint(QPainter::Antialiasing);
+		pic.setFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, 9)).value<QFont>());
+		pic.setBrush(QBrush(QColor(Qt::white)));
+		pic.setBackgroundMode(Qt::OpaqueMode);
 	}
 
 QTextDocument *doc = solutionText->document();
@@ -804,13 +848,11 @@ QFont font;
 			font.setStrikeOut(false);
 			pic.setFont(font);
 		}
-		pic.setBackgroundMode(Qt::OpaqueMode);
 		if (step->price != INFINITY) {
 			pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, isInteger(step->price) ?  QString("\n%1").arg(step->price) : QString("\n%1").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()));
 		} else {
 			pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, "\n"INFSTR);
 		}
-		pic.setBackgroundMode(Qt::TransparentMode);
 	} else {
 		pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, tr("Root"));
 	}

@@ -31,7 +31,9 @@
 // INCLUDES
 #include <QtCore>
 #include <QtGui>
-#include <QtSvg>
+#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+	#include <QtSvg>
+#endif // NOSVG && QT_VERSION >= 0x040500
 
 // Version info
 #include "version.h"

@@ -32,10 +32,10 @@
 	#endif
 #endif
 
-#ifdef STATIC_BUILD
-	Q_IMPORT_PLUGIN(qjpeg)
-	Q_IMPORT_PLUGIN(qsvg)
-#endif
+//#ifdef STATIC_BUILD
+//	Q_IMPORT_PLUGIN(qjpeg)
+//	Q_IMPORT_PLUGIN(qtiff)
+//#endif
 
 int main(int argc, char *argv[])
 {
@@ -46,7 +46,7 @@ QApplication app(argc, argv);
 	QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 	app.setOrganizationName("Oleksii \"Lёppa\" Serdiuk");
 	app.setOrganizationDomain("oleksii.name");
-	app.setApplicationName("TSPSG");
+	app.setApplicationName("TSPSG: TSP Solver and Generator");
 	app.setApplicationVersion(BUILD_VERSION);
 
 	// Seeding random number generator

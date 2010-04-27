@@ -11,6 +11,14 @@
 	<normaloff>:/images/icons/preferences_system.png</normaloff>:/images/icons/preferences_system.png</iconset>
   </property>
   <widget class="QWidget" name="bgGrey" native="true">
+   <property name="geometry">
+	<rect>
+	 <x>0</x>
+	 <y>0</y>
+	 <width>197</width>
+	 <height>37</height>
+	</rect>
+   </property>
    <property name="sizePolicy">
 	<sizepolicy hsizetype="Preferred" vsizetype="Fixed">
 	 <horstretch>0</horstretch>
@@ -92,6 +100,14 @@
    </layout>
   </widget>
   <widget class="QWidget" name="bgWhite" native="true">
+   <property name="geometry">
+	<rect>
+	 <x>0</x>
+	 <y>0</y>
+	 <width>226</width>
+	 <height>253</height>
+	</rect>
+   </property>
    <property name="autoFillBackground">
 	<bool>true</bool>
    </property>
@@ -164,6 +180,9 @@
 		   <widget class="QLabel" name="labelFractionalAccuracy">
 			<property name="text">
 			 <string>Fractional accuracy:</string>
+			</property>
+			<property name="buddy">
+			 <cstring>spinFractionalAccuracy</cstring>
 			</property>
 		   </widget>
 		  </item>
@@ -301,6 +320,62 @@
 		 </widget>
 		</item>
 		<item>
+		 <layout class="QHBoxLayout" name="_10">
+		  <property name="spacing">
+		   <number>5</number>
+		  </property>
+		  <item>
+		   <spacer name="spacer_7">
+			<property name="orientation">
+			 <enum>Qt::Horizontal</enum>
+			</property>
+			<property name="sizeType">
+			 <enum>QSizePolicy::Fixed</enum>
+			</property>
+			<property name="sizeHint" stdset="0">
+			 <size>
+			  <width>10</width>
+			  <height>0</height>
+			 </size>
+			</property>
+		   </spacer>
+		  </item>
+		  <item>
+		   <widget class="QLabel" name="labelGraphImageFormat">
+			<property name="text">
+			 <string>Save solution graph as</string>
+			</property>
+			<property name="buddy">
+			 <cstring>comboGraphImageFormat</cstring>
+			</property>
+		   </widget>
+		  </item>
+		  <item>
+		   <widget class="QComboBox" name="comboGraphImageFormat">
+			<property name="cursor">
+			 <cursorShape>PointingHandCursor</cursorShape>
+			</property>
+			<property name="statusTip">
+			 <string>What image format to use for graph when saving solution as HTML</string>
+			</property>
+		   </widget>
+		  </item>
+		  <item>
+		   <spacer name="horizontalSpacer">
+			<property name="orientation">
+			 <enum>Qt::Horizontal</enum>
+			</property>
+			<property name="sizeHint" stdset="0">
+			 <size>
+			  <width>0</width>
+			  <height>0</height>
+			 </size>
+			</property>
+		   </spacer>
+		  </item>
+		 </layout>
+		</item>
+		<item>
 		 <widget class="QCheckBox" name="cbShowMatrix">
 		  <property name="cursor">
 		   <cursorShape>PointingHandCursor</cursorShape>
@@ -314,7 +389,7 @@
 		 </widget>
 		</item>
 		<item>
-		 <layout class="QHBoxLayout" name="layoutCititesLimit">
+		 <layout class="QHBoxLayout" name="_12">
 		  <property name="spacing">
 		   <number>0</number>
 		  </property>
@@ -349,6 +424,9 @@
 		  </item>
 		  <item>
 		   <widget class="QSpinBox" name="spinCitiesLimit">
+			<property name="cursor">
+			 <cursorShape>PointingHandCursor</cursorShape>
+			</property>
 			<property name="statusTip">
 			 <string>Maximum number of cities to show solution steps' matrices</string>
 			</property>
@@ -511,12 +589,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
 	<hint type="sourcelabel">
-	 <x>80</x>
-	 <y>150</y>
+	 <x>91</x>
+	 <y>107</y>
 	</hint>
 	<hint type="destinationlabel">
-	 <x>91</x>
-	 <y>175</y>
+	 <x>113</x>
+	 <y>132</y>
 	</hint>
    </hints>
   </connection>
@@ -527,12 +605,12 @@
    <slot>setChecked(bool)</slot>
    <hints>
 	<hint type="sourcelabel">
-	 <x>80</x>
-	 <y>150</y>
+	 <x>91</x>
+	 <y>107</y>
 	</hint>
 	<hint type="destinationlabel">
-	 <x>91</x>
-	 <y>175</y>
+	 <x>113</x>
+	 <y>132</y>
 	</hint>
    </hints>
   </connection>
@@ -543,12 +621,44 @@
    <slot>setEnabled(bool)</slot>
    <hints>
 	<hint type="sourcelabel">
-	 <x>91</x>
-	 <y>175</y>
+	 <x>113</x>
+	 <y>132</y>
 	</hint>
 	<hint type="destinationlabel">
-	 <x>184</x>
-	 <y>174</y>
+	 <x>183</x>
+	 <y>134</y>
+	</hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbShowGraph</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>labelGraphImageFormat</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+	<hint type="sourcelabel">
+	 <x>113</x>
+	 <y>48</y>
+	</hint>
+	<hint type="destinationlabel">
+	 <x>72</x>
+	 <y>73</y>
+	</hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbShowGraph</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboGraphImageFormat</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+	<hint type="sourcelabel">
+	 <x>113</x>
+	 <y>48</y>
+	</hint>
+	<hint type="destinationlabel">
+	 <x>149</x>
+	 <y>73</y>
 	</hint>
    </hints>
   </connection>

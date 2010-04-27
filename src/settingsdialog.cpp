@@ -194,6 +194,26 @@ QHBoxLayout *hbox1;
 
 	settings->beginGroup("Output");
 	cbShowGraph->setChecked(settings->value("ShowGraph", DEF_SHOW_GRAPH).toBool());
+
+#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+	comboGraphImageFormat->addItem("svg");
+#endif // NOSVG && QT_VERSION >= 0x040500
+// We create a whitelist of formats, supported by the most popular web browsers according to
+//  http://en.wikipedia.org/wiki/Comparison_of_web_browsers#Image_format_support
+//  + TIFF format (there are plugins to support it).
+QStringList whitelist;
+	whitelist << "bmp" << "jpeg" << "png" << "tiff" << "xbm";
+	foreach (QByteArray format, QImageWriter::supportedImageFormats()) {
+		if (whitelist.contains(format))
+			comboGraphImageFormat->addItem(format);
+	}
+	comboGraphImageFormat->model()->sort(0);
+	comboGraphImageFormat->setCurrentIndex(comboGraphImageFormat->findText(settings->value("GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT).toString(), Qt::MatchFixedString));
+	if (comboGraphImageFormat->currentIndex() < 0)
+		comboGraphImageFormat->setCurrentIndex(comboGraphImageFormat->findText(DEF_GRAPH_IMAGE_FORMAT, Qt::MatchFixedString));
+	labelGraphImageFormat->setEnabled(cbShowGraph->isChecked());
+	comboGraphImageFormat->setEnabled(cbShowGraph->isChecked());
+
 	cbShowMatrix->setChecked(settings->value("ShowMatrix", DEF_SHOW_MATRIX).toBool());
 	cbCitiesLimit->setEnabled(cbShowMatrix->isChecked());
 	cbCitiesLimit->setChecked(settings->value("UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT && cbShowMatrix->isChecked()).toBool());
@@ -251,7 +271,7 @@ void SettingsDialog::accept()
 			settings->remove("");
 			settings->setValue("SettingsReset", true);
 			QDialog::accept();
-			QMessageBox::information(this, tr("Settings Reset"), tr("All settings where successfully reset to their defaults.\nIt is recommended to restart the application now."));
+			QMessageBox::information(this->parentWidget(), tr("Settings Reset"), tr("All settings where successfully reset to their defaults.\nIt is recommended to restart the application now."));
 			return;
 		} else
 			return;
@@ -281,6 +301,12 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
 
 	settings->beginGroup("Output");
 	settings->setValue("ShowGraph", cbShowGraph->isChecked());
+	if (cbShowGraph->isChecked()) {
+		if (comboGraphImageFormat->currentIndex() >= 0)
+			settings->setValue("GraphImageFormat", comboGraphImageFormat->currentText());
+		else
+			settings->setValue("GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT);
+	}
 	settings->setValue("ShowMatrix", cbShowMatrix->isChecked());
 	settings->setValue("UseShowMatrixLimit", cbShowMatrix->isChecked() && cbCitiesLimit->isChecked());
 	if (cbCitiesLimit->isChecked())
