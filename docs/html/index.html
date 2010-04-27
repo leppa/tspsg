@@ -60,6 +60,7 @@ window.onload = initDynSections;
     <ul>
       <li class="current"><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -85,16 +86,49 @@ window.onload = initDynSections;
 <p> <b>TSPSG: TSP Solver and Generator</b> </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Copyright &copy; 2007-2010 Lёppa &lt;contacts[at]oleksii[dot]name&gt;</dd></dl>
 <p><b>Homepage:</b> <a href="http://tspsg.sourceforge.net/">tspsg.sourceforge.net</a></p>
-<p>TSPSG is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
-<p>TSPSG is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
-<p>You should have received a copy of the GNU General Public License along with TSPSG. If not, see &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;. </p>
+<h2><a class="anchor" id="m_s1">
+ABOUT TSPSG</a></h2>
+<p><b>TSPSG</b> is intended to generate and solve <b>Travelling Salesman Problem</b> (TSP) tasks. It uses <em>Branch and Bound method</em> for solving. Its input is a number of cities and a matrix of city-to-city travel costs. The matrix can be populated with random values in a given range (which is useful for generating tasks). The result is an optimal route, its price, step-by-step matrices of solving and a solving graph. The task can be saved in an internal binary format and opened later. The result can be printed or saved as <b>PDF</b>, <b>HTML</b>, or <b>ODF</b>.</p>
+<p><b>TSPSG</b> may be useful for teachers to generate test tasks or just for regular users to solve TSPs. Also, it may be used as an example of using <em>Branch and Bound method</em> to solve a particular task.</p>
+<h2><a class="anchor" id="m_s2">
+DOCUMENTATION PAGES</a></h2>
+<p><a class="el" href="changelog.html">TSPSG ChangeLog</a></p>
+<ol type="1">
+<li><a class="el" href="changelog.html#cl_b100">TSPSG v0.1.2 alpha 2 (build 100)</a></li>
+<li><a class="el" href="changelog.html#cl_b42">TSPSG v0.1.1 alpha 1 (build 42)</a></li>
+</ol>
+<p><a class="el" href="install.html">TSPSG Installation Guide</a></p>
+<ol type="1">
+<li><a class="el" href="install.html#i_s1">REQUIREMENTS</a></li>
+<li><a class="el" href="install.html#i_s2">ASSUMPTIONS</a></li>
+<li><a class="el" href="install.html#i_s3">SUPPORTED PLATFORMS</a></li>
+<li><a class="el" href="install.html#i_s4">BUILDING AND INSTALLATION</a></li>
+<li><a class="el" href="install.html#i_s5">UNINSTALLATION</a></li>
+<li><a class="el" href="install.html#i_s6">TROUBLESHOOTING</a></li>
+<li><a class="el" href="install.html#i_s7">NOTES</a></li>
+<li><a class="el" href="install.html#i_s8">REFERNECES</a></li>
+</ol>
+<h2><a class="anchor" id="m_s3">
+LICENSE</a></h2>
+<p><b>TSPSG</b> is free software: you can redistribute it and/or modify<br/>
+ it under the terms of the GNU General Public License as published by<br/>
+ the Free Software Foundation, either version 3 of the License, or<br/>
+ (at your option) any later version.<br/>
+</p>
+<p><b>TSPSG</b> is distributed in the hope that it will be useful,<br/>
+ but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+ <a class="el" href="license.html">GNU General Public License</a> for more details.<br/>
+</p>
+<p>You should have received a copy of the <a class="el" href="license.html">GNU General Public License</a><br/>
+ along with <b>TSPSG</b>. If not, see &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;. </p>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,7 +137,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 9 00:25:38 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 28 02:47:10 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

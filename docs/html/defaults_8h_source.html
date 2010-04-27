@@ -60,6 +60,7 @@ window.onload = initDynSections;
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -108,32 +109,41 @@ window.onload = initDynSections;
 <a name="l00063"></a><a class="code" href="defaults_8h.html#af249ec8d65a40ef0b19738492d12948a">00063</a> <span class="preprocessor">#define DEF_SYMMETRIC_MODE false</span>
 <a name="l00064"></a>00064 <span class="preprocessor"></span>
 <a name="l00066"></a>00066 
-<a name="l00068"></a><a class="code" href="defaults_8h.html#a616d74fa946123f424193b007d5a6382">00068</a> <span class="preprocessor">#define DEF_SHOW_MATRIX true</span>
-<a name="l00070"></a><a class="code" href="defaults_8h.html#ae37fe7eb909d7fd076f067900e900c0e">00070</a> <span class="preprocessor">#define DEF_USE_SHOW_MATRIX_LIMIT true</span>
-<a name="l00072"></a><a class="code" href="defaults_8h.html#a261331d449328e53926027d021757d57">00072</a> <span class="preprocessor">#define DEF_SHOW_MATRIX_LIMIT 15</span>
-<a name="l00074"></a><a class="code" href="defaults_8h.html#a6831bc2c2f11c3a14382c8fbe8d87efe">00074</a> <span class="preprocessor">#define DEF_SCROLL_TO_END false</span>
-<a name="l00075"></a>00075 <span class="preprocessor"></span>
-<a name="l00079"></a>00079 <span class="preprocessor">#ifdef Q_OS_WINCE_WM</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_FAMILY &quot;Tahoma&quot;</span>
-<a name="l00081"></a>00081 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00082"></a><a class="code" href="defaults_8h.html#a2982eb0f2aea4cff78bd4aa767ff1988">00082</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_FAMILY &quot;Courier New&quot;</span>
-<a name="l00083"></a>00083 <span class="preprocessor"></span><span class="preprocessor">#endif // Q_OS_WINCE_WM</span>
-<a name="l00084"></a>00084 <span class="preprocessor"></span>
-<a name="l00088"></a>00088 <span class="preprocessor">#ifdef Q_OS_SYMBIAN</span>
-<a name="l00089"></a>00089 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_SIZE 8</span>
-<a name="l00090"></a>00090 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00091"></a><a class="code" href="defaults_8h.html#ab73bf542bad61b0b720c0495ef612105">00091</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_SIZE 10</span>
-<a name="l00092"></a>00092 <span class="preprocessor"></span><span class="preprocessor">#endif // Q_OS_SYMBIAN</span>
-<a name="l00094"></a><a class="code" href="defaults_8h.html#a6bbeb8fbbb2c6ec31993ff56f6b695e3">00094</a> <span class="preprocessor">#define DEF_FONT_COLOR Qt::black</span>
+<a name="l00068"></a><a class="code" href="defaults_8h.html#aaa6a2cd72387081215575b4013ef8cbd">00068</a> <span class="preprocessor">#define DEF_SHOW_GRAPH true</span>
+<a name="l00069"></a>00069 <span class="preprocessor"></span>
+<a name="l00073"></a>00073 <span class="preprocessor">#if !defined(NOSVG) &amp;&amp; (QT_VERSION &gt;= 0x040500)</span>
+<a name="l00074"></a>00074 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_GRAPH_IMAGE_FORMAT &quot;svg&quot;</span>
+<a name="l00075"></a>00075 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00076"></a><a class="code" href="defaults_8h.html#aad71a2dd2d5413e2839be1c0cb3113c2">00076</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_GRAPH_IMAGE_FORMAT &quot;png&quot;</span>
+<a name="l00077"></a>00077 <span class="preprocessor"></span><span class="preprocessor">#endif // NOSVG &amp;&amp; QT_VERSION &gt;= 0x040500</span>
+<a name="l00079"></a><a class="code" href="defaults_8h.html#a616d74fa946123f424193b007d5a6382">00079</a> <span class="preprocessor">#define DEF_SHOW_MATRIX true</span>
+<a name="l00081"></a><a class="code" href="defaults_8h.html#ae37fe7eb909d7fd076f067900e900c0e">00081</a> <span class="preprocessor">#define DEF_USE_SHOW_MATRIX_LIMIT true</span>
+<a name="l00083"></a><a class="code" href="defaults_8h.html#a261331d449328e53926027d021757d57">00083</a> <span class="preprocessor">#define DEF_SHOW_MATRIX_LIMIT 15</span>
+<a name="l00085"></a><a class="code" href="defaults_8h.html#a6831bc2c2f11c3a14382c8fbe8d87efe">00085</a> <span class="preprocessor">#define DEF_SCROLL_TO_END false</span>
+<a name="l00086"></a>00086 <span class="preprocessor"></span>
+<a name="l00090"></a>00090 <span class="preprocessor">#ifdef Q_OS_WINCE_WM</span>
+<a name="l00091"></a>00091 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_FAMILY &quot;Tahoma&quot;</span>
+<a name="l00092"></a>00092 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00093"></a><a class="code" href="defaults_8h.html#a2982eb0f2aea4cff78bd4aa767ff1988">00093</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_FAMILY &quot;Courier New&quot;</span>
+<a name="l00094"></a>00094 <span class="preprocessor"></span><span class="preprocessor">#endif // Q_OS_WINCE_WM</span>
 <a name="l00095"></a>00095 <span class="preprocessor"></span>
-<a name="l00096"></a>00096 <span class="preprocessor">#endif // DEFAULTS_H</span>
+<a name="l00099"></a>00099 <span class="preprocessor">#ifdef Q_OS_SYMBIAN</span>
+<a name="l00100"></a>00100 <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_SIZE 8</span>
+<a name="l00101"></a>00101 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00102"></a><a class="code" href="defaults_8h.html#ab73bf542bad61b0b720c0495ef612105">00102</a> <span class="preprocessor"></span><span class="preprocessor">    #define DEF_FONT_SIZE 10</span>
+<a name="l00103"></a>00103 <span class="preprocessor"></span><span class="preprocessor">#endif // Q_OS_SYMBIAN</span>
+<a name="l00105"></a><a class="code" href="defaults_8h.html#a710f671e31437218c889b6b2f3c01210">00105</a> <span class="preprocessor">#define DEF_TEXT_COLOR QPalette().color(QPalette::Text)</span>
+<a name="l00107"></a><a class="code" href="defaults_8h.html#ad17d752887636bbd53cf11d65f464b17">00107</a> <span class="preprocessor">#define DEF_SELECTED_COLOR QColor(0x008000)</span>
+<a name="l00109"></a><a class="code" href="defaults_8h.html#a442f2f1e773805a0ba8949f31fbf4ede">00109</a> <span class="preprocessor">#define DEF_ALTERNATE_COLOR QColor(0xA00000)</span>
+<a name="l00110"></a>00110 <span class="preprocessor"></span>
+<a name="l00111"></a>00111 <span class="preprocessor">#endif // DEFAULTS_H</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -142,7 +152,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 9 00:25:38 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 28 02:47:10 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

@@ -60,6 +60,7 @@ window.onload = initDynSections;
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -90,24 +91,24 @@ window.onload = initDynSections;
 <a href="#_details">More...</a></p>
 <code>#include &lt;QtCore&gt;</code><br/>
 <code>#include &lt;QtGui&gt;</code><br/>
-<code>#include &lt;limits&gt;</code><br/>
 <code>#include &quot;<a class="el" href="version_8h_source.html">version.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="os_8h_source.html">os.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="defaults_8h_source.html">defaults.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="tspsolver_8h_source.html">tspsolver.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="qtwin_8h_source.html">qtwin.h</a>&quot;</code><br/>
 <div class="dynheader">
 Include dependency graph for globals.h:</div>
 <div class="dynsection">
 <div class="center"><img src="globals_8h__incl.png" border="0" usemap="#src_2globals_8h_map" alt=""/></div>
 <map name="src_2globals_8h_map" id="src_2globals_8h">
-<area shape="rect" id="node9" href="version_8h.html" title="Contains TSPSG version information defines." alt="" coords="245,83,317,111"/><area shape="rect" id="node11" href="os_8h.html" title="Contains TSPSG target CPU architecture and OS detection." alt="" coords="341,83,387,111"/><area shape="rect" id="node13" href="defaults_8h.html" title="Contains TSPSG defaults." alt="" coords="411,83,488,111"/><area shape="rect" id="node15" href="qtwin_8h.html" title="qtwin.h" alt="" coords="512,83,573,111"/></map>
+<area shape="rect" id="node7" href="version_8h.html" title="Contains TSPSG version information defines." alt="" coords="105,83,177,111"/><area shape="rect" id="node9" href="os_8h.html" title="Contains TSPSG target CPU architecture and OS detection." alt="" coords="201,83,246,111"/><area shape="rect" id="node11" href="defaults_8h.html" title="Contains TSPSG defaults." alt="" coords="270,83,348,111"/><area shape="rect" id="node13" href="tspsolver_8h.html" title="Defines TSPSolver namespace and everything needed for solving TSP tasks." alt="" coords="372,83,454,111"/><area shape="rect" id="node18" href="qtwin_8h.html" title="qtwin.h" alt="" coords="478,83,540,111"/></map>
 </div>
 <div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dynsection">
 <div class="center"><img src="globals_8h__dep__incl.png" border="0" usemap="#src_2globals_8hdep_map" alt=""/></div>
 <map name="src_2globals_8hdep_map" id="src_2globals_8hdep">
-<area shape="rect" id="node3" href="mainwindow_8h.html" title="Defines MainWindow class." alt="" coords="79,238,202,266"/><area shape="rect" id="node5" href="settingsdialog_8h.html" title="Defines SettingsDialog class." alt="" coords="22,161,155,189"/><area shape="rect" id="node8" href="tspmodel_8h.html" title="Defines CTSPModel class." alt="" coords="138,83,245,111"/><area shape="rect" id="node11" href="tspsolver_8h.html" title="Defines TMatrix typedef, SCandidate and SStep structs and CTSPSolver class." alt="" coords="230,161,334,189"/></map>
+<area shape="rect" id="node3" href="mainwindow_8h.html" title="Defines MainWindow class." alt="" coords="26,161,149,189"/><area shape="rect" id="node5" href="settingsdialog_8h.html" title="Defines SettingsDialog class." alt="" coords="21,83,154,111"/><area shape="rect" id="node8" href="tspmodel_8h.html" title="Defines CTSPModel class." alt="" coords="178,83,285,111"/></map>
 </div>
 
 <p><a href="globals_8h_source.html">Go to the source code of this file.</a></p>
@@ -143,8 +144,6 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6d630d0a03e4e53fceb0567653ca629"></a><!-- doxytag: member="globals.h::ZKT_VERSION" ref="ab6d630d0a03e4e53fceb0567653ca629" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#ab6d630d0a03e4e53fceb0567653ca629">ZKT_VERSION</a>&nbsp;&nbsp;&nbsp;quint8(1)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ZKomModRd Task file version. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a956e2723d559858d08644ac99146e910">INFINITY</a>&nbsp;&nbsp;&nbsp;std::numeric_limits&lt;double&gt;::infinity()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This value means infinity :-).  <a href="#a956e2723d559858d08644ac99146e910"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ae8033146e07fa0bae37f148b90cd6b"></a><!-- doxytag: member="globals.h::INFSTR" ref="a1ae8033146e07fa0bae37f148b90cd6b" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a1ae8033146e07fa0bae37f148b90cd6b">INFSTR</a>&nbsp;&nbsp;&nbsp;&quot;---&quot;</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This string represents infinite value in the table. <br/></td></tr>
@@ -157,30 +156,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Contains TSPSG global defines. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Copyright &copy; 2007-2010 Lёppa &lt;contacts[at]oleksii[dot]name&gt;</dd></dl>
-<dl class="rcs"><dt><b>Id</b></dt><dd><a class="el" href="globals_8h.html" title="Contains TSPSG global defines.">globals.h</a> 100 2010-04-08 21:02:26Z laleppa </dd></dl>
+<dl class="rcs"><dt><b>Id</b></dt><dd><a class="el" href="globals_8h.html" title="Contains TSPSG global defines.">globals.h</a> 109 2010-04-27 07:12:55Z laleppa </dd></dl>
 <dl class="rcs"><dt><b>URL</b></dt><dd><a href="https://tspsg.svn.sourceforge.net/svnroot/tspsg/trunk/src/globals.h">https://tspsg.svn.sourceforge.net/svnroot/tspsg/trunk/src/globals.h</a> </dd></dl>
 <p><b>TSPSG: TSP Solver and Generator</b></p>
 <p>This file is part of TSPSG.</p>
 <p>TSPSG is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
 <p>TSPSG is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with TSPSG. If not, see &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;. </p>
-<hr/><h2>Define Documentation</h2>
-<a class="anchor" id="a956e2723d559858d08644ac99146e910"></a><!-- doxytag: member="globals.h::INFINITY" ref="a956e2723d559858d08644ac99146e910" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INFINITY&nbsp;&nbsp;&nbsp;std::numeric_limits&lt;double&gt;::infinity()</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>This value means infinity :-). </p>
-<p>Some libraries already have <code>INFINITY</code> defined. We need to redefine it for the <code>INFINITY</code> to always have the same value. </p>
-
-</div>
-</div>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a594842d2fcaf774c3c42b944f3f031d2"></a><!-- doxytag: member="globals.h::isInteger" ref="a594842d2fcaf774c3c42b944f3f031d2" args="(double x)" -->
 <div class="memitem">
@@ -261,7 +243,7 @@ Here is the call graph for this function:</div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -270,7 +252,7 @@ Here is the call graph for this function:</div>
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 9 00:25:38 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 28 02:47:12 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

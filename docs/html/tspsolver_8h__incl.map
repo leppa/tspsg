@@ -1,8 +1,2 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$globals_8h.html" title="Contains TSPSG global defines." alt="" coords="245,161,317,189"/>
-<area shape="rect" id="node23" href="$tspmodel_8h.html" title="Defines CTSPModel class." alt="" coords="279,83,364,111"/>
-<area shape="rect" id="node11" href="$version_8h.html" title="Contains TSPSG version information defines." alt="" coords="245,238,317,266"/>
-<area shape="rect" id="node13" href="$os_8h.html" title="Contains TSPSG target CPU architecture and OS detection." alt="" coords="341,238,387,266"/>
-<area shape="rect" id="node15" href="$defaults_8h.html" title="Contains TSPSG defaults." alt="" coords="411,238,488,266"/>
-<area shape="rect" id="node17" href="$qtwin_8h.html" title="qtwin.h" alt="" coords="512,238,573,266"/>
 </map>

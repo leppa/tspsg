@@ -60,6 +60,7 @@ window.onload = initDynSections;
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dynsection">
 <div class="center"><img src="defaults_8h__dep__incl.png" border="0" usemap="#src_2defaults_8hdep_map" alt=""/></div>
 <map name="src_2defaults_8hdep_map" id="src_2defaults_8hdep">
-<area shape="rect" id="node3" href="globals_8h.html" title="Contains TSPSG global defines." alt="" coords="97,83,193,111"/><area shape="rect" id="node5" href="mainwindow_8h.html" title="Defines MainWindow class." alt="" coords="79,315,202,343"/><area shape="rect" id="node7" href="settingsdialog_8h.html" title="Defines SettingsDialog class." alt="" coords="22,238,155,266"/><area shape="rect" id="node10" href="tspmodel_8h.html" title="Defines CTSPModel class." alt="" coords="138,161,245,189"/><area shape="rect" id="node13" href="tspsolver_8h.html" title="Defines TMatrix typedef, SCandidate and SStep structs and CTSPSolver class." alt="" coords="230,238,334,266"/></map>
+<area shape="rect" id="node3" href="globals_8h.html" title="Contains TSPSG global defines." alt="" coords="40,83,136,111"/><area shape="rect" id="node5" href="mainwindow_8h.html" title="Defines MainWindow class." alt="" coords="26,238,149,266"/><area shape="rect" id="node7" href="settingsdialog_8h.html" title="Defines SettingsDialog class." alt="" coords="21,161,154,189"/><area shape="rect" id="node10" href="tspmodel_8h.html" title="Defines CTSPModel class." alt="" coords="178,161,285,189"/></map>
 </div>
 
 <p><a href="defaults_8h_source.html">Go to the source code of this file.</a></p>
@@ -129,6 +130,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af249ec8d65a40ef0b19738492d12948a"></a><!-- doxytag: member="defaults.h::DEF_SYMMETRIC_MODE" ref="af249ec8d65a40ef0b19738492d12948a" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="defaults_8h.html#af249ec8d65a40ef0b19738492d12948a">DEF_SYMMETRIC_MODE</a>&nbsp;&nbsp;&nbsp;false</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default for "Symmetric tasks mode". <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa6a2cd72387081215575b4013ef8cbd"></a><!-- doxytag: member="defaults.h::DEF_SHOW_GRAPH" ref="aaa6a2cd72387081215575b4013ef8cbd" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="defaults_8h.html#aaa6a2cd72387081215575b4013ef8cbd">DEF_SHOW_GRAPH</a>&nbsp;&nbsp;&nbsp;true</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default for "Show solution graph". <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad71a2dd2d5413e2839be1c0cb3113c2"></a><!-- doxytag: member="defaults.h::DEF_GRAPH_IMAGE_FORMAT" ref="aad71a2dd2d5413e2839be1c0cb3113c2" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="defaults_8h.html#aad71a2dd2d5413e2839be1c0cb3113c2">DEF_GRAPH_IMAGE_FORMAT</a>&nbsp;&nbsp;&nbsp;&quot;png&quot;</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default for "Save solution graph as". <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a616d74fa946123f424193b007d5a6382"></a><!-- doxytag: member="defaults.h::DEF_SHOW_MATRIX" ref="a616d74fa946123f424193b007d5a6382" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="defaults_8h.html#a616d74fa946123f424193b007d5a6382">DEF_SHOW_MATRIX</a>&nbsp;&nbsp;&nbsp;true</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default for "Show solution steps' matrices for every solution step". <br/></td></tr>
@@ -147,14 +154,20 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab73bf542bad61b0b720c0495ef612105"></a><!-- doxytag: member="defaults.h::DEF_FONT_SIZE" ref="ab73bf542bad61b0b720c0495ef612105" args="" -->
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="defaults_8h.html#ab73bf542bad61b0b720c0495ef612105">DEF_FONT_SIZE</a>&nbsp;&nbsp;&nbsp;10</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default font size. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6bbeb8fbbb2c6ec31993ff56f6b695e3"></a><!-- doxytag: member="defaults.h::DEF_FONT_COLOR" ref="a6bbeb8fbbb2c6ec31993ff56f6b695e3" args="" -->
-#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="defaults_8h.html#a6bbeb8fbbb2c6ec31993ff56f6b695e3">DEF_FONT_COLOR</a>&nbsp;&nbsp;&nbsp;Qt::black</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default font color. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a710f671e31437218c889b6b2f3c01210"></a><!-- doxytag: member="defaults.h::DEF_TEXT_COLOR" ref="a710f671e31437218c889b6b2f3c01210" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="defaults_8h.html#a710f671e31437218c889b6b2f3c01210">DEF_TEXT_COLOR</a>&nbsp;&nbsp;&nbsp;<a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qpalette.html">QPalette</a>().color(QPalette::Text)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default text color. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad17d752887636bbd53cf11d65f464b17"></a><!-- doxytag: member="defaults.h::DEF_SELECTED_COLOR" ref="ad17d752887636bbd53cf11d65f464b17" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="defaults_8h.html#ad17d752887636bbd53cf11d65f464b17">DEF_SELECTED_COLOR</a>&nbsp;&nbsp;&nbsp;<a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qcolor.html">QColor</a>(0x008000)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default selected candidate color. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a442f2f1e773805a0ba8949f31fbf4ede"></a><!-- doxytag: member="defaults.h::DEF_ALTERNATE_COLOR" ref="a442f2f1e773805a0ba8949f31fbf4ede" args="" -->
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="defaults_8h.html#a442f2f1e773805a0ba8949f31fbf4ede">DEF_ALTERNATE_COLOR</a>&nbsp;&nbsp;&nbsp;<a class="elRef" doxygen="qt-4.6.tag:http://doc.trolltech.com/4.6/" href="http://doc.trolltech.com/4.6/qcolor.html">QColor</a>(0xA00000)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default alternate candidate color. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Contains TSPSG defaults. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Copyright &copy; 2007-2010 Lёppa &lt;contacts[at]oleksii[dot]name&gt;</dd></dl>
-<dl class="rcs"><dt><b>Id</b></dt><dd><a class="el" href="defaults_8h.html" title="Contains TSPSG defaults.">defaults.h</a> 100 2010-04-08 21:02:26Z laleppa </dd></dl>
+<dl class="rcs"><dt><b>Id</b></dt><dd><a class="el" href="defaults_8h.html" title="Contains TSPSG defaults.">defaults.h</a> 109 2010-04-27 07:12:55Z laleppa </dd></dl>
 <dl class="rcs"><dt><b>URL</b></dt><dd><a href="https://tspsg.svn.sourceforge.net/svnroot/tspsg/trunk/src/defaults.h">https://tspsg.svn.sourceforge.net/svnroot/tspsg/trunk/src/defaults.h</a> </dd></dl>
 <p><b>TSPSG: TSP Solver and Generator</b></p>
 <p>This file is part of TSPSG.</p>
@@ -167,7 +180,7 @@ This graph shows which files directly or indirectly include this file:</div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -176,7 +189,7 @@ This graph shows which files directly or indirectly include this file:</div>
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 9 00:25:38 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 28 02:47:11 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

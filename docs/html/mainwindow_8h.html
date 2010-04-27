@@ -60,6 +60,7 @@ window.onload = initDynSections;
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,14 +92,13 @@ window.onload = initDynSections;
 <code>#include &quot;<a class="el" href="globals_8h_source.html">globals.h</a>&quot;</code><br/>
 <code>#include &quot;ui_mainwindow.h&quot;</code><br/>
 <code>#include &quot;<a class="el" href="settingsdialog_8h_source.html">settingsdialog.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="tspsolver_8h_source.html">tspsolver.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="tspmodel_8h_source.html">tspmodel.h</a>&quot;</code><br/>
 <div class="dynheader">
 Include dependency graph for mainwindow.h:</div>
 <div class="dynsection">
 <div class="center"><img src="mainwindow_8h__incl.png" border="0" usemap="#src_2mainwindow_8h_map" alt=""/></div>
 <map name="src_2mainwindow_8h_map" id="src_2mainwindow_8h">
-<area shape="rect" id="node3" href="globals_8h.html" title="Contains TSPSG global defines." alt="" coords="245,238,317,266"/><area shape="rect" id="node25" href="settingsdialog_8h.html" title="Defines SettingsDialog class." alt="" coords="216,83,328,111"/><area shape="rect" id="node30" href="tspsolver_8h.html" title="Defines TMatrix typedef, SCandidate and SStep structs and CTSPSolver class." alt="" coords="352,83,435,111"/><area shape="rect" id="node33" href="tspmodel_8h.html" title="Defines CTSPModel class." alt="" coords="420,161,505,189"/><area shape="rect" id="node11" href="version_8h.html" title="Contains TSPSG version information defines." alt="" coords="245,315,317,343"/><area shape="rect" id="node13" href="os_8h.html" title="Contains TSPSG target CPU architecture and OS detection." alt="" coords="341,315,387,343"/><area shape="rect" id="node15" href="defaults_8h.html" title="Contains TSPSG defaults." alt="" coords="411,315,488,343"/><area shape="rect" id="node17" href="qtwin_8h.html" title="qtwin.h" alt="" coords="512,315,573,343"/></map>
+<area shape="rect" id="node3" href="globals_8h.html" title="Contains TSPSG global defines." alt="" coords="188,161,260,189"/><area shape="rect" id="node28" href="settingsdialog_8h.html" title="Defines SettingsDialog class." alt="" coords="292,83,404,111"/><area shape="rect" id="node33" href="tspmodel_8h.html" title="Defines CTSPModel class." alt="" coords="182,83,268,111"/><area shape="rect" id="node9" href="version_8h.html" title="Contains TSPSG version information defines." alt="" coords="105,238,177,266"/><area shape="rect" id="node11" href="os_8h.html" title="Contains TSPSG target CPU architecture and OS detection." alt="" coords="201,238,246,266"/><area shape="rect" id="node13" href="defaults_8h.html" title="Contains TSPSG defaults." alt="" coords="270,238,348,266"/><area shape="rect" id="node15" href="tspsolver_8h.html" title="Defines TSPSolver namespace and everything needed for solving TSP tasks." alt="" coords="372,238,454,266"/><area shape="rect" id="node20" href="qtwin_8h.html" title="qtwin.h" alt="" coords="478,238,540,266"/></map>
 </div>
 
 <p><a href="mainwindow_8h_source.html">Go to the source code of this file.</a></p>
@@ -110,7 +110,7 @@ Include dependency graph for mainwindow.h:</div>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Defines <a class="el" href="class_main_window.html" title="Class for handling Main Window UI and logic.">MainWindow</a> class. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Copyright &copy; 2007-2010 Lёppa &lt;contacts[at]oleksii[dot]name&gt;</dd></dl>
-<dl class="rcs"><dt><b>Id</b></dt><dd><a class="el" href="mainwindow_8h.html" title="Defines MainWindow class.">mainwindow.h</a> 100 2010-04-08 21:02:26Z laleppa </dd></dl>
+<dl class="rcs"><dt><b>Id</b></dt><dd><a class="el" href="mainwindow_8h.html" title="Defines MainWindow class.">mainwindow.h</a> 107 2010-04-25 14:36:27Z laleppa </dd></dl>
 <dl class="rcs"><dt><b>URL</b></dt><dd><a href="https://tspsg.svn.sourceforge.net/svnroot/tspsg/trunk/src/mainwindow.h">https://tspsg.svn.sourceforge.net/svnroot/tspsg/trunk/src/mainwindow.h</a> </dd></dl>
 <p><b>TSPSG: TSP Solver and Generator</b></p>
 <p>This file is part of TSPSG.</p>
@@ -123,7 +123,7 @@ Include dependency graph for mainwindow.h:</div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -132,7 +132,7 @@ Include dependency graph for mainwindow.h:</div>
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 9 00:25:38 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 28 02:47:12 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

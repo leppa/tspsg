@@ -4,6 +4,9 @@
     <name>index</name>
     <title></title>
     <filename>index</filename>
+    <docanchor file="index">m_s1</docanchor>
+    <docanchor file="index">m_s2</docanchor>
+    <docanchor file="index">m_s3</docanchor>
   </compound>
   <compound kind="file">
     <name>defaults.h</name>
@@ -81,6 +84,20 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>DEF_SHOW_GRAPH</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>aaa6a2cd72387081215575b4013ef8cbd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_GRAPH_IMAGE_FORMAT</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>aad71a2dd2d5413e2839be1c0cb3113c2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>DEF_SHOW_MATRIX</name>
       <anchorfile>defaults_8h.html</anchorfile>
       <anchor>a616d74fa946123f424193b007d5a6382</anchor>
@@ -123,9 +140,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>DEF_FONT_COLOR</name>
+      <name>DEF_TEXT_COLOR</name>
       <anchorfile>defaults_8h.html</anchorfile>
-      <anchor>a6bbeb8fbbb2c6ec31993ff56f6b695e3</anchor>
+      <anchor>a710f671e31437218c889b6b2f3c01210</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_SELECTED_COLOR</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>ad17d752887636bbd53cf11d65f464b17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_ALTERNATE_COLOR</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>a442f2f1e773805a0ba8949f31fbf4ede</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -136,6 +167,7 @@
     <includes id="version_8h" name="version.h" local="yes" imported="no">version.h</includes>
     <includes id="os_8h" name="os.h" local="yes" imported="no">os.h</includes>
     <includes id="defaults_8h" name="defaults.h" local="yes" imported="no">defaults.h</includes>
+    <includes id="tspsolver_8h" name="tspsolver.h" local="yes" imported="no">tspsolver.h</includes>
     <includes id="qtwin_8h" name="qtwin.h" local="yes" imported="no">qtwin.h</includes>
     <member kind="define">
       <type>#define</type>
@@ -209,13 +241,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>INFINITY</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>a956e2723d559858d08644ac99146e910</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>INFSTR</name>
       <anchorfile>globals_8h.html</anchorfile>
       <anchor>a1ae8033146e07fa0bae37f148b90cd6b</anchor>
@@ -242,7 +267,6 @@
     <filename>mainwindow_8h</filename>
     <includes id="globals_8h" name="globals.h" local="yes" imported="no">globals.h</includes>
     <includes id="settingsdialog_8h" name="settingsdialog.h" local="yes" imported="no">settingsdialog.h</includes>
-    <includes id="tspsolver_8h" name="tspsolver.h" local="yes" imported="no">tspsolver.h</includes>
     <includes id="tspmodel_8h" name="tspmodel.h" local="yes" imported="no">tspmodel.h</includes>
     <class kind="class">MainWindow</class>
   </compound>
@@ -321,16 +345,22 @@
     <name>tspsolver.h</name>
     <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
     <filename>tspsolver_8h</filename>
-    <includes id="globals_8h" name="globals.h" local="yes" imported="no">globals.h</includes>
-    <includes id="tspmodel_8h" name="tspmodel.h" local="yes" imported="no">tspmodel.h</includes>
-    <class kind="struct">SCandidate</class>
-    <class kind="struct">SStep</class>
-    <class kind="class">CTSPSolver</class>
+    <class kind="struct">TSPSolver::SStep</class>
+    <class kind="struct">TSPSolver::SStep::SCandidate</class>
+    <class kind="class">TSPSolver::CTSPSolver</class>
+    <namespace>TSPSolver</namespace>
+    <member kind="define">
+      <type>#define</type>
+      <name>INFINITY</name>
+      <anchorfile>tspsolver_8h.html</anchorfile>
+      <anchor>a956e2723d559858d08644ac99146e910</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>QList&lt; QList&lt; double &gt; &gt;</type>
       <name>TMatrix</name>
-      <anchorfile>tspsolver_8h.html</anchorfile>
-      <anchor>a3addcca59ef59d0b3892b3670f808965</anchor>
+      <anchorfile>namespace_t_s_p_solver.html</anchorfile>
+      <anchor>a54acd6743f0aa52d3022436d38a78f8c</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -394,6 +424,55 @@
       <anchor>ad7a967dd260384e94010b31b1412a0b4</anchor>
       <arglist></arglist>
     </member>
+  </compound>
+  <compound kind="page">
+    <name>changelog</name>
+    <title>TSPSG ChangeLog</title>
+    <filename>changelog</filename>
+    <docanchor file="changelog">cl_b100_i</docanchor>
+    <docanchor file="changelog">cl_b100_w</docanchor>
+    <docanchor file="changelog">cl_toc</docanchor>
+    <docanchor file="changelog">cl_b42_f</docanchor>
+    <docanchor file="changelog">cl_b100</docanchor>
+    <docanchor file="changelog">cl_b42</docanchor>
+    <docanchor file="changelog">cl_b100_b</docanchor>
+    <docanchor file="changelog">cl_b100_c</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>install</name>
+    <title>TSPSG Installation Guide</title>
+    <filename>install</filename>
+    <docanchor file="install">cr1</docanchor>
+    <docanchor file="install">i_s61</docanchor>
+    <docanchor file="install">cr2</docanchor>
+    <docanchor file="install">cr3</docanchor>
+    <docanchor file="install">r1</docanchor>
+    <docanchor file="install">cr4</docanchor>
+    <docanchor file="install">i_s41</docanchor>
+    <docanchor file="install">r2</docanchor>
+    <docanchor file="install">i_s42</docanchor>
+    <docanchor file="install">r3</docanchor>
+    <docanchor file="install">i_s43</docanchor>
+    <docanchor file="install">r4</docanchor>
+    <docanchor file="install">i_s44</docanchor>
+    <docanchor file="install">i_s45</docanchor>
+    <docanchor file="install">i_s46</docanchor>
+    <docanchor file="install">i_s1</docanchor>
+    <docanchor file="install">i_s431</docanchor>
+    <docanchor file="install">i_s2</docanchor>
+    <docanchor file="install">i_s432</docanchor>
+    <docanchor file="install">i_s3</docanchor>
+    <docanchor file="install">i_s4</docanchor>
+    <docanchor file="install">i_toc</docanchor>
+    <docanchor file="install">i_s5</docanchor>
+    <docanchor file="install">i_s6</docanchor>
+    <docanchor file="install">i_s7</docanchor>
+    <docanchor file="install">i_s8</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>license</name>
+    <title>GNU General Public License</title>
+    <filename>license</filename>
   </compound>
   <compound kind="class">
     <name>CTSPModel</name>
@@ -499,74 +578,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>CTSPSolver</name>
-    <filename>class_c_t_s_p_solver.html</filename>
-    <base>QObject</base>
-    <member kind="slot">
-      <type>void</type>
-      <name>cancel</name>
-      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>a996ac169e8ed087170bd8610fa4aa715</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="signal">
-      <type>void</type>
-      <name>routePartFound</name>
-      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>ae12895fa529a965b57204e355b9012d7</anchor>
-      <arglist>(int n)</arglist>
-    </member>
-    <member kind="function">
-      <type></type>
-      <name>CTSPSolver</name>
-      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>a4a519caa89db1683693759a92a65319c</anchor>
-      <arglist>(QObject *parent=NULL)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>cleanup</name>
-      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>acf86422c1b8ff8e5b9bc88e09c57c48b</anchor>
-      <arglist>(bool processEvents=false)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>getSortedPath</name>
-      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>a57556c971a25e3556c4aa3cc1fd2d3d0</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>isOptimal</name>
-      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>a28d546e840cf53c639b45c0f26419f7a</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function">
-      <type>SStep *</type>
-      <name>solve</name>
-      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>a0f0f0aa60d05c97f3b0e867a381de558</anchor>
-      <arglist>(int numCities, const TMatrix &amp;task)</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>wasCanceled</name>
-      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>a80cff5d533711ab1929de1fdf09495b7</anchor>
-      <arglist>() const </arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static QString</type>
-      <name>getVersionId</name>
-      <anchorfile>class_c_t_s_p_solver.html</anchorfile>
-      <anchor>a677a878c4c8a06316a5d8d5a4fc8ab65</anchor>
-      <arglist>()</arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>MainWindow</name>
     <filename>class_main_window.html</filename>
     <base>QMainWindow</base>
@@ -610,38 +621,6 @@
       <arglist>()</arglist>
     </member>
   </compound>
-  <compound kind="struct">
-    <name>SCandidate</name>
-    <filename>struct_s_candidate.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>SCandidate</name>
-      <anchorfile>struct_s_candidate.html</anchorfile>
-      <anchor>ad7ac35a48148fcc51614079714c03e6f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>operator==</name>
-      <anchorfile>struct_s_candidate.html</anchorfile>
-      <anchor>a9e4f4f1861131ed23b5576f9cd8d4c68</anchor>
-      <arglist>(const SCandidate &amp;cand) const </arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>nRow</name>
-      <anchorfile>struct_s_candidate.html</anchorfile>
-      <anchor>aebab56506cadaa3c7d0e57037925cea5</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>nCol</name>
-      <anchorfile>struct_s_candidate.html</anchorfile>
-      <anchor>a95a822e8bd7f4709ff24a7ba79f9f338</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
   <compound kind="class">
     <name>SettingsDialog</name>
     <filename>class_settings_dialog.html</filename>
@@ -675,64 +654,216 @@
       <arglist>() const </arglist>
     </member>
   </compound>
+  <compound kind="namespace">
+    <name>TSPSolver</name>
+    <filename>namespace_t_s_p_solver.html</filename>
+    <class kind="struct">TSPSolver::SStep</class>
+    <class kind="class">TSPSolver::CTSPSolver</class>
+    <member kind="typedef">
+      <type>QList&lt; QList&lt; double &gt; &gt;</type>
+      <name>TMatrix</name>
+      <anchorfile>namespace_t_s_p_solver.html</anchorfile>
+      <anchor>a54acd6743f0aa52d3022436d38a78f8c</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
   <compound kind="struct">
-    <name>SStep</name>
-    <filename>struct_s_step.html</filename>
+    <name>TSPSolver::SStep</name>
+    <filename>struct_t_s_p_solver_1_1_s_step.html</filename>
+    <class kind="struct">TSPSolver::SStep::SCandidate</class>
+    <member kind="enumeration">
+      <name>NextStep</name>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>af1a915528229317a309dfba9991fcd86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>NoNextStep</name>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>af1a915528229317a309dfba9991fcd86a3b8ba538613f8e35ff43828c6522c354</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>LeftBranch</name>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>af1a915528229317a309dfba9991fcd86a077009b17a9710f3cf1a72803aa05243</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>RightBranch</name>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>af1a915528229317a309dfba9991fcd86aa09cf2c0a12d3097b67884e9c45e1818</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>SStep</name>
-      <anchorfile>struct_s_step.html</anchorfile>
-      <anchor>a450adac026150c0a49967a20ce46e51e</anchor>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>ae1d7209d6effb9fcfa28aafeac360c31</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable">
       <type>TMatrix</type>
       <name>matrix</name>
-      <anchorfile>struct_s_step.html</anchorfile>
-      <anchor>a0353eb66f83d46f88fb47cc2d1a923dd</anchor>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>ae2ae1106147f4cd4a1e7a15c2bdf9cdc</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>double</type>
       <name>price</name>
-      <anchorfile>struct_s_step.html</anchorfile>
-      <anchor>a0355ec75846222996de07108a7c2e9c8</anchor>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>a881c1503127ad2426194700491ea4026</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>SCandidate</type>
       <name>candidate</name>
-      <anchorfile>struct_s_step.html</anchorfile>
-      <anchor>aeb798262cbff5ddd819a7056f8d21f21</anchor>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>af569aef4d00d3e33f39d8f251138860e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>QList&lt; SCandidate &gt;</type>
       <name>alts</name>
-      <anchorfile>struct_s_step.html</anchorfile>
-      <anchor>a02196d3433e2deed89ab540b875cd527</anchor>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>af95b7f421e7373e32548c64c358438d7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>SStep *</type>
       <name>pNode</name>
-      <anchorfile>struct_s_step.html</anchorfile>
-      <anchor>a0fcce90c9c1c60f00b5a703b117b5e85</anchor>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>a4689e211e6a03f4b255243fde93ac54e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>SStep *</type>
       <name>plNode</name>
-      <anchorfile>struct_s_step.html</anchorfile>
-      <anchor>a8776e917cd02f86a57e103c025f5530c</anchor>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>a3d4642f69b5eb7531697112341d31fd9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>SStep *</type>
       <name>prNode</name>
-      <anchorfile>struct_s_step.html</anchorfile>
-      <anchor>a51b304fcfc71508203d2becefcae5d31</anchor>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>a44db7deaa9dbb69eafdf5fc7efd2296b</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>NextStep</type>
+      <name>next</name>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step.html</anchorfile>
+      <anchor>a8db8f6149eb89754aeefd35348292375</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>TSPSolver::SStep::SCandidate</name>
+    <filename>struct_t_s_p_solver_1_1_s_step_1_1_s_candidate.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>SCandidate</name>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step_1_1_s_candidate.html</anchorfile>
+      <anchor>ad1f84242c537c8c824c5383cec63c233</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step_1_1_s_candidate.html</anchorfile>
+      <anchor>a4ada1cd8006cf3b50d4a8e912965f0bc</anchor>
+      <arglist>(const SCandidate &amp;cand) const </arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>nRow</name>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step_1_1_s_candidate.html</anchorfile>
+      <anchor>ae8336e07f26a5b51439c6c7ac3c15800</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>nCol</name>
+      <anchorfile>struct_t_s_p_solver_1_1_s_step_1_1_s_candidate.html</anchorfile>
+      <anchor>af6a9d9a2df92c1a56a7156ef7b9f6a27</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>TSPSolver::CTSPSolver</name>
+    <filename>class_t_s_p_solver_1_1_c_t_s_p_solver.html</filename>
+    <base>QObject</base>
+    <member kind="slot">
+      <type>void</type>
+      <name>cancel</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>a46a3da58d4bb9431bea2c915ceaf1eea</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="signal">
+      <type>void</type>
+      <name>routePartFound</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>a5e02867f053089a3e096f6baa70499a2</anchor>
+      <arglist>(int n)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>CTSPSolver</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>a71bebe073ed5149a4558a779410a2e6b</anchor>
+      <arglist>(QObject *parent=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>cleanup</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>a3ef198959f1b4c32b84fbd5222f8b796</anchor>
+      <arglist>(bool processEvents=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>QString</type>
+      <name>getSortedPath</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>a8897c0737ef2451ae606c38113477521</anchor>
+      <arglist>(const QString &amp;city, const QString &amp;separator=&quot; -&gt; &quot;) const </arglist>
+    </member>
+    <member kind="function">
+      <type>int</type>
+      <name>getTotalSteps</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>a721973cc992b62750aae6fd3ab65773d</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isOptimal</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>a2b82ac68b981c47a3261f4e4e9ecd2bd</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>SStep *</type>
+      <name>solve</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>ab8a5a387deebffd898577dba31a95099</anchor>
+      <arglist>(int numCities, const TMatrix &amp;task)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>wasCanceled</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>a6cce9079d60735f92037c98d6d361a82</anchor>
+      <arglist>() const </arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static QString</type>
+      <name>getVersionId</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>a71d04cbead3508cdff606a5ccc79e59e</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
 </tagfile>
