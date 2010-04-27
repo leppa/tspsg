@@ -1,0 +1,103 @@
+/*! \page changelog TSPSG ChangeLog
+
+\author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+$Id$
+$URL$
+
+<hr>
+
+\section cl_toc Table of Contents
+
+  -# \ref cl_b100
+     -# \ref cl_b100_w
+     -# \ref cl_b100_i
+     -# \ref cl_b100_c
+     -# \ref cl_b100_b
+  -# \ref cl_b42
+     -# \ref cl_b42_f
+
+\attention This ChangeLog is updated only on releases.
+
+<hr>
+
+\section cl_b100 TSPSG v0.1.2 alpha 2 (build 100)
+
+\subsection cl_b100_w WHAT'S NEW
+
+  - New \b TSPSG icon.
+  - Symmetric mode: in this mode the cost of travel from city 1 to
+    city 2 and vice versa is the same.
+  - Printing of solution results (if the platform supports it).
+  - Saving solution to PDF (if the platform supports printing).
+  - An ability to reset all settings to their defaults: hold Shift
+    while clicking Save button in the Settings Dialog.
+  - An ability to generate fractional random numbers.
+  - An ability to set the fractional accuracy (in decimail places).
+  - An ability to select between using native and Qt's file dialogs
+    when opening and saving tasks and solutions.
+  - An ability to disable showing of the solution steps' matrices in
+    solution output.
+  - An ability to enable scroll to the end of the solution output after
+    solving.
+  - An ability ot enable automatic resize of columns and rows to their
+    contents on its change.
+  - Basic support for Symbian.
+  - Check for updates functionality (only in Windows version at this
+    moment).
+
+
+\subsection cl_b100_i IMPROVEMENTS
+
+  - Improved the solution algorithm.
+  - The maximum number of cities in task was increased to 50.
+  - List of alternate candidates for branching is now displayed.
+  - Warning about possible non-optimal result.
+  - Open a file, passed as command-line argument.
+  - Currently opened file name is displayed in the Main Window title.
+  - "Save Solution" and "Back to Task" buttons in Solution tab for
+    better usability.
+  - The size of the toolbar buttons is now determined based on the
+    device DPI in Windows Mobile and Symbian.
+  - SIP show/hide handling in Windows Mobile.
+  - Toolbar state and position are now saved and restored with the Main
+    Window state and position.
+  - Window translucency support in Windows Vista and Windows 7.
+
+\note Showing the solution steps' matrices is disabled by default
+for tasks with more than 15 cities to considerably speed up the
+generation of the solution output process.
+
+
+\subsection cl_b100_c CHANGES
+
+  - The resulting path is now sorted, always starts from City 1 and has
+    "City 1 -> City n -> ... -> City 1" format.
+  - Translations were moved from i18n to l10n folder to follow common
+    standards.
+  - Reworked the Settings Dialog layout.
+  - Reworked the About dialog.
+
+
+\subsection cl_b100_b BUGFIXES
+
+  - A solution couldn't be found for some tasks while the task had at
+    least one solution (mostly, tasks with a lot of restrictions).
+  - An error when loading .zkt file with less than 5 cities.
+  - Generated random numbers were not in the range defined by Minimum
+    and Maximum settings.
+
+<hr>
+
+\section cl_b42 TSPSG v0.1.1 alpha 1 (build 42)
+
+This is initial \b TSPSG release.
+
+\subsection cl_b42_f FEATURES
+
+  - Solving taks with up to 5 cities.
+  - Generating tasks.
+  - Saving solution results to HTML and ODF.
+  - Importing tasks from ZKomModRd.
+  - Multilinguality: English, Russian and Ukrainian languages.
+  - Linux/UNIX, Windows and Windows Mobile support.
+*/

@@ -1,0 +1,63 @@
+/*! \mainpage
+<!--
+$Id$
+$URL$
+-->
+
+\image html tspsg.png
+<b>TSPSG: TSP Solver and Generator</b>
+\author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+
+\b Homepage: <a href="http://tspsg.sourceforge.net/">tspsg.sourceforge.net</a>
+
+\section m_s1 ABOUT TSPSG
+
+\b TSPSG is intended to generate and solve <b>Travelling Salesman Problem</b>
+(TSP) tasks. It uses <em>Branch and Bound method</em> for solving. Its input is
+a number of cities and a matrix of city-to-city travel costs. The
+matrix can be populated with random values in a given range (which is
+useful for generating tasks). The result is an optimal route, its
+price, step-by-step matrices of solving and a solving graph. The task
+can be saved in an internal binary format and opened later. The result
+can be printed or saved as \b PDF, \b HTML, or \b ODF.
+
+\b TSPSG may be useful for teachers to generate test tasks or just for
+regular users to solve TSPs. Also, it may be used as an example of
+using <em>Branch and Bound method</em> to solve a particular task.
+
+
+\section m_s2 DOCUMENTATION PAGES
+
+\ref changelog
+
+  -# \ref cl_b100
+  -# \ref cl_b42
+
+
+\ref install
+
+  -# \ref i_s1
+  -# \ref i_s2
+  -# \ref i_s3
+  -# \ref i_s4
+  -# \ref i_s5
+  -# \ref i_s6
+  -# \ref i_s7
+  -# \ref i_s8
+
+
+\section m_s3 LICENSE
+
+\b TSPSG is free software: you can redistribute it and/or modify\n
+it under the terms of the GNU General Public License as published by\n
+the Free Software Foundation, either version 3 of the License, or\n
+(at your option) any later version.\n
+
+\b TSPSG is distributed in the hope that it will be useful,\n
+but WITHOUT ANY WARRANTY; without even the implied warranty of\n
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n
+\ref license "GNU General Public License" for more details.\n
+
+You should have received a copy of the \ref license "GNU General Public License"\n
+along with \b TSPSG.  If not, see <http://www.gnu.org/licenses/>.
+*/

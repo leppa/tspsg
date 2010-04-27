@@ -34,6 +34,9 @@ To be able compile TSPSG you need to have Qt libraries. The minimum
 supported version of Qt is 4.4.0. The recommended version is 4.5.x
 or higher.
 
+NOTE: Please, note that there will be some regressions in functionality
+if your version of \em Qt is lower than the recommended.
+
 
 
 2. ASSUMPTIONS
@@ -163,7 +166,7 @@ and run
 
     C:\Qt\bin\lrelease tspsg.pro
     C:\Qt\bin\qmake tspsg.pro CONFIG+=release
-	nmake
+    nmake
 
 If make step finished without errors you can install TSPSG by running
 
@@ -187,7 +190,7 @@ Now navigate to the directory where you unpacked the source and run
 
     lrelease tspsg.pro
     qmake tspsg.pro CONFIG+=release
-	nmake
+    nmake
 
 There is no automated installation process for Windows Mobile build. To
 install TSPSG on your PDA you need to create a folder on your device
@@ -216,8 +219,8 @@ and run
     qmake tspsg.pro CONFIG+=release
     make release-gcce
 
-NOTE: You need to unpack the source on the same drive as Qt and Symbian
-development tools.
+WARNING: You need to unpack the source to the same drive as Symbian SDK
+and the path must not contain any spaces or TSPSG won't build.
 
 If make step finished without errors you can generate sis installation
 file by running
@@ -298,8 +301,8 @@ download and replace windres.exe with a fixed version. To do this:
 
 qmake doesn't always enclose installation paths in quotes. This may
 cause some files not to be installed or removed when their path
-contains quotes. In this case it is safe to delete this files and TSPSG
-installation directory manually.
+contains spaces. In this case it is safe to delete these files and
+TSPSG installation directory manually.
 
 
 

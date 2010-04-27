@@ -70,22 +70,28 @@ void CTSPSolver::cleanup(bool processEvents)
 
 /*!
  * \brief Returns the sorted optimal path, starting from City 1.
+ * \param city A string that represents city elements in the path.
+ * \param separator A string that represents separators between cities in the path.
  * \return A string, containing sorted optimal path.
+ *
+ *  The resulting path will be in the form \a city+\a separator+\a city+...+\a separator+\a city.
+ *  \c \%1 in \a city will be replaced by the city number.
  */
-QString CTSPSolver::getSortedPath() const
+QString CTSPSolver::getSortedPath(const QString &city, const QString &separator) const
 {
 	if (!root || route.isEmpty() || (route.size() != nCities))
 		return QString();
 
 int i = 0; // We start from City 1
-QString path = tr("City %1").arg(1) + " -> ";
+QStringList path;
+	path << city.arg(1);
 	while ((i = route[i]) != 0) {
-		path += tr("City %1").arg(i + 1) + " -> ";
+		path << city.arg(i + 1);
 	}
 	// And finish in City 1, too
-	path += tr("City %1").arg(1);
+	path << city.arg(1);
 
-	return path;
+	return path.join(separator);
 }
 
 /*!

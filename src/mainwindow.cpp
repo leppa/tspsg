@@ -665,7 +665,7 @@ int c = n = 1;
 		cur.insertText(tr("Resulting path:"));
 
 	cur.insertBlock(fmt_paragraph);
-	cur.insertText("  " + solver.getSortedPath());
+	cur.insertText("  " + solver.getSortedPath(tr("City %1")));
 
 	cur.insertBlock(fmt_paragraph);
 	if (isInteger(step->price))
@@ -860,7 +860,7 @@ QFont font;
 	if (nstep == 1) {
 		pic.drawLine(QPointF(x, y - r), QPointF(r * 2.25, y - 2 * r));
 	} else if (nstep > 1) {
-		pic.drawLine(QPointF(x, y - r), QPointF((step->pNode->next == SStep::RightBranch) ? r * 3.5 : r, y - 2 * r));
+		pic.drawLine(QPointF(x, y - r), QPointF((step->pNode->pNode->next == SStep::RightBranch) ? r * 3.5 : r, y - 2 * r));
 	}
 
 }

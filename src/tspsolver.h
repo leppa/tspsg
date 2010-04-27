@@ -112,7 +112,7 @@ public:
 
 	CTSPSolver(QObject *parent = NULL);
 	void cleanup(bool processEvents = false);
-	QString getSortedPath() const;
+	QString getSortedPath(const QString &city, const QString &separator = " -> ") const;
 	int getTotalSteps() const;
 	bool isOptimal() const;
 	SStep *solve(int numCities, const TMatrix &task);
