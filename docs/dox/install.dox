@@ -92,8 +92,8 @@ Open a shell, navigate to the directory where you have \b TSPSG source
 downloaded and type
 
 \verbatim
-tar xvjf \b TSPSG-<VERSION>-src.tar.bz2
-cd \b TSPSG-<VERSION>-src
+tar xvjf tspsg-<VERSION>-src.tar.bz2
+cd tspsg-<VERSION>-src
 \endverbatim
 
 where \<VERSION> is the version of \b TSPSG you downloaded. Now run
@@ -126,8 +126,8 @@ make install
 depending on your distribution.
 
 By default, executable will go to \c /usr/bin, \c COPYING.txt and \c README.txt will go
-to \c /usr/share/\b TSPSG, translations will go \c /usr/share/\b TSPSG/l10n, all docs
-will go to <tt>/usr/share/doc/\b TSPSG-\<VERSION></tt>.
+to \c /usr/share/TSPSG, translations will go \c /usr/share/TSPSG/l10n, all docs
+will go to <tt>/usr/share/doc/TSPSG-\<VERSION></tt>.
 
 <hr>
 
@@ -156,8 +156,8 @@ If make step finished without errors you can install \b TSPSG by running
 mingw32-make install
 \endverbatim
 
-\b TSPSG will be installed to \c \%PROGRAMFILES\%\\\b TSPSG folder (usually, it is
-<tt>C:\\Program Files\\\b TSPSG</tt>).
+\b TSPSG will be installed to \c \%PROGRAMFILES\%\\TSPSG folder (usually, it is
+<tt>C:\\Program Files\\TSPSG</tt>).
 
 
 \subsubsection i_s432 USING VISUAL STUDIO
@@ -179,8 +179,8 @@ If make step finished without errors you can install \b TSPSG by running
 nmake install
 \endverbatim
 
-\b TSPSG will be installed to \c \%PROGRAMFILES\%\\\b TSPSG folder (usually, it is
-<tt>C:\\Program Files\\\b TSPSG</tt>).
+\b TSPSG will be installed to \c \%PROGRAMFILES\%\\TSPSG folder (usually, it is
+<tt>C:\\Program Files\\TSPSG</tt>).
 
 <hr>
 
@@ -207,7 +207,7 @@ There is no automated installation process for Windows Mobile build. To
 install \b TSPSG on your PDA you need to create a folder on your device
 and copy the following files to it:
 
-  - \b \b TSPSG.exe from \c release folder in the source directory.
+  - \b tspsg.exe from \c release folder in the source directory.
   - \b QtCore4.dll and \c QtGui4.dll from \c C:\\Qt\\bin folder.
   - \b msvcr90.dll from <tt>C:\\Program Files\\Microsoft Visual Studio 9.0\\VC\\ce\\dll\\armv4i</tt> folder.
   - all <b>*.qm</b> files from \c l10n folder in the source directory to \c l10n subfolder.
@@ -237,7 +237,7 @@ file by running
 make sis
 \endverbatim
 
-You'll get \c \b TSPSG.sis file in the source directory. Copy it to your
+You'll get \c tspsg.sis file in the source directory. Copy it to your
 phone and run or install it using <em>Nokia PC Suite</em>.
 
 \note You need to install <em>Qt libraries</em> on your device before installing
@@ -250,7 +250,7 @@ Alternatively, if you have installed <em>Nokia Smart Installer</em>\anchor cr2<s
 make installer_sis
 \endverbatim
 
-You'll get an \c \b TSPSG_installer.sis that will automatically download and
+You'll get an \c tspsg_installer.sis that will automatically download and
 install the required <em>Qt libraries</em> on \b TSPSG installation.
 
 \note Please, be aware that you have to sign the sis file to be able to

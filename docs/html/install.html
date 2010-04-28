@@ -160,8 +160,8 @@ GENERAL INSTALLATION PROCEDURE</a></h3>
 LINUX/UNIX</a></h3>
 <p>Open a shell, navigate to the directory where you have <b>TSPSG</b> source downloaded and type</p>
 <div class="fragment"><pre class="fragment">
-tar xvjf \b TSPSG-&lt;VERSION&gt;-src.tar.bz2
-cd \b TSPSG-&lt;VERSION&gt;-src
+tar xvjf tspsg-&lt;VERSION&gt;-src.tar.bz2
+cd tspsg-&lt;VERSION&gt;-src
 </pre></div><p>where &lt;VERSION&gt; is the version of <b>TSPSG</b> you downloaded. Now run</p>
 <div class="fragment"><pre class="fragment">
 lrelease tspsg.pro
@@ -178,7 +178,7 @@ sudo make install
 su
 make install
 </pre></div><p>depending on your distribution.</p>
-<p>By default, executable will go to <code>/usr/bin</code>, <code>COPYING.txt</code> and <code>README.txt</code> will go to <code>/usr/share/<b>TSPSG</b>,</code> translations will go <code>/usr/share/<b>TSPSG/l10n</b>,</code> all docs will go to <code>/usr/share/doc/<b>TSPSG-&lt;VERSION&gt;</code></b>.</p>
+<p>By default, executable will go to <code>/usr/bin</code>, <code>COPYING.txt</code> and <code>README.txt</code> will go to <code>/usr/share/TSPSG</code>, translations will go <code>/usr/share/TSPSG/l10n</code>, all docs will go to <code>/usr/share/doc/TSPSG-&lt;VERSION&gt;</code>.</p>
 <hr/>
 <h3><a class="anchor" id="i_s43">
 WINDOWS</a></h3>
@@ -194,7 +194,7 @@ mingw32-make
 <p>If make step finished without errors you can install <b>TSPSG</b> by running</p>
 <div class="fragment"><pre class="fragment">
 mingw32-make install
-</pre></div><p><b>TSPSG</b> will be installed to <code>%PROGRAMFILES%\<b>TSPSG</b> folder</code> (usually, it is <code>C:\Program Files\<b>TSPSG</code></b>).</p>
+</pre></div><p><b>TSPSG</b> will be installed to <code>%PROGRAMFILES%\TSPSG</code> folder (usually, it is <code>C:\Program Files\TSPSG</code>).</p>
 <h4><a class="anchor" id="i_s432">
 USING VISUAL STUDIO</a></h4>
 <p>Unpack the downloaded source code of <b>TSPSG</b> with your favourite compression software. Now launch the <em>Visual Studio Command Prompt</em> from the Start Menu, navigate to the directory where you unpacked the source and run</p>
@@ -205,7 +205,7 @@ nmake
 </pre></div><p>If make step finished without errors you can install <b>TSPSG</b> by running</p>
 <div class="fragment"><pre class="fragment">
 nmake install
-</pre></div><p><b>TSPSG</b> will be installed to <code>%PROGRAMFILES%\<b>TSPSG</b> folder</code> (usually, it is <code>C:\Program Files\<b>TSPSG</code></b>).</p>
+</pre></div><p><b>TSPSG</b> will be installed to <code>%PROGRAMFILES%\TSPSG</code> folder (usually, it is <code>C:\Program Files\TSPSG</code>).</p>
 <hr/>
 <h3><a class="anchor" id="i_s44">
 WINDOWS CE/MOBILE</a></h3>
@@ -220,7 +220,7 @@ qmake tspsg.pro CONFIG+=release
 nmake
 </pre></div><p>There is no automated installation process for Windows Mobile build. To install <b>TSPSG</b> on your PDA you need to create a folder on your device and copy the following files to it:</p>
 <ul>
-<li><b><b>TSPSG.exe</b> from</b> <code>release</code> folder in the source directory.</li>
+<li><b>tspsg.exe</b> from <code>release</code> folder in the source directory.</li>
 <li><b>QtCore4.dll</b> and <code>QtGui4.dll</code> from <code>C:\Qt\bin</code> folder.</li>
 <li><b>msvcr90.dll</b> from <code>C:\Program Files\Microsoft Visual Studio 9.0\VC\ce\dll\armv4i</code> folder.</li>
 <li>all <b>*.qm</b> files from <code>l10n</code> folder in the source directory to <code>l10n</code> subfolder.</li>
@@ -237,12 +237,12 @@ make release-gcce
 <p>If make step finished without errors you can generate sis installation file by running</p>
 <div class="fragment"><pre class="fragment">
 make sis
-</pre></div><p>You'll get <code><b>TSPSG.sis</b> file</code> in the source directory. Copy it to your phone and run or install it using <em>Nokia PC Suite</em>.</p>
+</pre></div><p>You'll get <code>tspsg.sis</code> file in the source directory. Copy it to your phone and run or install it using <em>Nokia PC Suite</em>.</p>
 <dl class="note"><dt><b>Note:</b></dt><dd>You need to install <em>Qt libraries</em> on your device before installing <b>TSPSG</b>. Usually, it should be enough to install <code>qt_installer.sis</code> from the Qt installation directory.</dd></dl>
 <p>Alternatively, if you have installed <em>Nokia Smart Installer</em><a class="anchor" id="cr2"></a><sup><a class="el" href="install.html#r2">[2]</a></sup> you can run</p>
 <div class="fragment"><pre class="fragment">
 make installer_sis
-</pre></div><p>You'll get an <code><b>TSPSG_installer.sis</b> that</code> will automatically download and install the required <em>Qt libraries</em> on <b>TSPSG</b> installation.</p>
+</pre></div><p>You'll get an <code>tspsg_installer.sis</code> that will automatically download and install the required <em>Qt libraries</em> on <b>TSPSG</b> installation.</p>
 <dl class="note"><dt><b>Note:</b></dt><dd>Please, be aware that you have to sign the sis file to be able to install it on your device. You can use <em>Open Signed Online</em><a class="anchor" id="cr3"></a><sup><a class="el" href="install.html#r3">[3]</a></sup> to quickly sign the sis file for your device. Alternatively, you can try to enable the installation of self-signed files in the phone settings. Please, reffer to your phone manual on the instructions how to do this.</dd></dl>
 <hr/>
 <h3><a class="anchor" id="i_s46">
@@ -298,7 +298,7 @@ REFERNECES</a></h2>
 </iframe>
 </div>
 
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 28 02:47:14 2010 for TSPSG: TSP Solver and Generator by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 28 03:09:51 2010 for TSPSG: TSP Solver and Generator by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
