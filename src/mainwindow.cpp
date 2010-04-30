@@ -50,28 +50,28 @@ MainWindow::MainWindow(QWidget *parent)
 	// We need to react to SIP show/hide and resize the window appropriately
 	connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
 #endif // Q_OS_WINCE_WM
-	connect(actionFileNew,SIGNAL(triggered()),this,SLOT(actionFileNewTriggered()));
-	connect(actionFileOpen,SIGNAL(triggered()),this,SLOT(actionFileOpenTriggered()));
-	connect(actionFileSave,SIGNAL(triggered()),this,SLOT(actionFileSaveTriggered()));
-	connect(actionFileSaveAsTask,SIGNAL(triggered()),this,SLOT(actionFileSaveAsTaskTriggered()));
-	connect(actionFileSaveAsSolution,SIGNAL(triggered()),this,SLOT(actionFileSaveAsSolutionTriggered()));
+	connect(actionFileNew, SIGNAL(triggered()), SLOT(actionFileNewTriggered()));
+	connect(actionFileOpen, SIGNAL(triggered()), SLOT(actionFileOpenTriggered()));
+	connect(actionFileSave, SIGNAL(triggered()), SLOT(actionFileSaveTriggered()));
+	connect(actionFileSaveAsTask, SIGNAL(triggered()), SLOT(actionFileSaveAsTaskTriggered()));
+	connect(actionFileSaveAsSolution, SIGNAL(triggered()), SLOT(actionFileSaveAsSolutionTriggered()));
 #ifndef QT_NO_PRINTER
-	connect(actionFilePrintPreview,SIGNAL(triggered()),this,SLOT(actionFilePrintPreviewTriggered()));
-	connect(actionFilePrint,SIGNAL(triggered()),this,SLOT(actionFilePrintTriggered()));
+	connect(actionFilePrintPreview, SIGNAL(triggered()), SLOT(actionFilePrintPreviewTriggered()));
+	connect(actionFilePrint, SIGNAL(triggered()), SLOT(actionFilePrintTriggered()));
 #endif // QT_NO_PRINTER
-	connect(actionSettingsPreferences,SIGNAL(triggered()),this,SLOT(actionSettingsPreferencesTriggered()));
+	connect(actionSettingsPreferences, SIGNAL(triggered()), SLOT(actionSettingsPreferencesTriggered()));
 #ifdef Q_OS_WIN32
 	connect(actionHelpCheck4Updates, SIGNAL(triggered()), SLOT(actionHelpCheck4UpdatesTriggered()));
 #endif // Q_OS_WIN32
-	connect(actionSettingsLanguageAutodetect,SIGNAL(triggered(bool)),this,SLOT(actionSettingsLanguageAutodetectTriggered(bool)));
-	connect(groupSettingsLanguageList,SIGNAL(triggered(QAction *)),this,SLOT(groupSettingsLanguageListTriggered(QAction *)));
-	connect(actionHelpAboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
-	connect(actionHelpAbout,SIGNAL(triggered()),this,SLOT(actionHelpAboutTriggered()));
+	connect(actionSettingsLanguageAutodetect, SIGNAL(triggered(bool)), SLOT(actionSettingsLanguageAutodetectTriggered(bool)));
+	connect(groupSettingsLanguageList, SIGNAL(triggered(QAction *)), SLOT(groupSettingsLanguageListTriggered(QAction *)));
+	connect(actionHelpAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+	connect(actionHelpAbout, SIGNAL(triggered()), SLOT(actionHelpAboutTriggered()));
 
-	connect(buttonSolve,SIGNAL(clicked()),this,SLOT(buttonSolveClicked()));
-	connect(buttonRandom,SIGNAL(clicked()),this,SLOT(buttonRandomClicked()));
-	connect(buttonBackToTask,SIGNAL(clicked()),this,SLOT(buttonBackToTaskClicked()));
-	connect(spinCities,SIGNAL(valueChanged(int)),this,SLOT(spinCitiesValueChanged(int)));
+	connect(buttonSolve, SIGNAL(clicked()), SLOT(buttonSolveClicked()));
+	connect(buttonRandom, SIGNAL(clicked()), SLOT(buttonRandomClicked()));
+	connect(buttonBackToTask, SIGNAL(clicked()), SLOT(buttonBackToTaskClicked()));
+	connect(spinCities, SIGNAL(valueChanged(int)), SLOT(spinCitiesValueChanged(int)));
 
 #ifndef HANDHELD
 	// Centering main window
@@ -85,15 +85,13 @@ QRect rect = geometry();
 		restoreState(settings->value("State").toByteArray());
 		settings->endGroup();
 	}
-#else
-	setWindowState(Qt::WindowMaximized);
 #endif // HANDHELD
 
 	tspmodel = new CTSPModel(this);
 	taskView->setModel(tspmodel);
-	connect(tspmodel,SIGNAL(numCitiesChanged(int)),this,SLOT(numCitiesChanged(int)));
-	connect(tspmodel,SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),this,SLOT(dataChanged(const QModelIndex &, const QModelIndex &)));
-	connect(tspmodel,SIGNAL(layoutChanged()),this,SLOT(dataChanged()));
+	connect(tspmodel, SIGNAL(numCitiesChanged(int)), SLOT(numCitiesChanged(int)));
+	connect(tspmodel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), SLOT(dataChanged(const QModelIndex &, const QModelIndex &)));
+	connect(tspmodel, SIGNAL(layoutChanged()), SLOT(dataChanged()));
 	if ((QCoreApplication::arguments().count() > 1) && (tspmodel->loadTask(QCoreApplication::arguments().at(1))))
 		setFileName(QCoreApplication::arguments().at(1));
 	else {
@@ -943,7 +941,7 @@ QString name;
 		if (lang.completeBaseName().compare("tspsg_en", Qt::CaseInsensitive) && t.load(lang.completeBaseName(), PATH_L10N)) {
 			name = t.translate("--------", "LANGNAME", "Please, provide a native name of your translation language here.");
 			a = menuSettingsLanguage->addAction(name);
-			a->setStatusTip(QString("Set application language to %1").arg(name));
+			a->setStatusTip(tr("Set application language to %1").arg(name));
 			a->setData(lang.completeBaseName().mid(6));
 			a->setCheckable(true);
 			a->setActionGroup(groupSettingsLanguageList);
@@ -1168,11 +1166,11 @@ QScrollArea *scrollArea = new QScrollArea(this);
 #endif // Q_OS_WINCE_WM
 
 	//! \hack HACK: A little hack for toolbar icons to have a sane size.
-#ifdef Q_OS_WINCE_WM
+#ifdef HANDHELD
 	toolBar->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
-#elif defined(Q_OS_SYMBIAN)
-	toolBar->setIconSize(QSize(logicalDpiX() / 5, logicalDpiY() / 5));
-#endif // Q_OS_WINCE_WM
+#endif // HANDHELD
+	static_cast<QToolButton *>(toolBar->widgetForAction(actionFileSave))->setMenu(menuFileSaveAs);
+	static_cast<QToolButton *>(toolBar->widgetForAction(actionFileSave))->setPopupMode(QToolButton::MenuButtonPopup);
 
 	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>());
 	solutionText->setWordWrapMode(QTextOption::WordWrap);
@@ -1194,6 +1192,10 @@ QScrollArea *scrollArea = new QScrollArea(this);
 
 	toolBar->insertAction(actionSettingsPreferences,actionFilePrint);
 #endif // QT_NO_PRINTER
+
+	menuSettings->insertAction(actionSettingsPreferences, toolBar->toggleViewAction());
+	menuSettings->insertSeparator(actionSettingsPreferences);
+
 #ifdef Q_OS_WIN32
 	actionHelpCheck4Updates = new QAction(this);
 	actionHelpCheck4Updates->setEnabled(hasUpdater());

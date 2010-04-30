@@ -57,7 +57,11 @@ QTranslator en;
 		app.installTranslator(&en);
 
 MainWindow mainwindow;
+#ifdef HANDHELD
+	mainwindow.showMaximized();
+#else // HANDHELD
 	mainwindow.show();
+#endif // HANDHELD
 	app.restoreOverrideCursor();
 	return app.exec();
 }

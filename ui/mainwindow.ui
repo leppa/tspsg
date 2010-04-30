@@ -309,7 +309,6 @@
 	 <addaction name="actionSettingsLanguageEnglish"/>
 	</widget>
 	<addaction name="menuSettingsLanguage"/>
-	<addaction name="separator"/>
 	<addaction name="actionSettingsPreferences"/>
    </widget>
    <widget class="QMenu" name="menuHelp">

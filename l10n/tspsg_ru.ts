@@ -322,7 +322,7 @@ or support for this feature was not installed.</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="493"/>
         <source>About TSPSG</source>
-        <translation>Про TSPSG</translation>
+        <translation>О TSPSG</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="535"/>
@@ -633,7 +633,7 @@ Do you wish to turn it off?</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="454"/>
         <source>&amp;About TSPSG...</source>
-        <translation>&amp;Про TSPSG...</translation>
+        <translation>&amp;О TSPSG...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="520"/>
@@ -779,12 +779,12 @@ Do you wish to turn it off?</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="538"/>
         <source>About &amp;Qt...</source>
-        <translation>Про &amp;Qt...</translation>
+        <translation>О &amp;Qt...</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="541"/>
         <source>About Qt library</source>
-        <translation>Про библиотеку Qt</translation>
+        <translation>О библиотеке Qt</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="295"/>

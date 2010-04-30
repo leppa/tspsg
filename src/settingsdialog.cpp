@@ -226,7 +226,9 @@ QStringList whitelist;
 	color = settings->value("Colors/Text", DEF_TEXT_COLOR).value<QColor>();
 	settings->endGroup();
 
-#ifndef Q_OS_WINCE_WM
+#ifdef HANDHELD
+	setWindowState(Qt::WindowMaximized);
+#else
 	adjustSize();
 #endif // Q_OS_WINCE_WM
 }
@@ -289,6 +291,7 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
 		settings->setValue("UseTranslucency", cbUseTranslucency->isChecked());
 	}
 #endif // Q_OS_WIN32
+	settings->setValue("Autosize", cbAutosize->isChecked());
 	settings->setValue("UseNativeDialogs", cbUseNativeDialogs->isChecked());
 
 	settings->beginGroup("Task");
