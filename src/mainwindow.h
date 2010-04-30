@@ -63,6 +63,8 @@ private slots:
 	void actionSettingsPreferencesTriggered();
 	void actionSettingsLanguageAutodetectTriggered(bool checked);
 	void groupSettingsLanguageListTriggered(QAction *action);
+	void actionSettingsStyleSystemTriggered(bool checked);
+	void groupSettingsStyleListTriggered(QAction *action);
 #ifdef Q_OS_WIN32
 	void actionHelpCheck4UpdatesTriggered();
 #endif // Q_OS_WIN32
@@ -87,6 +89,7 @@ private slots:
 private:
 	QString fileName;
 	QActionGroup *groupSettingsLanguageList;
+	QActionGroup *groupSettingsStyleList;
 #ifndef QT_NO_PRINTER
 	QPrinter *printer;
 	QAction *actionFilePrintPreview;
@@ -121,6 +124,7 @@ private:
 	void initDocStyleSheet();
 	void loadLangList();
 	bool loadLanguage(const QString &lang = QString());
+	void loadStyleList();
 	bool maybeSave();
 	void outputMatrix(QTextCursor &cur, const TMatrix &matrix);
 	void outputMatrix(QTextCursor &cur, const SStep &step);

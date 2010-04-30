@@ -35,6 +35,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
 	settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
 
+	if (settings->contains("Style")) {
+QStyle *s = QStyleFactory::create(settings->value("Style").toString());
+		if (s != NULL)
+			QApplication::setStyle(s);
+		else
+			settings->remove("Style");
+	}
+
 	loadLanguage();
 	setupUi();
 	setAcceptDrops(true);
@@ -65,6 +73,8 @@ MainWindow::MainWindow(QWidget *parent)
 #endif // Q_OS_WIN32
 	connect(actionSettingsLanguageAutodetect, SIGNAL(triggered(bool)), SLOT(actionSettingsLanguageAutodetectTriggered(bool)));
 	connect(groupSettingsLanguageList, SIGNAL(triggered(QAction *)), SLOT(groupSettingsLanguageListTriggered(QAction *)));
+	connect(actionSettingsStyleSystem, SIGNAL(triggered(bool)), SLOT(actionSettingsStyleSystemTriggered(bool)));
+	connect(groupSettingsStyleList, SIGNAL(triggered(QAction*)), SLOT(groupSettingsStyleListTriggered(QAction*)));
 	connect(actionHelpAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 	connect(actionHelpAbout, SIGNAL(triggered()), SLOT(actionHelpAboutTriggered()));
 
@@ -336,7 +346,7 @@ void MainWindow::actionSettingsLanguageAutodetectTriggered(bool checked)
 {
 	if (checked) {
 		settings->remove("Language");
-		QMessageBox::information(this, tr("Language change"), tr("Language will be autodetected on the next application start."));
+		QMessageBox::information(this, tr("Language change"), tr("Language will be autodetected on the next %1 start.").arg(QApplication::applicationName()));
 	} else
 		settings->setValue("Language", groupSettingsLanguageList->checkedAction()->data().toString());
 }
@@ -366,6 +376,26 @@ bool untitled = (fileName == tr("Untitled") + ".tspt");
 		QApplication::restoreOverrideCursor();
 		if (!solutionText->document()->isEmpty())
 			QMessageBox::information(this, tr("Settings Changed"), tr("You have changed the application language.\nTo get current solution output in the new language\nyou need to re-run the solution process."));
+	}
+}
+
+void MainWindow::actionSettingsStyleSystemTriggered(bool checked)
+{
+	if (checked) {
+		settings->remove("Style");
+		QMessageBox::information(this, tr("Style Change"), tr("To apply the default style you need to restart %1.").arg(QApplication::applicationName()));
+	} else {
+		settings->setValue("Style", groupSettingsStyleList->checkedAction()->text());
+	}
+}
+
+void MainWindow::groupSettingsStyleListTriggered(QAction *action)
+{
+QStyle *s = QStyleFactory::create(action->text());
+	if (s != NULL) {
+		QApplication::setStyle(s);
+		settings->setValue("Style", action->text());
+		actionSettingsStyleSystem->setChecked(false);
 	}
 }
 
@@ -442,13 +472,13 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	lblTitle->setAlignment(Qt::AlignTop);
 	lblTitle->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 #ifndef HANDHELD
-	lblTitle->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().window().color().name(), palette().shadow().color().name()));
+	lblTitle->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 4px; padding: 1px;}").arg(palette().alternateBase().color().name(), palette().shadow().color().name()));
 #endif // HANDHELD
 
 	lblIcon->setPixmap(QPixmap(":/images/tspsg.png").scaledToHeight(lblTitle->sizeHint().height(), Qt::SmoothTransformation));
 	lblIcon->setAlignment(Qt::AlignVCenter);
 #ifndef HANDHELD
-	lblIcon->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().window().color().name(), palette().windowText().color().name()));
+	lblIcon->setStyleSheet(QString("QLabel {background-color: white; border-color: %1; border-width: 1px; border-style: solid; border-radius: 4px; padding: 1px;}").arg(palette().windowText().color().name()));
 #endif // HANDHELD
 
 	hb1->addWidget(lblIcon);
@@ -459,7 +489,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	txtAbout->setHtml(about);
 	txtAbout->moveCursor(QTextCursor::Start);
 #ifndef HANDHELD
-	txtAbout->setStyleSheet(QString("QTextBrowser {border-color: %1; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().shadow().color().name()));
+	txtAbout->setStyleSheet(QString("QTextBrowser {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 4px; padding: 1px;}").arg(palette().base().color().name(), palette().shadow().color().name()));
 #endif // HANDHELD
 
 	bb->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
@@ -470,7 +500,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	else {
 		lblTranslated->setOpenExternalLinks(true);
 #ifndef HANDHELD
-		lblTranslated->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(palette().window().color().name(), palette().shadow().color().name()));
+		lblTranslated->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px; padding: 1px;}").arg(palette().alternateBase().color().name(), palette().shadow().color().name()));
 #endif // HANDHELD
 		hb2->addWidget(lblTranslated);
 	}
@@ -488,7 +518,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	vb->addLayout(hb2);
 
 	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-	dlg->setWindowTitle(tr("About TSPSG"));
+	dlg->setWindowTitle(tr("About %1").arg(QApplication::applicationName()));
 	dlg->setLayout(vb);
 
 	connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
@@ -941,7 +971,7 @@ QString name;
 		if (lang.completeBaseName().compare("tspsg_en", Qt::CaseInsensitive) && t.load(lang.completeBaseName(), PATH_L10N)) {
 			name = t.translate("--------", "LANGNAME", "Please, provide a native name of your translation language here.");
 			a = menuSettingsLanguage->addAction(name);
-			a->setStatusTip(tr("Set application language to %1").arg(name));
+			a->setStatusTip(t.translate("MainWindow", "Set application language to %1", "").arg(name));
 			a->setData(lang.completeBaseName().mid(6));
 			a->setCheckable(true);
 			a->setActionGroup(groupSettingsLanguageList);
@@ -1012,6 +1042,27 @@ static QTranslator *translator; // Application translator
 	return true;
 }
 
+void MainWindow::loadStyleList()
+{
+	menuSettingsStyle->clear();
+QStringList styles = QStyleFactory::keys();
+	menuSettingsStyle->insertAction(NULL, actionSettingsStyleSystem);
+	actionSettingsStyleSystem->setChecked(!settings->contains("Style"));
+	menuSettingsStyle->addSeparator();
+QAction *a;
+	foreach (QString style, styles) {
+		a = menuSettingsStyle->addAction(style);
+		a->setData(false);
+		a->setStatusTip(tr("Set application style to %1").arg(style));
+		a->setCheckable(true);
+		a->setActionGroup(groupSettingsStyleList);
+		if ((style == settings->value("Style").toString())
+			|| QString(QApplication::style()->metaObject()->className()).contains(QRegExp(QString("^Q?%1(Style)?$").arg(QRegExp::escape(style)), Qt::CaseInsensitive))) {
+			a->setChecked(true);
+		}
+	}
+}
+
 bool MainWindow::maybeSave()
 {
 	if (!isWindowModified())
@@ -1078,6 +1129,8 @@ void MainWindow::retranslateUi(bool all)
 {
 	if (all)
 		Ui::MainWindow::retranslateUi(this);
+
+	loadStyleList();
 
 	actionSettingsLanguageEnglish->setStatusTip(tr("Set application language to %1").arg("English"));
 
@@ -1196,18 +1249,21 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	menuSettings->insertAction(actionSettingsPreferences, toolBar->toggleViewAction());
 	menuSettings->insertSeparator(actionSettingsPreferences);
 
+	groupSettingsLanguageList = new QActionGroup(this);
+	actionSettingsLanguageEnglish->setData("en");
+	actionSettingsLanguageEnglish->setActionGroup(groupSettingsLanguageList);
+	loadLangList();
+	actionSettingsLanguageAutodetect->setChecked(settings->value("Language", "").toString().isEmpty());
+
+	actionSettingsStyleSystem->setData(true);
+	groupSettingsStyleList = new QActionGroup(this);
+
 #ifdef Q_OS_WIN32
 	actionHelpCheck4Updates = new QAction(this);
 	actionHelpCheck4Updates->setEnabled(hasUpdater());
 	menuHelp->insertAction(actionHelpAboutQt, actionHelpCheck4Updates);
 	menuHelp->insertSeparator(actionHelpAboutQt);
 #endif // Q_OS_WIN32
-
-	groupSettingsLanguageList = new QActionGroup(this);
-	actionSettingsLanguageEnglish->setData("en");
-	actionSettingsLanguageEnglish->setActionGroup(groupSettingsLanguageList);
-	loadLangList();
-	actionSettingsLanguageAutodetect->setChecked(settings->value("Language", "").toString().isEmpty());
 
 	spinCities->setMaximum(MAX_NUM_CITIES);
 
