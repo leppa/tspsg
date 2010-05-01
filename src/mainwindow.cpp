@@ -1188,7 +1188,7 @@ QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_D
 void MainWindow::setFileName(const QString &fileName)
 {
 	this->fileName = fileName;
-	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(tr("Travelling Salesman Problem")));
+	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(QApplication::applicationName()));
 }
 
 void MainWindow::setupUi()

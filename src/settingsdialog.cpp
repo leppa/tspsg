@@ -222,7 +222,7 @@ QStringList whitelist;
 	spinCitiesLimit->setMaximum(MAX_NUM_CITIES);
 	cbScrollToEnd->setChecked(settings->value("ScrollToEnd", DEF_SCROLL_TO_END).toBool());
 
-	font = settings->value("Font",QFont(DEF_FONT_FAMILY,DEF_FONT_SIZE)).value<QFont>();
+	font = settings->value("Font",QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>();
 	color = settings->value("Colors/Text", DEF_TEXT_COLOR).value<QColor>();
 	settings->endGroup();
 
