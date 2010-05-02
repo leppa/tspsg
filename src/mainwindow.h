@@ -62,6 +62,9 @@ private slots:
 #endif // QT_NO_PRINTER
 	void actionSettingsPreferencesTriggered();
 	void actionSettingsLanguageAutodetectTriggered(bool checked);
+#ifndef HANDHELD
+	void on_actionSettingsToolbars_triggered();
+#endif // HANDHELD
 	void groupSettingsLanguageListTriggered(QAction *action);
 	void actionSettingsStyleSystemTriggered(bool checked);
 	void groupSettingsStyleListTriggered(QAction *action);
@@ -90,6 +93,9 @@ private:
 	QString fileName;
 	QActionGroup *groupSettingsLanguageList;
 	QActionGroup *groupSettingsStyleList;
+#ifndef HANDHELD
+	QtToolBarManager *toolBarManager;
+#endif // HANDHELD
 #ifndef QT_NO_PRINTER
 	QPrinter *printer;
 	QAction *actionFilePrintPreview;

@@ -34,6 +34,7 @@
 #if !defined(NOSVG) && (QT_VERSION >= 0x040500)
 	#include <QtSvg>
 #endif // NOSVG && QT_VERSION >= 0x040500
+#include <QtToolBarDialog>
 
 // Version info
 #include "version.h"

@@ -34,8 +34,14 @@ BUILD_RELEASE = 3
 
 #REVISION = 100
 REVISION = $$system(svnversion)
+REVISION = $$replace(REVISION,":","")
 REVISION = $$replace(REVISION,"M","")
-VERSION = $$sprintf("%1.%2.%3.%4",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE,$$REVISION)
+#VERSION = $$sprintf("%1.%2.%3.%4",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE,$$REVISION)
+win32-msvc* {
+	VERSION = $$sprintf("%1.%2",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR)
+} else {
+	VERSION = $$sprintf("%1.%2.%3.%4",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE,$$REVISION)
+}
 
 DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
 	BUILD_VERSION_MINOR=$$BUILD_VERSION_MINOR \
@@ -74,6 +80,9 @@ TARGET = tspsg$${D}
 MOC_DIR = ./tmp
 RCC_DIR = ./tmp
 UI_DIR = ./tmp
+
+# Include 3rd party libraries
+include(src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.pri)
 
 # Include file(s)
 include(tspsg.pri)

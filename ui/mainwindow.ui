@@ -161,7 +161,7 @@
          </property>
          <property name="icon">
           <iconset resource="../resources/tspsg.qrc">
-           <normaloff>:/images/icons/button_ok.png</normaloff>:/images/icons/button_ok.png</iconset>
+           <normaloff>:/images/icons/dialog-ok.png</normaloff>:/images/icons/dialog-ok.png</iconset>
          </property>
         </widget>
        </item>
@@ -211,7 +211,7 @@
          </property>
          <property name="icon">
           <iconset resource="../resources/tspsg.qrc">
-           <normaloff>:/images/icons/filesaveas.png</normaloff>:/images/icons/filesaveas.png</iconset>
+           <normaloff>:/images/icons/document-save-as.png</normaloff>:/images/icons/document-save-as.png</iconset>
          </property>
         </widget>
        </item>
@@ -241,7 +241,7 @@
          </property>
          <property name="icon">
           <iconset resource="../resources/tspsg.qrc">
-           <normaloff>:/images/icons/back.png</normaloff>:/images/icons/back.png</iconset>
+           <normaloff>:/images/icons/go-previous.png</normaloff>:/images/icons/go-previous.png</iconset>
          </property>
         </widget>
        </item>
@@ -274,7 +274,7 @@
      </property>
      <property name="icon">
       <iconset resource="../resources/tspsg.qrc">
-       <normaloff>:/images/icons/filesaveas.png</normaloff>:/images/icons/filesaveas.png</iconset>
+       <normaloff>:/images/icons/document-save-as.png</normaloff>:/images/icons/document-save-as.png</iconset>
      </property>
      <addaction name="actionFileSaveAsTask"/>
      <addaction name="actionFileSaveAsSolution"/>
@@ -302,7 +302,7 @@
      </property>
      <property name="icon">
       <iconset resource="../resources/tspsg.qrc">
-       <normaloff>:/images/icons/locale.png</normaloff>:/images/icons/locale.png</iconset>
+       <normaloff>:/images/icons/preferences-desktop-locale.png</normaloff>:/images/icons/preferences-desktop-locale.png</iconset>
      </property>
      <addaction name="actionSettingsLanguageAutodetect"/>
      <addaction name="separator"/>
@@ -312,9 +312,15 @@
      <property name="title">
       <string>Style</string>
      </property>
+     <property name="icon">
+      <iconset resource="../resources/tspsg.qrc">
+       <normaloff>:/images/icons/preferences-desktop-theme.png</normaloff>:/images/icons/preferences-desktop-theme.png</iconset>
+     </property>
     </widget>
     <addaction name="menuSettingsLanguage"/>
     <addaction name="menuSettingsStyle"/>
+    <addaction name="actionSettingsToolbars"/>
+    <addaction name="separator"/>
     <addaction name="actionSettingsPreferences"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -369,7 +375,7 @@
   <action name="actionFileNew">
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/filenew.png</normaloff>:/images/icons/filenew.png</iconset>
+     <normaloff>:/images/icons/document-new.png</normaloff>:/images/icons/document-new.png</iconset>
    </property>
    <property name="text">
     <string>&amp;New</string>
@@ -387,7 +393,7 @@
   <action name="actionFileOpen">
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/fileopen.png</normaloff>:/images/icons/fileopen.png</iconset>
+     <normaloff>:/images/icons/document-open.png</normaloff>:/images/icons/document-open.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Open...</string>
@@ -405,7 +411,7 @@
   <action name="actionSettingsPreferences">
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/preferences_system.png</normaloff>:/images/icons/preferences_system.png</iconset>
+     <normaloff>:/images/icons/preferences-system.png</normaloff>:/images/icons/preferences-system.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Preferences...</string>
@@ -420,7 +426,7 @@
    </property>
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/contents.png</normaloff>:/images/icons/contents.png</iconset>
+     <normaloff>:/images/icons/help-contents.png</normaloff>:/images/icons/help-contents.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Contents</string>
@@ -438,7 +444,7 @@
    </property>
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/help_browser.png</normaloff>:/images/icons/help_browser.png</iconset>
+     <normaloff>:/images/icons/help-contextual.png</normaloff>:/images/icons/help-contextual.png</iconset>
    </property>
    <property name="text">
     <string>Context &amp;Help</string>
@@ -453,7 +459,7 @@
   <action name="actionHelpAbout">
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/help_about.png</normaloff>:/images/icons/help_about.png</iconset>
+     <normaloff>:/images/icons/help-about.png</normaloff>:/images/icons/help-about.png</iconset>
    </property>
    <property name="text">
     <string>&amp;About TSPSG...</string>
@@ -465,7 +471,7 @@
   <action name="actionFileExit">
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/exit.png</normaloff>:/images/icons/exit.png</iconset>
+     <normaloff>:/images/icons/application-exit.png</normaloff>:/images/icons/application-exit.png</iconset>
    </property>
    <property name="text">
     <string>E&amp;xit</string>
@@ -519,7 +525,7 @@
   <action name="actionFileSave">
    <property name="icon">
     <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/filesave.png</normaloff>:/images/icons/filesave.png</iconset>
+     <normaloff>:/images/icons/document-save.png</normaloff>:/images/icons/document-save.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save</string>
@@ -558,6 +564,18 @@
    </property>
    <property name="statusTip">
     <string>Automatically choose the most appropriate style</string>
+   </property>
+  </action>
+  <action name="actionSettingsToolbars">
+   <property name="icon">
+    <iconset resource="../resources/tspsg.qrc">
+     <normaloff>:/images/icons/configure-toolbars.png</normaloff>:/images/icons/configure-toolbars.png</iconset>
+   </property>
+   <property name="text">
+    <string>Toolbars...</string>
+   </property>
+   <property name="statusTip">
+    <string>Customize toolbars</string>
    </property>
   </action>
  </widget>

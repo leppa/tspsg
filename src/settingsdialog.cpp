@@ -34,10 +34,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
 	setupUi(this);
 
-	buttonBox->button(QDialogButtonBox::Save)->setIcon(QIcon(":/images/icons/button_ok.png"));
+	buttonBox->button(QDialogButtonBox::Save)->setIcon(QIcon(":/images/icons/dialog-ok.png"));
 	buttonBox->button(QDialogButtonBox::Save)->setStatusTip(tr("Save new preferences"));
 	buttonBox->button(QDialogButtonBox::Save)->setCursor(QCursor(Qt::PointingHandCursor));
-	buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QIcon(":/images/icons/button_cancel.png"));
+	buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QIcon(":/images/icons/dialog-cancel.png"));
 	buttonBox->button(QDialogButtonBox::Cancel)->setStatusTip(tr("Close without saving preferences"));
 	buttonBox->button(QDialogButtonBox::Cancel)->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -107,7 +107,7 @@ QHBoxLayout *hbox1;
 	imgIcon->setObjectName("imgIcon");
 	imgIcon->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Expanding);
 	imgIcon->setFrameShape(QFrame::NoFrame);
-	imgIcon->setPixmap(QPixmap(":/images/icons/preferences_system.png"));
+	imgIcon->setPixmap(QPixmap(":/images/icons/preferences-system.png"));
 	imgIcon->setStyleSheet("background-color: #0080C0; padding-top: 11px;");
 	imgIcon->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
 	imgIcon->setMinimumWidth(150);

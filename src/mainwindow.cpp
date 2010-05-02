@@ -315,15 +315,10 @@ QPrintPreviewDialog ppd(printer, this);
 void MainWindow::actionFilePrintTriggered()
 {
 QPrintDialog pd(printer,this);
-#if QT_VERSION >= 0x040500
-	// No such methods in Qt < 4.5
-	pd.setOption(QAbstractPrintDialog::PrintSelection,false);
-	pd.setOption(QAbstractPrintDialog::PrintPageRange,false);
-#endif
 	if (pd.exec() != QDialog::Accepted)
 		return;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	solutionText->document()->print(printer);
+	solutionText->print(printer);
 	QApplication::restoreOverrideCursor();
 }
 #endif // QT_NO_PRINTER
@@ -519,6 +514,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 
 	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
 	dlg->setWindowTitle(tr("About %1").arg(QApplication::applicationName()));
+	dlg->setWindowIcon(QIcon(":/images/icons/help-about.png"));
 	dlg->setLayout(vb);
 
 	connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
@@ -1232,12 +1228,12 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	actionFilePrintPreview = new QAction(this);
 	actionFilePrintPreview->setObjectName("actionFilePrintPreview");
 	actionFilePrintPreview->setEnabled(false);
-	actionFilePrintPreview->setIcon(QIcon(":/images/icons/document_preview.png"));
+	actionFilePrintPreview->setIcon(QIcon(":/images/icons/document-print-preview.png"));
 
 	actionFilePrint = new QAction(this);
 	actionFilePrint->setObjectName("actionFilePrint");
 	actionFilePrint->setEnabled(false);
-	actionFilePrint->setIcon(QIcon(":/images/icons/fileprint.png"));
+	actionFilePrint->setIcon(QIcon(":/images/icons/document-print.png"));
 
 	menuFile->insertAction(actionFileExit,actionFilePrintPreview);
 	menuFile->insertAction(actionFileExit,actionFilePrint);
@@ -1260,6 +1256,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
 
 #ifdef Q_OS_WIN32
 	actionHelpCheck4Updates = new QAction(this);
+	actionHelpCheck4Updates->setIcon(QIcon(":/images/icons/system-software-update.png"));
 	actionHelpCheck4Updates->setEnabled(hasUpdater());
 	menuHelp->insertAction(actionHelpAboutQt, actionHelpCheck4Updates);
 	menuHelp->insertSeparator(actionHelpAboutQt);
@@ -1275,6 +1272,19 @@ QScrollArea *scrollArea = new QScrollArea(this);
 		toggleTranclucency(true);
 	}
 #endif // Q_OS_WIN32
+
+#ifndef HANDHELD
+	toolBarManager = new QtToolBarManager;
+	toolBarManager->setMainWindow(this);
+QString cat = toolBar->windowTitle();
+	toolBarManager->addToolBar(toolBar, cat);
+#ifndef QT_NO_PRINTER
+	toolBarManager->addAction(actionFilePrintPreview, cat);
+#endif // QT_NO_PRINTER
+	toolBarManager->addAction(actionHelpContents, cat);
+	toolBarManager->addAction(actionHelpContextual, cat);
+//	toolBarManager->addAction(action, cat);
+#endif // HANDHELD
 }
 
 void MainWindow::toggleSolutionActions(bool enable)
@@ -1300,3 +1310,12 @@ void MainWindow::toggleTranclucency(bool enable)
 	Q_UNUSED(enable);
 #endif // Q_OS_WIN32
 }
+
+#ifndef HANDHELD
+void MainWindow::on_actionSettingsToolbars_triggered()
+{
+QtToolBarDialog dlg(this);
+	dlg.setToolBarManager(toolBarManager);
+	dlg.exec();
+}
+#endif // HANDHELD
