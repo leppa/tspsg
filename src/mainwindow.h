@@ -62,12 +62,12 @@ private slots:
 #endif // QT_NO_PRINTER
 	void actionSettingsPreferencesTriggered();
 	void actionSettingsLanguageAutodetectTriggered(bool checked);
-#ifndef HANDHELD
-	void on_actionSettingsToolbars_triggered();
-#endif // HANDHELD
 	void groupSettingsLanguageListTriggered(QAction *action);
 	void actionSettingsStyleSystemTriggered(bool checked);
 	void groupSettingsStyleListTriggered(QAction *action);
+#ifndef HANDHELD
+	void actionSettingsToolbarsConfigureTriggered();
+#endif // HANDHELD
 #ifdef Q_OS_WIN32
 	void actionHelpCheck4UpdatesTriggered();
 #endif // Q_OS_WIN32
@@ -94,6 +94,7 @@ private:
 	QActionGroup *groupSettingsLanguageList;
 	QActionGroup *groupSettingsStyleList;
 #ifndef HANDHELD
+	QAction *actionSettingsToolbarsConfigure;
 	QtToolBarManager *toolBarManager;
 #endif // HANDHELD
 #ifndef QT_NO_PRINTER
@@ -131,6 +132,7 @@ private:
 	void loadLangList();
 	bool loadLanguage(const QString &lang = QString());
 	void loadStyleList();
+	void loadToolbarList();
 	bool maybeSave();
 	void outputMatrix(QTextCursor &cur, const TMatrix &matrix);
 	void outputMatrix(QTextCursor &cur, const SStep &step);

@@ -56,7 +56,7 @@
 	#endif
 #else
 	#if !defined(TSPSG_RELEASE_BUILD)
-		#define BUILD_STATUS (dev build)
+		#define BUILD_STATUS (nightly build)
 	#elif !defined(BUILD_STATUS)
 		#define BUILD_STATUS (build BUILD_NUMBER)
 	#endif // TSPSG_RELEASE_BUILD

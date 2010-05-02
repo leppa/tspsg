@@ -67,6 +67,9 @@ QStyle *s = QStyleFactory::create(settings->value("Style").toString());
 	connect(actionFilePrintPreview, SIGNAL(triggered()), SLOT(actionFilePrintPreviewTriggered()));
 	connect(actionFilePrint, SIGNAL(triggered()), SLOT(actionFilePrintTriggered()));
 #endif // QT_NO_PRINTER
+#ifndef HANDHELD
+	connect(actionSettingsToolbarsConfigure, SIGNAL(triggered()), SLOT(actionSettingsToolbarsConfigureTriggered()));
+#endif // HANDHELD
 	connect(actionSettingsPreferences, SIGNAL(triggered()), SLOT(actionSettingsPreferencesTriggered()));
 #ifdef Q_OS_WIN32
 	connect(actionHelpCheck4Updates, SIGNAL(triggered()), SLOT(actionHelpCheck4UpdatesTriggered()));
@@ -394,6 +397,23 @@ QStyle *s = QStyleFactory::create(action->text());
 	}
 }
 
+#ifndef HANDHELD
+void MainWindow::actionSettingsToolbarsConfigureTriggered()
+{
+QtToolBarDialog dlg(this);
+	dlg.setToolBarManager(toolBarManager);
+	dlg.exec();
+QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(actionFileSave));
+	if (tb != NULL) {
+		tb->setMenu(menuFileSaveAs);
+		tb->setPopupMode(QToolButton::MenuButtonPopup);
+		tb->resize(tb->sizeHint());
+	}
+
+	loadToolbarList();
+}
+#endif // HANDHELD
+
 #ifdef Q_OS_WIN32
 void MainWindow::actionHelpCheck4UpdatesTriggered()
 {
@@ -422,7 +442,7 @@ QString title;
 	title += QString("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sourceforge.net/</a></b>");
 #else
 	title += QString("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sf.net/</a></b>");
-#endif // Q_OS_WINCE_WM && Q_OS_SYMBIAN
+#endif // HANDHELD
 
 QString about;
 	about += QString("%1: <b>%2</b><br>").arg(tr("Target OS (ARCH)"), OS);
@@ -824,14 +844,15 @@ void MainWindow::closeEvent(QCloseEvent *ev)
 		settings->setValue("NumCities", spinCities->value());
 
 		// Saving Main Window state
+#ifndef HANDHELD
 		if (settings->value("SavePos", DEF_SAVEPOS).toBool()) {
 			settings->beginGroup("MainWindow");
-#ifndef HANDHELD
 			settings->setValue("Geometry", saveGeometry());
-#endif // HANDHELD
 			settings->setValue("State", saveState());
+			settings->setValue("Toolbars", toolBarManager->saveState());
 			settings->endGroup();
 		}
+#endif // HANDHELD
 	} else {
 		settings->remove("SettingsReset");
 	}
@@ -1059,6 +1080,21 @@ QAction *a;
 	}
 }
 
+void MainWindow::loadToolbarList()
+{
+	menuSettingsToolbars->clear();
+#ifndef HANDHELD
+	menuSettingsToolbars->insertAction(NULL, actionSettingsToolbarsConfigure);
+	menuSettingsToolbars->addSeparator();
+QList<QToolBar *> list = toolBarManager->toolBars();
+	foreach (QToolBar *t, list) {
+		menuSettingsToolbars->insertAction(NULL, t->toggleViewAction());
+	}
+#else // HANDHELD
+	menuSettingsToolbars->insertAction(NULL, toolBarMain->toggleViewAction());
+#endif // HANDHELD
+}
+
 bool MainWindow::maybeSave()
 {
 	if (!isWindowModified())
@@ -1127,26 +1163,30 @@ void MainWindow::retranslateUi(bool all)
 		Ui::MainWindow::retranslateUi(this);
 
 	loadStyleList();
+	loadToolbarList();
 
-	actionSettingsLanguageEnglish->setStatusTip(tr("Set application language to %1").arg("English"));
+#ifndef HANDHELD
+	actionSettingsToolbarsConfigure->setText(tr("Configure..."));
+	actionSettingsToolbarsConfigure->setToolTip(tr("Customize toolbars"));
+#endif // HANDHELD
 
 #ifndef QT_NO_PRINTER
-	actionFilePrintPreview->setText(QApplication::translate("MainWindow", "P&rint Preview...", 0, QApplication::UnicodeUTF8));
+	actionFilePrintPreview->setText(tr("P&rint Preview..."));
 #ifndef QT_NO_TOOLTIP
-	actionFilePrintPreview->setToolTip(QApplication::translate("MainWindow", "Preview solution results", 0, QApplication::UnicodeUTF8));
+	actionFilePrintPreview->setToolTip(tr("Preview solution results"));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_STATUSTIP
-	actionFilePrintPreview->setStatusTip(QApplication::translate("MainWindow", "Preview current solution results before printing", 0, QApplication::UnicodeUTF8));
+	actionFilePrintPreview->setStatusTip(tr("Preview current solution results before printing"));
 #endif // QT_NO_STATUSTIP
 
-	actionFilePrint->setText(QApplication::translate("MainWindow", "&Print...", 0, QApplication::UnicodeUTF8));
+	actionFilePrint->setText(tr("&Print..."));
 #ifndef QT_NO_TOOLTIP
-	actionFilePrint->setToolTip(QApplication::translate("MainWindow", "Print solution", 0, QApplication::UnicodeUTF8));
+	actionFilePrint->setToolTip(tr("Print solution"));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_STATUSTIP
-	actionFilePrint->setStatusTip(QApplication::translate("MainWindow", "Print current solution results", 0, QApplication::UnicodeUTF8));
+	actionFilePrint->setStatusTip(tr("Print current solution results"));
 #endif // QT_NO_STATUSTIP
-	actionFilePrint->setShortcut(QApplication::translate("MainWindow", "Ctrl+P", 0, QApplication::UnicodeUTF8));
+	actionFilePrint->setShortcut(tr("Ctrl+P"));
 #endif // QT_NO_PRINTER
 #ifdef Q_OS_WIN32
 	actionHelpCheck4Updates->setText(tr("Check for &Updates..."));
@@ -1216,10 +1256,13 @@ QScrollArea *scrollArea = new QScrollArea(this);
 
 	//! \hack HACK: A little hack for toolbar icons to have a sane size.
 #ifdef HANDHELD
-	toolBar->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
+	toolBarMain->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
 #endif // HANDHELD
-	static_cast<QToolButton *>(toolBar->widgetForAction(actionFileSave))->setMenu(menuFileSaveAs);
-	static_cast<QToolButton *>(toolBar->widgetForAction(actionFileSave))->setPopupMode(QToolButton::MenuButtonPopup);
+QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(actionFileSave));
+	if (tb != NULL)	 {
+		tb->setMenu(menuFileSaveAs);
+		tb->setPopupMode(QToolButton::MenuButtonPopup);
+	}
 
 	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>());
 	solutionText->setWordWrapMode(QTextOption::WordWrap);
@@ -1239,11 +1282,8 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	menuFile->insertAction(actionFileExit,actionFilePrint);
 	menuFile->insertSeparator(actionFileExit);
 
-	toolBar->insertAction(actionSettingsPreferences,actionFilePrint);
+	toolBarMain->insertAction(actionSettingsPreferences, actionFilePrint);
 #endif // QT_NO_PRINTER
-
-	menuSettings->insertAction(actionSettingsPreferences, toolBar->toggleViewAction());
-	menuSettings->insertSeparator(actionSettingsPreferences);
 
 	groupSettingsLanguageList = new QActionGroup(this);
 	actionSettingsLanguageEnglish->setData("en");
@@ -1253,6 +1293,11 @@ QScrollArea *scrollArea = new QScrollArea(this);
 
 	actionSettingsStyleSystem->setData(true);
 	groupSettingsStyleList = new QActionGroup(this);
+
+#ifndef HANDHELD
+	actionSettingsToolbarsConfigure = new QAction(this);
+	actionSettingsToolbarsConfigure->setIcon(QIcon(":/images/icons/configure-toolbars.png"));
+#endif // HANDHELD
 
 #ifdef Q_OS_WIN32
 	actionHelpCheck4Updates = new QAction(this);
@@ -1264,6 +1309,20 @@ QScrollArea *scrollArea = new QScrollArea(this);
 
 	spinCities->setMaximum(MAX_NUM_CITIES);
 
+#ifndef HANDHELD
+	toolBarManager = new QtToolBarManager;
+	toolBarManager->setMainWindow(this);
+QString cat = toolBarMain->windowTitle();
+	toolBarManager->addToolBar(toolBarMain, cat);
+#ifndef QT_NO_PRINTER
+	toolBarManager->addAction(actionFilePrintPreview, cat);
+#endif // QT_NO_PRINTER
+	toolBarManager->addAction(actionHelpContents, cat);
+	toolBarManager->addAction(actionHelpContextual, cat);
+//	toolBarManager->addAction(action, cat);
+	toolBarManager->restoreState(settings->value("MainWindow/Toolbars").toByteArray());
+#endif // HANDHELD
+
 	retranslateUi(false);
 
 #ifdef Q_OS_WIN32
@@ -1272,19 +1331,6 @@ QScrollArea *scrollArea = new QScrollArea(this);
 		toggleTranclucency(true);
 	}
 #endif // Q_OS_WIN32
-
-#ifndef HANDHELD
-	toolBarManager = new QtToolBarManager;
-	toolBarManager->setMainWindow(this);
-QString cat = toolBar->windowTitle();
-	toolBarManager->addToolBar(toolBar, cat);
-#ifndef QT_NO_PRINTER
-	toolBarManager->addAction(actionFilePrintPreview, cat);
-#endif // QT_NO_PRINTER
-	toolBarManager->addAction(actionHelpContents, cat);
-	toolBarManager->addAction(actionHelpContextual, cat);
-//	toolBarManager->addAction(action, cat);
-#endif // HANDHELD
 }
 
 void MainWindow::toggleSolutionActions(bool enable)
@@ -1310,12 +1356,3 @@ void MainWindow::toggleTranclucency(bool enable)
 	Q_UNUSED(enable);
 #endif // Q_OS_WIN32
 }
-
-#ifndef HANDHELD
-void MainWindow::on_actionSettingsToolbars_triggered()
-{
-QtToolBarDialog dlg(this);
-	dlg.setToolBarManager(toolBarManager);
-	dlg.exec();
-}
-#endif // HANDHELD

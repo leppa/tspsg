@@ -34,7 +34,15 @@
 #if !defined(NOSVG) && (QT_VERSION >= 0x040500)
 	#include <QtSvg>
 #endif // NOSVG && QT_VERSION >= 0x040500
-#include <QtToolBarDialog>
+
+#if defined(Q_OS_WINCE_WM) || defined(Q_OS_SYMBIAN)
+	//! This is defined on handheld devices (e.g., Windows Mobile, Symbian).
+	#define HANDHELD
+#endif
+
+#ifndef HANDHELD
+	#include <QtToolBarDialog>
+#endif
 
 // Version info
 #include "version.h"
@@ -109,11 +117,6 @@ double i;
  */
 void toggleStyle(QWidget *widget, bool enable);
 #endif // Q_OS_WIN32
-
-#if defined(Q_OS_WINCE_WM) || defined(Q_OS_SYMBIAN)
-	//! This is defined on handheld (e.g., Windows Mobile, Symbian) devices.
-	#define HANDHELD
-#endif
 
 // Sanity checks
 // Check that default number of cities is sane (<= MAX_NUM_CITIES)

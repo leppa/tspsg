@@ -8,7 +8,7 @@ qttoolbardialog-uselib:!qttoolbardialog-buildlib {
     SOURCES += $$PWD/qttoolbardialog.cpp
     HEADERS += $$PWD/qttoolbardialog.h
     FORMS += $$PWD/qttoolbardialog.ui
-#    RESOURCES += $$PWD/qttoolbardialog.qrc
+    RESOURCES += $$PWD/qttoolbardialog.qrc
 }
 
 win32 {

@@ -82,7 +82,9 @@ RCC_DIR = ./tmp
 UI_DIR = ./tmp
 
 # Include 3rd party libraries
-include(src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.pri)
+!wincewm*:!symbian {
+	include(src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.pri)
+}
 
 # Include file(s)
 include(tspsg.pri)

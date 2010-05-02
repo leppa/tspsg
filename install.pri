@@ -62,7 +62,7 @@ win32 {
 }
 
 # For wince: we are deploying to \Program Files\TSPSG.
-wince {
+wince* {
 	PREFIX = "\Program Files"
 	share.sources = $$share.files
 	l10n.sources = $$l10n.files \

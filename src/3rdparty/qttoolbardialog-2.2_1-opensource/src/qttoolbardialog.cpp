@@ -1820,10 +1820,10 @@ QtToolBarDialog::QtToolBarDialog(QWidget *parent, Qt::WFlags flags)
     connect(d_ptr->ui.newButton, SIGNAL(clicked()), this, SLOT(newClicked()));
     connect(d_ptr->ui.removeButton, SIGNAL(clicked()), this, SLOT(removeClicked()));
     connect(d_ptr->ui.renameButton, SIGNAL(clicked()), this, SLOT(renameClicked()));
-    connect(d_ptr->ui.defaultButton, SIGNAL(clicked()), this, SLOT(defaultClicked()));
-    connect(d_ptr->ui.okButton, SIGNAL(clicked()), this, SLOT(okClicked()));
-    connect(d_ptr->ui.applyButton, SIGNAL(clicked()), this, SLOT(applyClicked()));
-    connect(d_ptr->ui.cancelButton, SIGNAL(clicked()), this, SLOT(cancelClicked()));
+	connect(d_ptr->ui.buttonBox->button(QDialogButtonBox::RestoreDefaults), SIGNAL(clicked()), this, SLOT(defaultClicked()));
+	connect(d_ptr->ui.buttonBox->button(QDialogButtonBox::Save), SIGNAL(clicked()), this, SLOT(okClicked()));
+	connect(d_ptr->ui.buttonBox->button(QDialogButtonBox::Apply), SIGNAL(clicked()), this, SLOT(applyClicked()));
+	connect(d_ptr->ui.buttonBox->button(QDialogButtonBox::Close), SIGNAL(clicked()), this, SLOT(cancelClicked()));
     connect(d_ptr->ui.upButton, SIGNAL(clicked()), this, SLOT(upClicked()));
     connect(d_ptr->ui.downButton, SIGNAL(clicked()), this, SLOT(downClicked()));
     connect(d_ptr->ui.leftButton, SIGNAL(clicked()), this, SLOT(leftClicked()));

@@ -1,10 +1,9 @@
-<RCC version="1.0">
-    <qresource prefix="/qttoolbardialog">
-        <file>images/up.png</file>
-        <file>images/down.png</file>
-        <file>images/forward.png</file>
-        <file>images/back.png</file>
-        <file>images/plus.png</file>
-        <file>images/minus.png</file>
+<RCC>
+    <qresource prefix="/">
+        <file>images/icons/go-down.png</file>
+        <file>images/icons/go-next.png</file>
+        <file>images/icons/go-previous.png</file>
+        <file>images/icons/list-add.png</file>
+        <file>images/icons/list-remove.png</file>
     </qresource>
 </RCC>
