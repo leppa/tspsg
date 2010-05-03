@@ -222,7 +222,7 @@ QStringList whitelist;
 	spinCitiesLimit->setMaximum(MAX_NUM_CITIES);
 	cbScrollToEnd->setChecked(settings->value("ScrollToEnd", DEF_SCROLL_TO_END).toBool());
 
-	font = settings->value("Font",QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>();
+	font = settings->value("Font", QFont(getDefaultFont(), DEF_FONT_SIZE)).value<QFont>();
 	color = settings->value("Colors/Text", DEF_TEXT_COLOR).value<QColor>();
 	settings->endGroup();
 
@@ -268,7 +268,7 @@ void SettingsDialog::accept()
 {
 	if (QApplication::keyboardModifiers() & Qt::ShiftModifier) {
 		if (QMessageBox::question(this, tr("Settings Reset"), tr("Do you really want to <b>reset all application settings to their defaults</b>?"), QMessageBox::RestoreDefaults | QMessageBox::Cancel) == QMessageBox::RestoreDefaults) {
-			_newFont = (font != QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE));
+			_newFont = (font != QFont(getDefaultFont(), DEF_FONT_SIZE));
 			_newColor = (color != DEF_TEXT_COLOR);
 			settings->remove("");
 			settings->setValue("SettingsReset", true);

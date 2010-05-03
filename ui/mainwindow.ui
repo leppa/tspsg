@@ -291,12 +291,6 @@
      <string>&amp;Settings</string>
     </property>
     <widget class="QMenu" name="menuSettingsLanguage">
-     <property name="toolTip">
-      <string>Select language</string>
-     </property>
-     <property name="statusTip">
-      <string>Select application language</string>
-     </property>
      <property name="title">
       <string comment="Please, append &quot; / Language&quot; when translating this string.">&amp;Language</string>
      </property>

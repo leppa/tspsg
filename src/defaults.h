@@ -77,15 +77,6 @@
 //! Default for "Scroll to the end of output after solving"
 #define DEF_SCROLL_TO_END false
 /*!
- * \def DEF_FONT_FAMILY
- * \brief Default font name.
- */
-#ifdef Q_OS_WINCE_WM
-	#define DEF_FONT_FAMILY "Tahoma"
-#else
-	#define DEF_FONT_FAMILY "monospace"
-#endif // Q_OS_WINCE_WM
-/*!
  * \def DEF_FONT_SIZE
  * \brief Default font size
  */

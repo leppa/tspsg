@@ -620,7 +620,7 @@ QPainter pic;
 	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
 		pic.begin(&graph);
 		pic.setRenderHint(QPainter::Antialiasing);
-		pic.setFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, 9)).value<QFont>());
+		pic.setFont(settings->value("Output/Font", QFont(getDefaultFont(), 9)).value<QFont>());
 		pic.setBrush(QBrush(QColor(Qt::white)));
 		pic.setBackgroundMode(Qt::OpaqueMode);
 	}
@@ -935,7 +935,7 @@ bool MainWindow::hasUpdater() const
 
 void MainWindow::initDocStyleSheet()
 {
-	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>());
+	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(getDefaultFont(), DEF_FONT_SIZE)).value<QFont>());
 
 	fmt_paragraph.setTopMargin(0);
 	fmt_paragraph.setRightMargin(10);
@@ -952,7 +952,9 @@ void MainWindow::initDocStyleSheet()
 
 	fmt_cell.setAlignment(Qt::AlignHCenter);
 
-QColor color = settings->value("Output/Colors/Text", DEF_TEXT_COLOR).value<QColor>();
+	settings->beginGroup("Output/Colors");
+
+QColor color = settings->value("Text", DEF_TEXT_COLOR).value<QColor>();
 QColor hilight;
 	if (color.value() < 192)
 		hilight.setHsv(color.hue(), color.saturation(), 127 + qRound(color.value() / 2));
@@ -962,12 +964,14 @@ QColor hilight;
 	solutionText->document()->setDefaultStyleSheet(QString("* {color: %1;}").arg(color.name()));
 	fmt_default.setForeground(QBrush(color));
 
-	fmt_selected.setForeground(QBrush(settings->value("Output/Colors/Selected", DEF_SELECTED_COLOR).value<QColor>()));
+	fmt_selected.setForeground(QBrush(settings->value("Selected", DEF_SELECTED_COLOR).value<QColor>()));
 	fmt_selected.setFontWeight(QFont::Bold);
 
-	fmt_alternate.setForeground(QBrush(settings->value("Output/Colors/Alternate", DEF_ALTERNATE_COLOR).value<QColor>()));
+	fmt_alternate.setForeground(QBrush(settings->value("Alternate", DEF_ALTERNATE_COLOR).value<QColor>()));
 	fmt_alternate.setFontWeight(QFont::Bold);
 	fmt_altlist.setForeground(QBrush(hilight));
+
+	settings->endGroup();
 
 	solutionText->setTextColor(color);
 }
@@ -1165,11 +1169,6 @@ void MainWindow::retranslateUi(bool all)
 	loadStyleList();
 	loadToolbarList();
 
-#ifndef HANDHELD
-	actionSettingsToolbarsConfigure->setText(tr("Configure..."));
-	actionSettingsToolbarsConfigure->setToolTip(tr("Customize toolbars"));
-#endif // HANDHELD
-
 #ifndef QT_NO_PRINTER
 	actionFilePrintPreview->setText(tr("P&rint Preview..."));
 #ifndef QT_NO_TOOLTIP
@@ -1188,11 +1187,16 @@ void MainWindow::retranslateUi(bool all)
 #endif // QT_NO_STATUSTIP
 	actionFilePrint->setShortcut(tr("Ctrl+P"));
 #endif // QT_NO_PRINTER
+
+#ifndef HANDHELD
+	actionSettingsToolbarsConfigure->setText(tr("Configure..."));
+#ifndef QT_NO_STATUSTIP
+	actionSettingsToolbarsConfigure->setStatusTip(tr("Customize toolbars"));
+#endif // QT_NO_STATUSTIP
+#endif // HANDHELD
+
 #ifdef Q_OS_WIN32
 	actionHelpCheck4Updates->setText(tr("Check for &Updates..."));
-#ifndef QT_NO_TOOLTIP
-	actionHelpCheck4Updates->setToolTip(tr("Check for %1 updates").arg(QApplication::applicationName()));
-#endif // QT_NO_TOOLTIP
 #ifndef QT_NO_STATUSTIP
 	actionHelpCheck4Updates->setStatusTip(tr("Check for %1 updates").arg(QApplication::applicationName()));
 #endif // QT_NO_STATUSTIP
@@ -1264,7 +1268,7 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 		tb->setPopupMode(QToolButton::MenuButtonPopup);
 	}
 
-	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>());
+//	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>());
 	solutionText->setWordWrapMode(QTextOption::WordWrap);
 
 #ifndef QT_NO_PRINTER

@@ -11,7 +11,7 @@
         <translation>Русский перевод:&lt;br&gt;&lt;a href=&quot;http://oleksii.name/&quot;&gt;Алексей &quot;Lёppa&quot; Сердюк&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="989"/>
+        <location filename="../src/mainwindow.cpp" line="993"/>
         <source>LANGNAME</source>
         <comment>Please, provide a native name of your translation language here.</comment>
         <translation>Русский</translation>
@@ -138,11 +138,7 @@ Error: %1</source>
         <translation>Смена языка</translation>
     </message>
     <message>
-        <source>Travelling Salesman Problem</source>
-        <translation type="obsolete">Задача коммивояжера</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1100"/>
+        <location filename="../src/mainwindow.cpp" line="1106"/>
         <source>Unsaved Changes</source>
         <translation>Несохраненные изменения</translation>
     </message>
@@ -154,7 +150,7 @@ Error: %1</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="149"/>
         <location filename="../src/mainwindow.cpp" line="213"/>
-        <location filename="../src/mainwindow.cpp" line="1202"/>
+        <location filename="../src/mainwindow.cpp" line="1208"/>
         <source>All Files</source>
         <translation>Все файлы</translation>
     </message>
@@ -165,8 +161,8 @@ Error: %1</source>
         <translation>Файлы условий %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1052"/>
-        <location filename="../src/mainwindow.cpp" line="1054"/>
+        <location filename="../src/mainwindow.cpp" line="1056"/>
+        <location filename="../src/mainwindow.cpp" line="1058"/>
         <source>Language Change</source>
         <translation>Смена языка</translation>
     </message>
@@ -216,28 +212,27 @@ Error: %1</source>
         <translation>Корень</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1073"/>
+        <location filename="../src/mainwindow.cpp" line="1077"/>
         <source>Set application style to %1</source>
         <translation>Изменить оформление приложения на %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1167"/>
+        <location filename="../src/mainwindow.cpp" line="1192"/>
         <source>Configure...</source>
         <translation>Настройка...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1168"/>
+        <location filename="../src/mainwindow.cpp" line="1194"/>
         <source>Customize toolbars</source>
         <translation>Настройка панелей инструментов</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1192"/>
-        <location filename="../src/mainwindow.cpp" line="1195"/>
+        <location filename="../src/mainwindow.cpp" line="1201"/>
         <source>Check for %1 updates</source>
         <translation>Проверить обновления %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1201"/>
+        <location filename="../src/mainwindow.cpp" line="1207"/>
         <source>%1 Task File</source>
         <translation>Файл условия %1</translation>
     </message>
@@ -331,10 +326,6 @@ or support for this feature was not installed.</source>
         <location filename="../src/mainwindow.cpp" line="459"/>
         <source>TSPSG is free software: you can redistribute it and/or modify it&lt;br&gt;under the terms of the GNU General Public License as published&lt;br&gt;by the Free Software Foundation, either version 3 of the License,&lt;br&gt;or (at your option) any later version.&lt;br&gt;&lt;br&gt;TSPSG is distributed in the hope that it will be useful, but&lt;br&gt;WITHOUT ANY WARRANTY; without even the implied warranty of&lt;br&gt;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the&lt;br&gt;GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License&lt;br&gt;along with TSPSG.  If not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;http://www.gnu.org/licenses/&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About TSPSG</source>
-        <translation type="obsolete">О TSPSG</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="579"/>
@@ -516,36 +507,32 @@ you need to re-run the solution process.</source>
         <translation>Очистка...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1052"/>
-        <location filename="../src/mainwindow.cpp" line="1054"/>
+        <location filename="../src/mainwindow.cpp" line="1056"/>
+        <location filename="../src/mainwindow.cpp" line="1058"/>
         <source>Unable to load the translation language.
 Falling back to autodetection.</source>
         <translation>Невозможно загрузить перевод.
 Возвращаюсь к автоопределению.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1100"/>
+        <location filename="../src/mainwindow.cpp" line="1106"/>
         <source>Would you like to save changes in the current task?</source>
         <translation>Желаете сохранить изменения в текущей задаче?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="991"/>
+        <location filename="../src/mainwindow.cpp" line="995"/>
         <source>Set application language to %1</source>
         <translation>Изменить язык приложения на %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1190"/>
+        <location filename="../src/mainwindow.cpp" line="1199"/>
         <source>Check for &amp;Updates...</source>
         <translation>Проверить &amp;обновления...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1210"/>
+        <location filename="../src/mainwindow.cpp" line="1216"/>
         <source>Task Save</source>
         <translation>Сохранение условия</translation>
-    </message>
-    <message>
-        <source>Language will be autodetected on the next application start.</source>
-        <translation type="obsolete">Язык будет автоматически определен при следующем запуске приложения.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="356"/>
@@ -626,7 +613,7 @@ Do you wish to turn it off?</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="207"/>
-        <location filename="../ui/mainwindow.ui" line="377"/>
+        <location filename="../ui/mainwindow.ui" line="371"/>
         <source>Save solution to a file</source>
         <translation>Сохранить решение в файл</translation>
     </message>
@@ -651,23 +638,23 @@ Do you wish to turn it off?</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="301"/>
+        <location filename="../ui/mainwindow.ui" line="295"/>
         <source>&amp;Language</source>
         <comment>Please, append &quot; / Language&quot; when translating this string.</comment>
         <translation>Язык / &amp;Language</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="455"/>
+        <location filename="../ui/mainwindow.ui" line="449"/>
         <source>Context &amp;Help</source>
         <translation>&amp;Контекстная справка</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="470"/>
+        <location filename="../ui/mainwindow.ui" line="464"/>
         <source>&amp;About TSPSG...</source>
         <translation>&amp;О TSPSG...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="539"/>
+        <location filename="../ui/mainwindow.ui" line="533"/>
         <source>&amp;Save</source>
         <translation>Со&amp;хранить</translation>
     </message>
@@ -677,175 +664,170 @@ Do you wish to turn it off?</source>
         <translation>&amp;Настройки</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="313"/>
+        <location filename="../ui/mainwindow.ui" line="307"/>
         <source>Style</source>
         <translation>Оформление</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="322"/>
+        <location filename="../ui/mainwindow.ui" line="316"/>
         <source>Toolbars</source>
         <translation>Панели инструментов</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="333"/>
+        <location filename="../ui/mainwindow.ui" line="327"/>
         <source>&amp;Help</source>
         <translation>&amp;Помощь</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="350"/>
+        <location filename="../ui/mainwindow.ui" line="344"/>
         <source>Main Toolbar</source>
         <translation>Главная панель</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="374"/>
+        <location filename="../ui/mainwindow.ui" line="368"/>
         <source>Save solution</source>
         <translation>Сохранить решение</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="386"/>
+        <location filename="../ui/mainwindow.ui" line="380"/>
         <source>&amp;New</source>
         <translation>&amp;Создать</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="389"/>
+        <location filename="../ui/mainwindow.ui" line="383"/>
         <source>New task</source>
         <translation>Создать задачу</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="392"/>
+        <location filename="../ui/mainwindow.ui" line="386"/>
         <source>Create new task</source>
         <translation>Создать новую задачу</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="395"/>
+        <location filename="../ui/mainwindow.ui" line="389"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="404"/>
+        <location filename="../ui/mainwindow.ui" line="398"/>
         <source>&amp;Open...</source>
         <translation>&amp;Открыть...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="407"/>
+        <location filename="../ui/mainwindow.ui" line="401"/>
         <source>Open task</source>
         <translation>Открыть условие</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="410"/>
+        <location filename="../ui/mainwindow.ui" line="404"/>
         <source>Open saved task</source>
         <translation>Открыть сохраненное условие задачи</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="413"/>
+        <location filename="../ui/mainwindow.ui" line="407"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="422"/>
+        <location filename="../ui/mainwindow.ui" line="416"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Параметры...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="425"/>
+        <location filename="../ui/mainwindow.ui" line="419"/>
         <source>Application preferences</source>
         <translation>Настройка параметров программмы</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="437"/>
+        <location filename="../ui/mainwindow.ui" line="431"/>
         <source>&amp;Contents</source>
         <translation>&amp;Содежание</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="440"/>
+        <location filename="../ui/mainwindow.ui" line="434"/>
         <source>Open help contents</source>
         <translation>Вызвать справку программы</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="443"/>
+        <location filename="../ui/mainwindow.ui" line="437"/>
         <source>Ctrl+F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="458"/>
+        <location filename="../ui/mainwindow.ui" line="452"/>
         <source>Open context help</source>
         <translation>Вызвать контекстную справку</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="461"/>
+        <location filename="../ui/mainwindow.ui" line="455"/>
         <source>F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="473"/>
+        <location filename="../ui/mainwindow.ui" line="467"/>
         <source>About application</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="482"/>
+        <location filename="../ui/mainwindow.ui" line="476"/>
         <source>E&amp;xit</source>
         <translation>В&amp;ыход</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="485"/>
+        <location filename="../ui/mainwindow.ui" line="479"/>
         <source>Exit application</source>
         <translation>Выйти из приложения</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="490"/>
+        <location filename="../ui/mainwindow.ui" line="484"/>
         <source>&amp;Task...</source>
         <translation>&amp;Условие...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="493"/>
-        <location filename="../ui/mainwindow.ui" line="542"/>
+        <location filename="../ui/mainwindow.ui" line="487"/>
+        <location filename="../ui/mainwindow.ui" line="536"/>
         <source>Save task</source>
         <translation>Сохранить условие</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="496"/>
+        <location filename="../ui/mainwindow.ui" line="490"/>
         <source>Save task to file</source>
         <translation>Сохранить условие задачи в файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="548"/>
+        <location filename="../ui/mainwindow.ui" line="542"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="571"/>
+        <location filename="../ui/mainwindow.ui" line="565"/>
         <source>System Default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="574"/>
+        <location filename="../ui/mainwindow.ui" line="568"/>
         <source>Automatically choose the most appropriate style</source>
         <translation>Автоматически выбирать наиболее подходящее оформление</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="507"/>
+        <location filename="../ui/mainwindow.ui" line="501"/>
         <source>&amp;Autodetect</source>
         <translation>&amp;Автоопределение</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="545"/>
+        <location filename="../ui/mainwindow.ui" line="539"/>
         <source>Save current task</source>
         <translation>Сохранить текущее условие</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="557"/>
+        <location filename="../ui/mainwindow.ui" line="551"/>
         <source>About &amp;Qt...</source>
         <translation>О &amp;Qt...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="560"/>
+        <location filename="../ui/mainwindow.ui" line="554"/>
         <source>About Qt library</source>
         <translation>О библиотеке Qt</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="295"/>
-        <source>Select language</source>
-        <translation>Выбор языка</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="273"/>
@@ -853,61 +835,52 @@ Do you wish to turn it off?</source>
         <translation>Сохранить &amp;как</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="298"/>
-        <source>Select application language</source>
-        <translation>Выбрать язык приложения</translation>
-    </message>
-    <message>
-        <source>Toolbar</source>
-        <translation type="obsolete">Панель инструментов</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1172"/>
+        <location filename="../src/mainwindow.cpp" line="1173"/>
         <source>P&amp;rint Preview...</source>
         <translation>П&amp;редварительный просмотр...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1174"/>
+        <location filename="../src/mainwindow.cpp" line="1175"/>
         <source>Preview solution results</source>
         <translation>Предварительный просмотр результатов решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1177"/>
+        <location filename="../src/mainwindow.cpp" line="1178"/>
         <source>Preview current solution results before printing</source>
         <translation>Предварительный просмотр результатов решения перед печатью</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1180"/>
+        <location filename="../src/mainwindow.cpp" line="1181"/>
         <source>&amp;Print...</source>
         <translation>&amp;Печать...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1182"/>
+        <location filename="../src/mainwindow.cpp" line="1183"/>
         <source>Print solution</source>
         <translation>Печать решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1185"/>
+        <location filename="../src/mainwindow.cpp" line="1186"/>
         <source>Print current solution results</source>
         <translation>Распечатать текущие результаты решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1187"/>
+        <location filename="../src/mainwindow.cpp" line="1188"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="371"/>
+        <location filename="../ui/mainwindow.ui" line="365"/>
         <source>&amp;Solution...</source>
         <translation>&amp;Решение...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="510"/>
+        <location filename="../ui/mainwindow.ui" line="504"/>
         <source>Detect language automatically</source>
         <translation>Определять язык автоматически</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="513"/>
+        <location filename="../ui/mainwindow.ui" line="507"/>
         <source>Detect language automatically based on regional settings</source>
         <translation>Определять язык автоматически, основываясь на региональных настройках</translation>
     </message>
@@ -915,57 +888,57 @@ Do you wish to turn it off?</source>
 <context>
     <name>QtToolBarDialog</name>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="14"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="6"/>
         <source>Customize Toolbars</source>
         <translation>Настройка панелей инструментов</translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="35"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="27"/>
         <source>Actions</source>
         <translation>Действия</translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="50"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="42"/>
         <source>Toolbars</source>
         <translation>Панели</translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="57"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="49"/>
         <source>New</source>
         <translation>Новая</translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="64"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="56"/>
         <source>Remove</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="71"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="63"/>
         <source>Rename</source>
         <translation>Переименовать</translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="94"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="86"/>
         <source>Up</source>
         <translation>Вверх</translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="107"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="99"/>
         <source>&lt;-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="120"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="112"/>
         <source>-&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="133"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="125"/>
         <source>Down</source>
         <translation>Вниз</translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="158"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="150"/>
         <source>Current Toolbar Actions</source>
         <translation>Действия текущей панели</translation>
     </message>
@@ -980,7 +953,7 @@ Do you wish to turn it off?</source>
     <message>
         <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.cpp" line="1247"/>
         <source>Custom Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Пользовательская панель</translation>
     </message>
 </context>
 <context>
