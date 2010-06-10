@@ -53,6 +53,7 @@
 #include <QtGui/QShowEvent>
 #include <QtGui/QHideEvent>
 #include <QtGui/QHeaderView>
+#include <QtGui/QPushButton>
 
 class QtFullToolBarManagerPrivate
 {
