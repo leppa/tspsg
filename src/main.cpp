@@ -55,6 +55,8 @@ QApplication app(argc, argv);
 QTranslator en;
 	if (en.load("tspsg_en", PATH_L10N))
 		app.installTranslator(&en);
+	else if (en.load("tspsg_en", ":/l10n"))
+		app.installTranslator(&en);
 
 MainWindow mainwindow;
 #ifdef HANDHELD

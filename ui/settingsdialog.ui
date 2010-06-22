@@ -6,10 +6,6 @@
   <property name="windowTitle">
    <string>Preferences</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="../resources/tspsg.qrc">
-    <normaloff>:/images/icons/preferences-system.png</normaloff>:/images/icons/preferences-system.png</iconset>
-  </property>
   <widget class="QWidget" name="bgGrey" native="true">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -71,10 +67,6 @@
         <property name="text">
          <string>Help</string>
         </property>
-        <property name="icon">
-         <iconset resource="../resources/tspsg.qrc">
-          <normaloff>:/images/icons/help-hint.png</normaloff>:/images/icons/help-hint.png</iconset>
-        </property>
         <property name="autoRaise">
          <bool>true</bool>
         </property>
@@ -83,7 +75,7 @@
       <item>
        <widget class="QDialogButtonBox" name="buttonBox">
         <property name="standardButtons">
-         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
+         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
         </property>
        </widget>
       </item>
@@ -469,10 +461,6 @@
                <property name="text">
                 <string>&amp;Font...</string>
                </property>
-               <property name="icon">
-                <iconset resource="../resources/tspsg.qrc">
-                 <normaloff>:/images/icons/preferences-desktop-font.png</normaloff>:/images/icons/preferences-desktop-font.png</iconset>
-               </property>
               </widget>
              </item>
              <item>
@@ -485,10 +473,6 @@
                </property>
                <property name="text">
                 <string>&amp;Color...</string>
-               </property>
-               <property name="icon">
-                <iconset resource="../resources/tspsg.qrc">
-                 <normaloff>:/images/icons/format-text-color.png</normaloff>:/images/icons/format-text-color.png</iconset>
                </property>
               </widget>
              </item>
@@ -530,9 +514,7 @@
    </layout>
   </widget>
  </widget>
- <resources>
-  <include location="../resources/tspsg.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>

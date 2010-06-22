@@ -142,10 +142,6 @@
          <property name="text">
           <string>Random</string>
          </property>
-         <property name="icon">
-          <iconset resource="../resources/tspsg.qrc">
-           <normaloff>:/images/icons/roll.png</normaloff>:/images/icons/roll.png</iconset>
-         </property>
         </widget>
        </item>
        <item>
@@ -158,10 +154,6 @@
          </property>
          <property name="text">
           <string>Solve</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources/tspsg.qrc">
-           <normaloff>:/images/icons/dialog-ok.png</normaloff>:/images/icons/dialog-ok.png</iconset>
          </property>
         </widget>
        </item>
@@ -209,10 +201,6 @@
          <property name="text">
           <string>Save Solution</string>
          </property>
-         <property name="icon">
-          <iconset resource="../resources/tspsg.qrc">
-           <normaloff>:/images/icons/document-save-as.png</normaloff>:/images/icons/document-save-as.png</iconset>
-         </property>
         </widget>
        </item>
        <item>
@@ -239,10 +227,6 @@
          <property name="text">
           <string>Back to Task</string>
          </property>
-         <property name="icon">
-          <iconset resource="../resources/tspsg.qrc">
-           <normaloff>:/images/icons/go-previous.png</normaloff>:/images/icons/go-previous.png</iconset>
-         </property>
         </widget>
        </item>
       </layout>
@@ -250,7 +234,7 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QMenuBar" name="menuMain">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -272,10 +256,6 @@
      <property name="title">
       <string>Save &amp;As</string>
      </property>
-     <property name="icon">
-      <iconset resource="../resources/tspsg.qrc">
-       <normaloff>:/images/icons/document-save-as.png</normaloff>:/images/icons/document-save-as.png</iconset>
-     </property>
      <addaction name="actionFileSaveAsTask"/>
      <addaction name="actionFileSaveAsSolution"/>
     </widget>
@@ -294,10 +274,6 @@
      <property name="title">
       <string comment="Please, append &quot; / Language&quot; when translating this string.">&amp;Language</string>
      </property>
-     <property name="icon">
-      <iconset resource="../resources/tspsg.qrc">
-       <normaloff>:/images/icons/preferences-desktop-locale.png</normaloff>:/images/icons/preferences-desktop-locale.png</iconset>
-     </property>
      <addaction name="actionSettingsLanguageAutodetect"/>
      <addaction name="separator"/>
      <addaction name="actionSettingsLanguageEnglish"/>
@@ -305,10 +281,6 @@
     <widget class="QMenu" name="menuSettingsStyle">
      <property name="title">
       <string>Style</string>
-     </property>
-     <property name="icon">
-      <iconset resource="../resources/tspsg.qrc">
-       <normaloff>:/images/icons/preferences-desktop-theme.png</normaloff>:/images/icons/preferences-desktop-theme.png</iconset>
      </property>
     </widget>
     <widget class="QMenu" name="menuSettingsToolbars">
@@ -372,10 +344,6 @@
    </property>
   </action>
   <action name="actionFileNew">
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/document-new.png</normaloff>:/images/icons/document-new.png</iconset>
-   </property>
    <property name="text">
     <string>&amp;New</string>
    </property>
@@ -390,10 +358,6 @@
    </property>
   </action>
   <action name="actionFileOpen">
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/document-open.png</normaloff>:/images/icons/document-open.png</iconset>
-   </property>
    <property name="text">
     <string>&amp;Open...</string>
    </property>
@@ -408,10 +372,6 @@
    </property>
   </action>
   <action name="actionSettingsPreferences">
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/preferences-system.png</normaloff>:/images/icons/preferences-system.png</iconset>
-   </property>
    <property name="text">
     <string>&amp;Preferences...</string>
    </property>
@@ -422,10 +382,6 @@
   <action name="actionHelpContents">
    <property name="enabled">
     <bool>false</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/help-contents.png</normaloff>:/images/icons/help-contents.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Contents</string>
@@ -441,10 +397,6 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/help-contextual.png</normaloff>:/images/icons/help-contextual.png</iconset>
-   </property>
    <property name="text">
     <string>Context &amp;Help</string>
    </property>
@@ -456,10 +408,6 @@
    </property>
   </action>
   <action name="actionHelpAbout">
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/help-about.png</normaloff>:/images/icons/help-about.png</iconset>
-   </property>
    <property name="text">
     <string>&amp;About TSPSG...</string>
    </property>
@@ -468,10 +416,6 @@
    </property>
   </action>
   <action name="actionFileExit">
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/application-exit.png</normaloff>:/images/icons/application-exit.png</iconset>
-   </property>
    <property name="text">
     <string>E&amp;xit</string>
    </property>
@@ -525,10 +469,6 @@
    </property>
   </action>
   <action name="actionFileSave">
-   <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
-     <normaloff>:/images/icons/document-save.png</normaloff>:/images/icons/document-save.png</iconset>
-   </property>
    <property name="text">
     <string>&amp;Save</string>
    </property>
@@ -552,6 +492,9 @@
    </property>
    <property name="statusTip">
     <string>About Qt library</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutQtRole</enum>
    </property>
   </action>
   <action name="actionSettingsStyleSystem">

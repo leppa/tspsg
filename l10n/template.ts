@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="en" sourcelanguage="en">
+<TS version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>--------</name>
@@ -14,13 +14,13 @@
         <location filename="../src/mainwindow.cpp" line="529"/>
         <source>VERSION</source>
         <comment>Please, provide your translation version here.</comment>
-        <translation>$Id$</translation>
+        <translation type="unfinished">$Id$</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1022"/>
         <source>COUNTRY</source>
         <comment>Please, provide an ISO 3166-1 alpha-2 country code for this translation language here (eg., UA).</comment>
-        <translation>GB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1023"/>
@@ -42,21 +42,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="377"/>
-        <source>Unexpected end of file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/tspmodel.cpp" line="379"/>
-        <source>Corrupt data read. File possibly corrupted.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/tspmodel.cpp" line="381"/>
-        <source>Unknown error.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/tspmodel.cpp" line="142"/>
         <location filename="../src/tspmodel.cpp" line="168"/>
         <location filename="../src/tspmodel.cpp" line="384"/>
@@ -65,6 +50,12 @@
         <location filename="../src/tspmodel.cpp" line="459"/>
         <location filename="../src/tspmodel.cpp" line="471"/>
         <source>Task Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="142"/>
+        <source>Unable to open task file.
+Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -78,28 +69,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tspmodel.cpp" line="142"/>
-        <source>Unable to open task file.
-Error: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/tspmodel.cpp" line="168"/>
         <source>Unknown file format or file is corrupted.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/tspmodel.cpp" line="403"/>
-        <location filename="../src/tspmodel.cpp" line="459"/>
-        <source>File version is newer than application supports.
-Please, try to update application.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/tspmodel.cpp" line="419"/>
-        <location filename="../src/tspmodel.cpp" line="471"/>
-        <source>Unexpected data read.
-File is possibly corrupted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -133,416 +104,38 @@ Maybe, file is read-only?</source>
 Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="377"/>
+        <source>Unexpected end of file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="379"/>
+        <source>Corrupt data read. File possibly corrupted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="381"/>
+        <source>Unknown error.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="403"/>
+        <location filename="../src/tspmodel.cpp" line="459"/>
+        <source>File version is newer than application supports.
+Please, try to update application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/tspmodel.cpp" line="419"/>
+        <location filename="../src/tspmodel.cpp" line="471"/>
+        <source>Unexpected data read.
+File is possibly corrupted.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="352"/>
-        <location filename="../src/mainwindow.cpp" line="361"/>
-        <source>Language change</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1103"/>
-        <source>Language Change</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1151"/>
-        <source>Unsaved Changes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="151"/>
-        <source>All Supported Formats</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="152"/>
-        <location filename="../src/mainwindow.cpp" line="153"/>
-        <source>%1 Task Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="154"/>
-        <location filename="../src/mainwindow.cpp" line="218"/>
-        <location filename="../src/mainwindow.cpp" line="1253"/>
-        <source>All Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="212"/>
-        <source>PDF Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="214"/>
-        <source>HTML Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="216"/>
-        <source>OpenDocument Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="341"/>
-        <source>You have changed color settings.
-They will be applied to the next solution output.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="444"/>
-        <source>Version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="544"/>
-        <source>About %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="597"/>
-        <source>%v of %1 parts found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="620"/>
-        <source>Generating solution output...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="641"/>
-        <source>Variant #%1 Task</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="654"/>
-        <source>Variant #%1 Solution</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="659"/>
-        <source>Generating step %v</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="681"/>
-        <location filename="../src/mainwindow.cpp" line="688"/>
-        <location filename="../src/mainwindow.cpp" line="910"/>
-        <source>(%1;%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="691"/>
-        <source>%n alternate candidate(s) for branching: %1.</source>
-        <translation>
-            <numerusform>%n alternate candidate for branching: %1.</numerusform>
-            <numerusform>%n alternate candidates for branching: %1.</numerusform>
-        </translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="713"/>
-        <source>Generating footer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="728"/>
-        <source>The price is &lt;b&gt;%n&lt;/b&gt; unit(s).</source>
-        <translation>
-            <numerusform>The price is &lt;b&gt;%n&lt;/b&gt; unit.</numerusform>
-            <numerusform>The price is &lt;b&gt;%n&lt;/b&gt; units.</numerusform>
-        </translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="662"/>
-        <location filename="../src/mainwindow.cpp" line="762"/>
-        <source>Cleaning up...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1122"/>
-        <source>Set application style to %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1151"/>
-        <source>Would you like to save changes in the current task?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1237"/>
-        <source>Configure...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1239"/>
-        <source>Customize toolbars</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1246"/>
-        <source>Check for %1 updates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1252"/>
-        <source>%1 Task File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="341"/>
-        <location filename="../src/mainwindow.cpp" line="381"/>
-        <source>Settings Changed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="158"/>
-        <source>Task Load</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="240"/>
-        <location filename="../src/mainwindow.cpp" line="295"/>
-        <location filename="../src/mainwindow.cpp" line="309"/>
-        <source>Solution Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="240"/>
-        <location filename="../src/mainwindow.cpp" line="309"/>
-        <source>Unable to save the solution.
-Error: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="255"/>
-        <location filename="../src/mainwindow.cpp" line="270"/>
-        <source>Solution Graph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="271"/>
-        <source>Generated with %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="295"/>
-        <source>Unable to save the solution graph.
-Error: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="352"/>
-        <source>Language will be autodetected on the next %1 start.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="381"/>
-        <source>You have changed the application language.
-To get current solution output in the new language
-you need to re-run the solution process.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="389"/>
-        <source>Style Change</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="389"/>
-        <source>To apply the default style you need to restart %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="426"/>
-        <source>Unsupported Feature</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="426"/>
-        <source>Sorry, but this feature is not supported on your platform
-or support for this feature was not installed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="453"/>
-        <source>Target OS (ARCH)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="455"/>
-        <location filename="../src/mainwindow.cpp" line="459"/>
-        <source>Qt library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="455"/>
-        <source>shared</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="456"/>
-        <source>Build time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="457"/>
-        <source>Runtime</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="459"/>
-        <source>static</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="461"/>
-        <source>Buid &lt;b&gt;%1&lt;/b&gt;, built on &lt;b&gt;%2&lt;/b&gt; at &lt;b&gt;%3&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="462"/>
-        <source>Algorithm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="464"/>
-        <source>TSPSG is free software: you can redistribute it and/or modify it&lt;br&gt;under the terms of the GNU General Public License as published&lt;br&gt;by the Free Software Foundation, either version 3 of the License,&lt;br&gt;or (at your option) any later version.&lt;br&gt;&lt;br&gt;TSPSG is distributed in the hope that it will be useful, but&lt;br&gt;WITHOUT ANY WARRANTY; without even the implied warranty of&lt;br&gt;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the&lt;br&gt;GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License&lt;br&gt;along with TSPSG.  If not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;http://www.gnu.org/licenses/&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="587"/>
-        <source>Data error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="587"/>
-        <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="601"/>
-        <source>Calculating optimal route...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="602"/>
-        <source>Solution Progress</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="616"/>
-        <source>Solution Result</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="616"/>
-        <source>Unable to find a solution.
-Maybe, this task has no solution.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="619"/>
-        <source>Generating header</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="625"/>
-        <source>Solution of Variant #%1 Task</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="643"/>
-        <source>Task:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="676"/>
-        <source>Step #%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="681"/>
-        <source>Selected route %1 %2 part.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="681"/>
-        <source>with</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="681"/>
-        <source>without</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="719"/>
-        <source>Optimal path:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="721"/>
-        <source>Resulting path:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="724"/>
-        <source>City %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="730"/>
-        <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="735"/>
-        <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="921"/>
-        <source>Root</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1103"/>
-        <source>Unable to load the translation language.
-Falling back to autodetection.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1024"/>
-        <source>Set application language to %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1244"/>
-        <source>Check for &amp;Updates...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="1261"/>
-        <source>Task Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="361"/>
-        <source>You have language autodetection turned on.
-It needs to be off.
-Do you wish to turn it off?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="172"/>
-        <location filename="../src/mainwindow.cpp" line="196"/>
-        <location filename="../src/mainwindow.cpp" line="366"/>
-        <location filename="../src/mainwindow.h" line="141"/>
-        <source>Untitled</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="27"/>
         <source>Task</source>
@@ -630,29 +223,19 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="275"/>
-        <source>&amp;Language</source>
-        <comment>Please, append &quot; / Language&quot; when translating this string.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="401"/>
-        <source>Context &amp;Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="412"/>
-        <source>&amp;About TSPSG...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="473"/>
-        <source>&amp;Save</source>
+        <location filename="../ui/mainwindow.ui" line="257"/>
+        <source>Save &amp;As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="271"/>
         <source>&amp;Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="275"/>
+        <source>&amp;Language</source>
+        <comment>Please, append &quot; / Language&quot; when translating this string.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -673,6 +256,11 @@ Do you wish to turn it off?</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="316"/>
         <source>Main Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="337"/>
+        <source>&amp;Solution...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -746,6 +334,11 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="401"/>
+        <source>Context &amp;Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="404"/>
         <source>Open context help</source>
         <translation type="unfinished"></translation>
@@ -753,6 +346,11 @@ Do you wish to turn it off?</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="407"/>
         <source>F1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="412"/>
+        <source>&amp;About TSPSG...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -787,28 +385,33 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="482"/>
-        <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="508"/>
-        <source>System Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="511"/>
-        <source>Automatically choose the most appropriate style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.ui" line="445"/>
         <source>&amp;Autodetect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/mainwindow.ui" line="448"/>
+        <source>Detect language automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="451"/>
+        <source>Detect language automatically based on regional settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="473"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/mainwindow.ui" line="479"/>
         <source>Save current task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="482"/>
+        <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -822,28 +425,388 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="257"/>
-        <source>Save &amp;As</source>
+        <location filename="../ui/mainwindow.ui" line="508"/>
+        <source>System Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1226"/>
-        <source>&amp;Print...</source>
+        <location filename="../ui/mainwindow.ui" line="511"/>
+        <source>Automatically choose the most appropriate style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1233"/>
-        <source>Ctrl+P</source>
+        <location filename="../src/mainwindow.cpp" line="151"/>
+        <source>All Supported Formats</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="337"/>
-        <source>&amp;Solution...</source>
+        <location filename="../src/mainwindow.cpp" line="152"/>
+        <location filename="../src/mainwindow.cpp" line="153"/>
+        <source>%1 Task Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="448"/>
-        <source>Detect language automatically</source>
+        <location filename="../src/mainwindow.cpp" line="154"/>
+        <location filename="../src/mainwindow.cpp" line="218"/>
+        <location filename="../src/mainwindow.cpp" line="1253"/>
+        <source>All Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="158"/>
+        <source>Task Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="172"/>
+        <location filename="../src/mainwindow.cpp" line="196"/>
+        <location filename="../src/mainwindow.cpp" line="366"/>
+        <location filename="../src/mainwindow.h" line="141"/>
+        <source>Untitled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="212"/>
+        <source>PDF Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="214"/>
+        <source>HTML Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="216"/>
+        <source>OpenDocument Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="240"/>
+        <location filename="../src/mainwindow.cpp" line="295"/>
+        <location filename="../src/mainwindow.cpp" line="309"/>
+        <source>Solution Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="240"/>
+        <location filename="../src/mainwindow.cpp" line="309"/>
+        <source>Unable to save the solution.
+Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="255"/>
+        <location filename="../src/mainwindow.cpp" line="270"/>
+        <source>Solution Graph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="271"/>
+        <source>Generated with %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="295"/>
+        <source>Unable to save the solution graph.
+Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="341"/>
+        <location filename="../src/mainwindow.cpp" line="381"/>
+        <source>Settings Changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="341"/>
+        <source>You have changed color settings.
+They will be applied to the next solution output.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="352"/>
+        <location filename="../src/mainwindow.cpp" line="361"/>
+        <source>Language change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="352"/>
+        <source>Language will be autodetected on the next %1 start.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="361"/>
+        <source>You have language autodetection turned on.
+It needs to be off.
+Do you wish to turn it off?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="381"/>
+        <source>You have changed the application language.
+To get current solution output in the new language
+you need to re-run the solution process.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="389"/>
+        <source>Style Change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="389"/>
+        <source>To apply the default style you need to restart %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="426"/>
+        <source>Unsupported Feature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="426"/>
+        <source>Sorry, but this feature is not supported on your platform
+or support for this feature was not installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="444"/>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="453"/>
+        <source>Target OS (ARCH)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="455"/>
+        <location filename="../src/mainwindow.cpp" line="459"/>
+        <source>Qt library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="455"/>
+        <source>shared</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="456"/>
+        <source>Build time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="457"/>
+        <source>Runtime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="459"/>
+        <source>static</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="461"/>
+        <source>Buid &lt;b&gt;%1&lt;/b&gt;, built on &lt;b&gt;%2&lt;/b&gt; at &lt;b&gt;%3&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="462"/>
+        <source>Algorithm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="464"/>
+        <source>TSPSG is free software: you can redistribute it and/or modify it&lt;br&gt;under the terms of the GNU General Public License as published&lt;br&gt;by the Free Software Foundation, either version 3 of the License,&lt;br&gt;or (at your option) any later version.&lt;br&gt;&lt;br&gt;TSPSG is distributed in the hope that it will be useful, but&lt;br&gt;WITHOUT ANY WARRANTY; without even the implied warranty of&lt;br&gt;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the&lt;br&gt;GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License&lt;br&gt;along with TSPSG.  If not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;http://www.gnu.org/licenses/&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="544"/>
+        <source>About %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="587"/>
+        <source>Data error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="587"/>
+        <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="597"/>
+        <source>%v of %1 parts found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="601"/>
+        <source>Calculating optimal route...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="602"/>
+        <source>Solution Progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="616"/>
+        <source>Solution Result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="616"/>
+        <source>Unable to find a solution.
+Maybe, this task has no solution.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="619"/>
+        <source>Generating header</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="620"/>
+        <source>Generating solution output...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="625"/>
+        <source>Solution of Variant #%1 Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="641"/>
+        <source>Variant #%1 Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="643"/>
+        <source>Task:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="654"/>
+        <source>Variant #%1 Solution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="659"/>
+        <source>Generating step %v</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="662"/>
+        <location filename="../src/mainwindow.cpp" line="762"/>
+        <source>Cleaning up...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="676"/>
+        <source>Step #%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="681"/>
+        <source>Selected route %1 %2 part.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="681"/>
+        <source>with</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="681"/>
+        <source>without</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="681"/>
+        <location filename="../src/mainwindow.cpp" line="688"/>
+        <location filename="../src/mainwindow.cpp" line="910"/>
+        <source>(%1;%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/mainwindow.cpp" line="691"/>
+        <source>%n alternate candidate(s) for branching: %1.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="713"/>
+        <source>Generating footer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="719"/>
+        <source>Optimal path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="721"/>
+        <source>Resulting path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="724"/>
+        <source>City %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/mainwindow.cpp" line="728"/>
+        <source>The price is &lt;b&gt;%n&lt;/b&gt; unit(s).</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="730"/>
+        <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="735"/>
+        <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="921"/>
+        <source>Root</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1024"/>
+        <source>Set application language to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1103"/>
+        <source>Language Change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1103"/>
+        <source>Unable to load the translation language.
+Falling back to autodetection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1122"/>
+        <source>Set application style to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1151"/>
+        <source>Unsaved Changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1151"/>
+        <source>Would you like to save changes in the current task?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -862,6 +825,11 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1226"/>
+        <source>&amp;Print...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/mainwindow.cpp" line="1228"/>
         <source>Print solution</source>
         <translation type="unfinished"></translation>
@@ -872,8 +840,38 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="451"/>
-        <source>Detect language automatically based on regional settings</source>
+        <location filename="../src/mainwindow.cpp" line="1233"/>
+        <source>Ctrl+P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1237"/>
+        <source>Configure...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1239"/>
+        <source>Customize toolbars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1244"/>
+        <source>Check for &amp;Updates...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1246"/>
+        <source>Check for %1 updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1252"/>
+        <source>%1 Task File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="1261"/>
+        <source>Task Save</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -956,6 +954,47 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/settingsdialog.ui" line="62"/>
+        <location filename="../ui/settingsdialog.ui" line="68"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="65"/>
+        <source>Get preferences help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="95"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="98"/>
+        <source>General TSPSG settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="107"/>
+        <source>Automatically resize rows and columns to their contents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="110"/>
+        <source>Autosize of rows and columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="120"/>
+        <source>Use native File Open and File Save dialogs (uncheck to use Qt&apos;s Dialogs)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="123"/>
+        <source>Use native file dialogs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/settingsdialog.ui" line="144"/>
         <source>Task</source>
         <translation type="unfinished"></translation>
@@ -986,6 +1025,11 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/settingsdialog.ui" line="196"/>
+        <source>Task generation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/settingsdialog.ui" line="207"/>
         <source>Minimal random:</source>
         <translation type="unfinished"></translation>
@@ -1011,6 +1055,21 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/settingsdialog.ui" line="255"/>
+        <source>Fractional random values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="279"/>
+        <source>Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="282"/>
+        <source>Solution output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/settingsdialog.ui" line="291"/>
         <source>Show graphical representation of the solution</source>
         <translation type="unfinished"></translation>
@@ -1023,56 +1082,6 @@ Do you wish to turn it off?</source>
     <message>
         <location filename="../ui/settingsdialog.ui" line="322"/>
         <source>Save solution graph as</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="450"/>
-        <source>Output font settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="475"/>
-        <source>&amp;Color...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="107"/>
-        <source>Automatically resize rows and columns to their contents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="95"/>
-        <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="98"/>
-        <source>General TSPSG settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="110"/>
-        <source>Autosize of rows and columns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="120"/>
-        <source>Use native File Open and File Save dialogs (uncheck to use Qt&apos;s Dialogs)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="196"/>
-        <source>Task generation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="279"/>
-        <source>Output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="282"/>
-        <source>Solution output settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1096,23 +1105,19 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/settingsdialog.ui" line="397"/>
+        <source>Only when &lt;=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/settingsdialog.ui" line="407"/>
         <source>Maximum number of cities to show solution steps&apos; matrices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="459"/>
-        <source>Font face for solution output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="472"/>
-        <source>Font color for solution output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="255"/>
-        <source>Fractional random values</source>
+        <location filename="../ui/settingsdialog.ui" line="410"/>
+        <source> cities</source>
+        <comment>Don&apos;t forget a space at the beginning!</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1126,19 +1131,13 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="123"/>
-        <source>Use native file dialogs</source>
+        <location filename="../ui/settingsdialog.ui" line="450"/>
+        <source>Output font settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="397"/>
-        <source>Only when &lt;=</source>
-        <translation>Only when ≤</translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="410"/>
-        <source> cities</source>
-        <comment>Don&apos;t forget a space at the beginning!</comment>
+        <location filename="../ui/settingsdialog.ui" line="459"/>
+        <source>Font face for solution output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1147,14 +1146,13 @@ Do you wish to turn it off?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="62"/>
-        <location filename="../ui/settingsdialog.ui" line="68"/>
-        <source>Help</source>
+        <location filename="../ui/settingsdialog.ui" line="472"/>
+        <source>Font color for solution output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="65"/>
-        <source>Get preferences help</source>
+        <location filename="../ui/settingsdialog.ui" line="475"/>
+        <source>&amp;Color...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

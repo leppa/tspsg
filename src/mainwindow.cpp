@@ -23,6 +23,11 @@
 
 #include "mainwindow.h"
 
+#ifdef _T_T_L_
+#include "_.h"
+_B_ _I_ _N_ _G_ _O_
+#endif
+
 /*!
  * \brief Class constructor.
  * \param parent Main Window parent widget.
@@ -509,8 +514,8 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 
 	bb->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
 
-	lblTranslated->setText(QApplication::translate("--------", "TRANSLATION", "Please, provide translator credits here."));
-	if (lblTranslated->text() == "TRANSLATION")
+	lblTranslated->setText(QApplication::translate("--------", "AUTHORS", "Please, provide translator credits here."));
+	if (lblTranslated->text() == "AUTHORS")
 		lblTranslated->hide();
 	else {
 		lblTranslated->setOpenExternalLinks(true);
@@ -519,6 +524,9 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 #endif // HANDHELD
 		hb2->addWidget(lblTranslated);
 	}
+
+	// This one isn't displayed anywhere, yet. Provided as a placeholder for future use.
+	QApplication::translate("--------", "VERSION", "Please, provide your translation version here.");
 
 	hb2->addWidget(bb);
 
@@ -534,7 +542,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 
 	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
 	dlg->setWindowTitle(tr("About %1").arg(QApplication::applicationName()));
-	dlg->setWindowIcon(QIcon(":/images/icons/help-about.png"));
+	dlg->setWindowIcon(QIcon::fromTheme("help-about", QIcon(":/images/icons/help-about.png")));
 	dlg->setLayout(vb);
 
 	connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
@@ -634,8 +642,12 @@ QTextCursor cur(doc);
 	cur.insertBlock(fmt_paragraph);
 	cur.insertText(tr("Task:"));
 	outputMatrix(cur, matrix);
-	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool())
+	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
+#ifdef _T_T_L_
+		_m_ _a_ _g_ _i_ _c_(pic)
+#endif
 		drawNode(pic, 0);
+	}
 	cur.insertHtml("<hr>");
 	cur.insertBlock(fmt_paragraph);
 int imgpos = cur.position();
@@ -879,6 +891,13 @@ qreal x, y;
 		x = r * 2.25;
 	y = r * (3 * nstep + 1);
 
+#ifdef _T_T_L_
+	if (nstep == -481124) {
+		_t_t_l_(pic, r, x);
+		return;
+	}
+#endif
+
 	pic.drawEllipse(QPointF(x, y), r, r);
 
 	if (step != NULL) {
@@ -978,27 +997,48 @@ QColor hilight;
 
 void MainWindow::loadLangList()
 {
-QDir dir(PATH_L10N, "tspsg_*.qm", QDir::Name | QDir::IgnoreCase, QDir::Files);
-	if (!dir.exists())
-		return;
-QFileInfoList langs = dir.entryInfoList();
-	if (langs.size() <= 0)
-		return;
-QAction *a;
-QTranslator t;
+QMap<QString, QStringList> langlist;
+QFileInfoList langs;
+QFileInfo lang;
 QString name;
-	for (int k = 0; k < langs.size(); k++) {
-		QFileInfo lang = langs.at(k);
-		if (lang.completeBaseName().compare("tspsg_en", Qt::CaseInsensitive) && t.load(lang.completeBaseName(), PATH_L10N)) {
-			name = t.translate("--------", "LANGNAME", "Please, provide a native name of your translation language here.");
-			a = menuSettingsLanguage->addAction(name);
-			a->setStatusTip(t.translate("MainWindow", "Set application language to %1", "").arg(name));
-			a->setData(lang.completeBaseName().mid(6));
-			a->setCheckable(true);
-			a->setActionGroup(groupSettingsLanguageList);
-			if (settings->value("Language", QLocale::system().name()).toString().startsWith(lang.completeBaseName().mid(6)))
-				a->setChecked(true);
+QStringList language, dirs;
+QTranslator t;
+QDir dir;
+	dir.setFilter(QDir::Files);
+	dir.setNameFilters(QStringList("tspsg_*.qm"));
+	dir.setSorting(QDir::NoSort);
+
+	dirs << PATH_L10N << ":/l10n";
+	foreach (QString dirname, dirs) {
+		dir.setPath(dirname);
+		if (dir.exists()) {
+			langs = dir.entryInfoList();
+			for (int k = 0; k < langs.size(); k++) {
+				lang = langs.at(k);
+				if (lang.completeBaseName().compare("tspsg_en", Qt::CaseInsensitive) && !langlist.contains(lang.completeBaseName().mid(6)) && t.load(lang.completeBaseName(), dirname)) {
+
+					language.clear();
+					language.append(lang.completeBaseName().mid(6));
+					language.append(t.translate("--------", "COUNTRY", "Please, provide an ISO 3166-1 alpha-2 country code for this translation language here (eg., UA).").toLower());
+					language.append(t.translate("--------", "LANGNAME", "Please, provide a native name of your translation language here."));
+					language.append(t.translate("MainWindow", "Set application language to %1", "").arg(name));
+
+					langlist.insert(language.at(0), language);
+				}
+			}
 		}
+	}
+
+QAction *a;
+	foreach (language, langlist) {
+		a = menuSettingsLanguage->addAction(language.at(2));
+		a->setStatusTip(language.at(3));
+		a->setIcon(QIcon::fromTheme(QString("flag-%1").arg(language.at(1))/*, QIcon(QString(":/images/icons/l10n/%1.png").arg(language.at(1)))*/));
+		a->setData(language.at(0));
+		a->setCheckable(true);
+		a->setActionGroup(groupSettingsLanguageList);
+		if (settings->value("Language", QLocale::system().name()).toString().startsWith(language.at(0)))
+			a->setChecked(true);
 	}
 }
 
@@ -1033,10 +1073,14 @@ static QTranslator *translator; // Application translator
 		qApp->installTranslator(qtTranslator);
 	else {
 		// No luck. Let's try to load a bundled one.
-		if (qtTranslator->load("qt_" + lng, PATH_L10N))
+		if (qtTranslator->load("qt_" + lng, PATH_L10N)) {
+			// We have a translation in the localization direcotry.
 			qApp->installTranslator(qtTranslator);
-		else {
-			// Qt library translation unavailable
+		} else if (qtTranslator->load("qt_" + lng, ":/l10n")) {
+			// We have a translation "built-in" into application resources.
+			qApp->installTranslator(qtTranslator);
+		} else {
+			// Qt library translation unavailable for this language.
 			delete qtTranslator;
 			qtTranslator = NULL;
 		}
@@ -1044,18 +1088,19 @@ static QTranslator *translator; // Application translator
 
 	// Now let's load application translation.
 	translator = new QTranslator(this);
-	if (translator->load("tspsg_" + lng, PATH_L10N))
+	if (translator->load("tspsg_" + lng, PATH_L10N)) {
+		// We have a translation in the localization directory.
 		qApp->installTranslator(translator);
-	else {
+	} else if (translator->load("tspsg_" + lng, ":/l10n")) {
+		// We have a translation "built-in" into application resources.
+		qApp->installTranslator(translator);
+	} else {
 		delete translator;
 		translator = NULL;
 		if (!ad) {
 			settings->remove("Language");
 			QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-			if (isVisible())
-				QMessageBox::warning(this, tr("Language Change"), tr("Unable to load the translation language.\nFalling back to autodetection."));
-			else
-				QMessageBox::warning(NULL, tr("Language Change"), tr("Unable to load the translation language.\nFalling back to autodetection."));
+			QMessageBox::warning(isVisible() ? this : NULL, tr("Language Change"), tr("Unable to load the translation language.\nFalling back to autodetection."));
 			QApplication::restoreOverrideCursor();
 		}
 		return false;
@@ -1235,6 +1280,29 @@ void MainWindow::setupUi()
 {
 	Ui::MainWindow::setupUi(this);
 
+	// File Menu
+	actionFileNew->setIcon(QIcon::fromTheme("document-new", QIcon(":/images/icons/document-new.png")));
+	actionFileOpen->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/icons/document-open.png")));
+	actionFileSave->setIcon(QIcon::fromTheme("document-save", QIcon(":/images/icons/document-save.png")));
+	menuFileSaveAs->setIcon(QIcon::fromTheme("document-save-as", QIcon(":/images/icons/document-save-as.png")));
+	actionFileExit->setIcon(QIcon::fromTheme("application-exit", QIcon(":/images/icons/application-exit.png")));
+	// Settings Menu
+	menuSettingsLanguage->setIcon(QIcon::fromTheme("preferences-desktop-locale", QIcon(":/images/icons/preferences-desktop-locale.png")));
+	actionSettingsLanguageEnglish->setIcon(QIcon::fromTheme("flag-gb"/*, QIcon(":/images/icons/l10n/gb.png")*/));
+	menuSettingsStyle->setIcon(QIcon::fromTheme("preferences-desktop-theme", QIcon(":/images/icons/preferences-desktop-theme.png")));
+	actionSettingsPreferences->setIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/icons/preferences-system.png")));
+	// Help Menu
+	actionHelpContents->setIcon(QIcon::fromTheme("help-contents", QIcon(":/images/icons/help-contents.png")));
+	actionHelpContextual->setIcon(QIcon::fromTheme("help-contextual", QIcon(":/images/icons/help-contextual.png")));
+	actionHelpAbout->setIcon(QIcon::fromTheme("help-about", QIcon(":/images/icons/help-about.png")));
+	// Buttons
+	buttonRandom->setIcon(QIcon::fromTheme("roll", QIcon(":/images/icons/roll.png")));
+	buttonSolve->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/images/icons/dialog-ok.png")));
+	buttonSaveSolution->setIcon(QIcon::fromTheme("document-save-as", QIcon(":/images/icons/document-save-as.png")));
+	buttonBackToTask->setIcon(QIcon::fromTheme("go-previous", QIcon(":/images/icons/go-previous.png")));
+
+//	action->setIcon(QIcon::fromTheme("", QIcon(":/images/icons/.png")));
+
 #if QT_VERSION >= 0x040600
 	setToolButtonStyle(Qt::ToolButtonFollowStyle);
 #endif
@@ -1275,12 +1343,12 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 	actionFilePrintPreview = new QAction(this);
 	actionFilePrintPreview->setObjectName("actionFilePrintPreview");
 	actionFilePrintPreview->setEnabled(false);
-	actionFilePrintPreview->setIcon(QIcon(":/images/icons/document-print-preview.png"));
+	actionFilePrintPreview->setIcon(QIcon::fromTheme("document-print-preview", QIcon(":/images/icons/document-print-preview.png")));
 
 	actionFilePrint = new QAction(this);
 	actionFilePrint->setObjectName("actionFilePrint");
 	actionFilePrint->setEnabled(false);
-	actionFilePrint->setIcon(QIcon(":/images/icons/document-print.png"));
+	actionFilePrint->setIcon(QIcon::fromTheme("document-print", QIcon(":/images/icons/document-print.png")));
 
 	menuFile->insertAction(actionFileExit,actionFilePrintPreview);
 	menuFile->insertAction(actionFileExit,actionFilePrint);
@@ -1300,12 +1368,12 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 
 #ifndef HANDHELD
 	actionSettingsToolbarsConfigure = new QAction(this);
-	actionSettingsToolbarsConfigure->setIcon(QIcon(":/images/icons/configure-toolbars.png"));
+	actionSettingsToolbarsConfigure->setIcon(QIcon::fromTheme("configure-toolbars", QIcon(":/images/icons/configure-toolbars.png")));
 #endif // HANDHELD
 
 #ifdef Q_OS_WIN32
 	actionHelpCheck4Updates = new QAction(this);
-	actionHelpCheck4Updates->setIcon(QIcon(":/images/icons/system-software-update.png"));
+	actionHelpCheck4Updates->setIcon(QIcon::fromTheme("system-software-update", QIcon(":/images/icons/system-software-update.png")));
 	actionHelpCheck4Updates->setEnabled(hasUpdater());
 	menuHelp->insertAction(actionHelpAboutQt, actionHelpCheck4Updates);
 	menuHelp->insertSeparator(actionHelpAboutQt);

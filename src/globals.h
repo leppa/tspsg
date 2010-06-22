@@ -41,7 +41,7 @@
 #endif
 
 #ifndef HANDHELD
-	#include <QtToolBarDialog>
+	#include "qttoolbardialog.h"
 #endif
 
 // Version info

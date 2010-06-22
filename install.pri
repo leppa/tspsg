@@ -21,7 +21,7 @@ INSTALLS += target l10n share docs
 #   - COPYING and README go to /usr/share/TSPSG
 #   - translations go to /usr/share/TSPSG/l10n
 #   - docs go to /usr/share/doc/TSPSG-x.x.x
-unix:!symbian {
+unix:!macx:!symbian {
 	PREFIX = /usr
 	CONFIG(release, debug|release) {
 		DEFINES += PATH_L10N=\\\"$$PREFIX/share/TSPSG/l10n\\\"
@@ -40,6 +40,8 @@ unix:!symbian {
 }
 
 # TODO: MacOSX
+macx {
+}
 
 # For win32: everything goes to "%PROGRAMFILES%\TSPSG" and subfolders.
 win32 {

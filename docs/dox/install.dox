@@ -313,8 +313,8 @@ installation directory manually.
 
 \section i_s8 REFERNECES
 
-  -# \anchor r1 \ref cr1 "^" http://qt.nokia.com/
-  -# \anchor r2 \ref cr1 "^" http://qt.nokia.com/developer/nokia-smart-installer-for-symbian
-  -# \anchor r3 \ref cr2 "^" https://www.symbiansigned.com/app/page/public/openSignedOnline.do
-  -# \anchor r4 \ref cr3 "^" http://sourceware.org/bugzilla/show_bug.cgi?id=10165
+  -# \ref cr1 "^" \anchor r1 http://qt.nokia.com/
+  -# \ref cr1 "^" \anchor r2 http://qt.nokia.com/developer/nokia-smart-installer-for-symbian
+  -# \ref cr2 "^" \anchor r3 https://www.symbiansigned.com/app/page/public/openSignedOnline.do
+  -# \ref cr3 "^" \anchor r4 http://sourceware.org/bugzilla/show_bug.cgi?id=10165
 */

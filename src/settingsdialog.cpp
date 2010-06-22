@@ -34,12 +34,18 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
 	setupUi(this);
 
-	buttonBox->button(QDialogButtonBox::Save)->setIcon(QIcon(":/images/icons/dialog-ok.png"));
-	buttonBox->button(QDialogButtonBox::Save)->setStatusTip(tr("Save new preferences"));
-	buttonBox->button(QDialogButtonBox::Save)->setCursor(QCursor(Qt::PointingHandCursor));
-	buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QIcon(":/images/icons/dialog-cancel.png"));
+	setWindowIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/icons/preferences-system.png")));
+
+	buttonBox->button(QDialogButtonBox::Ok)->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/images/icons/dialog-ok.png")));
+	buttonBox->button(QDialogButtonBox::Ok)->setStatusTip(tr("Save new preferences"));
+	buttonBox->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
+	buttonBox->button(QDialogButtonBox::Cancel)->setIcon(QIcon::fromTheme("dialog-cancel", QIcon(":/images/icons/dialog-cancel.png")));
 	buttonBox->button(QDialogButtonBox::Cancel)->setStatusTip(tr("Close without saving preferences"));
 	buttonBox->button(QDialogButtonBox::Cancel)->setCursor(QCursor(Qt::PointingHandCursor));
+
+	buttonColor->setIcon(QIcon::fromTheme("format-text-color", QIcon(":/images/icons/format-text-color.png")));
+	buttonFont->setIcon(QIcon::fromTheme("preferences-desktop-font", QIcon(":/images/icons/preferences-desktop-font.png")));
+	buttonHelp->setIcon(QIcon::fromTheme("help-hint", QIcon(":/images/icons/help-hint.png")));
 
 QPalette p = bgWhite->palette();
 	p.setColor(QPalette::Window, p.color(QPalette::Base));
@@ -107,7 +113,7 @@ QHBoxLayout *hbox1;
 	imgIcon->setObjectName("imgIcon");
 	imgIcon->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Expanding);
 	imgIcon->setFrameShape(QFrame::NoFrame);
-	imgIcon->setPixmap(QPixmap(":/images/icons/preferences-system.png"));
+	imgIcon->setPixmap(QIcon::fromTheme("preferences-system", QIcon(":/images/icons/preferences-system.png")).pixmap(128, 128));
 	imgIcon->setStyleSheet("background-color: #0080C0; padding-top: 11px;");
 	imgIcon->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
 	imgIcon->setMinimumWidth(150);

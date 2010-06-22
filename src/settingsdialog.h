@@ -60,7 +60,7 @@ private:
 #endif // Q_OS_WIN32
 #ifdef Q_OS_WINCE_WM
 	QRect currentGeometry;
-#elif !defined(Q_OS_SYMBIAN)
+#elif !defined(HANDHELD)
 	QCheckBox *cbSaveState;
 	QLabel *imgIcon;
 	QFrame *lineVertical;

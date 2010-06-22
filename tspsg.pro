@@ -18,6 +18,8 @@
 
 TEMPLATE = app
 
+# QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk
+
 # Versioning
 BUILD_VERSION_MAJOR = 0
 BUILD_VERSION_MINOR = 1
@@ -49,10 +51,12 @@ DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
 	BUILD_NUMBER=$$REVISION
 
 # A hack to determine whether we have static or dynamic Qt build
-unix:!symbian {
-	PRL = $$[QT_INSTALL_LIBS] libQtCore.prl
-} else:unix {
+macx {
+	PRL = $$[QT_INSTALL_LIBS] QtCore.framework QtCore.prl
+} else:symbian {
 	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
+} else:unix {
+	PRL = $$[QT_INSTALL_LIBS] libQtCore.prl
 } else {
 	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
 }

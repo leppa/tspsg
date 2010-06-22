@@ -35,9 +35,13 @@ Third parties:
   * This software is created using opensource version of Qt toolkit,
     see http://qt.nokia.com/
 
-  * The icons used in this software are part of Oxygen Icons project
+  * Most icons used in this software are part of Oxygen Icons project
     licensed according to the GNU Lesser General Public License,
     see http://www.oxygen-icons.org/
+
+  * Country flag icons used in this software are part of the free Flag
+    Icons collection created by IconDrawer,
+    see http://www.icondrawer.com/
 
 
 $Id$

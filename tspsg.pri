@@ -36,13 +36,20 @@ FORMS += ui/mainwindow.ui \
 	ui/settingsdialog.ui
 
 #Resource file(s)
-RESOURCES += resources/tspsg.qrc
+RESOURCES += resources/tspsg.qrc \
+	l10n/l10n.qrc
 
 #Translations
 CODECFORTR = UTF-8
-TRANSLATIONS += l10n/tspsg_en.ts \
+TRANSLATIONS += l10n/template.ts \
+	l10n/tspsg_en.ts \
 	l10n/tspsg_ru.ts \
 	l10n/tspsg_uk.ts
 
 # Precompiled header
 PRECOMPILED_HEADER = src/pch.h
+
+_t_t_l_ {
+	DEFINES += _T_T_L_
+	HEADERS += src/_.h
+}
