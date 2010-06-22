@@ -11,10 +11,10 @@
 ######################################################################
 
 # Common rules
-l10n.files = l10n/*.qm
+#l10n.files = l10n/*.qm
 #share.files =
 docs.files = COPYING README.txt
-INSTALLS += target l10n share docs
+INSTALLS += target share docs # l10n
 
 # For *nix:
 #   - executable goes to /usr/bin
@@ -30,7 +30,7 @@ unix:!macx:!symbian {
 
 	target.path = $$PREFIX/bin
 	share.path = $$PREFIX/share/TSPSG
-	l10n.path = $$PREFIX/share/TSPSG/l10n
+#	l10n.path = $$PREFIX/share/TSPSG/l10n
 	docs.path = $$PREFIX/share/doc/TSPSG-$$VERSION
 	apps.files = resources/tspsg.desktop
 	apps.path = $$PREFIX/share/applications/
@@ -52,7 +52,7 @@ win32 {
 	!nosvg {
 		share.files += $$[QT_INSTALL_BINS]/QtSvg$${D}4.dll
 	}
-	l10n.files += $$[QT_INSTALL_TRANSLATIONS]/*.qm
+#	l10n.files += $$[QT_INSTALL_TRANSLATIONS]/*.qm
 	win32-g++ {
 		share.files += $$[QT_INSTALL_BINS]/mingwm10.dll \
 			$$[QT_INSTALL_BINS]/libgcc_s_dw2-1.dll
@@ -67,11 +67,11 @@ win32 {
 wince* {
 	PREFIX = "\Program Files"
 	share.sources = $$share.files
-	l10n.sources = $$l10n.files \
-		$$[QT_INSTALL_TRANSLATIONS]/*.qm
+#	l10n.sources = $$l10n.files \
+#		$$[QT_INSTALL_TRANSLATIONS]/*.qm
 	docs.sources = $$docs.files
 
-	DEPLOYMENT += target share l10n docs
+	DEPLOYMENT += target share docs # l10n
 #	DEPLOYMENT_PLUGIN += qjpeg qtiff
 }
 
@@ -79,7 +79,7 @@ wince* {
 win* {
 	target.path = $$PREFIX/TSPSG
 	share.path = $$PREFIX/TSPSG
-	l10n.path = $$PREFIX/TSPSG/l10n
+#	l10n.path = $$PREFIX/TSPSG/l10n
 	docs.path = $$PREFIX/TSPSG
 
 	RC_FILE = resources/tspsg.rc
@@ -89,15 +89,15 @@ win* {
 symbian {
 	# qmake for Symbian (as of Qt 4.6.2) has a bug: file masks doesn't work, so we need to specify all files manually
 	share.sources = $$share.files
-	l10n.sources = $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm \
-		$$[QT_INSTALL_TRANSLATIONS]/qt_uk.qm \
-		l10n/tspsg_en.qm l10n/tspsg_ru.qm l10n/tspsg_uk.qm
-	l10n.path = l10n
+#	l10n.sources = $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm \
+#		$$[QT_INSTALL_TRANSLATIONS]/qt_uk.qm \
+#		l10n/tspsg_en.qm l10n/tspsg_ru.qm l10n/tspsg_uk.qm
+#	l10n.path = l10n
 	docs.sources = $$docs.files
 	docs.pkg_prerules = \
 		"\"README.txt\" - \"\", FILETEXT, TEXTCONTINUE" \
 		"\"COPYING\" - \"\", FILETEXT, TEXTEXIT"
-	DEPLOYMENT += share l10n docs
+	DEPLOYMENT += share docs # l10n
 #	DEPLOYMENT_PLUGIN += qjpeg qtiff
 
 	ICON = resources/tspsg.svg

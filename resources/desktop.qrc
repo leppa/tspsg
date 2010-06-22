@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>icons/configure-toolbars.png</file>
+        <file>icons/document-print.png</file>
+        <file>icons/document-print-preview.png</file>
+        <file>icons/help-contents.png</file>
+        <file>icons/help-contextual.png</file>
+        <file>icons/preferences-desktop-locale.png</file>
+        <file>icons/preferences-desktop-theme.png</file>
+        <file>icons/preferences-system.png</file>
+        <file>icons/system-software-update.png</file>
+    </qresource>
+</RCC>

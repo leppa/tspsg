@@ -36,8 +36,12 @@ FORMS += ui/mainwindow.ui \
 	ui/settingsdialog.ui
 
 #Resource file(s)
-RESOURCES += resources/tspsg.qrc \
+RESOURCES += resources/common.qrc \
 	l10n/l10n.qrc
+
+!wincewm*:!symbian {
+	RESOURCES += resources/desktop.qrc
+}
 
 #Translations
 CODECFORTR = UTF-8

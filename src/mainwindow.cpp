@@ -25,7 +25,7 @@
 
 #ifdef _T_T_L_
 #include "_.h"
-_B_ _I_ _N_ _G_ _O_
+_C_ _R_ _Y_ _P_ _T_
 #endif
 
 /*!
@@ -644,7 +644,7 @@ QTextCursor cur(doc);
 	outputMatrix(cur, matrix);
 	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
 #ifdef _T_T_L_
-		_m_ _a_ _g_ _i_ _c_(pic)
+		_b_ _i_ _z_ _a_ _r_ _r_ _e_
 #endif
 		drawNode(pic, 0);
 	}

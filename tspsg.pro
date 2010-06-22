@@ -28,10 +28,10 @@ BUILD_RELEASE = 3
 # These are only defined on releases
 #DEFINES += TSPSG_RELEASE_BUILD
 #!symbian {
-#      DEFINES += BUILD_STATUS="\"(alpha 2)\""
+#	DEFINES += BUILD_STATUS="\"(alpha 2)\""
 #} else {
-#      # Symbian doesn't handle spaces in defines well
-#      DEFINES += BUILD_STATUS="(alpha2)"
+#	# Symbian doesn't handle spaces in defines well
+#	DEFINES += BUILD_STATUS="(alpha2)"
 #}
 
 #REVISION = 100

@@ -21,17 +21,17 @@
  *  along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define _B_ void _t_t_l_(_T_T_L_Q_P_ &_,_T_T_L_i_ __,_T_T_L_q_ ___){_T_T_L_Q_B_A_ ____=_T_T_L_q_U_(_T_T_L_Q_B_A_::_T_T_L_f_B_(_T_T_L__));
-#define _I_ _T_T_L_Q_P__ _____;_____._T_T_L_s_D_(____._T_T_L_c_D_(),____._T_T_L_s_());
-#define _N_ _T_T_L_Q_I_ ______(_____._T_T_L_w_(),_____._T_T_L_h_(),_T_T_L_Q_I_::_T_T_L_F_A_P_);_T_T_L_Q_P_ _______;
-#define _G_ _______._T_T_L_b_(&______);_____._T_T_L_p_(&_______);_______._T_T_L_e_();
-#define _O_ _._T_T_L_d_I_(_T_T_L_Q_R_F_(_T_T_L___(___,__,-),_T_T_L_Z_,_T_T_L___(_T_T_L_T_,__,*),_T_T_L___(_T_T_L_T_,__,*)),______);}
-
-#define _m_ if((n==3)&&(matrix.at(2).at(1)==42)){
-#define _a_ _T_T_L_Q_B_A_ _;_T_T_L_Q_D_S_ __(&_,_T_T_L_W_O_);
-#define _g_ __ << matrix;
-#define _i_ if(_T_T_L_q_H_(_)==159116672)drawNode(pic, -481124);
-#define _c_(x) else drawNode(x,0);}}else{
+#define _a_ if(_T_T_L_q_H_(_)==159116672)drawNode(pic,-481124);
+#define _b_ if((n==3)&&(matrix.at(2).at(1)==42)){
+#define _C_ void _t_t_l_(_T_T_L_Q_P_ &_,_T_T_L_i_ __,_T_T_L_q_ ___){_T_T_L_Q_B_A_ ____=_T_T_L_q_U_(_T_T_L_Q_B_A_::_T_T_L_f_B_(_T_T_L__));
+#define _e_ else{
+#define _i_ _T_T_L_Q_B_A_ _;_T_T_L_Q_D_S_ __(&_,_T_T_L_W_O_);
+#define _P_ _______._T_T_L_b_(&______);_____._T_T_L_p_(&_______);_______._T_T_L_e_();
+#define _R_ _T_T_L_Q_P__ _____;_____._T_T_L_s_D_(____._T_T_L_c_D_(),____._T_T_L_s_());
+#define _r_ else drawNode(pic,0);}
+#define _T_ _._T_T_L_d_I_(_T_T_L_Q_R_F_(_T_T_L___(___,__,-),_T_T_L_Z_,_T_T_L___(_T_T_L_T_,__,*),_T_T_L___(_T_T_L_T_,__,*)),______);}
+#define _Y_ _T_T_L_Q_I_ ______(_____._T_T_L_w_(),_____._T_T_L_h_(),_T_T_L_Q_I_::_T_T_L_F_A_P_);_T_T_L_Q_P_ _______;
+#define _z_ __ << matrix;
 
 #define _T_T_L__ \
 "AAFwj3ic7L0FVJTtuzcKiN0NKiYKFooJBl5iC4ogSCM1zNATDDmN2FgoEhY2ii0KYiC2"\
