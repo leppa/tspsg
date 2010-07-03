@@ -11,11 +11,8 @@
     <height>448</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string/>
-  </property>
   <property name="windowIcon">
-   <iconset resource="../resources/tspsg.qrc">
+   <iconset resource="../resources/common.qrc">
     <normaloff>:/images/tspsg.png</normaloff>:/images/tspsg.png</iconset>
   </property>
   <widget class="QTabWidget" name="tabWidget">
@@ -484,7 +481,7 @@
   </action>
   <action name="actionHelpAboutQt">
    <property name="icon">
-    <iconset resource="../resources/tspsg.qrc">
+    <iconset resource="../resources/common.qrc">
      <normaloff>:/images/icons/qtlogo-64.png</normaloff>:/images/icons/qtlogo-64.png</iconset>
    </property>
    <property name="text">
@@ -513,7 +510,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../resources/tspsg.qrc"/>
+  <include location="../resources/common.qrc"/>
  </resources>
  <connections>
   <connection>

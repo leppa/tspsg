@@ -13,6 +13,7 @@
         <file>icons/help-about.png</file>
         <file>icons/help-hint.png</file>
         <file>icons/preferences-desktop-font.png</file>
+        <file>icons/preferences-system.png</file>
         <file>icons/qtlogo-64.png</file>
         <file>icons/roll.png</file>
     </qresource>

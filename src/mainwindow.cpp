@@ -1033,7 +1033,7 @@ QAction *a;
 	foreach (language, langlist) {
 		a = menuSettingsLanguage->addAction(language.at(2));
 		a->setStatusTip(language.at(3));
-		a->setIcon(QIcon::fromTheme(QString("flag-%1").arg(language.at(1))/*, QIcon(QString(":/images/icons/l10n/%1.png").arg(language.at(1)))*/));
+		a->setIcon(QIcon::fromTheme(QString("flag-%1").arg(language.at(1)), QIcon(QString(":/images/icons/l10n/flag-%1.png").arg(language.at(1)))));
 		a->setData(language.at(0));
 		a->setCheckable(true);
 		a->setActionGroup(groupSettingsLanguageList);
@@ -1288,7 +1288,7 @@ void MainWindow::setupUi()
 	actionFileExit->setIcon(QIcon::fromTheme("application-exit", QIcon(":/images/icons/application-exit.png")));
 	// Settings Menu
 	menuSettingsLanguage->setIcon(QIcon::fromTheme("preferences-desktop-locale", QIcon(":/images/icons/preferences-desktop-locale.png")));
-	actionSettingsLanguageEnglish->setIcon(QIcon::fromTheme("flag-gb"/*, QIcon(":/images/icons/l10n/gb.png")*/));
+	actionSettingsLanguageEnglish->setIcon(QIcon::fromTheme("flag-gb", QIcon(":/images/icons/l10n/flag-gb.png")));
 	menuSettingsStyle->setIcon(QIcon::fromTheme("preferences-desktop-theme", QIcon(":/images/icons/preferences-desktop-theme.png")));
 	actionSettingsPreferences->setIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/icons/preferences-system.png")));
 	// Help Menu

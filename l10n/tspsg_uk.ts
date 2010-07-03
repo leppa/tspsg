@@ -792,7 +792,7 @@ you need to re-run the solution process.</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="659"/>
         <source>Generating step %v</source>
-        <translation>Генерація шагу %v</translation>
+        <translation>Генерація кроку %v</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="676"/>

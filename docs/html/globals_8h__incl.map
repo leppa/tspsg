@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node7" href="$version_8h.html" title="Contains TSPSG version information defines." alt="" coords="105,83,177,111"/>
-<area shape="rect" id="node9" href="$os_8h.html" title="Contains TSPSG target CPU architecture and OS detection." alt="" coords="201,83,246,111"/>
-<area shape="rect" id="node11" href="$defaults_8h.html" title="Contains TSPSG defaults." alt="" coords="270,83,348,111"/>
-<area shape="rect" id="node13" href="$tspsolver_8h.html" title="Defines TSPSolver namespace and everything needed for solving TSP tasks." alt="" coords="372,83,454,111"/>
-<area shape="rect" id="node18" href="$qtwin_8h.html" title="qtwin.h" alt="" coords="478,83,540,111"/>
-</map>

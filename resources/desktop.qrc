@@ -7,7 +7,9 @@
         <file>icons/help-contextual.png</file>
         <file>icons/preferences-desktop-locale.png</file>
         <file>icons/preferences-desktop-theme.png</file>
-        <file>icons/preferences-system.png</file>
         <file>icons/system-software-update.png</file>
+        <file>icons/l10n/flag-gb.png</file>
+        <file>icons/l10n/flag-ru.png</file>
+        <file>icons/l10n/flag-ua.png</file>
     </qresource>
 </RCC>
