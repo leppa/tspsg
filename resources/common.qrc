@@ -17,4 +17,7 @@
         <file>icons/qtlogo-64.png</file>
         <file>icons/roll.png</file>
     </qresource>
+    <qresource prefix="/files">
+        <file>COPYING</file>
+    </qresource>
 </RCC>

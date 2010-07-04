@@ -112,9 +112,10 @@ public:
 
 	CTSPSolver(QObject *parent = NULL);
 	void cleanup(bool processEvents = false);
-	QString getSortedPath(const QString &city, const QString &separator = " -> ") const;
+	QString getSortedPath(const QString &city, const QString &separator = QString(" -> ")) const;
 	int getTotalSteps() const;
 	bool isOptimal() const;
+	void setCleanupOnCancel(bool enable = true);
 	SStep *solve(int numCities, const TMatrix &task);
 	bool wasCanceled() const;
 	~CTSPSolver();
@@ -130,7 +131,7 @@ signals:
 	void routePartFound(int n);
 
 private:
-	bool mayNotBeOptimal, canceled;
+	bool mayNotBeOptimal, canceled, cc;
 	int nCities, total;
 	SStep *root;
 	QHash<int,int> route;

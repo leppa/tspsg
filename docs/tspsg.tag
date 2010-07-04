@@ -126,13 +126,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>DEF_FONT_FAMILY</name>
-      <anchorfile>defaults_8h.html</anchorfile>
-      <anchor>a2982eb0f2aea4cff78bd4aa767ff1988</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>DEF_FONT_SIZE</name>
       <anchorfile>defaults_8h.html</anchorfile>
       <anchor>ab73bf542bad61b0b720c0495ef612105</anchor>
@@ -254,6 +247,13 @@
       <arglist>(double x)</arglist>
     </member>
     <member kind="function">
+      <type>QString</type>
+      <name>getDefaultFont</name>
+      <anchorfile>globals_8h.html</anchorfile>
+      <anchor>a0b35409ae9db3b8db49ca9937447fc5b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
       <type>void</type>
       <name>toggleStyle</name>
       <anchorfile>globals_8h.html</anchorfile>
@@ -333,6 +333,48 @@
     <filename>settingsdialog_8h</filename>
     <includes id="globals_8h" name="globals.h" local="yes" imported="no">globals.h</includes>
     <class kind="class">SettingsDialog</class>
+  </compound>
+  <compound kind="file">
+    <name>shobjidl.h</name>
+    <path>W:/Projects/Cpp/tspsg/tspsg/src/</path>
+    <filename>shobjidl_8h</filename>
+    <class kind="interface">ITaskbarList3</class>
+    <member kind="enumeration">
+      <name>TBPFLAG</name>
+      <anchorfile>shobjidl_8h.html</anchorfile>
+      <anchor>a1fafeab2f8950fbd8edf21f4a2200c39</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>TBPF_NOPROGRESS</name>
+      <anchorfile>shobjidl_8h.html</anchorfile>
+      <anchor>a1fafeab2f8950fbd8edf21f4a2200c39a3570f6f9189f7bcaa722abfce49ea335</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>TBPF_INDETERMINATE</name>
+      <anchorfile>shobjidl_8h.html</anchorfile>
+      <anchor>a1fafeab2f8950fbd8edf21f4a2200c39a43c1643df0a6e7b4c78651d8285be535</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>TBPF_NORMAL</name>
+      <anchorfile>shobjidl_8h.html</anchorfile>
+      <anchor>a1fafeab2f8950fbd8edf21f4a2200c39a45ac285277be4b436cbb0c2e60883c4d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>TBPF_ERROR</name>
+      <anchorfile>shobjidl_8h.html</anchorfile>
+      <anchor>a1fafeab2f8950fbd8edf21f4a2200c39a5f80fe02a44f4e87a593ab63adb9ff09</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>TBPF_PAUSED</name>
+      <anchorfile>shobjidl_8h.html</anchorfile>
+      <anchor>a1fafeab2f8950fbd8edf21f4a2200c39ab3919c5fad5aa361787ad1ca5aba1400</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>tspmodel.h</name>
@@ -575,6 +617,24 @@
       <anchorfile>class_c_t_s_p_model.html</anchorfile>
       <anchor>aff717cb92ce6426033e85716644b9cef</anchor>
       <arglist>(int n)</arglist>
+    </member>
+  </compound>
+  <compound kind="interface">
+    <name>ITaskbarList3</name>
+    <filename>interface_i_taskbar_list3.html</filename>
+    <member kind="function">
+      <type>HRESULT</type>
+      <name>SetProgressState</name>
+      <anchorfile>interface_i_taskbar_list3.html</anchorfile>
+      <anchor>ac0dd28f3cbb50f8bcb07e085a1cbab4e</anchor>
+      <arglist>(HWND hwnd, TBPFLAG tbpFlags)</arglist>
+    </member>
+    <member kind="function">
+      <type>HRESULT</type>
+      <name>SetProgressValue</name>
+      <anchorfile>interface_i_taskbar_list3.html</anchorfile>
+      <anchor>afc90208fdce89e0f212e7b1a4888f254</anchor>
+      <arglist>(HWND hwnd, ULONGLONG ullCompleted, ULONGLONG ullTotal)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -827,8 +887,8 @@
       <type>QString</type>
       <name>getSortedPath</name>
       <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
-      <anchor>a8897c0737ef2451ae606c38113477521</anchor>
-      <arglist>(const QString &amp;city, const QString &amp;separator=&quot; -&gt; &quot;) const </arglist>
+      <anchor>a0f4495349b42939d27113a3cd69390fd</anchor>
+      <arglist>(const QString &amp;city, const QString &amp;separator=QString(&quot; -&gt; &quot;)) const </arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -843,6 +903,13 @@
       <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
       <anchor>a2b82ac68b981c47a3261f4e4e9ecd2bd</anchor>
       <arglist>() const </arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCleanupOnCancel</name>
+      <anchorfile>class_t_s_p_solver_1_1_c_t_s_p_solver.html</anchorfile>
+      <anchor>a0c6b3869dc2e867609513c11e52ad7be</anchor>
+      <arglist>(bool enable=true)</arglist>
     </member>
     <member kind="function">
       <type>SStep *</type>

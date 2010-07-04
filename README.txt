@@ -17,22 +17,24 @@ TSPSG may be useful for teachers to generate test tasks or just for
 regular users to solve TSPs. Also, it may be used as an example of
 using Branch and Bound method to solve a particular task.
 
-TSPSG is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published
-by the Free Software Foundation, either version 3 of the License,
-or (at your option) any later version.
 
-TSPSG is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with TSPSG.  If not, see <http://www.gnu.org/licenses/>.
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 Third parties:
 
-  * This software is created using opensource version of Qt toolkit,
+  * This software is created using opensource version of Qt framework,
     see http://qt.nokia.com/
 
   * Most icons used in this software are part of Oxygen Icons project

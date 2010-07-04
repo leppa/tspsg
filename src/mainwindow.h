@@ -35,6 +35,11 @@
 
 #include "tspmodel.h"
 
+#ifdef Q_OS_WIN32
+	// Forward declaration. A real one is in shobjidl.h
+	struct ITaskbarList3;
+#endif
+
 using namespace TSPSolver;
 
 /*!
@@ -87,6 +92,9 @@ private slots:
 #ifndef QT_NO_PRINTER
 	void printPreview(QPrinter *printer);
 #endif // QT_NO_PRINTER
+#ifdef Q_OS_WIN32
+	void solverRoutePartFound(int n);
+#endif // Q_OS_WIN32
 	void spinCitiesValueChanged(int nCities);
 
 private:
@@ -110,6 +118,10 @@ private:
 #ifdef Q_OS_WINCE_WM
 	QRect currentGeometry;
 #endif // Q_OS_WINCE_WM
+
+#ifdef Q_OS_WIN32
+	ITaskbarList3 *tl;
+#endif // Q_OS_WIN32
 
 	// The solution graph SVG
 	QPicture graph;

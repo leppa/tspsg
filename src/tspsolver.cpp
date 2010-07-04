@@ -42,7 +42,7 @@ QString CTSPSolver::getVersionId()
  * \param parent A parent object.
  */
 CTSPSolver::CTSPSolver(QObject *parent)
-	: QObject(parent), nCities(0), total(0), root(NULL) {}
+	: QObject(parent), cc(true), nCities(0), total(0), root(NULL) {}
 
 /*!
  * \brief Cleans up the object and frees up memory used by the solution tree.
@@ -50,22 +50,14 @@ CTSPSolver::CTSPSolver(QObject *parent)
  * \warning After call to this function a solution tree returned by the solve() function is no longer valid.
  * \note It is not required to call this function manually. This function is always called by solve() at the beginning of the solution process.
  *
- * \sa solve()
+ * \sa solve(), setCleanupOnCancel()
  */
 void CTSPSolver::cleanup(bool processEvents)
 {
-#ifdef QAPPLICATION_H
-	if (!processEvents)
-		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-#endif
 	route.clear();
 	mayNotBeOptimal = false;
 	if (root != NULL)
 		deleteTree(root, processEvents);
-#ifdef QAPPLICATION_H
-	if (!processEvents)
-		QApplication::restoreOverrideCursor();
-#endif
 }
 
 /*!
@@ -114,6 +106,21 @@ int CTSPSolver::getTotalSteps() const
 bool CTSPSolver::isOptimal() const
 {
 	return !mayNotBeOptimal;
+}
+
+/*!
+ * \brief Sets whether or not to call cleanup() on solution cancel.
+ * \param enable Set to \c true to enable clenup (default).
+ *
+ *  This may be useful if you want to make cleanup yourself or provide indication of clenup to user.
+ *
+ * \note Please, note that cleanup() is explicitly called at the start of each solution.
+ *       Disabling cleanup and forgetting to do it manually may considerably increase the solution time for large tasks (with more than 15 cities).
+ * \sa cleanup()
+ */
+void CTSPSolver::setCleanupOnCancel(bool enable)
+{
+	cc = enable;
 }
 
 /*!
@@ -173,7 +180,8 @@ double check = INFINITY;
 
 		locker.relock();
 		if ((nRow == -1) || (nCol == -1) || canceled) {
-			cleanup();
+			if (canceled && cc)
+				cleanup();
 			return NULL;
 		}
 		locker.unlock();

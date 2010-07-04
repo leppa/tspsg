@@ -90,6 +90,8 @@ UI_DIR = ./tmp
 	include(src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.pri)
 }
 
+win32:LIBS += -lole32
+
 # Include file(s)
 include(tspsg.pri)
 

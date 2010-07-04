@@ -23,6 +23,10 @@
 
 #include "mainwindow.h"
 
+#ifdef Q_OS_WIN32
+	#include "shobjidl.h"
+#endif
+
 #ifdef _T_T_L_
 #include "_.h"
 _C_ _R_ _Y_ _P_ _T_
@@ -435,6 +439,8 @@ void MainWindow::actionHelpCheck4UpdatesTriggered()
 
 void MainWindow::actionHelpAboutTriggered()
 {
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
 QString title;
 #ifdef HANDHELD
 	title += QString("<b>TSPSG<br>TSP Solver and Generator</b><br>");
@@ -461,27 +467,51 @@ QString about;
 	about += tr("Buid <b>%1</b>, built on <b>%2</b> at <b>%3</b>").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__) + "<br>";
 	about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), CTSPSolver::getVersionId());
 	about += "<br>";
-	about += tr("TSPSG is free software: you can redistribute it and/or modify it<br>"
-		"under the terms of the GNU General Public License as published<br>"
-		"by the Free Software Foundation, either version 3 of the License,<br>"
-		"or (at your option) any later version.<br>"
-		"<br>"
-		"TSPSG is distributed in the hope that it will be useful, but<br>"
-		"WITHOUT ANY WARRANTY; without even the implied warranty of<br>"
-		"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br>"
-		"GNU General Public License for more details.<br>"
-		"<br>"
-		"You should have received a copy of the GNU General Public License<br>"
-		"along with TSPSG.  If not, see <a href=\"http://www.gnu.org/licenses/\">http://www.gnu.org/licenses/</a>.");
+	about += tr("This program is free software: you can redistribute it and/or modify<br>\n"
+		"it under the terms of the GNU General Public License as published by<br>\n"
+		"the Free Software Foundation, either version 3 of the License, or<br>\n"
+		"(at your option) any later version.<br>\n"
+		"<br>\n"
+		"This program is distributed in the hope that it will be useful,<br>\n"
+		"but WITHOUT ANY WARRANTY; without even the implied warranty of<br>\n"
+		"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br>\n"
+		"GNU General Public License for more details.<br>\n"
+		"<br>\n"
+		"You should have received a copy of the GNU General Public License<br>\n"
+		"along with TSPSG.  If not, see <a href=\"http://www.gnu.org/licenses/\">www.gnu.org/licenses/</a>.");
+
+QString credits;
+	credits += tr("This software was created using LGPL version of <b>Qt framework</b>,<br>\n"
+		"see <a href=\"http://qt.nokia.com/\">qt.nokia.com</a><br>\n"
+		"<br>\n"
+		"Most icons used in this software are part of <b>Oxygen Icons</b> project "
+		"licensed according to the GNU Lesser General Public License,<br>\n"
+		"see <a href=\"http://www.oxygen-icons.org/\">www.oxygen-icons.org</a><br>\n"
+		"<br>\n"
+		"Country flag icons used in this software are part of the free "
+		"<b>Flag Icons</b> collection created by <b>IconDrawer</b>,<br>\n"
+		"see <a href=\"http://www.icondrawer.com/\">www.icondrawer.com</a>");
+
+QFile f(":/files/COPYING");
+	f.open(QIODevice::ReadOnly);
+
+QString translation = QApplication::translate("--------", "AUTHORS %1", "Please, provide translator credits here. %1 will be replaced with VERSION");
+	if ((translation != "AUTHORS %1") && (translation.contains("%1"))) {
+QString about = QApplication::translate("--------", "VERSION", "Please, provide your translation version here.");
+		if (about != "VERSION")
+			translation = translation.arg(about);
+	}
 
 QDialog *dlg = new QDialog(this);
 QLabel *lblIcon = new QLabel(dlg),
-	*lblTitle = new QLabel(dlg),
-	*lblTranslated = new QLabel(dlg);
+	*lblTitle = new QLabel(dlg);
 #ifdef HANDHELD
 QLabel *lblSubTitle = new QLabel(QString("<b>&copy; 2007-%1 <a href=\"http://%2/\">%3</a></b>").arg(QDate::currentDate().toString("yyyy"), QApplication::organizationDomain(), QApplication::organizationName()), dlg);
 #endif // HANDHELD
+QTabWidget *tabs = new QTabWidget(dlg);
 QTextBrowser *txtAbout = new QTextBrowser(dlg);
+QTextBrowser *txtLicense = new QTextBrowser(dlg);
+QTextBrowser *txtCredits = new QTextBrowser(dlg);
 QVBoxLayout *vb = new QVBoxLayout();
 QHBoxLayout *hb1 = new QHBoxLayout(),
 	*hb2 = new QHBoxLayout();
@@ -508,25 +538,21 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	txtAbout->setOpenExternalLinks(true);
 	txtAbout->setHtml(about);
 	txtAbout->moveCursor(QTextCursor::Start);
-#ifndef HANDHELD
-	txtAbout->setStyleSheet(QString("QTextBrowser {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 4px; padding: 1px;}").arg(palette().base().color().name(), palette().shadow().color().name()));
-#endif // HANDHELD
+	txtAbout->setFrameShape(QFrame::NoFrame);
+
+//	txtCredits->setWordWrapMode(QTextOption::NoWrap);
+	txtCredits->setOpenExternalLinks(true);
+	txtCredits->setHtml(credits);
+	txtCredits->moveCursor(QTextCursor::Start);
+	txtCredits->setFrameShape(QFrame::NoFrame);
+
+	txtLicense->setWordWrapMode(QTextOption::NoWrap);
+	txtLicense->setOpenExternalLinks(true);
+	txtLicense->setText(f.readAll());
+	txtLicense->moveCursor(QTextCursor::Start);
+	txtLicense->setFrameShape(QFrame::NoFrame);
 
 	bb->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
-
-	lblTranslated->setText(QApplication::translate("--------", "AUTHORS", "Please, provide translator credits here."));
-	if (lblTranslated->text() == "AUTHORS")
-		lblTranslated->hide();
-	else {
-		lblTranslated->setOpenExternalLinks(true);
-#ifndef HANDHELD
-		lblTranslated->setStyleSheet(QString("QLabel {background-color: %1; border-color: %2; border-width: 1px; border-style: solid; border-radius: 3px; padding: 1px;}").arg(palette().alternateBase().color().name(), palette().shadow().color().name()));
-#endif // HANDHELD
-		hb2->addWidget(lblTranslated);
-	}
-
-	// This one isn't displayed anywhere, yet. Provided as a placeholder for future use.
-	QApplication::translate("--------", "VERSION", "Please, provide your translation version here.");
 
 	hb2->addWidget(bb);
 
@@ -537,7 +563,25 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 #ifdef HANDHELD
 	vb->addWidget(lblSubTitle);
 #endif // HANDHELD
-	vb->addWidget(txtAbout);
+
+	tabs->addTab(txtAbout, tr("About"));
+	tabs->addTab(txtLicense, tr("License"));
+	tabs->addTab(txtCredits, tr("Credits"));
+	if (translation != "AUTHORS %1") {
+QTextBrowser *txtTranslation = new QTextBrowser(dlg);
+//		txtTranslation->setWordWrapMode(QTextOption::NoWrap);
+		txtTranslation->setOpenExternalLinks(true);
+		txtTranslation->setText(translation);
+		txtTranslation->moveCursor(QTextCursor::Start);
+		txtTranslation->setFrameShape(QFrame::NoFrame);
+
+		tabs->addTab(txtTranslation, tr("Translation"));
+	}
+#ifndef HANDHELD
+	tabs->setStyleSheet(QString("QTabWidget::pane {background-color: %1; border-color: %3; border-width: 1px; border-style: solid; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; padding: 1px;} QTabBar::tab {background-color: %2; border-color: %3; border-width: 1px; border-style: solid; border-bottom: none; border-top-left-radius: 4px; border-top-right-radius: 4px; padding: 2px 6px;} QTabBar::tab:selected {background-color: %4;} QTabBar::tab:!selected {margin-top: 1px;}").arg(palette().base().color().name(), palette().button().color().name(), palette().shadow().color().name(), palette().light().color().name()));
+#endif // HANDHELD
+
+	vb->addWidget(tabs);
 	vb->addLayout(hb2);
 
 	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
@@ -555,6 +599,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 #endif // Q_OS_WIN32
 
 	dlg->resize(450, 350);
+	QApplication::restoreOverrideCursor();
 
 	dlg->exec();
 
@@ -596,6 +641,10 @@ QProgressBar *pb = new QProgressBar(&pd);
 	pb->setAlignment(Qt::AlignCenter);
 	pb->setFormat(tr("%v of %1 parts found").arg(n));
 	pd.setBar(pb);
+QPushButton *cancel = new QPushButton(&pd);
+	cancel->setIcon(QIcon::fromTheme("dialog-cancel", QIcon(":/images/icons/dialog-cancel.png")));
+	cancel->setText(QApplication::translate("QProgressDialog", "Cancel", "No need to translate this. This translation will be taken from Qt translation files."));
+	pd.setCancelButton(cancel);
 	pd.setMaximum(n);
 	pd.setAutoReset(false);
 	pd.setLabelText(tr("Calculating optimal route..."));
@@ -604,22 +653,80 @@ QProgressBar *pb = new QProgressBar(&pd);
 	pd.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 	pd.show();
 
+#ifdef Q_OS_WIN32
+HRESULT hr = CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_INPROC_SERVER, IID_ITaskbarList3, (LPVOID*)&tl);
+	if (SUCCEEDED(hr)) {
+		hr = tl->HrInit();
+		if (FAILED(hr)) {
+			tl->Release();
+			tl = NULL;
+		} else {
+//			tl->SetProgressState(winId(), TBPF_INDETERMINATE);
+			tl->SetProgressValue(winId(), 0, n * 2);
+		}
+	}
+#endif
+
 CTSPSolver solver;
+	solver.setCleanupOnCancel(false);
 	connect(&solver, SIGNAL(routePartFound(int)), &pd, SLOT(setValue(int)));
 	connect(&pd, SIGNAL(canceled()), &solver, SLOT(cancel()));
+#ifdef Q_OS_WIN32
+	if (tl != NULL)
+		connect(&solver, SIGNAL(routePartFound(int)), SLOT(solverRoutePartFound(int)));
+#endif
 SStep *root = solver.solve(n, matrix);
+#ifdef Q_OS_WIN32
+	if (tl != NULL)
+		disconnect(&solver, SIGNAL(routePartFound(int)), this, SLOT(solverRoutePartFound(int)));
+#endif
 	disconnect(&solver, SIGNAL(routePartFound(int)), &pd, SLOT(setValue(int)));
 	disconnect(&pd, SIGNAL(canceled()), &solver, SLOT(cancel()));
 	if (!root) {
 		pd.reset();
-		if (!solver.wasCanceled())
+		if (!solver.wasCanceled()) {
+#ifdef Q_OS_WIN32
+			if (tl != NULL) {
+//				tl->SetProgressValue(winId(), n, n * 2);
+				tl->SetProgressState(winId(), TBPF_ERROR);
+			}
+#endif
+			QApplication::alert(this);
 			QMessageBox::warning(this, tr("Solution Result"), tr("Unable to find a solution.\nMaybe, this task has no solution."));
+		}
+		pd.setLabelText(tr("Cleaning up..."));
+		pd.setMaximum(0);
+		pd.setCancelButton(NULL);
+		pd.show();
+#ifdef Q_OS_WIN32
+		if (tl != NULL)
+			tl->SetProgressState(winId(), TBPF_INDETERMINATE);
+#endif
+		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+
+QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
+		while (!f.isFinished()) {
+			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+		}
+		pd.reset();
+#ifdef Q_OS_WIN32
+		if (tl != NULL) {
+			tl->SetProgressState(winId(), TBPF_NOPROGRESS);
+			tl->Release();
+			tl = NULL;
+		}
+#endif
 		return;
 	}
 	pb->setFormat(tr("Generating header"));
 	pd.setLabelText(tr("Generating solution output..."));
 	pd.setMaximum(solver.getTotalSteps() + 1);
 	pd.setValue(0);
+
+#ifdef Q_OS_WIN32
+	if (tl != NULL)
+		tl->SetProgressValue(winId(), spinCities->value(), spinCities->value() + solver.getTotalSteps() + 1);
+#endif
 
 	solutionText->clear();
 	solutionText->setDocumentTitle(tr("Solution of Variant #%1 Task").arg(spinVariant->value()));
@@ -664,12 +771,30 @@ int c = n = 1;
 			pd.setCancelButton(NULL);
 			pd.show();
 			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-			solver.cleanup(true);
+#ifdef Q_OS_WIN32
+			if (tl != NULL)
+				tl->SetProgressState(winId(), TBPF_INDETERMINATE);
+#endif
+QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
+			while (!f.isFinished()) {
+				QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+			}
 			solutionText->clear();
 			toggleSolutionActions(false);
+#ifdef Q_OS_WIN32
+			if (tl != NULL) {
+				tl->SetProgressState(winId(), TBPF_NOPROGRESS);
+				tl->Release();
+				tl = NULL;
+			}
+#endif
 			return;
 		}
 		pd.setValue(n);
+#ifdef Q_OS_WIN32
+		if (tl != NULL)
+			tl->SetProgressValue(winId(), spinCities->value() + n, spinCities->value() + solver.getTotalSteps() + 1);
+#endif
 
 		cur.beginEditBlock();
 		cur.insertBlock(fmt_paragraph);
@@ -712,6 +837,10 @@ int c = n = 1;
 	}
 	pb->setFormat(tr("Generating footer"));
 	pd.setValue(n);
+#ifdef Q_OS_WIN32
+	if (tl != NULL)
+		tl->SetProgressValue(winId(), spinCities->value() + n, spinCities->value() + solver.getTotalSteps() + 1);
+#endif
 
 	cur.beginEditBlock();
 	cur.insertBlock(fmt_paragraph);
@@ -763,9 +892,26 @@ QTextImageFormat img;
 	pd.setMaximum(0);
 	pd.setCancelButton(NULL);
 	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-	solver.cleanup(true);
+#ifdef Q_OS_WIN32
+	if (tl != NULL)
+		tl->SetProgressState(winId(), TBPF_INDETERMINATE);
+#endif
+QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
+	while (!f.isFinished()) {
+		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+	}
 	toggleSolutionActions();
 	tabWidget->setCurrentIndex(1);
+#ifdef Q_OS_WIN32
+	if (tl != NULL) {
+		tl->SetProgressState(winId(), TBPF_NOPROGRESS);
+		tl->Release();
+		tl = NULL;
+	}
+#endif
+
+	pd.reset();
+	QApplication::alert(this, 3000);
 }
 
 void MainWindow::dataChanged()
@@ -832,6 +978,17 @@ void MainWindow::printPreview(QPrinter *printer)
 	solutionText->print(printer);
 }
 #endif // QT_NO_PRINTER
+
+#ifdef Q_OS_WIN32
+void MainWindow::solverRoutePartFound(int n)
+{
+#ifdef Q_OS_WIN32
+	tl->SetProgressValue(winId(), n, spinCities->value() * 2);
+#else
+	Q_UNUSED(n);
+#endif // Q_OS_WIN32
+}
+#endif // Q_OS_WIN32
 
 void MainWindow::spinCitiesValueChanged(int n)
 {
