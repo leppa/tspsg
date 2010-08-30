@@ -13,7 +13,7 @@
 # Common rules
 #l10n.files = l10n/*.qm
 #share.files =
-docs.files = COPYING README.txt
+docs.files = COPYING ChangeLog.txt README.txt INSTALL.txt
 INSTALLS += target share docs # l10n
 
 # For *nix:

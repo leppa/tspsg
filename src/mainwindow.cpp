@@ -256,7 +256,7 @@ QString format = settings->value("Output/GraphImageFormat", DEF_GRAPH_IMAGE_FORM
 	}
 QString html = solutionText->document()->toHtml("UTF-8"),
 		img =  fi.completeBaseName() + "." + format;
-		html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"%1\" width=\"%2\" height=\"%3\" alt=\"%4\"").arg(img).arg(graph.width() + 2).arg(graph.height() + 2).arg(tr("Solution Graph")));
+		html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"%1\" alt=\"%2\"").arg(img, tr("Solution Graph")));
 
 		// Saving solution text as HTML
 QTextStream ts(&file);
@@ -279,7 +279,7 @@ QPainter p;
 			p.end();
 		} else {
 #endif // NOSVG && QT_VERSION >= 0x040500
-QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
+QImage i(graph.width(), graph.height(), QImage::Format_ARGB32);
 			i.fill(0x00FFFFFF);
 QPainter p;
 			p.begin(&i);
@@ -734,9 +734,15 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 QPainter pic;
 	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
 		pic.begin(&graph);
-		pic.setRenderHint(QPainter::Antialiasing);
-		pic.setFont(settings->value("Output/Font", QFont(getDefaultFont(), 9)).value<QFont>());
+		pic.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+QFont font = settings->value("Output/Font", QFont(getDefaultFont(), 9)).value<QFont>();
+//		font.setBold(true);
+		font.setPointSizeF(font.pointSizeF() * 2);
+		pic.setFont(font);
 		pic.setBrush(QBrush(QColor(Qt::white)));
+QPen pen = pic.pen();
+		pen.setWidth(2);
+		pic.setPen(pen);
 		pic.setBackgroundMode(Qt::OpaqueMode);
 	}
 
@@ -877,6 +883,8 @@ QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
 
 QTextImageFormat img;
 		img.setName("tspsg://graph.pic");
+		img.setWidth(i.width() / 2);
+		img.setHeight(i.height() / 2);
 
 		cur.setPosition(imgpos);
 		cur.insertImage(img, QTextFrameFormat::FloatRight);
@@ -1040,7 +1048,7 @@ QFileInfo fi(ev->mimeData()->urls().first().toLocalFile());
 
 void MainWindow::drawNode(QPainter &pic, int nstep, bool left, SStep *step)
 {
-const int r = 35;
+const int r = 70;
 qreal x, y;
 	if (step != NULL)
 		x = left ? r : r * 3.5;
