@@ -450,10 +450,8 @@ QString title;
 	title += QString("%1: <b>%2</b><br>").arg(tr("Version"), QApplication::applicationVersion());
 #ifndef HANDHELD
 	title += QString("<b>&copy; 2007-%1 <a href=\"http://%2/\">%3</a></b><br>").arg(QDate::currentDate().toString("yyyy"), QApplication::organizationDomain(), QApplication::organizationName());
-	title += QString("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sourceforge.net/</a></b>");
-#else
-	title += QString("<b><a href=\"http://tspsg.sourceforge.net/\">http://tspsg.sf.net/</a></b>");
 #endif // HANDHELD
+	title += QString("<b><a href=\"http://tspsg.info/\">http://tspsg.info/</a></b>");
 
 QString about;
 	about += QString("%1: <b>%2</b><br>").arg(tr("Target OS (ARCH)"), OS);
@@ -553,6 +551,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	txtLicense->setFrameShape(QFrame::NoFrame);
 
 	bb->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
+	bb->button(QDialogButtonBox::Ok)->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/images/icons/dialog-ok.png")));
 
 	hb2->addWidget(bb);
 

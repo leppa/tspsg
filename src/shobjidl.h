@@ -21,6 +21,7 @@
 #ifndef _SHOBJIDL_H
 #define _SHOBJIDL_H
 
+#define INITGUID
 #include <windows.h>
 
 #ifndef DOXYGEN_EXCLUDE
