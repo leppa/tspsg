@@ -58,6 +58,9 @@ private:
 #ifdef Q_OS_WIN32
 	QCheckBox *cbUseTranslucency;
 #endif // Q_OS_WIN32
+#ifndef QT_NO_PRINTER
+	QCheckBox *cbHQGraph;
+#endif
 #ifdef Q_OS_WINCE_WM
 	QRect currentGeometry;
 #elif !defined(HANDHELD)

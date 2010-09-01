@@ -479,16 +479,18 @@ QString about;
 		"along with TSPSG.  If not, see <a href=\"http://www.gnu.org/licenses/\">www.gnu.org/licenses/</a>.");
 
 QString credits;
-	credits += tr("This software was created using LGPL version of <b>Qt framework</b>,<br>\n"
+	credits += tr("%1 was created using <b>Qt&nbsp;framework</b> licensed "
+		"under the terms of the GNU Lesser General Public License,<br>\n"
 		"see <a href=\"http://qt.nokia.com/\">qt.nokia.com</a><br>\n"
 		"<br>\n"
-		"Most icons used in this software are part of <b>Oxygen Icons</b> project "
+		"Most icons used in %1 are part of <b>Oxygen&nbsp;Icons</b> project "
 		"licensed according to the GNU Lesser General Public License,<br>\n"
 		"see <a href=\"http://www.oxygen-icons.org/\">www.oxygen-icons.org</a><br>\n"
 		"<br>\n"
-		"Country flag icons used in this software are part of the free "
-		"<b>Flag Icons</b> collection created by <b>IconDrawer</b>,<br>\n"
-		"see <a href=\"http://www.icondrawer.com/\">www.icondrawer.com</a>");
+		"Country flag icons used in %1 are part of the free "
+		"<b>Flag&nbsp;Icons</b> collection created by <b>IconDrawer</b>,<br>\n"
+		"see <a href=\"http://www.icondrawer.com/\">www.icondrawer.com</a>")
+			.arg(QApplication::applicationName());
 
 QFile f(":/files/COPYING");
 	f.open(QIODevice::ReadOnly);
@@ -735,13 +737,17 @@ QPainter pic;
 		pic.begin(&graph);
 		pic.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 QFont font = settings->value("Output/Font", QFont(getDefaultFont(), 9)).value<QFont>();
-//		font.setBold(true);
-		font.setPointSizeF(font.pointSizeF() * 2);
+		if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool()) {
+			font.setWeight(QFont::DemiBold);
+			font.setPointSizeF(font.pointSizeF() * 2);
+		}
 		pic.setFont(font);
 		pic.setBrush(QBrush(QColor(Qt::white)));
+		if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool()) {
 QPen pen = pic.pen();
-		pen.setWidth(2);
-		pic.setPen(pen);
+			pen.setWidth(2);
+			pic.setPen(pen);
+		}
 		pic.setBackgroundMode(Qt::OpaqueMode);
 	}
 
@@ -873,8 +879,8 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
 		pic.end();
 
-QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
-		i.fill(0);
+QImage i(graph.width() + 1, graph.height() + 1, QImage::Format_RGB32);
+		i.fill(0xFFFFFF);
 		pic.begin(&i);
 		pic.drawPicture(1, 1, graph);
 		pic.end();
@@ -882,8 +888,13 @@ QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
 
 QTextImageFormat img;
 		img.setName("tspsg://graph.pic");
-		img.setWidth(i.width() / 2);
-		img.setHeight(i.height() / 2);
+		if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool()) {
+			img.setWidth(i.width() / 2);
+			img.setHeight(i.height() / 2);
+		} else {
+			img.setWidth(i.width());
+			img.setHeight(i.height());
+		}
 
 		cur.setPosition(imgpos);
 		cur.insertImage(img, QTextFrameFormat::FloatRight);
@@ -1047,7 +1058,11 @@ QFileInfo fi(ev->mimeData()->urls().first().toLocalFile());
 
 void MainWindow::drawNode(QPainter &pic, int nstep, bool left, SStep *step)
 {
-const int r = 70;
+int r;
+	if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool())
+		r = 70;
+	else
+		r = 35;
 qreal x, y;
 	if (step != NULL)
 		x = left ? r : r * 3.5;

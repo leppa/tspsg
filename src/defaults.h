@@ -68,6 +68,8 @@
 #define DEF_SHOW_GRAPH true
 //! Default for "Save solution graph as"
 #define DEF_GRAPH_IMAGE_FORMAT "png"
+//! Default for "Draw solution graph in higher quality"
+#define DEF_HQ_GRAPH false
 //! Default for "Show solution steps' matrices for every solution step"
 #define DEF_SHOW_MATRIX true
 //! Default for "Show or hide solution steps' matrices based on number of cities in the task"

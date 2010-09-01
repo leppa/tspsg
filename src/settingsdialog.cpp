@@ -55,6 +55,23 @@ QPalette p = bgWhite->palette();
 	p.setColor(QPalette::Window, p.color(QPalette::Text));
 	lineHorizontal->setPalette(p);
 
+#ifndef QT_NO_PRINTER
+	cbHQGraph = new QCheckBox(bgWhite);
+	cbHQGraph->setObjectName("cbHQGraph");
+#ifndef QT_NO_STATUSTIP
+	cbHQGraph->setStatusTip(tr("Higher quality graph looks much better when printing but uglier on the screen"));
+#endif // QT_NO_STATUSTIP
+	cbHQGraph->setText(tr("Draw solution graph in higher quality"));
+	cbHQGraph->setCursor(QCursor(Qt::PointingHandCursor));
+
+QBoxLayout *box = static_cast<QBoxLayout *>(tabOutput->layout());
+QHBoxLayout *hbox1 = new QHBoxLayout();
+	hbox1->addSpacing(10);
+	hbox1->addWidget(cbHQGraph);
+	box->insertLayout(box->indexOf(cbShowGraph) + 1, hbox1);
+	connect(cbShowGraph, SIGNAL(toggled(bool)), cbHQGraph, SLOT(setEnabled(bool)));
+#endif
+
 #ifdef HANDHELD
 QVBoxLayout *vbox1; // Layout helper
 
@@ -86,8 +103,8 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	setLayout(vbox1);
 #else // HANDHELD
 	// Layout helper elements
-QVBoxLayout *vbox1, *vbox2;
-QHBoxLayout *hbox1;
+QVBoxLayout *vbox;
+QHBoxLayout *hbox;
 
 #ifdef Q_OS_WIN32
 	if (QtWin::isCompositionEnabled()) {
@@ -138,37 +155,40 @@ QHBoxLayout *hbox1;
 	lineVertical->setLineWidth(2);
 
 	// Top line
-	hbox1 = new QHBoxLayout();
-	hbox1->addWidget(imgIcon);
-	hbox1->addWidget(lineVertical);
-	hbox1->addWidget(bgWhite);
+	hbox = new QHBoxLayout();
+	hbox->addWidget(imgIcon);
+	hbox->addWidget(lineVertical);
+	hbox->addWidget(bgWhite);
 
-	vbox1 = static_cast<QVBoxLayout *>(tabGeneral->layout());
-	vbox1->insertWidget(vbox1->indexOf(cbUseNativeDialogs) + 1, cbSaveState);
+#ifdef QT_NO_PRINTER
+QBoxLayout *box;
+#endif
+	box = static_cast<QBoxLayout *>(tabGeneral->layout());
+	box->insertWidget(box->indexOf(cbUseNativeDialogs) + 1, cbSaveState);
 #ifdef Q_OS_WIN32
 	if (QtWin::isCompositionEnabled())
-		vbox1->insertWidget(vbox1->indexOf(cbUseNativeDialogs) + 1, cbUseTranslucency);
+		box->insertWidget(box->indexOf(cbUseNativeDialogs) + 1, cbUseTranslucency);
 #endif // Q_OS_WIN32
 
 	// Inserting label for hints to the bottom part (with grey bg)
 	buttons->insertWidget(buttons->indexOf(buttonHelp) + 1, labelHint, 1);
 
 	// Central layout
-	vbox2 = new QVBoxLayout(this);
-	vbox2->setMargin(0);
-	vbox2->setSpacing(0);
-	vbox2->addLayout(hbox1);
-	vbox2->addWidget(bgGrey);
-	setLayout(vbox2);
+	vbox = new QVBoxLayout(this);
+	vbox->setMargin(0);
+	vbox->setSpacing(0);
+	vbox->addLayout(hbox);
+	vbox->addWidget(bgGrey);
+	setLayout(vbox);
 #endif // HANDHELD
 
 #ifdef Q_OS_WINCE_WM
 	// We need to react to SIP show/hide and resize the window appropriately
 	connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
 #endif // Q_OS_WINCE_WM
-	connect(spinRandMin,SIGNAL(valueChanged(int)),this,SLOT(spinRandMinValueChanged(int)));
-	connect(buttonFont,SIGNAL(clicked()),this,SLOT(buttonFontClicked()));
-	connect(buttonColor,SIGNAL(clicked()),this,SLOT(buttonColorClicked()));
+	connect(spinRandMin, SIGNAL(valueChanged(int)), SLOT(spinRandMinValueChanged(int)));
+	connect(buttonFont, SIGNAL(clicked()), SLOT(buttonFontClicked()));
+	connect(buttonColor, SIGNAL(clicked()), SLOT(buttonColorClicked()));
 	setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
 #ifndef HANDHELD
 	// Setting initial text of dialog hint label to own status tip text.
@@ -200,6 +220,11 @@ QHBoxLayout *hbox1;
 
 	settings->beginGroup("Output");
 	cbShowGraph->setChecked(settings->value("ShowGraph", DEF_SHOW_GRAPH).toBool());
+
+#ifndef QT_NO_PRINTER
+	cbHQGraph->setEnabled(cbShowGraph->isChecked());
+	cbHQGraph->setChecked(settings->value("HQGraph", DEF_HQ_GRAPH && cbShowGraph->isChecked()).toBool());
+#endif
 
 #if !defined(NOSVG) && (QT_VERSION >= 0x040500)
 	comboGraphImageFormat->addItem("svg");
@@ -310,6 +335,9 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
 
 	settings->beginGroup("Output");
 	settings->setValue("ShowGraph", cbShowGraph->isChecked());
+#ifndef QT_NO_PRINTER
+	settings->setValue("HQGraph", cbShowGraph->isChecked() && cbHQGraph->isChecked());
+#endif
 	if (cbShowGraph->isChecked()) {
 		if (comboGraphImageFormat->currentIndex() >= 0)
 			settings->setValue("GraphImageFormat", comboGraphImageFormat->currentText());
