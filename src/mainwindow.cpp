@@ -157,11 +157,18 @@ QStringList filters(tr("All Supported Formats") + " (*.tspt *.zkt)");
 	filters.append(tr("%1 Task Files").arg("ZKomModRd") + " (*.zkt)");
 	filters.append(tr("All Files") + " (*)");
 
-QString file = QFileInfo(fileName).canonicalPath();
+QString file;
+	if ((fileName == tr("Untitled") + ".tspt") && settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
+		file = settings->value("LastUsed/TaskLoadPath").toString();
+	else
+		file = QFileInfo(fileName).path();
 QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
 	file = QFileDialog::getOpenFileName(this, tr("Task Load"), file, filters.join(";;"), NULL, opts);
 	if (file.isEmpty() || !QFileInfo(file).isFile())
 		return;
+	if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
+		settings->setValue("LastUsed/TaskLoadPath", QFileInfo(file).path());
+
 	if (!tspmodel->loadTask(file))
 		return;
 	setFileName(file);
@@ -173,7 +180,7 @@ QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_D
 
 bool MainWindow::actionFileSaveTriggered()
 {
-	if ((fileName == tr("Untitled") + ".tspt") || (!fileName.endsWith(".tspt", Qt::CaseInsensitive)))
+	if ((fileName == tr("Untitled") + ".tspt") || !fileName.endsWith(".tspt", Qt::CaseInsensitive))
 		return saveTask();
 	else
 		if (tspmodel->saveTask(fileName)) {
@@ -191,12 +198,14 @@ void MainWindow::actionFileSaveAsTaskTriggered()
 void MainWindow::actionFileSaveAsSolutionTriggered()
 {
 static QString selectedFile;
-	if (selectedFile.isEmpty())
-		selectedFile = QFileInfo(fileName).canonicalPath();
-	else
-		selectedFile = QFileInfo(selectedFile).canonicalPath();
+	if (selectedFile.isEmpty()) {
+		if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool()) {
+			selectedFile = settings->value("LastUsed/SolutionSavePath").toString();
+		}
+	} else
+		selectedFile = QFileInfo(selectedFile).path();
 	if (!selectedFile.isEmpty())
-		selectedFile += "/";
+		selectedFile.append("/");
 	if (fileName == tr("Untitled") + ".tspt") {
 #ifndef QT_NO_PRINTER
 		selectedFile += "solution.pdf";
@@ -226,6 +235,8 @@ QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filte
 	if (file.isEmpty())
 		return;
 	selectedFile = file;
+	if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
+		settings->setValue("LastUsed/SolutionSavePath", QFileInfo(selectedFile).path());
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 #ifndef QT_NO_PRINTER
 	if (selectedFile.endsWith(".pdf",Qt::CaseInsensitive)) {
@@ -1431,16 +1442,23 @@ bool MainWindow::saveTask() {
 QStringList filters(tr("%1 Task File").arg("TSPSG") + " (*.tspt)");
 	filters.append(tr("All Files") + " (*)");
 QString file;
-	if (fileName.endsWith(".tspt", Qt::CaseInsensitive))
+	if ((fileName == tr("Untitled") + ".tspt") && settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool()) {
+		file = settings->value("LastUsed/TaskSavePath").toString();
+		if (!file.isEmpty())
+			file.append("/");
+		file.append(fileName);
+	} else if (fileName.endsWith(".tspt", Qt::CaseInsensitive))
 		file = fileName;
 	else
-		file = QFileInfo(fileName).canonicalPath() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt";
+		file = QFileInfo(fileName).path() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt";
 
 QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
 	file = QFileDialog::getSaveFileName(this, tr("Task Save"), file, filters.join(";;"), NULL, opts);
-
 	if (file.isEmpty())
 		return false;
+	else if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
+		settings->setValue("LastUsed/TaskSavePath", QFileInfo(file).path());
+
 	if (tspmodel->saveTask(file)) {
 		setFileName(file);
 		setWindowModified(false);

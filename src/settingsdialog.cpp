@@ -199,6 +199,7 @@ QBoxLayout *box;
 	settings->remove("SettingsReset");
 
 	cbAutosize->setChecked(settings->value("Autosize", DEF_AUTOSIZE).toBool());
+	cbSaveLastUsed->setChecked(settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool());
 	cbUseNativeDialogs->setChecked(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool());
 #ifdef Q_OS_WIN32
 	if (QtWin::isCompositionEnabled())
@@ -309,9 +310,9 @@ void SettingsDialog::accept()
 		} else
 			return;
 	}
-#ifndef HANDHELD
-	settings->setValue("SavePos", cbSaveState->isChecked());
-#endif // HANDHELD
+	settings->setValue("Autosize", cbAutosize->isChecked());
+	settings->setValue("SaveLastUsed", cbSaveLastUsed->isChecked());
+	settings->setValue("UseNativeDialogs", cbUseNativeDialogs->isChecked());
 #ifdef Q_OS_WIN32
 	if (QtWin::isCompositionEnabled()) {
 bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
@@ -322,8 +323,9 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
 		settings->setValue("UseTranslucency", cbUseTranslucency->isChecked());
 	}
 #endif // Q_OS_WIN32
-	settings->setValue("Autosize", cbAutosize->isChecked());
-	settings->setValue("UseNativeDialogs", cbUseNativeDialogs->isChecked());
+#ifndef HANDHELD
+	settings->setValue("SavePos", cbSaveState->isChecked());
+#endif // HANDHELD
 
 	settings->beginGroup("Task");
 	settings->setValue("SymmetricMode", cbSymmetricMode->isChecked());

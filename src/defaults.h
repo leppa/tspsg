@@ -35,6 +35,8 @@
 
 //! Default for "Automatically resize rows and columns to their contents"
 #define DEF_AUTOSIZE true
+//! Default for "Remember last used directories"
+#define DEF_SAVE_LAST_USED true
 /*!
  * \def DEF_USE_NATIVE_DIALOGS
  * \brief Default for "Use native file dialog".

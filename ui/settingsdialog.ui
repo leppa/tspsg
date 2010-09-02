@@ -112,6 +112,19 @@
          </widget>
         </item>
         <item>
+         <widget class="QCheckBox" name="cbSaveLastUsed">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="statusTip">
+           <string>Remember the last used directory when opening and saving files</string>
+          </property>
+          <property name="text">
+           <string>Remember last used directories</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCheckBox" name="cbUseNativeDialogs">
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
