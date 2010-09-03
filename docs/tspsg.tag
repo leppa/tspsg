@@ -28,6 +28,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>DEF_SAVE_LAST_USED</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>a02da61748796e418a0919b08a513eaed</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>DEF_USE_NATIVE_DIALOGS</name>
       <anchorfile>defaults_8h.html</anchorfile>
       <anchor>a6bbdc41d8e9d2d8050fb973f058a5521</anchor>
@@ -98,6 +105,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>DEF_HQ_GRAPH</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>a351e58750bbb3904d900734fb5ab1ca8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>DEF_SHOW_MATRIX</name>
       <anchorfile>defaults_8h.html</anchorfile>
       <anchor>a616d74fa946123f424193b007d5a6382</anchor>
@@ -122,6 +136,13 @@
       <name>DEF_SCROLL_TO_END</name>
       <anchorfile>defaults_8h.html</anchorfile>
       <anchor>a6831bc2c2f11c3a14382c8fbe8d87efe</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_FONT_FACE</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>afdd3c568d87924da83cb8bfcedb3722d</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -245,13 +266,6 @@
       <anchorfile>globals_8h.html</anchorfile>
       <anchor>a594842d2fcaf774c3c42b944f3f031d2</anchor>
       <arglist>(double x)</arglist>
-    </member>
-    <member kind="function">
-      <type>QString</type>
-      <name>getDefaultFont</name>
-      <anchorfile>globals_8h.html</anchorfile>
-      <anchor>a0b35409ae9db3b8db49ca9937447fc5b</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>

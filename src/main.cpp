@@ -52,6 +52,8 @@ QApplication app(argc, argv);
 	// Seeding random number generator
 	qsrand(QDateTime::currentDateTime().toTime_t() ^ QCursor::pos().x() ^ QCursor::pos().y());
 
+	QFontDatabase::addApplicationFont(":/files/DejaVuLGCSansMono.ttf");
+
 QTranslator en;
 	if (en.load("tspsg_en", PATH_L10N))
 		app.installTranslator(&en);

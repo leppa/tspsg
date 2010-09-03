@@ -19,5 +19,6 @@
     </qresource>
     <qresource prefix="/files">
         <file>COPYING</file>
+        <file>DejaVuLGCSansMono.ttf</file>
     </qresource>
 </RCC>

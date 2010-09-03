@@ -747,7 +747,7 @@ QPainter pic;
 	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
 		pic.begin(&graph);
 		pic.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-QFont font = settings->value("Output/Font", QFont(getDefaultFont(), 9)).value<QFont>();
+QFont font = settings->value("Output/Font", QFont(DEF_FONT_FACE, 9)).value<QFont>();
 		if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool()) {
 			font.setWeight(QFont::DemiBold);
 			font.setPointSizeF(font.pointSizeF() * 2);
@@ -1144,7 +1144,7 @@ bool MainWindow::hasUpdater() const
 
 void MainWindow::initDocStyleSheet()
 {
-	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(getDefaultFont(), DEF_FONT_SIZE)).value<QFont>());
+	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FACE, DEF_FONT_SIZE)).value<QFont>());
 
 	fmt_paragraph.setTopMargin(0);
 	fmt_paragraph.setRightMargin(10);

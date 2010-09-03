@@ -107,21 +107,6 @@ double i;
 	return (modf(x, &i) == 0.0);
 }
 
-/*!
- * \brief Returns the default font for solution output.
- * \return The family name of the default font.
- */
-inline QString getDefaultFont()
-{
-QFont f;
-#ifdef HANDHELD
-	f.setStyleHint(QFont::SansSerif);
-#else // HANDHELD
-	f.setStyleHint(QFont::TypeWriter);
-#endif // HANDHELD
-	return f.defaultFamily();
-}
-
 #ifdef Q_OS_WIN32
 /*!
  * \brief Enables or disables a mask for the \a widget.
