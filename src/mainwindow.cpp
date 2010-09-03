@@ -500,7 +500,11 @@ QString credits;
 		"<br>\n"
 		"Country flag icons used in %1 are part of the free "
 		"<b>Flag&nbsp;Icons</b> collection created by <b>IconDrawer</b>,<br>\n"
-		"see <a href=\"http://www.icondrawer.com/\">www.icondrawer.com</a>")
+		"see <a href=\"http://www.icondrawer.com/\">www.icondrawer.com</a><br>\n"
+		"<br>\n"
+		"%1 comes with the default \"embedded\" font <b>DejaVu&nbsp;LGC&nbsp;Sans&nbsp;"
+		"Mono</b> from the <b>DejaVu fonts</b> licensed under a Free license</a>,<br>\n"
+		"see <a href=\"http://dejavu-fonts.org/\">dejavu-fonts.org</a>.")
 			.arg(QApplication::applicationName());
 
 QFile f(":/files/COPYING");
