@@ -504,8 +504,8 @@ QString credits;
 		"<br>\n"
 		"%1 comes with the default \"embedded\" font <b>DejaVu&nbsp;LGC&nbsp;Sans&nbsp;"
 		"Mono</b> from the <b>DejaVu fonts</b> licensed under a Free license</a>,<br>\n"
-		"see <a href=\"http://dejavu-fonts.org/\">dejavu-fonts.org</a>.")
-			.arg(QApplication::applicationName());
+		"see <a href=\"http://dejavu-fonts.org/\">dejavu-fonts.org</a>")
+			.arg("TSPSG");
 
 QFile f(":/files/COPYING");
 	f.open(QIODevice::ReadOnly);
