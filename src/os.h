@@ -65,98 +65,121 @@
  * This value will be used in task file metadata.
  */
 #ifdef Q_OS_AIX
-	#define OS "AIX"ARCH
+	#define OS "AIX"
 	#define OSID quint8(1)
 #elif defined Q_OS_BSD4
-	#define OS "BSD 4.4"ARCH
+	#define OS "BSD 4.4"
 	#define OSID quint8(2)
 #elif defined Q_OS_BSDI
-	#define OS "BSD/OS"ARCH
+	#define OS "BSD/OS"
 	#define OSID quint8(3)
 #elif defined Q_OS_CYGWIN
-	#define OS "Cygwin"ARCH
+	#define OS "Cygwin"
 	#define OSID quint8(4)
 #elif defined Q_OS_DGUX
-	#define OS "DG/UX"ARCH
+	#define OS "DG/UX"
 	#define OSID quint8(5)
 #elif defined Q_OS_DYNIX
-	#define OS "DYNIX/ptx"ARCH
+	#define OS "DYNIX/ptx"
 	#define OSID quint8(6)
 #elif defined Q_OS_FREEBSD
-	#define OS "FreeBSD"ARCH
+	#define OS "FreeBSD"
 	#define OSID quint8(7)
 #elif defined Q_OS_HPUX
-	#define OS "HP-UX"ARCH
+	#define OS "HP-UX"
 	#define OSID quint8(8)
 #elif defined Q_OS_HURD
-	#define OS "GNU Hurd"ARCH
+	#define OS "GNU Hurd"
 	#define OSID quint8(9)
 #elif defined Q_OS_IRIX
-	#define OS "SGI Irix"ARCH
+	#define OS "SGI Irix"
 	#define OSID quint8(10)
 #elif defined Q_OS_LINUX
-	#define OS "Linux"ARCH
+	#define OS "Linux"
 	#define OSID quint8(11)
 #elif defined Q_OS_LYNX
-	#define OS "LynxOS"ARCH
+	#define OS "LynxOS"
 	#define OSID quint8(12)
 #elif defined Q_OS_MAC
-	#define OS "Mac OS (Darwin)"ARCH
+	#define OS "Mac OS (Darwin)"
 	#define OSID quint8(13)
 #elif defined Q_OS_MSDOS
-	#define OS "MS-DOS"ARCH
+	#define OS "MS-DOS"
 	#define OSID quint8(14)
 #elif defined Q_OS_NETBSD
-	#define OS "NetBSD"ARCH
+	#define OS "NetBSD"
 	#define OSID quint8(15)
 #elif defined Q_OS_OS2
-	#define OS "OS/2"ARCH
+	#define OS "OS/2"
 	#define OSID quint8(16)
 #elif defined Q_OS_OPENBSD
-	#define OS "OpenBSD"ARCH
+	#define OS "OpenBSD"
 	#define OSID quint8(17)
 #elif defined Q_OS_OS2EMX
-	#define OS "OS/2"ARCH
+	#define OS "OS/2"
 	#define OSID quint8(18)
 #elif defined Q_OS_OSF
-	#define OS "HP Tru64 UNIX"ARCH
+	#define OS "HP Tru64 UNIX"
 	#define OSID quint8(19)
 #elif defined Q_OS_QNX
-	#define OS "QNX Neutrino"ARCH
+	#define OS "QNX Neutrino"
 	#define OSID quint8(20)
 #elif defined Q_OS_RELIANT
-	#define OS "Reliant UNIX"ARCH
+	#define OS "Reliant UNIX"
 	#define OSID quint8(21)
 #elif defined Q_OS_SCO
-	#define OS "SCO OpenServer 5"ARCH
+	#define OS "SCO OpenServer 5"
 	#define OSID quint8(22)
 #elif defined Q_OS_SOLARIS
-	#define OS "Sun Solaris"ARCH
+	#define OS "Sun Solaris"
 	#define OSID quint8(23)
 #elif defined Q_OS_SYMBIAN
-	#define OS "Symbian"ARCH
+	#define OS "Symbian"
 	#define OSID quint8(24)
 #elif defined Q_OS_ULTRIX
-	#define OS "DEC Ultrix"ARCH
+	#define OS "DEC Ultrix"
 	#define OSID quint8(25)
 #elif defined Q_OS_UNIX
-	#define OS "UNIX BSD/SYSV"ARCH
+	#define OS "UNIX BSD/SYSV"
 	#define OSID quint8(26)
 #elif defined Q_OS_UNIXWARE
-	#define OS "UnixWare 7/Open UNIX 8"ARCH
+	#define OS "UnixWare 7/Open UNIX 8"
 	#define OSID quint8(27)
 #elif defined Q_OS_WIN32
-	#define OS "Windows"ARCH
+	#define OS "Windows"
 	#define OSID quint8(28)
 #elif defined Q_OS_WINCE_WM
-	#define OS "Windows Mobile"ARCH
+	#define OS "Windows Mobile"
 	#define OSID quint8(29)
 #elif defined Q_OS_WINCE
-	#define OS "Windows CE"ARCH
+	#define OS "Windows CE"
 	#define OSID quint8(30)
 #else
-	#define OS "Unknown"ARCH
+	#define OS "Unknown"
 	#define OSID quint8(255)
 #endif // OS
+
+//! The target platform in the form OS ARCH
+#define PLATFROM OS ARCH
+
+/*!
+ * \def COMPILER
+ * \brief The compiler TSPSG was built with.
+ */
+#ifdef Q_CC_MSVC
+	#define COMPILER "Microsoft Visual C/C++ or Intel C++ for Windows"
+#elif defined(Q_CC_GNU)
+	#define COMPILER "GNU C++"
+#elif defined(Q_CC_INTEL)
+	#define COMPILER "Intel C++ for Linux or Intel C++ for Windows"
+#elif defined(Q_CC_GCCE)
+	#define COMPILER "GCCE (Symbian GCCE builds)"
+#elif defined(Q_CC_RVCT)
+	#define COMPILER "ARM Realview Compiler Suite"
+#elif defined(Q_CC_NOKIAX86)
+	#define COMPILER "Nokia x86 (Symbian WINSCW builds)"
+#else
+	#define COMPILER "Unknown"
+#endif
 
 #endif // OS_H

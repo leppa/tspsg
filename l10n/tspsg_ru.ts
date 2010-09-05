@@ -5,7 +5,7 @@
 <context>
     <name>--------</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="513"/>
+        <location filename="../src/mainwindow.cpp" line="509"/>
         <source>AUTHORS %1</source>
         <comment>Please, provide translator credits here. %1 will be replaced with VERSION</comment>
         <translation>&lt;b&gt;Русский перевод&lt;/b&gt;&lt;br&gt;
@@ -14,19 +14,19 @@
 Версия: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="515"/>
+        <location filename="../src/mainwindow.cpp" line="511"/>
         <source>VERSION</source>
         <comment>Please, provide your translation version here.</comment>
         <translation>$Id$</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1216"/>
+        <location filename="../src/mainwindow.cpp" line="1212"/>
         <source>COUNTRY</source>
         <comment>Please, provide an ISO 3166-1 alpha-2 country code for this translation language here (eg., UA).</comment>
         <translation>RU</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1217"/>
+        <location filename="../src/mainwindow.cpp" line="1213"/>
         <source>LANGNAME</source>
         <comment>Please, provide a native name of your translation language here.</comment>
         <translation>Русский</translation>
@@ -153,7 +153,7 @@ Error: %1</source>
         <translation>Смена языка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1345"/>
+        <location filename="../src/mainwindow.cpp" line="1341"/>
         <source>Unsaved Changes</source>
         <translation>Несохраненные изменения</translation>
     </message>
@@ -165,7 +165,7 @@ Error: %1</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="158"/>
         <location filename="../src/mainwindow.cpp" line="231"/>
-        <location filename="../src/mainwindow.cpp" line="1447"/>
+        <location filename="../src/mainwindow.cpp" line="1443"/>
         <source>All Files</source>
         <translation>Все файлы</translation>
     </message>
@@ -176,7 +176,7 @@ Error: %1</source>
         <translation>Файлы условий %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1297"/>
+        <location filename="../src/mainwindow.cpp" line="1293"/>
         <source>Language Change</source>
         <translation>Смена языка</translation>
     </message>
@@ -196,14 +196,14 @@ Error: %1</source>
         <translation>Файлы OpenDocument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="832"/>
-        <location filename="../src/mainwindow.cpp" line="839"/>
-        <location filename="../src/mainwindow.cpp" line="1104"/>
+        <location filename="../src/mainwindow.cpp" line="828"/>
+        <location filename="../src/mainwindow.cpp" line="835"/>
+        <location filename="../src/mainwindow.cpp" line="1100"/>
         <source>(%1;%2)</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="842"/>
+        <location filename="../src/mainwindow.cpp" line="838"/>
         <source>%n alternate candidate(s) for branching: %1.</source>
         <translation>
             <numerusform>%n альтернативный кандидат для ветвления: %1.</numerusform>
@@ -212,7 +212,7 @@ Error: %1</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="883"/>
+        <location filename="../src/mainwindow.cpp" line="879"/>
         <source>The price is &lt;b&gt;%n&lt;/b&gt; unit(s).</source>
         <translation>
             <numerusform>Стоимость - &lt;b&gt;%n&lt;/b&gt; единица.</numerusform>
@@ -221,32 +221,32 @@ Error: %1</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1115"/>
+        <location filename="../src/mainwindow.cpp" line="1111"/>
         <source>Root</source>
         <translation>Корень</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1316"/>
+        <location filename="../src/mainwindow.cpp" line="1312"/>
         <source>Set application style to %1</source>
         <translation>Изменить оформление приложения на %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1431"/>
+        <location filename="../src/mainwindow.cpp" line="1427"/>
         <source>Configure...</source>
         <translation>Настройка...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1433"/>
+        <location filename="../src/mainwindow.cpp" line="1429"/>
         <source>Customize toolbars</source>
         <translation>Настройка панелей инструментов</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1440"/>
+        <location filename="../src/mainwindow.cpp" line="1436"/>
         <source>Check for %1 updates</source>
         <translation>Проверить обновления %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1446"/>
+        <location filename="../src/mainwindow.cpp" line="1442"/>
         <source>%1 Task File</source>
         <translation>Файл условия %1</translation>
     </message>
@@ -291,53 +291,52 @@ or support for this feature was not installed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="461"/>
+        <location filename="../src/mainwindow.cpp" line="457"/>
         <source>Version</source>
         <translation>Версия</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="468"/>
+        <location filename="../src/mainwindow.cpp" line="464"/>
         <source>Target OS (ARCH)</source>
         <translation>Целевая ОС (архитектура)</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="466"/>
         <location filename="../src/mainwindow.cpp" line="470"/>
-        <location filename="../src/mainwindow.cpp" line="474"/>
         <source>Qt library</source>
         <translation>Библиотека Qt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="470"/>
+        <location filename="../src/mainwindow.cpp" line="466"/>
         <source>shared</source>
         <translation>динамическая</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="471"/>
+        <location filename="../src/mainwindow.cpp" line="467"/>
         <source>Build time</source>
         <translation>Времени сборки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="472"/>
+        <location filename="../src/mainwindow.cpp" line="468"/>
         <source>Runtime</source>
         <translation>Времени исполнения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="474"/>
+        <location filename="../src/mainwindow.cpp" line="470"/>
         <source>static</source>
         <translation>статическая</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="476"/>
         <source>Buid &lt;b&gt;%1&lt;/b&gt;, built on &lt;b&gt;%2&lt;/b&gt; at &lt;b&gt;%3&lt;/b&gt;</source>
-        <translation>Сборка &lt;b&gt;%1&lt;/b&gt;, собрана &lt;b&gt;%2&lt;/b&gt; в &lt;b&gt;%3&lt;/b&gt;</translation>
+        <translation type="obsolete">Сборка &lt;b&gt;%1&lt;/b&gt;, собрана &lt;b&gt;%2&lt;/b&gt; в &lt;b&gt;%3&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="477"/>
+        <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Algorithm</source>
         <translation>Алгоритм</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="479"/>
+        <location filename="../src/mainwindow.cpp" line="475"/>
         <source>This program is free software: you can redistribute it and/or modify&lt;br&gt;
 it under the terms of the GNU General Public License as published by&lt;br&gt;
 the Free Software Foundation, either version 3 of the License, or&lt;br&gt;
@@ -364,64 +363,64 @@ along with TSPSG.  If not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quo
 с программой. В случае её отсутствия, смотрите &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;www.gnu.org/licenses/&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="583"/>
+        <location filename="../src/mainwindow.cpp" line="579"/>
         <source>About</source>
         <translation>Про</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="584"/>
+        <location filename="../src/mainwindow.cpp" line="580"/>
         <source>License</source>
         <translation>Лицензия</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="585"/>
+        <location filename="../src/mainwindow.cpp" line="581"/>
         <source>Credits</source>
         <translation>Благодарности</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="648"/>
+        <location filename="../src/mainwindow.cpp" line="644"/>
         <source>Data error</source>
         <translation>Ошибка в данных</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="648"/>
+        <location filename="../src/mainwindow.cpp" line="644"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation>Ошибка в ячейке [Строка %1; Колонка %2]: Неверный формат данных.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="666"/>
+        <location filename="../src/mainwindow.cpp" line="662"/>
         <source>Calculating optimal route...</source>
         <translation>Расчет оптимального пути...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="667"/>
+        <location filename="../src/mainwindow.cpp" line="663"/>
         <source>Solution Progress</source>
         <translation>Состояние решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="711"/>
+        <location filename="../src/mainwindow.cpp" line="707"/>
         <source>Solution Result</source>
         <translation>Результат решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="711"/>
+        <location filename="../src/mainwindow.cpp" line="707"/>
         <source>Unable to find a solution.
 Maybe, this task has no solution.</source>
         <translation>Не удалось найти решение.
 Возможно, у задачи нет решения.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="737"/>
+        <location filename="../src/mainwindow.cpp" line="733"/>
         <source>Generating header</source>
         <translation>Генерация заголовка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="748"/>
+        <location filename="../src/mainwindow.cpp" line="744"/>
         <source>Solution of Variant #%1 Task</source>
         <translation>Решение задания для варианта №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="776"/>
+        <location filename="../src/mainwindow.cpp" line="772"/>
         <source>Task:</source>
         <translation>Условие:</translation>
     </message>
@@ -472,7 +471,12 @@ you need to re-run the solution process.</source>
         <translation>Чтобы применить оформление по умолчанию необходимо перезапустить %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="493"/>
+        <location filename="../src/mainwindow.cpp" line="472"/>
+        <source>Buid &lt;b&gt;%1&lt;/b&gt;, built on &lt;b&gt;%2&lt;/b&gt; at &lt;b&gt;%3&lt;/b&gt; with &lt;b&gt;%4&lt;/b&gt; compiler.</source>
+        <translation>Сборка &lt;b&gt;%1&lt;/b&gt;, собрана &lt;b&gt;%2&lt;/b&gt; в &lt;b&gt;%3&lt;/b&gt; при помощи компилятора &lt;b&gt;%4&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="489"/>
         <source>%1 was created using &lt;b&gt;Qt&amp;nbsp;framework&lt;/b&gt; licensed under the terms of the GNU Lesser General Public License,&lt;br&gt;
 see &lt;a href=&quot;http://qt.nokia.com/&quot;&gt;qt.nokia.com&lt;/a&gt;&lt;br&gt;
 &lt;br&gt;
@@ -497,121 +501,121 @@ see &lt;a href=&quot;http://dejavu-fonts.org/&quot;&gt;dejavu-fonts.org&lt;/a&gt
 смотрите &lt;a href=&quot;http://dejavu-fonts.org/&quot;&gt;dejavu-fonts.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="594"/>
+        <location filename="../src/mainwindow.cpp" line="590"/>
         <source>Translation</source>
         <translation>Перевод</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="604"/>
+        <location filename="../src/mainwindow.cpp" line="600"/>
         <source>About %1</source>
         <translation>О %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="658"/>
+        <location filename="../src/mainwindow.cpp" line="654"/>
         <source>%v of %1 parts found</source>
         <translation>Найдено %v з %1 переходов</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="738"/>
+        <location filename="../src/mainwindow.cpp" line="734"/>
         <source>Generating solution output...</source>
         <translation>Генерация текста решения...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="774"/>
+        <location filename="../src/mainwindow.cpp" line="770"/>
         <source>Variant #%1 Task</source>
         <translation>Условие варианта №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="787"/>
+        <location filename="../src/mainwindow.cpp" line="783"/>
         <source>Variant #%1 Solution</source>
         <translation>Решение варианта №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="792"/>
+        <location filename="../src/mainwindow.cpp" line="788"/>
         <source>Generating step %v</source>
         <translation>Генерация шага %v</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="827"/>
+        <location filename="../src/mainwindow.cpp" line="823"/>
         <source>Step #%1</source>
         <translation>Шаг №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="832"/>
+        <location filename="../src/mainwindow.cpp" line="828"/>
         <source>Selected route %1 %2 part.</source>
         <translation>Выбран путь %1 %2.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="832"/>
+        <location filename="../src/mainwindow.cpp" line="828"/>
         <source>with</source>
         <translation>с переходом</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="832"/>
+        <location filename="../src/mainwindow.cpp" line="828"/>
         <source>without</source>
         <translation>без перехода</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="864"/>
+        <location filename="../src/mainwindow.cpp" line="860"/>
         <source>Generating footer</source>
         <translation>Генерация окончания</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="874"/>
+        <location filename="../src/mainwindow.cpp" line="870"/>
         <source>Optimal path:</source>
         <translation>Оптимальный путь:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="876"/>
+        <location filename="../src/mainwindow.cpp" line="872"/>
         <source>Resulting path:</source>
         <translation>Найденный путь:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="879"/>
+        <location filename="../src/mainwindow.cpp" line="875"/>
         <source>City %1</source>
         <translation>Город %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="885"/>
+        <location filename="../src/mainwindow.cpp" line="881"/>
         <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
         <translation>Стоимость - &lt;b&gt;%1&lt;/b&gt; единиц.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="890"/>
+        <location filename="../src/mainwindow.cpp" line="886"/>
         <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
         <translation>&lt;b&gt;ВНИМАНИЕ!!!&lt;/b&gt;&lt;br&gt;Найденное решение является рекордом, но может оказаться не оптимальным.&lt;br&gt;Для получения оптимального решения, или проверки текущего на оптимальность, требуется продолжить итерации.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="713"/>
-        <location filename="../src/mainwindow.cpp" line="795"/>
-        <location filename="../src/mainwindow.cpp" line="924"/>
+        <location filename="../src/mainwindow.cpp" line="709"/>
+        <location filename="../src/mainwindow.cpp" line="791"/>
+        <location filename="../src/mainwindow.cpp" line="920"/>
         <source>Cleaning up...</source>
         <translation>Очистка...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1297"/>
+        <location filename="../src/mainwindow.cpp" line="1293"/>
         <source>Unable to load the translation language.
 Falling back to autodetection.</source>
         <translation>Невозможно загрузить перевод.
 Возвращаюсь к автоопределению.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1345"/>
+        <location filename="../src/mainwindow.cpp" line="1341"/>
         <source>Would you like to save changes in the current task?</source>
         <translation>Желаете сохранить изменения в текущей задаче?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1218"/>
+        <location filename="../src/mainwindow.cpp" line="1214"/>
         <source>Set application language to %1</source>
         <translation>Изменить язык приложения на %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1438"/>
+        <location filename="../src/mainwindow.cpp" line="1434"/>
         <source>Check for &amp;Updates...</source>
         <translation>Проверить &amp;обновления...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1460"/>
+        <location filename="../src/mainwindow.cpp" line="1456"/>
         <source>Task Save</source>
         <translation>Сохранение условия</translation>
     </message>
@@ -629,7 +633,7 @@ Do you wish to turn it off?</source>
         <location filename="../src/mainwindow.cpp" line="183"/>
         <location filename="../src/mainwindow.cpp" line="209"/>
         <location filename="../src/mainwindow.cpp" line="381"/>
-        <location filename="../src/mainwindow.cpp" line="1449"/>
+        <location filename="../src/mainwindow.cpp" line="1445"/>
         <location filename="../src/mainwindow.h" line="153"/>
         <source>Untitled</source>
         <translation>Без имени</translation>
@@ -918,37 +922,37 @@ Do you wish to turn it off?</source>
         <translation>Сохранить &amp;как</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1412"/>
+        <location filename="../src/mainwindow.cpp" line="1408"/>
         <source>P&amp;rint Preview...</source>
         <translation>П&amp;редварительный просмотр...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1414"/>
+        <location filename="../src/mainwindow.cpp" line="1410"/>
         <source>Preview solution results</source>
         <translation>Предварительный просмотр результатов решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1417"/>
+        <location filename="../src/mainwindow.cpp" line="1413"/>
         <source>Preview current solution results before printing</source>
         <translation>Предварительный просмотр результатов решения перед печатью</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1420"/>
+        <location filename="../src/mainwindow.cpp" line="1416"/>
         <source>&amp;Print...</source>
         <translation>&amp;Печать...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1422"/>
+        <location filename="../src/mainwindow.cpp" line="1418"/>
         <source>Print solution</source>
         <translation>Печать решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1425"/>
+        <location filename="../src/mainwindow.cpp" line="1421"/>
         <source>Print current solution results</source>
         <translation>Распечатать текущие результаты решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1427"/>
+        <location filename="../src/mainwindow.cpp" line="1423"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
@@ -971,10 +975,10 @@ Do you wish to turn it off?</source>
 <context>
     <name>QProgressDialog</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="662"/>
+        <location filename="../src/mainwindow.cpp" line="658"/>
         <source>Cancel</source>
         <comment>No need to translate this. This translation will be taken from Qt translation files.</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>

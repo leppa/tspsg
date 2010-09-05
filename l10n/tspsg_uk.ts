@@ -5,7 +5,7 @@
 <context>
     <name>--------</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="513"/>
+        <location filename="../src/mainwindow.cpp" line="509"/>
         <source>AUTHORS %1</source>
         <comment>Please, provide translator credits here. %1 will be replaced with VERSION</comment>
         <translation>&lt;b&gt;Український переклад&lt;/b&gt;&lt;br&gt;
@@ -14,19 +14,19 @@
 Версія: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="515"/>
+        <location filename="../src/mainwindow.cpp" line="511"/>
         <source>VERSION</source>
         <comment>Please, provide your translation version here.</comment>
         <translation>$Id$</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1216"/>
+        <location filename="../src/mainwindow.cpp" line="1212"/>
         <source>COUNTRY</source>
         <comment>Please, provide an ISO 3166-1 alpha-2 country code for this translation language here (eg., UA).</comment>
         <translation>UA</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1217"/>
+        <location filename="../src/mainwindow.cpp" line="1213"/>
         <source>LANGNAME</source>
         <comment>Please, provide a native name of your translation language here.</comment>
         <translation>Українська</translation>
@@ -162,37 +162,37 @@ Error: %1</source>
         <translation>Зберегти &amp;як</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1412"/>
+        <location filename="../src/mainwindow.cpp" line="1408"/>
         <source>P&amp;rint Preview...</source>
         <translation>&amp;Попередній перегляд...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1414"/>
+        <location filename="../src/mainwindow.cpp" line="1410"/>
         <source>Preview solution results</source>
         <translation>Попередній перегляд результатів розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1417"/>
+        <location filename="../src/mainwindow.cpp" line="1413"/>
         <source>Preview current solution results before printing</source>
         <translation>Попередній перегляд результатів розв&apos;язку перед друком</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1420"/>
+        <location filename="../src/mainwindow.cpp" line="1416"/>
         <source>&amp;Print...</source>
         <translation>&amp;Друк...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1422"/>
+        <location filename="../src/mainwindow.cpp" line="1418"/>
         <source>Print solution</source>
         <translation>Друк розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1425"/>
+        <location filename="../src/mainwindow.cpp" line="1421"/>
         <source>Print current solution results</source>
         <translation>Роздрукувати поточний результат розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1427"/>
+        <location filename="../src/mainwindow.cpp" line="1423"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
@@ -486,7 +486,7 @@ Error: %1</source>
         <translation>Зміна мови</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1345"/>
+        <location filename="../src/mainwindow.cpp" line="1341"/>
         <source>Unsaved Changes</source>
         <translation>Незбережені зміни</translation>
     </message>
@@ -498,7 +498,7 @@ Error: %1</source>
     <message>
         <location filename="../src/mainwindow.cpp" line="158"/>
         <location filename="../src/mainwindow.cpp" line="231"/>
-        <location filename="../src/mainwindow.cpp" line="1447"/>
+        <location filename="../src/mainwindow.cpp" line="1443"/>
         <source>All Files</source>
         <translation>Усі файли</translation>
     </message>
@@ -509,7 +509,7 @@ Error: %1</source>
         <translation>Файли умов %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1297"/>
+        <location filename="../src/mainwindow.cpp" line="1293"/>
         <source>Language Change</source>
         <translation>Зміна мови</translation>
     </message>
@@ -529,14 +529,14 @@ Error: %1</source>
         <translation>Файли OpenDocument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="832"/>
-        <location filename="../src/mainwindow.cpp" line="839"/>
-        <location filename="../src/mainwindow.cpp" line="1104"/>
+        <location filename="../src/mainwindow.cpp" line="828"/>
+        <location filename="../src/mainwindow.cpp" line="835"/>
+        <location filename="../src/mainwindow.cpp" line="1100"/>
         <source>(%1;%2)</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="842"/>
+        <location filename="../src/mainwindow.cpp" line="838"/>
         <source>%n alternate candidate(s) for branching: %1.</source>
         <translation>
             <numerusform>%n альтернативний кандидат на розгалудження: %1.</numerusform>
@@ -545,7 +545,7 @@ Error: %1</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="883"/>
+        <location filename="../src/mainwindow.cpp" line="879"/>
         <source>The price is &lt;b&gt;%n&lt;/b&gt; unit(s).</source>
         <translation>
             <numerusform>Вартість - &lt;b&gt;%n&lt;/b&gt; одиниця.</numerusform>
@@ -554,32 +554,32 @@ Error: %1</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1115"/>
+        <location filename="../src/mainwindow.cpp" line="1111"/>
         <source>Root</source>
         <translation>Корінь</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1316"/>
+        <location filename="../src/mainwindow.cpp" line="1312"/>
         <source>Set application style to %1</source>
         <translation>Змінити вигляд додатку на %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1431"/>
+        <location filename="../src/mainwindow.cpp" line="1427"/>
         <source>Configure...</source>
         <translation>Налаштувати...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1433"/>
+        <location filename="../src/mainwindow.cpp" line="1429"/>
         <source>Customize toolbars</source>
         <translation>Налаштування панелей інструментів</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1440"/>
+        <location filename="../src/mainwindow.cpp" line="1436"/>
         <source>Check for %1 updates</source>
         <translation>Перевірити оновлення %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1446"/>
+        <location filename="../src/mainwindow.cpp" line="1442"/>
         <source>%1 Task File</source>
         <translation>Файл умови %1</translation>
     </message>
@@ -624,53 +624,52 @@ or support for this feature was not installed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="461"/>
+        <location filename="../src/mainwindow.cpp" line="457"/>
         <source>Version</source>
         <translation>Версія</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="468"/>
+        <location filename="../src/mainwindow.cpp" line="464"/>
         <source>Target OS (ARCH)</source>
         <translation>Цільова ОС (архітектура)</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="466"/>
         <location filename="../src/mainwindow.cpp" line="470"/>
-        <location filename="../src/mainwindow.cpp" line="474"/>
         <source>Qt library</source>
         <translation>Бібліотека Qt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="470"/>
+        <location filename="../src/mainwindow.cpp" line="466"/>
         <source>shared</source>
         <translation>динамічна</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="471"/>
+        <location filename="../src/mainwindow.cpp" line="467"/>
         <source>Build time</source>
         <translation>Часу збірки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="472"/>
+        <location filename="../src/mainwindow.cpp" line="468"/>
         <source>Runtime</source>
         <translation>Часу виконання</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="474"/>
+        <location filename="../src/mainwindow.cpp" line="470"/>
         <source>static</source>
         <translation>статична</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="476"/>
         <source>Buid &lt;b&gt;%1&lt;/b&gt;, built on &lt;b&gt;%2&lt;/b&gt; at &lt;b&gt;%3&lt;/b&gt;</source>
-        <translation>Збірка &lt;b&gt;%1&lt;/b&gt;, зібрана &lt;b&gt;%2&lt;/b&gt; о &lt;b&gt;%3&lt;/b&gt;</translation>
+        <translation type="obsolete">Збірка &lt;b&gt;%1&lt;/b&gt;, зібрана &lt;b&gt;%2&lt;/b&gt; о &lt;b&gt;%3&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="477"/>
+        <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Algorithm</source>
         <translation>Алгоритм</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="479"/>
+        <location filename="../src/mainwindow.cpp" line="475"/>
         <source>This program is free software: you can redistribute it and/or modify&lt;br&gt;
 it under the terms of the GNU General Public License as published by&lt;br&gt;
 the Free Software Foundation, either version 3 of the License, or&lt;br&gt;
@@ -698,64 +697,64 @@ along with TSPSG.  If not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quo
 програмою. У разі її відсутності, зверніться до &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;www.gnu.org/licenses/&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="583"/>
+        <location filename="../src/mainwindow.cpp" line="579"/>
         <source>About</source>
         <translation>Про</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="584"/>
+        <location filename="../src/mainwindow.cpp" line="580"/>
         <source>License</source>
         <translation>Ліцензія</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="585"/>
+        <location filename="../src/mainwindow.cpp" line="581"/>
         <source>Credits</source>
         <translation>Подяки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="648"/>
+        <location filename="../src/mainwindow.cpp" line="644"/>
         <source>Data error</source>
         <translation>Помилка у даних</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="648"/>
+        <location filename="../src/mainwindow.cpp" line="644"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation>Помилка у комірці  [Рядок %1; Колонка %2]: Невірний формат даних.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="666"/>
+        <location filename="../src/mainwindow.cpp" line="662"/>
         <source>Calculating optimal route...</source>
         <translation>Обчислення оптимального шляху...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="667"/>
+        <location filename="../src/mainwindow.cpp" line="663"/>
         <source>Solution Progress</source>
         <translation>Поступ розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="711"/>
+        <location filename="../src/mainwindow.cpp" line="707"/>
         <source>Solution Result</source>
         <translation>Результат розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="711"/>
+        <location filename="../src/mainwindow.cpp" line="707"/>
         <source>Unable to find a solution.
 Maybe, this task has no solution.</source>
         <translation>Не вдалося знайти розв&apos;язок.
 Можливо, у задачі немає розв&apos;язку.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="737"/>
+        <location filename="../src/mainwindow.cpp" line="733"/>
         <source>Generating header</source>
         <translation>Генерація заголовку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="748"/>
+        <location filename="../src/mainwindow.cpp" line="744"/>
         <source>Solution of Variant #%1 Task</source>
         <translation>Розв&apos;язок завдання для варіанту №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="776"/>
+        <location filename="../src/mainwindow.cpp" line="772"/>
         <source>Task:</source>
         <translation>Умова:</translation>
     </message>
@@ -806,7 +805,12 @@ you need to re-run the solution process.</source>
         <translation>Щоб застосувати вигляд за промовчанням необхідно перзапустити %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="493"/>
+        <location filename="../src/mainwindow.cpp" line="472"/>
+        <source>Buid &lt;b&gt;%1&lt;/b&gt;, built on &lt;b&gt;%2&lt;/b&gt; at &lt;b&gt;%3&lt;/b&gt; with &lt;b&gt;%4&lt;/b&gt; compiler.</source>
+        <translation>Збірка &lt;b&gt;%1&lt;/b&gt;, зібрана &lt;b&gt;%2&lt;/b&gt; о &lt;b&gt;%3&lt;/b&gt; за допомогою компілятора &lt;b&gt;%4&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="489"/>
         <source>%1 was created using &lt;b&gt;Qt&amp;nbsp;framework&lt;/b&gt; licensed under the terms of the GNU Lesser General Public License,&lt;br&gt;
 see &lt;a href=&quot;http://qt.nokia.com/&quot;&gt;qt.nokia.com&lt;/a&gt;&lt;br&gt;
 &lt;br&gt;
@@ -831,121 +835,121 @@ see &lt;a href=&quot;http://dejavu-fonts.org/&quot;&gt;dejavu-fonts.org&lt;/a&gt
 дивіться &lt;a href=&quot;http://dejavu-fonts.org/&quot;&gt;dejavu-fonts.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="594"/>
+        <location filename="../src/mainwindow.cpp" line="590"/>
         <source>Translation</source>
         <translation>Переклад</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="604"/>
+        <location filename="../src/mainwindow.cpp" line="600"/>
         <source>About %1</source>
         <translation>Про %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="658"/>
+        <location filename="../src/mainwindow.cpp" line="654"/>
         <source>%v of %1 parts found</source>
         <translation>Знайдено %v з %1 переходів</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="738"/>
+        <location filename="../src/mainwindow.cpp" line="734"/>
         <source>Generating solution output...</source>
         <translation>Генерація тексту розв&apos;язку...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="774"/>
+        <location filename="../src/mainwindow.cpp" line="770"/>
         <source>Variant #%1 Task</source>
         <translation>Умова варіанту №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="787"/>
+        <location filename="../src/mainwindow.cpp" line="783"/>
         <source>Variant #%1 Solution</source>
         <translation>Розв&apos;язок варіанту №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="792"/>
+        <location filename="../src/mainwindow.cpp" line="788"/>
         <source>Generating step %v</source>
         <translation>Генерація кроку %v</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="827"/>
+        <location filename="../src/mainwindow.cpp" line="823"/>
         <source>Step #%1</source>
         <translation>Крок №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="832"/>
+        <location filename="../src/mainwindow.cpp" line="828"/>
         <source>Selected route %1 %2 part.</source>
         <translation>Обрано шлях %1 %2.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="832"/>
+        <location filename="../src/mainwindow.cpp" line="828"/>
         <source>with</source>
         <translation>з переходом</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="832"/>
+        <location filename="../src/mainwindow.cpp" line="828"/>
         <source>without</source>
         <translation>без переходу</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="864"/>
+        <location filename="../src/mainwindow.cpp" line="860"/>
         <source>Generating footer</source>
         <translation>Генерація закінчення</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="874"/>
+        <location filename="../src/mainwindow.cpp" line="870"/>
         <source>Optimal path:</source>
         <translation>Оптимальний шлях:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="876"/>
+        <location filename="../src/mainwindow.cpp" line="872"/>
         <source>Resulting path:</source>
         <translation>Знайдений шлях:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="879"/>
+        <location filename="../src/mainwindow.cpp" line="875"/>
         <source>City %1</source>
         <translation>Місто %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="885"/>
+        <location filename="../src/mainwindow.cpp" line="881"/>
         <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
         <translation>Вартість - &lt;b&gt;%1&lt;/b&gt; одиниць.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="890"/>
+        <location filename="../src/mainwindow.cpp" line="886"/>
         <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
         <translation>&lt;b&gt;Увага!!!&lt;/b&gt;&lt;br&gt;Знайдений розв&apos;язок є рекордом, але може бути неоптимальним.&lt;br&gt;Для отримання оптимального розв&apos;язку, або перевірки поточного на оптимальність, потрібно продовжити ітерації.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="713"/>
-        <location filename="../src/mainwindow.cpp" line="795"/>
-        <location filename="../src/mainwindow.cpp" line="924"/>
+        <location filename="../src/mainwindow.cpp" line="709"/>
+        <location filename="../src/mainwindow.cpp" line="791"/>
+        <location filename="../src/mainwindow.cpp" line="920"/>
         <source>Cleaning up...</source>
         <translation>Очищення...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1297"/>
+        <location filename="../src/mainwindow.cpp" line="1293"/>
         <source>Unable to load the translation language.
 Falling back to autodetection.</source>
         <translation>Неможливо завантажити переклад.
 Повертаюся до автовизначення.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1345"/>
+        <location filename="../src/mainwindow.cpp" line="1341"/>
         <source>Would you like to save changes in the current task?</source>
         <translation>Бажаете зберегти зміни у поточній задачі?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1218"/>
+        <location filename="../src/mainwindow.cpp" line="1214"/>
         <source>Set application language to %1</source>
         <translation>Змінити мову додатку на %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1438"/>
+        <location filename="../src/mainwindow.cpp" line="1434"/>
         <source>Check for &amp;Updates...</source>
         <translation>Перевірити &amp;оновлення...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1460"/>
+        <location filename="../src/mainwindow.cpp" line="1456"/>
         <source>Task Save</source>
         <translation>Збереження умови</translation>
     </message>
@@ -963,7 +967,7 @@ Do you wish to turn it off?</source>
         <location filename="../src/mainwindow.cpp" line="183"/>
         <location filename="../src/mainwindow.cpp" line="209"/>
         <location filename="../src/mainwindow.cpp" line="381"/>
-        <location filename="../src/mainwindow.cpp" line="1449"/>
+        <location filename="../src/mainwindow.cpp" line="1445"/>
         <location filename="../src/mainwindow.h" line="153"/>
         <source>Untitled</source>
         <translation>Без імені</translation>
@@ -972,10 +976,10 @@ Do you wish to turn it off?</source>
 <context>
     <name>QProgressDialog</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="662"/>
+        <location filename="../src/mainwindow.cpp" line="658"/>
         <source>Cancel</source>
         <comment>No need to translate this. This translation will be taken from Qt translation files.</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>

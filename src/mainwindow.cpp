@@ -159,7 +159,7 @@ QStringList filters(tr("All Supported Formats") + " (*.tspt *.zkt)");
 
 QString file;
 	if ((fileName == tr("Untitled") + ".tspt") && settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
-		file = settings->value("LastUsed/TaskLoadPath").toString();
+		file = settings->value(OS"/LastUsed/TaskLoadPath").toString();
 	else
 		file = QFileInfo(fileName).path();
 QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
@@ -167,7 +167,7 @@ QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_D
 	if (file.isEmpty() || !QFileInfo(file).isFile())
 		return;
 	if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
-		settings->setValue("LastUsed/TaskLoadPath", QFileInfo(file).path());
+		settings->setValue(OS"/LastUsed/TaskLoadPath", QFileInfo(file).path());
 
 	if (!tspmodel->loadTask(file))
 		return;
@@ -200,7 +200,7 @@ void MainWindow::actionFileSaveAsSolutionTriggered()
 static QString selectedFile;
 	if (selectedFile.isEmpty()) {
 		if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool()) {
-			selectedFile = settings->value("LastUsed/SolutionSavePath").toString();
+			selectedFile = settings->value(OS"/LastUsed/SolutionSavePath").toString();
 		}
 	} else
 		selectedFile = QFileInfo(selectedFile).path();
@@ -236,7 +236,7 @@ QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filte
 		return;
 	selectedFile = file;
 	if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
-		settings->setValue("LastUsed/SolutionSavePath", QFileInfo(selectedFile).path());
+		settings->setValue(OS"/LastUsed/SolutionSavePath", QFileInfo(selectedFile).path());
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 #ifndef QT_NO_PRINTER
 	if (selectedFile.endsWith(".pdf",Qt::CaseInsensitive)) {
@@ -453,11 +453,7 @@ void MainWindow::actionHelpAboutTriggered()
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
 QString title;
-#ifdef HANDHELD
-	title += QString("<b>TSPSG<br>TSP Solver and Generator</b><br>");
-#else
 	title += QString("<b>%1</b><br>").arg(QApplication::applicationName());
-#endif // HANDHELD
 	title += QString("%1: <b>%2</b><br>").arg(tr("Version"), QApplication::applicationVersion());
 #ifndef HANDHELD
 	title += QString("<b>&copy; 2007-%1 <a href=\"http://%2/\">%3</a></b><br>").arg(QDate::currentDate().toString("yyyy"), QApplication::organizationDomain(), QApplication::organizationName());
@@ -465,7 +461,7 @@ QString title;
 	title += QString("<b><a href=\"http://tspsg.info/\">http://tspsg.info/</a></b>");
 
 QString about;
-	about += QString("%1: <b>%2</b><br>").arg(tr("Target OS (ARCH)"), OS);
+	about += QString("%1: <b>%2</b><br>").arg(tr("Target OS (ARCH)"), PLATFROM);
 #ifndef STATIC_BUILD
 	about += QString("%1 (%2):<br>").arg(tr("Qt library"), tr("shared"));
 	about += QString("&nbsp;&nbsp;&nbsp;&nbsp;%1: <b>%2</b><br>").arg(tr("Build time"), QT_VERSION_STR);
@@ -473,7 +469,7 @@ QString about;
 #else
 	about += QString("%1: <b>%2</b> (%3)<br>").arg(tr("Qt library"), QT_VERSION_STR, tr("static"));
 #endif // STATIC_BUILD
-	about += tr("Buid <b>%1</b>, built on <b>%2</b> at <b>%3</b>").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__) + "<br>";
+	about += tr("Buid <b>%1</b>, built on <b>%2</b> at <b>%3</b> with <b>%4</b> compiler.").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__).arg(COMPILER) + "<br>";
 	about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), CTSPSolver::getVersionId());
 	about += "<br>";
 	about += tr("This program is free software: you can redistribute it and/or modify<br>\n"
@@ -1447,7 +1443,7 @@ QStringList filters(tr("%1 Task File").arg("TSPSG") + " (*.tspt)");
 	filters.append(tr("All Files") + " (*)");
 QString file;
 	if ((fileName == tr("Untitled") + ".tspt") && settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool()) {
-		file = settings->value("LastUsed/TaskSavePath").toString();
+		file = settings->value(OS"/LastUsed/TaskSavePath").toString();
 		if (!file.isEmpty())
 			file.append("/");
 		file.append(fileName);
@@ -1461,7 +1457,7 @@ QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_D
 	if (file.isEmpty())
 		return false;
 	else if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
-		settings->setValue("LastUsed/TaskSavePath", QFileInfo(file).path());
+		settings->setValue(OS"/LastUsed/TaskSavePath", QFileInfo(file).path());
 
 	if (tspmodel->saveTask(file)) {
 		setFileName(file);
