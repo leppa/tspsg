@@ -46,12 +46,19 @@ QApplication app(argc, argv);
 	QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 	app.setOrganizationName("Oleksii \"Lёppa\" Serdiuk");
 	app.setOrganizationDomain("oleksii.name");
-	app.setApplicationName("TSPSG: TSP Solver and Generator");
+	app.setApplicationName("TSP Solver and Generator");
 	app.setApplicationVersion(BUILD_VERSION);
 
 	// Seeding random number generator
 	qsrand(QDateTime::currentDateTime().toTime_t() ^ QCursor::pos().x() ^ QCursor::pos().y());
 
+#ifdef Q_OS_WINCE_WM
+	// Qt "leaves" unpacked .ttf files after running - let's try to delete them.
+QStringList files = QDir(app.applicationDirPath(), "*.ttf").entryList();
+	foreach (QString file, files) {
+		QFile::remove(file);
+	}
+#endif
 	// Don't load the font if it is already available
 	if (!QFontDatabase().families().contains(DEF_FONT_FACE))
 		QFontDatabase::addApplicationFont(":/files/DejaVuLGCSansMono.ttf");

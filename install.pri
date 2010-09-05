@@ -65,7 +65,7 @@ win32 {
 
 # For wince: we are deploying to \Program Files\TSPSG.
 wince* {
-	PREFIX = "\Program Files"
+	PREFIX = "\\Program Files"
 	share.sources = $$share.files
 #	l10n.sources = $$l10n.files \
 #		$$[QT_INSTALL_TRANSLATIONS]/*.qm

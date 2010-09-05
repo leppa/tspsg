@@ -32,18 +32,24 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Third parties:
+I'd like to give credits to the following projects which were used in
+the creation of TSP Solver and Generator:
 
-  * This software is created using opensource version of Qt framework,
-    see http://qt.nokia.com/
+  * TSPSG was created using Qt framework licensed under the terms of
+    the GNU Lesser General Public License,
+    see http://qt.nokia.com/.
 
-  * Most icons used in this software are part of Oxygen Icons project
-    licensed according to the GNU Lesser General Public License,
-    see http://www.oxygen-icons.org/
+  * Most icons used in TSPSG are part of Oxygen Icons project licensed
+    according to the GNU Lesser General Public License,
+    see http://www.oxygen-icons.org/.
 
-  * Country flag icons used in this software are part of the free Flag
-    Icons collection created by IconDrawer,
-    see http://www.icondrawer.com/
+  * Country flag icons used in TSPSG are part of the free Flag Icons
+    collection created by IconDrawer,
+    see http://www.icondrawer.com/.
+
+  * TSPSG comes with the default "embedded" font DejaVu LGC Sans Mono
+    from the DejaVu fonts licensed under a Free license,
+    see http://dejavu-fonts.org/.
 
 
 $Id$

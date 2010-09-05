@@ -62,7 +62,7 @@
  * \def OSID
  * \brief The target operating system ID.
  *
- * This value is used in task file metadata.
+ * This value will be used in task file metadata.
  */
 #ifdef Q_OS_AIX
 	#define OS "AIX"ARCH
