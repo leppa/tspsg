@@ -225,9 +225,7 @@ QStringList filters;
 	filters.append(tr("PDF Files") + " (*.pdf)");
 #endif
 	filters.append(tr("HTML Files") + " (*.html *.htm)");
-#if QT_VERSION >= 0x040500
 	filters.append(tr("OpenDocument Files") + " (*.odt)");
-#endif // QT_VERSION >= 0x040500
 	filters.append(tr("All Files") + " (*)");
 
 QFileDialog::Options opts(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog);
@@ -257,11 +255,11 @@ QFile file(selectedFile);
 		}
 QFileInfo fi(selectedFile);
 QString format = settings->value("Output/GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT).toString();
-#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+#if !defined(NOSVG)
 	if (!QImageWriter::supportedImageFormats().contains(format.toAscii()) && (format != "svg")) {
-#else // NOSVG && QT_VERSION >= 0x040500
+#else // NOSVG
 	if (!QImageWriter::supportedImageFormats().contains(format.toAscii())) {
-#endif // NOSVG && QT_VERSION >= 0x040500
+#endif // NOSVG
 		format = DEF_GRAPH_IMAGE_FORMAT;
 		settings->remove("Output/GraphImageFormat");
 	}
@@ -276,7 +274,7 @@ QTextStream ts(&file);
 		file.close();
 
 		// Saving solution graph as SVG or PNG (depending on settings and SVG support)
-#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+#if !defined(NOSVG)
 		if (format == "svg") {
 QSvgGenerator svg;
 			svg.setSize(QSize(graph.width(), graph.height()));
@@ -289,7 +287,7 @@ QPainter p;
 			p.drawPicture(1, 1, graph);
 			p.end();
 		} else {
-#endif // NOSVG && QT_VERSION >= 0x040500
+#endif // NOSVG
 QImage i(graph.width(), graph.height(), QImage::Format_ARGB32);
 			i.fill(0x00FFFFFF);
 QPainter p;
@@ -310,19 +308,15 @@ QImageWriter pic(fi.path() + "/" + img);
 				QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution graph.\nError: %1").arg(pic.errorString()));
 				return;
 			}
-#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+#if !defined(NOSVG)
 		}
-#endif // NOSVG && QT_VERSION >= 0x040500
-
-// Qt < 4.5 has no QTextDocumentWriter class
-#if QT_VERSION >= 0x040500
+#endif // NOSVG
 	} else {
 QTextDocumentWriter dw(selectedFile);
 		if (!selectedFile.endsWith(".odt",Qt::CaseInsensitive))
 			dw.setFormat("plaintext");
 		if (!dw.write(solutionText->document()))
 			QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution.\nError: %1").arg(dw.device()->errorString()));
-#endif // QT_VERSION >= 0x040500
 	}
 	QApplication::restoreOverrideCursor();
 }
@@ -564,7 +558,7 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 	txtLicense->setFrameShape(QFrame::NoFrame);
 
 	bb->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
-	bb->button(QDialogButtonBox::Ok)->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/images/icons/dialog-ok.png")));
+	bb->button(QDialogButtonBox::Ok)->setIcon(GET_ICON("dialog-ok"));
 
 	hb2->addWidget(bb);
 
@@ -598,7 +592,7 @@ QTextBrowser *txtTranslation = new QTextBrowser(dlg);
 
 	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
 	dlg->setWindowTitle(tr("About %1").arg(QApplication::applicationName()));
-	dlg->setWindowIcon(QIcon::fromTheme("help-about", QIcon(":/images/icons/help-about.png")));
+	dlg->setWindowIcon(GET_ICON("help-about"));
 	dlg->setLayout(vb);
 
 	connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
@@ -654,7 +648,7 @@ QProgressBar *pb = new QProgressBar(&pd);
 	pb->setFormat(tr("%v of %1 parts found").arg(n));
 	pd.setBar(pb);
 QPushButton *cancel = new QPushButton(&pd);
-	cancel->setIcon(QIcon::fromTheme("dialog-cancel", QIcon(":/images/icons/dialog-cancel.png")));
+	cancel->setIcon(GET_ICON("dialog-cancel"));
 	cancel->setText(QApplication::translate("QProgressDialog", "Cancel", "No need to translate this. This translation will be taken from Qt translation files."));
 	pd.setCancelButton(cancel);
 	pd.setMaximum(n);
@@ -1223,7 +1217,11 @@ QAction *a;
 	foreach (language, langlist) {
 		a = menuSettingsLanguage->addAction(language.at(2));
 		a->setStatusTip(language.at(3));
+#if QT_VERSION >= 0x040600
 		a->setIcon(QIcon::fromTheme(QString("flag-%1").arg(language.at(1)), QIcon(QString(":/images/icons/l10n/flag-%1.png").arg(language.at(1)))));
+#else
+		a->setIcon(QIcon(QString(":/images/icons/l10n/flag-%1.png").arg(language.at(1))));
+#endif
 		a->setData(language.at(0));
 		a->setCheckable(true);
 		a->setActionGroup(groupSettingsLanguageList);
@@ -1478,27 +1476,27 @@ void MainWindow::setupUi()
 	Ui::MainWindow::setupUi(this);
 
 	// File Menu
-	actionFileNew->setIcon(QIcon::fromTheme("document-new", QIcon(":/images/icons/document-new.png")));
-	actionFileOpen->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/icons/document-open.png")));
-	actionFileSave->setIcon(QIcon::fromTheme("document-save", QIcon(":/images/icons/document-save.png")));
-	menuFileSaveAs->setIcon(QIcon::fromTheme("document-save-as", QIcon(":/images/icons/document-save-as.png")));
-	actionFileExit->setIcon(QIcon::fromTheme("application-exit", QIcon(":/images/icons/application-exit.png")));
+	actionFileNew->setIcon(GET_ICON("document-new"));
+	actionFileOpen->setIcon(GET_ICON("document-open"));
+	actionFileSave->setIcon(GET_ICON("document-save"));
+	menuFileSaveAs->setIcon(GET_ICON("document-save-as"));
+	actionFileExit->setIcon(GET_ICON("application-exit"));
 	// Settings Menu
-	menuSettingsLanguage->setIcon(QIcon::fromTheme("preferences-desktop-locale", QIcon(":/images/icons/preferences-desktop-locale.png")));
-	actionSettingsLanguageEnglish->setIcon(QIcon::fromTheme("flag-gb", QIcon(":/images/icons/l10n/flag-gb.png")));
-	menuSettingsStyle->setIcon(QIcon::fromTheme("preferences-desktop-theme", QIcon(":/images/icons/preferences-desktop-theme.png")));
-	actionSettingsPreferences->setIcon(QIcon::fromTheme("preferences-system", QIcon(":/images/icons/preferences-system.png")));
+	menuSettingsLanguage->setIcon(GET_ICON("preferences-desktop-locale"));
+	actionSettingsLanguageEnglish->setIcon(GET_ICON("flag-gb"));
+	menuSettingsStyle->setIcon(GET_ICON("preferences-desktop-theme"));
+	actionSettingsPreferences->setIcon(GET_ICON("preferences-system"));
 	// Help Menu
-	actionHelpContents->setIcon(QIcon::fromTheme("help-contents", QIcon(":/images/icons/help-contents.png")));
-	actionHelpContextual->setIcon(QIcon::fromTheme("help-contextual", QIcon(":/images/icons/help-contextual.png")));
-	actionHelpAbout->setIcon(QIcon::fromTheme("help-about", QIcon(":/images/icons/help-about.png")));
+	actionHelpContents->setIcon(GET_ICON("help-contents"));
+	actionHelpContextual->setIcon(GET_ICON("help-contextual"));
+	actionHelpAbout->setIcon(GET_ICON("help-about"));
 	// Buttons
-	buttonRandom->setIcon(QIcon::fromTheme("roll", QIcon(":/images/icons/roll.png")));
-	buttonSolve->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/images/icons/dialog-ok.png")));
-	buttonSaveSolution->setIcon(QIcon::fromTheme("document-save-as", QIcon(":/images/icons/document-save-as.png")));
-	buttonBackToTask->setIcon(QIcon::fromTheme("go-previous", QIcon(":/images/icons/go-previous.png")));
+	buttonRandom->setIcon(GET_ICON("roll"));
+	buttonSolve->setIcon(GET_ICON("dialog-ok"));
+	buttonSaveSolution->setIcon(GET_ICON("document-save-as"));
+	buttonBackToTask->setIcon(GET_ICON("go-previous"));
 
-//	action->setIcon(QIcon::fromTheme("", QIcon(":/images/icons/.png")));
+//	action->setIcon(GET_ICON(""));
 
 #if QT_VERSION >= 0x040600
 	setToolButtonStyle(Qt::ToolButtonFollowStyle);
@@ -1540,12 +1538,12 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 	actionFilePrintPreview = new QAction(this);
 	actionFilePrintPreview->setObjectName("actionFilePrintPreview");
 	actionFilePrintPreview->setEnabled(false);
-	actionFilePrintPreview->setIcon(QIcon::fromTheme("document-print-preview", QIcon(":/images/icons/document-print-preview.png")));
+	actionFilePrintPreview->setIcon(GET_ICON("document-print-preview"));
 
 	actionFilePrint = new QAction(this);
 	actionFilePrint->setObjectName("actionFilePrint");
 	actionFilePrint->setEnabled(false);
-	actionFilePrint->setIcon(QIcon::fromTheme("document-print", QIcon(":/images/icons/document-print.png")));
+	actionFilePrint->setIcon(GET_ICON("document-print"));
 
 	menuFile->insertAction(actionFileExit,actionFilePrintPreview);
 	menuFile->insertAction(actionFileExit,actionFilePrint);
@@ -1565,12 +1563,12 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 
 #ifndef HANDHELD
 	actionSettingsToolbarsConfigure = new QAction(this);
-	actionSettingsToolbarsConfigure->setIcon(QIcon::fromTheme("configure-toolbars", QIcon(":/images/icons/configure-toolbars.png")));
+	actionSettingsToolbarsConfigure->setIcon(GET_ICON("configure-toolbars"));
 #endif // HANDHELD
 
 #ifdef Q_OS_WIN32
 	actionHelpCheck4Updates = new QAction(this);
-	actionHelpCheck4Updates->setIcon(QIcon::fromTheme("system-software-update", QIcon(":/images/icons/system-software-update.png")));
+	actionHelpCheck4Updates->setIcon(GET_ICON("system-software-update"));
 	actionHelpCheck4Updates->setEnabled(hasUpdater());
 	menuHelp->insertAction(actionHelpAboutQt, actionHelpCheck4Updates);
 	menuHelp->insertSeparator(actionHelpAboutQt);

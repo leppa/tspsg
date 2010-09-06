@@ -34,7 +34,7 @@ steps necessary to compile and run \b TSPSG.
 \section i_s1 REQUIREMENTS
 
 To be able compile \b TSPSG you need to have <em>Qt libraries</em>\anchor cr1<sup>\ref r1 "[1]"</sup>. The minimum
-supported version of \em Qt is <b>4.4.0</b>. The recommended version is <b>4.5.x</b>
+supported version of \em Qt is <b>4.5.0</b>. The recommended version is <b>4.6.x</b>
 or higher.
 
 \note Please, note that there will be some regressions in functionality

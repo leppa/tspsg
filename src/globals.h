@@ -30,10 +30,16 @@
 
 // INCLUDES
 #include <QtCore>
+#if QT_VERSION < 0x040500
+	#error You are using Qt version < 4.5 but minimum required version is 4.5.0. Compilation aborted.
+#endif
+#ifdef QT_NO_SVG
+	#define NOSVG
+#endif
 #include <QtGui>
-#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+#if !defined(NOSVG)
 	#include <QtSvg>
-#endif // NOSVG && QT_VERSION >= 0x040500
+#endif // NOSVG
 
 #if defined(Q_OS_WINCE_WM) || defined(Q_OS_SYMBIAN)
 	//! This is defined on handheld devices (e.g., Windows Mobile, Symbian).
@@ -117,6 +123,12 @@ double i;
  */
 void toggleStyle(QWidget *widget, bool enable);
 #endif // Q_OS_WIN32
+
+#if QT_VERSION >= 0x040600
+	#define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/"x".png"))
+#else
+	#define GET_ICON(x) QIcon(":/images/icons/"x".png")
+#endif
 
 // Sanity checks
 // Check that default number of cities is sane (<= MAX_NUM_CITIES)

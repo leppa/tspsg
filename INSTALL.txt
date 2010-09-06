@@ -31,7 +31,7 @@ TABLE OF CONTENTS:
 ===============
 
 To be able compile TSPSG you need to have Qt libraries. The minimum
-supported version of Qt is 4.4.0. The recommended version is 4.5.x
+supported version of Qt is 4.5.0. The recommended version is 4.6.x
 or higher.
 
 NOTE: Please, note that there will be some regressions in functionality
