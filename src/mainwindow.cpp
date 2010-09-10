@@ -710,10 +710,14 @@ SStep *root = solver.solve(n, matrix);
 #endif
 		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
+#ifndef QT_NO_CONCURRENT
 QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 		while (!f.isFinished()) {
 			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 		}
+#else
+		solver.cleanup(true);
+#endif
 		pd.reset();
 #ifdef Q_OS_WIN32
 		if (tl != NULL) {
@@ -741,7 +745,7 @@ QPainter pic;
 	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
 		pic.begin(&graph);
 		pic.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-QFont font = settings->value("Output/Font", QFont(DEF_FONT_FACE, 9)).value<QFont>();
+QFont font = qvariant_cast<QFont>(settings->value("Output/Font", QFont(DEF_FONT_FACE, 9)));
 		if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool()) {
 			font.setWeight(QFont::DemiBold);
 			font.setPointSizeF(font.pointSizeF() * 2);
@@ -791,10 +795,14 @@ int c = n = 1;
 			if (tl != NULL)
 				tl->SetProgressState(winId(), TBPF_INDETERMINATE);
 #endif
+#ifndef QT_NO_CONCURRENT
 QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 			while (!f.isFinished()) {
 				QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 			}
+#else
+			solver.cleanup(true);
+#endif
 			solutionText->clear();
 			toggleSolutionActions(false);
 #ifdef Q_OS_WIN32
@@ -919,10 +927,14 @@ QTextImageFormat img;
 	if (tl != NULL)
 		tl->SetProgressState(winId(), TBPF_INDETERMINATE);
 #endif
+#ifndef QT_NO_CONCURRENT
 QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 	while (!f.isFinished()) {
 		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
+#else
+	solver.cleanup(true);
+#endif
 	toggleSolutionActions();
 	tabWidget->setCurrentIndex(1);
 #ifdef Q_OS_WIN32
@@ -1044,6 +1056,8 @@ void MainWindow::closeEvent(QCloseEvent *ev)
 			settings->setValue("Toolbars", toolBarManager->saveState());
 			settings->endGroup();
 		}
+#else
+		settings->setValue("MainWindow/ToolbarVisible", toolBarMain->isVisible());
 #endif // HANDHELD
 	} else {
 		settings->remove("SettingsReset");
@@ -1138,7 +1152,7 @@ bool MainWindow::hasUpdater() const
 
 void MainWindow::initDocStyleSheet()
 {
-	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FACE, DEF_FONT_SIZE)).value<QFont>());
+	solutionText->document()->setDefaultFont(qvariant_cast<QFont>(settings->value("Output/Font", QFont(DEF_FONT_FACE, DEF_FONT_SIZE))));
 
 	fmt_paragraph.setTopMargin(0);
 	fmt_paragraph.setRightMargin(10);
@@ -1157,7 +1171,7 @@ void MainWindow::initDocStyleSheet()
 
 	settings->beginGroup("Output/Colors");
 
-QColor color = settings->value("Text", DEF_TEXT_COLOR).value<QColor>();
+QColor color = qvariant_cast<QColor>(settings->value("Text", DEF_TEXT_COLOR));
 QColor hilight;
 	if (color.value() < 192)
 		hilight.setHsv(color.hue(), color.saturation(), 127 + qRound(color.value() / 2));
@@ -1167,10 +1181,10 @@ QColor hilight;
 	solutionText->document()->setDefaultStyleSheet(QString("* {color: %1;}").arg(color.name()));
 	fmt_default.setForeground(QBrush(color));
 
-	fmt_selected.setForeground(QBrush(settings->value("Selected", DEF_SELECTED_COLOR).value<QColor>()));
+	fmt_selected.setForeground(QBrush(qvariant_cast<QColor>(settings->value("Selected", DEF_SELECTED_COLOR))));
 	fmt_selected.setFontWeight(QFont::Bold);
 
-	fmt_alternate.setForeground(QBrush(settings->value("Alternate", DEF_ALTERNATE_COLOR).value<QColor>()));
+	fmt_alternate.setForeground(QBrush(qvariant_cast<QColor>(settings->value("Alternate", DEF_ALTERNATE_COLOR))));
 	fmt_alternate.setFontWeight(QFont::Bold);
 	fmt_altlist.setForeground(QBrush(hilight));
 
@@ -1397,7 +1411,7 @@ SStep::SCandidate cand;
 void MainWindow::retranslateUi(bool all)
 {
 	if (all)
-		Ui::MainWindow::retranslateUi(this);
+		Ui_MainWindow::retranslateUi(this);
 
 	loadStyleList();
 	loadToolbarList();
@@ -1473,23 +1487,33 @@ void MainWindow::setFileName(const QString &fileName)
 
 void MainWindow::setupUi()
 {
-	Ui::MainWindow::setupUi(this);
+	Ui_MainWindow::setupUi(this);
 
 	// File Menu
 	actionFileNew->setIcon(GET_ICON("document-new"));
 	actionFileOpen->setIcon(GET_ICON("document-open"));
 	actionFileSave->setIcon(GET_ICON("document-save"));
+#ifndef HANDHELD
 	menuFileSaveAs->setIcon(GET_ICON("document-save-as"));
+#endif
 	actionFileExit->setIcon(GET_ICON("application-exit"));
 	// Settings Menu
+#ifndef HANDHELD
 	menuSettingsLanguage->setIcon(GET_ICON("preferences-desktop-locale"));
-	actionSettingsLanguageEnglish->setIcon(GET_ICON("flag-gb"));
+#if QT_VERSION >= 0x040600
+	actionSettingsLanguageEnglish->setIcon(QIcon::fromTheme("flag-gb", QIcon(":/images/icons/l10n/flag-gb.png")));
+#else // QT_VERSION >= 0x040600
+	actionSettingsLanguageEnglish->setIcon(QIcon(":/images/icons/l10n/flag-gb.png"));
+#endif // QT_VERSION >= 0x040600
 	menuSettingsStyle->setIcon(GET_ICON("preferences-desktop-theme"));
+#endif // HANDHELD
 	actionSettingsPreferences->setIcon(GET_ICON("preferences-system"));
 	// Help Menu
+#ifndef HANDHELD
 	actionHelpContents->setIcon(GET_ICON("help-contents"));
 	actionHelpContextual->setIcon(GET_ICON("help-contextual"));
 	actionHelpAbout->setIcon(GET_ICON("help-about"));
+#endif
 	// Buttons
 	buttonRandom->setIcon(GET_ICON("roll"));
 	buttonSolve->setIcon(GET_ICON("dialog-ok"));
@@ -1588,6 +1612,8 @@ QString cat = toolBarMain->windowTitle();
 	toolBarManager->addAction(actionHelpContextual, cat);
 //	toolBarManager->addAction(action, cat);
 	toolBarManager->restoreState(settings->value("MainWindow/Toolbars").toByteArray());
+#else
+	toolBarMain->setVisible(settings->value("MainWindow/ToolbarVisible", true).toBool());
 #endif // HANDHELD
 
 	retranslateUi(false);

@@ -43,15 +43,19 @@ BEGIN
         BLOCK "000004b0"
         BEGIN
 //            VALUE "Comments", VERSIONID
+            VALUE "ProductName", "TSP Solver and Generator"
+            VALUE "ProductVersion", BUILD_VERSION
             VALUE "CompanyName", "Oleksii ""Lёppa"" Serdiuk"
             VALUE "FileDescription", "TSPSG: TSP Solver and Generator"
             VALUE "FileVersion", BUILD_VERSION
             VALUE "InternalName", "TSPSG"
             VALUE "LegalCopyright", "Copyright © 2007-2010 Oleksii ""Lёppa"" Serdiuk <contacts[at]oleksii[dot]name>"
+#ifdef QT_NO_DEBUG
             VALUE "OriginalFilename", "tspsg.exe"
-            VALUE "ProductName", "TSPSG: TSP Solver and Generator"
-            VALUE "ProductVersion", BUILD_VERSION
-#if defined(_DEBUG) || defined(DEBUG)
+#else
+            VALUE "OriginalFilename", "tspsgd.exe"
+#endif
+#ifndef QT_NO_DEBUG
             VALUE "PrivateBuild", "Debug development build"
 #elif BUILD_NUMBER == 65535
             VALUE "SpecialBuild", "Internal development build"
