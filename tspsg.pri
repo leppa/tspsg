@@ -40,7 +40,13 @@ RESOURCES += resources/common.qrc \
 	l10n/l10n.qrc
 
 !wincewm*:!symbian {
-	RESOURCES += resources/desktop.qrc
+	!nosvg {
+		RESOURCES += resources/desktop-scalable.qrc
+	} else {
+		RESOURCES += resources/desktop.qrc
+	}
+} else {
+	RESOURCES += resources/handheld.qrc
 }
 
 #Translations

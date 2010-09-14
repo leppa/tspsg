@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>icons/l10n/flag-gb.png</file>
+        <file>icons/l10n/flag-ru.png</file>
+        <file>icons/l10n/flag-ua.png</file>
+        <file>icons/scalable/application-exit.svgz</file>
+        <file>icons/scalable/configure-toolbars.svgz</file>
+        <file>icons/scalable/dialog-cancel.svgz</file>
+        <file>icons/scalable/dialog-ok.svgz</file>
+        <file>icons/scalable/document-new.svgz</file>
+        <file>icons/scalable/document-open.svgz</file>
+        <file>icons/scalable/document-print.svgz</file>
+        <file>icons/scalable/document-print-preview.svgz</file>
+        <file>icons/scalable/document-save.svgz</file>
+        <file>icons/scalable/document-save-as.svgz</file>
+        <file>icons/scalable/format-text-color.svgz</file>
+        <file>icons/scalable/go-previous.svgz</file>
+        <file>icons/scalable/help-about.svgz</file>
+        <file>icons/scalable/help-contents.svgz</file>
+        <file>icons/scalable/help-contextual.svgz</file>
+        <file>icons/scalable/help-hint.svgz</file>
+        <file>icons/scalable/preferences-desktop-font.svgz</file>
+        <file>icons/scalable/preferences-desktop-locale.svgz</file>
+        <file>icons/scalable/preferences-desktop-theme.svgz</file>
+        <file>icons/scalable/preferences-system.svgz</file>
+        <file>icons/scalable/roll.svgz</file>
+        <file>icons/scalable/system-software-update.svgz</file>
+    </qresource>
+</RCC>

@@ -124,10 +124,23 @@ double i;
 void toggleStyle(QWidget *widget, bool enable);
 #endif // Q_OS_WIN32
 
-#if QT_VERSION >= 0x040600
-	#define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/"x".png"))
+#ifndef DOXYGEN_EXCLUDE
+
+#ifdef HANDHELD
+	#define ICON_SIZE "32x32"
+	#define ICON_FORMAT "png"
+#elif !defined(NOSVG)
+	#define ICON_SIZE "scalable"
+	#define ICON_FORMAT "svgz"
 #else
-	#define GET_ICON(x) QIcon(":/images/icons/"x".png")
+	#define ICON_SIZE "128x128"
+	#define ICON_FORMAT "png"
+#endif
+
+#if QT_VERSION >= 0x040600
+	#define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/"ICON_SIZE"/"x"."ICON_FORMAT))
+#else
+	#define GET_ICON(x) QIcon(":/images/icons/"ICON_SIZE"/"x"."ICON_FORMAT)
 #endif
 
 // Sanity checks
@@ -146,5 +159,7 @@ void toggleStyle(QWidget *widget, bool enable);
 	#undef DEF_RAND_MIN
 	#define DEF_RAND_MIN DEF_RAND_MAX
 #endif
+
+#endif // DOXYGEN_EXCLUDE
 
 #endif // GLOBALS_H

@@ -39,7 +39,7 @@ REVISION = $$system(svnversion)
 REVISION = $$replace(REVISION,":","")
 REVISION = $$replace(REVISION,"M","")
 #VERSION = $$sprintf("%1.%2.%3.%4",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE,$$REVISION)
-win32-msvc* {
+win32-msvc*|wincewm* {
 	VERSION = $$sprintf("%1.%2",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR)
 } else {
 	VERSION = $$sprintf("%1.%2.%3.%4",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE,$$REVISION)
@@ -62,9 +62,10 @@ macx {
 }
 include($$join(PRL, "/"))
 contains(QMAKE_PRL_CONFIG, static) {
-# We "embed" JPEG and TIFF support on static build
+	# We "embed" SVG icon, JPEG and TIFF support on static build
 	DEFINES += STATIC_BUILD
 #	QTPLUGIN += qjpeg qtiff
+#	!nosvg:QTPLUGIN += qsvgicon
 }
 
 CONFIG(release, debug|release) {

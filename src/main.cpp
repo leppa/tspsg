@@ -33,6 +33,9 @@
 #endif
 
 //#ifdef STATIC_BUILD
+//	#ifndef NOSVG
+//		Q_IMPORT_PLUGIN(qsvgicon)
+//	#endif
 //	Q_IMPORT_PLUGIN(qjpeg)
 //	Q_IMPORT_PLUGIN(qtiff)
 //#endif

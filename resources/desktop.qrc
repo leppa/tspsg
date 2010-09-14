@@ -1,15 +1,29 @@
 <RCC>
     <qresource prefix="/images">
-        <file>icons/configure-toolbars.png</file>
-        <file>icons/document-print.png</file>
-        <file>icons/document-print-preview.png</file>
-        <file>icons/help-contents.png</file>
-        <file>icons/help-contextual.png</file>
-        <file>icons/preferences-desktop-locale.png</file>
-        <file>icons/preferences-desktop-theme.png</file>
-        <file>icons/system-software-update.png</file>
         <file>icons/l10n/flag-gb.png</file>
         <file>icons/l10n/flag-ru.png</file>
         <file>icons/l10n/flag-ua.png</file>
+        <file>icons/128x128/application-exit.png</file>
+        <file>icons/128x128/configure-toolbars.png</file>
+        <file>icons/128x128/dialog-cancel.png</file>
+        <file>icons/128x128/dialog-ok.png</file>
+        <file>icons/128x128/document-new.png</file>
+        <file>icons/128x128/document-open.png</file>
+        <file>icons/128x128/document-print.png</file>
+        <file>icons/128x128/document-print-preview.png</file>
+        <file>icons/128x128/document-save.png</file>
+        <file>icons/128x128/document-save-as.png</file>
+        <file>icons/128x128/format-text-color.png</file>
+        <file>icons/128x128/go-previous.png</file>
+        <file>icons/128x128/help-about.png</file>
+        <file>icons/128x128/help-contents.png</file>
+        <file>icons/128x128/help-contextual.png</file>
+        <file>icons/128x128/help-hint.png</file>
+        <file>icons/128x128/preferences-desktop-font.png</file>
+        <file>icons/128x128/preferences-desktop-locale.png</file>
+        <file>icons/128x128/preferences-desktop-theme.png</file>
+        <file>icons/128x128/preferences-system.png</file>
+        <file>icons/128x128/roll.png</file>
+        <file>icons/128x128/system-software-update.png</file>
     </qresource>
 </RCC>

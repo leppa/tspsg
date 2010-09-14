@@ -1,21 +1,7 @@
 <RCC>
     <qresource prefix="/images">
         <file>tspsg.png</file>
-        <file>icons/application-exit.png</file>
-        <file>icons/dialog-cancel.png</file>
-        <file>icons/dialog-ok.png</file>
-        <file>icons/document-new.png</file>
-        <file>icons/document-open.png</file>
-        <file>icons/document-save.png</file>
-        <file>icons/document-save-as.png</file>
-        <file>icons/format-text-color.png</file>
-        <file>icons/go-previous.png</file>
-        <file>icons/help-about.png</file>
-        <file>icons/help-hint.png</file>
-        <file>icons/preferences-desktop-font.png</file>
-        <file>icons/preferences-system.png</file>
         <file>icons/qtlogo-64.png</file>
-        <file>icons/roll.png</file>
     </qresource>
     <qresource prefix="/files">
         <file>COPYING</file>
