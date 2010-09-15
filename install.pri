@@ -57,12 +57,12 @@ win32 {
 		share.files += $$[QT_INSTALL_BINS]/mingwm10.dll \
 			$$[QT_INSTALL_BINS]/libgcc_s_dw2-1.dll
 	}
-	iconengines.files = $$[QT_INSTALL_PLUGINS]/iconengines/qsvgicon$${D}4.dll
-	iconengines.path = $$PREFIX/TSPSG/iconengines
+#	iconengines.files = $$[QT_INSTALL_PLUGINS]/iconengines/qsvgicon$${D}4.dll
+#	iconengines.path = $$PREFIX/TSPSG/iconengines
 	imageformats.files = $$[QT_INSTALL_PLUGINS]/imageformats/qjpeg$${D}4.dll \
 		$$[QT_INSTALL_PLUGINS]/imageformats/qtiff$${D}4.dll
 	imageformats.path = $$PREFIX/TSPSG/imageformats
-	INSTALLS += iconengines imageformats
+	INSTALLS += imageformats # iconengines
 }
 
 # For wince: we are deploying to \Program Files\TSPSG.
@@ -74,7 +74,7 @@ wince* {
 	docs.sources = $$docs.files
 
 	DEPLOYMENT += target share docs # l10n
-#	DEPLOYMENT_PLUGIN += qjpeg qtiff
+#	DEPLOYMENT_PLUGIN += qjpeg qtiff qsvgicon
 }
 
 # win32 and wince common
@@ -100,7 +100,7 @@ symbian {
 		"\"README.txt\" - \"\", FILETEXT, TEXTCONTINUE" \
 		"\"COPYING\" - \"\", FILETEXT, TEXTEXIT"
 	DEPLOYMENT += share docs # l10n
-#	DEPLOYMENT_PLUGIN += qjpeg qtiff
+#	DEPLOYMENT_PLUGIN += qjpeg qtiff qsvgicon
 
 	ICON = resources/tspsg.svg
 

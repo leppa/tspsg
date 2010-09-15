@@ -129,9 +129,6 @@ void toggleStyle(QWidget *widget, bool enable);
 #ifdef HANDHELD
 	#define ICON_SIZE "32x32"
 	#define ICON_FORMAT "png"
-#elif !defined(NOSVG)
-	#define ICON_SIZE "scalable"
-	#define ICON_FORMAT "svgz"
 #else
 	#define ICON_SIZE "128x128"
 	#define ICON_FORMAT "png"

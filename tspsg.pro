@@ -38,7 +38,6 @@ BUILD_RELEASE = 3
 REVISION = $$system(svnversion)
 REVISION = $$replace(REVISION,":","")
 REVISION = $$replace(REVISION,"M","")
-#VERSION = $$sprintf("%1.%2.%3.%4",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE,$$REVISION)
 win32-msvc*|wincewm* {
 	VERSION = $$sprintf("%1.%2",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR)
 } else {

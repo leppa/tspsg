@@ -39,14 +39,10 @@ FORMS += ui/mainwindow.ui \
 RESOURCES += resources/common.qrc \
 	l10n/l10n.qrc
 
-!wincewm*:!symbian {
-	!nosvg {
-		RESOURCES += resources/desktop-scalable.qrc
-	} else {
-		RESOURCES += resources/desktop.qrc
-	}
-} else {
+wincewm*|symbian {
 	RESOURCES += resources/handheld.qrc
+} else {
+	RESOURCES += resources/desktop.qrc
 }
 
 #Translations
