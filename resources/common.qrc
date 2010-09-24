@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/images">
         <file>tspsg.png</file>
-        <file>icons/qtlogo-64.png</file>
     </qresource>
     <qresource prefix="/files">
         <file>COPYING</file>

@@ -69,21 +69,20 @@ contains(QMAKE_PRL_CONFIG, static) {
 
 CONFIG(release, debug|release) {
 	OBJECTS_DIR = release
-	DESTDIR = release
 	D =
 } else {
 	OBJECTS_DIR = debug
-	DESTDIR = debug
 	DEFINES += DEBUG
 #	CONFIG += console
 	D = d
 }
+DESTDIR = bin
 TARGET = tspsg$${D}
 
 # Saving all intermediate files to tmp directory.
-MOC_DIR = ./tmp
-RCC_DIR = ./tmp
-UI_DIR = ./tmp
+MOC_DIR = tmp
+RCC_DIR = tmp
+UI_DIR = tmp
 
 # Include 3rd party libraries
 !wincewm*:!symbian {

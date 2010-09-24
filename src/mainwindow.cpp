@@ -265,6 +265,7 @@ QString format = settings->value("Output/GraphImageFormat", DEF_GRAPH_IMAGE_FORM
 	}
 QString html = solutionText->document()->toHtml("UTF-8"),
 		img =  fi.completeBaseName() + "." + format;
+		html.replace(QRegExp("font-family:([^;]*);"), "font-family:\\1, 'DejaVu Sans Mono', 'Courier New', Courier, monospace;");
 		html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"%1\" alt=\"%2\"").arg(img, tr("Solution Graph")));
 
 		// Saving solution text as HTML
@@ -277,7 +278,7 @@ QTextStream ts(&file);
 #if !defined(NOSVG)
 		if (format == "svg") {
 QSvgGenerator svg;
-			svg.setSize(QSize(graph.width(), graph.height()));
+			svg.setSize(QSize(graph.width() + 2, graph.height() + 2));
 			svg.setResolution(graph.logicalDpiX());
 			svg.setFileName(fi.path() + "/" + img);
 			svg.setTitle(tr("Solution Graph"));
@@ -288,7 +289,7 @@ QPainter p;
 			p.end();
 		} else {
 #endif // NOSVG
-QImage i(graph.width(), graph.height(), QImage::Format_ARGB32);
+QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
 			i.fill(0x00FFFFFF);
 QPainter p;
 			p.begin(&i);
@@ -892,7 +893,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 	if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
 		pic.end();
 
-QImage i(graph.width() + 1, graph.height() + 1, QImage::Format_RGB32);
+QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_RGB32);
 		i.fill(0xFFFFFF);
 		pic.begin(&i);
 		pic.drawPicture(1, 1, graph);
@@ -1513,6 +1514,7 @@ void MainWindow::setupUi()
 	actionHelpContents->setIcon(GET_ICON("help-contents"));
 	actionHelpContextual->setIcon(GET_ICON("help-contextual"));
 	actionHelpAbout->setIcon(GET_ICON("help-about"));
+	actionHelpAboutQt->setIcon(QIcon(":/images/icons/"ICON_SIZE"/qtlogo."ICON_FORMAT));
 #endif
 	// Buttons
 	buttonRandom->setIcon(GET_ICON("roll"));

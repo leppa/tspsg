@@ -480,10 +480,6 @@
    </property>
   </action>
   <action name="actionHelpAboutQt">
-   <property name="icon">
-    <iconset resource="../resources/common.qrc">
-     <normaloff>:/images/icons/qtlogo-64.png</normaloff>:/images/icons/qtlogo-64.png</iconset>
-   </property>
    <property name="text">
     <string>About &amp;Qt...</string>
    </property>
