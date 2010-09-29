@@ -20,6 +20,12 @@ TEMPLATE = app
 
 # QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk
 
+# Version information
+QMAKE_TARGET_COMPANY = Oleksii "Lёppa" Serdiuk
+QMAKE_TARGET_PRODUCT = TSP Solver and Generator
+QMAKE_TARGET_DESCRIPTION = TSPSG: TSP Solver and Generator
+QMAKE_TARGET_COPYRIGHT = Copyright © 2007-2010 Oleksii "Lёppa" Serdiuk <contacts[at]oleksii[dot]name>
+
 # Versioning
 BUILD_VERSION_MAJOR = 0
 BUILD_VERSION_MINOR = 1
@@ -63,7 +69,6 @@ include($$join(PRL, "/"))
 contains(QMAKE_PRL_CONFIG, static) {
 	# We "embed" SVG icon, JPEG and TIFF support on static build
 	DEFINES += STATIC_BUILD
-#	QTPLUGIN += qjpeg qtiff
 #	!nosvg:QTPLUGIN += qsvgicon
 }
 

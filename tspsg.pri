@@ -3,8 +3,8 @@
 #  TSPSG: TSP Solver and Generator
 #  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
 #
-#  $Id$
-#  $URL$
+#  $Id: tspsg.pri 137 2010-09-15 14:57:37Z laleppa $
+#  $URL: https://svn.tspsg.info/svnroot/tspsg/trunk/tspsg.pri $
 #
 #  This file is part of TSPSG.
 #
@@ -45,6 +45,10 @@ wincewm*|symbian {
 	RESOURCES += resources/desktop.qrc
 }
 
+win* {
+	RC_FILE = resources/tspsg.rc
+}
+
 #Translations
 CODECFORTR = UTF-8
 TRANSLATIONS += l10n/template.ts \
@@ -59,3 +63,4 @@ _t_t_l_ {
 	DEFINES += _T_T_L_
 	HEADERS += src/_.h
 }
+

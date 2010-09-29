@@ -72,6 +72,36 @@ QHBoxLayout *hbox1 = new QHBoxLayout();
 	connect(cbShowGraph, SIGNAL(toggled(bool)), cbHQGraph, SLOT(setEnabled(bool)));
 #endif
 
+	if (hasUpdater()) {
+		cbCheck4Updates = new QCheckBox(bgWhite);
+		cbCheck4Updates->setObjectName("cbCheck4Updates");
+#ifndef QT_NO_STATUSTIP
+		cbCheck4Updates->setStatusTip(tr("Automatically check for updates at the given interval"));
+#endif // QT_NO_STATUSTIP
+		cbCheck4Updates->setText(tr("Check for updates every"));
+		cbCheck4Updates->setCursor(QCursor(Qt::PointingHandCursor));
+
+		spinUpdateCheckInterval = new QSpinBox(bgWhite);
+		spinUpdateCheckInterval->setObjectName("spinUpdateCheckInterval");
+#ifndef QT_NO_STATUSTIP
+		spinUpdateCheckInterval->setStatusTip(tr("Minimal interval at which to check for updates"));
+#endif // QT_NO_STATUSTIP
+		spinUpdateCheckInterval->setSuffix(tr(" days", "Don't forget a space at the beginning!"));
+		spinUpdateCheckInterval->setRange(1, 365);
+		spinUpdateCheckInterval->setCursor(QCursor(Qt::PointingHandCursor));
+
+		connect(cbCheck4Updates, SIGNAL(toggled(bool)), spinUpdateCheckInterval, SLOT(setEnabled(bool)));
+
+		box = static_cast<QBoxLayout *>(tabGeneral->layout());
+		hbox1 = new QHBoxLayout();
+		hbox1->setSpacing(0);
+		hbox1->addWidget(cbCheck4Updates);
+		hbox1->addWidget(spinUpdateCheckInterval);
+		hbox1->addStretch();
+		box->insertLayout(box->indexOf(cbUseNativeDialogs) + 1, hbox1);
+	} else
+		cbCheck4Updates = NULL;
+
 #ifdef HANDHELD
 QVBoxLayout *vbox1; // Layout helper
 
@@ -208,6 +238,13 @@ QBoxLayout *box;
 #ifndef HANDHELD
 	cbSaveState->setChecked(settings->value("SavePos", DEF_SAVEPOS).toBool());
 #endif // HANDHELD
+	if (cbCheck4Updates != NULL) {
+		settings->beginGroup("Check4Updates");
+		cbCheck4Updates->setChecked(settings->value("Enabled", DEF_CHECK_FOR_UPDATES).toBool());
+		spinUpdateCheckInterval->setValue(settings->value("Interval", DEF_UPDATE_CHECK_INTERVAL).toInt());
+		settings->endGroup();
+		spinUpdateCheckInterval->setEnabled(cbCheck4Updates->isChecked());
+	}
 
 	settings->beginGroup("Task");
 	cbSymmetricMode->setChecked(settings->value("SymmetricMode", DEF_SYMMETRIC_MODE).toBool());
@@ -230,9 +267,9 @@ QBoxLayout *box;
 #if !defined(NOSVG) && (QT_VERSION >= 0x040500)
 	comboGraphImageFormat->addItem("svg");
 #endif // NOSVG && QT_VERSION >= 0x040500
-// We create a whitelist of formats, supported by the most popular web browsers according to
-//  http://en.wikipedia.org/wiki/Comparison_of_web_browsers#Image_format_support
-//  + TIFF format (there are plugins to support it).
+	// We create whitelist of formats, supported by the most popular web browsers according to
+	//  http://en.wikipedia.org/wiki/Comparison_of_web_browsers#Image_format_support
+	//  + TIFF format (there are plugins to support it).
 QStringList whitelist;
 	whitelist << "bmp" << "jpeg" << "png" << "tiff" << "xbm";
 	foreach (QByteArray format, QImageWriter::supportedImageFormats()) {
@@ -326,6 +363,13 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
 #ifndef HANDHELD
 	settings->setValue("SavePos", cbSaveState->isChecked());
 #endif // HANDHELD
+	if (cbCheck4Updates != NULL) {
+		settings->beginGroup("Check4Updates");
+		settings->setValue("Enabled", cbCheck4Updates->isChecked());
+		if (cbCheck4Updates->isChecked())
+			settings->setValue("Interval", spinUpdateCheckInterval->value());
+		settings->endGroup();
+	}
 
 	settings->beginGroup("Task");
 	settings->setValue("SymmetricMode", cbSymmetricMode->isChecked());

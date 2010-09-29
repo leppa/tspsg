@@ -80,9 +80,8 @@ QStyle *s = QStyleFactory::create(settings->value("Style").toString());
 	connect(actionSettingsToolbarsConfigure, SIGNAL(triggered()), SLOT(actionSettingsToolbarsConfigureTriggered()));
 #endif // HANDHELD
 	connect(actionSettingsPreferences, SIGNAL(triggered()), SLOT(actionSettingsPreferencesTriggered()));
-#ifdef Q_OS_WIN32
-	connect(actionHelpCheck4Updates, SIGNAL(triggered()), SLOT(actionHelpCheck4UpdatesTriggered()));
-#endif // Q_OS_WIN32
+	if (actionHelpCheck4Updates != NULL)
+		connect(actionHelpCheck4Updates, SIGNAL(triggered()), SLOT(actionHelpCheck4UpdatesTriggered()));
 	connect(actionSettingsLanguageAutodetect, SIGNAL(triggered(bool)), SLOT(actionSettingsLanguageAutodetectTriggered(bool)));
 	connect(groupSettingsLanguageList, SIGNAL(triggered(QAction *)), SLOT(groupSettingsLanguageListTriggered(QAction *)));
 	connect(actionSettingsStyleSystem, SIGNAL(triggered(bool)), SLOT(actionSettingsStyleSystemTriggered(bool)));
@@ -122,6 +121,12 @@ QRect rect = geometry();
 		spinCitiesValueChanged(spinCities->value());
 	}
 	setWindowModified(false);
+
+	if ((actionHelpCheck4Updates != NULL)
+		&& (settings->value("Check4Updates/Enabled", DEF_CHECK_FOR_UPDATES).toBool())
+		&& (QDate(qvariant_cast<QDate>(settings->value("Check4Updates/LastAttempt"))).daysTo(QDate::currentDate()) >= settings->value("Check4Updates/Interval", DEF_UPDATE_CHECK_INTERVAL).toInt())) {
+		check4Updates(true);
+	}
 }
 
 MainWindow::~MainWindow()
@@ -429,7 +434,6 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 }
 #endif // HANDHELD
 
-#ifdef Q_OS_WIN32
 void MainWindow::actionHelpCheck4UpdatesTriggered()
 {
 	if (!hasUpdater()) {
@@ -437,11 +441,8 @@ void MainWindow::actionHelpCheck4UpdatesTriggered()
 		return;
 	}
 
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	QProcess::execute("updater/Update.exe -name=\"TSPSG: TSP Solver and Generator\" -check=\"freeupdate\"");
-	QApplication::restoreOverrideCursor();
+	check4Updates();
 }
-#endif // Q_OS_WIN32
 
 void MainWindow::actionHelpAboutTriggered()
 {
@@ -1039,6 +1040,20 @@ int count = tspmodel->numCities();
 	QApplication::restoreOverrideCursor();
 }
 
+void MainWindow::check4Updates(bool silent)
+{
+#ifdef Q_OS_WIN32
+	if (silent)
+		QProcess::startDetached("updater/Update.exe -name=\"TSPSG: TSP Solver and Generator\" -check=\"freeupdate\" -silentcheck");
+	else {
+		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+		QProcess::execute("updater/Update.exe -name=\"TSPSG: TSP Solver and Generator\" -check=\"freeupdate\"");
+		QApplication::restoreOverrideCursor();
+	}
+#endif
+	settings->setValue("Check4Updates/LastAttempt", QDate::currentDate().toString(Qt::ISODate));
+}
+
 void MainWindow::closeEvent(QCloseEvent *ev)
 {
 	if (!maybeSave()) {
@@ -1140,15 +1155,6 @@ void MainWindow::dropEvent(QDropEvent *ev)
 		ev->setDropAction(Qt::CopyAction);
 		ev->accept();
 	}
-}
-
-bool MainWindow::hasUpdater() const
-{
-#ifdef Q_OS_WIN32
-	return QFile::exists("updater/Update.exe");
-#else // Q_OS_WIN32
-	return false;
-#endif // Q_OS_WIN32
 }
 
 void MainWindow::initDocStyleSheet()
@@ -1443,12 +1449,12 @@ void MainWindow::retranslateUi(bool all)
 #endif // QT_NO_STATUSTIP
 #endif // HANDHELD
 
-#ifdef Q_OS_WIN32
-	actionHelpCheck4Updates->setText(tr("Check for &Updates..."));
+	if (actionHelpCheck4Updates != NULL) {
+		actionHelpCheck4Updates->setText(tr("Check for &Updates..."));
 #ifndef QT_NO_STATUSTIP
-	actionHelpCheck4Updates->setStatusTip(tr("Check for %1 updates").arg(QApplication::applicationName()));
+		actionHelpCheck4Updates->setStatusTip(tr("Check for %1 updates").arg(QApplication::applicationName()));
 #endif // QT_NO_STATUSTIP
-#endif // Q_OS_WIN32
+	}
 }
 
 bool MainWindow::saveTask() {
@@ -1592,13 +1598,14 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 	actionSettingsToolbarsConfigure->setIcon(GET_ICON("configure-toolbars"));
 #endif // HANDHELD
 
-#ifdef Q_OS_WIN32
-	actionHelpCheck4Updates = new QAction(this);
-	actionHelpCheck4Updates->setIcon(GET_ICON("system-software-update"));
-	actionHelpCheck4Updates->setEnabled(hasUpdater());
-	menuHelp->insertAction(actionHelpAboutQt, actionHelpCheck4Updates);
-	menuHelp->insertSeparator(actionHelpAboutQt);
-#endif // Q_OS_WIN32
+	if (hasUpdater()) {
+		actionHelpCheck4Updates = new QAction(this);
+		actionHelpCheck4Updates->setIcon(GET_ICON("system-software-update"));
+		actionHelpCheck4Updates->setEnabled(hasUpdater());
+		menuHelp->insertAction(actionHelpAboutQt, actionHelpCheck4Updates);
+		menuHelp->insertSeparator(actionHelpAboutQt);
+	} else
+		actionHelpCheck4Updates = NULL;
 
 	spinCities->setMaximum(MAX_NUM_CITIES);
 

@@ -113,6 +113,21 @@ double i;
 	return (modf(x, &i) == 0.0);
 }
 
+/*!
+ * \brief Checks whether the updater app is installed/available.
+ * \return \c true if updater app is available, oherwise \c false.
+ * \note The updater app is only available under Windows at this moment.
+ *  On other systems this function always returns \c false.
+ */
+inline bool hasUpdater()
+{
+#ifdef Q_OS_WIN32
+	return QFile::exists("updater/Update.exe");
+#else // Q_OS_WIN32
+	return false;
+#endif // Q_OS_WIN32
+}
+
 #ifdef Q_OS_WIN32
 /*!
  * \brief Enables or disables a mask for the \a widget.

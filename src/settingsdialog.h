@@ -58,6 +58,8 @@ private:
 #ifdef Q_OS_WIN32
 	QCheckBox *cbUseTranslucency;
 #endif // Q_OS_WIN32
+	QCheckBox *cbCheck4Updates;
+	QSpinBox *spinUpdateCheckInterval;
 #ifndef QT_NO_PRINTER
 	QCheckBox *cbHQGraph;
 #endif

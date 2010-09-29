@@ -73,9 +73,7 @@ private slots:
 #ifndef HANDHELD
 	void actionSettingsToolbarsConfigureTriggered();
 #endif // HANDHELD
-#ifdef Q_OS_WIN32
 	void actionHelpCheck4UpdatesTriggered();
-#endif // Q_OS_WIN32
 	void actionHelpAboutTriggered();
 // Buttons
 	void buttonBackToTaskClicked();
@@ -110,9 +108,7 @@ private:
 	QAction *actionFilePrintPreview;
 	QAction *actionFilePrint;
 #endif // QT_NO_PRINTER
-#ifdef Q_OS_WIN32
 	QAction *actionHelpCheck4Updates;
-#endif // Q_OS_WIN32
 	QSettings *settings;
 	CTSPModel *tspmodel;
 #ifdef Q_OS_WINCE_WM
@@ -135,11 +131,11 @@ private:
 		fmt_alternate,
 		fmt_altlist;
 
+	void check4Updates(bool silent = false);
 	void closeEvent(QCloseEvent *ev);
 	void dragEnterEvent(QDragEnterEvent *ev);
 	void drawNode(QPainter &pic, int nstep, bool left = false, SStep *step = NULL);
 	void dropEvent(QDropEvent *ev);
-	bool hasUpdater() const;
 	void initDocStyleSheet();
 	void loadLangList();
 	bool loadLanguage(const QString &lang = QString());

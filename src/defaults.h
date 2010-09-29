@@ -41,7 +41,7 @@
  * \def DEF_USE_NATIVE_DIALOGS
  * \brief Default for "Use native file dialog".
  */
-#ifdef Q_OS_WINCE
+#ifdef Q_OS_WINCE_WM
 	#define DEF_USE_NATIVE_DIALOGS false
 #else
 	#define DEF_USE_NATIVE_DIALOGS true
@@ -50,6 +50,10 @@
 #define DEF_SAVEPOS true
 //! Default for "Use translucency effects in Vista/7"
 #define DEF_USE_TRANSLUCENCY true
+//! Default for "Check for updates"
+#define DEF_CHECK_FOR_UPDATES false
+//! Default update check interval (in days)
+#define DEF_UPDATE_CHECK_INTERVAL 30
 
 //////// TASK
 
