@@ -55,6 +55,9 @@ QPalette p = bgWhite->palette();
 	p.setColor(QPalette::Window, p.color(QPalette::Text));
 	lineHorizontal->setPalette(p);
 
+// Layout helpers
+QBoxLayout *box;
+QHBoxLayout *hbox;
 #ifndef QT_NO_PRINTER
 	cbHQGraph = new QCheckBox(bgWhite);
 	cbHQGraph->setObjectName("cbHQGraph");
@@ -64,11 +67,11 @@ QPalette p = bgWhite->palette();
 	cbHQGraph->setText(tr("Draw solution graph in higher quality"));
 	cbHQGraph->setCursor(QCursor(Qt::PointingHandCursor));
 
-QBoxLayout *box = static_cast<QBoxLayout *>(tabOutput->layout());
-QHBoxLayout *hbox1 = new QHBoxLayout();
-	hbox1->addSpacing(10);
-	hbox1->addWidget(cbHQGraph);
-	box->insertLayout(box->indexOf(cbShowGraph) + 1, hbox1);
+	box = static_cast<QBoxLayout *>(tabOutput->layout());
+	hbox = new QHBoxLayout();
+	hbox->addSpacing(10);
+	hbox->addWidget(cbHQGraph);
+	box->insertLayout(box->indexOf(cbShowGraph) + 1, hbox);
 	connect(cbShowGraph, SIGNAL(toggled(bool)), cbHQGraph, SLOT(setEnabled(bool)));
 #endif
 
@@ -93,12 +96,12 @@ QHBoxLayout *hbox1 = new QHBoxLayout();
 		connect(cbCheck4Updates, SIGNAL(toggled(bool)), spinUpdateCheckInterval, SLOT(setEnabled(bool)));
 
 		box = static_cast<QBoxLayout *>(tabGeneral->layout());
-		hbox1 = new QHBoxLayout();
-		hbox1->setSpacing(0);
-		hbox1->addWidget(cbCheck4Updates);
-		hbox1->addWidget(spinUpdateCheckInterval);
-		hbox1->addStretch();
-		box->insertLayout(box->indexOf(cbUseNativeDialogs) + 1, hbox1);
+		hbox = new QHBoxLayout();
+		hbox->setSpacing(0);
+		hbox->addWidget(cbCheck4Updates);
+		hbox->addWidget(spinUpdateCheckInterval);
+		hbox->addStretch();
+		box->insertLayout(box->indexOf(cbUseNativeDialogs) + 1, hbox);
 	} else
 		cbCheck4Updates = NULL;
 
@@ -132,9 +135,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	vbox1->addWidget(bgGrey);
 	setLayout(vbox1);
 #else // HANDHELD
-	// Layout helper elements
-QVBoxLayout *vbox;
-QHBoxLayout *hbox;
+QVBoxLayout *vbox; // Layout helper
 
 #ifdef Q_OS_WIN32
 	if (QtWin::isCompositionEnabled()) {
@@ -190,9 +191,6 @@ QHBoxLayout *hbox;
 	hbox->addWidget(lineVertical);
 	hbox->addWidget(bgWhite);
 
-#ifdef QT_NO_PRINTER
-QBoxLayout *box;
-#endif
 	box = static_cast<QBoxLayout *>(tabGeneral->layout());
 	box->insertWidget(box->indexOf(cbUseNativeDialogs) + 1, cbSaveState);
 #ifdef Q_OS_WIN32

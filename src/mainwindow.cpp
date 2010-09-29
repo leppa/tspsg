@@ -1050,6 +1050,8 @@ void MainWindow::check4Updates(bool silent)
 		QProcess::execute("updater/Update.exe -name=\"TSPSG: TSP Solver and Generator\" -check=\"freeupdate\"");
 		QApplication::restoreOverrideCursor();
 	}
+#else
+	Q_UNUSED(silent)
 #endif
 	settings->setValue("Check4Updates/LastAttempt", QDate::currentDate().toString(Qt::ISODate));
 }
