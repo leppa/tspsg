@@ -23,7 +23,7 @@
 
 #include "mainwindow.h"
 
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	#include "shobjidl.h"
 #endif
 
@@ -62,11 +62,11 @@ QStyle *s = QStyleFactory::create(settings->value("Style").toString());
 	printer = new QPrinter(QPrinter::HighResolution);
 #endif // QT_NO_PRINTER
 
-#ifdef Q_OS_WINCE_WM
+#ifdef Q_WS_WINCE_WM
 	currentGeometry = QApplication::desktop()->availableGeometry(0);
 	// We need to react to SIP show/hide and resize the window appropriately
 	connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
-#endif // Q_OS_WINCE_WM
+#endif // Q_WS_WINCE_WM
 	connect(actionFileNew, SIGNAL(triggered()), SLOT(actionFileNewTriggered()));
 	connect(actionFileOpen, SIGNAL(triggered()), SLOT(actionFileOpenTriggered()));
 	connect(actionFileSave, SIGNAL(triggered()), SLOT(actionFileSaveTriggered()));
@@ -371,6 +371,7 @@ void MainWindow::actionSettingsLanguageAutodetectTriggered(bool checked)
 
 void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
 {
+#ifndef Q_WS_MAEMO_5
 	if (actionSettingsLanguageAutodetect->isChecked()) {
 		// We have language autodetection. It needs to be disabled to change language.
 		if (QMessageBox::question(this, tr("Language change"), tr("You have language autodetection turned on.\nIt needs to be off.\nDo you wish to turn it off?"), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
@@ -378,6 +379,7 @@ void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
 		} else
 			return;
 	}
+#endif
 bool untitled = (fileName == tr("Untitled") + ".tspt");
 	if (loadLanguage(action->data().toString())) {
 		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -385,7 +387,7 @@ bool untitled = (fileName == tr("Untitled") + ".tspt");
 		retranslateUi();
 		if (untitled)
 			setFileName();
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 		if (QtWin::isCompositionEnabled() && settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool())  {
 			toggleStyle(labelVariant, true);
 			toggleStyle(labelCities, true);
@@ -564,9 +566,9 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 
 	hb2->addWidget(bb);
 
-#ifdef Q_OS_WINCE_WM
+#ifdef Q_WS_WINCE_WM
 	vb->setMargin(3);
-#endif // Q_OS_WINCE_WM
+#endif // Q_WS_WINCE_WM
 	vb->addLayout(hb1);
 #ifdef HANDHELD
 	vb->addWidget(lblSubTitle);
@@ -599,12 +601,12 @@ QTextBrowser *txtTranslation = new QTextBrowser(dlg);
 
 	connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
 
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	// Adding some eyecandy in Vista and 7 :-)
 	if (QtWin::isCompositionEnabled())  {
 		QtWin::enableBlurBehindWindow(dlg, true);
 	}
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 
 	dlg->resize(450, 350);
 	QApplication::restoreOverrideCursor();
@@ -661,7 +663,7 @@ QPushButton *cancel = new QPushButton(&pd);
 	pd.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 	pd.show();
 
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 HRESULT hr = CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_INPROC_SERVER, IID_ITaskbarList3, (LPVOID*)&tl);
 	if (SUCCEEDED(hr)) {
 		hr = tl->HrInit();
@@ -679,12 +681,12 @@ CTSPSolver solver;
 	solver.setCleanupOnCancel(false);
 	connect(&solver, SIGNAL(routePartFound(int)), &pd, SLOT(setValue(int)));
 	connect(&pd, SIGNAL(canceled()), &solver, SLOT(cancel()));
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (tl != NULL)
 		connect(&solver, SIGNAL(routePartFound(int)), SLOT(solverRoutePartFound(int)));
 #endif
 SStep *root = solver.solve(n, matrix);
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (tl != NULL)
 		disconnect(&solver, SIGNAL(routePartFound(int)), this, SLOT(solverRoutePartFound(int)));
 #endif
@@ -693,7 +695,7 @@ SStep *root = solver.solve(n, matrix);
 	if (!root) {
 		pd.reset();
 		if (!solver.wasCanceled()) {
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 			if (tl != NULL) {
 //				tl->SetProgressValue(winId(), n, n * 2);
 				tl->SetProgressState(winId(), TBPF_ERROR);
@@ -706,7 +708,7 @@ SStep *root = solver.solve(n, matrix);
 		pd.setMaximum(0);
 		pd.setCancelButton(NULL);
 		pd.show();
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 		if (tl != NULL)
 			tl->SetProgressState(winId(), TBPF_INDETERMINATE);
 #endif
@@ -721,7 +723,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 		solver.cleanup(true);
 #endif
 		pd.reset();
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 		if (tl != NULL) {
 			tl->SetProgressState(winId(), TBPF_NOPROGRESS);
 			tl->Release();
@@ -735,7 +737,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 	pd.setMaximum(solver.getTotalSteps() + 1);
 	pd.setValue(0);
 
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (tl != NULL)
 		tl->SetProgressValue(winId(), spinCities->value(), spinCities->value() + solver.getTotalSteps() + 1);
 #endif
@@ -793,7 +795,7 @@ int c = n = 1;
 			pd.setCancelButton(NULL);
 			pd.show();
 			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 			if (tl != NULL)
 				tl->SetProgressState(winId(), TBPF_INDETERMINATE);
 #endif
@@ -807,7 +809,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 #endif
 			solutionText->clear();
 			toggleSolutionActions(false);
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 			if (tl != NULL) {
 				tl->SetProgressState(winId(), TBPF_NOPROGRESS);
 				tl->Release();
@@ -817,7 +819,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 			return;
 		}
 		pd.setValue(n);
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 		if (tl != NULL)
 			tl->SetProgressValue(winId(), spinCities->value() + n, spinCities->value() + solver.getTotalSteps() + 1);
 #endif
@@ -863,7 +865,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 	}
 	pb->setFormat(tr("Generating footer"));
 	pd.setValue(n);
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (tl != NULL)
 		tl->SetProgressValue(winId(), spinCities->value() + n, spinCities->value() + solver.getTotalSteps() + 1);
 #endif
@@ -925,7 +927,7 @@ QTextImageFormat img;
 	pd.setMaximum(0);
 	pd.setCancelButton(NULL);
 	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (tl != NULL)
 		tl->SetProgressState(winId(), TBPF_INDETERMINATE);
 #endif
@@ -939,7 +941,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 #endif
 	toggleSolutionActions();
 	tabWidget->setCurrentIndex(1);
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (tl != NULL) {
 		tl->SetProgressState(winId(), TBPF_NOPROGRESS);
 		tl->Release();
@@ -967,7 +969,7 @@ void MainWindow::dataChanged(const QModelIndex &tl, const QModelIndex &br)
 	}
 }
 
-#ifdef Q_OS_WINCE_WM
+#ifdef Q_WS_WINCE_WM
 void MainWindow::changeEvent(QEvent *ev)
 {
 	if ((ev->type() == QEvent::ActivationChange) && isActiveWindow())
@@ -1000,7 +1002,7 @@ QRect availableGeometry = QApplication::desktop()->availableGeometry(0);
 		QApplication::restoreOverrideCursor();
 	}
 }
-#endif // Q_OS_WINCE_WM
+#endif // Q_WS_WINCE_WM
 
 void MainWindow::numCitiesChanged(int nCities)
 {
@@ -1016,16 +1018,16 @@ void MainWindow::printPreview(QPrinter *printer)
 }
 #endif // QT_NO_PRINTER
 
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 void MainWindow::solverRoutePartFound(int n)
 {
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	tl->SetProgressValue(winId(), n, spinCities->value() * 2);
 #else
 	Q_UNUSED(n);
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 }
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 
 void MainWindow::spinCitiesValueChanged(int n)
 {
@@ -1042,7 +1044,7 @@ int count = tspmodel->numCities();
 
 void MainWindow::check4Updates(bool silent)
 {
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (silent)
 		QProcess::startDetached("updater/Update.exe -name=\"TSPSG: TSP Solver and Generator\" -check=\"freeupdate\" -silentcheck");
 	else {
@@ -1259,7 +1261,7 @@ bool MainWindow::loadLanguage(const QString &lang)
 bool ad = false;
 QString lng = lang;
 	if (lng.isEmpty()) {
-		ad = settings->value("Language", "").toString().isEmpty();
+		ad = settings->value("Language").toString().isEmpty();
 		lng = settings->value("Language", QLocale::system().name()).toString();
 	}
 static QTranslator *qtTranslator; // Qt library translator
@@ -1333,8 +1335,11 @@ QAction *a;
 		a->setStatusTip(tr("Set application style to %1").arg(style));
 		a->setCheckable(true);
 		a->setActionGroup(groupSettingsStyleList);
-		if ((style == settings->value("Style").toString())
-			|| QString(QApplication::style()->metaObject()->className()).contains(QRegExp(QString("^Q?%1(Style)?$").arg(QRegExp::escape(style)), Qt::CaseInsensitive))) {
+		if ((style == settings->value("Stlye").toString())
+#ifndef Q_WS_MAEMO_5
+			|| QString(QApplication::style()->metaObject()->className()).contains(QRegExp(QString("^Q?%1(Style)?$").arg(QRegExp::escape(style)), Qt::CaseInsensitive))
+#endif
+		) {
 			a->setChecked(true);
 		}
 	}
@@ -1542,7 +1547,7 @@ QStatusBar *statusbar = new QStatusBar(this);
 	setStatusBar(statusbar);
 #endif // HANDHELD
 
-#ifdef Q_OS_WINCE_WM
+#ifdef Q_WS_WINCE_WM
 	menuBar()->setDefaultAction(menuFile->menuAction());
 
 QScrollArea *scrollArea = new QScrollArea(this);
@@ -1553,10 +1558,10 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	setCentralWidget(scrollArea);
 #else
 	setCentralWidget(tabWidget);
-#endif // Q_OS_WINCE_WM
+#endif // Q_WS_WINCE_WM
 
 	//! \hack HACK: A little hack for toolbar icons to have a sane size.
-#ifdef HANDHELD
+#if defined(HANDHELD) && !defined(Q_WS_MAEMO_5)
 	toolBarMain->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
 #endif // HANDHELD
 QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(actionFileSave));
@@ -1587,6 +1592,9 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 #endif // QT_NO_PRINTER
 
 	groupSettingsLanguageList = new QActionGroup(this);
+#ifdef Q_WS_MAEMO_5
+	groupSettingsLanguageList->addAction(actionSettingsLanguageAutodetect);
+#endif
 	actionSettingsLanguageEnglish->setData("en");
 	actionSettingsLanguageEnglish->setActionGroup(groupSettingsLanguageList);
 	loadLangList();
@@ -1594,6 +1602,9 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 
 	actionSettingsStyleSystem->setData(true);
 	groupSettingsStyleList = new QActionGroup(this);
+#ifdef Q_WS_MAEMO_5
+	groupSettingsStyleList->addAction(actionSettingsStyleSystem);
+#endif
 
 #ifndef HANDHELD
 	actionSettingsToolbarsConfigure = new QAction(this);
@@ -1629,12 +1640,12 @@ QString cat = toolBarMain->windowTitle();
 
 	retranslateUi(false);
 
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	// Adding some eyecandy in Vista and 7 :-)
 	if (QtWin::isCompositionEnabled() && settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool())  {
 		toggleTranclucency(true);
 	}
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 }
 
 void MainWindow::toggleSolutionActions(bool enable)
@@ -1650,7 +1661,7 @@ void MainWindow::toggleSolutionActions(bool enable)
 
 void MainWindow::toggleTranclucency(bool enable)
 {
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	toggleStyle(labelVariant, enable);
 	toggleStyle(labelCities, enable);
 	toggleStyle(statusBar(), enable);
@@ -1658,5 +1669,5 @@ void MainWindow::toggleTranclucency(bool enable)
 	QtWin::enableBlurBehindWindow(this, enable);
 #else
 	Q_UNUSED(enable);
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 }

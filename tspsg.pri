@@ -3,8 +3,8 @@
 #  TSPSG: TSP Solver and Generator
 #  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
 #
-#  $Id: tspsg.pri 137 2010-09-15 14:57:37Z laleppa $
-#  $URL: https://svn.tspsg.info/svnroot/tspsg/trunk/tspsg.pri $
+#  $Id$
+#  $URL$
 #
 #  This file is part of TSPSG.
 #
@@ -39,7 +39,7 @@ FORMS += ui/mainwindow.ui \
 RESOURCES += resources/common.qrc \
 	l10n/l10n.qrc
 
-wincewm*|symbian {
+handheld {
 	RESOURCES += resources/handheld.qrc
 } else {
 	RESOURCES += resources/desktop.qrc

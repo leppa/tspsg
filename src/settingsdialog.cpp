@@ -108,7 +108,7 @@ QHBoxLayout *hbox;
 #ifdef HANDHELD
 QVBoxLayout *vbox1; // Layout helper
 
-#ifdef Q_OS_WINCE_WM
+#ifdef Q_WS_WINCE_WM
 	// On screens with small height when SIP is shown and the window is resized
 	// there is not enought space for all elements.
 	// So we show the scrollbars to be able to access them.
@@ -119,7 +119,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	scrollArea->setWidget(bgWhite);
 #else
 	buttons->insertStretch(buttons->indexOf(buttonHelp) + 1);
-#endif // Q_OS_WINCE_WM
+#endif // Q_WS_WINCE_WM
 
 	bgWhite->layout()->setMargin(0);
 
@@ -127,17 +127,17 @@ QScrollArea *scrollArea = new QScrollArea(this);
 	vbox1 = new QVBoxLayout(this);
 	vbox1->setMargin(0);
 	vbox1->setSpacing(0);
-#ifdef Q_OS_WINCE_WM
+#ifdef Q_WS_WINCE_WM
 	vbox1->addWidget(scrollArea);
 #else
 	vbox1->addWidget(bgWhite);
-#endif // Q_OS_WINCE_WM
+#endif // Q_WS_WINCE_WM
 	vbox1->addWidget(bgGrey);
 	setLayout(vbox1);
 #else // HANDHELD
 QVBoxLayout *vbox; // Layout helper
 
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (QtWin::isCompositionEnabled()) {
 		cbUseTranslucency = new QCheckBox(bgWhite);
 		cbUseTranslucency->setObjectName("cbUseTranslucency");
@@ -147,7 +147,7 @@ QVBoxLayout *vbox; // Layout helper
 		cbUseTranslucency->setText(tr("Use translucency effects"));
 		cbUseTranslucency->setCursor(QCursor(Qt::PointingHandCursor));
 	}
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 
 	cbSaveState = new QCheckBox(bgWhite);
 	cbSaveState->setObjectName("cbSaveState");
@@ -193,10 +193,10 @@ QVBoxLayout *vbox; // Layout helper
 
 	box = static_cast<QBoxLayout *>(tabGeneral->layout());
 	box->insertWidget(box->indexOf(cbUseNativeDialogs) + 1, cbSaveState);
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (QtWin::isCompositionEnabled())
 		box->insertWidget(box->indexOf(cbUseNativeDialogs) + 1, cbUseTranslucency);
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 
 	// Inserting label for hints to the bottom part (with grey bg)
 	buttons->insertWidget(buttons->indexOf(buttonHelp) + 1, labelHint, 1);
@@ -210,10 +210,10 @@ QVBoxLayout *vbox; // Layout helper
 	setLayout(vbox);
 #endif // HANDHELD
 
-#ifdef Q_OS_WINCE_WM
+#ifdef Q_WS_WINCE_WM
 	// We need to react to SIP show/hide and resize the window appropriately
 	connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
-#endif // Q_OS_WINCE_WM
+#endif // Q_WS_WINCE_WM
 	connect(spinRandMin, SIGNAL(valueChanged(int)), SLOT(spinRandMinValueChanged(int)));
 	connect(buttonFont, SIGNAL(clicked()), SLOT(buttonFontClicked()));
 	connect(buttonColor, SIGNAL(clicked()), SLOT(buttonColorClicked()));
@@ -229,10 +229,10 @@ QVBoxLayout *vbox; // Layout helper
 	cbAutosize->setChecked(settings->value("Autosize", DEF_AUTOSIZE).toBool());
 	cbSaveLastUsed->setChecked(settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool());
 	cbUseNativeDialogs->setChecked(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool());
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (QtWin::isCompositionEnabled())
 		cbUseTranslucency->setChecked(settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool());
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 #ifndef HANDHELD
 	cbSaveState->setChecked(settings->value("SavePos", DEF_SAVEPOS).toBool());
 #endif // HANDHELD
@@ -297,7 +297,7 @@ QStringList whitelist;
 	setWindowState(Qt::WindowMaximized);
 #else
 	adjustSize();
-#endif // Q_OS_WINCE_WM
+#endif // Q_WS_WINCE_WM
 }
 
 /*!
@@ -348,7 +348,7 @@ void SettingsDialog::accept()
 	settings->setValue("Autosize", cbAutosize->isChecked());
 	settings->setValue("SaveLastUsed", cbSaveLastUsed->isChecked());
 	settings->setValue("UseNativeDialogs", cbUseNativeDialogs->isChecked());
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	if (QtWin::isCompositionEnabled()) {
 bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
 		if ((!old && cbUseTranslucency->isChecked()) || (old && !cbUseTranslucency->isChecked())) {
@@ -357,7 +357,7 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
 			_translucency = 0;
 		settings->setValue("UseTranslucency", cbUseTranslucency->isChecked());
 	}
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 #ifndef HANDHELD
 	settings->setValue("SavePos", cbSaveState->isChecked());
 #endif // HANDHELD
@@ -420,7 +420,7 @@ QFont font = QFontDialog::getFont(&ok,this->font,this);
 	}
 }
 
-#ifdef Q_OS_WINCE_WM
+#ifdef Q_WS_WINCE_WM
 void SettingsDialog::desktopResized(int screen)
 {
 	if (screen != 0)
@@ -452,7 +452,7 @@ void SettingsDialog::showEvent(QShowEvent *ev)
 
 	QWidget::showEvent(ev);
 }
-#endif // Q_OS_WINCE_WM
+#endif // Q_WS_WINCE_WM
 
 void SettingsDialog::spinRandMinValueChanged(int val) {
 	spinRandMax->setMinimum(val);

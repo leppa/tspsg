@@ -16,6 +16,10 @@
 	DEFINES += NOSVG
 }
 
+wincewm*|symbian|maemo*|simulator {
+	CONFIG += handheld
+}
+
 TEMPLATE = app
 
 # QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk
@@ -90,7 +94,7 @@ RCC_DIR = tmp
 UI_DIR = tmp
 
 # Include 3rd party libraries
-!wincewm*:!symbian {
+!handheld {
 	include(src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.pri)
 }
 

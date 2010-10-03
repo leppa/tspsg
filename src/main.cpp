@@ -53,7 +53,7 @@ QApplication app(argc, argv);
 	// Seeding random number generator
 	qsrand(QDateTime::currentDateTime().toTime_t() ^ QCursor::pos().x() ^ QCursor::pos().y());
 
-#ifdef Q_OS_WINCE_WM
+#ifdef Q_WS_WINCE_WM
 	// Qt "leaves" unpacked .ttf files after running - let's try to delete them.
 QStringList files = QDir(app.applicationDirPath(), "*.ttf").entryList();
 	foreach (QString file, files) {

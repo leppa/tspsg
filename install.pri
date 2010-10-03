@@ -22,7 +22,9 @@ INSTALLS += target share docs # l10n
 #   - translations go to /usr/share/TSPSG/l10n
 #   - docs go to /usr/share/doc/TSPSG-x.x.x
 unix:!macx:!symbian {
-	PREFIX = /usr
+	isEmpty(PREFIX) {
+		PREFIX = /usr
+	}
 	CONFIG(release, debug|release) {
 		DEFINES += PATH_L10N=\\\"$$PREFIX/share/TSPSG/l10n\\\"
 		DEFINES += PATH_DOCS=\\\"$$PREFIX/share/TSPSG/docs\\\"
@@ -45,7 +47,9 @@ macx {
 
 # For win32: everything goes to "%PROGRAMFILES%\TSPSG" and subfolders.
 win32 {
-	PREFIX = "$$(PROGRAMFILES)"
+	isEmpty(PREFIX) {
+		PREFIX = "$$(PROGRAMFILES)"
+	}
 
 	share.files = $$[QT_INSTALL_BINS]/QtCore$${D}4.dll \
 		$$[QT_INSTALL_BINS]/QtGui$${D}4.dll
@@ -67,7 +71,9 @@ win32 {
 
 # For wince: we are deploying to \Program Files\TSPSG.
 wince* {
-	PREFIX = "\\Program Files"
+	isEmpty(PREFIX) {
+		PREFIX = "\\Program Files"
+	}
 	share.sources = $$share.files
 #	l10n.sources = $$l10n.files \
 #		$$[QT_INSTALL_TRANSLATIONS]/*.qm
@@ -83,8 +89,6 @@ win* {
 	share.path = $$PREFIX/TSPSG
 #	l10n.path = $$PREFIX/TSPSG/l10n
 	docs.path = $$PREFIX/TSPSG
-
-	RC_FILE = resources/tspsg.rc
 }
 
 # Symbian

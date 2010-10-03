@@ -41,7 +41,7 @@
 	#include <QtSvg>
 #endif // NOSVG
 
-#if defined(Q_OS_WINCE_WM) || defined(Q_OS_SYMBIAN)
+#if defined(Q_WS_WINCE_WM) || defined(Q_WS_S60) || defined(Q_WS_MAEMO_5) || defined(Q_WS_SIMULATOR)
 	//! This is defined on handheld devices (e.g., Windows Mobile, Symbian).
 	#define HANDHELD
 #endif
@@ -58,10 +58,10 @@
 #include "defaults.h"
 // TSPSolver
 #include "tspsolver.h"
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	// Vista/7 Eyecandy
 	#include "qtwin.h"
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 
 // DEFINES
 //! Maximum available number of cities
@@ -121,14 +121,14 @@ double i;
  */
 inline bool hasUpdater()
 {
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 	return QFile::exists("updater/Update.exe");
-#else // Q_OS_WIN32
+#else // Q_WS_WIN32
 	return false;
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 }
 
-#ifdef Q_OS_WIN32
+#ifdef Q_WS_WIN32
 /*!
  * \brief Enables or disables a mask for the \a widget.
  * \param widget A widget to toggle mask on.
@@ -137,7 +137,7 @@ inline bool hasUpdater()
  *  This function is used to enable an outlined font effect for \c QLabel with a static text.
  */
 void toggleStyle(QWidget *widget, bool enable);
-#endif // Q_OS_WIN32
+#endif // Q_WS_WIN32
 
 #ifndef DOXYGEN_EXCLUDE
 
