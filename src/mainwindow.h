@@ -73,6 +73,8 @@ private slots:
 #ifndef HANDHELD
 	void actionSettingsToolbarsConfigureTriggered();
 #endif // HANDHELD
+	void actionHelpOnlineSupportTriggered();
+	void actionHelpReportBugTriggered();
 	void actionHelpCheck4UpdatesTriggered();
 	void actionHelpAboutTriggered();
 // Buttons

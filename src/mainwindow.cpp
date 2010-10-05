@@ -86,6 +86,8 @@ QStyle *s = QStyleFactory::create(settings->value("Style").toString());
 	connect(groupSettingsLanguageList, SIGNAL(triggered(QAction *)), SLOT(groupSettingsLanguageListTriggered(QAction *)));
 	connect(actionSettingsStyleSystem, SIGNAL(triggered(bool)), SLOT(actionSettingsStyleSystemTriggered(bool)));
 	connect(groupSettingsStyleList, SIGNAL(triggered(QAction*)), SLOT(groupSettingsStyleListTriggered(QAction*)));
+	connect(actionHelpOnlineSupport, SIGNAL(triggered()), SLOT(actionHelpOnlineSupportTriggered()));
+	connect(actionHelpReportBug, SIGNAL(triggered()), SLOT(actionHelpReportBugTriggered()));
 	connect(actionHelpAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 	connect(actionHelpAbout, SIGNAL(triggered()), SLOT(actionHelpAboutTriggered()));
 
@@ -287,7 +289,7 @@ QSvgGenerator svg;
 			svg.setResolution(graph.logicalDpiX());
 			svg.setFileName(fi.path() + "/" + img);
 			svg.setTitle(tr("Solution Graph"));
-			svg.setDescription(tr("Generated with %1").arg(QApplication::applicationName()));
+			svg.setDescription(tr("Generated with %1").arg(QCoreApplication::applicationName()));
 QPainter p;
 			p.begin(&svg);
 			p.drawPicture(1, 1, graph);
@@ -303,7 +305,7 @@ QPainter p;
 QImageWriter pic(fi.path() + "/" + img);
 			if (pic.supportsOption(QImageIOHandler::Description)) {
 				pic.setText("Title", "Solution Graph");
-				pic.setText("Software", QApplication::applicationName());
+				pic.setText("Software", QCoreApplication::applicationName());
 			}
 			if (format == "png")
 				pic.setQuality(5);
@@ -364,7 +366,7 @@ void MainWindow::actionSettingsLanguageAutodetectTriggered(bool checked)
 {
 	if (checked) {
 		settings->remove("Language");
-		QMessageBox::information(this, tr("Language change"), tr("Language will be autodetected on the next %1 start.").arg(QApplication::applicationName()));
+		QMessageBox::information(this, tr("Language change"), tr("Language will be autodetected on the next %1 start.").arg(QCoreApplication::applicationName()));
 	} else
 		settings->setValue("Language", groupSettingsLanguageList->checkedAction()->data().toString());
 }
@@ -403,7 +405,7 @@ void MainWindow::actionSettingsStyleSystemTriggered(bool checked)
 {
 	if (checked) {
 		settings->remove("Style");
-		QMessageBox::information(this, tr("Style Change"), tr("To apply the default style you need to restart %1.").arg(QApplication::applicationName()));
+		QMessageBox::information(this, tr("Style Change"), tr("To apply the default style you need to restart %1.").arg(QCoreApplication::applicationName()));
 	} else {
 		settings->setValue("Style", groupSettingsStyleList->checkedAction()->text());
 	}
@@ -451,10 +453,10 @@ void MainWindow::actionHelpAboutTriggered()
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 
 QString title;
-	title += QString("<b>%1</b><br>").arg(QApplication::applicationName());
-	title += QString("%1: <b>%2</b><br>").arg(tr("Version"), QApplication::applicationVersion());
+	title += QString("<b>%1</b><br>").arg(QCoreApplication::applicationName());
+	title += QString("%1: <b>%2</b><br>").arg(tr("Version"), QCoreApplication::applicationVersion());
 #ifndef HANDHELD
-	title += QString("<b>&copy; 2007-%1 <a href=\"http://%2/\">%3</a></b><br>").arg(QDate::currentDate().toString("yyyy"), QApplication::organizationDomain(), QApplication::organizationName());
+	title += QString("<b>&copy; 2007-%1 <a href=\"http://%2/\">%3</a></b><br>").arg(QDate::currentDate().toString("yyyy"), QCoreApplication::organizationDomain(), QCoreApplication::organizationName());
 #endif // HANDHELD
 	title += QString("<b><a href=\"http://tspsg.info/\">http://tspsg.info/</a></b>");
 
@@ -504,9 +506,9 @@ QString credits;
 QFile f(":/files/COPYING");
 	f.open(QIODevice::ReadOnly);
 
-QString translation = QApplication::translate("--------", "AUTHORS %1", "Please, provide translator credits here. %1 will be replaced with VERSION");
+QString translation = QCoreApplication::translate("--------", "AUTHORS %1", "Please, provide translator credits here. %1 will be replaced with VERSION");
 	if ((translation != "AUTHORS %1") && (translation.contains("%1"))) {
-QString about = QApplication::translate("--------", "VERSION", "Please, provide your translation version here.");
+QString about = QCoreApplication::translate("--------", "VERSION", "Please, provide your translation version here.");
 		if (about != "VERSION")
 			translation = translation.arg(about);
 	}
@@ -515,7 +517,7 @@ QDialog *dlg = new QDialog(this);
 QLabel *lblIcon = new QLabel(dlg),
 	*lblTitle = new QLabel(dlg);
 #ifdef HANDHELD
-QLabel *lblSubTitle = new QLabel(QString("<b>&copy; 2007-%1 <a href=\"http://%2/\">%3</a></b>").arg(QDate::currentDate().toString("yyyy"), QApplication::organizationDomain(), QApplication::organizationName()), dlg);
+QLabel *lblSubTitle = new QLabel(QString("<b>&copy; 2007-%1 <a href=\"http://%2/\">%3</a></b>").arg(QDate::currentDate().toString("yyyy"), QCoreApplication::organizationDomain(), QCoreApplication::organizationName()), dlg);
 #endif // HANDHELD
 QTabWidget *tabs = new QTabWidget(dlg);
 QTextBrowser *txtAbout = new QTextBrowser(dlg);
@@ -595,7 +597,7 @@ QTextBrowser *txtTranslation = new QTextBrowser(dlg);
 	vb->addLayout(hb2);
 
 	dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
-	dlg->setWindowTitle(tr("About %1").arg(QApplication::applicationName()));
+	dlg->setWindowTitle(tr("About %1").arg(QCoreApplication::applicationName()));
 	dlg->setWindowIcon(GET_ICON("help-about"));
 	dlg->setLayout(vb);
 
@@ -653,7 +655,7 @@ QProgressBar *pb = new QProgressBar(&pd);
 	pd.setBar(pb);
 QPushButton *cancel = new QPushButton(&pd);
 	cancel->setIcon(GET_ICON("dialog-cancel"));
-	cancel->setText(QApplication::translate("QProgressDialog", "Cancel", "No need to translate this. This translation will be taken from Qt translation files."));
+	cancel->setText(QCoreApplication::translate("QProgressDialog", "Cancel", "No need to translate this. This translation will be taken from Qt translation files."));
 	pd.setCancelButton(cancel);
 	pd.setMaximum(n);
 	pd.setAutoReset(false);
@@ -712,12 +714,12 @@ SStep *root = solver.solve(n, matrix);
 		if (tl != NULL)
 			tl->SetProgressState(winId(), TBPF_INDETERMINATE);
 #endif
-		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+		QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
 #ifndef QT_NO_CONCURRENT
 QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 		while (!f.isFinished()) {
-			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+			QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 		}
 #else
 		solver.cleanup(true);
@@ -794,7 +796,7 @@ int c = n = 1;
 			pd.setMaximum(0);
 			pd.setCancelButton(NULL);
 			pd.show();
-			QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+			QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 #ifdef Q_WS_WIN32
 			if (tl != NULL)
 				tl->SetProgressState(winId(), TBPF_INDETERMINATE);
@@ -802,7 +804,7 @@ int c = n = 1;
 #ifndef QT_NO_CONCURRENT
 QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 			while (!f.isFinished()) {
-				QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+				QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 			}
 #else
 			solver.cleanup(true);
@@ -926,7 +928,7 @@ QTextImageFormat img;
 	pd.setLabelText(tr("Cleaning up..."));
 	pd.setMaximum(0);
 	pd.setCancelButton(NULL);
-	QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+	QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 #ifdef Q_WS_WIN32
 	if (tl != NULL)
 		tl->SetProgressState(winId(), TBPF_INDETERMINATE);
@@ -934,7 +936,7 @@ QTextImageFormat img;
 #ifndef QT_NO_CONCURRENT
 QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 	while (!f.isFinished()) {
-		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+		QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 	}
 #else
 	solver.cleanup(true);
@@ -1388,7 +1390,7 @@ QTextTable *table = cur.insertTable(n, n, fmt_table);
 			else
 				cur.insertText(isInteger(matrix.at(r).at(c)) ? QString("%1").arg(matrix.at(r).at(c)) : QString("%1").arg(matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()));
 		}
-		QApplication::processEvents();
+		QCoreApplication::processEvents();
 	}
 	cur.movePosition(QTextCursor::End);
 }
@@ -1416,7 +1418,7 @@ SStep::SCandidate cand;
 					cur.insertText(isInteger(step.matrix.at(r).at(c)) ? QString("%1").arg(step.matrix.at(r).at(c)) : QString("%1").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()), fmt_default);
 			}
 		}
-		QApplication::processEvents();
+		QCoreApplication::processEvents();
 	}
 
 	cur.movePosition(QTextCursor::End);
@@ -1438,6 +1440,9 @@ void MainWindow::retranslateUi(bool all)
 #ifndef QT_NO_STATUSTIP
 	actionFilePrintPreview->setStatusTip(tr("Preview current solution results before printing"));
 #endif // QT_NO_STATUSTIP
+#ifndef QT_NO_STATUSTIP
+	actionFileExit->setStatusTip(tr("Exit %1").arg(QCoreApplication::applicationName()));
+#endif // QT_NO_STATUSTIP
 
 	actionFilePrint->setText(tr("&Print..."));
 #ifndef QT_NO_TOOLTIP
@@ -1456,12 +1461,18 @@ void MainWindow::retranslateUi(bool all)
 #endif // QT_NO_STATUSTIP
 #endif // HANDHELD
 
+#ifndef QT_NO_STATUSTIP
+	actionHelpReportBug->setStatusTip(tr("Report about a bug in %1").arg(QCoreApplication::applicationName()));
+#endif // QT_NO_STATUSTIP
 	if (actionHelpCheck4Updates != NULL) {
 		actionHelpCheck4Updates->setText(tr("Check for &Updates..."));
 #ifndef QT_NO_STATUSTIP
-		actionHelpCheck4Updates->setStatusTip(tr("Check for %1 updates").arg(QApplication::applicationName()));
+		actionHelpCheck4Updates->setStatusTip(tr("Check for %1 updates").arg(QCoreApplication::applicationName()));
 #endif // QT_NO_STATUSTIP
 	}
+#ifndef QT_NO_STATUSTIP
+	actionHelpAbout->setStatusTip(tr("About %1").arg(QCoreApplication::applicationName()));
+#endif // QT_NO_STATUSTIP
 }
 
 bool MainWindow::saveTask() {
@@ -1496,7 +1507,7 @@ QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_D
 void MainWindow::setFileName(const QString &fileName)
 {
 	this->fileName = fileName;
-	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(QApplication::applicationName()));
+	setWindowTitle(QString("%1[*] - %2").arg(QFileInfo(fileName).completeBaseName()).arg(QCoreApplication::applicationName()));
 }
 
 void MainWindow::setupUi()
@@ -1526,6 +1537,8 @@ void MainWindow::setupUi()
 #ifndef HANDHELD
 	actionHelpContents->setIcon(GET_ICON("help-contents"));
 	actionHelpContextual->setIcon(GET_ICON("help-contextual"));
+	actionHelpOnlineSupport->setIcon(GET_ICON("applications-internet"));
+	actionHelpReportBug->setIcon(GET_ICON("tools-report-bug"));
 	actionHelpAbout->setIcon(GET_ICON("help-about"));
 	actionHelpAboutQt->setIcon(QIcon(":/images/icons/"ICON_SIZE"/qtlogo."ICON_FORMAT));
 #endif
@@ -1670,4 +1683,14 @@ void MainWindow::toggleTranclucency(bool enable)
 #else
 	Q_UNUSED(enable);
 #endif // Q_WS_WIN32
+}
+
+void MainWindow::actionHelpOnlineSupportTriggered()
+{
+	QDesktopServices::openUrl(QUrl("http://tspsg.info/goto/support"));
+}
+
+void MainWindow::actionHelpReportBugTriggered()
+{
+	QDesktopServices::openUrl(QUrl("http://tspsg.info/goto/bugtracker"));
 }

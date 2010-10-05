@@ -298,6 +298,9 @@
     <addaction name="actionHelpContents"/>
     <addaction name="actionHelpContextual"/>
     <addaction name="separator"/>
+    <addaction name="actionHelpOnlineSupport"/>
+    <addaction name="actionHelpReportBug"/>
+    <addaction name="separator"/>
     <addaction name="actionHelpAboutQt"/>
     <addaction name="actionHelpAbout"/>
    </widget>
@@ -408,16 +411,10 @@
    <property name="text">
     <string>&amp;About TSPSG...</string>
    </property>
-   <property name="statusTip">
-    <string>About application</string>
-   </property>
   </action>
   <action name="actionFileExit">
    <property name="text">
     <string>E&amp;xit</string>
-   </property>
-   <property name="statusTip">
-    <string>Exit application</string>
    </property>
   </action>
   <action name="actionFileSaveAsTask">
@@ -502,6 +499,19 @@
    </property>
    <property name="statusTip">
     <string>Automatically choose the most appropriate style</string>
+   </property>
+  </action>
+  <action name="actionHelpOnlineSupport">
+   <property name="text">
+    <string>Online &amp;Support...</string>
+   </property>
+   <property name="statusTip">
+    <string>Get support online</string>
+   </property>
+  </action>
+  <action name="actionHelpReportBug">
+   <property name="text">
+    <string>Report a &amp;Bug...</string>
    </property>
   </action>
  </widget>

@@ -34,11 +34,11 @@ unix:!macx:!symbian {
 	share.path = $$PREFIX/share/TSPSG
 #	l10n.path = $$PREFIX/share/TSPSG/l10n
 	docs.path = $$PREFIX/share/doc/TSPSG-$$VERSION
-	apps.files = resources/tspsg.desktop
-	apps.path = $$PREFIX/share/applications/
+	desktop.files = resources/tspsg.desktop
+	desktop.path = $$PREFIX/share/applications
 	icon.files = resources/tspsg.png
 	icon.path = $$PREFIX/share/pixmaps
-	INSTALLS += apps icon
+	INSTALLS += desktop icon
 }
 
 # TODO: MacOSX
