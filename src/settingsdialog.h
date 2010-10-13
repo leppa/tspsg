@@ -71,7 +71,9 @@ private:
 	QFrame *lineVertical;
 	QLabel *labelHint;
 
+#ifndef QT_NO_STATUSTIP
 	bool event(QEvent *ev);
+#endif // QT_NO_STATUSTIP
 #endif // Q_WS_WINCE_WM
 
 private slots:

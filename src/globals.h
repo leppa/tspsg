@@ -33,18 +33,18 @@
 #if QT_VERSION < 0x040500
 	#error You are using Qt version < 4.5 but minimum required version is 4.5.0. Compilation aborted.
 #endif
-#ifdef QT_NO_SVG
-	#define NOSVG
-#endif
-#include <QtGui>
-#if !defined(NOSVG)
-	#include <QtSvg>
-#endif // NOSVG
-
 #if defined(Q_WS_WINCE_WM) || defined(Q_WS_S60) || defined(Q_WS_MAEMO_5) || defined(Q_WS_SIMULATOR)
 	//! This is defined on handheld devices (e.g., Windows Mobile, Symbian).
 	#define HANDHELD
+	#define QT_NO_STATUSTIP
 #endif
+#include <QtGui>
+#if defined(QT_NO_SVG) && !defined(NOSVG)
+	#define NOSVG
+#endif
+#if !defined(NOSVG)
+	#include <QtSvg>
+#endif // NOSVG
 
 #ifndef HANDHELD
 	#include "qttoolbardialog.h"

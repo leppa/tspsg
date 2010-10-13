@@ -46,8 +46,12 @@ BUILD_RELEASE = 3
 
 #REVISION = 100
 REVISION = $$system(svnversion)
-REVISION = $$replace(REVISION,":","")
-REVISION = $$replace(REVISION,"M","")
+isEmpty(REVISION)|eval(REVISION=="exported") {
+	REVISION = 0
+} else {
+	REVISION = $$replace(REVISION,":","")
+	REVISION = $$replace(REVISION,"M","")
+}
 win32-msvc*|wincewm* {
 	VERSION = $$sprintf("%1.%2",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR)
 } else {

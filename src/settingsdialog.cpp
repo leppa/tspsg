@@ -37,10 +37,14 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 	setWindowIcon(GET_ICON("preferences-system"));
 
 	buttonBox->button(QDialogButtonBox::Ok)->setIcon(GET_ICON("dialog-ok"));
+#ifndef QT_NO_STATUSTIP
 	buttonBox->button(QDialogButtonBox::Ok)->setStatusTip(tr("Save new preferences"));
+#endif
 	buttonBox->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
 	buttonBox->button(QDialogButtonBox::Cancel)->setIcon(GET_ICON("dialog-cancel"));
+#ifndef QT_NO_STATUSTIP
 	buttonBox->button(QDialogButtonBox::Cancel)->setStatusTip(tr("Close without saving preferences"));
+#endif
 	buttonBox->button(QDialogButtonBox::Cancel)->setCursor(QCursor(Qt::PointingHandCursor));
 
 	buttonColor->setIcon(GET_ICON("format-text-color"));
@@ -218,7 +222,7 @@ QVBoxLayout *vbox; // Layout helper
 	connect(buttonFont, SIGNAL(clicked()), SLOT(buttonFontClicked()));
 	connect(buttonColor, SIGNAL(clicked()), SLOT(buttonColorClicked()));
 	setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
-#ifndef HANDHELD
+#if !defined(QT_NO_STATUSTIP) && !defined(HANDHELD)
 	// Setting initial text of dialog hint label to own status tip text.
 	labelHint->setText(labelHint->statusTip());
 #endif // HANDHELD
@@ -458,7 +462,7 @@ void SettingsDialog::spinRandMinValueChanged(int val) {
 	spinRandMax->setMinimum(val);
 }
 
-#ifndef HANDHELD
+#if !defined(QT_NO_STATUSTIP) && !defined(HANDHELD)
 bool SettingsDialog::event(QEvent *ev)
 {
 	// Checking for StatusTip event and if tip text is not empty string

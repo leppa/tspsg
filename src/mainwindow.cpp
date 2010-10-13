@@ -1243,7 +1243,9 @@ QDir dir;
 QAction *a;
 	foreach (language, langlist) {
 		a = menuSettingsLanguage->addAction(language.at(2));
+#ifndef QT_NO_STATUSTIP
 		a->setStatusTip(language.at(3));
+#endif
 #if QT_VERSION >= 0x040600
 		a->setIcon(QIcon::fromTheme(QString("flag-%1").arg(language.at(1)), QIcon(QString(":/images/icons/l10n/flag-%1.png").arg(language.at(1)))));
 #else
@@ -1334,7 +1336,9 @@ QAction *a;
 	foreach (QString style, styles) {
 		a = menuSettingsStyle->addAction(style);
 		a->setData(false);
+#ifndef QT_NO_STATUSTIP
 		a->setStatusTip(tr("Set application style to %1").arg(style));
+#endif
 		a->setCheckable(true);
 		a->setActionGroup(groupSettingsStyleList);
 		if ((style == settings->value("Stlye").toString())
@@ -1439,8 +1443,6 @@ void MainWindow::retranslateUi(bool all)
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_STATUSTIP
 	actionFilePrintPreview->setStatusTip(tr("Preview current solution results before printing"));
-#endif // QT_NO_STATUSTIP
-#ifndef QT_NO_STATUSTIP
 	actionFileExit->setStatusTip(tr("Exit %1").arg(QCoreApplication::applicationName()));
 #endif // QT_NO_STATUSTIP
 
