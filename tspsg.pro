@@ -75,7 +75,7 @@ macx {
 }
 include($$join(PRL, "/"))
 contains(QMAKE_PRL_CONFIG, static) {
-	# We "embed" SVG icon, JPEG and TIFF support on static build
+	# We "embed" SVG icon support on static build
 	DEFINES += STATIC_BUILD
 #	!nosvg:QTPLUGIN += qsvgicon
 }

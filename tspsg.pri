@@ -56,11 +56,12 @@ TRANSLATIONS += l10n/template.ts \
 	l10n/tspsg_ru.ts \
 	l10n/tspsg_uk.ts
 
-# Precompiled header
-PRECOMPILED_HEADER = src/pch.h
+!nopch {
+	# Precompiled header
+	PRECOMPILED_HEADER = src/pch.h
+}
 
 _t_t_l_ {
 	DEFINES += _T_T_L_
 	HEADERS += src/_.h
 }
-

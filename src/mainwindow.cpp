@@ -124,10 +124,21 @@ QRect rect = geometry();
 	}
 	setWindowModified(false);
 
-	if ((actionHelpCheck4Updates != NULL)
-		&& (settings->value("Check4Updates/Enabled", DEF_CHECK_FOR_UPDATES).toBool())
-		&& (QDate(qvariant_cast<QDate>(settings->value("Check4Updates/LastAttempt"))).daysTo(QDate::currentDate()) >= settings->value("Check4Updates/Interval", DEF_UPDATE_CHECK_INTERVAL).toInt())) {
-		check4Updates(true);
+	if (actionHelpCheck4Updates != NULL) {
+		if (!settings->contains("Check4Updates/Enabled")) {
+			QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+			settings->setValue("Check4Updates/Enabled",
+				QMessageBox::question(this, QCoreApplication::applicationName(),
+					tr("Would you like %1 to automatically check for updates every %n day(s)?", "", settings->value("Check4Updates/Interval", DEF_UPDATE_CHECK_INTERVAL).toInt()).arg(QCoreApplication::applicationName()),
+					QMessageBox::Yes | QMessageBox::No
+				) == QMessageBox::Yes
+			);
+			QApplication::restoreOverrideCursor();
+		}
+		if ((settings->value("Check4Updates/Enabled", DEF_CHECK_FOR_UPDATES).toBool())
+			&& (QDate(qvariant_cast<QDate>(settings->value("Check4Updates/LastAttempt"))).daysTo(QDate::currentDate()) >= settings->value("Check4Updates/Interval", DEF_UPDATE_CHECK_INTERVAL).toInt())) {
+			check4Updates(true);
+		}
 	}
 }
 

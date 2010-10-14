@@ -18,9 +18,9 @@ INSTALLS += target share docs # l10n
 
 # For *nix:
 #   - executable goes to /usr/bin
-#   - COPYING and README go to /usr/share/TSPSG
 #   - translations go to /usr/share/TSPSG/l10n
-#   - docs go to /usr/share/doc/TSPSG-x.x.x
+#   - COPYING, ChangeLog.txt, README.txt and INSTALL.txt
+#     go to /usr/share/doc/TSPSG-x.x.x
 unix:!macx:!symbian {
 	isEmpty(PREFIX) {
 		PREFIX = /usr
