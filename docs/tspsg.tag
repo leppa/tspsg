@@ -56,6 +56,20 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>DEF_CHECK_FOR_UPDATES</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>a18e68184ae6744c3d45c412cf429ef1c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_UPDATE_CHECK_INTERVAL</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>af2574b71a796ed52fc04b046a0f9a0c0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>DEF_FRACTIONAL_ACCURACY</name>
       <anchorfile>defaults_8h.html</anchorfile>
       <anchor>afd1234d6d4416db1f37831403b3e2dbe</anchor>
@@ -182,7 +196,6 @@
     <includes id="os_8h" name="os.h" local="yes" imported="no">os.h</includes>
     <includes id="defaults_8h" name="defaults.h" local="yes" imported="no">defaults.h</includes>
     <includes id="tspsolver_8h" name="tspsolver.h" local="yes" imported="no">tspsolver.h</includes>
-    <includes id="qtwin_8h" name="qtwin.h" local="yes" imported="no">qtwin.h</includes>
     <member kind="define">
       <type>#define</type>
       <name>MAX_NUM_CITIES</name>
@@ -268,11 +281,11 @@
       <arglist>(double x)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>toggleStyle</name>
+      <type>bool</type>
+      <name>hasUpdater</name>
       <anchorfile>globals_8h.html</anchorfile>
-      <anchor>a3ffe98116f42de97041cde4a2b0404e6</anchor>
-      <arglist>(QWidget *widget, bool enable)</arglist>
+      <anchor>a5625fcd02d07005677ff6ee3dd799e05</anchor>
+      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -307,6 +320,20 @@
       <name>OSID</name>
       <anchorfile>os_8h.html</anchorfile>
       <anchor>a1dd5b94c3a8ca1350a4037270084df73</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>PLATFROM</name>
+      <anchorfile>os_8h.html</anchorfile>
+      <anchor>a5751bcea3ecce2a44d6c294f28dca42b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>COMPILER</name>
+      <anchorfile>os_8h.html</anchorfile>
+      <anchor>a63f2e19ce36089fbdd99a7a46c62afbe</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -486,13 +513,18 @@
     <title>TSPSG ChangeLog</title>
     <filename>changelog</filename>
     <docanchor file="changelog">cl_b100_i</docanchor>
+    <docanchor file="changelog">cl_b145_c</docanchor>
     <docanchor file="changelog">cl_b100_w</docanchor>
     <docanchor file="changelog">cl_toc</docanchor>
     <docanchor file="changelog">cl_b42_f</docanchor>
+    <docanchor file="changelog">cl_b145_i</docanchor>
     <docanchor file="changelog">cl_b100</docanchor>
+    <docanchor file="changelog">cl_b145_w</docanchor>
     <docanchor file="changelog">cl_b42</docanchor>
     <docanchor file="changelog">cl_b100_b</docanchor>
     <docanchor file="changelog">cl_b100_c</docanchor>
+    <docanchor file="changelog">cl_b145_b</docanchor>
+    <docanchor file="changelog">cl_b145</docanchor>
   </compound>
   <compound kind="page">
     <name>install</name>
@@ -513,10 +545,11 @@
     <docanchor file="install">i_s44</docanchor>
     <docanchor file="install">i_s45</docanchor>
     <docanchor file="install">i_s46</docanchor>
+    <docanchor file="install">i_s47</docanchor>
+    <docanchor file="install">i_s441</docanchor>
     <docanchor file="install">i_s1</docanchor>
-    <docanchor file="install">i_s431</docanchor>
+    <docanchor file="install">i_s442</docanchor>
     <docanchor file="install">i_s2</docanchor>
-    <docanchor file="install">i_s432</docanchor>
     <docanchor file="install">i_s3</docanchor>
     <docanchor file="install">i_s4</docanchor>
     <docanchor file="install">i_toc</docanchor>

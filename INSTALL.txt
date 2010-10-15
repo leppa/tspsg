@@ -11,14 +11,15 @@ TABLE OF CONTENTS:
   2. ASSUMPTIONS
   3. SUPPORTED PLATFORMS
   4. BUILDING AND INSTALLATION
-     4.1. GENERAL PROCEDURE
-     4.2. LINUX/UNIX
-     4.3. WINDOWS
-          4.3.1. USING MINGW
-          4.3.2. USING VISUAL STUDIO
-     4.4. WINDOWS MOBILE
-     4.5. SYMBIAN
-     4.6. OTHER PLATFORMS, SUPPORTED BY QT
+     4.1. COMMON INFORMATION
+     4.2. GENERAL PROCEDURE
+     4.3. LINUX/UNIX/BSD
+     4.4. WINDOWS
+          4.4.1. USING MINGW
+          4.4.2. USING VISUAL STUDIO
+     4.5. WINDOWS MOBILE
+     4.6. SYMBIAN
+     4.7. OTHER PLATFORMS, SUPPORTED BY QT
   5. UNINSTALLATION
   6. TROUBLESHOOTING
      6.1. WINDRES.EXE CRASH
@@ -76,7 +77,50 @@ TSPSG is oficially supported and tested on the following platforms:
 4. BUILDING AND INSTALLATION
 ============================
 
-4.1 GENERAL PROCEDURE
+4.1. COMMON INFORMATION
+-----------------------
+
+To be able ot build TSPSG you need to have the following Qt modules:
+QtCore, QtGui and QtSvg. The first two are required, the last one is
+optional. To get support for additional image formats (i.e., JPEG and
+TIFF) you'll additionally need corresponding Qt imageformats plugins.
+
+If you want to build TSPSG without SVG support add nosvg to qmake
+CONFIG parameter, so that qmake command will typically be:
+
+    qmake CONFIG+=release CONFIG+=nosvg
+
+This way you will not depend on QtSvg module but will not be able to
+export solution graph in SVG format.
+
+
+TSPSG uses qmake PREFIX parameter to determine installation path for
+make install command. If you don't specify it when running qmake, it
+will be assigned the default value depending on the platform:
+
+ Platform          | Default PREFIX value
+-------------------|-------------------------------------
+ Linux/UNIX/BSD    | /usr
+-------------------|-------------------------------------
+ Windows           | %PROGRAMFILES% environment variable
+                   | (usually, it is "C:\Program Files")
+-------------------|-------------------------------------
+ Windows CE/Mobile | "\Program Files"
+-------------------|-------------------------------------
+ Symbian           | <ignored>
+-------------------|-------------------------------------
+
+NOTE: Please, note that there are no installation and/or packaging
+rules for MacOS and other platforms not mentioned in this table.
+
+
+By default, TSPSG uses precompiled header when being built. If you
+experience problems with it you may add CONFIG+=nopch parameter to
+qmake to disable the generation and use of the precompiled header.
+
+
+4.2. GENERAL PROCEDURE
+----------------------
 
 On most platforms the general building and installation procedure is:
 
@@ -93,8 +137,8 @@ NOTE: It is important to run lrelease before qmake, or qmake will not
 "pick up" the translations when generating installation rules.
 
 
-4.2. LINUX/UNIX
----------------
+4.3. LINUX/UNIX/BSD
+-------------------
 
 Open a shell, navigate to the directory where you have TSPSG source
 downloaded and type
@@ -124,17 +168,18 @@ or
 
 depending on your distribution.
 
-By default, executable will go to /usr/bin, COPYING and README will go
-to /usr/share/TSPSG, translations will go /usr/share/TSPSG/l10n, docs
-will go to /usr/share/doc/TSPSG-<VERSION>.
+The executable goes to <PREFIX>/bin; COPYING, ChangeLog.txt, README.txt
+and INSTALL.txt go to <PREFIX>/share/doc/TSPSG-<VERSION>.
 
 
-4.3. WINDOWS
+4.4. WINDOWS
 ------------
+
+TSPSG will be installed to <PREFIX>\TSPSG folder.
 
 NOTE: Please, read the Section 7 after reading this Section.
 
-4.3.1. USING MINGW
+4.4.1. USING MINGW
 ~~~~~~~~~~~~~~~~~~
 
 Unpack the downloaded source code of TSPSG with your favourite
@@ -152,11 +197,8 @@ If make step finished without errors you can install TSPSG by running
 
     mingw32-make install
 
-TSPSG will be installed to %PROGRAMFILES%\TSPSG folder (usually, it is
-C:\Program Files\TSPSG).
 
-
-4.3.2. USING VISUAL STUDIO
+4.4.2. USING VISUAL STUDIO
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Unpack the downloaded source code of TSPSG with your favourite
@@ -172,11 +214,8 @@ If make step finished without errors you can install TSPSG by running
 
     nmake install
 
-TSPSG will be installed to %PROGRAMFILES%\TSPSG folder (usually, it is
-C:\Program Files\TSPSG).
 
-
-4.4. WINDOWS CE/MOBILE
+4.5. WINDOWS CE/MOBILE
 ----------------------
 
 Unpack the downloaded source code of TSPSG with your favourite
@@ -207,7 +246,7 @@ and copy the following files to it:
     subfolder.
 
 
-4.5. SYMBIAN
+4.6. SYMBIAN
 ------------
 
 Unpack the downloaded source code of TSPSG with your favourite
@@ -248,7 +287,7 @@ the installation of self-signed files in the phone settings. Please,
 reffer to your phone manual on the instructions how to do this.
 
 
-4.6. OTHER PLATFORMS, SUPPORTED BY QT
+4.7. OTHER PLATFORMS, SUPPORTED BY QT
 -------------------------------------
 
 While TSPSG is oficially supported only on Linux, Windows and Windows

@@ -51,14 +51,18 @@
  * \brief TSPSG build status
  */
 #ifdef DEBUG
-	#ifndef BUILD_STATUS
+	#ifndef BUILD_STATUS_TYPE
 		#define BUILD_STATUS (debug build BUILD_NUMBER)
+	#else
+		#define BUILD_STATUS (BUILD_STATUS_TYPE BUILD_STATUS_NUMBER)
 	#endif
 #else
 	#if !defined(TSPSG_RELEASE_BUILD)
 		#define BUILD_STATUS (nightly build)
-	#elif !defined(BUILD_STATUS)
+	#elif !defined(BUILD_STATUS_TYPE)
 		#define BUILD_STATUS (build BUILD_NUMBER)
+	#else
+		#define BUILD_STATUS (BUILD_STATUS_TYPE BUILD_STATUS_NUMBER)
 	#endif // TSPSG_RELEASE_BUILD
 #endif // DEBUG
 

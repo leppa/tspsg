@@ -36,22 +36,18 @@ BUILD_VERSION_MINOR = 1
 BUILD_RELEASE = 3
 
 # These are only defined on releases
-#DEFINES += TSPSG_RELEASE_BUILD
-#!symbian {
-#	DEFINES += BUILD_STATUS="\"(alpha 2)\""
-#} else {
-#	# Symbian doesn't handle spaces in defines well
-#	DEFINES += BUILD_STATUS="(alpha2)"
-#}
+DEFINES += TSPSG_RELEASE_BUILD
+DEFINES += BUILD_STATUS_TYPE=beta
+DEFINES += BUILD_STATUS_NUMBER=1
 
-#REVISION = 100
-REVISION = $$system(svnversion)
-isEmpty(REVISION)|eval(REVISION=="exported") {
-	REVISION = 0
-} else {
-	REVISION = $$replace(REVISION,":","")
-	REVISION = $$replace(REVISION,"M","")
-}
+REVISION = 145
+#REVISION = $$system(svnversion)
+#isEmpty(REVISION)|eval(REVISION=="exported") {
+#	REVISION = 0
+#} else {
+#	REVISION = $$replace(REVISION,":","")
+#	REVISION = $$replace(REVISION,"M","")
+#}
 win32-msvc*|wincewm* {
 	VERSION = $$sprintf("%1.%2",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR)
 } else {

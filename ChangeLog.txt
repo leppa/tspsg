@@ -3,6 +3,54 @@
 ===========================================
 
 
+TSPSG v0.1.3 beta 1 (build 145)
+===============================
+
+WHAT'S NEW
+----------
+
+  + Solution graph generation.
+  + Support for switching between available Qt styles.
+  + Toolbar customization support (only on desktop platforms).
+  + An option to remember last used directory when saving and opening.
+  + Automatically check for updates at the given interval option (only
+    on Windows platform at this moment).
+
+
+IMPROVEMENTS
+------------
+
+  + Improved the solution output generation algorithm. It is now about
+    1.65 times faster.
+  + Dragging and dropping task file on the main window now opens it.
+  + The deafult output font is now DejaVu LGC Sans Mono and it comes
+    "embedded" in the executable.
+  + The current desktop icon theme in Linux is now used if it follows
+    freedesktop.org icon theme and icon naming spesifications.
+  + Translations are now "embedded" in the executable but may be
+    overrided by placing files with the same names in l10n folder.
+  + Support for Windows 7 Taskbar Extensions (namely, Progress Bars).
+
+
+CHANGES
+-------
+
+  * About dialog was "tabified". Added GPL License and Credits tabs.
+  * Platform dependent settings (e.g. paths) are saved per-platform.
+  * 32x32 icons are used on handheld platforms. This slightly decreases
+    the size of handheld versions. Desktop icons are still 128x128.
+  * Windows binary builds were moved from MSVC to Mingw-w64: no more
+    Visual C++ Runtime dependency.
+
+
+BUGFIXES
+--------
+
+  - Solution related actions not disabled when solution is canceled.
+  - "Autosize" setting was never saved and was always on.
+
+
+
 TSPSG v0.1.2 alpha 2 (build 100)
 ================================
 

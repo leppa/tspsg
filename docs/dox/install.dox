@@ -18,11 +18,12 @@ steps necessary to compile and run \b TSPSG.
      -# \ref i_s41
      -# \ref i_s42
      -# \ref i_s43
-        -# \ref i_s431
-        -# \ref i_s432
      -# \ref i_s44
+        -# \ref i_s441
+        -# \ref i_s442
      -# \ref i_s45
      -# \ref i_s46
+     -# \ref i_s47
   -# \ref i_s5
   -# \ref i_s6
      -# \ref i_s61
@@ -49,7 +50,7 @@ prerequisites installed.
 
 Also, the following assumptions are made:
 
-  - For \b Linux/UNIX: \c lrelease and \c qmake are avilable in \c $PATH.
+  - For \b Linux/UNIX/BSD: \c lrelease and \c qmake are avilable in \c $PATH.
   - For \b Windows (\em minGW) and \b Symbian: you have installed <em>Qt SDK</em> or
     prebuilt libraries and have Start Menu items for Qt tools.
   - For \b Windows (<em>Visual Studio</em>) and <b>Windows Mobile</b>: the <em>Qt libraries</em>
@@ -73,6 +74,46 @@ Also, the following assumptions are made:
 
 \subsection i_s41 GENERAL INSTALLATION PROCEDURE
 
+To be able ot build \b TSPSG you need to have the following Qt modules:
+\em QtCore, \em QtGui and \em QtSvg. The first two are required, the last one is
+optional. To get support for additional image formats (i.e., \b JPEG and
+\b TIFF) you'll additionally need corresponding <em>Qt imageformats</em> plugins.
+
+If you want to build \b TSPSG without \b SVG support add \c nosvg to \c qmake
+\c CONFIG parameter, so that qmake command will typically be:
+
+\verbatim
+qmake CONFIG+=release CONFIG+=nosvg
+\endverbatim
+
+This way you will not depend on \em QtSvg module but will not be able to
+export solution graph in \b SVG format.
+
+
+\b TSPSG uses \c qmake \c PREFIX parameter to determine installation path for
+make install command. If you don't specify it when running \c qmake, it
+will be assigned the default value depending on the platform:
+
+<table>
+<tr><th>Platform</th><th>Default \c PREFIX value</th></tr>
+<tr><td>\b Linux/UNIX/BSD</td><td>\c /usr</td></tr>
+<tr><td>\b Windows</td><td></td>\c \%PROGRAMFILES\% environment variable (usually, it is <tt>C:\\Program Files</tt>)</tr>
+<tr><td><b>Windows CE/Mobile</b></td><td><tt>\\Program Files</tt></td></tr>
+<tr><td>\b Symbian</td><td></td><em>\<ignored></em></tr>
+</table>
+
+\note Please, note that there are no installation and/or packaging
+rules for \b MacOS and other platforms not mentioned in this table.
+
+
+By default, \b TSPSG uses precompiled header when being built. If you
+experience problems with it you may add \c CONFIG+=nopch parameter to
+\c qmake to disable the generation and use of the precompiled header.
+
+<hr>
+
+\subsection i_s42 GENERAL INSTALLATION PROCEDURE
+
 On most platforms the general building and installation procedure is:
 
   -# Run \c lrelease to generate binary translation files (.qm) from the
@@ -86,7 +127,7 @@ On most platforms the general building and installation procedure is:
 
 <hr>
 
-\subsection i_s42 LINUX/UNIX
+\subsection i_s43 LINUX/UNIX/BSD
 
 Open a shell, navigate to the directory where you have \b TSPSG source
 downloaded and type
@@ -125,17 +166,18 @@ make install
 
 depending on your distribution.
 
-By default, executable will go to \c /usr/bin, \c COPYING.txt and \c README.txt will go
-to \c /usr/share/TSPSG, translations will go \c /usr/share/TSPSG/l10n, all docs
-will go to <tt>/usr/share/doc/TSPSG-\<VERSION></tt>.
+The executable goes to \c \<PREFIX>/bin; \c COPYING, \c ChangeLog.txt, \c README.txt
+and \c INSTALL.txt go to \c \<PREFIX>/share/doc/TSPSG-\<VERSION>.
 
 <hr>
 
-\subsection i_s43 WINDOWS
+\subsection i_s44 WINDOWS
+
+\b TSPSG will be installed to \c \<PREFIX>\\TSPSG folder.
 
 \note Please, read the section \ref i_s7 after reading this section.
 
-\subsubsection i_s431 USING MINGW
+\subsubsection i_s441 USING MINGW
 
 Unpack the downloaded source code of \b TSPSG with your favourite
 compression software. Now launch the <em>Qt Command Prompt</em> from the Start
@@ -156,11 +198,8 @@ If make step finished without errors you can install \b TSPSG by running
 mingw32-make install
 \endverbatim
 
-\b TSPSG will be installed to \c \%PROGRAMFILES\%\\TSPSG folder (usually, it is
-<tt>C:\\Program Files\\TSPSG</tt>).
 
-
-\subsubsection i_s432 USING VISUAL STUDIO
+\subsubsection i_s442 USING VISUAL STUDIO
 
 Unpack the downloaded source code of \b TSPSG with your favourite
 compression software. Now launch the <em>Visual Studio Command Prompt</em> from
@@ -179,12 +218,9 @@ If make step finished without errors you can install \b TSPSG by running
 nmake install
 \endverbatim
 
-\b TSPSG will be installed to \c \%PROGRAMFILES\%\\TSPSG folder (usually, it is
-<tt>C:\\Program Files\\TSPSG</tt>).
-
 <hr>
 
-\subsection i_s44 WINDOWS CE/MOBILE
+\subsection i_s45 WINDOWS CE/MOBILE
 
 Unpack the downloaded source code of \b TSPSG with your favourite
 compression software. Now launch the <em>Visual Studio Command Prompt</em> from
@@ -214,7 +250,7 @@ and copy the following files to it:
 
 <hr>
 
-\section i_s45 SYMBIAN
+\section i_s46 SYMBIAN
 
 Unpack the downloaded source code of \b TSPSG with your favourite
 compression software. Now launch the <em>Qt for Symbian Command Prompt</em> from
@@ -261,7 +297,7 @@ reffer to your phone manual on the instructions how to do this.
 
 <hr>
 
-\subsection i_s46 OTHER PLATFORMS, SUPPORTED BY QT
+\subsection i_s47 OTHER PLATFORMS, SUPPORTED BY QT
 
 While \b TSPSG is oficially supported only on \b Linux, \b Windows and <b>Windows
 Mobile</b> it should be possible to compile it on any platform, supported

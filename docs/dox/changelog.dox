@@ -8,6 +8,11 @@ $URL$
 
 \section cl_toc Table of Contents
 
+  -# \ref cl_b145
+     -# \ref cl_b145_w
+     -# \ref cl_b145_i
+     -# \ref cl_b145_c
+     -# \ref cl_b145_b
   -# \ref cl_b100
      -# \ref cl_b100_w
      -# \ref cl_b100_i
@@ -17,6 +22,49 @@ $URL$
      -# \ref cl_b42_f
 
 \attention This ChangeLog is updated only on releases.
+
+<hr>
+
+\section cl_b145 TSPSG v0.1.3 beta 1 (build 145)
+
+\subsection cl_b145_w WHAT'S NEW
+
+  - Solution graph generation.
+  - Support for switching between available Qt styles.
+  - Toolbar customization support (only on desktop platforms).
+  - An option to remember last used directory when saving and opening.
+  - Automatically check for updates at the given interval option (only
+    on Windows platform at this moment).
+
+
+\subsection cl_b145_i IMPROVEMENTS
+
+  - Improved the solution output generation algorithm. It is now about
+    1.65 times faster.
+  - Dragging and dropping task file on the main window now opens it.
+  - The deafult output font is now DejaVu LGC Sans Mono and it comes
+    "embedded" in the executable.
+  - The current desktop icon theme in Linux is now used if it follows
+    freedesktop.org icon theme and icon naming spesifications.
+  - Translations are now "embedded" in the executable but may be
+    overrided by placing files with the same names in l10n folder.
+  - Support for Windows 7 Taskbar Extensions (namely, Progress Bars).
+
+
+\subsection cl_b145_c CHANGES
+
+  - About dialog was "tabified". Added GPL License and Credits tabs.
+  - Platform dependent settings (e.g. paths) are saved per-platform.
+  - 32x32 icons are used on handheld platforms. This slightly decreases
+    the size of handheld versions. Desktop icons are still 128x128.
+  - \b Windows binary builds were moved from \b MSVC to \b Mingw-w64: no more
+    <em>Visual C++ Runtime</em> dependency.
+
+
+\subsection cl_b145_b BUGFIXES
+
+  - Solution related actions not disabled when solution is canceled.
+  - "Autosize" setting was never saved and was always on.
 
 <hr>
 
