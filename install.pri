@@ -21,7 +21,7 @@ INSTALLS += target share docs # l10n
 #   - translations go to /usr/share/TSPSG/l10n
 #   - COPYING, ChangeLog.txt, README.txt and INSTALL.txt
 #     go to /usr/share/doc/TSPSG-x.x.x
-unix:!macx:!symbian {
+unix:!macx:!symbian:!maemo* {
 	isEmpty(PREFIX) {
 		PREFIX = /usr
 	}

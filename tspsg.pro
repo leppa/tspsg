@@ -33,25 +33,26 @@ QMAKE_TARGET_COPYRIGHT = Copyright © 2007-2010 Oleksii "Lёppa" Serdiuk <contac
 # Versioning
 BUILD_VERSION_MAJOR = 0
 BUILD_VERSION_MINOR = 1
-BUILD_RELEASE = 3
+BUILD_RELEASE = 4
 
 # These are only defined on releases
-DEFINES += TSPSG_RELEASE_BUILD
-DEFINES += BUILD_STATUS_TYPE=beta
-DEFINES += BUILD_STATUS_NUMBER=1
+#DEFINES += TSPSG_RELEASE_BUILD
+#DEFINES += BUILD_STATUS_TYPE=beta
+#DEFINES += BUILD_STATUS_NUMBER=1
 
-REVISION = 145
-#REVISION = $$system(svnversion)
-#isEmpty(REVISION)|eval(REVISION=="exported") {
-#	REVISION = 0
-#} else {
-#	REVISION = $$replace(REVISION,":","")
-#	REVISION = $$replace(REVISION,"M","")
-#}
-win32-msvc*|wincewm* {
-	VERSION = $$sprintf("%1.%2",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR)
+#REVISION = 145
+REVISION = $$system(svnversion)
+isEmpty(REVISION)|isEqual(REVISION,exported) {
+	REVISION = 0
 } else {
-	VERSION = $$sprintf("%1.%2.%3.%4",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE,$$REVISION)
+	REVISION = $$replace(REVISION,":","")
+	REVISION = $$replace(REVISION,"M","")
+}
+SHORT_VERSION = $$sprintf("%1.%2",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR)
+win32-msvc*|wincewm* {
+	VERSION = $$SHORT_VERSION
+} else {
+	VERSION = $$sprintf("%1.%2",$$SHORT_VERSION,$$BUILD_RELEASE)
 }
 
 DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
