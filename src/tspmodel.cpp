@@ -28,9 +28,9 @@
  * \param parent The parent of the table model.
  */
 CTSPModel::CTSPModel(QObject *parent)
-	: QAbstractTableModel(parent), nCities(0)
+    : QAbstractTableModel(parent), nCities(0)
 {
-	settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
+    settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
 }
 
 /*!
@@ -40,11 +40,11 @@ CTSPModel::CTSPModel(QObject *parent)
  */
 void CTSPModel::clear()
 {
-	for (int r = 0; r < nCities; r++)
-		for (int c = 0; c < nCities; c++)
-			if (r != c)
-				table[r][c] = 0;
-	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+    for (int r = 0; r < nCities; r++)
+        for (int c = 0; c < nCities; c++)
+            if (r != c)
+                table[r][c] = 0;
+    emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
 }
 
 /*!
@@ -57,7 +57,7 @@ void CTSPModel::clear()
  */
 int CTSPModel::columnCount(const QModelIndex &) const
 {
-	return nCities;
+    return nCities;
 }
 
 /*!
@@ -70,26 +70,26 @@ int CTSPModel::columnCount(const QModelIndex &) const
  */
 QVariant CTSPModel::data(const QModelIndex &index, int role) const
 {
-	if (!index.isValid())
-		return QVariant();
-	if (role == Qt::TextAlignmentRole)
-		return int(Qt::AlignCenter);
-	else if (role == Qt::FontRole) {
+    if (!index.isValid())
+        return QVariant();
+    if (role == Qt::TextAlignmentRole)
+        return int(Qt::AlignCenter);
+    else if (role == Qt::FontRole) {
 QFont font;
-		font.setBold(true);
-		return font;
-	} else if (role == Qt::DisplayRole || role == Qt::EditRole) {
-		if (index.row() < nCities && index.column() < nCities)
-			if (table.at(index.row()).at(index.column()) == INFINITY)
-				return tr(INFSTR);
-			else
-				//! \hack HACK: Converting to string to prevent spinbox in edit mode
-				return QVariant(table.at(index.row()).at(index.column())).toString();
-		else
-			return QVariant();
-	} else if (role == Qt::UserRole)
-		return table[index.row()][index.column()];
-	return QVariant();
+        font.setBold(true);
+        return font;
+    } else if (role == Qt::DisplayRole || role == Qt::EditRole) {
+        if (index.row() < nCities && index.column() < nCities)
+            if (table.at(index.row()).at(index.column()) == INFINITY)
+                return tr(INFSTR);
+            else
+                //! \hack HACK: Converting to string to prevent spinbox in edit mode
+                return QVariant(table.at(index.row()).at(index.column())).toString();
+        else
+            return QVariant();
+    } else if (role == Qt::UserRole)
+        return table[index.row()][index.column()];
+    return QVariant();
 }
 
 /*!
@@ -100,9 +100,9 @@ QFont font;
 Qt::ItemFlags CTSPModel::flags(const QModelIndex &index) const
 {
 Qt::ItemFlags flags = QAbstractItemModel::flags(index);
-	if (index.row() != index.column())
-		flags |= Qt::ItemIsEditable;
-	return flags;
+    if (index.row() != index.column())
+        flags |= Qt::ItemIsEditable;
+    return flags;
 }
 
 /*!
@@ -116,13 +116,13 @@ Qt::ItemFlags flags = QAbstractItemModel::flags(index);
  */
 QVariant CTSPModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-	if (role == Qt::DisplayRole) {
-		if (orientation == Qt::Vertical)
-			return tr("City %1").arg(section + 1);
-		else
-			return tr("%1").arg(section + 1);
-	}
-	return QVariant();
+    if (role == Qt::DisplayRole) {
+        if (orientation == Qt::Vertical)
+            return tr("City %1").arg(section + 1);
+        else
+            return tr("%1").arg(section + 1);
+    }
+    return QVariant();
 }
 
 /*!
@@ -134,44 +134,44 @@ QVariant CTSPModel::headerData(int section, Qt::Orientation orientation, int rol
  */
 bool CTSPModel::loadTask(const QString &fname)
 {
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 QFile f(fname);
-	if (!f.open(QIODevice::ReadOnly)) {
-		QApplication::restoreOverrideCursor();
-		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), QString(tr("Unable to open task file.\nError: %1")).arg(f.errorString()));
-		QApplication::restoreOverrideCursor();
-		return false;
-	}
+    if (!f.open(QIODevice::ReadOnly)) {
+        QApplication::restoreOverrideCursor();
+        QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), QString(tr("Unable to open task file.\nError: %1")).arg(f.errorString()));
+        QApplication::restoreOverrideCursor();
+        return false;
+    }
 QDataStream ds(&f);
-	ds.setVersion(QDataStream::Qt_4_4);
+    ds.setVersion(QDataStream::Qt_4_4);
 quint32 sig;
-	ds >> sig;
-	if (loadError(ds.status())) {
-		return false;
-	}
-	ds.device()->reset();
-	if (sig == TSPT) {
-		if (!loadTSPT(&ds)) {
-			f.close();
-			return false;
-		}
-	} else if ((sig >> 16) == ZKT) {
-		if (!loadZKT(&ds)) {
-			f.close();
-			return false;
-		}
-	} else {
-		f.close();
-		QApplication::restoreOverrideCursor();
-		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unknown file format or file is corrupted."));
-		QApplication::restoreOverrideCursor();
-		return false;
-	}
-	f.close();
-	QApplication::restoreOverrideCursor();
-	return true;
+    ds >> sig;
+    if (loadError(ds.status())) {
+        return false;
+    }
+    ds.device()->reset();
+    if (sig == TSPT) {
+        if (!loadTSPT(&ds)) {
+            f.close();
+            return false;
+        }
+    } else if ((sig >> 16) == ZKT) {
+        if (!loadZKT(&ds)) {
+            f.close();
+            return false;
+        }
+    } else {
+        f.close();
+        QApplication::restoreOverrideCursor();
+        QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unknown file format or file is corrupted."));
+        QApplication::restoreOverrideCursor();
+        return false;
+    }
+    f.close();
+    QApplication::restoreOverrideCursor();
+    return true;
 }
 
 /*!
@@ -182,7 +182,7 @@ quint32 sig;
  */
 quint16 CTSPModel::numCities() const
 {
-	return nCities;
+    return nCities;
 }
 
 /*!
@@ -196,17 +196,17 @@ void CTSPModel::randomize()
 {
 int randMin = settings->value("Task/RandMin", DEF_RAND_MIN).toInt();
 int randMax = settings->value("Task/RandMax", DEF_RAND_MAX).toInt();
-	if (settings->value("Task/SymmetricMode", DEF_SYMMETRIC_MODE).toBool()) {
-		for (int r = 0; r < nCities; r++)
-			for (int c = 0; c < r; c++)
-				table[c][r] = table[r][c] = rand(randMin, randMax);
-	} else {
-		for (int r = 0; r < nCities; r++)
-			for (int c = 0; c < nCities; c++)
-				if (r != c)
-					table[r][c] = rand(randMin, randMax);
-	}
-	emit dataChanged(index(0,0), index(nCities - 1, nCities - 1));
+    if (settings->value("Task/SymmetricMode", DEF_SYMMETRIC_MODE).toBool()) {
+        for (int r = 0; r < nCities; r++)
+            for (int c = 0; c < r; c++)
+                table[c][r] = table[r][c] = rand(randMin, randMax);
+    } else {
+        for (int r = 0; r < nCities; r++)
+            for (int c = 0; c < nCities; c++)
+                if (r != c)
+                    table[r][c] = rand(randMin, randMax);
+    }
+    emit dataChanged(index(0,0), index(nCities - 1, nCities - 1));
 }
 
 /*!
@@ -219,7 +219,7 @@ int randMax = settings->value("Task/RandMax", DEF_RAND_MAX).toInt();
  */
 int CTSPModel::rowCount(const QModelIndex &) const
 {
-	return nCities;
+    return nCities;
 }
 
 /*!
@@ -231,84 +231,84 @@ int CTSPModel::rowCount(const QModelIndex &) const
  */
 bool CTSPModel::saveTask(const QString &fname)
 {
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 QFile f(fname);
-	if (!f.open(QIODevice::WriteOnly)) {
-		QApplication::restoreOverrideCursor();
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), QString(tr("Unable to create task file.\nError: %1\nMaybe, file is read-only?")).arg(f.errorString()));
-		f.remove();
-		return false;
-	}
+    if (!f.open(QIODevice::WriteOnly)) {
+        QApplication::restoreOverrideCursor();
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), QString(tr("Unable to create task file.\nError: %1\nMaybe, file is read-only?")).arg(f.errorString()));
+        f.remove();
+        return false;
+    }
 QDataStream ds(&f);
-	ds.setVersion(QDataStream::Qt_4_4);
-	if (f.error() != QFile::NoError) {
-		QApplication::restoreOverrideCursor();
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
-		f.close();
-		f.remove();
-		return false;
-	}
-	// File signature
-	ds << TSPT;
-	if (f.error() != QFile::NoError) {
-		QApplication::restoreOverrideCursor();
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
-		f.close();
-		f.remove();
-		return false;
-	}
-	// File version
-	ds << TSPT_VERSION;
-	if (f.error() != QFile::NoError) {
-		QApplication::restoreOverrideCursor();
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
-		f.close();
-		f.remove();
-		return false;
-	}
-	// File metadata version
-	ds << TSPT_META_VERSION;
-	if (f.error() != QFile::NoError) {
-		QApplication::restoreOverrideCursor();
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
-		f.close();
-		f.remove();
-		return false;
-	}
-	// Metadata
-	ds << OSID;
-	if (f.error() != QFile::NoError) {
-		QApplication::restoreOverrideCursor();
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
-		f.close();
-		f.remove();
-		return false;
-	}
-	// Number of cities
-	ds << nCities;
-	if (f.error() != QFile::NoError) {
-		QApplication::restoreOverrideCursor();
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
-		f.close();
-		f.remove();
-		return false;
-	}
-	// Costs
-	for (int r = 0; r < nCities; r++)
-		for (int c = 0; c < nCities; c++)
-			if (r != c) {
-				ds << static_cast<double>(table[r][c]); // We cast to double because double may be float on some platforms and we store double values in file
-				if (f.error() != QFile::NoError) {
-					QApplication::restoreOverrideCursor();
-					QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
-					f.close();
-					f.remove();
-					return false;
-				}
-			}
-	f.close();
-	QApplication::restoreOverrideCursor();
-	return true;
+    ds.setVersion(QDataStream::Qt_4_4);
+    if (f.error() != QFile::NoError) {
+        QApplication::restoreOverrideCursor();
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+        f.close();
+        f.remove();
+        return false;
+    }
+    // File signature
+    ds << TSPT;
+    if (f.error() != QFile::NoError) {
+        QApplication::restoreOverrideCursor();
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+        f.close();
+        f.remove();
+        return false;
+    }
+    // File version
+    ds << TSPT_VERSION;
+    if (f.error() != QFile::NoError) {
+        QApplication::restoreOverrideCursor();
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+        f.close();
+        f.remove();
+        return false;
+    }
+    // File metadata version
+    ds << TSPT_META_VERSION;
+    if (f.error() != QFile::NoError) {
+        QApplication::restoreOverrideCursor();
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+        f.close();
+        f.remove();
+        return false;
+    }
+    // Metadata
+    ds << OSID;
+    if (f.error() != QFile::NoError) {
+        QApplication::restoreOverrideCursor();
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+        f.close();
+        f.remove();
+        return false;
+    }
+    // Number of cities
+    ds << nCities;
+    if (f.error() != QFile::NoError) {
+        QApplication::restoreOverrideCursor();
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+        f.close();
+        f.remove();
+        return false;
+    }
+    // Costs
+    for (int r = 0; r < nCities; r++)
+        for (int c = 0; c < nCities; c++)
+            if (r != c) {
+                ds << static_cast<double>(table[r][c]); // We cast to double because double may be float on some platforms and we store double values in file
+                if (f.error() != QFile::NoError) {
+                    QApplication::restoreOverrideCursor();
+                    QMessageBox::critical(QApplication::activeWindow(), tr("Task Save"), tr("Unable to save task.\nError: %1").arg(f.errorString()));
+                    f.close();
+                    f.remove();
+                    return false;
+                }
+            }
+    f.close();
+    QApplication::restoreOverrideCursor();
+    return true;
 }
 
 /*!
@@ -322,26 +322,26 @@ QDataStream ds(&f);
  */
 bool CTSPModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-	if (!index.isValid())
-		return false;
-	if (role == Qt::EditRole && index.row() != index.column()) {
-		if (value.toString().compare(INFSTR) == 0)
-			table[index.row()][index.column()] = INFINITY;
-		else {
+    if (!index.isValid())
+        return false;
+    if (role == Qt::EditRole && index.row() != index.column()) {
+        if (value.toString().compare(INFSTR) == 0)
+            table[index.row()][index.column()] = INFINITY;
+        else {
 bool ok;
 double tmp = value.toDouble(&ok);
-			if (!ok || tmp < 0)
-				return false;
-			else {
-				table[index.row()][index.column()] = tmp;
-				if (settings->value("Task/SymmetricMode", DEF_SYMMETRIC_MODE).toBool())
-					table[index.column()][index.row()] = tmp;
-			}
-		}
-		emit dataChanged(index,index);
-		return true;
-	}
-	return false;
+            if (!ok || tmp < 0)
+                return false;
+            else {
+                table[index.row()][index.column()] = tmp;
+                if (settings->value("Task/SymmetricMode", DEF_SYMMETRIC_MODE).toBool())
+                    table[index.column()][index.row()] = tmp;
+            }
+        }
+        emit dataChanged(index,index);
+        return true;
+    }
+    return false;
 }
 
 /*!
@@ -352,18 +352,18 @@ double tmp = value.toDouble(&ok);
  */
 void CTSPModel::setNumCities(int n)
 {
-	if (n == nCities)
-		return;
-	emit layoutAboutToBeChanged();
-	table.resize(n);
-	for (int k = 0; k < n; k++) {
-		table[k].resize(n);
-	}
-	if (n > nCities)
-		for (int k = nCities; k < n; k++)
-			table[k][k] = INFINITY;
-	nCities = n;
-	emit layoutChanged();
+    if (n == nCities)
+        return;
+    emit layoutAboutToBeChanged();
+    table.resize(n);
+    for (int k = 0; k < n; k++) {
+        table[k].resize(n);
+    }
+    if (n > nCities)
+        for (int k = nCities; k < n; k++)
+            table[k][k] = INFINITY;
+    nCities = n;
+    emit layoutChanged();
 }
 
 /* Privates **********************************************************/
@@ -371,141 +371,141 @@ void CTSPModel::setNumCities(int n)
 inline bool CTSPModel::loadError(QDataStream::Status status)
 {
 QString err;
-	if (status == QDataStream::Ok)
-		return false;
-	else if (status == QDataStream::ReadPastEnd)
-		err = tr("Unexpected end of file.");
-	else if (status == QDataStream::ReadCorruptData)
-		err = tr("Corrupt data read. File possibly corrupted.");
-	else
-		err = tr("Unknown error.");
-	QApplication::restoreOverrideCursor();
-	QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-	QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + err);
-	QApplication::restoreOverrideCursor();
-	return true;
+    if (status == QDataStream::Ok)
+        return false;
+    else if (status == QDataStream::ReadPastEnd)
+        err = tr("Unexpected end of file.");
+    else if (status == QDataStream::ReadCorruptData)
+        err = tr("Corrupt data read. File possibly corrupted.");
+    else
+        err = tr("Unknown error.");
+    QApplication::restoreOverrideCursor();
+    QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+    QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + err);
+    QApplication::restoreOverrideCursor();
+    return true;
 }
 
 bool CTSPModel::loadTSPT(QDataStream *ds)
 {
-	// Skipping signature
-	ds->skipRawData(sizeof(TSPT));
-	if (loadError(ds->status()))
-		return false;
-	// File version
+    // Skipping signature
+    ds->skipRawData(sizeof(TSPT));
+    if (loadError(ds->status()))
+        return false;
+    // File version
 quint8 version;
-	*ds >> version;
-	if (loadError(ds->status()))
-		return false;
-	if (version > TSPT_VERSION) {
-		QApplication::restoreOverrideCursor();
-		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."));
-		QApplication::restoreOverrideCursor();
-		return false;
-	}
-	// Skipping metadata
-	ds->skipRawData(TSPT_META_SIZE);
-	if (loadError(ds->status()))
-		return false;
-	// Number of cities
+    *ds >> version;
+    if (loadError(ds->status()))
+        return false;
+    if (version > TSPT_VERSION) {
+        QApplication::restoreOverrideCursor();
+        QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."));
+        QApplication::restoreOverrideCursor();
+        return false;
+    }
+    // Skipping metadata
+    ds->skipRawData(TSPT_META_SIZE);
+    if (loadError(ds->status()))
+        return false;
+    // Number of cities
 quint16 size;
-	*ds >> size;
-	if (loadError(ds->status()))
-		return false;
-	if ((size < 3) || (size > MAX_NUM_CITIES)) {
-		QApplication::restoreOverrideCursor();
-		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."));
-		QApplication::restoreOverrideCursor();
-		return false;
-	}
-	if (nCities != size) {
-		setNumCities(size);
-		emit numCitiesChanged(size);
-	}
+    *ds >> size;
+    if (loadError(ds->status()))
+        return false;
+    if ((size < 3) || (size > MAX_NUM_CITIES)) {
+        QApplication::restoreOverrideCursor();
+        QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."));
+        QApplication::restoreOverrideCursor();
+        return false;
+    }
+    if (nCities != size) {
+        setNumCities(size);
+        emit numCitiesChanged(size);
+    }
 
 double x; // We need this as double may be float on some platforms and we store double values in file
-	// Travel costs
-	for (int r = 0; r < size; r++)
-		for (int c = 0; c < size; c++)
-			if (r != c) {
-				*ds >> x;
-				table[r][c] = x;
-				if (loadError(ds->status())) {
-					clear();
-					return false;
-				}
-			}
-	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
-	QApplication::restoreOverrideCursor();
-	return true;
+    // Travel costs
+    for (int r = 0; r < size; r++)
+        for (int c = 0; c < size; c++)
+            if (r != c) {
+                *ds >> x;
+                table[r][c] = x;
+                if (loadError(ds->status())) {
+                    clear();
+                    return false;
+                }
+            }
+    emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+    QApplication::restoreOverrideCursor();
+    return true;
 }
 
 bool CTSPModel::loadZKT(QDataStream *ds)
 {
-	// Skipping signature
-	ds->skipRawData(sizeof(ZKT));
-	if (loadError(ds->status()))
-		return false;
-	// File version
+    // Skipping signature
+    ds->skipRawData(sizeof(ZKT));
+    if (loadError(ds->status()))
+        return false;
+    // File version
 quint16 version;
-	ds->readRawData(reinterpret_cast<char *>(&version),2);
-	if (loadError(ds->status()))
-		return false;
-	if (version > ZKT_VERSION) {
-		QApplication::restoreOverrideCursor();
-		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."));
-		QApplication::restoreOverrideCursor();
-		return false;
-	}
-	// Number of cities
+    ds->readRawData(reinterpret_cast<char *>(&version),2);
+    if (loadError(ds->status()))
+        return false;
+    if (version > ZKT_VERSION) {
+        QApplication::restoreOverrideCursor();
+        QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."));
+        QApplication::restoreOverrideCursor();
+        return false;
+    }
+    // Number of cities
 quint8 size;
-	ds->readRawData(reinterpret_cast<char *>(&size),1);
-	if (loadError(ds->status()))
-		return false;
-	if ((size < 3) || (size > 5)) {
-		QApplication::restoreOverrideCursor();
-		QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-		QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."));
-		QApplication::restoreOverrideCursor();
-		return false;
-	}
-	if (nCities != size) {
-		setNumCities(size);
-		emit numCitiesChanged(size);
-	}
-	// Travel costs
+    ds->readRawData(reinterpret_cast<char *>(&size),1);
+    if (loadError(ds->status()))
+        return false;
+    if ((size < 3) || (size > 5)) {
+        QApplication::restoreOverrideCursor();
+        QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."));
+        QApplication::restoreOverrideCursor();
+        return false;
+    }
+    if (nCities != size) {
+        setNumCities(size);
+        emit numCitiesChanged(size);
+    }
+    // Travel costs
 double val;
-	for (int r = 0; r < 5; r++)
-		for (int c = 0; c < 5; c++)
-			if ((r != c) && (r < size) && (c < size)) {
-				ds->readRawData(reinterpret_cast<char *>(&val),8);
-				if (loadError(ds->status())) {
-					clear();
-					return false;
-				}
-				table[r][c] = val;
-			} else {
-				ds->skipRawData(8);
-				if (loadError(ds->status())) {
-					clear();
-					return false;
-				}
-			}
-	emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
-	QApplication::restoreOverrideCursor();
-	return true;
+    for (int r = 0; r < 5; r++)
+        for (int c = 0; c < 5; c++)
+            if ((r != c) && (r < size) && (c < size)) {
+                ds->readRawData(reinterpret_cast<char *>(&val),8);
+                if (loadError(ds->status())) {
+                    clear();
+                    return false;
+                }
+                table[r][c] = val;
+            } else {
+                ds->skipRawData(8);
+                if (loadError(ds->status())) {
+                    clear();
+                    return false;
+                }
+            }
+    emit dataChanged(index(0,0),index(nCities - 1,nCities - 1));
+    QApplication::restoreOverrideCursor();
+    return true;
 }
 
 inline double CTSPModel::rand(int min, int max) const
 {
 double r;
-	if (settings->value("Task/FractionalRandom", DEF_FRACTIONAL_RANDOM).toBool()) {
+    if (settings->value("Task/FractionalRandom", DEF_FRACTIONAL_RANDOM).toBool()) {
 double x = qPow(10, settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt());
-		r = (double)qRound((double)qrand() / RAND_MAX * (max - min) * x) / x;
-	} else
-		r = qRound((double)qrand() / RAND_MAX * (max - min));
-	return min + r;
+        r = (double)qRound((double)qrand() / RAND_MAX * (max - min) * x) / x;
+    } else
+        r = qRound((double)qrand() / RAND_MAX * (max - min));
+    return min + r;
 }

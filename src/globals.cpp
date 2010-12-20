@@ -26,10 +26,10 @@
 #ifdef Q_WS_WIN32
 void toggleStyle(QWidget *widget, bool enable)
 {
-	if (enable) {
-		widget->setStyleSheet(QString("%1 {background-color: %2; border-color: %3; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(widget->metaObject()->className(), widget->palette().window().color().name(), widget->palette().shadow().color().name()));
-	} else {
-		widget->setStyleSheet(QString());
-	}
+    if (enable) {
+        widget->setStyleSheet(QString("%1 {background-color: %2; border-color: %3; border-width: 1px; border-style: solid; border-radius: 3px;}").arg(widget->metaObject()->className(), widget->palette().window().color().name(), widget->palette().shadow().color().name()));
+    } else {
+        widget->setStyleSheet(QString());
+    }
 }
 #endif // Q_WS_WIN32

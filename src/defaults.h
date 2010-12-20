@@ -42,9 +42,9 @@
  * \brief Default for "Use native file dialog".
  */
 #ifdef Q_WS_WINCE_WM
-	#define DEF_USE_NATIVE_DIALOGS false
+#   define DEF_USE_NATIVE_DIALOGS false
 #else
-	#define DEF_USE_NATIVE_DIALOGS true
+#   define DEF_USE_NATIVE_DIALOGS true
 #endif // Q_WS_WINCE_WM
 //! Default for "Save main window state and position"
 #define DEF_SAVEPOS true
@@ -91,9 +91,9 @@
  * \brief Default font size
  */
 #ifdef Q_WS_S60
-	#define DEF_FONT_SIZE 8
+#   define DEF_FONT_SIZE 8
 #else
-	#define DEF_FONT_SIZE 10
+#   define DEF_FONT_SIZE 10
 #endif // Q_WS_S60
 //! Default text color
 #define DEF_TEXT_COLOR QPalette().color(QPalette::Text)

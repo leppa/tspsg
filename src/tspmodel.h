@@ -36,39 +36,39 @@
  */
 class CTSPModel: public QAbstractTableModel
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	CTSPModel(QObject *parent = 0);
-	void clear();
-	int columnCount(const QModelIndex &parent = QModelIndex()) const;
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-	Qt::ItemFlags flags(const QModelIndex &index) const;
-	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-	bool loadTask(const QString &fname);
-	quint16 numCities() const;
-	void randomize();
-	int rowCount(const QModelIndex &parent = QModelIndex()) const;
-	bool saveTask(const QString &fname);
-	bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
-	void setNumCities(int n);
+    CTSPModel(QObject *parent = 0);
+    void clear();
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+    bool loadTask(const QString &fname);
+    quint16 numCities() const;
+    void randomize();
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    bool saveTask(const QString &fname);
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    void setNumCities(int n);
 
 signals:
-	/*!
-	 * \brief This signal is emitted whenever the number of cities in the task changes.
-	 *
-	 * \sa setNumCities()
-	 */
-	void numCitiesChanged(int);
+    /*!
+     * \brief This signal is emitted whenever the number of cities in the task changes.
+     *
+     * \sa setNumCities()
+     */
+    void numCitiesChanged(int);
 
 private:
-	QSettings *settings;
-	QVector<QVector<double> > table;
-	quint16 nCities;
-	bool loadError(QDataStream::Status);
-	bool loadTSPT(QDataStream *);
-	bool loadZKT(QDataStream *);
-	double rand(int, int) const;
+    QSettings *settings;
+    QVector<QVector<double> > table;
+    quint16 nCities;
+    bool loadError(QDataStream::Status);
+    bool loadTSPT(QDataStream *);
+    bool loadZKT(QDataStream *);
+    double rand(int, int) const;
 };
 
 #endif // TSPMODEL_H

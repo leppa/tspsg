@@ -36,8 +36,8 @@
 #include "tspmodel.h"
 
 #ifdef Q_WS_WIN32
-	// Forward declaration. A real one is in shobjidl.h
-	struct ITaskbarList3;
+    // Forward declaration. A real one is in shobjidl.h
+    struct ITaskbarList3;
 #endif
 
 using namespace TSPSolver;
@@ -48,110 +48,110 @@ using namespace TSPSolver;
  */
 class MainWindow: public QMainWindow, Ui::MainWindow
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	MainWindow(QWidget *parent = 0);
-	~MainWindow();
+    MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
 private slots:
 // Actions
-	void actionFileNewTriggered();
-	void actionFileOpenTriggered();
-	bool actionFileSaveTriggered();
-	void actionFileSaveAsTaskTriggered();
-	void actionFileSaveAsSolutionTriggered();
+    void actionFileNewTriggered();
+    void actionFileOpenTriggered();
+    bool actionFileSaveTriggered();
+    void actionFileSaveAsTaskTriggered();
+    void actionFileSaveAsSolutionTriggered();
 #ifndef QT_NO_PRINTER
-	void actionFilePrintPreviewTriggered();
-	void actionFilePrintTriggered();
+    void actionFilePrintPreviewTriggered();
+    void actionFilePrintTriggered();
 #endif // QT_NO_PRINTER
-	void actionSettingsPreferencesTriggered();
-	void actionSettingsLanguageAutodetectTriggered(bool checked);
-	void groupSettingsLanguageListTriggered(QAction *action);
-	void actionSettingsStyleSystemTriggered(bool checked);
-	void groupSettingsStyleListTriggered(QAction *action);
+    void actionSettingsPreferencesTriggered();
+    void actionSettingsLanguageAutodetectTriggered(bool checked);
+    void groupSettingsLanguageListTriggered(QAction *action);
+    void actionSettingsStyleSystemTriggered(bool checked);
+    void groupSettingsStyleListTriggered(QAction *action);
 #ifndef HANDHELD
-	void actionSettingsToolbarsConfigureTriggered();
+    void actionSettingsToolbarsConfigureTriggered();
 #endif // HANDHELD
-	void actionHelpOnlineSupportTriggered();
-	void actionHelpReportBugTriggered();
-	void actionHelpCheck4UpdatesTriggered();
-	void actionHelpAboutTriggered();
+    void actionHelpOnlineSupportTriggered();
+    void actionHelpReportBugTriggered();
+    void actionHelpCheck4UpdatesTriggered();
+    void actionHelpAboutTriggered();
 // Buttons
-	void buttonBackToTaskClicked();
-	void buttonRandomClicked();
-	void buttonSolveClicked();
+    void buttonBackToTaskClicked();
+    void buttonRandomClicked();
+    void buttonSolveClicked();
 
-	void dataChanged();
-	void dataChanged(const QModelIndex &tl, const QModelIndex &br);
+    void dataChanged();
+    void dataChanged(const QModelIndex &tl, const QModelIndex &br);
 #ifdef Q_WS_WINCE_WM
-	void changeEvent(QEvent *ev);
-	void desktopResized(int screen);
+    void changeEvent(QEvent *ev);
+    void desktopResized(int screen);
 #endif // Q_WS_WINCE_WM
-	void numCitiesChanged(int nCities);
+    void numCitiesChanged(int nCities);
 #ifndef QT_NO_PRINTER
-	void printPreview(QPrinter *printer);
+    void printPreview(QPrinter *printer);
 #endif // QT_NO_PRINTER
 #ifdef Q_WS_WIN32
-	void solverRoutePartFound(int n);
+    void solverRoutePartFound(int n);
 #endif // Q_WS_WIN32
-	void spinCitiesValueChanged(int nCities);
+    void spinCitiesValueChanged(int nCities);
 
 private:
-	QString fileName;
-	QActionGroup *groupSettingsLanguageList;
-	QActionGroup *groupSettingsStyleList;
+    QString fileName;
+    QActionGroup *groupSettingsLanguageList;
+    QActionGroup *groupSettingsStyleList;
 #ifndef HANDHELD
-	QAction *actionSettingsToolbarsConfigure;
-	QtToolBarManager *toolBarManager;
+    QAction *actionSettingsToolbarsConfigure;
+    QtToolBarManager *toolBarManager;
 #endif // HANDHELD
 #ifndef QT_NO_PRINTER
-	QPrinter *printer;
-	QAction *actionFilePrintPreview;
-	QAction *actionFilePrint;
+    QPrinter *printer;
+    QAction *actionFilePrintPreview;
+    QAction *actionFilePrint;
 #endif // QT_NO_PRINTER
-	QAction *actionHelpCheck4Updates;
-	QSettings *settings;
-	CTSPModel *tspmodel;
+    QAction *actionHelpCheck4Updates;
+    QSettings *settings;
+    CTSPModel *tspmodel;
 #ifdef Q_WS_WINCE_WM
-	QRect currentGeometry;
+    QRect currentGeometry;
 #endif // Q_WS_WINCE_WM
 
 #ifdef Q_WS_WIN32
-	ITaskbarList3 *tl;
+    ITaskbarList3 *tl;
 #endif // Q_WS_WIN32
 
-	// The solution graph SVG
-	QPicture graph;
+    // The solution graph SVG
+    QPicture graph;
 
-	// Formats
-	QTextTableFormat fmt_table;
-	QTextBlockFormat fmt_paragraph,
-		fmt_cell;
-	QTextCharFormat fmt_default,
-		fmt_selected,
-		fmt_alternate,
-		fmt_altlist;
+    // Formats
+    QTextTableFormat fmt_table;
+    QTextBlockFormat fmt_paragraph,
+        fmt_cell;
+    QTextCharFormat fmt_default,
+        fmt_selected,
+        fmt_alternate,
+        fmt_altlist;
 
-	void check4Updates(bool silent = false);
-	void closeEvent(QCloseEvent *ev);
-	void dragEnterEvent(QDragEnterEvent *ev);
-	void drawNode(QPainter &pic, int nstep, bool left = false, SStep *step = NULL);
-	void dropEvent(QDropEvent *ev);
-	void initDocStyleSheet();
-	void loadLangList();
-	bool loadLanguage(const QString &lang = QString());
-	void loadStyleList();
-	void loadToolbarList();
-	bool maybeSave();
-	void outputMatrix(QTextCursor &cur, const TMatrix &matrix);
-	void outputMatrix(QTextCursor &cur, const SStep &step);
-	void retranslateUi(bool all = true);
-	bool saveTask();
-	void setFileName(const QString &fileName = tr("Untitled") + ".tspt");
-	void setupUi();
-	void toggleSolutionActions(bool enable = true);
-	void toggleTranclucency(bool enable);
+    void check4Updates(bool silent = false);
+    void closeEvent(QCloseEvent *ev);
+    void dragEnterEvent(QDragEnterEvent *ev);
+    void drawNode(QPainter &pic, int nstep, bool left = false, SStep *step = NULL);
+    void dropEvent(QDropEvent *ev);
+    void initDocStyleSheet();
+    void loadLangList();
+    bool loadLanguage(const QString &lang = QString());
+    void loadStyleList();
+    void loadToolbarList();
+    bool maybeSave();
+    void outputMatrix(QTextCursor &cur, const TMatrix &matrix);
+    void outputMatrix(QTextCursor &cur, const SStep &step);
+    void retranslateUi(bool all = true);
+    bool saveTask();
+    void setFileName(const QString &fileName = tr("Untitled") + ".tspt");
+    void setupUi();
+    void toggleSolutionActions(bool enable = true);
+    void toggleTranclucency(bool enable);
 };
 
 #endif // MAINWINDOW_H

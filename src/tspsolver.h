@@ -39,7 +39,7 @@
  *  We need to redefine it for the \c INFINITY to always have the same value.
  */
 #ifdef INFINITY
-	#undef INFINITY
+#   undef INFINITY
 #endif
 #define INFINITY std::numeric_limits<double>::infinity()
 
@@ -59,44 +59,44 @@ typedef QList<QList<double> > TMatrix;
  *  A tree of such elements will represent the solving process.
  */
 struct SStep {
-	//! A structure that represents a candidate for branching
-	struct SCandidate {
-		int nRow; //!< A zero-based row number of the candidate
-		int nCol; //!< A zero-based column number of the candidate
+    //! A structure that represents a candidate for branching
+    struct SCandidate {
+        int nRow; //!< A zero-based row number of the candidate
+        int nCol; //!< A zero-based column number of the candidate
 
-		//! Assigns default values
-		SCandidate() {
-			nCol = nRow = -1;
-		}
-		//! An operator == implementation
-		bool operator ==(const SCandidate &cand) const {
-			return ((cand.nRow == nRow) && (cand.nCol == nCol));
-		}
-	};
+        //! Assigns default values
+        SCandidate() {
+            nCol = nRow = -1;
+        }
+        //! An operator == implementation
+        bool operator ==(const SCandidate &cand) const {
+            return ((cand.nRow == nRow) && (cand.nCol == nCol));
+        }
+    };
 
-	//! An enum that describes possible selection of the next step
-	enum NextStep {
-		NoNextStep, //!< No next step (end of solution)
-		LeftBranch, //!< Left branch was selected for the next step
-		RightBranch //!< Right branch was selected for the next step
-	};
+    //! An enum that describes possible selection of the next step
+    enum NextStep {
+        NoNextStep, //!< No next step (end of solution)
+        LeftBranch, //!< Left branch was selected for the next step
+        RightBranch //!< Right branch was selected for the next step
+    };
 
-	TMatrix matrix; //!< This step's matrix
-	double price; //!< The price of travel to this step
+    TMatrix matrix; //!< This step's matrix
+    double price; //!< The price of travel to this step
 
-	SCandidate candidate; //!< A candiadate for branching in the current step
-	QList<SCandidate> alts; //!< A list of alternative branching candidates
-	SStep *pNode; //!< Pointer to the parent step
-	SStep *plNode; //!< Pointer to the left branch step
-	SStep *prNode; //!< Pointer to the right branch step
-	NextStep next; //!< Indicates what branch was selected for the next step
+    SCandidate candidate; //!< A candiadate for branching in the current step
+    QList<SCandidate> alts; //!< A list of alternative branching candidates
+    SStep *pNode; //!< Pointer to the parent step
+    SStep *plNode; //!< Pointer to the left branch step
+    SStep *prNode; //!< Pointer to the right branch step
+    NextStep next; //!< Indicates what branch was selected for the next step
 
-	//! Assigns default values
-	SStep() {
-		price = -1;
-		pNode = plNode = prNode = NULL;
-		next = NoNextStep;
-	}
+    //! Assigns default values
+    SStep() {
+        price = -1;
+        pNode = plNode = prNode = NULL;
+        next = NoNextStep;
+    }
 };
 
 /*!
@@ -105,49 +105,49 @@ struct SStep {
  */
 class CTSPSolver: public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	static QString getVersionId();
+    static QString getVersionId();
 
-	CTSPSolver(QObject *parent = NULL);
-	void cleanup(bool processEvents = false);
-	QString getSortedPath(const QString &city, const QString &separator = QString(" -> ")) const;
-	int getTotalSteps() const;
-	bool isOptimal() const;
-	void setCleanupOnCancel(bool enable = true);
-	SStep *solve(int numCities, const TMatrix &task);
-	bool wasCanceled() const;
-	~CTSPSolver();
+    CTSPSolver(QObject *parent = NULL);
+    void cleanup(bool processEvents = false);
+    QString getSortedPath(const QString &city, const QString &separator = QString(" -> ")) const;
+    int getTotalSteps() const;
+    bool isOptimal() const;
+    void setCleanupOnCancel(bool enable = true);
+    SStep *solve(int numCities, const TMatrix &task);
+    bool wasCanceled() const;
+    ~CTSPSolver();
 
 public slots:
-	void cancel();
+    void cancel();
 
 signals:
-	/*!
-	 * \brief This signal is emitted once every time a part of the route is found.
-	 * \param n Indicates the number of the route parts found.
-	 */
-	void routePartFound(int n);
+    /*!
+     * \brief This signal is emitted once every time a part of the route is found.
+     * \param n Indicates the number of the route parts found.
+     */
+    void routePartFound(int n);
 
 private:
-	bool mayNotBeOptimal, canceled, cc;
-	int nCities, total;
-	SStep *root;
-	QHash<int,int> route;
-	mutable QMutex mutex;
+    bool mayNotBeOptimal, canceled, cc;
+    int nCities, total;
+    SStep *root;
+    QHash<int,int> route;
+    mutable QMutex mutex;
 
-	double align(TMatrix &matrix);
-	void deleteTree(SStep *&root, bool processEvents = false);
-	void denormalize(TMatrix &matrix) const;
-	QList<SStep::SCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
-	double findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
-	double findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
-	void finishRoute();
-	bool hasSubCycles(int nRow, int nCol) const;
-	void normalize(TMatrix &matrix) const;
-	void subCol(TMatrix &matrix, int nCol, double val);
-	void subRow(TMatrix &matrix, int nRow, double val);
+    double align(TMatrix &matrix);
+    void deleteTree(SStep *&root, bool processEvents = false);
+    void denormalize(TMatrix &matrix) const;
+    QList<SStep::SCandidate> findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const;
+    double findMinInCol(int nCol, const TMatrix &matrix, int exr = -1) const;
+    double findMinInRow(int nRow, const TMatrix &matrix, int exc = -1) const;
+    void finishRoute();
+    bool hasSubCycles(int nRow, int nCol) const;
+    void normalize(TMatrix &matrix) const;
+    void subCol(TMatrix &matrix, int nCol, double val);
+    void subRow(TMatrix &matrix, int nRow, double val);
 };
 
 }

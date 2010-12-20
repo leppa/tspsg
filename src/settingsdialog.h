@@ -38,53 +38,53 @@
  */
 class SettingsDialog: public QDialog, Ui::SettingsDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	SettingsDialog(QWidget *parent = 0);
-	bool colorChanged() const;
-	bool fontChanged() const;
-	qint8 translucencyChanged() const;
+    SettingsDialog(QWidget *parent = 0);
+    bool colorChanged() const;
+    bool fontChanged() const;
+    qint8 translucencyChanged() const;
 
 private:
-	bool _newFont;
-	bool _newColor;
-	qint8 _translucency;
+    bool _newFont;
+    bool _newColor;
+    qint8 _translucency;
 
-	QColor color;
-	QFont font;
+    QColor color;
+    QFont font;
 
-	QSettings *settings;
-	QHBoxLayout *layoutCitiesLimit;
+    QSettings *settings;
+    QHBoxLayout *layoutCitiesLimit;
 #ifdef Q_WS_WIN32
-	QCheckBox *cbUseTranslucency;
+    QCheckBox *cbUseTranslucency;
 #endif // Q_WS_WIN32
-	QCheckBox *cbCheck4Updates;
-	QSpinBox *spinUpdateCheckInterval;
+    QCheckBox *cbCheck4Updates;
+    QSpinBox *spinUpdateCheckInterval;
 #ifndef QT_NO_PRINTER
-	QCheckBox *cbHQGraph;
+    QCheckBox *cbHQGraph;
 #endif
 #ifdef Q_WS_WINCE_WM
-	QRect currentGeometry;
+    QRect currentGeometry;
 #elif !defined(HANDHELD)
-	QCheckBox *cbSaveState;
-	QLabel *imgIcon;
-	QFrame *lineVertical;
-	QLabel *labelHint;
+    QCheckBox *cbSaveState;
+    QLabel *imgIcon;
+    QFrame *lineVertical;
+    QLabel *labelHint;
 
 #ifndef QT_NO_STATUSTIP
-	bool event(QEvent *ev);
+    bool event(QEvent *ev);
 #endif // QT_NO_STATUSTIP
 #endif // Q_WS_WINCE_WM
 
 private slots:
-	void accept();
-	void buttonColorClicked();
-	void buttonFontClicked();
+    void accept();
+    void buttonColorClicked();
+    void buttonFontClicked();
 #ifdef Q_WS_WINCE_WM
-	void desktopResized(int screen);
-	void showEvent(QShowEvent *ev);
+    void desktopResized(int screen);
+    void showEvent(QShowEvent *ev);
 #endif // Q_WS_WINCE_WM
-	void spinRandMinValueChanged(int val);
+    void spinRandMinValueChanged(int val);
 };
 
 #endif // SETTINGSDIALOG_H

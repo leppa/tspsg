@@ -31,23 +31,23 @@
 // INCLUDES
 #include <QtCore>
 #if QT_VERSION < 0x040500
-	#error You are using Qt version < 4.5 but minimum required version is 4.5.0. Compilation aborted.
+#   error You are using Qt version < 4.5 but minimum required version is 4.5.0. Compilation aborted.
 #endif
 #if defined(Q_WS_WINCE_WM) || defined(Q_WS_S60) || defined(Q_WS_MAEMO_5) || defined(Q_WS_SIMULATOR)
-	//! This is defined on handheld devices (e.g., Windows Mobile, Symbian).
-	#define HANDHELD
-	#define QT_NO_STATUSTIP
+    //! This is defined on handheld devices (e.g., Windows Mobile, Symbian).
+#   define HANDHELD
+#   define QT_NO_STATUSTIP
 #endif
 #include <QtGui>
 #if defined(QT_NO_SVG) && !defined(NOSVG)
-	#define NOSVG
+#   define NOSVG
 #endif
 #if !defined(NOSVG)
-	#include <QtSvg>
+#   include <QtSvg>
 #endif // NOSVG
 
 #ifndef HANDHELD
-	#include "qttoolbardialog.h"
+#   include "qttoolbardialog.h"
 #endif
 
 // Version info
@@ -59,8 +59,8 @@
 // TSPSolver
 #include "tspsolver.h"
 #ifdef Q_WS_WIN32
-	// Vista/7 Eyecandy
-	#include "qtwin.h"
+    // Vista/7 Eyecandy
+#   include "qtwin.h"
 #endif // Q_WS_WIN32
 
 // DEFINES
@@ -75,14 +75,14 @@
  * \brief Path to internationalization files.
  */
 #ifndef PATH_L10N
-	#define PATH_L10N "l10n"
+#   define PATH_L10N "l10n"
 #endif // PATH_L10N
 /*!
  * \def PATH_DOCS
  * \brief Bath to documentation files.
  */
 #ifndef PATH_DOCS
-	#define PATH_DOCS "help"
+#   define PATH_DOCS "help"
 #endif // PATH_DOCS
 
 //! TSPSG Task file signature - letters \c TSPT
@@ -110,7 +110,7 @@
 inline bool isInteger(double x)
 {
 double i;
-	return (modf(x, &i) == 0.0);
+    return (modf(x, &i) == 0.0);
 }
 
 /*!
@@ -122,9 +122,9 @@ double i;
 inline bool hasUpdater()
 {
 #ifdef Q_WS_WIN32
-	return QFile::exists("updater/Update.exe");
+    return QFile::exists("updater/Update.exe");
 #else // Q_WS_WIN32
-	return false;
+    return false;
 #endif // Q_WS_WIN32
 }
 
@@ -142,34 +142,34 @@ void toggleStyle(QWidget *widget, bool enable);
 #ifndef DOXYGEN_EXCLUDE
 
 #ifdef HANDHELD
-	#define ICON_SIZE "32x32"
-	#define ICON_FORMAT "png"
+#   define ICON_SIZE "32x32"
+#   define ICON_FORMAT "png"
 #else
-	#define ICON_SIZE "128x128"
-	#define ICON_FORMAT "png"
+#   define ICON_SIZE "128x128"
+#   define ICON_FORMAT "png"
 #endif
 
 #if QT_VERSION >= 0x040600
-	#define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/"ICON_SIZE"/"x"."ICON_FORMAT))
+#   define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/"ICON_SIZE"/"x"."ICON_FORMAT))
 #else
-	#define GET_ICON(x) QIcon(":/images/icons/"ICON_SIZE"/"x"."ICON_FORMAT)
+#   define GET_ICON(x) QIcon(":/images/icons/"ICON_SIZE"/"x"."ICON_FORMAT)
 #endif
 
 // Sanity checks
 // Check that default number of cities is sane (<= MAX_NUM_CITIES)
 #if DEF_NUM_CITIES > MAX_NUM_CITIES
-	#undef DEF_NUM_CITIES
-	#define DEF_NUM_CITIES MAX_NUM_CITIES
+#   undef DEF_NUM_CITIES
+#   define DEF_NUM_CITIES MAX_NUM_CITIES
 #endif
 // Check that maximum for random generation is sane (<= MAX_RAND_VALUE)
 #if DEF_RAND_MAX > MAX_RAND_VALUE
-	#undef DEF_RAND_MAX
-	#define DEF_RAND_MAX MAX_RAND_VALUE
+#   undef DEF_RAND_MAX
+#   define DEF_RAND_MAX MAX_RAND_VALUE
 #endif
 // Check that DEF_RAND_MIN <= DEF_RAND_MAX
 #if DEF_RAND_MIN > DEF_RAND_MAX
-	#undef DEF_RAND_MIN
-	#define DEF_RAND_MIN DEF_RAND_MAX
+#   undef DEF_RAND_MIN
+#   define DEF_RAND_MIN DEF_RAND_MAX
 #endif
 
 #endif // DOXYGEN_EXCLUDE

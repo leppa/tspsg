@@ -29,21 +29,21 @@
 #define VERSION_H
 
 #ifndef BUILD_VERSION_MAJOR
-	//! Major version of current TSPSG build
-	#define BUILD_VERSION_MAJOR 0
+    //! Major version of current TSPSG build
+#   define BUILD_VERSION_MAJOR 0
 #endif // BUILD_VERSION_MAJOR
 #ifndef BUILD_VERSION_MINOR
-	//! Minor version of current TSPSG build
-	#define BUILD_VERSION_MINOR 0
+    //! Minor version of current TSPSG build
+#   define BUILD_VERSION_MINOR 0
 #endif // BUILD_VERSION_MINOR
 #ifndef BUILD_RELEASE
-	//! TSPSG release number
-	#define BUILD_RELEASE 0
+    //! TSPSG release number
+#   define BUILD_RELEASE 0
 #endif // BUILD_RELEASE
 
 #ifndef BUILD_NUMBER
-	//! Current TSPSG build number
-	#define BUILD_NUMBER 0
+    //! Current TSPSG build number
+#   define BUILD_NUMBER 0
 #endif // BUILD_NUMBER
 
 /*!
@@ -51,19 +51,19 @@
  * \brief TSPSG build status
  */
 #ifdef DEBUG
-	#ifndef BUILD_STATUS_TYPE
-		#define BUILD_STATUS (debug build BUILD_NUMBER)
-	#else
-		#define BUILD_STATUS (debug BUILD_STATUS_TYPE BUILD_STATUS_NUMBER)
-	#endif
+#   ifndef BUILD_STATUS_TYPE
+#       define BUILD_STATUS (debug build BUILD_NUMBER)
+#   else
+#       define BUILD_STATUS (debug BUILD_STATUS_TYPE BUILD_STATUS_NUMBER)
+#   endif
 #else
-	#if !defined(TSPSG_RELEASE_BUILD)
-		#define BUILD_STATUS (nightly build)
-	#elif !defined(BUILD_STATUS_TYPE)
-		#define BUILD_STATUS (build BUILD_NUMBER)
-	#else
-		#define BUILD_STATUS (BUILD_STATUS_TYPE BUILD_STATUS_NUMBER)
-	#endif // TSPSG_RELEASE_BUILD
+#   if !defined(TSPSG_RELEASE_BUILD)
+#       define BUILD_STATUS (nightly build)
+#   elif !defined(BUILD_STATUS_TYPE)
+#       define BUILD_STATUS (build BUILD_NUMBER)
+#   else
+#       define BUILD_STATUS (BUILD_STATUS_TYPE BUILD_STATUS_NUMBER)
+#   endif // TSPSG_RELEASE_BUILD
 #endif // DEBUG
 
 //! \internal \brief A helper for QUOTE(x).

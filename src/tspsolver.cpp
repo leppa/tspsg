@@ -34,7 +34,7 @@ namespace TSPSolver {
  */
 QString CTSPSolver::getVersionId()
 {
-	return QString("$Id$");
+    return QString("$Id$");
 }
 
 /*!
@@ -42,7 +42,7 @@ QString CTSPSolver::getVersionId()
  * \param parent A parent object.
  */
 CTSPSolver::CTSPSolver(QObject *parent)
-	: QObject(parent), cc(true), nCities(0), total(0), root(NULL) {}
+    : QObject(parent), cc(true), nCities(0), total(0), root(NULL) {}
 
 /*!
  * \brief Cleans up the object and frees up memory used by the solution tree.
@@ -54,10 +54,10 @@ CTSPSolver::CTSPSolver(QObject *parent)
  */
 void CTSPSolver::cleanup(bool processEvents)
 {
-	route.clear();
-	mayNotBeOptimal = false;
-	if (root != NULL)
-		deleteTree(root, processEvents);
+    route.clear();
+    mayNotBeOptimal = false;
+    if (root != NULL)
+        deleteTree(root, processEvents);
 }
 
 /*!
@@ -71,19 +71,19 @@ void CTSPSolver::cleanup(bool processEvents)
  */
 QString CTSPSolver::getSortedPath(const QString &city, const QString &separator) const
 {
-	if (!root || route.isEmpty() || (route.size() != nCities))
-		return QString();
+    if (!root || route.isEmpty() || (route.size() != nCities))
+        return QString();
 
 int i = 0; // We start from City 1
 QStringList path;
-	path << city.arg(1);
-	while ((i = route[i]) != 0) {
-		path << city.arg(i + 1);
-	}
-	// And finish in City 1, too
-	path << city.arg(1);
+    path << city.arg(1);
+    while ((i = route[i]) != 0) {
+        path << city.arg(i + 1);
+    }
+    // And finish in City 1, too
+    path << city.arg(1);
 
-	return path.join(separator);
+    return path.join(separator);
 }
 
 /*!
@@ -93,7 +93,7 @@ QStringList path;
  */
 int CTSPSolver::getTotalSteps() const
 {
-	return total;
+    return total;
 }
 
 /*!
@@ -105,7 +105,7 @@ int CTSPSolver::getTotalSteps() const
  */
 bool CTSPSolver::isOptimal() const
 {
-	return !mayNotBeOptimal;
+    return !mayNotBeOptimal;
 }
 
 /*!
@@ -120,7 +120,7 @@ bool CTSPSolver::isOptimal() const
  */
 void CTSPSolver::setCleanupOnCancel(bool enable)
 {
-	cc = enable;
+    cc = enable;
 }
 
 /*!
@@ -133,115 +133,115 @@ void CTSPSolver::setCleanupOnCancel(bool enable)
  */
 SStep *CTSPSolver::solve(int numCities, const TMatrix &task)
 {
-	if (numCities < 3)
-		return NULL;
+    if (numCities < 3)
+        return NULL;
 
 QMutexLocker locker(&mutex);
-	cleanup();
-	canceled = false;
-	locker.unlock();
+    cleanup();
+    canceled = false;
+    locker.unlock();
 
-	nCities = numCities;
+    nCities = numCities;
 
 SStep *step = new SStep();
-	step->matrix = task;
-	// We need to distinguish the values forbidden by the user
-	// from the values forbidden by the algorithm.
-	// So we replace user's infinities by the maximum available double value.
-	normalize(step->matrix);
+    step->matrix = task;
+    // We need to distinguish the values forbidden by the user
+    // from the values forbidden by the algorithm.
+    // So we replace user's infinities by the maximum available double value.
+    normalize(step->matrix);
 #ifdef DEBUG
-	qDebug() << step->matrix;
+    qDebug() << step->matrix;
 #endif // DEBUG
-	step->price = align(step->matrix);
-	root = step;
+    step->price = align(step->matrix);
+    root = step;
 
 SStep *left, *right;
 int nRow, nCol;
 bool firstStep = true;
 double check = INFINITY;
-	total = 0;
-	while (route.size() < nCities) {
-		step->alts = findCandidate(step->matrix,nRow,nCol);
+    total = 0;
+    while (route.size() < nCities) {
+        step->alts = findCandidate(step->matrix,nRow,nCol);
 
-		while (hasSubCycles(nRow,nCol)) {
+        while (hasSubCycles(nRow,nCol)) {
 #ifdef DEBUG
-			qDebug() << "Forbidden: (" << nRow << ";" << nCol << ")";
+            qDebug() << "Forbidden: (" << nRow << ";" << nCol << ")";
 #endif // DEBUG
-			step->matrix[nRow][nCol] = INFINITY;
-			step->price += align(step->matrix);
-			step->alts = findCandidate(step->matrix,nRow,nCol);
-		}
+            step->matrix[nRow][nCol] = INFINITY;
+            step->price += align(step->matrix);
+            step->alts = findCandidate(step->matrix,nRow,nCol);
+        }
 
 #ifdef DEBUG
-		qDebug() /*<< step->matrix*/ << "Selected: (" << nRow << ";" << nCol << ")";
-		qDebug() << "Alternate:" << step->alts;
-		qDebug() << "Step price:" << step->price << endl;
+        qDebug() /*<< step->matrix*/ << "Selected: (" << nRow << ";" << nCol << ")";
+        qDebug() << "Alternate:" << step->alts;
+        qDebug() << "Step price:" << step->price << endl;
 #endif // DEBUG
 
-		locker.relock();
-		if ((nRow == -1) || (nCol == -1) || canceled) {
-			if (canceled && cc)
-				cleanup();
-			return NULL;
-		}
-		locker.unlock();
+        locker.relock();
+        if ((nRow == -1) || (nCol == -1) || canceled) {
+            if (canceled && cc)
+                cleanup();
+            return NULL;
+        }
+        locker.unlock();
 
-		// Route with (nRow,nCol) path
-		right = new SStep();
-		right->pNode = step;
-		right->matrix = step->matrix;
-		for (int k = 0; k < nCities; k++) {
-			if (k != nCol)
-				right->matrix[nRow][k] = INFINITY;
-			if (k != nRow)
-				right->matrix[k][nCol] = INFINITY;
-		}
-		right->price = step->price + align(right->matrix);
-		// Forbid the selected route to exclude its reuse in next steps.
-		right->matrix[nCol][nRow] = INFINITY;
-		right->matrix[nRow][nCol] = INFINITY;
+        // Route with (nRow,nCol) path
+        right = new SStep();
+        right->pNode = step;
+        right->matrix = step->matrix;
+        for (int k = 0; k < nCities; k++) {
+            if (k != nCol)
+                right->matrix[nRow][k] = INFINITY;
+            if (k != nRow)
+                right->matrix[k][nCol] = INFINITY;
+        }
+        right->price = step->price + align(right->matrix);
+        // Forbid the selected route to exclude its reuse in next steps.
+        right->matrix[nCol][nRow] = INFINITY;
+        right->matrix[nRow][nCol] = INFINITY;
 
-		// Route without (nRow,nCol) path
-		left = new SStep();
-		left->pNode = step;
-		left->matrix = step->matrix;
-		left->matrix[nRow][nCol] = INFINITY;
-		left->price = step->price + align(left->matrix);
+        // Route without (nRow,nCol) path
+        left = new SStep();
+        left->pNode = step;
+        left->matrix = step->matrix;
+        left->matrix[nRow][nCol] = INFINITY;
+        left->price = step->price + align(left->matrix);
 
-		step->candidate.nRow = nRow;
-		step->candidate.nCol = nCol;
-		step->plNode = left;
-		step->prNode = right;
+        step->candidate.nRow = nRow;
+        step->candidate.nCol = nCol;
+        step->plNode = left;
+        step->prNode = right;
 
-		// This matrix is not used anymore. Restoring infinities back.
-		denormalize(step->matrix);
+        // This matrix is not used anymore. Restoring infinities back.
+        denormalize(step->matrix);
 
-		if (right->price <= left->price) {
-			// Route with (nRow,nCol) path is cheaper
-			step->next = SStep::RightBranch;
-			step = right;
-			route[nRow] = nCol;
-			emit routePartFound(route.size());
-			if (firstStep) {
-				check = left->price;
-				firstStep = false;
-			}
-		} else {
-			// Route without (nRow,nCol) path is cheaper
-			step->next = SStep::LeftBranch;
-			step = left;
-			QCoreApplication::processEvents();
-			if (firstStep) {
-				check = right->price;
-				firstStep = false;
-			}
-		}
-		total++;
-	}
+        if (right->price <= left->price) {
+            // Route with (nRow,nCol) path is cheaper
+            step->next = SStep::RightBranch;
+            step = right;
+            route[nRow] = nCol;
+            emit routePartFound(route.size());
+            if (firstStep) {
+                check = left->price;
+                firstStep = false;
+            }
+        } else {
+            // Route without (nRow,nCol) path is cheaper
+            step->next = SStep::LeftBranch;
+            step = left;
+            QCoreApplication::processEvents();
+            if (firstStep) {
+                check = right->price;
+                firstStep = false;
+            }
+        }
+        total++;
+    }
 
-	mayNotBeOptimal = (check < step->price);
+    mayNotBeOptimal = (check < step->price);
 
-	return root;
+    return root;
 }
 
 /*!
@@ -251,7 +251,7 @@ double check = INFINITY;
 bool CTSPSolver::wasCanceled() const
 {
 QMutexLocker locker(&mutex);
-	return canceled;
+    return canceled;
 }
 
 /*!
@@ -260,13 +260,13 @@ QMutexLocker locker(&mutex);
 void CTSPSolver::cancel()
 {
 QMutexLocker locker(&mutex);
-	canceled = true;
+    canceled = true;
 }
 
 CTSPSolver::~CTSPSolver()
 {
-	if (root != NULL)
-		deleteTree(root);
+    if (root != NULL)
+        deleteTree(root);
 }
 
 /* Privates **********************************************************/
@@ -275,147 +275,147 @@ double CTSPSolver::align(TMatrix &matrix)
 {
 double r = 0;
 double min;
-	for (int k = 0; k < nCities; k++) {
-		min = findMinInRow(k,matrix);
-		if (min > 0) {
-			r += min;
-			if (min < MAX_DOUBLE)
-				subRow(matrix,k,min);
-		}
-	}
-	for (int k = 0; k < nCities; k++) {
-		min = findMinInCol(k,matrix);
-		if (min > 0) {
-			r += min;
-			if (min < MAX_DOUBLE)
-				subCol(matrix,k,min);
-		}
-	}
-	return (r != MAX_DOUBLE) ? r : INFINITY;
+    for (int k = 0; k < nCities; k++) {
+        min = findMinInRow(k,matrix);
+        if (min > 0) {
+            r += min;
+            if (min < MAX_DOUBLE)
+                subRow(matrix,k,min);
+        }
+    }
+    for (int k = 0; k < nCities; k++) {
+        min = findMinInCol(k,matrix);
+        if (min > 0) {
+            r += min;
+            if (min < MAX_DOUBLE)
+                subCol(matrix,k,min);
+        }
+    }
+    return (r != MAX_DOUBLE) ? r : INFINITY;
 }
 
 void CTSPSolver::deleteTree(SStep *&root, bool processEvents)
 {
-	if (root == NULL)
-		return;
+    if (root == NULL)
+        return;
 SStep *step = root;
 SStep *parent;
-	forever {
-		if (processEvents)
-			QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-		if (step->plNode != NULL) {
-			// We have left child node - going inside it
-			step = step->plNode;
-			step->pNode->plNode = NULL;
-			continue;
-		} else if (step->prNode != NULL) {
-			// We have right child node - going inside it
-			step = step->prNode;
-			step->pNode->prNode = NULL;
-			continue;
-		} else {
-			// We have no child nodes. Deleting the current one.
-			parent = step->pNode;
-			delete step;
-			if (parent != NULL) {
-				// Going back to the parent node.
-				step = parent;
-			} else {
-				// We came back to the root node. Finishing.
-				root = NULL;
-				break;
-			}
-		}
-	}
+    forever {
+        if (processEvents)
+            QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+        if (step->plNode != NULL) {
+            // We have left child node - going inside it
+            step = step->plNode;
+            step->pNode->plNode = NULL;
+            continue;
+        } else if (step->prNode != NULL) {
+            // We have right child node - going inside it
+            step = step->prNode;
+            step->pNode->prNode = NULL;
+            continue;
+        } else {
+            // We have no child nodes. Deleting the current one.
+            parent = step->pNode;
+            delete step;
+            if (parent != NULL) {
+                // Going back to the parent node.
+                step = parent;
+            } else {
+                // We came back to the root node. Finishing.
+                root = NULL;
+                break;
+            }
+        }
+    }
 }
 
 void CTSPSolver::denormalize(TMatrix &matrix) const
 {
-	for (int r = 0; r < nCities; r++)
-		for (int c = 0; c < nCities; c++)
-			if ((r != c) && (matrix.at(r).at(c) == MAX_DOUBLE))
-				matrix[r][c] = INFINITY;
+    for (int r = 0; r < nCities; r++)
+        for (int c = 0; c < nCities; c++)
+            if ((r != c) && (matrix.at(r).at(c) == MAX_DOUBLE))
+                matrix[r][c] = INFINITY;
 }
 
 QList<SStep::SCandidate> CTSPSolver::findCandidate(const TMatrix &matrix, int &nRow, int &nCol) const
 {
-	nRow = -1;
-	nCol = -1;
+    nRow = -1;
+    nCol = -1;
 QList<SStep::SCandidate> alts;
 SStep::SCandidate cand;
 double h = -1;
 double sum;
-	for (int r = 0; r < nCities; r++)
-		for (int c = 0; c < nCities; c++)
-			if (matrix.at(r).at(c) == 0) {
-				sum = findMinInRow(r,matrix,c) + findMinInCol(c,matrix,r);
-				if (sum > h) {
-					h = sum;
-					nRow = r;
-					nCol = c;
-					alts.clear();
-				} else if ((sum == h) && !hasSubCycles(r,c)) {
-					cand.nRow = r;
-					cand.nCol = c;
-					alts.append(cand);
-				}
-			}
-	return alts;
+    for (int r = 0; r < nCities; r++)
+        for (int c = 0; c < nCities; c++)
+            if (matrix.at(r).at(c) == 0) {
+                sum = findMinInRow(r,matrix,c) + findMinInCol(c,matrix,r);
+                if (sum > h) {
+                    h = sum;
+                    nRow = r;
+                    nCol = c;
+                    alts.clear();
+                } else if ((sum == h) && !hasSubCycles(r,c)) {
+                    cand.nRow = r;
+                    cand.nCol = c;
+                    alts.append(cand);
+                }
+            }
+    return alts;
 }
 
 double CTSPSolver::findMinInCol(int nCol, const TMatrix &matrix, int exr) const
 {
 double min = INFINITY;
-	for (int k = 0; k < nCities; k++)
-		if ((k != exr) && (min > matrix.at(k).at(nCol)))
-			min = matrix.at(k).at(nCol);
-	return (min == INFINITY) ? 0 : min;
+    for (int k = 0; k < nCities; k++)
+        if ((k != exr) && (min > matrix.at(k).at(nCol)))
+            min = matrix.at(k).at(nCol);
+    return (min == INFINITY) ? 0 : min;
 }
 
 double CTSPSolver::findMinInRow(int nRow, const TMatrix &matrix, int exc) const
 {
 double min = INFINITY;
-	for (int k = 0; k < nCities; k++) {
-		if (((k != exc)) && (min > matrix.at(nRow).at(k)))
-			min = matrix.at(nRow).at(k);
-	}
-	return (min == INFINITY) ? 0 : min;
+    for (int k = 0; k < nCities; k++) {
+        if (((k != exc)) && (min > matrix.at(nRow).at(k)))
+            min = matrix.at(nRow).at(k);
+    }
+    return (min == INFINITY) ? 0 : min;
 }
 
 bool CTSPSolver::hasSubCycles(int nRow, int nCol) const
 {
-	if ((nRow < 0) || (nCol < 0) || route.isEmpty() || !(route.size() < nCities - 1) || !route.contains(nCol))
-		return false;
+    if ((nRow < 0) || (nCol < 0) || route.isEmpty() || !(route.size() < nCities - 1) || !route.contains(nCol))
+        return false;
 int i = nCol;
-	forever {
-		if ((i = route.value(i)) == nRow)
-			return true;
-		if (!route.contains(i))
-			return false;
-	}
-	return false;
+    forever {
+        if ((i = route.value(i)) == nRow)
+            return true;
+        if (!route.contains(i))
+            return false;
+    }
+    return false;
 }
 
 void CTSPSolver::normalize(TMatrix &matrix) const
 {
-	for (int r = 0; r < nCities; r++)
-		for (int c = 0; c < nCities; c++)
-			if ((r != c) && (matrix.at(r).at(c) == INFINITY))
-				matrix[r][c] = MAX_DOUBLE;
+    for (int r = 0; r < nCities; r++)
+        for (int c = 0; c < nCities; c++)
+            if ((r != c) && (matrix.at(r).at(c) == INFINITY))
+                matrix[r][c] = MAX_DOUBLE;
 }
 
 void CTSPSolver::subCol(TMatrix &matrix, int nCol, double val)
 {
-	for (int k = 0; k < nCities; k++)
-		if (k != nCol)
-			matrix[k][nCol] -= val;
+    for (int k = 0; k < nCities; k++)
+        if (k != nCol)
+            matrix[k][nCol] -= val;
 }
 
 void CTSPSolver::subRow(TMatrix &matrix, int nRow, double val)
 {
-	for (int k = 0; k < nCities; k++)
-		if (k != nRow)
-			matrix[nRow][k] -= val;
+    for (int k = 0; k < nCities; k++)
+        if (k != nRow)
+            matrix[nRow][k] -= val;
 }
 
 }
@@ -423,17 +423,17 @@ void CTSPSolver::subRow(TMatrix &matrix, int nRow, double val)
 #ifdef DEBUG
 QDebug operator<<(QDebug dbg, const TSPSolver::TMatrix &matrix)
 {
-	for (int r = 0; r < matrix.count(); r++) {
-		for (int c = 0; c < matrix.at(r).count(); c++)
-			dbg.space() << QString::number(matrix.at(r).at(c)).leftJustified(5);
-		dbg << endl;
-	}
-	return dbg;
+    for (int r = 0; r < matrix.count(); r++) {
+        for (int c = 0; c < matrix.at(r).count(); c++)
+            dbg.space() << QString::number(matrix.at(r).at(c)).leftJustified(5);
+        dbg << endl;
+    }
+    return dbg;
 }
 
 QDebug operator<<(QDebug dbg, const TSPSolver::SStep::SCandidate &cand)
 {
-	dbg.nospace() << "(" << cand.nRow << ";" << cand.nCol << ")";
-	return dbg;
+    dbg.nospace() << "(" << cand.nRow << ";" << cand.nCol << ")";
+    return dbg;
 }
 #endif // DEBUG
