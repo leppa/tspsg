@@ -385,13 +385,8 @@ void MainWindow::actionSettingsLanguageAutodetectTriggered(bool checked)
 void MainWindow::groupSettingsLanguageListTriggered(QAction *action)
 {
 #ifndef Q_WS_MAEMO_5
-	if (actionSettingsLanguageAutodetect->isChecked()) {
-		// We have language autodetection. It needs to be disabled to change language.
-		if (QMessageBox::question(this, tr("Language change"), tr("You have language autodetection turned on.\nIt needs to be off.\nDo you wish to turn it off?"), QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes) {
-			actionSettingsLanguageAutodetect->trigger();
-		} else
-			return;
-	}
+	if (actionSettingsLanguageAutodetect->isChecked())
+		actionSettingsLanguageAutodetect->trigger();
 #endif
 bool untitled = (fileName == tr("Untitled") + ".tspt");
 	if (loadLanguage(action->data().toString())) {
@@ -1222,7 +1217,6 @@ void MainWindow::loadLangList()
 QMap<QString, QStringList> langlist;
 QFileInfoList langs;
 QFileInfo lang;
-QString name;
 QStringList language, dirs;
 QTranslator t;
 QDir dir;
@@ -1243,7 +1237,7 @@ QDir dir;
 					language.append(lang.completeBaseName().mid(6));
 					language.append(t.translate("--------", "COUNTRY", "Please, provide an ISO 3166-1 alpha-2 country code for this translation language here (eg., UA).").toLower());
 					language.append(t.translate("--------", "LANGNAME", "Please, provide a native name of your translation language here."));
-					language.append(t.translate("MainWindow", "Set application language to %1", "").arg(name));
+					language.append(t.translate("MainWindow", "Set application language to %1", "").arg(language.at(2)));
 
 					langlist.insert(language.at(0), language);
 				}
