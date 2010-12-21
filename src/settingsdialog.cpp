@@ -141,7 +141,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
 #else // HANDHELD
 QVBoxLayout *vbox; // Layout helper
 
-#ifdef Q_WS_WIN32
+#ifndef HANDHELD
     if (QtWin::isCompositionEnabled()) {
         cbUseTranslucency = new QCheckBox(bgWhite);
         cbUseTranslucency->setObjectName("cbUseTranslucency");
@@ -151,7 +151,7 @@ QVBoxLayout *vbox; // Layout helper
         cbUseTranslucency->setText(tr("Use translucency effects"));
         cbUseTranslucency->setCursor(QCursor(Qt::PointingHandCursor));
     }
-#endif // Q_WS_WIN32
+#endif // HANDHELD
 
     cbSaveState = new QCheckBox(bgWhite);
     cbSaveState->setObjectName("cbSaveState");
@@ -197,10 +197,10 @@ QVBoxLayout *vbox; // Layout helper
 
     box = static_cast<QBoxLayout *>(tabGeneral->layout());
     box->insertWidget(box->indexOf(cbUseNativeDialogs) + 1, cbSaveState);
-#ifdef Q_WS_WIN32
+#ifndef HANDHELD
     if (QtWin::isCompositionEnabled())
         box->insertWidget(box->indexOf(cbUseNativeDialogs) + 1, cbUseTranslucency);
-#endif // Q_WS_WIN32
+#endif // HANDHELD
 
     // Inserting label for hints to the bottom part (with grey bg)
     buttons->insertWidget(buttons->indexOf(buttonHelp) + 1, labelHint, 1);
@@ -233,10 +233,10 @@ QVBoxLayout *vbox; // Layout helper
     cbAutosize->setChecked(settings->value("Autosize", DEF_AUTOSIZE).toBool());
     cbSaveLastUsed->setChecked(settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool());
     cbUseNativeDialogs->setChecked(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool());
-#ifdef Q_WS_WIN32
+#ifndef HANDHELD
     if (QtWin::isCompositionEnabled())
         cbUseTranslucency->setChecked(settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool());
-#endif // Q_WS_WIN32
+#endif // HANDHELD
 #ifndef HANDHELD
     cbSaveState->setChecked(settings->value("SavePos", DEF_SAVEPOS).toBool());
 #endif // HANDHELD
@@ -352,7 +352,7 @@ void SettingsDialog::accept()
     settings->setValue("Autosize", cbAutosize->isChecked());
     settings->setValue("SaveLastUsed", cbSaveLastUsed->isChecked());
     settings->setValue("UseNativeDialogs", cbUseNativeDialogs->isChecked());
-#ifdef Q_WS_WIN32
+#ifndef HANDHELD
     if (QtWin::isCompositionEnabled()) {
 bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
         if ((!old && cbUseTranslucency->isChecked()) || (old && !cbUseTranslucency->isChecked())) {
@@ -361,8 +361,6 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
             _translucency = 0;
         settings->setValue("UseTranslucency", cbUseTranslucency->isChecked());
     }
-#endif // Q_WS_WIN32
-#ifndef HANDHELD
     settings->setValue("SavePos", cbSaveState->isChecked());
 #endif // HANDHELD
     if (cbCheck4Updates != NULL) {

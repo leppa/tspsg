@@ -102,8 +102,13 @@ bool QtWin::isCompositionEnabled()
         if (SUCCEEDED(hr))
             return isEnabled;
     }
-#endif
     return false;
+#elif !defined(HANDHELD)
+    //! \todo TODO: Check for trsnsparency support in other OSes.
+    return true;
+#else
+    return false;
+#endif
 }
 
 /*!
@@ -124,8 +129,10 @@ bool QtWin::enableBlurBehindWindow(QWidget *widget, bool enable)
         bb.fEnable = enable;
         bb.dwFlags = DWM_BB_ENABLE;
         bb.hRgnBlur = NULL;
+#endif
         widget->setAttribute(Qt::WA_TranslucentBackground, enable);
         widget->setAttribute(Qt::WA_NoSystemBackground, enable);
+#ifdef Q_WS_WIN
         hr = pDwmEnableBlurBehindWindow(widget->winId(), &bb);
         if (SUCCEEDED(hr)) {
             result = true;

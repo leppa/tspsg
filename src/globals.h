@@ -58,10 +58,10 @@
 #include "defaults.h"
 // TSPSolver
 #include "tspsolver.h"
-#ifdef Q_WS_WIN32
-    // Vista/7 Eyecandy
+#ifndef HANDHELD
+    // Eyecandy
 #   include "qtwin.h"
-#endif // Q_WS_WIN32
+#endif // HANDHELD
 
 // DEFINES
 //! Maximum available number of cities
@@ -128,7 +128,7 @@ inline bool hasUpdater()
 #endif // Q_WS_WIN32
 }
 
-#ifdef Q_WS_WIN32
+#ifndef HANDHELD
 /*!
  * \brief Enables or disables a mask for the \a widget.
  * \param widget A widget to toggle mask on.
@@ -137,7 +137,7 @@ inline bool hasUpdater()
  *  This function is used to enable an outlined font effect for \c QLabel with a static text.
  */
 void toggleStyle(QWidget *widget, bool enable);
-#endif // Q_WS_WIN32
+#endif // HANDHELD
 
 #ifndef DOXYGEN_EXCLUDE
 

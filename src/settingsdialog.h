@@ -55,9 +55,9 @@ private:
 
     QSettings *settings;
     QHBoxLayout *layoutCitiesLimit;
-#ifdef Q_WS_WIN32
+#ifndef HANDHELD
     QCheckBox *cbUseTranslucency;
-#endif // Q_WS_WIN32
+#endif // HANDHELD
     QCheckBox *cbCheck4Updates;
     QSpinBox *spinUpdateCheckInterval;
 #ifndef QT_NO_PRINTER

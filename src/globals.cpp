@@ -23,7 +23,7 @@
 
 #include "globals.h"
 
-#ifdef Q_WS_WIN32
+#ifndef HANDHELD
 void toggleStyle(QWidget *widget, bool enable)
 {
     if (enable) {
@@ -32,4 +32,4 @@ void toggleStyle(QWidget *widget, bool enable)
         widget->setStyleSheet(QString());
     }
 }
-#endif // Q_WS_WIN32
+#endif // HANDHELD

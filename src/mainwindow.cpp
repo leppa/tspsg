@@ -24,7 +24,7 @@
 #include "mainwindow.h"
 
 #ifdef Q_WS_WIN32
-    #include "shobjidl.h"
+#   include "shobjidl.h"
 #endif
 
 #ifdef _T_T_L_
@@ -395,7 +395,7 @@ bool untitled = (fileName == tr("Untitled") + ".tspt");
         retranslateUi();
         if (untitled)
             setFileName();
-#ifdef Q_WS_WIN32
+#ifndef HANDHELD
         if (QtWin::isCompositionEnabled() && settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool())  {
             toggleStyle(labelVariant, true);
             toggleStyle(labelCities, true);
@@ -609,12 +609,12 @@ QTextBrowser *txtTranslation = new QTextBrowser(dlg);
 
     connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
 
-#ifdef Q_WS_WIN32
-    // Adding some eyecandy in Vista and 7 :-)
+#ifndef HANDHELD
+    // Adding some eyecandy
     if (QtWin::isCompositionEnabled())  {
         QtWin::enableBlurBehindWindow(dlg, true);
     }
-#endif // Q_WS_WIN32
+#endif // HANDHELD
 
     dlg->resize(450, 350);
     QApplication::restoreOverrideCursor();
@@ -1029,11 +1029,7 @@ void MainWindow::printPreview(QPrinter *printer)
 #ifdef Q_WS_WIN32
 void MainWindow::solverRoutePartFound(int n)
 {
-#ifdef Q_WS_WIN32
     tl->SetProgressValue(winId(), n, spinCities->value() * 2);
-#else
-    Q_UNUSED(n);
-#endif // Q_WS_WIN32
 }
 #endif // Q_WS_WIN32
 
@@ -1660,12 +1656,12 @@ QString cat = toolBarMain->windowTitle();
 
     retranslateUi(false);
 
-#ifdef Q_WS_WIN32
-    // Adding some eyecandy in Vista and 7 :-)
+#ifndef HANDHELD
+    // Adding some eyecandy
     if (QtWin::isCompositionEnabled() && settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool())  {
         toggleTranclucency(true);
     }
-#endif // Q_WS_WIN32
+#endif // HANDHELD
 }
 
 void MainWindow::toggleSolutionActions(bool enable)
@@ -1681,7 +1677,7 @@ void MainWindow::toggleSolutionActions(bool enable)
 
 void MainWindow::toggleTranclucency(bool enable)
 {
-#ifdef Q_WS_WIN32
+#ifndef HANDHELD
     toggleStyle(labelVariant, enable);
     toggleStyle(labelCities, enable);
     toggleStyle(statusBar(), enable);
@@ -1689,7 +1685,7 @@ void MainWindow::toggleTranclucency(bool enable)
     QtWin::enableBlurBehindWindow(this, enable);
 #else
     Q_UNUSED(enable);
-#endif // Q_WS_WIN32
+#endif // HANDHELD
 }
 
 void MainWindow::actionHelpOnlineSupportTriggered()
