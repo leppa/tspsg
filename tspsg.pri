@@ -1,7 +1,7 @@
 ######################################################################
 #
 #  TSPSG: TSP Solver and Generator
-#  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+#  Copyright (C) 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
 #
 #  $Id$
 #  $URL$

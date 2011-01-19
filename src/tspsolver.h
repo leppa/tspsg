@@ -1,6 +1,6 @@
 /*!
  * \file tspsolver.h
- * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -101,7 +101,7 @@ struct SStep {
 
 /*!
  * \brief This class solves Travelling Salesman Problem task.
- * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
  */
 class CTSPSolver: public QObject
 {

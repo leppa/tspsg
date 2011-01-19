@@ -2,7 +2,7 @@
  TSPSG: TSP Solver and Generator
 =================================
 
-Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+Copyright (C) 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
 
 TSPSG is intended to generate and solve Travelling Salesman Problem
 (TSP) tasks. It uses Branch and Bound method for solving. Its input is

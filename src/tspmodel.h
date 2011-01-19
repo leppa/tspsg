@@ -1,6 +1,6 @@
 /*!
  * \file tspmodel.h
- * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
  *
  *  $Id$
  *  $URL$
@@ -32,7 +32,7 @@
 
 /*!
  * \brief This class implements table model for manipulating a task.
- * \author Copyright &copy; 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
  */
 class CTSPModel: public QAbstractTableModel
 {

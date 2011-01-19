@@ -1,7 +1,7 @@
 ######################################################################
 #
 #  TSPSG: TSP Solver and Generator
-#  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+#  Copyright (C) 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
 #
 #  $Id$
 #  $URL$
@@ -28,7 +28,7 @@ TEMPLATE = app
 QMAKE_TARGET_COMPANY = Oleksii "Lёppa" Serdiuk
 QMAKE_TARGET_PRODUCT = TSP Solver and Generator
 QMAKE_TARGET_DESCRIPTION = TSPSG: TSP Solver and Generator
-QMAKE_TARGET_COPYRIGHT = Copyright © 2007-2010 Oleksii "Lёppa" Serdiuk <contacts[at]oleksii[dot]name>
+QMAKE_TARGET_COPYRIGHT = Copyright © 200-20110 Oleksii "Lёppa" Serdiuk <contacts[at]oleksii[dot]name>
 
 # Versioning
 BUILD_VERSION_MAJOR = 0
