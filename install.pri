@@ -114,3 +114,14 @@ symbian {
 	default_deployment.pkg_prerules = appinfo vendorinfo
 	DEPLOYMENT.installer_header = "$${LITERAL_HASH}{\"TSPSG Installer\"},(0xA000D7CE),1,0,0"
 }
+
+# Maemo 5
+maemo5 {
+	target.path = /opt/usr/bin
+	desktop.files = qtc_packaging/tspsg.desktop
+	desktop.path = /usr/share/applications/hildon
+	icon.files = qtc_packaging/tspsg.png
+	icon.path = /usr/share/icons/hicolor/64x64/apps
+
+	INSTALLS += desktop icon
+}

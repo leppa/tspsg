@@ -1,0 +1,17 @@
+The Debian Package tspsg
+----------------------------
+
+TSPSG is intended to generate and solve Travelling Salesman Problem
+(TSP) tasks. It uses Branch and Bound method for solving. Its input is
+a number of cities and a matrix of city-to-city travel costs. The
+matrix can be populated with random values in a given range (which is
+useful for generating tasks). The result is an optimal route, its
+price, step-by-step matrices of solving and a solving graph. The task
+can be saved in an internal binary format and opened later. The result
+can be printed or saved as PDF, HTML, or ODF.
+
+TSPSG may be useful for teachers to generate test tasks or just for
+regular users to solve TSPs. Also, it may be used as an example of
+using Branch and Bound method to solve a particular task.
+
+ -- Oleksii Serdiuk <contacts@oleksii.name>  Fri, 18 Feb 2011 21:18:50 +0200

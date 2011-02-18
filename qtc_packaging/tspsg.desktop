@@ -1,0 +1,14 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Name=TSP Solver and Generator
+GenericName=Solving Travelling Salesman Problem using Branch and Bound method
+GenericName[ru]=Решение задачи коммивояжера методом ветвей и границ
+GenericName[uk]=Розв'язання задачі комівояжера методом гілок та меж
+Exec=/opt/usr/bin/tspsg
+Icon=tspsg
+X-Window-Icon=
+X-HildonDesk-ShowInToolbar=true
+X-Osso-Type=application/x-executable
