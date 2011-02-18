@@ -1,16 +1,13 @@
 [Desktop Entry]
 Encoding=UTF-8
+Version=1.0
 Type=Application
-Version=0.1
-Name=TSPSG: TSP Solver and Generator
+Terminal=false
+Name=TSP Solver and Generator
 GenericName=Solving Travelling Salesman Problem using Branch and Bound method
 GenericName[ru]=Решение задачи коммивояжера методом ветвей и границ
 GenericName[uk]=Розв'язання задачі комівояжера методом гілок та меж
-Comment=Solving Travelling Salesman Problem using Branch and Bound method
-Comment[ru]=Решение задачи коммивояжера методом ветвей и границ
-Comment[uk]=Розв'язання задачі комівояжера методом гілок та меж
-Icon=tspsg
 Exec=tspsg %f
-Terminal=false
-Categories=Qt;KDE;Education;Math;
+Icon=tspsg
+Categories=Qt;KDE;Education;Science;Math;
 StartupNotify=true

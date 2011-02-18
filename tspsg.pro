@@ -41,7 +41,9 @@ BUILD_RELEASE = 4
 #DEFINES += BUILD_STATUS_NUMBER=1
 
 #REVISION = 145
-REVISION = $$system(svnversion)
+isEmpty(REVISION) {
+	REVISION = $$system(svnversion)
+}
 isEmpty(REVISION)|isEqual(REVISION,exported) {
 	REVISION = 0
 } else {
@@ -63,18 +65,20 @@ DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
 # A hack to determine whether we have static or dynamic Qt build
 macx {
 	PRL = $$[QT_INSTALL_LIBS] QtCore.framework QtCore.prl
-} else:symbian {
-	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
+} else:symbian|maemo* {
+	# Nothing here
 } else:unix {
 	PRL = $$[QT_INSTALL_LIBS] libQtCore.prl
 } else {
 	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
 }
-include($$join(PRL, "/"))
-contains(QMAKE_PRL_CONFIG, static) {
-	# We "embed" SVG icon support on static build
-	DEFINES += STATIC_BUILD
-#	!nosvg:QTPLUGIN += qsvgicon
+!isEmpty(PRL) {
+	include($$join(PRL, "/"))
+	contains(QMAKE_PRL_CONFIG, static) {
+		# We "embed" SVG icon support on static build
+		DEFINES += STATIC_BUILD
+#		!nosvg:QTPLUGIN += qsvgicon
+	}
 }
 
 CONFIG(release, debug|release) {
@@ -104,5 +108,5 @@ win32:LIBS += -lole32
 # Include file(s)
 include(tspsg.pri)
 
-# Installation and deployment
+# Installation and deployment rules
 include(install.pri)

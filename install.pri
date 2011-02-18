@@ -14,7 +14,7 @@
 #l10n.files = l10n/*.qm
 #share.files =
 docs.files = COPYING ChangeLog.txt README.txt INSTALL.txt
-INSTALLS += target share docs # l10n
+INSTALLS += target docs # share l10n
 
 # For *nix:
 #   - executable goes to /usr/bin
@@ -61,12 +61,10 @@ win32 {
 		share.files += $$[QT_INSTALL_BINS]/mingwm10.dll \
 			$$[QT_INSTALL_BINS]/libgcc_s_dw2-1.dll
 	}
-#	iconengines.files = $$[QT_INSTALL_PLUGINS]/iconengines/qsvgicon$${D}4.dll
-#	iconengines.path = $$PREFIX/TSPSG/iconengines
 	imageformats.files = $$[QT_INSTALL_PLUGINS]/imageformats/qjpeg$${D}4.dll \
 		$$[QT_INSTALL_PLUGINS]/imageformats/qtiff$${D}4.dll
 	imageformats.path = $$PREFIX/TSPSG/imageformats
-	INSTALLS += imageformats # iconengines
+	INSTALLS += share imageformats
 }
 
 # For wince: we are deploying to \Program Files\TSPSG.
@@ -80,7 +78,7 @@ wince* {
 	docs.sources = $$docs.files
 
 	DEPLOYMENT += target share docs # l10n
-#	DEPLOYMENT_PLUGIN += qjpeg qtiff qsvgicon
+	DEPLOYMENT_PLUGIN += qjpeg qtiff
 }
 
 # win32 and wince common
@@ -93,8 +91,8 @@ win* {
 
 # Symbian
 symbian {
-	# qmake for Symbian (as of Qt 4.6.2) has a bug: file masks doesn't work, so we need to specify all files manually
 	share.sources = $$share.files
+	# qmake for Symbian (as of Qt 4.6.2) has a bug: file masks doesn't work, so we need to specify all files manually
 #	l10n.sources = $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm \
 #		$$[QT_INSTALL_TRANSLATIONS]/qt_uk.qm \
 #		l10n/tspsg_en.qm l10n/tspsg_ru.qm l10n/tspsg_uk.qm
@@ -109,10 +107,10 @@ symbian {
 	ICON = resources/tspsg.svg
 
 	appinfo = \
-		"$$LITERAL_HASH{\"TSPSG\"},(0xEb9dce0e),$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE"
+		"$$LITERAL_HASH{\"TSP Solver and Generator\"},(0xA89FD7A3),$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE"
 	vendorinfo = \
-		"%{\"l-homes.org\"}" \
-		":\"l-homes.org\""
+		"%{\"Oleksii Serdiuk\"}" \
+		":\"Oleksii Serdiuk\""
 	default_deployment.pkg_prerules = appinfo vendorinfo
 	DEPLOYMENT.installer_header = "$${LITERAL_HASH}{\"TSPSG Installer\"},(0xA000D7CE),1,0,0"
 }
