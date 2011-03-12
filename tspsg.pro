@@ -63,17 +63,19 @@ DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
 macx {
 	PRL = $$[QT_INSTALL_LIBS] QtCore.framework QtCore.prl
 } else:symbian {
-	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
+#	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
 } else:unix {
 	PRL = $$[QT_INSTALL_LIBS] libQtCore.prl
 } else {
 	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
 }
-include($$join(PRL, "/"))
-contains(QMAKE_PRL_CONFIG, static) {
-	# We "embed" SVG icon support on static build
-	DEFINES += STATIC_BUILD
-#	!nosvg:QTPLUGIN += qsvgicon
+!isEmpty(PRL) {
+	include($$join(PRL, "/"))
+	contains(QMAKE_PRL_CONFIG, static) {
+		# We "embed" SVG icon support on static build
+		DEFINES += STATIC_BUILD
+#		!nosvg:QTPLUGIN += qsvgicon
+	}
 }
 
 CONFIG(release, debug|release) {

@@ -35,13 +35,11 @@
  * \def INFINITY
  * \brief This value means infinity :-)
  *
- *  Some libraries already have \c INFINITY defined.
- *  We need to redefine it for the \c INFINITY to always have the same value.
+ *  Define \c INFINITY if it's not already defined.
  */
-#ifdef INFINITY
-	#undef INFINITY
+#ifndef INFINITY
+	#define INFINITY std::numeric_limits<double>::infinity()
 #endif
-#define INFINITY std::numeric_limits<double>::infinity()
 
 /*!
  * \brief A TSP Solver namespace.

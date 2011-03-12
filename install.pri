@@ -93,6 +93,8 @@ win* {
 
 # Symbian
 symbian {
+	TARGET = TSPSG$${D}
+
 	# qmake for Symbian (as of Qt 4.6.2) has a bug: file masks doesn't work, so we need to specify all files manually
 	share.sources = $$share.files
 #	l10n.sources = $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm \
@@ -100,19 +102,46 @@ symbian {
 #		l10n/tspsg_en.qm l10n/tspsg_ru.qm l10n/tspsg_uk.qm
 #	l10n.path = l10n
 	docs.sources = $$docs.files
-	docs.pkg_prerules = \
-		"\"README.txt\" - \"\", FILETEXT, TEXTCONTINUE" \
-		"\"COPYING\" - \"\", FILETEXT, TEXTEXIT"
+#	docs.pkg_prerules = \
+#		"\"README.txt\" - \"\", FILETEXT, TEXTCONTINUE" \
+#		"\"COPYING\" - \"\", FILETEXT, TEXTEXIT"
 	DEPLOYMENT += share docs # l10n
-#	DEPLOYMENT_PLUGIN += qjpeg qtiff qsvgicon
+#	DEPLOYMENT_PLUGIN += qjpeg qtiff # qsvgicon
 
 	ICON = resources/tspsg.svg
+	TARGET.EPOCHEAPSIZE = 0x20000 0x1100000
+	# OVI Publish - 0x2003AEFB, Self-signed - 0xA89FD7A3
+	TARGET.UID3 = 0xA89FD7A3
+#	TARGET.UID3 = 0x2003AEFB
 
-	appinfo = \
-		"$$LITERAL_HASH{\"TSPSG\"},(0xEb9dce0e),$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR,$$BUILD_RELEASE"
-	vendorinfo = \
-		"%{\"l-homes.org\"}" \
-		":\"l-homes.org\""
-	default_deployment.pkg_prerules = appinfo vendorinfo
-	DEPLOYMENT.installer_header = "$${LITERAL_HASH}{\"TSPSG Installer\"},(0xA000D7CE),1,0,0"
+	languages="&EN,RU,UK"
+	package_header = "$$LITERAL_HASH{" \
+		" \"$$QMAKE_TARGET_PRODUCT\"," \
+		" \"$$QMAKE_TARGET_PRODUCT\"," \
+		" \"$$QMAKE_TARGET_PRODUCT\"" \
+		"},($$TARGET.UID3),$$BUILD_VERSION_MAJOR,$${BUILD_VERSION_MINOR}$${BUILD_RELEASE},$$REVISION"
+	vendor = \
+		"%{\"Oleksii Serdiuk\",\"Алексей Сердюк\",\"Олексій Сердюк\"}" \
+		":\"Oleksii Serdiuk\""
+#	logo = \
+#		"=\"resources/tspsg.png\",\"image/png\",\"\""
+	dependencies = \
+		"; Depend on Qt $${QT_MAJOR_VERSION}.$${QT_MINOR_VERSION}.$${QT_PATCH_VERSION}" \
+		"(0x2001E61C),$${QT_MAJOR_VERSION},$${QT_MINOR_VERSION},$${QT_PATCH_VERSION},{\"Qt\",\"Qt\",\"Qt\"}" \
+		"; Declare the supported platforms" \
+		"; Symbian^1" \
+		"[0x1028315F],0,0,0,{\"S60ProductID\",\"S60ProductID\",\"S60ProductID\"}" \
+		"; Symbian^3" \
+		"[0x20022E6D],0,0,0,{\"S60ProductID\",\"S60ProductID\",\"S60ProductID\"}"
+
+	default_deployment.pkg_prerules -= pkg_platform_dependencies pkg_depends_qt
+	default_deployment.pkg_prerules += languages package_header vendor dependencies
+#	default_deployment.pkg_prerules += languages package_header vendor logo dependencies
+	# OVI Publish - 0x2002CCCF, Self-signed - 0xA000D7CE
+	DEPLOYMENT.installer_header = "$${LITERAL_HASH}{" \
+		"\"$$QMAKE_TARGET_PRODUCT Installer\"," \
+		"\"Установщик $$QMAKE_TARGET_PRODUCT\"," \
+		"\"Встановлювач $$QMAKE_TARGET_PRODUCT\"" \
+		"},(0xA000D7CE),$$BUILD_VERSION_MAJOR,$${BUILD_VERSION_MINOR}$${BUILD_RELEASE},$$REVISION"
+#		"},(0x2002CCCF),$$BUILD_VERSION_MAJOR,$${BUILD_VERSION_MINOR}$${BUILD_RELEASE},$$REVISION"
 }

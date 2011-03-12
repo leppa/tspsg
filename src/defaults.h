@@ -91,7 +91,7 @@
  * \brief Default font size
  */
 #ifdef Q_WS_S60
-	#define DEF_FONT_SIZE 8
+    #define DEF_FONT_SIZE 6
 #else
 	#define DEF_FONT_SIZE 10
 #endif // Q_WS_S60
