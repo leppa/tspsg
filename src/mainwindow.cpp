@@ -616,7 +616,9 @@ QTextBrowser *txtTranslation = new QTextBrowser(dlg);
     }
 #endif // HANDHELD
 
+#ifndef HANDHELD
     dlg->resize(450, 350);
+#endif
     QApplication::restoreOverrideCursor();
 
     dlg->exec();
@@ -1135,7 +1137,7 @@ QFont font;
             pic.setFont(font);
         }
         if (step->price != INFINITY) {
-            pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, isInteger(step->price) ?  QString("\n%1").arg(step->price) : QString("\n%1").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()));
+            pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, isInteger(step->price) ? QString("\n%1").arg(step->price) : QString("\n%1").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()));
         } else {
             pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, "\n"INFSTR);
         }
@@ -1578,10 +1580,14 @@ QScrollArea *scrollArea = new QScrollArea(this);
 
     //! \hack HACK: A little hack for toolbar icons to have a sane size.
 #if defined(HANDHELD) && !defined(Q_WS_MAEMO_5)
+#ifdef Q_WS_S60
+    toolBarMain->setIconSize(QSize(logicalDpiX() / 5, logicalDpiY() / 5));
+#else
     toolBarMain->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
-#endif // HANDHELD
+#endif // Q_WS_S60
+#endif // HANDHELD && !Q_WS_MAEMO_5
 QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(actionFileSave));
-    if (tb != NULL)	 {
+    if (tb != NULL) {
         tb->setMenu(menuFileSaveAs);
         tb->setPopupMode(QToolButton::MenuButtonPopup);
     }

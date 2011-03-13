@@ -40,6 +40,11 @@
 
 int main(int argc, char *argv[])
 {
+#ifdef Q_WS_S60
+    // No enough memory for solution graph generation with tasks
+    // of 20 and more cities if we use non-raster graphics system.
+    QApplication::setGraphicsSystem("raster");
+#endif
 QApplication app(argc, argv);
     app.setOverrideCursor(QCursor(Qt::WaitCursor));
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf8"));
