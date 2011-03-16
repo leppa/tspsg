@@ -325,9 +325,10 @@ bool CTSPModel::setData(const QModelIndex &index, const QVariant &value, int rol
     if (!index.isValid())
         return false;
     if (role == Qt::EditRole && index.row() != index.column()) {
-        if (value.toString().compare(INFSTR) == 0)
+        if ((value.toString().compare(INFSTR) == 0)
+                || (value.toString().contains(QRegExp("^[^0-9]+$", Qt::CaseInsensitive)))) {
             table[index.row()][index.column()] = INFINITY;
-        else {
+        } else {
 bool ok;
 double tmp = value.toDouble(&ok);
             if (!ok || tmp < 0)
