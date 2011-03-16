@@ -11,13 +11,13 @@
 ######################################################################
 
 !nosvg {
-	QT += svg
+    QT += svg
 } else {
-	DEFINES += NOSVG
+    DEFINES += NOSVG
 }
 
 wincewm*|symbian|maemo*|simulator {
-	CONFIG += handheld
+    CONFIG += handheld
 }
 
 TEMPLATE = app
@@ -28,7 +28,7 @@ TEMPLATE = app
 QMAKE_TARGET_COMPANY = Oleksii "Lёppa" Serdiuk
 QMAKE_TARGET_PRODUCT = TSP Solver and Generator
 QMAKE_TARGET_DESCRIPTION = TSPSG: TSP Solver and Generator
-QMAKE_TARGET_COPYRIGHT = Copyright © 200-20110 Oleksii "Lёppa" Serdiuk <contacts[at]oleksii[dot]name>
+QMAKE_TARGET_COPYRIGHT = Copyright © 2010-2011 Oleksii "Lёppa" Serdiuk <contacts[at]oleksii[dot]name>
 
 # Versioning
 BUILD_VERSION_MAJOR = 0
@@ -42,53 +42,53 @@ BUILD_RELEASE = 4
 
 #REVISION = 145
 isEmpty(REVISION) {
-	REVISION = $$system(svnversion)
+    REVISION = $$system(svnversion)
 }
 isEmpty(REVISION)|isEqual(REVISION,exported) {
-	REVISION = 0
+    REVISION = 0
 } else {
-	REVISION = $$replace(REVISION,":","")
-	REVISION = $$replace(REVISION,"M","")
+    REVISION = $$replace(REVISION,":","")
+    REVISION = $$replace(REVISION,"M","")
 }
 SHORT_VERSION = $$sprintf("%1.%2",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR)
 win32-msvc*|wincewm* {
-	VERSION = $$SHORT_VERSION
+    VERSION = $$SHORT_VERSION
 } else {
-	VERSION = $$sprintf("%1.%2",$$SHORT_VERSION,$$BUILD_RELEASE)
+    VERSION = $$sprintf("%1.%2",$$SHORT_VERSION,$$BUILD_RELEASE)
 }
 
 DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
-	BUILD_VERSION_MINOR=$$BUILD_VERSION_MINOR \
-	BUILD_RELEASE=$$BUILD_RELEASE \
-	BUILD_NUMBER=$$REVISION
+    BUILD_VERSION_MINOR=$$BUILD_VERSION_MINOR \
+    BUILD_RELEASE=$$BUILD_RELEASE \
+    BUILD_NUMBER=$$REVISION
 
 # A hack to determine whether we have static or dynamic Qt build
 macx {
-	PRL = $$[QT_INSTALL_LIBS] QtCore.framework QtCore.prl
+    PRL = $$[QT_INSTALL_LIBS] QtCore.framework QtCore.prl
 } else:symbian|maemo* {
-	# Nothing here
+    # Nothing here
 } else:unix {
-	PRL = $$[QT_INSTALL_LIBS] libQtCore.prl
+    PRL = $$[QT_INSTALL_LIBS] libQtCore.prl
 } else {
-	PRL = $$[QT_INSTALL_LIBS] QtCore.prl
+    PRL = $$[QT_INSTALL_LIBS] QtCore.prl
 }
 !isEmpty(PRL) {
-	include($$join(PRL, "/"))
-	contains(QMAKE_PRL_CONFIG, static) {
-		# We "embed" SVG icon support on static build
-		DEFINES += STATIC_BUILD
+    include($$join(PRL, "/"))
+    contains(QMAKE_PRL_CONFIG, static) {
+        # We "embed" SVG icon support on static build
+        DEFINES += STATIC_BUILD
 #		!nosvg:QTPLUGIN += qsvgicon
-	}
+    }
 }
 
 CONFIG(release, debug|release) {
-	OBJECTS_DIR = release
-	D =
+    OBJECTS_DIR = release
+    D =
 } else {
-	OBJECTS_DIR = debug
-	DEFINES += DEBUG
+    OBJECTS_DIR = debug
+    DEFINES += DEBUG
 #	CONFIG += console
-	D = d
+    D = d
 }
 DESTDIR = bin
 TARGET = tspsg$${D}
@@ -100,7 +100,7 @@ UI_DIR = tmp
 
 # Include 3rd party libraries
 !handheld {
-	include(src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.pri)
+    include(src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.pri)
 }
 
 win32:LIBS += -lole32
