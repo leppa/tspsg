@@ -605,6 +605,7 @@ QTextBrowser *txtTranslation = new QTextBrowser(dlg);
     dlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
     dlg->setWindowTitle(tr("About %1").arg(QCoreApplication::applicationName()));
     dlg->setWindowIcon(GET_ICON("help-about"));
+
     dlg->setLayout(vb);
 
     connect(bb, SIGNAL(accepted()), dlg, SLOT(accept()));
@@ -714,7 +715,7 @@ SStep *root = solver.solve(n, matrix);
             QApplication::alert(this);
             QMessageBox::warning(this, tr("Solution Result"), tr("Unable to find a solution.\nMaybe, this task has no solution."));
         }
-        pd.setLabelText(tr("Cleaning up..."));
+        pd.setLabelText(tr("Memory cleanup..."));
         pd.setMaximum(0);
         pd.setCancelButton(NULL);
         pd.show();
@@ -800,7 +801,7 @@ int c = n = 1;
     pb->setFormat(tr("Generating step %v"));
     while ((step->next != SStep::NoNextStep) && (c < spinCities->value())) {
         if (pd.wasCanceled()) {
-            pd.setLabelText(tr("Cleaning up..."));
+            pd.setLabelText(tr("Memory cleanup..."));
             pd.setMaximum(0);
             pd.setCancelButton(NULL);
             pd.show();
@@ -933,7 +934,7 @@ QTextImageFormat img;
     } else
         solutionText->moveCursor(QTextCursor::Start);
 
-    pd.setLabelText(tr("Cleaning up..."));
+    pd.setLabelText(tr("Memory cleanup..."));
     pd.setMaximum(0);
     pd.setCancelButton(NULL);
     QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
@@ -1105,9 +1106,9 @@ void MainWindow::drawNode(QPainter &pic, int nstep, bool left, SStep *step)
 {
 int r;
     if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool())
-        r = 70;
+        r = logicalDpiX() / 1.27;
     else
-        r = 35;
+        r = logicalDpiX() / 2.54;
 qreal x, y;
     if (step != NULL)
         x = left ? r : r * 3.5;

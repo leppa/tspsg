@@ -94,7 +94,7 @@ symbian {
     TARGET = TSPSG$${D}
 
     share.sources = $$share.files
-    # qmake for Symbian (as of Qt 4.6.2) has a bug: file masks doesn't work, so we need to specify all files manually
+    # qmake for Symbian (as of Qt 4.6.2) has a bug: file masks don't work, so we need to specify all files manually
 #	l10n.sources = $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm \
 #		$$[QT_INSTALL_TRANSLATIONS]/qt_uk.qm \
 #		l10n/tspsg_en.qm l10n/tspsg_ru.qm l10n/tspsg_uk.qm

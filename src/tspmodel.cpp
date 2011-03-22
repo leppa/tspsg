@@ -375,11 +375,11 @@ QString err;
     if (status == QDataStream::Ok)
         return false;
     else if (status == QDataStream::ReadPastEnd)
-        err = tr("Unexpected end of file.");
+        err = tr("Unexpected end of file. The file could be corrupted.");
     else if (status == QDataStream::ReadCorruptData)
-        err = tr("Corrupt data read. File possibly corrupted.");
+        err = tr("Corrupt data read. The file could be corrupted.");
     else
-        err = tr("Unknown error.");
+        err = tr("Unknown error. The file could be corrupted.");
     QApplication::restoreOverrideCursor();
     QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
     QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + err);
@@ -401,7 +401,10 @@ quint8 version;
     if (version > TSPT_VERSION) {
         QApplication::restoreOverrideCursor();
         QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n"
+            + tr("File version (%1) is newer than this version of %3 supports (%2).\n"
+                 "Please, try to update the application. Also, the file might be corrupted.")
+                 .arg(version).arg(TSPT_VERSION).arg(QApplication::applicationName()));
         QApplication::restoreOverrideCursor();
         return false;
     }
@@ -414,10 +417,21 @@ quint16 size;
     *ds >> size;
     if (loadError(ds->status()))
         return false;
-    if ((size < 3) || (size > MAX_NUM_CITIES)) {
+    if (size < 3) {
         QApplication::restoreOverrideCursor();
         QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n"
+            + tr("Unexpected data read. The file could be corrupted."));
+        QApplication::restoreOverrideCursor();
+        return false;
+    }
+    if (size > MAX_NUM_CITIES) {
+        QApplication::restoreOverrideCursor();
+        QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n"
+            + tr("The task contains more cities (%1) than this version of %3 supports (%2).\n"
+                 "You might be using an old version of the application or the file could be corrupted.")
+                 .arg(size).arg(MAX_NUM_CITIES).arg(QApplication::applicationName()));
         QApplication::restoreOverrideCursor();
         return false;
     }
@@ -457,7 +471,10 @@ quint16 version;
     if (version > ZKT_VERSION) {
         QApplication::restoreOverrideCursor();
         QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("File version is newer than application supports.\nPlease, try to update application."));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n"
+            + tr("File version (%1) is newer than this version of %3 supports (%2).\n"
+                 "Please, try to update the application. Also, the file could be corrupted.")
+                 .arg(version).arg(TSPT_VERSION).arg(QApplication::applicationName()));
         QApplication::restoreOverrideCursor();
         return false;
     }
@@ -469,7 +486,8 @@ quint8 size;
     if ((size < 3) || (size > 5)) {
         QApplication::restoreOverrideCursor();
         QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n" + tr("Unexpected data read.\nFile is possibly corrupted."));
+        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n"
+            + tr("Unexpected data read. The file could be corrupted."));
         QApplication::restoreOverrideCursor();
         return false;
     }

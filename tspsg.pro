@@ -28,7 +28,7 @@ TEMPLATE = app
 QMAKE_TARGET_COMPANY = Oleksii "Lёppa" Serdiuk
 QMAKE_TARGET_PRODUCT = TSP Solver and Generator
 QMAKE_TARGET_DESCRIPTION = TSPSG: TSP Solver and Generator
-QMAKE_TARGET_COPYRIGHT = Copyright © 2010-2011 Oleksii "Lёppa" Serdiuk <contacts[at]oleksii[dot]name>
+QMAKE_TARGET_COPYRIGHT = Copyright © 2007-2011 Oleksii "Lёppa" Serdiuk <contacts[at]oleksii[dot]name>
 
 # Versioning
 BUILD_VERSION_MAJOR = 0
@@ -65,7 +65,7 @@ DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
 # A hack to determine whether we have static or dynamic Qt build
 macx {
     PRL = $$[QT_INSTALL_LIBS] QtCore.framework QtCore.prl
-} else:symbian|maemo* {
+} else:symbian|maemo*|simulator {
     # Nothing here
 } else:unix {
     PRL = $$[QT_INSTALL_LIBS] libQtCore.prl

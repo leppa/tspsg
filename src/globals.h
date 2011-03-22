@@ -142,7 +142,7 @@ void toggleStyle(QWidget *widget, bool enable);
 #ifndef DOXYGEN_EXCLUDE
 
 #ifdef HANDHELD
-#   define ICON_SIZE "32x32"
+#   define ICON_SIZE "48x48"
 #   define ICON_FORMAT "png"
 #else
 #   define ICON_SIZE "128x128"
