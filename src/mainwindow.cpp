@@ -60,6 +60,16 @@ QStyle *s = QStyleFactory::create(settings->value("Style").toString());
 
 #ifndef QT_NO_PRINTER
     printer = new QPrinter(QPrinter::HighResolution);
+    settings->beginGroup("Printer");
+    printer->setPageSize(qvariant_cast<QPrinter::PageSize>(settings->value("PageSize", DEF_PAGE_SIZE)));
+    printer->setOrientation(qvariant_cast<QPrinter::Orientation>(settings->value("PageOrientation", DEF_PAGE_ORIENTATION)));
+    printer->setPageMargins(
+        settings->value("MarginLeft", DEF_MARGIN_LEFT).toDouble(),
+        settings->value("MarginTop", DEF_MARGIN_TOP).toDouble(),
+        settings->value("MarginRight", DEF_MARGIN_RIGHT).toDouble(),
+        settings->value("MarginBottom", DEF_MARGIN_BOTTOM).toDouble(),
+        QPrinter::Millimeter);
+    settings->endGroup();
 #endif // QT_NO_PRINTER
 
 #ifdef Q_WS_WINCE_WM
@@ -346,6 +356,12 @@ void MainWindow::actionFilePrintPreviewTriggered()
 QPrintPreviewDialog ppd(printer, this);
     connect(&ppd,SIGNAL(paintRequested(QPrinter *)),SLOT(printPreview(QPrinter *)));
     ppd.exec();
+    settings->beginGroup("Printer");
+    settings->setValue("PageSize", printer->pageSize());
+    settings->setValue("PageOrientation", printer->orientation());
+    /*! \todo TODO: There's no way to get printer margins set with QPrinter::setPageMargins()
+         for now. Have to figure out a workaround for this (calculate it from other metrics?). */
+    settings->endGroup();
 }
 
 void MainWindow::actionFilePrintTriggered()
@@ -782,7 +798,7 @@ QTextCursor cur(doc);
     cur.setBlockFormat(fmt_paragraph);
     cur.insertText(tr("Variant #%1 Task").arg(spinVariant->value()), fmt_default);
     cur.insertBlock(fmt_paragraph);
-    cur.insertText(tr("Task:"));
+    cur.insertText(tr("Task:"), fmt_default);
     outputMatrix(cur, matrix);
     if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
 #ifdef _T_T_L_
@@ -837,7 +853,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 
         cur.beginEditBlock();
         cur.insertBlock(fmt_paragraph);
-        cur.insertText(tr("Step #%1").arg(n));
+        cur.insertText(tr("Step #%1").arg(n), fmt_default);
         if (settings->value("Output/ShowMatrix", DEF_SHOW_MATRIX).toBool() && (!settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() || (settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() && (spinCities->value() <= settings->value("Output/ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt())))) {
             outputMatrix(cur, *step);
         }
@@ -1172,14 +1188,14 @@ void MainWindow::initDocStyleSheet()
 {
     solutionText->document()->setDefaultFont(qvariant_cast<QFont>(settings->value("Output/Font", QFont(DEF_FONT_FACE, DEF_FONT_SIZE))));
 
-    fmt_paragraph.setTopMargin(0);
+    fmt_paragraph.setTopMargin(5);
     fmt_paragraph.setRightMargin(10);
     fmt_paragraph.setBottomMargin(0);
     fmt_paragraph.setLeftMargin(10);
 
     fmt_table.setTopMargin(5);
     fmt_table.setRightMargin(10);
-    fmt_table.setBottomMargin(5);
+    fmt_table.setBottomMargin(0);
     fmt_table.setLeftMargin(10);
     fmt_table.setBorder(0);
     fmt_table.setBorderStyle(QTextFrameFormat::BorderStyle_None);

@@ -102,4 +102,13 @@
 //! Default alternate candidate color
 #define DEF_ALTERNATE_COLOR QColor(0xA00000)
 
+#ifndef QT_NO_PRINTER
+#   define DEF_PAGE_SIZE QPrinter::A4
+#   define DEF_PAGE_ORIENTATION QPrinter::Portrait
+#   define DEF_MARGIN_LEFT 25
+#   define DEF_MARGIN_TOP 15
+#   define DEF_MARGIN_RIGHT DEF_MARGIN_TOP
+#   define DEF_MARGIN_BOTTOM DEF_MARGIN_TOP
+#endif
+
 #endif // DEFAULTS_H

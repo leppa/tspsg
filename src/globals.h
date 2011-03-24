@@ -141,6 +141,11 @@ void toggleStyle(QWidget *widget, bool enable);
 
 #ifndef DOXYGEN_EXCLUDE
 
+#ifndef QT_NO_PRINTER
+    Q_DECLARE_METATYPE(QPrinter::PageSize)
+    Q_DECLARE_METATYPE(QPrinter::Orientation)
+#endif
+
 #ifdef HANDHELD
 #   define ICON_SIZE "48x48"
 #   define ICON_FORMAT "png"
