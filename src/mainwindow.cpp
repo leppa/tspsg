@@ -61,7 +61,7 @@ QStyle *s = QStyleFactory::create(settings->value("Style").toString());
 #ifndef QT_NO_PRINTER
     printer = new QPrinter(QPrinter::HighResolution);
     settings->beginGroup("Printer");
-    printer->setPageSize(qvariant_cast<QPrinter::PageSize>(settings->value("PageSize", DEF_PAGE_SIZE)));
+    printer->setPaperSize(qvariant_cast<QPrinter::PaperSize>(settings->value("PaperSize", DEF_PAGE_SIZE)));
     printer->setOrientation(qvariant_cast<QPrinter::Orientation>(settings->value("PageOrientation", DEF_PAGE_ORIENTATION)));
     printer->setPageMargins(
         settings->value("MarginLeft", DEF_MARGIN_LEFT).toDouble(),
@@ -356,11 +356,17 @@ void MainWindow::actionFilePrintPreviewTriggered()
 QPrintPreviewDialog ppd(printer, this);
     connect(&ppd,SIGNAL(paintRequested(QPrinter *)),SLOT(printPreview(QPrinter *)));
     ppd.exec();
+
+qreal l, t, r, b;
+    printer->getPageMargins(&l, &t, &r, &b, QPrinter::Millimeter);
+
     settings->beginGroup("Printer");
-    settings->setValue("PageSize", printer->pageSize());
+    settings->setValue("PaperSize", printer->paperSize());
     settings->setValue("PageOrientation", printer->orientation());
-    /*! \todo TODO: There's no way to get printer margins set with QPrinter::setPageMargins()
-         for now. Have to figure out a workaround for this (calculate it from other metrics?). */
+    settings->setValue("MarginLeft", l);
+    settings->setValue("MarginTop", t);
+    settings->setValue("MarginRight", r);
+    settings->setValue("MarginBottom", b);
     settings->endGroup();
 }
 
@@ -1121,13 +1127,13 @@ QFileInfo fi(ev->mimeData()->urls().first().toLocalFile());
 
 void MainWindow::drawNode(QPainter &pic, int nstep, bool left, SStep *step)
 {
-int r;
+qreal r;
     if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool())
         r = logicalDpiX() / 1.27;
     else
         r = logicalDpiX() / 2.54;
 #ifdef Q_WS_S60
-	/*! \hack HACK: Solution graph on Symbian is visually larger than on
+    /*! \hack HACK: Solution graph on Symbian is visually larger than on
      *   Windows Mobile. This coefficient makes it about the same size.
      */
     r /= 1.3;
@@ -1529,6 +1535,9 @@ QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_D
         return false;
     else if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
         settings->setValue(OS"/LastUsed/TaskSavePath", QFileInfo(file).path());
+    if (QFileInfo(file).suffix().isEmpty()) {
+        file.append(".tspt");
+    }
 
     if (tspmodel->saveTask(file)) {
         setFileName(file);
