@@ -76,6 +76,15 @@ QTranslator en;
         app.installTranslator(&en);
 
 MainWindow mainwindow;
+#ifdef Q_WS_S60
+    //! \hack HACK: A workaround to hide Actions menu item in Symbian.
+QWidgetList widgets = QApplication::allWidgets();
+QWidget *w = 0;
+    foreach(w, widgets) {
+        w->setContextMenuPolicy(Qt::NoContextMenu);
+    }
+#endif
+
 #ifdef HANDHELD
     mainwindow.showMaximized();
 #else // HANDHELD

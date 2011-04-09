@@ -111,6 +111,9 @@ private:
     QAction *actionFilePrint;
 #endif // QT_NO_PRINTER
     QAction *actionHelpCheck4Updates;
+#ifdef Q_WS_S60
+    QAction *actionRightSoftKey;
+#endif
     QSettings *settings;
     CTSPModel *tspmodel;
 #ifdef Q_WS_WINCE_WM

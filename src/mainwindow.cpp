@@ -491,6 +491,7 @@ QString about;
 #else
     about += QString("%1: <b>%2</b> (%3)<br>").arg(tr("Qt library"), QT_VERSION_STR, tr("static"));
 #endif // STATIC_BUILD
+    about.append(QString("%1: <b>%2x%3</b><br>").arg("Logical DPI").arg(logicalDpiX()).arg(logicalDpiY()));
     about += tr("Buid <b>%1</b>, built on <b>%2</b> at <b>%3</b> with <b>%4</b> compiler.").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__).arg(COMPILER) + "<br>";
     about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), CTSPSolver::getVersionId());
     about += "<br>";
@@ -1125,6 +1126,13 @@ int r;
         r = logicalDpiX() / 1.27;
     else
         r = logicalDpiX() / 2.54;
+#ifdef Q_WS_S60
+	/*! \hack HACK: Solution graph on Symbian is visually larger than on
+     *   Windows Mobile. This coefficient makes it about the same size.
+     */
+    r /= 1.3;
+#endif
+
 qreal x, y;
     if (step != NULL)
         x = left ? r : r * 3.5;
@@ -1495,6 +1503,10 @@ void MainWindow::retranslateUi(bool all)
 #ifndef QT_NO_STATUSTIP
     actionHelpAbout->setStatusTip(tr("About %1").arg(QCoreApplication::applicationName()));
 #endif // QT_NO_STATUSTIP
+
+#ifdef Q_WS_S60
+    actionRightSoftKey->setText(tr("E&xit"));
+#endif
 }
 
 bool MainWindow::saveTask() {
@@ -1598,7 +1610,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
     //! \hack HACK: A little hack for toolbar icons to have a sane size.
 #if defined(HANDHELD) && !defined(Q_WS_MAEMO_5)
 #ifdef Q_WS_S60
-    toolBarMain->setIconSize(QSize(logicalDpiX() / 5, logicalDpiY() / 5));
+    toolBarMain->setIconSize(QSize(logicalDpiX() / 5.2, logicalDpiY() / 5.2));
 #else
     toolBarMain->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
 #endif // Q_WS_S60
@@ -1676,6 +1688,15 @@ QString cat = toolBarMain->windowTitle();
 #else
     toolBarMain->setVisible(settings->value("MainWindow/ToolbarVisible", true).toBool());
 #endif // HANDHELD
+
+#ifdef Q_WS_S60
+    // Replace Exit on the right soft key with our own exit action.
+    // This makes it translatable.
+    actionRightSoftKey = new QAction(this);
+    actionRightSoftKey->setSoftKeyRole(QAction::NegativeSoftKey);
+    connect(actionRightSoftKey, SIGNAL(triggered()), SLOT(close()));
+    addAction(actionRightSoftKey);
+#endif
 
     retranslateUi(false);
 
