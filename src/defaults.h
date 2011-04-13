@@ -48,8 +48,15 @@
 #endif // Q_WS_WINCE_WM
 //! Default for "Save main window state and position"
 #define DEF_SAVEPOS true
-//! Default for "Use translucency effects in Vista/7"
-#define DEF_USE_TRANSLUCENCY true
+/*!
+ * \def DEF_USE_TRANSLUCENCY
+ * \brief Default for "Use translucency effects"
+ */
+#ifdef Q_WS_WIN
+#   define DEF_USE_TRANSLUCENCY true
+#else
+#   define DEF_USE_TRANSLUCENCY false
+#endif
 //! Default for "Check for updates"
 #define DEF_CHECK_FOR_UPDATES false
 //! Default update check interval (in days)

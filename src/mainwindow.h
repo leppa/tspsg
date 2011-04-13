@@ -63,6 +63,7 @@ private slots:
     void actionFileSaveAsSolutionTriggered();
 #ifndef QT_NO_PRINTER
     void actionFilePrintPreviewTriggered();
+    void actionFilePageSetupTriggered();
     void actionFilePrintTriggered();
 #endif // QT_NO_PRINTER
     void actionSettingsPreferencesTriggered();
@@ -108,6 +109,7 @@ private:
 #ifndef QT_NO_PRINTER
     QPrinter *printer;
     QAction *actionFilePrintPreview;
+    QAction *actionFilePageSetup;
     QAction *actionFilePrint;
 #endif // QT_NO_PRINTER
     QAction *actionHelpCheck4Updates;

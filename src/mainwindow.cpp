@@ -61,13 +61,20 @@ QStyle *s = QStyleFactory::create(settings->value("Style").toString());
 #ifndef QT_NO_PRINTER
     printer = new QPrinter(QPrinter::HighResolution);
     settings->beginGroup("Printer");
-    printer->setPaperSize(qvariant_cast<QPrinter::PaperSize>(settings->value("PaperSize", DEF_PAGE_SIZE)));
+QPrinter::PaperSize size = qvariant_cast<QPrinter::PaperSize>(settings->value("PaperSize", DEF_PAGE_SIZE));
+    if (size != QPrinter::Custom) {
+        printer->setPaperSize(size);
+    } else {
+        printer->setPaperSize(QSizeF(settings->value("PaperWidth").toReal(), settings->value("PaperHeight").toReal()),
+                              QPrinter::Millimeter);
+    }
+
     printer->setOrientation(qvariant_cast<QPrinter::Orientation>(settings->value("PageOrientation", DEF_PAGE_ORIENTATION)));
     printer->setPageMargins(
-        settings->value("MarginLeft", DEF_MARGIN_LEFT).toDouble(),
-        settings->value("MarginTop", DEF_MARGIN_TOP).toDouble(),
-        settings->value("MarginRight", DEF_MARGIN_RIGHT).toDouble(),
-        settings->value("MarginBottom", DEF_MARGIN_BOTTOM).toDouble(),
+        settings->value("MarginLeft", DEF_MARGIN_LEFT).toReal(),
+        settings->value("MarginTop", DEF_MARGIN_TOP).toReal(),
+        settings->value("MarginRight", DEF_MARGIN_RIGHT).toReal(),
+        settings->value("MarginBottom", DEF_MARGIN_BOTTOM).toReal(),
         QPrinter::Millimeter);
     settings->endGroup();
 #endif // QT_NO_PRINTER
@@ -84,6 +91,7 @@ QStyle *s = QStyleFactory::create(settings->value("Style").toString());
     connect(actionFileSaveAsSolution, SIGNAL(triggered()), SLOT(actionFileSaveAsSolutionTriggered()));
 #ifndef QT_NO_PRINTER
     connect(actionFilePrintPreview, SIGNAL(triggered()), SLOT(actionFilePrintPreviewTriggered()));
+    connect(actionFilePageSetup, SIGNAL(triggered()), SLOT(actionFilePageSetupTriggered()));
     connect(actionFilePrint, SIGNAL(triggered()), SLOT(actionFilePrintTriggered()));
 #endif // QT_NO_PRINTER
 #ifndef HANDHELD
@@ -362,6 +370,35 @@ qreal l, t, r, b;
 
     settings->beginGroup("Printer");
     settings->setValue("PaperSize", printer->paperSize());
+    if (printer->paperSize() == QPrinter::Custom) {
+QSizeF size(printer->paperSize(QPrinter::Millimeter));
+        settings->setValue("PaperWidth", size.width());
+        settings->setValue("PaperHeight", size.height());
+    }
+    settings->setValue("PageOrientation", printer->orientation());
+    settings->setValue("MarginLeft", l);
+    settings->setValue("MarginTop", t);
+    settings->setValue("MarginRight", r);
+    settings->setValue("MarginBottom", b);
+    settings->endGroup();
+}
+
+void MainWindow::actionFilePageSetupTriggered()
+{
+QPageSetupDialog psd(printer, this);
+    if (psd.exec() != QDialog::Accepted)
+        return;
+
+qreal l, t, r ,b;
+    printer->getPageMargins(&l, &t, &r, &b, QPrinter::Millimeter);
+
+    settings->beginGroup("Printer");
+    settings->setValue("PaperSize", printer->paperSize());
+    if (printer->paperSize() == QPrinter::Custom) {
+QSizeF size(printer->paperSize(QPrinter::Millimeter));
+        settings->setValue("PaperWidth", size.width());
+        settings->setValue("PaperHeight", size.height());
+    }
     settings->setValue("PageOrientation", printer->orientation());
     settings->setValue("MarginLeft", l);
     settings->setValue("MarginTop", t);
@@ -783,10 +820,12 @@ QPainter pic;
     if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
         pic.begin(&graph);
         pic.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-QFont font = qvariant_cast<QFont>(settings->value("Output/Font", QFont(DEF_FONT_FACE, 9)));
+QFont font = qvariant_cast<QFont>(settings->value("Output/Font", QFont(DEF_FONT_FACE)));
+        //! \todo FIXME: Get rid of the "magic number" in the code.
+        font.setPixelSize(logicalDpiX() / 7);
         if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool()) {
             font.setWeight(QFont::DemiBold);
-            font.setPointSizeF(font.pointSizeF() * 2);
+            font.setPixelSize(font.pixelSize() * 2);
         }
         pic.setFont(font);
         pic.setBrush(QBrush(QColor(Qt::white)));
@@ -1128,6 +1167,7 @@ QFileInfo fi(ev->mimeData()->urls().first().toLocalFile());
 void MainWindow::drawNode(QPainter &pic, int nstep, bool left, SStep *step)
 {
 qreal r;
+    //! \todo FIXME: Get rid of the "magic numbers" in the code.
     if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool())
         r = logicalDpiX() / 1.27;
     else
@@ -1477,7 +1517,14 @@ void MainWindow::retranslateUi(bool all)
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_STATUSTIP
     actionFilePrintPreview->setStatusTip(tr("Preview current solution results before printing"));
-    actionFileExit->setStatusTip(tr("Exit %1").arg(QCoreApplication::applicationName()));
+#endif // QT_NO_STATUSTIP
+
+    actionFilePageSetup->setText(tr("Pa&ge Setup..."));
+#ifndef QT_NO_TOOLTIP
+    actionFilePageSetup->setToolTip(tr("Setup print options"));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+    actionFilePageSetup->setStatusTip(tr("Setup page-related options for printing"));
 #endif // QT_NO_STATUSTIP
 
     actionFilePrint->setText(tr("&Print..."));
@@ -1489,6 +1536,10 @@ void MainWindow::retranslateUi(bool all)
 #endif // QT_NO_STATUSTIP
     actionFilePrint->setShortcut(tr("Ctrl+P"));
 #endif // QT_NO_PRINTER
+
+#ifndef QT_NO_STATUSTIP
+    actionFileExit->setStatusTip(tr("Exit %1").arg(QCoreApplication::applicationName()));
+#endif // QT_NO_STATUSTIP
 
 #ifndef HANDHELD
     actionSettingsToolbarsConfigure->setText(tr("Configure..."));
@@ -1639,13 +1690,23 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
     actionFilePrintPreview->setEnabled(false);
     actionFilePrintPreview->setIcon(GET_ICON("document-print-preview"));
 
+    actionFilePageSetup = new QAction(this);
+    actionFilePageSetup->setObjectName("actionFilePrintSetup");
+//    actionFilePageSetup->setEnabled(false);
+#if QT_VERSION >= 0x040600
+    actionFilePageSetup->setIcon(QIcon::fromTheme("document-page-setup", QIcon(":/trolltech/dialogs/qprintpreviewdialog/images/page-setup-32.png")));
+#else
+    actionFilePageSetup->setIcon(QIcon(":/trolltech/dialogs/qprintpreviewdialog/images/page-setup-32.png"));
+#endif
+
     actionFilePrint = new QAction(this);
     actionFilePrint->setObjectName("actionFilePrint");
     actionFilePrint->setEnabled(false);
     actionFilePrint->setIcon(GET_ICON("document-print"));
 
-    menuFile->insertAction(actionFileExit,actionFilePrintPreview);
-    menuFile->insertAction(actionFileExit,actionFilePrint);
+    menuFile->insertAction(actionFileExit, actionFilePrintPreview);
+    menuFile->insertAction(actionFileExit, actionFilePageSetup);
+    menuFile->insertAction(actionFileExit, actionFilePrint);
     menuFile->insertSeparator(actionFileExit);
 
     toolBarMain->insertAction(actionSettingsPreferences, actionFilePrint);
@@ -1683,16 +1744,16 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
     spinCities->setMaximum(MAX_NUM_CITIES);
 
 #ifndef HANDHELD
-    toolBarManager = new QtToolBarManager;
+    toolBarManager = new QtToolBarManager(this);
     toolBarManager->setMainWindow(this);
 QString cat = toolBarMain->windowTitle();
     toolBarManager->addToolBar(toolBarMain, cat);
 #ifndef QT_NO_PRINTER
     toolBarManager->addAction(actionFilePrintPreview, cat);
+    toolBarManager->addAction(actionFilePageSetup, cat);
 #endif // QT_NO_PRINTER
     toolBarManager->addAction(actionHelpContents, cat);
     toolBarManager->addAction(actionHelpContextual, cat);
-//	toolBarManager->addAction(action, cat);
     toolBarManager->restoreState(settings->value("MainWindow/Toolbars").toByteArray());
 #else
     toolBarMain->setVisible(settings->value("MainWindow/ToolbarVisible", true).toBool());
