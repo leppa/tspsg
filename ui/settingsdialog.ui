@@ -296,15 +296,15 @@
        </attribute>
        <layout class="QVBoxLayout" name="_6">
         <item>
-         <widget class="QCheckBox" name="cbShowGraph">
+         <widget class="QCheckBox" name="cbGenerateGraph">
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="statusTip">
-           <string>Show graphical representation of the solution</string>
+           <string>Generate graphical representation of the solution</string>
           </property>
           <property name="text">
-           <string>Show solution graph</string>
+           <string>Generate solution graph</string>
           </property>
          </widget>
         </item>
@@ -361,6 +361,39 @@
              </size>
             </property>
            </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="_14">
+          <item>
+           <spacer name="spacer_8">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>10</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cbEmbedGraphIntoHTML">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="statusTip">
+             <string>Use data URI scheme to save solution graph in HTML (not supported by IE 7 and lower)</string>
+            </property>
+            <property name="text">
+             <string>Embed solution graph into HTML</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -610,7 +643,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>cbShowGraph</sender>
+   <sender>cbGenerateGraph</sender>
    <signal>toggled(bool)</signal>
    <receiver>labelGraphImageFormat</receiver>
    <slot>setEnabled(bool)</slot>
@@ -626,7 +659,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>cbShowGraph</sender>
+   <sender>cbGenerateGraph</sender>
    <signal>toggled(bool)</signal>
    <receiver>comboGraphImageFormat</receiver>
    <slot>setEnabled(bool)</slot>
@@ -638,6 +671,22 @@
     <hint type="destinationlabel">
      <x>149</x>
      <y>73</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbGenerateGraph</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>cbEmbedGraphIntoHTML</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>128</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>136</x>
+     <y>103</y>
     </hint>
    </hints>
   </connection>

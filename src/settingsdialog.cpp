@@ -75,8 +75,8 @@ QHBoxLayout *hbox;
     hbox = new QHBoxLayout();
     hbox->addSpacing(10);
     hbox->addWidget(cbHQGraph);
-    box->insertLayout(box->indexOf(cbShowGraph) + 1, hbox);
-    connect(cbShowGraph, SIGNAL(toggled(bool)), cbHQGraph, SLOT(setEnabled(bool)));
+    box->insertLayout(box->indexOf(cbGenerateGraph) + 2, hbox);
+    connect(cbGenerateGraph, SIGNAL(toggled(bool)), cbHQGraph, SLOT(setEnabled(bool)));
 #endif
 
     if (hasUpdater()) {
@@ -146,7 +146,7 @@ QVBoxLayout *vbox; // Layout helper
         cbUseTranslucency = new QCheckBox(bgWhite);
         cbUseTranslucency->setObjectName("cbUseTranslucency");
 #ifndef QT_NO_STATUSTIP
-        cbUseTranslucency->setStatusTip(tr("Use translucent effect on the Main Window under Windows Vista and 7"));
+        cbUseTranslucency->setStatusTip(tr("Make Main Window background translucent"));
 #endif // QT_NO_STATUSTIP
         cbUseTranslucency->setText(tr("Use translucency effects"));
         cbUseTranslucency->setCursor(QCursor(Qt::PointingHandCursor));
@@ -173,9 +173,8 @@ QVBoxLayout *vbox; // Layout helper
     labelHint = new QLabel(bgGrey);
     labelHint->setObjectName("labelHint");
     labelHint->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
-//	labelHint->setMinimumSize(QSize(190,28));
-    labelHint->setMinimumSize(QSize(0,28));
-    labelHint->setMaximumSize(QSize(QWIDGETSIZE_MAX,28));
+    labelHint->setMinimumSize(QSize(250, 28));
+    labelHint->setMaximumSize(QSize(QWIDGETSIZE_MAX, 28));
     labelHint->setTextFormat(Qt::PlainText);
 //	labelHint->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     labelHint->setWordWrap(true);
@@ -259,11 +258,11 @@ QVBoxLayout *vbox; // Layout helper
     settings->endGroup();
 
     settings->beginGroup("Output");
-    cbShowGraph->setChecked(settings->value("ShowGraph", DEF_SHOW_GRAPH).toBool());
+    cbGenerateGraph->setChecked(settings->value("GenerateGraph", DEF_GENERATE_GRAPH).toBool());
 
 #ifndef QT_NO_PRINTER
-    cbHQGraph->setEnabled(cbShowGraph->isChecked());
-    cbHQGraph->setChecked(settings->value("HQGraph", DEF_HQ_GRAPH && cbShowGraph->isChecked()).toBool());
+    cbHQGraph->setEnabled(cbGenerateGraph->isChecked());
+    cbHQGraph->setChecked(settings->value("HQGraph", DEF_HQ_GRAPH).toBool());
 #endif
 
 #if !defined(NOSVG) && (QT_VERSION >= 0x040500)
@@ -282,8 +281,10 @@ QStringList whitelist;
     comboGraphImageFormat->setCurrentIndex(comboGraphImageFormat->findText(settings->value("GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT).toString(), Qt::MatchFixedString));
     if (comboGraphImageFormat->currentIndex() < 0)
         comboGraphImageFormat->setCurrentIndex(comboGraphImageFormat->findText(DEF_GRAPH_IMAGE_FORMAT, Qt::MatchFixedString));
-    labelGraphImageFormat->setEnabled(cbShowGraph->isChecked());
-    comboGraphImageFormat->setEnabled(cbShowGraph->isChecked());
+    labelGraphImageFormat->setEnabled(cbGenerateGraph->isChecked());
+    comboGraphImageFormat->setEnabled(cbGenerateGraph->isChecked());
+    cbEmbedGraphIntoHTML->setChecked(settings->value("EmbedGraphIntoHTML", DEF_EMBED_GRAPH_INTO_HTML).toBool());
+    cbEmbedGraphIntoHTML->setEnabled(cbGenerateGraph->isChecked());
 
     cbShowMatrix->setChecked(settings->value("ShowMatrix", DEF_SHOW_MATRIX).toBool());
     cbCitiesLimit->setEnabled(cbShowMatrix->isChecked());
@@ -325,7 +326,7 @@ bool SettingsDialog::fontChanged() const
 /*!
  * \brief Indicates whether and how the translucency setting was changed
  * \retval -1 the translucency was \em disabled.
- * \retval  0 the translucency was <em>not changed</em>.
+ * \retval  0 the translucency <em>didn't change</em>.
  * \retval  1 the translucency was \em enabled.
  */
 qint8 SettingsDialog::translucencyChanged() const
@@ -380,15 +381,18 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
     settings->endGroup();
 
     settings->beginGroup("Output");
-    settings->setValue("ShowGraph", cbShowGraph->isChecked());
+    settings->setValue("GenerateGraph", cbGenerateGraph->isChecked());
+    if (cbGenerateGraph->isChecked()) {
 #ifndef QT_NO_PRINTER
-    settings->setValue("HQGraph", cbShowGraph->isChecked() && cbHQGraph->isChecked());
+        settings->setValue("HQGraph", cbHQGraph->isChecked());
 #endif
-    if (cbShowGraph->isChecked()) {
-        if (comboGraphImageFormat->currentIndex() >= 0)
-            settings->setValue("GraphImageFormat", comboGraphImageFormat->currentText());
-        else
-            settings->setValue("GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT);
+        if (cbGenerateGraph->isChecked()) {
+            if (comboGraphImageFormat->currentIndex() >= 0)
+                settings->setValue("GraphImageFormat", comboGraphImageFormat->currentText());
+            else
+                settings->setValue("GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT);
+        }
+        settings->setValue("EmbedGraphIntoHTML", cbEmbedGraphIntoHTML->isChecked());
     }
     settings->setValue("ShowMatrix", cbShowMatrix->isChecked());
     settings->setValue("UseShowMatrixLimit", cbShowMatrix->isChecked() && cbCitiesLimit->isChecked());

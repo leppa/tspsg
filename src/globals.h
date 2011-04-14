@@ -101,6 +101,11 @@
 //! This string represents infinite value in the table
 #define INFSTR "---"
 
+//! Number of centimeters in 1 inch
+#define CM_IN_INCH 2.54
+//! Factor for high quality graph generation
+#define HQ_FACTOR 2
+
 // FUNCTIONS
 /*!
  * \brief Checks whether \a x contains an integer value.

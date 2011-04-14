@@ -52,7 +52,7 @@
  * \def DEF_USE_TRANSLUCENCY
  * \brief Default for "Use translucency effects"
  */
-#ifdef Q_WS_WIN
+#ifdef Q_WS_WIN32
 #   define DEF_USE_TRANSLUCENCY true
 #else
 #   define DEF_USE_TRANSLUCENCY false
@@ -77,12 +77,16 @@
 
 //////// OUTPUT
 
-//! Default for "Show solution graph"
-#define DEF_SHOW_GRAPH true
+//! Default for "Generate solution graph"
+#define DEF_GENERATE_GRAPH true
 //! Default for "Save solution graph as"
 #define DEF_GRAPH_IMAGE_FORMAT "png"
 //! Default for "Draw solution graph in higher quality"
 #define DEF_HQ_GRAPH false
+//! Default for "Embed solution graph into HTML"
+#define DEF_EMBED_GRAPH_INTO_HTML false
+//! Default solution graph size in centimeters (HQ size is this size * HQ_FACTOR)
+#define DEF_GRAPH_WIDTH 4.5
 //! Default for "Show solution steps' matrices for every solution step"
 #define DEF_SHOW_MATRIX true
 //! Default for "Show or hide solution steps' matrices based on number of cities in the task"

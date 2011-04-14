@@ -179,6 +179,7 @@ void MainWindow::actionFileNewTriggered()
     setWindowModified(false);
     tabWidget->setCurrentIndex(0);
     solutionText->clear();
+    graph = QPicture();
     toggleSolutionActions(false);
     QApplication::restoreOverrideCursor();
 }
@@ -273,11 +274,10 @@ QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filte
         settings->setValue(OS"/LastUsed/SolutionSavePath", QFileInfo(selectedFile).path());
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 #ifndef QT_NO_PRINTER
-    if (selectedFile.endsWith(".pdf",Qt::CaseInsensitive)) {
-QPrinter printer(QPrinter::HighResolution);
-        printer.setOutputFormat(QPrinter::PdfFormat);
-        printer.setOutputFileName(selectedFile);
-        solutionText->document()->print(&printer);
+    if (selectedFile.endsWith(".pdf", Qt::CaseInsensitive)) {
+        printer->setOutputFileName(selectedFile);
+        solutionText->document()->print(printer);
+        printer->setOutputFileName(QString());
         QApplication::restoreOverrideCursor();
         return;
     }
@@ -292,62 +292,79 @@ QFile file(selectedFile);
 QFileInfo fi(selectedFile);
 QString format = settings->value("Output/GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT).toString();
 #if !defined(NOSVG)
-    if (!QImageWriter::supportedImageFormats().contains(format.toAscii()) && (format != "svg")) {
+        if (!QImageWriter::supportedImageFormats().contains(format.toAscii()) && (format != "svg")) {
 #else // NOSVG
-    if (!QImageWriter::supportedImageFormats().contains(format.toAscii())) {
+        if (!QImageWriter::supportedImageFormats().contains(format.toAscii())) {
 #endif // NOSVG
-        format = DEF_GRAPH_IMAGE_FORMAT;
-        settings->remove("Output/GraphImageFormat");
-    }
-QString html = solutionText->document()->toHtml("UTF-8"),
-        img =  fi.completeBaseName() + "." + format;
-        html.replace(QRegExp("font-family:([^;]*);"), "font-family:\\1, 'DejaVu Sans Mono', 'Courier New', Courier, monospace;");
-        html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"%1\" alt=\"%2\"").arg(img, tr("Solution Graph")));
+            format = DEF_GRAPH_IMAGE_FORMAT;
+            settings->remove("Output/GraphImageFormat");
+        }
+QString html = solutionText->document()->toHtml("UTF-8");
 
+        html.replace(QRegExp("font-family:([^;]*);"), "font-family:\\1, 'DejaVu Sans Mono', 'Courier New', Courier, monospace;");
+
+        if (!graph.isNull()) {
+            QString img =  fi.completeBaseName() + "." + format;
+            bool embed = settings->value("Output/EmbedGraphIntoHTML", DEF_EMBED_GRAPH_INTO_HTML).toBool();
+            QByteArray data;
+            QBuffer buf(&data);
+            if (!embed) {
+                html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"%1\" alt=\"%2\"").arg(img, tr("Solution Graph")));
+            }
+
+            // Saving solution graph in SVG or supported raster format (depending on settings and SVG support)
+#if !defined(NOSVG)
+            if (format == "svg") {
+                QSvgGenerator svg;
+                svg.setSize(QSize(graph.width() + 2, graph.height() + 2));
+                svg.setResolution(graph.logicalDpiX());
+                svg.setFileName(fi.path() + "/" + img);
+                svg.setTitle(tr("Solution Graph"));
+                svg.setDescription(tr("Generated with %1").arg(QCoreApplication::applicationName()));
+                QPainter p;
+                p.begin(&svg);
+                p.drawPicture(1, 1, graph);
+                p.end();
+            } else {
+#endif // NOSVG
+                QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
+                i.fill(0x00FFFFFF);
+                QPainter p;
+                p.begin(&i);
+                p.drawPicture(1, 1, graph);
+                p.end();
+                QImageWriter pic;
+                if (embed) {
+                    pic.setDevice(&buf);
+                    pic.setFormat(format.toAscii());
+                } else {
+                    pic.setFileName(fi.path() + "/" + img);
+                }
+                if (pic.supportsOption(QImageIOHandler::Description)) {
+                    pic.setText("Title", "Solution Graph");
+                    pic.setText("Software", QCoreApplication::applicationName());
+                }
+                if (format == "png")
+                    pic.setQuality(5);
+                else if (format == "jpeg")
+                    pic.setQuality(80);
+                if (!pic.write(i)) {
+                    QApplication::restoreOverrideCursor();
+                    QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution graph.\nError: %1").arg(pic.errorString()));
+                    return;
+                }
+#if !defined(NOSVG)
+            }
+#endif // NOSVG
+            if (embed) {
+                html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"data:image/%1;base64,%2\" alt=\"%3\"").arg(format, data.toBase64(), tr("Solution Graph")));
+            }
+        }
         // Saving solution text as HTML
 QTextStream ts(&file);
         ts.setCodec(QTextCodec::codecForName("UTF-8"));
         ts << html;
         file.close();
-
-        // Saving solution graph as SVG or PNG (depending on settings and SVG support)
-#if !defined(NOSVG)
-        if (format == "svg") {
-QSvgGenerator svg;
-            svg.setSize(QSize(graph.width() + 2, graph.height() + 2));
-            svg.setResolution(graph.logicalDpiX());
-            svg.setFileName(fi.path() + "/" + img);
-            svg.setTitle(tr("Solution Graph"));
-            svg.setDescription(tr("Generated with %1").arg(QCoreApplication::applicationName()));
-QPainter p;
-            p.begin(&svg);
-            p.drawPicture(1, 1, graph);
-            p.end();
-        } else {
-#endif // NOSVG
-QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
-            i.fill(0x00FFFFFF);
-QPainter p;
-            p.begin(&i);
-            p.drawPicture(1, 1, graph);
-            p.end();
-QImageWriter pic(fi.path() + "/" + img);
-            if (pic.supportsOption(QImageIOHandler::Description)) {
-                pic.setText("Title", "Solution Graph");
-                pic.setText("Software", QCoreApplication::applicationName());
-            }
-            if (format == "png")
-                pic.setQuality(5);
-            else if (format == "jpeg")
-                pic.setQuality(80);
-            if (!pic.write(i)) {
-                QApplication::restoreOverrideCursor();
-                QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution graph.\nError: %1").arg(pic.errorString()));
-                return;
-            }
-#if !defined(NOSVG)
-        }
-#endif // NOSVG
     } else {
 QTextDocumentWriter dw(selectedFile);
         if (!selectedFile.endsWith(".odt",Qt::CaseInsensitive))
@@ -742,7 +759,6 @@ HRESULT hr = CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_INPROC_SERVER, IID
             tl->Release();
             tl = NULL;
         } else {
-//			tl->SetProgressState(winId(), TBPF_INDETERMINATE);
             tl->SetProgressValue(winId(), 0, n * 2);
         }
     }
@@ -768,7 +784,6 @@ SStep *root = solver.solve(n, matrix);
         if (!solver.wasCanceled()) {
 #ifdef Q_WS_WIN32
             if (tl != NULL) {
-//				tl->SetProgressValue(winId(), n, n * 2);
                 tl->SetProgressState(winId(), TBPF_ERROR);
             }
 #endif
@@ -817,24 +832,29 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
     solutionText->setDocumentTitle(tr("Solution of Variant #%1 Task").arg(spinVariant->value()));
 
 QPainter pic;
-    if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
+bool dograph = settings->value("Output/GenerateGraph", DEF_GENERATE_GRAPH).toBool();
+    if (dograph) {
         pic.begin(&graph);
         pic.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 QFont font = qvariant_cast<QFont>(settings->value("Output/Font", QFont(DEF_FONT_FACE)));
-        //! \todo FIXME: Get rid of the "magic number" in the code.
-        font.setPixelSize(logicalDpiX() / 7);
+        font.setStyleHint(QFont::Monospace);
+        // Font size in pixels = graph node radius / 2.75.
+        // See MainWindow::drawNode() for graph node radius calcualtion description.
+        font.setPixelSize(logicalDpiX() * (settings->value("Output/GraphWidth", DEF_GRAPH_WIDTH).toReal() / CM_IN_INCH) / 4.5 / 2.75);
         if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool()) {
             font.setWeight(QFont::DemiBold);
-            font.setPixelSize(font.pixelSize() * 2);
+            font.setPixelSize(font.pixelSize() * HQ_FACTOR);
         }
         pic.setFont(font);
         pic.setBrush(QBrush(QColor(Qt::white)));
         if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool()) {
 QPen pen = pic.pen();
-            pen.setWidth(2);
+            pen.setWidth(HQ_FACTOR);
             pic.setPen(pen);
         }
         pic.setBackgroundMode(Qt::OpaqueMode);
+    } else {
+        graph = QPicture();
     }
 
 QTextDocument *doc = solutionText->document();
@@ -846,7 +866,7 @@ QTextCursor cur(doc);
     cur.insertBlock(fmt_paragraph);
     cur.insertText(tr("Task:"), fmt_default);
     outputMatrix(cur, matrix);
-    if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
+    if (dograph) {
 #ifdef _T_T_L_
         _b_ _i_ _z_ _a_ _r_ _r_ _e_
 #endif
@@ -903,7 +923,10 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
         if (settings->value("Output/ShowMatrix", DEF_SHOW_MATRIX).toBool() && (!settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() || (settings->value("Output/UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT).toBool() && (spinCities->value() <= settings->value("Output/ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt())))) {
             outputMatrix(cur, *step);
         }
-        cur.insertBlock(fmt_paragraph);
+        if (step->alts.empty())
+            cur.insertBlock(fmt_lastparagraph);
+        else
+            cur.insertBlock(fmt_paragraph);
         cur.insertText(tr("Selected route %1 %2 part.").arg((step->next == SStep::RightBranch) ? tr("with") : tr("without")).arg(tr("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)), fmt_default);
         if (!step->alts.empty()) {
             SStep::SCandidate cand;
@@ -913,14 +936,12 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
                     alts += ", ";
                 alts += tr("(%1;%2)").arg(cand.nRow + 1).arg(cand.nCol + 1);
             }
-            cur.insertBlock(fmt_paragraph);
+            cur.insertBlock(fmt_lastparagraph);
             cur.insertText(tr("%n alternate candidate(s) for branching: %1.", "", step->alts.count()).arg(alts), fmt_altlist);
         }
-        cur.insertBlock(fmt_paragraph);
-        cur.insertText(" ", fmt_default);
         cur.endEditBlock();
 
-        if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
+        if (dograph) {
             if (step->prNode != NULL)
                 drawNode(pic, n, false, step->prNode);
             if (step->plNode != NULL)
@@ -946,27 +967,28 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
     cur.beginEditBlock();
     cur.insertBlock(fmt_paragraph);
     if (solver.isOptimal())
-        cur.insertText(tr("Optimal path:"));
+        cur.insertText(tr("Optimal path:"), fmt_default);
     else
-        cur.insertText(tr("Resulting path:"));
+        cur.insertText(tr("Resulting path:"), fmt_default);
 
     cur.insertBlock(fmt_paragraph);
     cur.insertText("  " + solver.getSortedPath(tr("City %1")));
 
-    cur.insertBlock(fmt_paragraph);
+    if (solver.isOptimal())
+        cur.insertBlock(fmt_paragraph);
+    else
+        cur.insertBlock(fmt_lastparagraph);
     if (isInteger(step->price))
         cur.insertHtml("<p>" + tr("The price is <b>%n</b> unit(s).", "", qRound(step->price)) + "</p>");
     else
         cur.insertHtml("<p>" + tr("The price is <b>%1</b> units.").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()) + "</p>");
     if (!solver.isOptimal()) {
         cur.insertBlock(fmt_paragraph);
-        cur.insertText(" ");
-        cur.insertBlock(fmt_paragraph);
         cur.insertHtml("<p>" + tr("<b>WARNING!!!</b><br>This result is a record, but it may not be optimal.<br>Iterations need to be continued to check whether this result is optimal or get an optimal one.") + "</p>");
     }
     cur.endEditBlock();
 
-    if (settings->value("Output/ShowGraph", DEF_SHOW_GRAPH).toBool()) {
+    if (dograph) {
         pic.end();
 
 QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_RGB32);
@@ -979,8 +1001,8 @@ QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_RGB32);
 QTextImageFormat img;
         img.setName("tspsg://graph.pic");
         if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool()) {
-            img.setWidth(i.width() / 2);
-            img.setHeight(i.height() / 2);
+            img.setWidth(i.width() / HQ_FACTOR);
+            img.setHeight(i.height() / HQ_FACTOR);
         } else {
             img.setWidth(i.width());
             img.setHeight(i.height());
@@ -1166,12 +1188,14 @@ QFileInfo fi(ev->mimeData()->urls().first().toLocalFile());
 
 void MainWindow::drawNode(QPainter &pic, int nstep, bool left, SStep *step)
 {
-qreal r;
-    //! \todo FIXME: Get rid of the "magic numbers" in the code.
+qreal r; // Radius of graph node
+    // We calculate r from the full graph width in centimeters:
+    //   r = width in pixels / 4.5.
+    //   width in pixels = DPI * width in inches.
+    //   width in inches = width in cm / cm in inch.
+    r = logicalDpiX() * (settings->value("Output/GraphWidth", DEF_GRAPH_WIDTH).toReal() / CM_IN_INCH) / 4.5;
     if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool())
-        r = logicalDpiX() / 1.27;
-    else
-        r = logicalDpiX() / 2.54;
+        r *= HQ_FACTOR;
 #ifdef Q_WS_S60
     /*! \hack HACK: Solution graph on Symbian is visually larger than on
      *   Windows Mobile. This coefficient makes it about the same size.
@@ -1246,6 +1270,11 @@ void MainWindow::initDocStyleSheet()
     fmt_paragraph.setRightMargin(10);
     fmt_paragraph.setBottomMargin(0);
     fmt_paragraph.setLeftMargin(10);
+
+    fmt_lastparagraph.setTopMargin(5);
+    fmt_lastparagraph.setRightMargin(10);
+    fmt_lastparagraph.setBottomMargin(15);
+    fmt_lastparagraph.setLeftMargin(10);
 
     fmt_table.setTopMargin(5);
     fmt_table.setRightMargin(10);

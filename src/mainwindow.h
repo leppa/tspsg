@@ -132,6 +132,7 @@ private:
     // Formats
     QTextTableFormat fmt_table;
     QTextBlockFormat fmt_paragraph,
+        fmt_lastparagraph,
         fmt_cell;
     QTextCharFormat fmt_default,
         fmt_selected,
