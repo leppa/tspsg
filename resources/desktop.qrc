@@ -25,7 +25,6 @@
         <file>icons/128x128/preferences-desktop-theme.png</file>
         <file>icons/128x128/preferences-system.png</file>
         <file>icons/128x128/tools-report-bug.png</file>
-        <file>icons/128x128/qtlogo.png</file>
         <file>icons/128x128/roll.png</file>
         <file>icons/128x128/system-software-update.png</file>
     </qresource>
