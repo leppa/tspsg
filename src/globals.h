@@ -163,6 +163,9 @@ void toggleStyle(QWidget *widget, bool enable);
 #   define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/"ICON_SIZE"/"x"."ICON_FORMAT))
 #else
 #   define GET_ICON(x) QIcon(":/images/icons/"ICON_SIZE"/"x"."ICON_FORMAT)
+// No QVariant::toReal() member in Qt < 4.6
+// A quick hack to maintain compatibility with Qt 4.5.x
+#   define toReal toDouble
 #endif
 
 // Sanity checks
