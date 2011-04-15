@@ -55,6 +55,14 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QPushButton>
 
+#ifndef GET_ICON
+#   if QT_VERSION >= 0x040600
+#       define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/128x128/"x".png"))
+#   else
+#       define GET_ICON(x) QIcon(":/images/icons/128x128/"x".png")
+#   endif
+#endif
+
 class QtFullToolBarManagerPrivate
 {
     class QtFullToolBarManager *q_ptr;
