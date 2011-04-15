@@ -160,4 +160,16 @@ private:
     void toggleTranclucency(bool enable);
 };
 
+#ifdef Q_WS_S60
+// A quickly hacked QMessageBox for Symbian that supports three buttons.
+class QSMessageBox: public QMessageBox {
+    Q_OBJECT
+private slots:
+    void cancel();
+    void discard();
+public:
+    QSMessageBox(QWidget *parent = 0);
+};
+#endif // Q_WS_S60
+
 #endif // MAINWINDOW_H

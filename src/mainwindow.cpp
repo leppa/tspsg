@@ -544,13 +544,9 @@ QString title;
 
 QString about;
     about += QString("%1: <b>%2</b><br>").arg(tr("Target OS (ARCH)"), PLATFROM);
-#ifndef STATIC_BUILD
-    about += QString("%1 (%2):<br>").arg(tr("Qt library"), tr("shared"));
+    about += QString("%1:<br>").arg(tr("Qt library"));
     about += QString("&nbsp;&nbsp;&nbsp;&nbsp;%1: <b>%2</b><br>").arg(tr("Build time"), QT_VERSION_STR);
     about += QString("&nbsp;&nbsp;&nbsp;&nbsp;%1: <b>%2</b><br>").arg(tr("Runtime"), qVersion());
-#else
-    about += QString("%1: <b>%2</b> (%3)<br>").arg(tr("Qt library"), QT_VERSION_STR, tr("static"));
-#endif // STATIC_BUILD
     about.append(QString("%1: <b>%2x%3</b><br>").arg("Logical DPI").arg(logicalDpiX()).arg(logicalDpiY()));
     about += tr("Buid <b>%1</b>, built on <b>%2</b> at <b>%3</b> with <b>%4</b> compiler.").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__).arg(COMPILER) + "<br>";
     about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), CTSPSolver::getVersionId());
@@ -741,7 +737,7 @@ QProgressBar *pb = new QProgressBar(&pd);
     pd.setBar(pb);
 QPushButton *cancel = new QPushButton(&pd);
     cancel->setIcon(GET_ICON("dialog-cancel"));
-    cancel->setText(QCoreApplication::translate("QProgressDialog", "Cancel", "No need to translate this. This translation will be taken from Qt translation files."));
+    cancel->setText(QCoreApplication::translate("QDialogButtonBox", "Cancel", "No need to translate this. This translation will be taken from Qt translation files."));
     pd.setCancelButton(cancel);
     pd.setMaximum(n);
     pd.setAutoReset(false);
@@ -837,10 +833,15 @@ bool dograph = settings->value("Output/GenerateGraph", DEF_GENERATE_GRAPH).toBoo
         pic.begin(&graph);
         pic.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 QFont font = qvariant_cast<QFont>(settings->value("Output/Font", QFont(DEF_FONT_FACE)));
-        font.setStyleHint(QFont::Monospace);
+        font.setStyleHint(QFont::TypeWriter);
         // Font size in pixels = graph node radius / 2.75.
         // See MainWindow::drawNode() for graph node radius calcualtion description.
+#ifndef Q_WS_S60
         font.setPixelSize(logicalDpiX() * (settings->value("Output/GraphWidth", DEF_GRAPH_WIDTH).toReal() / CM_IN_INCH) / 4.5 / 2.75);
+#else
+        // Also, see again MainWindow::drawNode() for why is additional 1.3 divider added in Symbian.
+        font.setPixelSize(logicalDpiX() * (settings->value("Output/GraphWidth", DEF_GRAPH_WIDTH).toReal() / CM_IN_INCH) / 4.5 / 2.75 / 1.3);
+#endif
         if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool()) {
             font.setWeight(QFont::DemiBold);
             font.setPixelSize(font.pixelSize() * HQ_FACTOR);
@@ -1473,7 +1474,11 @@ bool MainWindow::maybeSave()
 {
     if (!isWindowModified())
         return true;
-int res = QMessageBox::warning(this, tr("Unsaved Changes"), tr("Would you like to save changes in the current task?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+#ifdef Q_WS_S60
+    int res = QSMessageBox(this).exec();
+#else
+    int res = QMessageBox::warning(this, tr("Unsaved Changes"), tr("Would you like to save changes in the current task?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+#endif
     if (res == QMessageBox::Save)
         return actionFileSaveTriggered();
     else if (res == QMessageBox::Cancel)
@@ -1663,7 +1668,7 @@ void MainWindow::setupUi()
     actionHelpOnlineSupport->setIcon(GET_ICON("applications-internet"));
     actionHelpReportBug->setIcon(GET_ICON("tools-report-bug"));
     actionHelpAbout->setIcon(GET_ICON("help-about"));
-    actionHelpAboutQt->setIcon(QIcon(":/images/icons/"ICON_SIZE"/qtlogo."ICON_FORMAT));
+    actionHelpAboutQt->setIcon(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"));
 #endif
     // Buttons
     buttonRandom->setIcon(GET_ICON("roll"));
@@ -1840,3 +1845,33 @@ void MainWindow::actionHelpReportBugTriggered()
 {
     QDesktopServices::openUrl(QUrl("http://tspsg.info/goto/bugtracker"));
 }
+
+#ifdef Q_WS_S60
+QSMessageBox::QSMessageBox(QWidget *parent)
+    : QMessageBox(parent)
+{
+    setIcon(QMessageBox::Warning);
+    setWindowTitle(QApplication::translate("MainWindow", "Unsaved Changes"));
+    setText(QApplication::translate("MainWindow", "Would you like to save changes in the current task?"));
+    setStandardButtons(QMessageBox::Save);
+
+    QMenu *m = new QMenu(this);
+    m->addAction(QApplication::translate("QDialogButtonBox", "Discard", "No need to translate this. This translation will be taken from Qt translation files."),
+                 this, SLOT(discard()));
+    m->addAction(QApplication::translate("QDialogButtonBox", "Cancel", "No need to translate this. This translation will be taken from Qt translation files."),
+                 this, SLOT(cancel()));
+
+    QAction *o = new QAction(QApplication::translate("QMenuBar", "Actions", "No need to translate this. This translation will be taken from Qt translation files."), this);
+    o->setSoftKeyRole(QAction::NegativeSoftKey);
+    o->setMenu(m);
+    addAction(o);
+}
+
+void QSMessageBox::cancel(){
+    done(QMessageBox::Cancel);
+}
+
+void QSMessageBox::discard() {
+    done(QMessageBox::Discard);
+}
+#endif // Q_WS_S60

@@ -62,25 +62,6 @@ DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
     BUILD_RELEASE=$$BUILD_RELEASE \
     BUILD_NUMBER=$$REVISION
 
-# A hack to determine whether we have static or dynamic Qt build
-macx {
-    PRL = $$[QT_INSTALL_LIBS] QtCore.framework QtCore.prl
-} else:symbian|maemo*|simulator {
-    # Nothing here
-} else:unix {
-    PRL = $$[QT_INSTALL_LIBS] libQtCore.prl
-} else {
-    PRL = $$[QT_INSTALL_LIBS] QtCore.prl
-}
-!isEmpty(PRL) {
-    include($$join(PRL, "/"))
-    contains(QMAKE_PRL_CONFIG, static) {
-        # We "embed" SVG icon support on static build
-        DEFINES += STATIC_BUILD
-#		!nosvg:QTPLUGIN += qsvgicon
-    }
-}
-
 CONFIG(release, debug|release) {
     OBJECTS_DIR = release
     D =
