@@ -547,7 +547,7 @@ QString about;
     about += QString("%1:<br>").arg(tr("Qt library"));
     about += QString("&nbsp;&nbsp;&nbsp;&nbsp;%1: <b>%2</b><br>").arg(tr("Build time"), QT_VERSION_STR);
     about += QString("&nbsp;&nbsp;&nbsp;&nbsp;%1: <b>%2</b><br>").arg(tr("Runtime"), qVersion());
-    about.append(QString("%1: <b>%2x%3</b><br>").arg("Logical DPI").arg(logicalDpiX()).arg(logicalDpiY()));
+    about.append(QString("%1: <b>%2x%3</b><br>").arg(tr("Logical screen DPI")).arg(logicalDpiX()).arg(logicalDpiY()));
     about += tr("Buid <b>%1</b>, built on <b>%2</b> at <b>%3</b> with <b>%4</b> compiler.").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__).arg(COMPILER) + "<br>";
     about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), CTSPSolver::getVersionId());
     about += "<br>";
