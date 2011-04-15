@@ -1811,12 +1811,12 @@ QtToolBarDialog::QtToolBarDialog(QWidget *parent, Qt::WFlags flags)
 //    ui.currentToolBarList->setItemDelegate(del);
 //    ui.currentToolBarList->setAcceptDrops(true);
 
-	d_ptr->ui.upButton->setIcon(QIcon(":/images/icons/go-up.png"));
-	d_ptr->ui.downButton->setIcon(QIcon(":/images/icons/go-down.png"));
-	d_ptr->ui.leftButton->setIcon(QIcon(":/images/icons/go-previous.png"));
-	d_ptr->ui.rightButton->setIcon(QIcon(":/images/icons/go-next.png"));
-	d_ptr->ui.newButton->setIcon(QIcon(":/images/icons/list-add.png"));
-	d_ptr->ui.removeButton->setIcon(QIcon(":/images/icons/list-remove.png"));
+    d_ptr->ui.upButton->setIcon(GET_ICON("go-up"));
+    d_ptr->ui.downButton->setIcon(GET_ICON("go-down"));
+    d_ptr->ui.leftButton->setIcon(GET_ICON("go-previous"));
+    d_ptr->ui.rightButton->setIcon(GET_ICON("go-next"));
+    d_ptr->ui.newButton->setIcon(GET_ICON("list-add"));
+    d_ptr->ui.removeButton->setIcon(GET_ICON("list-remove"));
 
     connect(d_ptr->ui.newButton, SIGNAL(clicked()), this, SLOT(newClicked()));
     connect(d_ptr->ui.removeButton, SIGNAL(clicked()), this, SLOT(removeClicked()));

@@ -523,7 +523,7 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 void MainWindow::actionHelpCheck4UpdatesTriggered()
 {
     if (!hasUpdater()) {
-        QMessageBox::warning(this, tr("Unsupported Feature"), tr("Sorry, but this feature is not supported on your platform\nor support for this feature was not installed."));
+        QMessageBox::warning(this, tr("Unsupported Feature"), tr("Sorry, but this feature is not supported on your\nplatform or support for it was not installed."));
         return;
     }
 
@@ -737,7 +737,7 @@ QProgressBar *pb = new QProgressBar(&pd);
     pd.setBar(pb);
 QPushButton *cancel = new QPushButton(&pd);
     cancel->setIcon(GET_ICON("dialog-cancel"));
-    cancel->setText(QCoreApplication::translate("QDialogButtonBox", "Cancel", "No need to translate this. This translation will be taken from Qt translation files."));
+    cancel->setText(QCoreApplication::translate("QDialogButtonBox", "Cancel", "No need to translate this. The translation will be taken from Qt translation files."));
     pd.setCancelButton(cancel);
     pd.setMaximum(n);
     pd.setAutoReset(false);
@@ -1856,12 +1856,12 @@ QSMessageBox::QSMessageBox(QWidget *parent)
     setStandardButtons(QMessageBox::Save);
 
     QMenu *m = new QMenu(this);
-    m->addAction(QApplication::translate("QDialogButtonBox", "Discard", "No need to translate this. This translation will be taken from Qt translation files."),
+    m->addAction(QApplication::translate("QDialogButtonBox", "Discard", "No need to translate this. The translation will be taken from Qt translation files."),
                  this, SLOT(discard()));
-    m->addAction(QApplication::translate("QDialogButtonBox", "Cancel", "No need to translate this. This translation will be taken from Qt translation files."),
+    m->addAction(QApplication::translate("QDialogButtonBox", "Cancel", "No need to translate this. The translation will be taken from Qt translation files."),
                  this, SLOT(cancel()));
 
-    QAction *o = new QAction(QApplication::translate("QMenuBar", "Actions", "No need to translate this. This translation will be taken from Qt translation files."), this);
+    QAction *o = new QAction(QApplication::translate("QtToolBarDialog", "Actions"), this);
     o->setSoftKeyRole(QAction::NegativeSoftKey);
     o->setMenu(m);
     addAction(o);

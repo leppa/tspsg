@@ -403,7 +403,7 @@ quint8 version;
         QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
         QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n"
             + tr("File version (%1) is newer than this version of %3 supports (%2).\n"
-                 "Please, try to update the application. Also, the file might be corrupted.")
+                 "Please, try to update the application. Also, the file could be corrupted.")
                  .arg(version).arg(TSPT_VERSION).arg(QApplication::applicationName()));
         QApplication::restoreOverrideCursor();
         return false;

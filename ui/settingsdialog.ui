@@ -388,7 +388,7 @@
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="statusTip">
-             <string>Use data URI scheme to save solution graph in HTML (not supported by IE 7 and lower)</string>
+             <string>Save solution graph inside HTML using data URI scheme (not supported by IE 7 and lower)</string>
             </property>
             <property name="text">
              <string>Embed solution graph into HTML</string>

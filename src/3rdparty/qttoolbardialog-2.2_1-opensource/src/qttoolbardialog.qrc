@@ -1,9 +1,9 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/icons/go-down.png</file>
-        <file>images/icons/go-next.png</file>
-        <file>images/icons/go-up.png</file>
-        <file>images/icons/list-add.png</file>
-        <file>images/icons/list-remove.png</file>
+        <file>images/icons/128x128/go-down.png</file>
+        <file>images/icons/128x128/go-next.png</file>
+        <file>images/icons/128x128/go-up.png</file>
+        <file>images/icons/128x128/list-add.png</file>
+        <file>images/icons/128x128/list-remove.png</file>
     </qresource>
 </RCC>
