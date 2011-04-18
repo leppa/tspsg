@@ -338,7 +338,7 @@ platform or support for it was not installed.</source>
     <message numerus="yes">
         <location filename="../src/mainwindow.cpp" line="150"/>
         <source>Would you like %1 to automatically check for updates every %n day(s)?</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>Would you like %1 to automatically check for updates every %n day?</numerusform>
             <numerusform>Would you like %1 to automatically check for updates every %n days?</numerusform>
         </translation>

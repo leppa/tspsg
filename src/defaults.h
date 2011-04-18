@@ -114,11 +114,17 @@
 #define DEF_ALTERNATE_COLOR QColor(0xA00000)
 
 #ifndef QT_NO_PRINTER
+//! Default page size for printing
 #   define DEF_PAGE_SIZE QPrinter::A4
+//! Default page orientation for printing
 #   define DEF_PAGE_ORIENTATION QPrinter::Portrait
+//! Default left page margin for printing
 #   define DEF_MARGIN_LEFT 25
+//! Default top page margin for printing
 #   define DEF_MARGIN_TOP 15
+//! Default right page margin for printing
 #   define DEF_MARGIN_RIGHT DEF_MARGIN_TOP
+//! Default bottom page margin for printing
 #   define DEF_MARGIN_BOTTOM DEF_MARGIN_TOP
 #endif
 
