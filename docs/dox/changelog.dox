@@ -8,6 +8,10 @@ $URL$
 
 \section cl_toc Table of Contents
 
+  -# \ref cl_b170
+     -# \ref cl_b170_w
+     -# \ref cl_b170_c
+     -# \ref cl_b170_b
   -# \ref cl_b145
      -# \ref cl_b145_w
      -# \ref cl_b145_i
@@ -22,6 +26,48 @@ $URL$
      -# \ref cl_b42_f
 
 \attention This ChangeLog is updated only on releases.
+
+<hr>
+
+\section cl_b170 TSPSG v0.1.4 beta 2 (build 170)
+
+\subsection cl_b170_w WHAT'S NEW
+
+  - Support for embedded base64 encoded images when saving solution as
+    HTML (\ticket{4,Ticket #4}).
+  - The ability to setup page-related options for printing (\ticket{5,Ticket #5}).
+  - Solution graph size can now be controlled using \c Output/GraphWidth
+    setting in \em tspsg.ini. Value is in centimeters. (\ticket{8,Ticket #8})
+
+
+\subsection cl_b170_c CHANGES & IMPROVEMENTS
+
+  - Any value that is entered into task table and doesn't contain
+    numbers is considered an infinity.
+  - Some error messages are more verbose.
+  - Removed a prompt about turning off language autodetection when
+    selecting a language.
+  - Handheld version includes larger icons (48x48 instead of 32x32).
+  - If after running Save As dialog file name doesn't have an extension
+    .tspt will be automatically appended.
+  - Translucency effect is available on all desktop platforms. No check
+    for its support by window system is made at this moment. Blur is
+    only available in Windows Vista or higher.
+
+
+\subsection cl_b170_b BUGFIXES
+
+  - \ticket{2,Bug #2}: Solution graph is too small on high resolution screens.
+  - \ticket{3,Bug #3}: Solution graph font size should be fixed.
+  - \ticket{6,Bug #6}: Bug: Actions in Options Menu.
+  - \ticket{7,Bug #7}: No Cancel option in Unsaved Changes dialog under Symbian.
+  - \ticket{9,Bug #9}: Solution graph is still exported to HTML when graph
+    generation is disabled.
+  - Language name was not loaded in its menu item's status tip which
+    caused status tip to be "Set application language to ".
+  - Icons in toolbar configuration dialog didn't follow style and one
+    of them wasn't shown.
+
 
 <hr>
 

@@ -109,8 +109,11 @@ symbian {
     ICON = resources/tspsg.svg
     TARGET.EPOCHEAPSIZE = 0x20000 0x1100000
     # OVI Publish - 0x2003AEFB, Self-signed - 0xA89FD7A3
-    TARGET.UID3 = 0xA89FD7A3
-#	TARGET.UID3 = 0x2003AEFB
+    ovi_publish {
+        TARGET.UID3 = 0x2003AEFB
+    } else {
+        TARGET.UID3 = 0xA89FD7A3
+    }
 
     languages="&EN,RU,UK"
     package_header = "$$LITERAL_HASH{" \
@@ -136,12 +139,16 @@ symbian {
     default_deployment.pkg_prerules += languages package_header vendor dependencies
 #	default_deployment.pkg_prerules += languages package_header vendor logo dependencies
     # OVI Publish - 0x2002CCCF, Self-signed - 0xA000D7CE
+    ovi_publish {
+        SMARTINSTALLER_UID = 0x2002CCCF
+    } else {
+        SMARTINSTALLER_UID = 0xA000D7CE
+    }
     DEPLOYMENT.installer_header = "$${LITERAL_HASH}{" \
         "\"$$QMAKE_TARGET_PRODUCT Installer\"," \
         "\"Установщик $$QMAKE_TARGET_PRODUCT\"," \
         "\"Встановлювач $$QMAKE_TARGET_PRODUCT\"" \
-        "},(0xA000D7CE),$$BUILD_VERSION_MAJOR,$${BUILD_VERSION_MINOR}$${BUILD_RELEASE},$$REVISION"
-#		"},(0x2002CCCF),$$BUILD_VERSION_MAJOR,$${BUILD_VERSION_MINOR}$${BUILD_RELEASE},$$REVISION"
+        "},($${SMARTINSTALLER_UID}),$$BUILD_VERSION_MAJOR,$${BUILD_VERSION_MINOR}$${BUILD_RELEASE},$$REVISION"
 }
 
 # Maemo 5

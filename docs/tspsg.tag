@@ -105,9 +105,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>DEF_SHOW_GRAPH</name>
+      <name>DEF_GENERATE_GRAPH</name>
       <anchorfile>defaults_8h.html</anchorfile>
-      <anchor>aaa6a2cd72387081215575b4013ef8cbd</anchor>
+      <anchor>a73f8a39306276216c93cdc2a717b1342</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -122,6 +122,20 @@
       <name>DEF_HQ_GRAPH</name>
       <anchorfile>defaults_8h.html</anchorfile>
       <anchor>a351e58750bbb3904d900734fb5ab1ca8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_EMBED_GRAPH_INTO_HTML</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>a16fdbd8b89b9084127049fa05b1b5f58</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_GRAPH_WIDTH</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>ab49ccdefac341aab2264a333465195bd</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -187,6 +201,48 @@
       <anchor>a442f2f1e773805a0ba8949f31fbf4ede</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_PAGE_SIZE</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>a2ab370dcb12e8b14e1a63f81b7ab02f3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_PAGE_ORIENTATION</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>a0f7b5d05680696e6774abf894323da9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_MARGIN_LEFT</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>a7c486bdb40b92784b2921a7557f08a83</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_MARGIN_TOP</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>a19accd252c3c5efdbdb823a3c0765eee</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_MARGIN_RIGHT</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>af14158579bd7ad31545323c8ab012c21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>DEF_MARGIN_BOTTOM</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>a31dade76dbb218c92c0f7e48e0ccfa10</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>globals.h</name>
@@ -196,6 +252,7 @@
     <includes id="os_8h" name="os.h" local="yes" imported="no">os.h</includes>
     <includes id="defaults_8h" name="defaults.h" local="yes" imported="no">defaults.h</includes>
     <includes id="tspsolver_8h" name="tspsolver.h" local="yes" imported="no">tspsolver.h</includes>
+    <includes id="qtwin_8h" name="qtwin.h" local="yes" imported="no">qtwin.h</includes>
     <member kind="define">
       <type>#define</type>
       <name>MAX_NUM_CITIES</name>
@@ -273,6 +330,20 @@
       <anchor>a1ae8033146e07fa0bae37f148b90cd6b</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>CM_IN_INCH</name>
+      <anchorfile>globals_8h.html</anchorfile>
+      <anchor>aac9ce8fb785520c655eb7ae34542fb16</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>HQ_FACTOR</name>
+      <anchorfile>globals_8h.html</anchorfile>
+      <anchor>a73228cd500c622bd1d90d1148f5f706b</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>bool</type>
       <name>isInteger</name>
@@ -286,6 +357,13 @@
       <anchorfile>globals_8h.html</anchorfile>
       <anchor>a5625fcd02d07005677ff6ee3dd799e05</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>toggleStyle</name>
+      <anchorfile>globals_8h.html</anchorfile>
+      <anchor>a3ffe98116f42de97041cde4a2b0404e6</anchor>
+      <arglist>(QWidget *widget, bool enable)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -514,8 +592,11 @@
     <filename>changelog</filename>
     <docanchor file="changelog">cl_b100_i</docanchor>
     <docanchor file="changelog">cl_b145_c</docanchor>
+    <docanchor file="changelog">cl_b170</docanchor>
     <docanchor file="changelog">cl_b100_w</docanchor>
     <docanchor file="changelog">cl_toc</docanchor>
+    <docanchor file="changelog">cl_b170_b</docanchor>
+    <docanchor file="changelog">cl_b170_c</docanchor>
     <docanchor file="changelog">cl_b42_f</docanchor>
     <docanchor file="changelog">cl_b145_i</docanchor>
     <docanchor file="changelog">cl_b100</docanchor>
@@ -523,6 +604,7 @@
     <docanchor file="changelog">cl_b42</docanchor>
     <docanchor file="changelog">cl_b100_b</docanchor>
     <docanchor file="changelog">cl_b100_c</docanchor>
+    <docanchor file="changelog">cl_b170_w</docanchor>
     <docanchor file="changelog">cl_b145_b</docanchor>
     <docanchor file="changelog">cl_b145</docanchor>
   </compound>
