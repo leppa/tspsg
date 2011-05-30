@@ -112,7 +112,6 @@ QHBoxLayout *hbox;
 #ifdef HANDHELD
 QVBoxLayout *vbox1; // Layout helper
 
-#ifdef Q_WS_WINCE_WM
     // On screens with small height when SIP is shown and the window is resized
     // there is not enought space for all elements.
     // So we show the scrollbars to be able to access them.
@@ -121,9 +120,6 @@ QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(bgWhite);
-#else
-    buttons->insertStretch(buttons->indexOf(buttonHelp) + 1);
-#endif // Q_WS_WINCE_WM
 
     bgWhite->layout()->setMargin(0);
 
@@ -131,11 +127,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
     vbox1 = new QVBoxLayout(this);
     vbox1->setMargin(0);
     vbox1->setSpacing(0);
-#ifdef Q_WS_WINCE_WM
     vbox1->addWidget(scrollArea);
-#else
-    vbox1->addWidget(bgWhite);
-#endif // Q_WS_WINCE_WM
     vbox1->addWidget(bgGrey);
     setLayout(vbox1);
 #else // HANDHELD
