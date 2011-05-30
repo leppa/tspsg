@@ -152,6 +152,9 @@ private:
     bool maybeSave();
     void outputMatrix(QTextCursor &cur, const TMatrix &matrix);
     void outputMatrix(QTextCursor &cur, const SStep &step);
+#ifdef Q_WS_S60
+    void resizeEvent(QResizeEvent *ev);
+#endif // Q_WS_S60
     void retranslateUi(bool all = true);
     bool saveTask();
     void setFileName(const QString &fileName = tr("Untitled") + ".tspt");

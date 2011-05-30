@@ -438,6 +438,9 @@ QPrintDialog pd(printer,this);
 void MainWindow::actionSettingsPreferencesTriggered()
 {
 SettingsDialog sd(this);
+#ifdef Q_WS_S60
+    sd.setWindowState(Qt::WindowMaximized);
+#endif
     if (sd.exec() != QDialog::Accepted)
         return;
     if (sd.colorChanged() || sd.fontChanged()) {
@@ -692,6 +695,8 @@ QTextBrowser *txtTranslation = new QTextBrowser(dlg);
 
 #ifndef HANDHELD
     dlg->resize(450, 350);
+#elif defined(Q_WS_S60)
+    dlg->setWindowState(Qt::WindowMaximized);
 #endif
     QApplication::restoreOverrideCursor();
 
@@ -1536,6 +1541,28 @@ SStep::SCandidate cand;
     cur.movePosition(QTextCursor::End);
 }
 
+#ifdef Q_WS_S60
+void MainWindow::resizeEvent(QResizeEvent *ev)
+{
+    static bool tb = toolBarMain->isVisible();
+    if ((ev->size().width() < ev->size().height())
+            && (ev->oldSize().width() > ev->oldSize().height())) {
+        // From landscape to portrait
+        if (tb)
+            toolBarMain->show();
+        setWindowState(Qt::WindowMaximized);
+    } else if ((ev->size().width() > ev->size().height())
+               && (ev->oldSize().width() < ev->oldSize().height())) {
+        // From portrait to landscape
+        if (tb = toolBarMain->isVisible())
+            toolBarMain->hide();
+        setWindowState(Qt::WindowFullScreen);
+    }
+
+    QWidget::resizeEvent(ev);
+}
+#endif // Q_WS_S60
+
 void MainWindow::retranslateUi(bool all)
 {
     if (all)
@@ -1641,6 +1668,10 @@ void MainWindow::setFileName(const QString &fileName)
 void MainWindow::setupUi()
 {
     Ui_MainWindow::setupUi(this);
+
+#ifdef Q_WS_S60
+    setWindowFlags(windowFlags() | Qt::WindowSoftkeysVisibleHint);
+#endif // Q_WS_S60
 
     // File Menu
     actionFileNew->setIcon(GET_ICON("document-new"));
