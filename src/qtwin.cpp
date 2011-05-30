@@ -14,6 +14,10 @@
 #include <QList>
 #include <QPointer>
 
+#ifdef Q_WS_X11
+#include <QX11Info>
+#endif // Q_WS_X11
+
 #ifdef Q_WS_WIN
 
 #include <qt_windows.h>
@@ -103,10 +107,10 @@ bool QtWin::isCompositionEnabled()
             return isEnabled;
     }
     return false;
-#elif !defined(HANDHELD)
-    //! \todo TODO: Check for trsnsparency support in other OSes.
-    return true;
+#elif defined(Q_WS_X11)
+    return QX11Info::isCompositingManagerRunning();
 #else
+    //! \todo TODO: Check for trsnsparency support in other OSes.
     return false;
 #endif
 }
