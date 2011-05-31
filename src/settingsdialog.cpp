@@ -287,7 +287,7 @@ QStringList whitelist;
     cbScrollToEnd->setChecked(settings->value("ScrollToEnd", DEF_SCROLL_TO_END).toBool());
 
     font = qvariant_cast<QFont>(settings->value("Font", QFont(DEF_FONT_FACE, DEF_FONT_SIZE)));
-    color = qvariant_cast<QColor>(settings->value("Colors/Text", DEF_TEXT_COLOR));
+    color = QColor(settings->value("Colors/Text", DEF_TEXT_COLOR).toString());
     settings->endGroup();
 
 #ifdef HANDHELD
@@ -394,7 +394,7 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
     if (_newFont)
         settings->setValue("Font", font);
     if (_newColor)
-        settings->setValue("Colors/Text", color);
+        settings->setValue("Colors/Text", color.name());
     settings->endGroup();
     QDialog::accept();
 }

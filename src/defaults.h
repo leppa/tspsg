@@ -109,9 +109,11 @@
 //! Default text color
 #define DEF_TEXT_COLOR QPalette().color(QPalette::Text)
 //! Default selected candidate color
-#define DEF_SELECTED_COLOR QColor(0x008000)
+#define DEF_SELECTED_COLOR "#008000"
 //! Default alternate candidate color
-#define DEF_ALTERNATE_COLOR QColor(0xA00000)
+#define DEF_ALTERNATE_COLOR "#A00000"
+//! Default table border color
+#define DEF_TABLE_COLOR "#EEEEEE"
 
 #ifndef QT_NO_PRINTER
 //! Default page size for printing

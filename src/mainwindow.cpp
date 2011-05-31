@@ -1282,19 +1282,21 @@ void MainWindow::initDocStyleSheet()
     fmt_lastparagraph.setBottomMargin(15);
     fmt_lastparagraph.setLeftMargin(10);
 
+    settings->beginGroup("Output/Colors");
+
     fmt_table.setTopMargin(5);
     fmt_table.setRightMargin(10);
     fmt_table.setBottomMargin(0);
     fmt_table.setLeftMargin(10);
-    fmt_table.setBorder(0);
-    fmt_table.setBorderStyle(QTextFrameFormat::BorderStyle_None);
-    fmt_table.setCellSpacing(5);
+    fmt_table.setBorder(1);
+    fmt_table.setBorderBrush(QBrush(QColor(settings->value("TableBorder", DEF_TABLE_COLOR).toString())));
+    fmt_table.setBorderStyle(QTextFrameFormat::BorderStyle_Solid);
+    fmt_table.setCellSpacing(0);
+    fmt_table.setCellPadding(2);
 
     fmt_cell.setAlignment(Qt::AlignHCenter);
 
-    settings->beginGroup("Output/Colors");
-
-QColor color = qvariant_cast<QColor>(settings->value("Text", DEF_TEXT_COLOR));
+QColor color = QColor(settings->value("Text", DEF_TEXT_COLOR).toString());
 QColor hilight;
     if (color.value() < 192)
         hilight.setHsv(color.hue(), color.saturation(), 127 + qRound(color.value() / 2));
@@ -1304,10 +1306,10 @@ QColor hilight;
     solutionText->document()->setDefaultStyleSheet(QString("* {color: %1;}").arg(color.name()));
     fmt_default.setForeground(QBrush(color));
 
-    fmt_selected.setForeground(QBrush(qvariant_cast<QColor>(settings->value("Selected", DEF_SELECTED_COLOR))));
+    fmt_selected.setForeground(QBrush(QColor(settings->value("Selected", DEF_SELECTED_COLOR).toString())));
     fmt_selected.setFontWeight(QFont::Bold);
 
-    fmt_alternate.setForeground(QBrush(qvariant_cast<QColor>(settings->value("Alternate", DEF_ALTERNATE_COLOR))));
+    fmt_alternate.setForeground(QBrush(QColor(settings->value("Alternate", DEF_ALTERNATE_COLOR).toString())));
     fmt_alternate.setFontWeight(QFont::Bold);
     fmt_altlist.setForeground(QBrush(hilight));
 
