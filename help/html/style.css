@@ -1,0 +1,88 @@
+@charset "utf-8";
+/*
+ *  TSPSG: TSP Solver and Generator
+ *  Copyright (C) 2007-2011 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
+ *
+ *  $Id$
+ *  $URL$
+ *
+ *  This file is part of TSPSG project.
+ *  See http://tspsg.info/ for more information.
+ */
+
+@font-face {  
+	  font-family: DejaVu Sans;
+	  src: url('DejaVuSans.ttf') format("truetype");  
+}
+
+@font-face {  
+	  font-family: DejaVu Sans Mono;
+	  src: url('DejaVuSansMono.ttf') format("truetype");  
+}
+
+body {
+	font-family: "DejaVu Sans", "DejaVu LGC Sans", Verdana, Geneva, sans-serif;
+	font-size: 11pt;
+}
+
+p, li {
+	text-align: justify;
+}
+
+h1, h2, h3 {
+}
+
+.info {
+}
+
+.note {
+	color: orange;
+}
+
+.note:before {
+	content: "NOTE: "
+	font-weight: bold;
+}
+
+.tip {
+	color: green;
+}
+
+.tip:before {
+	content: "TIP: ";
+	font-weight: bold;
+}
+
+.warning {
+	color: red;
+}
+
+.warning:before {
+	content: "WARNING: ";
+	font-weight: bold;
+}
+
+.place {
+	font-weight: bold;
+}
+
+.code {
+	font-family: "DejaVu Sans Mono", "DejaVu LGC Sans Mono", "Lucida Console", Monaco, monospace;
+	font-size: smaller;
+}
+
+.params {
+}
+
+.params .name {
+	font-weight: bold;
+}
+
+.params .type {
+	color: #666;
+}
+
+.inprogress:before {
+	color: #666;
+	content: "NOTE: This part is work in progress... ";
+}

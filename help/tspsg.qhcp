@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ !  TSPSG: TSP Solver and Generator
+ !  Copyright (C) 2007-2011 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
+ !
+ !  $Id$
+ !  $URL$
+ !
+ !  This file is part of TSPSG project.
+ !  See http://tspsg.info/ for more information.
+ \-->
+<QHelpCollectionProject version="1.0">
+	<assistant>
+		<title>TSPSG Help</title>
+		<startPage>qthelp://info.tspsg.0.1/help/en/index.html</startPage>
+		<currentFilter>TSPSG v0.1</currentFilter>
+		<aboutMenuText>
+			<text>About TSPSG</text>
+			<text lang="ru">О TSPSG</text>
+			<text lang="uk">Про TSPSG</text>
+		</aboutMenuText>
+		<aboutDialog>
+			<file>about.en.txt</file>
+			<file lang="ru">about.ru.txt</file>
+			<file lang="uk">about.uk.txt</file>
+		</aboutDialog>
+	</assistant>
+	<docFiles>
+		<generate>
+			<file>
+				<input>html/tspsg.qhp</input>
+				<output>tspsg.qch</output>
+			</file>
+		</generate>
+		<register>
+			<file>tspsg.qch</file>
+		</register>
+	</docFiles>
+</QHelpCollectionProject>

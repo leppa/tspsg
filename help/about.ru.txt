@@ -1,0 +1,8 @@
+TSPSG: TSP Solver and Generator
+Copyright (C) 2007-2011 Алексей Сердюк <contacts[at]oleksii[dot]name>
+
+$Id$
+$URL$
+
+Это руководство является частью проекта TSPSG.
+Псетите http://tspsg.info/ для получения более подробной информации.

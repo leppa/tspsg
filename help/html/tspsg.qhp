@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ !  TSPSG: TSP Solver and Generator
+ !  Copyright (C) 2007-2011 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
+ !
+ !  $Id$
+ !  $URL$
+ !
+ !  This file is part of TSPSG project.
+ !  See http://tspsg.info/ for more information.
+ \-->
+<QtHelpProject version="1.0">
+	<namespace>info.tspsg.0.1</namespace>
+	<virtualFolder>help</virtualFolder>
+	<customFilter name="TSPSG v0.1">
+		<filterAttribute>tspsg</filterAttribute>
+		<filterAttribute>0.1</filterAttribute>
+	</customFilter>
+	<filterSection>
+		<filterAttribute>tspsg</filterAttribute>
+		<filterAttribute>0.1</filterAttribute>
+		<filterAttribute>en</filterAttribute>
+		<toc>
+			<section title="TSPSG User Manual" ref="en/index.html">
+				<section title="About TSPSG" ref="en/about.html">
+<!--
+					<section title="Branch and Bound Method" ref="en/branchandbound.html"/>
+-->
+					<section title="License" ref="en/license.html"/>
+					<section title="Credits" ref="en/credits.html"/>
+				</section>
+				<section title="Main Window" ref="en/mainwindow.html">
+					<section title="Main Menu" ref="en/mainwindow.html#menu"/>
+					<section title="Task Tab" ref="en/mainwindow.html#task"/>
+					<section title="Solution Tab" ref="en/mainwindow.html#solution"/>
+					<section title="Status Bar" ref="en/mainwindow.html#status"/>
+				</section>
+				<section title="Preferences" ref="en/preferences.html">
+					<section title="General" ref="en/preferences.html#general"/>
+					<section title="Task" ref="en/preferences.html#task"/>
+					<section title="Output" ref="en/preferences.html#output"/>
+					<section title="&quot;Hidden&quot; Settings" ref="en/preferences.html#hidden"/>
+				</section>
+				<section title="Multilinguality" ref="en/l10n.html">
+					<section title="Creating a new translation" ref="en/l10n.html#creating"/>
+				</section>
+			</section>
+		</toc>
+		<keywords>
+			<keyword name="Main Window" ref="en/mainwindow.html"/>
+			<keyword name="Main Menu" ref="en/mainwindow.html#menu"/>
+			<keyword name="Task Tab" ref="en/mainwindow.html#task"/>
+			<keyword name="Varint" ref="en/mainwindow.html#task"/>
+			<keyword name="Cities" ref="en/mainwindow.html#task"/>
+			<keyword name="Task Table" ref="en/mainwindow.html#task"/>
+			<keyword name="Random Button" ref="en/mainwindow.html#task"/>
+			<keyword name="Solve Button" ref="en/mainwindow.html#task"/>
+			<keyword name="Solution Tab" ref="en/mainwindow.html#solution"/>
+			<keyword name="Solution Text" ref="en/mainwindow.html#solution"/>
+			<keyword name="Save Solution Button" ref="en/mainwindow.html#solution"/>
+			<keyword name="Back to Task Button" ref="en/mainwindow.html#solution"/>
+			<keyword name="Status Bar" ref="en/mainwindow.html#status"/>
+			<keyword name="Preferences" ref="en/preferences.html"/>
+			<keyword name="General Tab" ref="en/preferences.html#general"/>
+			<keyword name="Task Tab" ref="en/preferences.html#task"/>
+			<keyword name="Output Tab" ref="en/preferences.html#output"/>
+		</keywords>
+		<files>
+			<file>*.ttf</file>
+			<file>style.css</file>
+			<file>en/*</file>
+			<file>en/images/*</file>
+		</files>
+	</filterSection>
+	<filterSection>
+		<filterAttribute>tspsg</filterAttribute>
+		<filterAttribute>0.1</filterAttribute>
+		<filterAttribute>ru</filterAttribute>
+		<toc>
+			<section title="Руководство пользователя TSPSG" ref="ru/index.html">
+				<section title="Про TSPSG" ref="ru/about.html">
+<!--
+					<section title="Метод ветвей и границ" ref="ru/branchandbound.html"/>
+-->
+					<section title="Лицензия" ref="ru/license.html"/>
+					<section title="Благодарности" ref="ru/credits.html"/>
+				</section>
+				<section title="Главное окно" ref="ru/mainwindow.html">
+					<section title="Главное меню" ref="ru/mainwindow.html#menu"/>
+					<section title="Вкладка &quot;Условие&quot;" ref="ru/mainwindow.html#task"/>
+					<section title="Вкладка &quot;Решение&quot;" ref="ru/mainwindow.html#solution"/>
+					<section title="Строка состояния" ref="ru/mainwindow.html#status"/>
+				</section>
+				<section title="Параметры" ref="ru/preferences.html">
+					<section title="Общие" ref="ru/preferences.html#general"/>
+					<section title="Задача" ref="ru/preferences.html#task"/>
+					<section title="Вывод" ref="ru/preferences.html#output"/>
+					<section title="&quot;Скрытые&quot; настройки" ref="ru/preferences.html#hidden"/>
+				</section>
+				<section title="Мультиязычность" ref="ru/l10n.html">
+					<section title="Создание нового перевода" ref="ru/l10n.html#creating"/>
+				</section>
+			</section>
+		</toc>
+		<files>
+			<file>*.ttf</file>
+			<file>style.css</file>
+			<file>ru/*</file>
+			<file>ru/images/*</file>
+		</files>
+	</filterSection>
+	<filterSection>
+		<filterAttribute>tspsg</filterAttribute>
+		<filterAttribute>0.1</filterAttribute>
+		<filterAttribute>uk</filterAttribute>
+		<toc>
+			<section title="Керівництво користувача TSPSG" ref="uk/index.html">
+				<section title="Про TSPSG" ref="uk/about.html">
+<!--
+					<section title="Метод гілок та меж" ref="uk/branchandbound.html"/>
+-->
+					<section title="Ліцензія" ref="uk/license.html"/>
+					<section title="Подяки" ref="uk/credits.html"/>
+				</section>
+				<section title="Головне вікно" ref="uk/mainwindow.html">
+					<section title="Головне меню" ref="uk/mainwindow.html#menu"/>
+					<section title="Закладка &quot;Умова&quot;" ref="uk/mainwindow.html#task"/>
+					<section title="Закладка &quot;Розв'язок&quot;" ref="uk/mainwindow.html#solution"/>
+					<section title="Рядок стану" ref="uk/mainwindow.html#status"/>
+				</section>
+				<section title="Параметри" ref="uk/preferences.html">
+					<section title="Загальні" ref="uk/preferences.html#general"/>
+					<section title="Задача" ref="uk/preferences.html#task"/>
+					<section title="Виведення" ref="uk/preferences.html#output"/>
+					<section title="&quot;Пиховані&quot; налаштування" ref="ru/preferences.html#hidden"/>
+				</section>
+				<section title="Мултимовність" ref="uk/l10n.html">
+					<section title="Створення нового перекладу" ref="uk/l10n.html#creating"/>
+				</section>
+			</section>
+		</toc>
+		<files>
+			<file>*.ttf</file>
+			<file>style.css</file>
+			<file>uk/*</file>
+			<file>uk/images/*</file>
+		</files>
+	</filterSection>
+</QtHelpProject>
