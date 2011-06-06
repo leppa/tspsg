@@ -29,10 +29,8 @@ p, li {
 	text-align: justify;
 }
 
-h1, h2, h3 {
-}
-
-.info {
+.screenshot {
+	text-align: left;
 }
 
 .note {
@@ -40,7 +38,7 @@ h1, h2, h3 {
 }
 
 .note:before {
-	content: "NOTE: "
+	content: "NOTE: ";
 	font-weight: bold;
 }
 

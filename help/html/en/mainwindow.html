@@ -19,21 +19,23 @@
 <body>
 	<h1>Main Window</h1>
 	<p>This is the main application windows. It consists of <a href="#menu" class="place">Main Menu</a>, <a href="#task" class="place">Task Tab</a>, <a href="#solution" class="place">Solution Tab</a> and <a href="#status" class="place">Status Bar</a>.</p>
-	<p class="info tip">Get context tip in the Status Bar while hovering your mouse over different elements (Desktop platforms only).</p>
+	<p class="screenshot"><img src="images/mainwindow.png" alt="Main Window" /></p>
+	<p class="tip">Get context tip in the Status Bar while hovering your mouse over different elements (Desktop platforms only).</p>
 	<h2><a id="menu">Main Menu</a></h2>
 	<p class="inprogress"></p>
 	<h2><a id="task">Task Tab</a></h2>
 	<p>Task Tab is pretty simple. It has the following elements:</p>
+	<p class="screenshot"><img src="images/mainwindow.task.png" alt="Task Tab" /></p>
 	<ol class="params">
 		<li><span class="name">Variant</span> <span class="type">[integral number from 1 to 99]</span> - it doesn't affect anything, except it is printed in the solution header.</li>
 		<li><span class="name">Cities</span> <span class="type">[integral number from 3 to 50]</span> - the number of cities in the task. <div class="note">The higher the number of cities, the longer it takes to solve the task.</div></li>
-		<li><span class="name">Task Table</span> <span class="type">[any floating point number or "---" for infinity]</span> - this table contains the task itself. Each cell represents a travel price from the city, indicated in the row, to the city, indicated in the column. <div class="info tip">Also, you can enter infinity by entering any non-numeric value (e.g., any random character).</div></li>
-		<li><span class="name">Random</span> <span class="type">[button]</span> - if you press this button the table will be filled with random values, according to the settings in the <span class="place">Settings</span> -> <a href="preferences.html" class="place">Preferences...</a> -> <a href="preferences.html#task" class="place">Task Section</a>. 
-			<div class="warning">Any unsaved changes in the table will be overwritten without prompt.</div></li>
+		<li><span class="name">Task Table</span> <span class="type">[any floating point number or "---" for infinity]</span> - this table contains the task itself. Each cell represents a travel price from the city, indicated in the row, to the city, indicated in the column. <div class="tip">Also, you can enter infinity by entering any non-numeric value (e.g., any random character).</div></li>
+		<li><span class="name">Random</span> <span class="type">[button]</span> - if you press this button the table will be filled with random values, according to the settings in the <span class="place">Settings</span> -> <a href="preferences.html" class="place">Preferences...</a> -> <a href="preferences.html#task" class="place">Task Section</a>. <div class="warning">Any unsaved changes in the table will be overwritten without prompt.</div></li>
 		<li><span class="name">Solve</span> <span class="type">[button]</span> -  this button starts the solution process. The progress will be shown and the <a href="#solution" class="place">Solution Tab</a> will be activated on success.</li>
 	</ol>
 	<h2><a id="solution">Solution Tab</a></h2>
 	<p>Solution tab contains the solution text area and two buttons:</p>
+	<p class="screenshot"><img src="images/mainwindow.solution.png" alt="Solution Tab" /></p>
 	<ol class="params">
 		<li><span class="name">Solution text</span> <span class="type">[rich text]</span> - after the successful solution it contains its steps and graph. The output can be customized in the <span class="place">Settings</span> -> <a href="preferences.html" class="place">Preferences...</a> -> <a href="preferences.html#output" class="place">Output Section</a>.</li>
 <li><span class="name">Save Solution</span> <span class="type">[button]</span> - saves the solution text contents in one of the supported formats.</li>
