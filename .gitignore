@@ -1,0 +1,29 @@
+# /
+/*.idb
+/*.ncb
+/*.pdb
+/*.sln
+/*.suo
+/*.user
+/*.vcproj
+/Makefile*
+/build
+/debug
+/release
+/tmp
+
+# /docs/
+/docs/html
+
+# /help/
+/help/*.qch
+/help/*.qhc
+
+# /l10n/
+/l10n/*.qm
+
+# /resources/
+/resources/*.aps
+
+# /src/
+/src/pch.h.cpp
