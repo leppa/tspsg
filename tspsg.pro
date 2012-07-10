@@ -1,7 +1,7 @@
 ######################################################################
 #
 #  TSPSG: TSP Solver and Generator
-#  Copyright (C) 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
+#  Copyright (C) 2007-2012 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
 #
 #  $Id: $Format:%h %ai %an$ $
 #  $URL: http://tspsg.info/ $
@@ -25,10 +25,10 @@ TEMPLATE = app
 # QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk
 
 # Version information
-QMAKE_TARGET_COMPANY = Oleksii "Lёppa" Serdiuk
+QMAKE_TARGET_COMPANY = Oleksii Serdiuk
 QMAKE_TARGET_PRODUCT = TSP Solver and Generator
 QMAKE_TARGET_DESCRIPTION = TSPSG: TSP Solver and Generator
-QMAKE_TARGET_COPYRIGHT = Copyright © 2007-2011 Oleksii "Lёppa" Serdiuk <contacts[at]oleksii[dot]name>
+QMAKE_TARGET_COPYRIGHT = Copyright © 2007-2012 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
 
 # Version detection
 include(version.pri)
