@@ -30,37 +30,13 @@ QMAKE_TARGET_PRODUCT = TSP Solver and Generator
 QMAKE_TARGET_DESCRIPTION = TSPSG: TSP Solver and Generator
 QMAKE_TARGET_COPYRIGHT = Copyright © 2007-2011 Oleksii "Lёppa" Serdiuk <contacts[at]oleksii[dot]name>
 
-# Versioning
-BUILD_VERSION_MAJOR = 0
-BUILD_VERSION_MINOR = 1
-BUILD_RELEASE = 5
-
-# These are only defined on releases
-#DEFINES += TSPSG_RELEASE_BUILD
-#DEFINES += BUILD_STATUS_TYPE=beta
-#DEFINES += BUILD_STATUS_NUMBER=2
-
-#REVISION = 170
-isEmpty(REVISION) {
-    REVISION = $$system(svnversion)
-}
-isEmpty(REVISION)|isEqual(REVISION,exported) {
-    REVISION = 0
-} else {
-    REVISION = $$replace(REVISION,":","")
-    REVISION = $$replace(REVISION,"M","")
-}
-SHORT_VERSION = $$sprintf("%1.%2",$$BUILD_VERSION_MAJOR,$$BUILD_VERSION_MINOR)
-win32-msvc*|wincewm* {
-    VERSION = $$SHORT_VERSION
-} else {
-    VERSION = $$sprintf("%1.%2",$$SHORT_VERSION,$$BUILD_RELEASE)
-}
+# Version detection
+include(version.pri)
 
 DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
     BUILD_VERSION_MINOR=$$BUILD_VERSION_MINOR \
     BUILD_RELEASE=$$BUILD_RELEASE \
-    BUILD_NUMBER=$$REVISION
+    BUILD_NUMBER=$$BUILD_NUMBER
 
 CONFIG(release, debug|release) {
     OBJECTS_DIR = release

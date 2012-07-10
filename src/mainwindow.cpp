@@ -551,7 +551,11 @@ QString about;
     about += QString("&nbsp;&nbsp;&nbsp;&nbsp;%1: <b>%2</b><br>").arg(tr("Build time"), QT_VERSION_STR);
     about += QString("&nbsp;&nbsp;&nbsp;&nbsp;%1: <b>%2</b><br>").arg(tr("Runtime"), qVersion());
     about.append(QString("%1: <b>%2x%3</b><br>").arg(tr("Logical screen DPI")).arg(logicalDpiX()).arg(logicalDpiY()));
-    about += tr("Buid <b>%1</b>, built on <b>%2</b> at <b>%3</b> with <b>%4</b> compiler.").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__).arg(COMPILER) + "<br>";
+QString tag;
+#ifdef REVISION_STR
+    tag = tr(" from git revision <b>%1</b>").arg(REVISION_STR);
+#endif
+    about += tr("Build <b>%1</b>, built%5 on <b>%2</b> at <b>%3</b> with <b>%4</b> compiler.").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__).arg(COMPILER).arg(tag) + "<br>";
     about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), CTSPSolver::getVersionId());
     about += "<br>";
     about += tr("This program is free software: you can redistribute it and/or modify<br>\n"

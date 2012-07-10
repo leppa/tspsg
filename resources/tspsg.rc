@@ -22,11 +22,9 @@ VS_VERSION_INFO VERSIONINFO
 	FILEVERSION BUILD_VERSION_MAJOR,BUILD_VERSION_MINOR,BUILD_RELEASE,BUILD_NUMBER
 	PRODUCTVERSION BUILD_VERSION_MAJOR,BUILD_VERSION_MINOR,BUILD_RELEASE,BUILD_NUMBER
 	FILEFLAGSMASK 0x17L
-#if defined(DEBUG)
+#ifdef DEBUG
 	FILEFLAGS VS_FF_DEBUG | VS_FF_PRERELEASE | VS_FF_PRIVATEBUILD
-#elif !defined(TSPSG_RELEASE_BUILD) || (BUILD_NUMBER == 65535)
-	FILEFLAGS VS_FF_PRERELEASE | VS_FF_SPECIALBUILD
-#elif BUILD_RELEASE < 11
+#elif !defined(TSPSG_RELEASE_BUILD)
 	FILEFLAGS VS_FF_PRERELEASE
 #else
 	FILEFLAGS 0x0L
@@ -50,15 +48,13 @@ BEGIN
             VALUE "FileVersion", BUILD_VERSION
             VALUE "InternalName", "TSPSG"
             VALUE "LegalCopyright", "Copyright © 2007-2010 Oleksii ""Lёppa"" Serdiuk <contacts[at]oleksii[dot]name>"
-#ifdef QT_NO_DEBUG
-            VALUE "OriginalFilename", "tspsg.exe"
-#else
+#ifdef DEBUG
             VALUE "OriginalFilename", "tspsgd.exe"
+#else
+            VALUE "OriginalFilename", "tspsg.exe"
 #endif
-#ifndef QT_NO_DEBUG
+#ifdef DEBUG
             VALUE "PrivateBuild", "Debug development build"
-#elif BUILD_NUMBER == 65535
-            VALUE "SpecialBuild", "Internal development build"
 #endif
         END
     END

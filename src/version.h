@@ -48,21 +48,21 @@
 
 /*!
  * \def BUILD_STATUS
- * \brief TSPSG build status
+ * \brief TSPSG build status (e.g., alpha1, beta3)
  */
 #ifdef DEBUG
-#   ifndef BUILD_STATUS_TYPE
-#       define BUILD_STATUS (debug build BUILD_NUMBER)
+#   ifndef BUILD_STATUS
+#       define BUILD_STATUS_STR (debug build)
 #   else
-#       define BUILD_STATUS (debug BUILD_STATUS_TYPE BUILD_STATUS_NUMBER)
+#       define BUILD_STATUS_STR (debug BUILD_STATUS)
 #   endif
 #else
 #   if !defined(TSPSG_RELEASE_BUILD)
-#       define BUILD_STATUS (nightly build)
-#   elif !defined(BUILD_STATUS_TYPE)
-#       define BUILD_STATUS (build BUILD_NUMBER)
+#       define BUILD_STATUS_STR (nightly build)
+#   elif !defined(BUILD_STATUS)
+#       define BUILD_STATUS_STR (build BUILD_NUMBER)
 #   else
-#       define BUILD_STATUS (BUILD_STATUS_TYPE BUILD_STATUS_NUMBER)
+#       define BUILD_STATUS_STR (BUILD_STATUS)
 #   endif // TSPSG_RELEASE_BUILD
 #endif // DEBUG
 
@@ -72,6 +72,16 @@
 #define QUOTE(x) QUOTE_X(x)
 
 //! Full version of TSPSG in the form: \c major.minor.release.build \c status.
-#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE BUILD_STATUS)
+#define BUILD_VERSION QUOTE(BUILD_VERSION_MAJOR.BUILD_VERSION_MINOR.BUILD_RELEASE BUILD_STATUS_STR)
+
+/*!
+ * \def REVISION_STR
+ * \brief Git revision from which build was made
+ */
+#ifdef REVISION
+#   define REVISION_STR QUOTE(REVISION)
+#else
+#   define REVISION_STR "$Format:%H$"
+#endif
 
 #endif // VERSION_H
