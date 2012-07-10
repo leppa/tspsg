@@ -55,6 +55,16 @@ MOC_DIR = tmp
 RCC_DIR = tmp
 UI_DIR = tmp
 
+# We need to generate translations before building.
+# Either way, resource files won't compile.
+translations.name = Translations
+translations.input = TRANSLATIONS
+translations.output = $$_PRO_FILE_PWD_/l10n/${QMAKE_FILE_BASE}.qm
+translations.commands = $$[QT_INSTALL_BINS]/lrelease ${QMAKE_FILE_IN}
+translations.CONFIG = no_link
+QMAKE_EXTRA_COMPILERS += translations
+PRE_TARGETDEPS += compiler_translations_make_all
+
 # Include 3rd party libraries
 !handheld {
     include(src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.pri)

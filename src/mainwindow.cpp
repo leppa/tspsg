@@ -1401,21 +1401,12 @@ static QTranslator *translator; // Application translator
 
     // Trying to load system Qt library translation...
     qtTranslator = new QTranslator(this);
-    if (qtTranslator->load("qt_" + lng, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+    if (qtTranslator->load("qt_" + lng, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
         qApp->installTranslator(qtTranslator);
-    else {
-        // No luck. Let's try to load a bundled one.
-        if (qtTranslator->load("qt_" + lng, PATH_L10N)) {
-            // We have a translation in the localization direcotry.
-            qApp->installTranslator(qtTranslator);
-        } else if (qtTranslator->load("qt_" + lng, ":/l10n")) {
-            // We have a translation "built-in" into application resources.
-            qApp->installTranslator(qtTranslator);
-        } else {
-            // Qt library translation unavailable for this language.
-            delete qtTranslator;
-            qtTranslator = NULL;
-        }
+    } else {
+        // Qt library translation unavailable for this language.
+        delete qtTranslator;
+        qtTranslator = NULL;
     }
 
     // Now let's load application translation.
