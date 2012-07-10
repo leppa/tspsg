@@ -183,5 +183,5 @@ FEATURES
   * Linux/UNIX, Windows and Windows Mobile support.
 
 
-$Id$
-$URL$
+$Id: $Format:%h %ai %an$ $
+$URL: http://tspsg.info/ $

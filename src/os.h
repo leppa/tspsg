@@ -2,8 +2,8 @@
  * \file os.h
  * \author Copyright &copy; 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
  *
- *  $Id$
- *  $URL$
+ *  $Id: $Format:%h %ai %an$ $
+ *  $URL: http://tspsg.info/ $
  *
  * \warning Arch detection works only for <b>GNU C</b>, <b>Visual Studio</b>, <b>Intel C/C++</b> and <b>MinGW32</b> compilers.
  *  OS detection should work for any compiler.

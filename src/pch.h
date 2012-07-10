@@ -2,8 +2,8 @@
  * \file pch.h
  * \author Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
  *
- *  $Id$
- *  $URL$
+ *  $Id: $Format:%h %ai %an$ $
+ *  $URL: http://tspsg.info/ $
  *
  * \brief Precompiled Header (PCH) file
  *

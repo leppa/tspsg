@@ -352,5 +352,5 @@ TSPSG installation directory manually.
 [2] https://www.symbiansigned.com/app/page/public/openSignedOnline.do
 
 
-$Id$
-$URL$
+$Id: $Format:%h %ai %an$ $
+$URL: http://tspsg.info/ $

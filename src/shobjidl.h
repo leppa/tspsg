@@ -4,8 +4,8 @@
  * \author Extracted and documented by Lёppa <contacts[at]oleksii[dot]name>
  * \version Microsoft Windows SDK v7.0A
  *
- *  $Id$
- *  $URL$
+ *  $Id: $Format:%h %ai %an$ $
+ *  $URL: http://tspsg.info/ $
  *
  * \brief This file is a minimal required part of \c %shobjidl.h from <b>Microsoft Windows SDK v7.0A</b>.
  *

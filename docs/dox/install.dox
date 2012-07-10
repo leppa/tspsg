@@ -1,8 +1,8 @@
 /*! \page install TSPSG Installation Guide
 
 \author Copyright &copy; 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
-$Id$
-$URL$
+$Id: $Format:%h %ai %an$ $
+$URL: http://tspsg.info/ $
 
 Thank you for trying \b TSPSG. This document will guide you through the
 steps necessary to compile and run \b TSPSG.

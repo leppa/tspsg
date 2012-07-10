@@ -52,5 +52,5 @@ the creation of TSP Solver and Generator:
     see http://dejavu-fonts.org/.
 
 
-$Id$
-$URL$
+$Id: $Format:%h %ai %an$ $
+$URL: http://tspsg.info/ $

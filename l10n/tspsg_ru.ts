@@ -17,7 +17,7 @@
         <location filename="../src/mainwindow.cpp" line="590"/>
         <source>VERSION</source>
         <comment>Please, provide your translation version here.</comment>
-        <translation>$Id$</translation>
+        <translation>$Id: $Format:%h %ai %an$ $</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1337"/>

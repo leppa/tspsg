@@ -2,8 +2,8 @@
  * \file tspsolver.h
  * \author Copyright &copy; 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
  *
- *  $Id$
- *  $URL$
+ *  $Id: $Format:%h %ai %an$ $
+ *  $URL: http://tspsg.info/ $
  *
  * \brief Defines TSPSolver namespace and everything needed for solving TSP tasks.
  *

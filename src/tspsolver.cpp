@@ -2,8 +2,8 @@
  *  TSPSG: TSP Solver and Generator
  *  Copyright (C) 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
  *
- *  $Id$
- *  $URL$
+ *  $Id: $Format:%h %ai %an$ $
+ *  $URL: http://tspsg.info/ $
  *
  *  This file is part of TSPSG.
  *
@@ -30,11 +30,11 @@ namespace TSPSolver {
 
 /*!
  * \brief Returns CTSPSolver's version ID.
- * \return A string: <b>\$Id$</b>.
+ * \return A string: <b>\$Id: $Format:%h %ai %an$ $</b>.
  */
 QString CTSPSolver::getVersionId()
 {
-    return QString("$Id$");
+    return QString("$Id: $Format:%h %ai %an$ $");
 }
 
 /*!
