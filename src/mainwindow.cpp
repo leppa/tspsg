@@ -1303,7 +1303,7 @@ void MainWindow::initDocStyleSheet()
 QColor color = QColor(settings->value("Text", DEF_TEXT_COLOR).toString());
 QColor hilight;
     if (color.value() < 192)
-        hilight.setHsv(color.hue(), color.saturation(), 127 + qRound(color.value() / 2));
+        hilight.setHsv(color.hue(), color.saturation(), 127 + (color.value() / 2));
     else
         hilight.setHsv(color.hue(), color.saturation(), color.value() / 2);
 
@@ -1361,7 +1361,7 @@ QAction *a;
 #ifndef QT_NO_STATUSTIP
         a->setStatusTip(language.at(3));
 #endif
-#if QT_VERSION >= 0x040600
+#if QT_VERSION >= QT_VERSION_CHECK(4,6,0)
         a->setIcon(QIcon::fromTheme(QString("flag-%1").arg(language.at(1)), QIcon(QString(":/images/icons/l10n/flag-%1.png").arg(language.at(1)))));
 #else
         a->setIcon(QIcon(QString(":/images/icons/l10n/flag-%1.png").arg(language.at(1))));
@@ -1681,11 +1681,11 @@ void MainWindow::setupUi()
     // Settings Menu
 #ifndef HANDHELD
     menuSettingsLanguage->setIcon(GET_ICON("preferences-desktop-locale"));
-#if QT_VERSION >= 0x040600
+#if QT_VERSION >= QT_VERSION_CHECK(4,6,0)
     actionSettingsLanguageEnglish->setIcon(QIcon::fromTheme("flag-gb", QIcon(":/images/icons/l10n/flag-gb.png")));
-#else // QT_VERSION >= 0x040600
+#else
     actionSettingsLanguageEnglish->setIcon(QIcon(":/images/icons/l10n/flag-gb.png"));
-#endif // QT_VERSION >= 0x040600
+#endif // QT_VERSION >= QT_VERSION_CHECK(4,6,0)
     menuSettingsStyle->setIcon(GET_ICON("preferences-desktop-theme"));
 #endif // HANDHELD
     actionSettingsPreferences->setIcon(GET_ICON("preferences-system"));
@@ -1696,8 +1696,12 @@ void MainWindow::setupUi()
     actionHelpOnlineSupport->setIcon(GET_ICON("applications-internet"));
     actionHelpReportBug->setIcon(GET_ICON("tools-report-bug"));
     actionHelpAbout->setIcon(GET_ICON("help-about"));
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
     actionHelpAboutQt->setIcon(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"));
-#endif
+#else
+    actionHelpAboutQt->setIcon(QIcon(":/qt-project.org/qmessagebox/images/qtlogo-64.png"));
+#endif // QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#endif // HANDHELD
     // Buttons
     buttonRandom->setIcon(GET_ICON("roll"));
     buttonSolve->setIcon(GET_ICON("dialog-ok"));
@@ -1706,7 +1710,7 @@ void MainWindow::setupUi()
 
 //	action->setIcon(GET_ICON(""));
 
-#if QT_VERSION >= 0x040600
+#if QT_VERSION >= QT_VERSION_CHECK(4,6,0)
     setToolButtonStyle(Qt::ToolButtonFollowStyle);
 #endif
 
@@ -1755,7 +1759,7 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
     actionFilePageSetup = new QAction(this);
     actionFilePageSetup->setObjectName("actionFilePrintSetup");
 //    actionFilePageSetup->setEnabled(false);
-#if QT_VERSION >= 0x040600
+#if QT_VERSION >= QT_VERSION_CHECK(4,6,0)
     actionFilePageSetup->setIcon(QIcon::fromTheme("document-page-setup", QIcon(":/trolltech/dialogs/qprintpreviewdialog/images/page-setup-32.png")));
 #else
     actionFilePageSetup->setIcon(QIcon(":/trolltech/dialogs/qprintpreviewdialog/images/page-setup-32.png"));

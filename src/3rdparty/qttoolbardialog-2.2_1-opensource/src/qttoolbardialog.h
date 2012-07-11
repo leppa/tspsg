@@ -47,7 +47,13 @@
 #ifndef QTTOOLBARDIALOG_H
 #define QTTOOLBARDIALOG_H
 
-#include <QtGui/QDialog>
+#include <QtCore>
+
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#   include <QtGui/QDialog>
+#else
+#   include <QtWidgets/QDialog>
+#endif
 
 #if defined(Q_WS_WIN)
 #  if !defined(QT_QTTOOLBARDIALOG_EXPORT) && !defined(QT_QTTOOLBARDIALOG_IMPORT)

@@ -47,16 +47,24 @@
 #include "qttoolbardialog.h"
 #include "ui_qttoolbardialog.h"
 #include <QtCore/QSet>
-#include <QtGui/QAction>
-#include <QtGui/QToolBar>
-#include <QtGui/QMainWindow>
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#   include <QtGui/QAction>
+#   include <QtGui/QToolBar>
+#   include <QtGui/QMainWindow>
+#   include <QtGui/QHeaderView>
+#   include <QtGui/QPushButton>
+#else
+#   include <QtWidgets/QAction>
+#   include <QtWidgets/QToolBar>
+#   include <QtWidgets/QMainWindow>
+#   include <QtWidgets/QHeaderView>
+#   include <QtWidgets/QPushButton>
+#endif
 #include <QtGui/QShowEvent>
 #include <QtGui/QHideEvent>
-#include <QtGui/QHeaderView>
-#include <QtGui/QPushButton>
 
 #ifndef GET_ICON
-#   if QT_VERSION >= 0x040600
+#   if QT_VERSION >= QT_VERSION_CHECK(4,6,0)
 #       define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/128x128/"x".png"))
 #   else
 #       define GET_ICON(x) QIcon(":/images/icons/128x128/"x".png")

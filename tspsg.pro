@@ -16,6 +16,10 @@
     DEFINES += NOSVG
 }
 
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += printsupport concurrent
+}
+
 wincewm*|symbian|maemo*|simulator {
     CONFIG += handheld
 }

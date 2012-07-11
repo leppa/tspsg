@@ -30,7 +30,7 @@
 
 // INCLUDES
 #include <QtCore>
-#if QT_VERSION < 0x040500
+#if QT_VERSION < QT_VERSION_CHECK(4,5,0)
 #   error You are using Qt version < 4.5 but minimum required version is 4.5.0. Compilation aborted.
 #endif
 #if defined(Q_WS_WINCE_WM) || defined(Q_WS_S60) || defined(Q_WS_MAEMO_5) || defined(Q_WS_SIMULATOR)
@@ -45,6 +45,10 @@
 #if !defined(NOSVG)
 #   include <QtSvg>
 #endif // NOSVG
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#   include <QtConcurrent>
+#   include <QtPrintSupport>
+#endif
 
 #ifndef HANDHELD
 #   include "qttoolbardialog.h"
@@ -159,7 +163,7 @@ void toggleStyle(QWidget *widget, bool enable);
 #   define ICON_FORMAT "png"
 #endif
 
-#if QT_VERSION >= 0x040600
+#if QT_VERSION >= QT_VERSION_CHECK(4,6,0)
 #   define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/"ICON_SIZE"/"x"."ICON_FORMAT))
 #else
 #   define GET_ICON(x) QIcon(":/images/icons/"ICON_SIZE"/"x"."ICON_FORMAT)

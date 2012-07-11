@@ -22,7 +22,7 @@
  */
 
 #include "mainwindow.h"
-#if QT_VERSION < 0x040600
+#if QT_VERSION < QT_VERSION_CHECK(4,6,0)
 #   ifdef Q_CC_MSVC
 #       pragma message("WARNING: You are using Qt version < 4.6. Application will not support some non-critical features.")
 #   elif defined(Q_CC_GNU)
@@ -48,8 +48,10 @@ int main(int argc, char *argv[])
 QApplication app(argc, argv);
     app.setOverrideCursor(QCursor(Qt::WaitCursor));
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf8"));
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf8"));
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+#endif
     app.setOrganizationName("Oleksii Serdiuk");
     app.setOrganizationDomain("oleksii.name");
     app.setApplicationName("TSP Solver and Generator");

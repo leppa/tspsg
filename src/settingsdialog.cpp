@@ -257,9 +257,9 @@ QVBoxLayout *vbox; // Layout helper
     cbHQGraph->setChecked(settings->value("HQGraph", DEF_HQ_GRAPH).toBool());
 #endif
 
-#if !defined(NOSVG) && (QT_VERSION >= 0x040500)
+#if !defined(NOSVG) && (QT_VERSION >= QT_VERSION_CHECK(4,5,0))
     comboGraphImageFormat->addItem("svg");
-#endif // NOSVG && QT_VERSION >= 0x040500
+#endif
     // We create whitelist of formats, supported by the most popular web browsers according to
     //  http://en.wikipedia.org/wiki/Comparison_of_web_browsers#Image_format_support
     //  + TIFF format (there are plugins to support it).
