@@ -1,6 +1,6 @@
 /*
  *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2011 Lёppa <contacts[at]oleksii[dot]name>
+ *  Copyright (C) 2007-2012 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
  *
  *  $Id: $Format:%h %ai %an$ $
  *  $URL: http://tspsg.info/ $
@@ -50,7 +50,7 @@ QApplication app(argc, argv);
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf8"));
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf8"));
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
-    app.setOrganizationName("Oleksii \"Lёppa\" Serdiuk");
+    app.setOrganizationName("Oleksii Serdiuk");
     app.setOrganizationDomain("oleksii.name");
     app.setApplicationName("TSP Solver and Generator");
     app.setApplicationVersion(BUILD_VERSION);

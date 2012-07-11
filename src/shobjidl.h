@@ -1,7 +1,7 @@
 /*!
  * \file shobjidl.h
  * \author Copyright &copy; Microsoft Corporation
- * \author Extracted and documented by Lёppa <contacts[at]oleksii[dot]name>
+ * \author Extracted and documented by Oleksii Serdiuk <contacts[at]oleksii[dot]name>
  * \version Microsoft Windows SDK v7.0A
  *
  *  $Id: $Format:%h %ai %an$ $

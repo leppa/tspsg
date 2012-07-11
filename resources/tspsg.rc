@@ -1,6 +1,6 @@
 /*
  *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2010 Lёppa <contacts[at]oleksii[dot]name>
+ *  Copyright (C) 2007-2012 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
  *
  *  $Id: $Format:%h %ai %an$ $
  *  $URL: http://tspsg.info/ $
@@ -47,7 +47,7 @@ BEGIN
             VALUE "FileDescription", "TSPSG: TSP Solver and Generator"
             VALUE "FileVersion", BUILD_VERSION
             VALUE "InternalName", "TSPSG"
-            VALUE "LegalCopyright", "Copyright © 2007-2010 Oleksii Serdiuk <contacts[at]oleksii[dot]name>"
+            VALUE "LegalCopyright", "Copyright © 2007-2012 Oleksii Serdiuk <contacts[at]oleksii[dot]name>"
 #ifdef DEBUG
             VALUE "OriginalFilename", "tspsgd.exe"
 #else

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author>Lёppa: $Id: $Format:%h %ai %an$ $</author>
+ <author>Oleksii Serdiuk: $Id: $Format:%h %ai %an$ $</author>
  <class>SettingsDialog</class>
  <widget class="QDialog" name="SettingsDialog">
   <property name="windowTitle">

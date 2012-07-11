@@ -10,7 +10,7 @@
         <comment>Please, provide translator credits here. %1 will be replaced with VERSION</comment>
         <translation>&lt;b&gt;Русский перевод&lt;/b&gt;&lt;br&gt;
 &lt;br&gt;
-Автор: &lt;a href=&quot;http://oleksii.name/&quot;&gt;Алексей &quot;Lёppa&quot; Сердюк&lt;/a&gt;&lt;br&gt;
+Автор: &lt;a href=&quot;http://oleksii.name/&quot;&gt;Алексей Сердюк&lt;/a&gt;&lt;br&gt;
 Версия: %1</translation>
     </message>
     <message>
