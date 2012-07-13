@@ -71,7 +71,7 @@ QHBoxLayout *hbox;
     cbHQGraph->setText(tr("Draw solution graph in higher quality"));
     cbHQGraph->setCursor(QCursor(Qt::PointingHandCursor));
 
-    box = static_cast<QBoxLayout *>(tabOutput->layout());
+    box = static_cast<QBoxLayout *>(tabOutputGeneral->layout());
     hbox = new QHBoxLayout();
     hbox->addSpacing(10);
     hbox->addWidget(cbHQGraph);
