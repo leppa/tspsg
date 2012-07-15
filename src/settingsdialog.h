@@ -46,11 +46,11 @@ public:
     qint8 translucencyChanged() const;
 
 private:
-    bool _newFont;
-    bool _newColor;
+    bool _fontChanged;
+    bool _colorChanged;
     qint8 _translucency;
 
-    QColor color;
+    QColor textColor, selColor, altColor, borderColor, bgColor;
     QFont font;
 
     QSettings *settings;
@@ -78,7 +78,7 @@ private:
 
 private slots:
     void accept();
-    void buttonColorClicked();
+    void buttonTextColorClicked();
     void buttonFontClicked();
 #ifdef Q_WS_WINCE_WM
     void desktopResized(int screen);

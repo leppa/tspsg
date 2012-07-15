@@ -14,6 +14,8 @@
         <file>icons/128x128/document-print-preview.png</file>
         <file>icons/128x128/document-save.png</file>
         <file>icons/128x128/document-save-as.png</file>
+        <file>icons/128x128/format-fill-color.png</file>
+        <file>icons/128x128/format-stroke-color.png</file>
         <file>icons/128x128/format-text-color.png</file>
         <file>icons/128x128/go-previous.png</file>
         <file>icons/128x128/help-about.png</file>

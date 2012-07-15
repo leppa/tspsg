@@ -7,6 +7,8 @@
         <file>icons/48x48/document-open.png</file>
         <file>icons/48x48/document-save.png</file>
         <file>icons/48x48/document-save-as.png</file>
+        <file>icons/48x48/format-fill-color.png</file>
+        <file>icons/48x48/format-stroke-color.png</file>
         <file>icons/48x48/format-text-color.png</file>
         <file>icons/48x48/go-previous.png</file>
         <file>icons/48x48/help-about.png</file>

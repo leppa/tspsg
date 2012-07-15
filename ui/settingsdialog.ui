@@ -301,6 +301,9 @@
            <attribute name="title">
             <string>General</string>
            </attribute>
+           <attribute name="toolTip">
+            <string>General solution output settings</string>
+           </attribute>
            <layout class="QVBoxLayout" name="_6">
             <item>
              <widget class="QCheckBox" name="cbGenerateGraph">
@@ -514,47 +517,355 @@
            <attribute name="title">
             <string comment="Needs double &amp; or it won't be displayed!">Font &amp;&amp; Colors</string>
            </attribute>
+           <attribute name="toolTip">
+            <string>Font and color settings for solution output</string>
+           </attribute>
            <layout class="QVBoxLayout" name="_11">
             <item>
              <layout class="QHBoxLayout" name="_13">
+              <item>
+               <widget class="QLabel" name="labelFont">
+                <property name="statusTip">
+                 <string>Font used for solution output</string>
+                </property>
+                <property name="text">
+                 <string>Text font:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelFontExample">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="statusTip">
+                 <string>Font used for solution output</string>
+                </property>
+               </widget>
+              </item>
               <item>
                <widget class="QPushButton" name="buttonFont">
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="statusTip">
-                 <string>Font face for solution output</string>
-                </property>
-                <property name="text">
-                 <string>&amp;Font...</string>
+                 <string>Change output font</string>
                 </property>
                </widget>
               </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="_15">
               <item>
-               <widget class="QPushButton" name="buttonColor">
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
+               <widget class="QLabel" name="labelTextColor">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
                 </property>
                 <property name="statusTip">
                  <string>Font color for solution output</string>
                 </property>
                 <property name="text">
-                 <string>&amp;Color...</string>
+                 <string>Text color:</string>
                 </property>
                </widget>
               </item>
               <item>
-               <spacer name="spacer_5">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+               <widget class="QFrame" name="boxTextColor">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
                 </property>
-                <property name="sizeHint" stdset="0">
+                <property name="minimumSize">
                  <size>
-                  <width>1</width>
-                  <height>0</height>
+                  <width>15</width>
+                  <height>15</height>
                  </size>
                 </property>
-               </spacer>
+                <property name="statusTip">
+                 <string>Font color for solution output</string>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>true</bool>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::Box</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="buttonTextColor">
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="statusTip">
+                 <string>Change font color</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="_17">
+              <item>
+               <widget class="QLabel" name="labelSelectedColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="statusTip">
+                 <string>Font color for the candidate that was selected for branching</string>
+                </property>
+                <property name="text">
+                 <string>Selected candidate color:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="boxSelectedColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>15</width>
+                  <height>15</height>
+                 </size>
+                </property>
+                <property name="statusTip">
+                 <string>Font color for the candidate that was selected for branching</string>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>true</bool>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::Box</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="buttonSelectedColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="statusTip">
+                 <string>Change selected candidate color</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="_18">
+              <item>
+               <widget class="QLabel" name="labelAlternateColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="statusTip">
+                 <string>Font color for the alternate candidate that wasn't selected for branching</string>
+                </property>
+                <property name="text">
+                 <string>Alternate candidate color:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="boxAlternateColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>15</width>
+                  <height>15</height>
+                 </size>
+                </property>
+                <property name="statusTip">
+                 <string>Font color for the alternate candidate that wasn't selected for branching</string>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>true</bool>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::Box</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="buttonAlternateColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="statusTip">
+                 <string>Change alternate candidate color</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="_19">
+              <item>
+               <widget class="QLabel" name="labelBorderColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="statusTip">
+                 <string>Color of table borders in solution output</string>
+                </property>
+                <property name="text">
+                 <string>Table borders color:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="boxBorderColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>15</width>
+                  <height>15</height>
+                 </size>
+                </property>
+                <property name="statusTip">
+                 <string>Color of table borders in solution output</string>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>true</bool>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::Box</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="buttonBorderColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="statusTip">
+                 <string>Change color of table borders</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="_16">
+              <item>
+               <widget class="QLabel" name="labelBgColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="statusTip">
+                 <string>Background color for solution output</string>
+                </property>
+                <property name="text">
+                 <string>Background color:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="boxBgColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>15</width>
+                  <height>15</height>
+                 </size>
+                </property>
+                <property name="statusTip">
+                 <string>Background color for solution output</string>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>true</bool>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::Box</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="buttonBgColor">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="statusTip">
+                 <string>Change background color</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
