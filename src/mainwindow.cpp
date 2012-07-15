@@ -553,7 +553,7 @@ QString about;
     about.append(QString("%1: <b>%2x%3</b><br>").arg(tr("Logical screen DPI")).arg(logicalDpiX()).arg(logicalDpiY()));
 QString tag;
 #ifdef REVISION_STR
-    tag = tr(" from git revision <b>%1</b>").arg(REVISION_STR);
+    tag = tr(" from git revision <b>%1</b>").arg(QString(REVISION_STR).left(10));
 #endif
     about += tr("Build <b>%1</b>, built%5 on <b>%2</b> at <b>%3</b> with <b>%4</b> compiler.").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__).arg(COMPILER).arg(tag) + "<br>";
     about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), CTSPSolver::getVersionId());
