@@ -71,6 +71,9 @@ private:
     QFrame *lineVertical;
     QLabel *labelHint;
 
+    void pickColor(QColor &where);
+    void setBgColor(QWidget *widget, const QColor &color);
+
 #ifndef QT_NO_STATUSTIP
     bool event(QEvent *ev);
 #endif // QT_NO_STATUSTIP
@@ -79,6 +82,10 @@ private:
 private slots:
     void accept();
     void buttonTextColorClicked();
+    void buttonSelectedColorClicked();
+    void buttonAlternateColorClicked();
+    void buttonBorderColorClicked();
+//    void buttonBgColorClicked();
     void buttonFontClicked();
 #ifdef Q_WS_WINCE_WM
     void desktopResized(int screen);

@@ -51,7 +51,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     buttonSelectedColor->setIcon(GET_ICON("format-text-color"));
     buttonAlternateColor->setIcon(GET_ICON("format-text-color"));
     buttonBorderColor->setIcon(GET_ICON("format-stroke-color"));
-    buttonBgColor->setIcon(GET_ICON("format-fill-color"));
+//    buttonBgColor->setIcon(GET_ICON("format-fill-color"));
     buttonFont->setIcon(GET_ICON("preferences-desktop-font"));
     buttonHelp->setIcon(GET_ICON("help-hint"));
 
@@ -216,6 +216,10 @@ QVBoxLayout *vbox; // Layout helper
     connect(spinRandMin, SIGNAL(valueChanged(int)), SLOT(spinRandMinValueChanged(int)));
     connect(buttonFont, SIGNAL(clicked()), SLOT(buttonFontClicked()));
     connect(buttonTextColor, SIGNAL(clicked()), SLOT(buttonTextColorClicked()));
+    connect(buttonSelectedColor, SIGNAL(clicked()), SLOT(buttonSelectedColorClicked()));
+    connect(buttonAlternateColor, SIGNAL(clicked()), SLOT(buttonAlternateColorClicked()));
+    connect(buttonBorderColor, SIGNAL(clicked()), SLOT(buttonBorderColorClicked()));
+//    connect(buttonBgColor, SIGNAL(clicked()), SLOT(buttonBgColorClicked()));
     setWindowFlags(windowFlags() ^ Qt::WindowContextHelpButtonHint);
 #if !defined(QT_NO_STATUSTIP) && !defined(HANDHELD)
     // Setting initial text of dialog hint label to own status tip text.
@@ -294,8 +298,8 @@ QStringList whitelist;
     textColor = QColor(settings->value("Colors/Text", DEF_TEXT_COLOR).toString());
     selColor = QColor(settings->value("Colors/Selected", DEF_SELECTED_COLOR).toString());
     altColor = QColor(settings->value("Colors/Alternate", DEF_ALTERNATE_COLOR).toString());
-    borderColor = QColor(settings->value("Colors/Border", DEF_TABLE_COLOR).toString());
-    bgColor = QColor(settings->value("Colors/Background", DEF_BACKGROUND_COLOR).toString());
+    borderColor = QColor(settings->value("Colors/TableBorder", DEF_TABLE_COLOR).toString());
+//    bgColor = QColor(settings->value("Colors/Background", DEF_BACKGROUND_COLOR).toString());
     settings->endGroup();
 
     QFont f = font;
@@ -303,25 +307,11 @@ QStringList whitelist;
     labelFontExample->setFont(f);
     labelFontExample->setText(font.family());
 
-    p = boxTextColor->palette();
-    p.setColor(QPalette::Window, textColor);
-    boxTextColor->setPalette(p);
-
-    p = boxSelectedColor->palette();
-    p.setColor(QPalette::Window, selColor);
-    boxSelectedColor->setPalette(p);
-
-    p = boxAlternateColor->palette();
-    p.setColor(QPalette::Window, altColor);
-    boxAlternateColor->setPalette(p);
-
-    p = boxBorderColor->palette();
-    p.setColor(QPalette::Window, borderColor);
-    boxBorderColor->setPalette(p);
-
-    p = boxBgColor->palette();
-    p.setColor(QPalette::Window, bgColor);
-    boxBgColor->setPalette(p);
+    setBgColor(boxTextColor, textColor);
+    setBgColor(boxSelectedColor, selColor);
+    setBgColor(boxAlternateColor, altColor);
+    setBgColor(boxBorderColor, borderColor);
+//    setBgColor(boxBgColor, bgColor);
 
 #ifdef HANDHELD
     setWindowState(Qt::WindowMaximized);
@@ -426,20 +416,79 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
     settings->setValue("ScrollToEnd", cbScrollToEnd->isChecked());
     if (_fontChanged)
         settings->setValue("Font", font);
-    if (_colorChanged)
-        settings->setValue("Colors/Text", textColor.name());
+    if (_colorChanged) {
+        settings->beginGroup("Colors");
+        if (textColor != DEF_TEXT_COLOR)
+            settings->setValue("Text", textColor.name());
+        else
+            settings->remove("Text");
+        if (selColor != QColor(DEF_SELECTED_COLOR))
+            settings->setValue("Selected", selColor.name());
+        else
+            settings->remove("Selected");
+        if (altColor != DEF_ALTERNATE_COLOR)
+            settings->setValue("Alternate",altColor.name());
+        else
+            settings->remove("Alternate");
+        if (borderColor != DEF_TABLE_COLOR)
+            settings->setValue("TableBorder", borderColor.name());
+        else
+            settings->remove("TableColor");
+//        if (bgColor != DEF_BACKGROUND_COLOR)
+//            settings->setValue("Background", bgColor.name());
+//        else
+//            settings->remove("Background");
+        settings->endGroup();
+    }
     settings->endGroup();
     QDialog::accept();
 }
 
-void SettingsDialog::buttonTextColorClicked()
+void SettingsDialog::pickColor(QColor &where)
 {
-QColor color = QColorDialog::getColor(this->textColor,this);
-    if (color.isValid() && (this->textColor != color)) {
-        this->textColor = color;
+    QColor color = QColorDialog::getColor(where, this);
+    if (color.isValid() && (where != color)) {
+        where = color;
         _colorChanged = true;
     }
 }
+
+void SettingsDialog::setBgColor(QWidget *widget, const QColor &color)
+{
+    QPalette p = widget->palette();
+    p.setColor(QPalette::Window, color);
+    widget->setPalette(p);
+}
+
+void SettingsDialog::buttonTextColorClicked()
+{
+    pickColor(textColor);
+    setBgColor(boxTextColor, textColor);
+}
+
+void SettingsDialog::buttonSelectedColorClicked()
+{
+    pickColor(selColor);
+    setBgColor(boxSelectedColor, selColor);
+}
+
+void SettingsDialog::buttonAlternateColorClicked()
+{
+    pickColor(altColor);
+    setBgColor(boxAlternateColor, altColor);
+}
+
+void SettingsDialog::buttonBorderColorClicked()
+{
+    pickColor(borderColor);
+    setBgColor(boxBorderColor, borderColor);
+}
+
+//void SettingsDialog::buttonBgColorClicked()
+//{
+//    pickColor(bgColor);
+//    setBgColor(boxBgColor, bgColor);
+//}
 
 void SettingsDialog::buttonFontClicked()
 {

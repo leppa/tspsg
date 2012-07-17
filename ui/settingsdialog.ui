@@ -617,9 +617,6 @@
              <layout class="QHBoxLayout" name="_17">
               <item>
                <widget class="QLabel" name="labelSelectedColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -636,9 +633,6 @@
               </item>
               <item>
                <widget class="QFrame" name="boxSelectedColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -664,9 +658,6 @@
               </item>
               <item>
                <widget class="QPushButton" name="buttonSelectedColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
@@ -681,9 +672,6 @@
              <layout class="QHBoxLayout" name="_18">
               <item>
                <widget class="QLabel" name="labelAlternateColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -700,9 +688,6 @@
               </item>
               <item>
                <widget class="QFrame" name="boxAlternateColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -728,9 +713,6 @@
               </item>
               <item>
                <widget class="QPushButton" name="buttonAlternateColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
@@ -745,9 +727,6 @@
              <layout class="QHBoxLayout" name="_19">
               <item>
                <widget class="QLabel" name="labelBorderColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -764,9 +743,6 @@
               </item>
               <item>
                <widget class="QFrame" name="boxBorderColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -792,78 +768,11 @@
               </item>
               <item>
                <widget class="QPushButton" name="buttonBorderColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="statusTip">
                  <string>Change color of table borders</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="_16">
-              <item>
-               <widget class="QLabel" name="labelBgColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="statusTip">
-                 <string>Background color for solution output</string>
-                </property>
-                <property name="text">
-                 <string>Background color:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="boxBgColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>15</width>
-                  <height>15</height>
-                 </size>
-                </property>
-                <property name="statusTip">
-                 <string>Background color for solution output</string>
-                </property>
-                <property name="autoFillBackground">
-                 <bool>true</bool>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::Box</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="buttonBgColor">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="cursor">
-                 <cursorShape>PointingHandCursor</cursorShape>
-                </property>
-                <property name="statusTip">
-                 <string>Change background color</string>
                 </property>
                </widget>
               </item>

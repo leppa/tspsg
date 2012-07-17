@@ -302,6 +302,11 @@ QString format = settings->value("Output/GraphImageFormat", DEF_GRAPH_IMAGE_FORM
 QString html = solutionText->document()->toHtml("UTF-8");
 
         html.replace(QRegExp("font-family:([^;]*);"), "font-family:\\1, 'DejaVu Sans Mono', 'Courier New', Courier, monospace;");
+        html.replace(QRegExp("<style ([^>]*)>"), QString("<style \\1>\n"
+                                                         "body { color: %1 }\n"
+                                                         "td { border-style: solid; border-width: 1px; border-color: %2; }")
+                     .arg(settings->value("Output/Colors/Font", DEF_TEXT_COLOR).toString(),
+                          settings->value("Output/Colors/TableBorder", DEF_TABLE_COLOR).toString()));
 
         if (!graph.isNull()) {
             QString img =  fi.completeBaseName() + "." + format;
@@ -1001,8 +1006,8 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
     if (dograph) {
         pic.end();
 
-QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_RGB32);
-        i.fill(0xFFFFFF);
+        QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
+        i.fill(QColor(255, 255, 255, 0));
         pic.begin(&i);
         pic.drawPicture(1, 1, graph);
         pic.end();
@@ -1318,8 +1323,6 @@ QColor hilight;
     fmt_altlist.setForeground(QBrush(hilight));
 
     settings->endGroup();
-
-    solutionText->setTextColor(color);
 }
 
 void MainWindow::loadLangList()

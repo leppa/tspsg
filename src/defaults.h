@@ -114,8 +114,8 @@
 #define DEF_ALTERNATE_COLOR "#A00000"
 //! Default table border color
 #define DEF_TABLE_COLOR QPalette().color(QPalette::AlternateBase)
-//! Default solution background color
-#define DEF_BACKGROUND_COLOR QPalette().color(QPalette::Base)
+////! Default solution background color
+//#define DEF_BACKGROUND_COLOR QPalette().color(QPalette::Base)
 
 #ifndef QT_NO_PRINTER
 //! Default page size for printing
