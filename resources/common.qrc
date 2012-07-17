@@ -4,6 +4,7 @@
     </qresource>
     <qresource prefix="/files">
         <file>COPYING</file>
-        <file>DejaVuLGCSansMono.ttf</file>
+        <file>fonts/DejaVuLGCSansMono.ttf</file>
+        <file>fonts/DejaVuLGCSansMono-Bold.ttf</file>
     </qresource>
 </RCC>

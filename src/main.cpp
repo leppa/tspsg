@@ -68,8 +68,10 @@ QStringList files = QDir(app.applicationDirPath(), "*.ttf").entryList();
     }
 #endif
     // Don't load the font if it is already available
-    if (!QFontDatabase().families().contains(DEF_FONT_FACE))
-        QFontDatabase::addApplicationFont(":/files/DejaVuLGCSansMono.ttf");
+    if (!QFontDatabase().families().contains(DEF_FONT_FACE)) {
+        QFontDatabase::addApplicationFont(":/files/fonts/DejaVuLGCSansMono.ttf");
+        QFontDatabase::addApplicationFont(":/files/fonts/DejaVuLGCSansMono-Bold.ttf");
+    }
 
 QTranslator en;
     if (en.load("tspsg_en", PATH_L10N))
