@@ -71,13 +71,13 @@ private:
     QFrame *lineVertical;
     QLabel *labelHint;
 
-    void pickColor(QColor &where);
-    void setBgColor(QWidget *widget, const QColor &color);
-
 #ifndef QT_NO_STATUSTIP
     bool event(QEvent *ev);
 #endif // QT_NO_STATUSTIP
 #endif // Q_WS_WINCE_WM
+
+    void pickColor(QColor &where);
+    void setBgColor(QWidget *widget, const QColor &color);
 
 private slots:
     void accept();
