@@ -203,6 +203,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>DEF_TABLE_COLOR</name>
+      <anchorfile>defaults_8h.html</anchorfile>
+      <anchor>af3851055119c8d27b270e17a5c1cda8b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>DEF_PAGE_SIZE</name>
       <anchorfile>defaults_8h.html</anchorfile>
       <anchor>a2ab370dcb12e8b14e1a63f81b7ab02f3</anchor>
@@ -559,9 +566,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>BUILD_STATUS</name>
+      <name>BUILD_STATUS_STR</name>
       <anchorfile>version_8h.html</anchorfile>
-      <anchor>a7a713d0890ab037efe896938904fb407</anchor>
+      <anchor>ae494639fd568e7cf0fefc04917adcd1f</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -583,6 +590,13 @@
       <name>BUILD_VERSION</name>
       <anchorfile>version_8h.html</anchorfile>
       <anchor>ad7a967dd260384e94010b31b1412a0b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>REVISION_STR</name>
+      <anchorfile>version_8h.html</anchorfile>
+      <anchor>a3af394564d06316500616fae44f1e5e9</anchor>
       <arglist></arglist>
     </member>
   </compound>

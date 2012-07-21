@@ -47,7 +47,7 @@
 #endif // BUILD_NUMBER
 
 /*!
- * \def BUILD_STATUS
+ * \def BUILD_STATUS_STR
  * \brief TSPSG build status (e.g., alpha1, beta3)
  */
 #ifdef DEBUG
