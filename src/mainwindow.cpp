@@ -1007,7 +1007,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
         pic.end();
 
         QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
-        i.fill(QColor(255, 255, 255, 0));
+        i.fill(QColor(255, 255, 255, 0).rgba());
         pic.begin(&i);
         pic.drawPicture(1, 1, graph);
         pic.end();
