@@ -76,8 +76,11 @@ PRE_TARGETDEPS += compiler_translations_make_all
 
 win32:LIBS += -lole32
 
-# Include file(s)
+# Source
 include(tspsg.pri)
+
+# Code Documentation
+include(doc/doc.pri)
 
 # Installation and deployment rules
 include(install.pri)
