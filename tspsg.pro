@@ -79,6 +79,9 @@ win32:LIBS += -lole32
 # Source
 include(tspsg.pri)
 
+# Help
+include(help/help.pri)
+
 # Code Documentation
 include(doc/doc.pri)
 
