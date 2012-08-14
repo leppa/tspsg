@@ -18,7 +18,7 @@ OTHER_FILES += \
     help/html/en/images/*
 
 help.target = help
-help.commands = cd help && $$[QT_INSTALL_BINS]/qcollectiongenerator tspsg.qhcp -o tspsg.qhc
+help.commands = cd $$_PRO_FILE_PWD_/help && $$[QT_INSTALL_BINS]/qcollectiongenerator tspsg.qhcp -o tspsg.qhc
 help.depends = FORCE
 
 QMAKE_EXTRA_TARGETS += help

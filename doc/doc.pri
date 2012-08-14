@@ -16,7 +16,7 @@ OTHER_FILES += \
 
 #dox.depends = $(SOURCES) doc/dox/*.dox
 dox.target = doc
-dox.commands = doxygen Doxyfile
+dox.commands = cd $$_PRO_FILE_PWD_ && doxygen Doxyfile
 dox.depends = FORCE
 
 QMAKE_EXTRA_TARGETS += dox

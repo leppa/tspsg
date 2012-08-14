@@ -13,8 +13,8 @@
 /release
 /tmp
 
-# /docs/
-/docs/html
+# /doc/
+/doc/html
 
 # /help/
 /help/*.qch
