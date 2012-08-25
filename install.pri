@@ -120,7 +120,7 @@ symbian {
         " \"$$QMAKE_TARGET_PRODUCT\"," \
         " \"$$QMAKE_TARGET_PRODUCT\"," \
         " \"$$QMAKE_TARGET_PRODUCT\"" \
-        "},($$TARGET.UID3),$$BUILD_VERSION_MAJOR,$${BUILD_VERSION_MINOR}$${BUILD_RELEASE},$$REVISION"
+        "},($$TARGET.UID3),$$BUILD_VERSION_MAJOR,$${BUILD_VERSION_MINOR}$${BUILD_RELEASE},$$BUILD_NUMBER"
     vendor = \
         "%{\"Oleksii Serdiuk\",\"Алексей Сердюк\",\"Олексій Сердюк\"}" \
         ":\"Oleksii Serdiuk\""
@@ -148,7 +148,7 @@ symbian {
         "\"$$QMAKE_TARGET_PRODUCT Installer\"," \
         "\"Установщик $$QMAKE_TARGET_PRODUCT\"," \
         "\"Встановлювач $$QMAKE_TARGET_PRODUCT\"" \
-        "},($${SMARTINSTALLER_UID}),$$BUILD_VERSION_MAJOR,$${BUILD_VERSION_MINOR}$${BUILD_RELEASE},$$REVISION"
+        "},($${SMARTINSTALLER_UID}),$$BUILD_VERSION_MAJOR,$${BUILD_VERSION_MINOR}$${BUILD_RELEASE},$$BUILD_NUMBER"
 }
 
 # Maemo 5
