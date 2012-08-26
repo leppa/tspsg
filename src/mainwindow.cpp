@@ -1312,8 +1312,18 @@ QColor hilight;
     else
         hilight.setHsv(color.hue(), color.saturation(), color.value() / 2);
 
+#ifdef Q_WS_S60
+    /*!
+     * \hack HACK: Fixing some weird behavior with default Symbian theme
+     *  when text and background have the same color.
+     */
+    if (color != DEF_TEXT_COLOR) {
+#endif
     solutionText->document()->setDefaultStyleSheet(QString("* {color: %1;}").arg(color.name()));
     fmt_default.setForeground(QBrush(color));
+#ifdef Q_WS_S60
+    }
+#endif
 
     fmt_selected.setForeground(QBrush(QColor(settings->value("Selected", DEF_SELECTED_COLOR).toString())));
     fmt_selected.setFontWeight(QFont::Bold);
