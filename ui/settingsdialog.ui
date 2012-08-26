@@ -544,6 +544,9 @@
                 <property name="statusTip">
                  <string>Font used for solution output</string>
                 </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item>

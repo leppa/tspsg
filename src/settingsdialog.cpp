@@ -127,6 +127,13 @@ QScrollArea *scrollArea = new QScrollArea(this);
 
     bgWhite->layout()->setMargin(0);
 
+#ifdef Q_WS_S60
+    // On Symbian buttons are moved to a native bar so Help button is
+    // left alone. This causes it to be more to the middle instead of
+    // to the left. Adding a stretch fixes this issue.
+    buttons->insertStretch(buttons->indexOf(buttonHelp) + 1);
+#endif
+
     // Central layout
     vbox1 = new QVBoxLayout(this);
     vbox1->setMargin(0);
