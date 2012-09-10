@@ -262,6 +262,7 @@ QStringList filters;
     filters.append(tr("PDF Files") + " (*.pdf)");
 #endif
     filters.append(tr("HTML Files") + " (*.html *.htm)");
+    filters.append(tr("Web Archive Files") + " (*.mht *.mhtml)");
     filters.append(tr("OpenDocument Files") + " (*.odt)");
     filters.append(tr("All Files") + " (*)");
 
@@ -283,8 +284,9 @@ QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filte
     }
 #endif
     QByteArray imgdata;
-    bool embed = settings->value("Output/EmbedGraphIntoHTML", DEF_EMBED_GRAPH_INTO_HTML).toBool();
-    if (selectedFile.endsWith(".htm", Qt::CaseInsensitive) || selectedFile.endsWith(".html", Qt::CaseInsensitive)) {
+    bool mhtml = selectedFile.contains(QRegExp("\\.mht(ml)?$", Qt::CaseInsensitive));
+    bool embed = !mhtml && settings->value("Output/EmbedGraphIntoHTML", DEF_EMBED_GRAPH_INTO_HTML).toBool();
+    if (selectedFile.contains(QRegExp("\\.(html?|mht(ml)?)$", Qt::CaseInsensitive))) {
         QFile file(selectedFile);
         if (!file.open(QFile::WriteOnly | QFile::Text)) {
             QApplication::restoreOverrideCursor();
@@ -334,9 +336,37 @@ QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filte
         // Saving solution text as HTML
 QTextStream ts(&file);
         ts.setCodec(QTextCodec::codecForName("UTF-8"));
+        QString boundary = QString("------=multipart_boundary.%1").arg(qHash(selectedFile));
+        if (mhtml) {
+            ts << "Content-Type: multipart/related; start=<solution@tspsg.info>; boundary=\""
+               << boundary << "\"; type=\"text/html\"" << endl;
+            boundary.prepend("--");
+            ts << "MIME-Version: 1.0" << endl;
+            ts << endl;
+            ts << boundary << endl;
+            ts << "Content-Disposition: inline; filename=" << fi.completeBaseName() << ".html" << endl;
+            ts << "Content-Type: text/html; name=" << fi.completeBaseName() << ".html" << endl;
+            ts << "Content-ID: <solution@tspsg.info>" << endl;
+            ts << "Content-Location: " << fi.completeBaseName() << ".html" << endl;
+            ts << "Content-Transfer-Encoding: 8bit" << endl;
+            ts << endl;
+        }
         ts << html << endl;
+        if (mhtml) {
+            ts << endl << boundary << endl;
+            ts << "Content-Disposition: inline; filename=" << fi.completeBaseName() << "." << format << endl;
+            ts << "Content-Type: image/" << format;
+            if (format == "svg")
+                ts << "+xml";
+            ts << "; name=" << fi.completeBaseName() << "." << format  << endl;
+            ts << "Content-Location: " << fi.completeBaseName() << "." << format << endl;
+            ts << "Content-Transfer-Encoding: Base64" << endl;
+            ts << endl;
+            ts << toWrappedBase64(imgdata) << endl;
+            ts << endl << boundary << "--" << endl;
+        }
         file.close();
-        if (!embed) {
+        if (!embed && !mhtml) {
             QFile img(fi.path() + "/" + fi.completeBaseName() + "." + format);
             if (!img.open(QFile::WriteOnly)) {
                 QApplication::restoreOverrideCursor();
