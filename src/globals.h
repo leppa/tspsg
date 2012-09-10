@@ -137,6 +137,22 @@ inline bool hasUpdater()
 #endif // Q_WS_WIN32
 }
 
+/*!
+ * \brief Converts \a in into Base64 format with lines wrapped at 64 characters.
+ * \param in A byte array to be converted.
+ * \return Converted byte array.
+ */
+inline QByteArray toWrappedBase64(const QByteArray &in)
+{
+    QByteArray out, base64(in.toBase64());
+    for (int i = 0; i <= base64.size() - 64; i += 64) {
+        out.append(QByteArray::fromRawData(base64.data() + i, 64)).append('\n');
+    }
+    if (int rest = base64.size() % 64)
+        out.append(QByteArray::fromRawData(base64.data() + base64.size() - rest, rest));
+    return out;
+}
+
 #ifndef HANDHELD
 /*!
  * \brief Enables or disables a mask for the \a widget.

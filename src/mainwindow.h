@@ -144,6 +144,7 @@ private:
     void dragEnterEvent(QDragEnterEvent *ev);
     void drawNode(QPainter &pic, int nstep, bool left = false, SStep *step = NULL);
     void dropEvent(QDropEvent *ev);
+    QByteArray generateImage(const QString &format);
     void initDocStyleSheet();
     void loadLangList();
     bool loadLanguage(const QString &lang = QString());

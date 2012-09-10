@@ -282,15 +282,27 @@ QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filte
         return;
     }
 #endif
+    QByteArray imgdata;
+    bool embed = settings->value("Output/EmbedGraphIntoHTML", DEF_EMBED_GRAPH_INTO_HTML).toBool();
     if (selectedFile.endsWith(".htm", Qt::CaseInsensitive) || selectedFile.endsWith(".html", Qt::CaseInsensitive)) {
-QFile file(selectedFile);
-        if (!file.open(QFile::WriteOnly)) {
+        QFile file(selectedFile);
+        if (!file.open(QFile::WriteOnly | QFile::Text)) {
             QApplication::restoreOverrideCursor();
             QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution.\nError: %1").arg(file.errorString()));
             return;
         }
-QFileInfo fi(selectedFile);
-QString format = settings->value("Output/GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT).toString();
+
+        QString html = solutionText->document()->toHtml("UTF-8");
+        html.replace(QRegExp("font-family:([^;]*);"),
+                     "font-family:\\1, 'DejaVu Sans Mono', 'Courier New', Courier, monospace;");
+        html.replace(QRegExp("<style ([^>]*)>"), QString("<style \\1>\n"
+                                                         "body { color: %1 }\n"
+                                                         "td { border-style: solid; border-width: 1px; border-color: %2; }")
+                     .arg(settings->value("Output/Colors/Font", DEF_TEXT_COLOR).toString(),
+                          settings->value("Output/Colors/TableBorder", DEF_TABLE_COLOR).toString()));
+
+        QFileInfo fi(selectedFile);
+        QString format = settings->value("Output/GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT).toString();
 #if !defined(NOSVG)
         if (!QImageWriter::supportedImageFormats().contains(format.toAscii()) && (format != "svg")) {
 #else // NOSVG
@@ -299,77 +311,44 @@ QString format = settings->value("Output/GraphImageFormat", DEF_GRAPH_IMAGE_FORM
             format = DEF_GRAPH_IMAGE_FORMAT;
             settings->remove("Output/GraphImageFormat");
         }
-QString html = solutionText->document()->toHtml("UTF-8");
-
-        html.replace(QRegExp("font-family:([^;]*);"), "font-family:\\1, 'DejaVu Sans Mono', 'Courier New', Courier, monospace;");
-        html.replace(QRegExp("<style ([^>]*)>"), QString("<style \\1>\n"
-                                                         "body { color: %1 }\n"
-                                                         "td { border-style: solid; border-width: 1px; border-color: %2; }")
-                     .arg(settings->value("Output/Colors/Font", DEF_TEXT_COLOR).toString(),
-                          settings->value("Output/Colors/TableBorder", DEF_TABLE_COLOR).toString()));
 
         if (!graph.isNull()) {
-            QString img =  fi.completeBaseName() + "." + format;
-            bool embed = settings->value("Output/EmbedGraphIntoHTML", DEF_EMBED_GRAPH_INTO_HTML).toBool();
-            QByteArray data;
-            QBuffer buf(&data);
-            if (!embed) {
-                html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"%1\" alt=\"%2\"").arg(img, tr("Solution Graph")));
+            imgdata = generateImage(format);
+            if (imgdata.isEmpty()) {
+                return;
             }
-
-            // Saving solution graph in SVG or supported raster format (depending on settings and SVG support)
-#if !defined(NOSVG)
-            if (format == "svg") {
-                QSvgGenerator svg;
-                svg.setSize(QSize(graph.width() + 2, graph.height() + 2));
-                svg.setResolution(graph.logicalDpiX());
-                svg.setFileName(fi.path() + "/" + img);
-                svg.setTitle(tr("Solution Graph"));
-                svg.setDescription(tr("Generated with %1").arg(QCoreApplication::applicationName()));
-                QPainter p;
-                p.begin(&svg);
-                p.drawPicture(1, 1, graph);
-                p.end();
-            } else {
-#endif // NOSVG
-                QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
-                i.fill(0x00FFFFFF);
-                QPainter p;
-                p.begin(&i);
-                p.drawPicture(1, 1, graph);
-                p.end();
-                QImageWriter pic;
-                if (embed) {
-                    pic.setDevice(&buf);
-                    pic.setFormat(format.toAscii());
-                } else {
-                    pic.setFileName(fi.path() + "/" + img);
-                }
-                if (pic.supportsOption(QImageIOHandler::Description)) {
-                    pic.setText("Title", "Solution Graph");
-                    pic.setText("Software", QCoreApplication::applicationName());
-                }
-                if (format == "png")
-                    pic.setQuality(5);
-                else if (format == "jpeg")
-                    pic.setQuality(80);
-                if (!pic.write(i)) {
-                    QApplication::restoreOverrideCursor();
-                    QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution graph.\nError: %1").arg(pic.errorString()));
-                    return;
-                }
-#if !defined(NOSVG)
-            }
-#endif // NOSVG
             if (embed) {
-                html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""), QString("<img src=\"data:image/%1;base64,%2\" alt=\"%3\"").arg(format, data.toBase64(), tr("Solution Graph")));
+                QString fmt = format;
+                if (format == "svg")
+                    fmt.append("+xml");
+                html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""),
+                             QString("<img src=\"data:image/%1;base64,%2\" alt=\"%3\"")
+                             .arg(fmt, toWrappedBase64(imgdata), tr("Solution Graph")));
+            } else {
+                html.replace(QRegExp("<img\\s+src=\"tspsg://graph.pic\""),
+                             QString("<img src=\"%1\" alt=\"%2\"")
+                             .arg(fi.completeBaseName() + "." + format, tr("Solution Graph")));
             }
         }
+
         // Saving solution text as HTML
 QTextStream ts(&file);
         ts.setCodec(QTextCodec::codecForName("UTF-8"));
-        ts << html;
+        ts << html << endl;
         file.close();
+        if (!embed) {
+            QFile img(fi.path() + "/" + fi.completeBaseName() + "." + format);
+            if (!img.open(QFile::WriteOnly)) {
+                QApplication::restoreOverrideCursor();
+                QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution graph.\nError: %1").arg(img.errorString()));
+                return;
+            }
+            if (img.write(imgdata) != imgdata.size()) {
+                QApplication::restoreOverrideCursor();
+                QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution graph.\nError: %1").arg(img.errorString()));
+            }
+            img.close();
+        }
     } else {
 QTextDocumentWriter dw(selectedFile);
         if (!selectedFile.endsWith(".odt",Qt::CaseInsensitive))
@@ -1275,6 +1254,56 @@ void MainWindow::dropEvent(QDropEvent *ev)
         ev->setDropAction(Qt::CopyAction);
         ev->accept();
     }
+}
+
+QByteArray MainWindow::generateImage(const QString &format)
+{
+    if (graph.isNull())
+        return QByteArray();
+
+    QByteArray data;
+    QBuffer buf(&data);
+    // Saving solution graph in SVG or supported raster format (depending on settings and SVG support)
+#if !defined(NOSVG)
+    if (format == "svg") {
+        QSvgGenerator svg;
+        svg.setSize(QSize(graph.width() + 2, graph.height() + 2));
+        svg.setResolution(graph.logicalDpiX());
+        svg.setOutputDevice(&buf);
+        svg.setTitle(tr("Solution Graph"));
+        svg.setDescription(tr("Generated with %1").arg(QCoreApplication::applicationName()));
+        QPainter p;
+        p.begin(&svg);
+        p.drawPicture(1, 1, graph);
+        p.end();
+    } else {
+#endif // NOSVG
+        QImage i(graph.width() + 2, graph.height() + 2, QImage::Format_ARGB32);
+        i.fill(0x00FFFFFF);
+        QPainter p;
+        p.begin(&i);
+        p.drawPicture(1, 1, graph);
+        p.end();
+        QImageWriter pic;
+        pic.setDevice(&buf);
+        pic.setFormat(format.toAscii());
+        if (pic.supportsOption(QImageIOHandler::Description)) {
+            pic.setText("Title", "Solution Graph");
+            pic.setText("Software", QCoreApplication::applicationName());
+        }
+        if (format == "png")
+            pic.setQuality(5);
+        else if (format == "jpeg")
+            pic.setQuality(80);
+        if (!pic.write(i)) {
+            QApplication::restoreOverrideCursor();
+            QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution graph.\nError: %1").arg(pic.errorString()));
+            return QByteArray();
+        }
+#if !defined(NOSVG)
+    }
+#endif // NOSVG
+    return data;
 }
 
 void MainWindow::initDocStyleSheet()
