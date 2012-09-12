@@ -14,8 +14,16 @@
 #include <QList>
 #include <QPointer>
 
+//! \todo TODO: Detect X11 in Qt 5 more reliably
+// No Q_WS_X11 in Qt 5. Check if we're using X11 and define it.
+#if (QT_VERSION >= QT_VERSION_CHECK(5,0,0)) && defined(Q_OS_UNIX) && !defined(Q_WS_X11)
+#   if !defined(Q_OS_MAC) && !defined(Q_OS_SYMBIAN) && !defined(Q_WS_QPA)
+#       define Q_WS_X11
+#   endif
+#endif
+
 #ifdef Q_WS_X11
-#include <QX11Info>
+#include <X11/Xlib.h>
 #endif // Q_WS_X11
 
 #ifdef Q_OS_WIN32
@@ -108,7 +116,13 @@ bool QtWin::isCompositionEnabled()
     }
     return false;
 #elif defined(Q_WS_X11)
-    return QX11Info::isCompositingManagerRunning();
+    Display *d = XOpenDisplay(NULL);
+    Atom _NET_WM_CM_S0 = XInternAtom(d, "_NET_WM_CM_S0", true);
+    bool result = (_NET_WM_CM_S0 != None);
+    if (result)
+        result = (XGetSelectionOwner(d, _NET_WM_CM_S0) != None);
+    XCloseDisplay(d);
+    return result;
 #else
     //! \todo TODO: Check for trsnsparency support in other OSes.
     return false;
