@@ -5,7 +5,7 @@
 <context>
     <name>--------</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="588"/>
+        <location filename="../src/mainwindow.cpp" line="609"/>
         <source>AUTHORS %1</source>
         <comment>Please, provide translator credits here. %1 will be replaced with VERSION</comment>
         <translation>&lt;b&gt;Український переклад&lt;/b&gt;&lt;br&gt;
@@ -14,19 +14,19 @@
 Версія: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="590"/>
+        <location filename="../src/mainwindow.cpp" line="611"/>
         <source>VERSION</source>
         <comment>Please, provide your translation version here.</comment>
         <translation>$Id: $Format:%h %ai %an$ $</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1337"/>
+        <location filename="../src/mainwindow.cpp" line="1420"/>
         <source>COUNTRY</source>
         <comment>Please, provide an ISO 3166-1 alpha-2 country code for this translation language here (eg., UA).</comment>
         <translation>UA</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1338"/>
+        <location filename="../src/mainwindow.cpp" line="1421"/>
         <source>LANGNAME</source>
         <comment>Please, provide a native name of your translation language here.</comment>
         <translation>Українська</translation>
@@ -168,37 +168,37 @@ Please, try to update the application. Also, the file could be corrupted.</sourc
         <translation>Зберегти &amp;як</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1548"/>
+        <location filename="../src/mainwindow.cpp" line="1644"/>
         <source>P&amp;rint Preview...</source>
         <translation>&amp;Попередній перегляд...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1550"/>
+        <location filename="../src/mainwindow.cpp" line="1646"/>
         <source>Preview solution results</source>
         <translation>Попередній перегляд результатів розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1553"/>
+        <location filename="../src/mainwindow.cpp" line="1649"/>
         <source>Preview current solution results before printing</source>
         <translation>Попередній перегляд результатів розв&apos;язку перед друком</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1564"/>
+        <location filename="../src/mainwindow.cpp" line="1660"/>
         <source>&amp;Print...</source>
         <translation>&amp;Друк...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1566"/>
+        <location filename="../src/mainwindow.cpp" line="1662"/>
         <source>Print solution</source>
         <translation>Друк розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1569"/>
+        <location filename="../src/mainwindow.cpp" line="1665"/>
         <source>Print current solution results</source>
         <translation>Роздрукувати поточний результат розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1571"/>
+        <location filename="../src/mainwindow.cpp" line="1667"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
@@ -441,7 +441,7 @@ Please, try to update the application. Also, the file could be corrupted.</sourc
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="417"/>
-        <location filename="../src/mainwindow.cpp" line="1599"/>
+        <location filename="../src/mainwindow.cpp" line="1695"/>
         <source>E&amp;xit</source>
         <translation>В&amp;ихід</translation>
     </message>
@@ -492,13 +492,13 @@ Please, try to update the application. Also, the file could be corrupted.</sourc
         <translation>Автоматично обирати вигляд, що найбільш підходить</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="456"/>
+        <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Language change</source>
         <translation>Зміна мови</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1480"/>
-        <location filename="../src/mainwindow.cpp" line="1854"/>
+        <location filename="../src/mainwindow.cpp" line="1554"/>
+        <location filename="../src/mainwindow.cpp" line="1958"/>
         <source>Unsaved Changes</source>
         <translation>Незбережені зміни</translation>
     </message>
@@ -509,8 +509,8 @@ Please, try to update the application. Also, the file could be corrupted.</sourc
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="195"/>
-        <location filename="../src/mainwindow.cpp" line="266"/>
-        <location filename="../src/mainwindow.cpp" line="1605"/>
+        <location filename="../src/mainwindow.cpp" line="267"/>
+        <location filename="../src/mainwindow.cpp" line="1701"/>
         <source>All Files</source>
         <translation>Усі файли</translation>
     </message>
@@ -521,7 +521,7 @@ Please, try to update the application. Also, the file could be corrupted.</sourc
         <translation>Файли умов %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1424"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>Language Change</source>
         <translation>Зміна мови</translation>
     </message>
@@ -536,26 +536,26 @@ Please, try to update the application. Also, the file could be corrupted.</sourc
         <translation>Файли HTML</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="265"/>
+        <location filename="../src/mainwindow.cpp" line="266"/>
         <source>OpenDocument Files</source>
         <translation>Файли OpenDocument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="526"/>
+        <location filename="../src/mainwindow.cpp" line="543"/>
         <source>Sorry, but this feature is not supported on your
 platform or support for it was not installed.</source>
         <translation>Вибачте, але ця можливість не підтримується вашою
 платформою або її підтримку не була втсановлено.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="931"/>
-        <location filename="../src/mainwindow.cpp" line="938"/>
-        <location filename="../src/mainwindow.cpp" line="1230"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
+        <location filename="../src/mainwindow.cpp" line="961"/>
+        <location filename="../src/mainwindow.cpp" line="1253"/>
         <source>(%1;%2)</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="941"/>
+        <location filename="../src/mainwindow.cpp" line="964"/>
         <source>%n alternate candidate(s) for branching: %1.</source>
         <translation>
             <numerusform>%n альтернативний кандидат на розгалудження: %1.</numerusform>
@@ -564,7 +564,7 @@ platform or support for it was not installed.</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="983"/>
+        <location filename="../src/mainwindow.cpp" line="1006"/>
         <source>The price is &lt;b&gt;%n&lt;/b&gt; unit(s).</source>
         <translation>
             <numerusform>Вартість - &lt;b&gt;%n&lt;/b&gt; одиниця.</numerusform>
@@ -573,63 +573,63 @@ platform or support for it was not installed.</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1241"/>
+        <location filename="../src/mainwindow.cpp" line="1264"/>
         <source>Root</source>
         <translation>Корінь</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1444"/>
+        <location filename="../src/mainwindow.cpp" line="1518"/>
         <source>Set application style to %1</source>
         <translation>Змінити вигляд додатку на %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1556"/>
+        <location filename="../src/mainwindow.cpp" line="1652"/>
         <source>Pa&amp;ge Setup...</source>
         <translation>Параметри &amp;сторінки...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1558"/>
+        <location filename="../src/mainwindow.cpp" line="1654"/>
         <source>Setup print options</source>
         <translation>Встановити параметри друку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1561"/>
+        <location filename="../src/mainwindow.cpp" line="1657"/>
         <source>Setup page-related options for printing</source>
         <translation>Встановити параметри другу, що відносяться до сторінки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1575"/>
+        <location filename="../src/mainwindow.cpp" line="1671"/>
         <source>Exit %1</source>
         <translation>Вийти з %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1579"/>
+        <location filename="../src/mainwindow.cpp" line="1675"/>
         <source>Configure...</source>
         <translation>Налаштувати...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1581"/>
+        <location filename="../src/mainwindow.cpp" line="1677"/>
         <source>Customize toolbars</source>
         <translation>Налаштування панелей інструментів</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1586"/>
+        <location filename="../src/mainwindow.cpp" line="1682"/>
         <source>Report about a bug in %1</source>
         <translation>Повідомити про проблему з %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1591"/>
+        <location filename="../src/mainwindow.cpp" line="1687"/>
         <source>Check for %1 updates</source>
         <translation>Перевірити оновлення %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1604"/>
+        <location filename="../src/mainwindow.cpp" line="1700"/>
         <source>%1 Task File</source>
         <translation>Файл умови %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="445"/>
-        <location filename="../src/mainwindow.cpp" line="482"/>
+        <location filename="../src/mainwindow.cpp" line="462"/>
+        <location filename="../src/mainwindow.cpp" line="499"/>
         <source>Settings Changed</source>
         <translation>Параметри змінено</translation>
     </message>
@@ -639,66 +639,83 @@ platform or support for it was not installed.</source>
         <translation>Завантаження умови</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="312"/>
-        <location filename="../src/mainwindow.cpp" line="322"/>
-        <location filename="../src/mainwindow.cpp" line="360"/>
+        <location filename="../src/mainwindow.cpp" line="328"/>
+        <location filename="../src/mainwindow.cpp" line="332"/>
+        <location filename="../src/mainwindow.cpp" line="1303"/>
         <source>Solution Graph</source>
         <translation>Граф розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="323"/>
+        <location filename="../src/mainwindow.cpp" line="1304"/>
         <source>Generated with %1</source>
         <translation>Створено за допомогою %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="353"/>
+        <location filename="../src/mainwindow.cpp" line="373"/>
+        <location filename="../src/mainwindow.cpp" line="378"/>
+        <location filename="../src/mainwindow.cpp" line="1330"/>
         <source>Unable to save the solution graph.
 Error: %1</source>
         <translation>Неможливо зберегти граф розв&apos;язку.
 Помилка: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="526"/>
+        <location filename="../src/mainwindow.cpp" line="265"/>
+        <source>Web Archive Files</source>
+        <translation>Файли веб-архіву</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="543"/>
         <source>Unsupported Feature</source>
         <translation>Непідтримувана функція</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="539"/>
+        <location filename="../src/mainwindow.cpp" line="556"/>
         <source>Version</source>
         <translation>Версія</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="546"/>
+        <location filename="../src/mainwindow.cpp" line="563"/>
         <source>Target OS (ARCH)</source>
         <translation>Цільова ОС (архітектура)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="547"/>
+        <location filename="../src/mainwindow.cpp" line="564"/>
         <source>Qt library</source>
         <translation>Бібліотека Qt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="548"/>
+        <location filename="../src/mainwindow.cpp" line="565"/>
         <source>Build time</source>
         <translation>Часу збірки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="549"/>
+        <location filename="../src/mainwindow.cpp" line="566"/>
         <source>Runtime</source>
         <translation>Часу виконання</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="550"/>
+        <location filename="../src/mainwindow.cpp" line="567"/>
         <source>Logical screen DPI</source>
         <translation>Логічна роздільна здатність екрану</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="552"/>
+        <location filename="../src/mainwindow.cpp" line="570"/>
+        <source> from git revision &lt;b&gt;%1&lt;/b&gt;</source>
+        <translation>з ревізії git &lt;b&gt;%1&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="572"/>
+        <source>Build &lt;b&gt;%1&lt;/b&gt;, built%5 on &lt;b&gt;%2&lt;/b&gt; at &lt;b&gt;%3&lt;/b&gt; with &lt;b&gt;%4&lt;/b&gt; compiler.</source>
+        <translation>Збірка &lt;b&gt;%1&lt;/b&gt;, зібрана%5 &lt;b&gt;%2&lt;/b&gt; о &lt;b&gt;%3&lt;/b&gt; за допомогою компілятора &lt;b&gt;%4&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="573"/>
         <source>Algorithm</source>
         <translation>Алгоритм</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="554"/>
+        <location filename="../src/mainwindow.cpp" line="575"/>
         <source>This program is free software: you can redistribute it and/or modify&lt;br&gt;
 it under the terms of the GNU General Public License as published by&lt;br&gt;
 the Free Software Foundation, either version 3 of the License, or&lt;br&gt;
@@ -726,71 +743,73 @@ along with TSPSG.  If not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quo
 програмою. У разі її відсутності, зверніться до &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;www.gnu.org/licenses/&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="658"/>
+        <location filename="../src/mainwindow.cpp" line="679"/>
         <source>About</source>
         <translation>Про</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="659"/>
+        <location filename="../src/mainwindow.cpp" line="680"/>
         <source>License</source>
         <translation>Ліцензія</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="660"/>
+        <location filename="../src/mainwindow.cpp" line="681"/>
         <source>Credits</source>
         <translation>Подяки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="726"/>
+        <location filename="../src/mainwindow.cpp" line="749"/>
         <source>Data error</source>
         <translation>Помилка у даних</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="726"/>
+        <location filename="../src/mainwindow.cpp" line="749"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation>Помилка у комірці  [Рядок %1; Колонка %2]: Невірний формат даних.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="744"/>
+        <location filename="../src/mainwindow.cpp" line="767"/>
         <source>Calculating optimal route...</source>
         <translation>Обчислення оптимального шляху...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="745"/>
+        <location filename="../src/mainwindow.cpp" line="768"/>
         <source>Solution Progress</source>
         <translation>Поступ розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="787"/>
+        <location filename="../src/mainwindow.cpp" line="810"/>
         <source>Solution Result</source>
         <translation>Результат розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="787"/>
+        <location filename="../src/mainwindow.cpp" line="810"/>
         <source>Unable to find a solution.
 Maybe, this task has no solution.</source>
         <translation>Не вдалося знайти розв&apos;язок.
 Можливо, у задачі немає розв&apos;язку.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="817"/>
+        <location filename="../src/mainwindow.cpp" line="840"/>
         <source>Generating header</source>
         <translation>Генерація заголовку</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="828"/>
+        <location filename="../src/mainwindow.cpp" line="851"/>
         <source>Solution of Variant #%1 Task</source>
         <translation>Розв&apos;язок завдання для варіанту №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="868"/>
+        <location filename="../src/mainwindow.cpp" line="891"/>
         <source>Task:</source>
         <translation>Умова:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="289"/>
-        <location filename="../src/mainwindow.cpp" line="353"/>
+        <location filename="../src/mainwindow.cpp" line="293"/>
         <location filename="../src/mainwindow.cpp" line="373"/>
+        <location filename="../src/mainwindow.cpp" line="378"/>
+        <location filename="../src/mainwindow.cpp" line="387"/>
+        <location filename="../src/mainwindow.cpp" line="1330"/>
         <source>Solution Save</source>
         <translation>Збереження розв&apos;язку</translation>
     </message>
@@ -804,27 +823,27 @@ Maybe, this task has no solution.</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="289"/>
-        <location filename="../src/mainwindow.cpp" line="373"/>
+        <location filename="../src/mainwindow.cpp" line="293"/>
+        <location filename="../src/mainwindow.cpp" line="387"/>
         <source>Unable to save the solution.
 Error: %1</source>
         <translation>Неможливо зберегти розв&apos;язок.
 Помилка: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="445"/>
+        <location filename="../src/mainwindow.cpp" line="462"/>
         <source>You have changed color settings.
 They will be applied to the next solution output.</source>
         <translation>Ви змінили параметри кольору.
 Їх буде застосовано до наступного тексту розв&apos;язку.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="456"/>
+        <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Language will be autodetected on the next %1 start.</source>
         <translation>Мову буде автоматично визначено при наступному запуску %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="482"/>
+        <location filename="../src/mainwindow.cpp" line="499"/>
         <source>You have changed the application language.
 To get current solution output in the new language
 you need to re-run the solution process.</source>
@@ -833,22 +852,17 @@ you need to re-run the solution process.</source>
 на новій мові, потрібно виконати розв&apos;язок знову.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="490"/>
+        <location filename="../src/mainwindow.cpp" line="507"/>
         <source>Style Change</source>
         <translation>Зміна вигляду</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="490"/>
+        <location filename="../src/mainwindow.cpp" line="507"/>
         <source>To apply the default style you need to restart %1.</source>
         <translation>Щоб застосувати вигляд за промовчанням необхідно перзапустити %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="551"/>
-        <source>Buid &lt;b&gt;%1&lt;/b&gt;, built on &lt;b&gt;%2&lt;/b&gt; at &lt;b&gt;%3&lt;/b&gt; with &lt;b&gt;%4&lt;/b&gt; compiler.</source>
-        <translation>Збірка &lt;b&gt;%1&lt;/b&gt;, зібрана &lt;b&gt;%2&lt;/b&gt; о &lt;b&gt;%3&lt;/b&gt; за допомогою компілятора &lt;b&gt;%4&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="568"/>
+        <location filename="../src/mainwindow.cpp" line="589"/>
         <source>%1 was created using &lt;b&gt;Qt&amp;nbsp;framework&lt;/b&gt; licensed under the terms of the GNU Lesser General Public License,&lt;br&gt;
 see &lt;a href=&quot;http://qt.nokia.com/&quot;&gt;qt.nokia.com&lt;/a&gt;&lt;br&gt;
 &lt;br&gt;
@@ -873,123 +887,123 @@ see &lt;a href=&quot;http://dejavu-fonts.org/&quot;&gt;dejavu-fonts.org&lt;/a&gt
 дивіться &lt;a href=&quot;http://dejavu-fonts.org/&quot;&gt;dejavu-fonts.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="669"/>
+        <location filename="../src/mainwindow.cpp" line="690"/>
         <source>Translation</source>
         <translation>Переклад</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="679"/>
-        <location filename="../src/mainwindow.cpp" line="1595"/>
+        <location filename="../src/mainwindow.cpp" line="700"/>
+        <location filename="../src/mainwindow.cpp" line="1691"/>
         <source>About %1</source>
         <translation>Про %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="736"/>
+        <location filename="../src/mainwindow.cpp" line="759"/>
         <source>%v of %1 parts found</source>
         <translation>Знайдено %v з %1 переходів</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="789"/>
-        <location filename="../src/mainwindow.cpp" line="887"/>
-        <location filename="../src/mainwindow.cpp" line="1022"/>
+        <location filename="../src/mainwindow.cpp" line="812"/>
+        <location filename="../src/mainwindow.cpp" line="910"/>
+        <location filename="../src/mainwindow.cpp" line="1045"/>
         <source>Memory cleanup...</source>
         <translation>Очищення пам&apos;яті...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="818"/>
+        <location filename="../src/mainwindow.cpp" line="841"/>
         <source>Generating solution output...</source>
         <translation>Генерація тексту розв&apos;язку...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="866"/>
+        <location filename="../src/mainwindow.cpp" line="889"/>
         <source>Variant #%1 Task</source>
         <translation>Умова варіанту №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="879"/>
+        <location filename="../src/mainwindow.cpp" line="902"/>
         <source>Variant #%1 Solution</source>
         <translation>Розв&apos;язок варіанту №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="884"/>
+        <location filename="../src/mainwindow.cpp" line="907"/>
         <source>Generating step %v</source>
         <translation>Генерація кроку %v</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="923"/>
+        <location filename="../src/mainwindow.cpp" line="946"/>
         <source>Step #%1</source>
         <translation>Крок №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="931"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
         <source>Selected route %1 %2 part.</source>
         <translation>Обрано шлях %1 %2.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="931"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
         <source>with</source>
         <translation>з переходом</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="931"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
         <source>without</source>
         <translation>без переходу</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="961"/>
+        <location filename="../src/mainwindow.cpp" line="984"/>
         <source>Generating footer</source>
         <translation>Генерація закінчення</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="971"/>
+        <location filename="../src/mainwindow.cpp" line="994"/>
         <source>Optimal path:</source>
         <translation>Оптимальний шлях:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="973"/>
+        <location filename="../src/mainwindow.cpp" line="996"/>
         <source>Resulting path:</source>
         <translation>Знайдений шлях:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="976"/>
+        <location filename="../src/mainwindow.cpp" line="999"/>
         <source>City %1</source>
         <translation>Місто %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="985"/>
+        <location filename="../src/mainwindow.cpp" line="1008"/>
         <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
         <translation>Вартість - &lt;b&gt;%1&lt;/b&gt; одиниць.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="988"/>
+        <location filename="../src/mainwindow.cpp" line="1011"/>
         <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
         <translation>&lt;b&gt;Увага!!!&lt;/b&gt;&lt;br&gt;Знайдений розв&apos;язок є рекордом, але може бути неоптимальним.&lt;br&gt;Для отримання оптимального розв&apos;язку, або перевірки поточного на оптимальність, потрібно продовжити ітерації.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1424"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>Unable to load the translation language.
 Falling back to autodetection.</source>
         <translation>Неможливо завантажити переклад.
 Повертаюся до автовизначення.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1480"/>
-        <location filename="../src/mainwindow.cpp" line="1855"/>
+        <location filename="../src/mainwindow.cpp" line="1554"/>
+        <location filename="../src/mainwindow.cpp" line="1959"/>
         <source>Would you like to save changes in the current task?</source>
         <translation>Бажаете зберегти зміни у поточній задачі?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1339"/>
+        <location filename="../src/mainwindow.cpp" line="1422"/>
         <source>Set application language to %1</source>
         <translation>Змінити мову додатку на %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1589"/>
+        <location filename="../src/mainwindow.cpp" line="1685"/>
         <source>Check for &amp;Updates...</source>
         <translation>Перевірити &amp;оновлення...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1618"/>
+        <location filename="../src/mainwindow.cpp" line="1714"/>
         <source>Task Save</source>
         <translation>Збереження умови</translation>
     </message>
@@ -997,9 +1011,9 @@ Falling back to autodetection.</source>
         <location filename="../src/mainwindow.cpp" line="198"/>
         <location filename="../src/mainwindow.cpp" line="220"/>
         <location filename="../src/mainwindow.cpp" line="246"/>
-        <location filename="../src/mainwindow.cpp" line="467"/>
-        <location filename="../src/mainwindow.cpp" line="1607"/>
-        <location filename="../src/mainwindow.h" line="157"/>
+        <location filename="../src/mainwindow.cpp" line="484"/>
+        <location filename="../src/mainwindow.cpp" line="1703"/>
+        <location filename="../src/mainwindow.h" line="161"/>
         <source>Untitled</source>
         <translation>Без імені</translation>
     </message>
@@ -1007,14 +1021,14 @@ Falling back to autodetection.</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="740"/>
-        <location filename="../src/mainwindow.cpp" line="1861"/>
+        <location filename="../src/mainwindow.cpp" line="763"/>
+        <location filename="../src/mainwindow.cpp" line="1965"/>
         <source>Cancel</source>
         <comment>No need to translate this. The translation will be taken from Qt translation files.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1859"/>
+        <location filename="../src/mainwindow.cpp" line="1963"/>
         <source>Discard</source>
         <comment>No need to translate this. The translation will be taken from Qt translation files.</comment>
         <translation type="unfinished"></translation>
@@ -1029,7 +1043,7 @@ Falling back to autodetection.</source>
     </message>
     <message>
         <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="27"/>
-        <location filename="../src/mainwindow.cpp" line="1864"/>
+        <location filename="../src/mainwindow.cpp" line="1968"/>
         <source>Actions</source>
         <translation>Дії</translation>
     </message>
@@ -1079,7 +1093,7 @@ Falling back to autodetection.</source>
         <translation>Дії поточної панелі</translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.cpp" line="1807"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.cpp" line="1815"/>
         <source>&lt; S E P A R A T O R &gt;</source>
         <translation>&lt; Р О З Д І Л Ь Н И К &gt;</translation>
     </message>
@@ -1087,7 +1101,7 @@ Falling back to autodetection.</source>
 <context>
     <name>QtToolBarDialogPrivate</name>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.cpp" line="1256"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.cpp" line="1264"/>
         <source>Custom Toolbar</source>
         <translation>Користувацька панель</translation>
     </message>
@@ -1095,303 +1109,379 @@ Falling back to autodetection.</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="69"/>
+        <location filename="../src/settingsdialog.cpp" line="73"/>
         <source>Higher quality graph looks much better when printing but uglier on the screen</source>
         <translation>Граф підвищеної якості виглядає значно краще під час друку, але більш потворно на екрані</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="71"/>
+        <location filename="../src/settingsdialog.cpp" line="75"/>
         <source>Draw solution graph in higher quality</source>
         <translation>Граф розв&apos;язку у підвищеній якості</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="86"/>
+        <location filename="../src/settingsdialog.cpp" line="90"/>
         <source>Automatically check for updates at the given interval</source>
         <translation>Автоматично перевіряти оновлення через заданий інтервал</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="88"/>
+        <location filename="../src/settingsdialog.cpp" line="92"/>
         <source>Check for updates every</source>
         <translation>Перевіряти оновлення кожні</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="94"/>
+        <location filename="../src/settingsdialog.cpp" line="98"/>
         <source>Minimal interval at which to check for updates</source>
         <translation>Мінімальний інтервал між перевірками оновлень</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="96"/>
+        <location filename="../src/settingsdialog.cpp" line="100"/>
         <source> days</source>
         <comment>Don&apos;t forget a space at the beginning!</comment>
         <translation> днів</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="149"/>
+        <location filename="../src/settingsdialog.cpp" line="152"/>
         <source>Make Main Window background translucent</source>
         <translation>Зробити тло головного вікна напівпрозорим</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="151"/>
+        <location filename="../src/settingsdialog.cpp" line="154"/>
         <source>Use translucency effects</source>
         <translation>Використовувати ефекти напівпрозорості</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="159"/>
+        <location filename="../src/settingsdialog.cpp" line="162"/>
         <source>Restore main window state and position on application restart</source>
         <translation>Відновлювати стан та розмір головного вікна після перезапуску</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="161"/>
+        <location filename="../src/settingsdialog.cpp" line="164"/>
         <source>Save main window state and position</source>
         <translation>Зберігати стан та розміщення головного вікна</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="182"/>
+        <location filename="../src/settingsdialog.cpp" line="185"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation>Наведіть покажчик миші на елемент ділогу, щоб отримати підказку</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="342"/>
-        <location filename="../src/settingsdialog.cpp" line="348"/>
+        <location filename="../src/settingsdialog.cpp" line="364"/>
+        <location filename="../src/settingsdialog.cpp" line="370"/>
         <source>Settings Reset</source>
         <translation>Скидання налагоджень</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="342"/>
+        <location filename="../src/settingsdialog.cpp" line="364"/>
         <source>Do you really want to &lt;b&gt;reset all application settings to their defaults&lt;/b&gt;?</source>
         <translation>Ви дісно хочете &lt;b&gt;скинути усі налаштування на значення по-замовчуванню&lt;/b&gt;?</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="348"/>
+        <location filename="../src/settingsdialog.cpp" line="370"/>
         <source>All settings where successfully reset to their defaults.
 It is recommended to restart the application now.</source>
         <translation>Усі налаштування було успішно скинуто на значення по-замовчуванню.
 Рекомендується перезапустити додаток.</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="7"/>
+        <location filename="../ui/settingsdialog.ui" line="15"/>
         <source>Preferences</source>
         <translation>Параметри</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="157"/>
+        <location filename="../ui/settingsdialog.ui" line="184"/>
         <source>Task</source>
         <translation>Задача</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="160"/>
+        <location filename="../ui/settingsdialog.ui" line="187"/>
         <source>Task generation and solving settings</source>
         <translation>Налаштування генерації та розв&apos;язку задач</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="171"/>
+        <location filename="../ui/settingsdialog.ui" line="198"/>
         <source>Fractional accuracy:</source>
         <translation>Точність дробових чисел:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="184"/>
+        <location filename="../ui/settingsdialog.ui" line="211"/>
         <source>Accuracy of the fractional values (in decimal places)</source>
         <translation>Точність дробових чисел (у знаках після коми)</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="233"/>
+        <location filename="../ui/settingsdialog.ui" line="260"/>
         <source>Minimum for random number generation</source>
         <translation>Нажня межа для генерації випадкових значень</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="253"/>
+        <location filename="../ui/settingsdialog.ui" line="280"/>
         <source>Maximum for random number generation</source>
         <translation>Верхня межа для генерації випадкових значень</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="265"/>
+        <location filename="../ui/settingsdialog.ui" line="292"/>
         <source>Generate fractional random values with the Fractional accuracy</source>
         <translation>Генерувати дробові випадкові числа з вказаною вище точністю</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="304"/>
+        <location filename="../ui/settingsdialog.ui" line="344"/>
         <source>Generate graphical representation of the solution</source>
         <translation>Генерувати графічне подання розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="307"/>
+        <location filename="../ui/settingsdialog.ui" line="347"/>
         <source>Generate solution graph</source>
         <translation>Генерувати граф розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="348"/>
+        <location filename="../ui/settingsdialog.ui" line="388"/>
         <source>What image format to use for graph when saving solution as HTML</source>
         <translation>Який формат використовувати для графу при збереженні розв&apos;язку як HTML</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="394"/>
+        <location filename="../ui/settingsdialog.ui" line="434"/>
         <source>Embed solution graph into HTML</source>
         <translation>Вбудувати граф розв&apos;зку у HTML</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="496"/>
-        <source>Output font settings</source>
-        <translation>Параметри шрифта</translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="521"/>
-        <source>&amp;Color...</source>
-        <translation>&amp;Колір...</translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="107"/>
+        <location filename="../ui/settingsdialog.ui" line="134"/>
         <source>Automatically resize rows and columns to their contents</source>
         <translation>Автоматично підганяти розмір рядків під їх зміст</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="95"/>
+        <location filename="../ui/settingsdialog.ui" line="122"/>
+        <location filename="../ui/settingsdialog.ui" line="332"/>
         <source>General</source>
         <translation>Загальні</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="98"/>
+        <location filename="../ui/settingsdialog.ui" line="125"/>
         <source>General TSPSG settings</source>
         <translation>Загальні налаштування TSPSG</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="110"/>
+        <location filename="../ui/settingsdialog.ui" line="137"/>
         <source>Autosize of rows and columns</source>
         <translation>Авторозмір рядків та колонок</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="120"/>
+        <location filename="../ui/settingsdialog.ui" line="147"/>
         <source>Remember the last used directory when opening and saving files</source>
         <translation>Пам&apos;ятати останні використані папки при відкритті та збереженні файлів</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="123"/>
+        <location filename="../ui/settingsdialog.ui" line="150"/>
         <source>Remember last used directories</source>
         <translation>Пам&apos;ятати останні папки</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="133"/>
+        <location filename="../ui/settingsdialog.ui" line="160"/>
         <source>Use native File Open and File Save dialogs (uncheck to use Qt&apos;s Dialogs)</source>
         <translation>Використовувати системні діалоги відкриття та збереження файлу</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="209"/>
+        <location filename="../ui/settingsdialog.ui" line="236"/>
         <source>Task generation</source>
         <translation>Генерація задач</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="292"/>
+        <location filename="../ui/settingsdialog.ui" line="319"/>
         <source>Output</source>
         <translation>Виведення</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="295"/>
+        <location filename="../ui/settingsdialog.ui" line="322"/>
         <source>Solution output settings</source>
         <translation>Налаштування тексту розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="406"/>
+        <location filename="../ui/settingsdialog.ui" line="335"/>
+        <source>General solution output settings</source>
+        <translation>Загальні налаштування тексту розв&apos;язку</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="446"/>
         <source>Show solution steps&apos; matrices for every solution step</source>
         <translation>Показувати матриці кроків розв&apos;язку для кожного кроку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="409"/>
+        <location filename="../ui/settingsdialog.ui" line="449"/>
         <source>Show solution steps&apos; matrices</source>
         <translation>Показ матриць кроків розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="440"/>
+        <location filename="../ui/settingsdialog.ui" line="480"/>
         <source>Show or hide solution steps&apos; matrices based on number of cities in the task</source>
         <translation>Показувати матриці ходу розв&apos;язку в залежності від кількості міст</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="453"/>
+        <location filename="../ui/settingsdialog.ui" line="493"/>
         <source>Maximum number of cities to show solution steps&apos; matrices</source>
         <translation>Максимальна кількість міст для показу матриць кроків розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="505"/>
-        <source>Font face for solution output</source>
-        <translation>Вигляд шрифта для виводу</translation>
+        <location filename="../ui/settingsdialog.ui" line="548"/>
+        <source>Font &amp;&amp; Colors</source>
+        <comment>Needs double &amp; or it won&apos;t be displayed!</comment>
+        <translation>Шрифт та кольори</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="518"/>
-        <source>Font color for solution output</source>
-        <translation>Колір шрифта для виводу</translation>
+        <location filename="../ui/settingsdialog.ui" line="551"/>
+        <source>Font and colors settings for solution output</source>
+        <translation>Параметри шрифту та кольорів, що використовуються для виводу рішення</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="268"/>
+        <location filename="../ui/settingsdialog.ui" line="559"/>
+        <source>Font used for solution text output</source>
+        <translation>Вигляд шрифту для виводу тексту рішення</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="562"/>
+        <source>Font:</source>
+        <translation>Шрифт:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="588"/>
+        <source>Change output text font</source>
+        <translation>Змінити шрифт тексту виводу</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="605"/>
+        <location filename="../ui/settingsdialog.ui" line="627"/>
+        <source>Font color for solution text output</source>
+        <translation>Колір шрифту для виводу тексту рішення</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="608"/>
+        <source>Default text color:</source>
+        <translation>Колір тексту за замовчуванням:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="643"/>
+        <source>Change default text color</source>
+        <translation>Змінити колір тексту за замовчуванням</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="660"/>
+        <location filename="../ui/settingsdialog.ui" line="682"/>
+        <source>Text color of the candidate that was selected for branching</source>
+        <translation>Колір тектсу кандидата, що було обрано для розгалудження</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="663"/>
+        <source>Selected candidate text color:</source>
+        <translation>Текст обраного кандидата:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="698"/>
+        <source>Change selected candidate text color</source>
+        <translation>Змінити колір тексту обраного кандидата на розгалудження</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="715"/>
+        <location filename="../ui/settingsdialog.ui" line="737"/>
+        <source>Text color of the alternate candidate that wasn&apos;t selected for branching</source>
+        <translation>Колір тектсу кандидата, що не було обрано для розгалудження</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="718"/>
+        <source>Alternate candidate text color:</source>
+        <translation>Текст альтернативного кандидата:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="753"/>
+        <source>Change alternate candidate text color</source>
+        <translation>Змінити колір тексту альтернативного кандидата на розгалудження</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="575"/>
+        <source>Font used for solution output</source>
+        <translation>Вигляд шрифту для виводу</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="770"/>
+        <location filename="../ui/settingsdialog.ui" line="792"/>
+        <source>Color of table borders in solution output</source>
+        <translation>Колір меж таблиць у виводі рішення</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="773"/>
+        <source>Table borders color:</source>
+        <translation>Колір меж таблиць:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="808"/>
+        <source>Change color of table borders</source>
+        <translation>Змінити колір меж таблиці</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="295"/>
         <source>Fractional random values</source>
         <translation>Дробові випадкові числа</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="484"/>
+        <location filename="../ui/settingsdialog.ui" line="524"/>
         <source>Scroll to the end of solution output after solving</source>
         <translation>Прокручувати в кінець виводу після закінчення розв&apos;язку задачі</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="487"/>
+        <location filename="../ui/settingsdialog.ui" line="527"/>
         <source>Scroll to solution end</source>
         <translation>Прокручувати в кінець розв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="136"/>
+        <location filename="../ui/settingsdialog.ui" line="163"/>
         <source>Use native file dialogs</source>
         <translation>Системні файлові діалоги</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="199"/>
+        <location filename="../ui/settingsdialog.ui" line="226"/>
         <source>In this mode the cost of travel from city 1 to city 2 and vice versa is the same</source>
         <translation>У цьому режимі вартість переїзду з міста 1 у місто 2 та навпаки співпадає</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="202"/>
+        <location filename="../ui/settingsdialog.ui" line="229"/>
         <source>Symmetric mode</source>
         <translation>Симетричний режим</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="220"/>
+        <location filename="../ui/settingsdialog.ui" line="247"/>
         <source>Minimal random:</source>
         <translation>Мінімальне випадкове:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="240"/>
+        <location filename="../ui/settingsdialog.ui" line="267"/>
         <source>Maximal random:</source>
         <translation>Максимальне випадкове:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="335"/>
+        <location filename="../ui/settingsdialog.ui" line="375"/>
         <source>Save solution graph as</source>
         <translation>Зберегти граф розв&apos;язку як</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="391"/>
+        <location filename="../ui/settingsdialog.ui" line="431"/>
         <source>Save solution graph inside HTML using data URI scheme (not supported by IE 7 and lower)</source>
         <translation>Зберігати граф всередині HTML за допомогою data URI scheme (не підтр. IE 7 та нижче)</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="443"/>
+        <location filename="../ui/settingsdialog.ui" line="483"/>
         <source>Only when &lt;=</source>
         <translation>Лише коли ≤</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="456"/>
+        <location filename="../ui/settingsdialog.ui" line="496"/>
         <source> cities</source>
         <comment>Don&apos;t forget a space at the beginning!</comment>
         <translation> міст</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="508"/>
-        <source>&amp;Font...</source>
-        <translation>&amp;Шрифт...</translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="62"/>
-        <location filename="../ui/settingsdialog.ui" line="68"/>
+        <location filename="../ui/settingsdialog.ui" line="78"/>
+        <location filename="../ui/settingsdialog.ui" line="84"/>
         <source>Help</source>
         <translation>Допомога</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="65"/>
+        <location filename="../ui/settingsdialog.ui" line="81"/>
         <source>Get preferences help</source>
         <translation>Отримати допомогу по налагодженням</translation>
     </message>

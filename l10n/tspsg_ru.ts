@@ -5,7 +5,7 @@
 <context>
     <name>--------</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="588"/>
+        <location filename="../src/mainwindow.cpp" line="609"/>
         <source>AUTHORS %1</source>
         <comment>Please, provide translator credits here. %1 will be replaced with VERSION</comment>
         <translation>&lt;b&gt;Русский перевод&lt;/b&gt;&lt;br&gt;
@@ -14,19 +14,19 @@
 Версия: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="590"/>
+        <location filename="../src/mainwindow.cpp" line="611"/>
         <source>VERSION</source>
         <comment>Please, provide your translation version here.</comment>
         <translation>$Id: $Format:%h %ai %an$ $</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1337"/>
+        <location filename="../src/mainwindow.cpp" line="1420"/>
         <source>COUNTRY</source>
         <comment>Please, provide an ISO 3166-1 alpha-2 country code for this translation language here (eg., UA).</comment>
         <translation>RU</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1338"/>
+        <location filename="../src/mainwindow.cpp" line="1421"/>
         <source>LANGNAME</source>
         <comment>Please, provide a native name of your translation language here.</comment>
         <translation>Русский</translation>
@@ -153,13 +153,13 @@ Please, try to update the application. Also, the file could be corrupted.</sourc
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="456"/>
+        <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Language change</source>
         <translation>Смена языка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1480"/>
-        <location filename="../src/mainwindow.cpp" line="1854"/>
+        <location filename="../src/mainwindow.cpp" line="1554"/>
+        <location filename="../src/mainwindow.cpp" line="1958"/>
         <source>Unsaved Changes</source>
         <translation>Несохраненные изменения</translation>
     </message>
@@ -170,8 +170,8 @@ Please, try to update the application. Also, the file could be corrupted.</sourc
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="195"/>
-        <location filename="../src/mainwindow.cpp" line="266"/>
-        <location filename="../src/mainwindow.cpp" line="1605"/>
+        <location filename="../src/mainwindow.cpp" line="267"/>
+        <location filename="../src/mainwindow.cpp" line="1701"/>
         <source>All Files</source>
         <translation>Все файлы</translation>
     </message>
@@ -182,7 +182,7 @@ Please, try to update the application. Also, the file could be corrupted.</sourc
         <translation>Файлы условий %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1424"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>Language Change</source>
         <translation>Смена языка</translation>
     </message>
@@ -197,26 +197,26 @@ Please, try to update the application. Also, the file could be corrupted.</sourc
         <translation>Файлы HTML</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="265"/>
+        <location filename="../src/mainwindow.cpp" line="266"/>
         <source>OpenDocument Files</source>
         <translation>Файлы OpenDocument</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="526"/>
+        <location filename="../src/mainwindow.cpp" line="543"/>
         <source>Sorry, but this feature is not supported on your
 platform or support for it was not installed.</source>
         <translation>Извините, но данная возможность не поддерживается
 вашей платформой или ее поддержка не была установлена.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="931"/>
-        <location filename="../src/mainwindow.cpp" line="938"/>
-        <location filename="../src/mainwindow.cpp" line="1230"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
+        <location filename="../src/mainwindow.cpp" line="961"/>
+        <location filename="../src/mainwindow.cpp" line="1253"/>
         <source>(%1;%2)</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="941"/>
+        <location filename="../src/mainwindow.cpp" line="964"/>
         <source>%n alternate candidate(s) for branching: %1.</source>
         <translation>
             <numerusform>%n альтернативный кандидат для ветвления: %1.</numerusform>
@@ -225,7 +225,7 @@ platform or support for it was not installed.</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/mainwindow.cpp" line="983"/>
+        <location filename="../src/mainwindow.cpp" line="1006"/>
         <source>The price is &lt;b&gt;%n&lt;/b&gt; unit(s).</source>
         <translation>
             <numerusform>Стоимость - &lt;b&gt;%n&lt;/b&gt; единица.</numerusform>
@@ -234,63 +234,63 @@ platform or support for it was not installed.</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1241"/>
+        <location filename="../src/mainwindow.cpp" line="1264"/>
         <source>Root</source>
         <translation>Корень</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1444"/>
+        <location filename="../src/mainwindow.cpp" line="1518"/>
         <source>Set application style to %1</source>
         <translation>Изменить оформление приложения на %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1556"/>
+        <location filename="../src/mainwindow.cpp" line="1652"/>
         <source>Pa&amp;ge Setup...</source>
         <translation>&amp;Настройки страницы...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1558"/>
+        <location filename="../src/mainwindow.cpp" line="1654"/>
         <source>Setup print options</source>
         <translation>Установить параметры печати</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1561"/>
+        <location filename="../src/mainwindow.cpp" line="1657"/>
         <source>Setup page-related options for printing</source>
         <translation>Настроить параметры печати, относящиеся к странице</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1575"/>
+        <location filename="../src/mainwindow.cpp" line="1671"/>
         <source>Exit %1</source>
         <translation>Выйти из %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1579"/>
+        <location filename="../src/mainwindow.cpp" line="1675"/>
         <source>Configure...</source>
         <translation>Настройка...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1581"/>
+        <location filename="../src/mainwindow.cpp" line="1677"/>
         <source>Customize toolbars</source>
         <translation>Настройка панелей инструментов</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1586"/>
+        <location filename="../src/mainwindow.cpp" line="1682"/>
         <source>Report about a bug in %1</source>
         <translation>Сообщить о проблеме с %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1591"/>
+        <location filename="../src/mainwindow.cpp" line="1687"/>
         <source>Check for %1 updates</source>
         <translation>Проверить обновления %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1604"/>
+        <location filename="../src/mainwindow.cpp" line="1700"/>
         <source>%1 Task File</source>
         <translation>Файл условия %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="445"/>
-        <location filename="../src/mainwindow.cpp" line="482"/>
+        <location filename="../src/mainwindow.cpp" line="462"/>
+        <location filename="../src/mainwindow.cpp" line="499"/>
         <source>Settings Changed</source>
         <translation>Параметры изменены</translation>
     </message>
@@ -300,66 +300,83 @@ platform or support for it was not installed.</source>
         <translation>Загрузка условия</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="312"/>
-        <location filename="../src/mainwindow.cpp" line="322"/>
-        <location filename="../src/mainwindow.cpp" line="360"/>
+        <location filename="../src/mainwindow.cpp" line="328"/>
+        <location filename="../src/mainwindow.cpp" line="332"/>
+        <location filename="../src/mainwindow.cpp" line="1303"/>
         <source>Solution Graph</source>
         <translation>Граф решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="323"/>
+        <location filename="../src/mainwindow.cpp" line="1304"/>
         <source>Generated with %1</source>
         <translation>Создано при помощи %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="353"/>
+        <location filename="../src/mainwindow.cpp" line="373"/>
+        <location filename="../src/mainwindow.cpp" line="378"/>
+        <location filename="../src/mainwindow.cpp" line="1330"/>
         <source>Unable to save the solution graph.
 Error: %1</source>
         <translation>Невозможно сохранить граф решения.
 Ошибка: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="526"/>
+        <location filename="../src/mainwindow.cpp" line="265"/>
+        <source>Web Archive Files</source>
+        <translation>Файлы веб-архива</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="543"/>
         <source>Unsupported Feature</source>
         <translation>Неподдерживаемая функция</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="539"/>
+        <location filename="../src/mainwindow.cpp" line="556"/>
         <source>Version</source>
         <translation>Версия</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="546"/>
+        <location filename="../src/mainwindow.cpp" line="563"/>
         <source>Target OS (ARCH)</source>
         <translation>Целевая ОС (архитектура)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="547"/>
+        <location filename="../src/mainwindow.cpp" line="564"/>
         <source>Qt library</source>
         <translation>Библиотека Qt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="548"/>
+        <location filename="../src/mainwindow.cpp" line="565"/>
         <source>Build time</source>
         <translation>Времени сборки</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="549"/>
+        <location filename="../src/mainwindow.cpp" line="566"/>
         <source>Runtime</source>
         <translation>Времени исполнения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="550"/>
+        <location filename="../src/mainwindow.cpp" line="567"/>
         <source>Logical screen DPI</source>
         <translation>Логическое разрешение экрана</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="552"/>
+        <location filename="../src/mainwindow.cpp" line="570"/>
+        <source> from git revision &lt;b&gt;%1&lt;/b&gt;</source>
+        <translation>с ревизии git &lt;b&gt;%1&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="572"/>
+        <source>Build &lt;b&gt;%1&lt;/b&gt;, built%5 on &lt;b&gt;%2&lt;/b&gt; at &lt;b&gt;%3&lt;/b&gt; with &lt;b&gt;%4&lt;/b&gt; compiler.</source>
+        <translation>Сборка &lt;b&gt;%1&lt;/b&gt;, собрана%5 &lt;b&gt;%2&lt;/b&gt; в &lt;b&gt;%3&lt;/b&gt; при помощи компилятора &lt;b&gt;%4&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="573"/>
         <source>Algorithm</source>
         <translation>Алгоритм</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="554"/>
+        <location filename="../src/mainwindow.cpp" line="575"/>
         <source>This program is free software: you can redistribute it and/or modify&lt;br&gt;
 it under the terms of the GNU General Public License as published by&lt;br&gt;
 the Free Software Foundation, either version 3 of the License, or&lt;br&gt;
@@ -386,71 +403,73 @@ along with TSPSG.  If not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quo
 с программой. В случае её отсутствия, смотрите &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;www.gnu.org/licenses/&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="658"/>
+        <location filename="../src/mainwindow.cpp" line="679"/>
         <source>About</source>
         <translation>Про</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="659"/>
+        <location filename="../src/mainwindow.cpp" line="680"/>
         <source>License</source>
         <translation>Лицензия</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="660"/>
+        <location filename="../src/mainwindow.cpp" line="681"/>
         <source>Credits</source>
         <translation>Благодарности</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="726"/>
+        <location filename="../src/mainwindow.cpp" line="749"/>
         <source>Data error</source>
         <translation>Ошибка в данных</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="726"/>
+        <location filename="../src/mainwindow.cpp" line="749"/>
         <source>Error in cell [Row %1; Column %2]: Invalid data format.</source>
         <translation>Ошибка в ячейке [Строка %1; Колонка %2]: Неверный формат данных.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="744"/>
+        <location filename="../src/mainwindow.cpp" line="767"/>
         <source>Calculating optimal route...</source>
         <translation>Расчет оптимального пути...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="745"/>
+        <location filename="../src/mainwindow.cpp" line="768"/>
         <source>Solution Progress</source>
         <translation>Состояние решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="787"/>
+        <location filename="../src/mainwindow.cpp" line="810"/>
         <source>Solution Result</source>
         <translation>Результат решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="787"/>
+        <location filename="../src/mainwindow.cpp" line="810"/>
         <source>Unable to find a solution.
 Maybe, this task has no solution.</source>
         <translation>Не удалось найти решение.
 Возможно, у задачи нет решения.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="817"/>
+        <location filename="../src/mainwindow.cpp" line="840"/>
         <source>Generating header</source>
         <translation>Генерация заголовка</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="828"/>
+        <location filename="../src/mainwindow.cpp" line="851"/>
         <source>Solution of Variant #%1 Task</source>
         <translation>Решение задания для варианта №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="868"/>
+        <location filename="../src/mainwindow.cpp" line="891"/>
         <source>Task:</source>
         <translation>Условие:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="289"/>
-        <location filename="../src/mainwindow.cpp" line="353"/>
+        <location filename="../src/mainwindow.cpp" line="293"/>
         <location filename="../src/mainwindow.cpp" line="373"/>
+        <location filename="../src/mainwindow.cpp" line="378"/>
+        <location filename="../src/mainwindow.cpp" line="387"/>
+        <location filename="../src/mainwindow.cpp" line="1330"/>
         <source>Solution Save</source>
         <translation>Сохранение решения</translation>
     </message>
@@ -464,27 +483,27 @@ Maybe, this task has no solution.</source>
         </translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="289"/>
-        <location filename="../src/mainwindow.cpp" line="373"/>
+        <location filename="../src/mainwindow.cpp" line="293"/>
+        <location filename="../src/mainwindow.cpp" line="387"/>
         <source>Unable to save the solution.
 Error: %1</source>
         <translation>Невозможно сохранить решение.
 Ошибка: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="445"/>
+        <location filename="../src/mainwindow.cpp" line="462"/>
         <source>You have changed color settings.
 They will be applied to the next solution output.</source>
         <translation>Вы изменили параметры цвета.
 Они будут применены к следующему тексту решения.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="456"/>
+        <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Language will be autodetected on the next %1 start.</source>
         <translation>Язык будет автоматически определен при следующем запуске %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="482"/>
+        <location filename="../src/mainwindow.cpp" line="499"/>
         <source>You have changed the application language.
 To get current solution output in the new language
 you need to re-run the solution process.</source>
@@ -493,22 +512,17 @@ you need to re-run the solution process.</source>
 языке, необходимо выполнить решение заново.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="490"/>
+        <location filename="../src/mainwindow.cpp" line="507"/>
         <source>Style Change</source>
         <translation>Смена оформления</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="490"/>
+        <location filename="../src/mainwindow.cpp" line="507"/>
         <source>To apply the default style you need to restart %1.</source>
         <translation>Чтобы применить оформление по умолчанию необходимо перезапустить %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="551"/>
-        <source>Buid &lt;b&gt;%1&lt;/b&gt;, built on &lt;b&gt;%2&lt;/b&gt; at &lt;b&gt;%3&lt;/b&gt; with &lt;b&gt;%4&lt;/b&gt; compiler.</source>
-        <translation>Сборка &lt;b&gt;%1&lt;/b&gt;, собрана &lt;b&gt;%2&lt;/b&gt; в &lt;b&gt;%3&lt;/b&gt; при помощи компилятора &lt;b&gt;%4&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="568"/>
+        <location filename="../src/mainwindow.cpp" line="589"/>
         <source>%1 was created using &lt;b&gt;Qt&amp;nbsp;framework&lt;/b&gt; licensed under the terms of the GNU Lesser General Public License,&lt;br&gt;
 see &lt;a href=&quot;http://qt.nokia.com/&quot;&gt;qt.nokia.com&lt;/a&gt;&lt;br&gt;
 &lt;br&gt;
@@ -533,123 +547,123 @@ see &lt;a href=&quot;http://dejavu-fonts.org/&quot;&gt;dejavu-fonts.org&lt;/a&gt
 смотрите &lt;a href=&quot;http://dejavu-fonts.org/&quot;&gt;dejavu-fonts.org&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="669"/>
+        <location filename="../src/mainwindow.cpp" line="690"/>
         <source>Translation</source>
         <translation>Перевод</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="679"/>
-        <location filename="../src/mainwindow.cpp" line="1595"/>
+        <location filename="../src/mainwindow.cpp" line="700"/>
+        <location filename="../src/mainwindow.cpp" line="1691"/>
         <source>About %1</source>
         <translation>О %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="736"/>
+        <location filename="../src/mainwindow.cpp" line="759"/>
         <source>%v of %1 parts found</source>
         <translation>Найдено %v з %1 переходов</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="789"/>
-        <location filename="../src/mainwindow.cpp" line="887"/>
-        <location filename="../src/mainwindow.cpp" line="1022"/>
+        <location filename="../src/mainwindow.cpp" line="812"/>
+        <location filename="../src/mainwindow.cpp" line="910"/>
+        <location filename="../src/mainwindow.cpp" line="1045"/>
         <source>Memory cleanup...</source>
         <translation>Очистка памяти...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="818"/>
+        <location filename="../src/mainwindow.cpp" line="841"/>
         <source>Generating solution output...</source>
         <translation>Генерация текста решения...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="866"/>
+        <location filename="../src/mainwindow.cpp" line="889"/>
         <source>Variant #%1 Task</source>
         <translation>Условие варианта №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="879"/>
+        <location filename="../src/mainwindow.cpp" line="902"/>
         <source>Variant #%1 Solution</source>
         <translation>Решение варианта №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="884"/>
+        <location filename="../src/mainwindow.cpp" line="907"/>
         <source>Generating step %v</source>
         <translation>Генерация шага %v</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="923"/>
+        <location filename="../src/mainwindow.cpp" line="946"/>
         <source>Step #%1</source>
         <translation>Шаг №%1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="931"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
         <source>Selected route %1 %2 part.</source>
         <translation>Выбран путь %1 %2.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="931"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
         <source>with</source>
         <translation>с переходом</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="931"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
         <source>without</source>
         <translation>без перехода</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="961"/>
+        <location filename="../src/mainwindow.cpp" line="984"/>
         <source>Generating footer</source>
         <translation>Генерация окончания</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="971"/>
+        <location filename="../src/mainwindow.cpp" line="994"/>
         <source>Optimal path:</source>
         <translation>Оптимальный путь:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="973"/>
+        <location filename="../src/mainwindow.cpp" line="996"/>
         <source>Resulting path:</source>
         <translation>Найденный путь:</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="976"/>
+        <location filename="../src/mainwindow.cpp" line="999"/>
         <source>City %1</source>
         <translation>Город %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="985"/>
+        <location filename="../src/mainwindow.cpp" line="1008"/>
         <source>The price is &lt;b&gt;%1&lt;/b&gt; units.</source>
         <translation>Стоимость - &lt;b&gt;%1&lt;/b&gt; единиц.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="988"/>
+        <location filename="../src/mainwindow.cpp" line="1011"/>
         <source>&lt;b&gt;WARNING!!!&lt;/b&gt;&lt;br&gt;This result is a record, but it may not be optimal.&lt;br&gt;Iterations need to be continued to check whether this result is optimal or get an optimal one.</source>
         <translation>&lt;b&gt;ВНИМАНИЕ!!!&lt;/b&gt;&lt;br&gt;Найденное решение является рекордом, но может оказаться не оптимальным.&lt;br&gt;Для получения оптимального решения, или проверки текущего на оптимальность, требуется продолжить итерации.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1424"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>Unable to load the translation language.
 Falling back to autodetection.</source>
         <translation>Невозможно загрузить перевод.
 Возвращаюсь к автоопределению.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1480"/>
-        <location filename="../src/mainwindow.cpp" line="1855"/>
+        <location filename="../src/mainwindow.cpp" line="1554"/>
+        <location filename="../src/mainwindow.cpp" line="1959"/>
         <source>Would you like to save changes in the current task?</source>
         <translation>Желаете сохранить изменения в текущей задаче?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1339"/>
+        <location filename="../src/mainwindow.cpp" line="1422"/>
         <source>Set application language to %1</source>
         <translation>Изменить язык приложения на %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1589"/>
+        <location filename="../src/mainwindow.cpp" line="1685"/>
         <source>Check for &amp;Updates...</source>
         <translation>Проверить &amp;обновления...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1618"/>
+        <location filename="../src/mainwindow.cpp" line="1714"/>
         <source>Task Save</source>
         <translation>Сохранение условия</translation>
     </message>
@@ -657,9 +671,9 @@ Falling back to autodetection.</source>
         <location filename="../src/mainwindow.cpp" line="198"/>
         <location filename="../src/mainwindow.cpp" line="220"/>
         <location filename="../src/mainwindow.cpp" line="246"/>
-        <location filename="../src/mainwindow.cpp" line="467"/>
-        <location filename="../src/mainwindow.cpp" line="1607"/>
-        <location filename="../src/mainwindow.h" line="157"/>
+        <location filename="../src/mainwindow.cpp" line="484"/>
+        <location filename="../src/mainwindow.cpp" line="1703"/>
+        <location filename="../src/mainwindow.h" line="161"/>
         <source>Untitled</source>
         <translation>Без имени</translation>
     </message>
@@ -892,7 +906,7 @@ Falling back to autodetection.</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="417"/>
-        <location filename="../src/mainwindow.cpp" line="1599"/>
+        <location filename="../src/mainwindow.cpp" line="1695"/>
         <source>E&amp;xit</source>
         <translation>В&amp;ыход</translation>
     </message>
@@ -953,37 +967,37 @@ Falling back to autodetection.</source>
         <translation>Сохранить &amp;как</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1548"/>
+        <location filename="../src/mainwindow.cpp" line="1644"/>
         <source>P&amp;rint Preview...</source>
         <translation>П&amp;редварительный просмотр...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1550"/>
+        <location filename="../src/mainwindow.cpp" line="1646"/>
         <source>Preview solution results</source>
         <translation>Предварительный просмотр результатов решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1553"/>
+        <location filename="../src/mainwindow.cpp" line="1649"/>
         <source>Preview current solution results before printing</source>
         <translation>Предварительный просмотр результатов решения перед печатью</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1564"/>
+        <location filename="../src/mainwindow.cpp" line="1660"/>
         <source>&amp;Print...</source>
         <translation>&amp;Печать...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1566"/>
+        <location filename="../src/mainwindow.cpp" line="1662"/>
         <source>Print solution</source>
         <translation>Печать решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1569"/>
+        <location filename="../src/mainwindow.cpp" line="1665"/>
         <source>Print current solution results</source>
         <translation>Распечатать текущие результаты решения</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1571"/>
+        <location filename="../src/mainwindow.cpp" line="1667"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
@@ -1006,14 +1020,14 @@ Falling back to autodetection.</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="740"/>
-        <location filename="../src/mainwindow.cpp" line="1861"/>
+        <location filename="../src/mainwindow.cpp" line="763"/>
+        <location filename="../src/mainwindow.cpp" line="1965"/>
         <source>Cancel</source>
         <comment>No need to translate this. The translation will be taken from Qt translation files.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1859"/>
+        <location filename="../src/mainwindow.cpp" line="1963"/>
         <source>Discard</source>
         <comment>No need to translate this. The translation will be taken from Qt translation files.</comment>
         <translation type="unfinished"></translation>
@@ -1028,7 +1042,7 @@ Falling back to autodetection.</source>
     </message>
     <message>
         <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.ui" line="27"/>
-        <location filename="../src/mainwindow.cpp" line="1864"/>
+        <location filename="../src/mainwindow.cpp" line="1968"/>
         <source>Actions</source>
         <translation>Действия</translation>
     </message>
@@ -1078,7 +1092,7 @@ Falling back to autodetection.</source>
         <translation>Действия текущей панели</translation>
     </message>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.cpp" line="1807"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.cpp" line="1815"/>
         <source>&lt; S E P A R A T O R &gt;</source>
         <translation>&lt; Р А З Д Е Л И Т Е Л Ь &gt;</translation>
     </message>
@@ -1086,7 +1100,7 @@ Falling back to autodetection.</source>
 <context>
     <name>QtToolBarDialogPrivate</name>
     <message>
-        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.cpp" line="1256"/>
+        <location filename="../src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.cpp" line="1264"/>
         <source>Custom Toolbar</source>
         <translation>Пользовательская панель</translation>
     </message>
@@ -1094,229 +1108,305 @@ Falling back to autodetection.</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="7"/>
+        <location filename="../ui/settingsdialog.ui" line="15"/>
         <source>Preferences</source>
         <translation>Параметры</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="157"/>
+        <location filename="../ui/settingsdialog.ui" line="184"/>
         <source>Task</source>
         <translation>Задача</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="160"/>
+        <location filename="../ui/settingsdialog.ui" line="187"/>
         <source>Task generation and solving settings</source>
         <translation>Настройки генерации и решения задач</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="171"/>
+        <location filename="../ui/settingsdialog.ui" line="198"/>
         <source>Fractional accuracy:</source>
         <translation>Точность дробных чисел:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="184"/>
+        <location filename="../ui/settingsdialog.ui" line="211"/>
         <source>Accuracy of the fractional values (in decimal places)</source>
         <translation>Точность дробных чисел (в знаках после запятой)</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="233"/>
+        <location filename="../ui/settingsdialog.ui" line="260"/>
         <source>Minimum for random number generation</source>
         <translation>Нижняя граница для генерации случайных значений</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="253"/>
+        <location filename="../ui/settingsdialog.ui" line="280"/>
         <source>Maximum for random number generation</source>
         <translation>Верхняя граница для генерации случайных значений</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="265"/>
+        <location filename="../ui/settingsdialog.ui" line="292"/>
         <source>Generate fractional random values with the Fractional accuracy</source>
         <translation>Генерировать дробные случайные числа с заданной выше точностью</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="304"/>
+        <location filename="../ui/settingsdialog.ui" line="344"/>
         <source>Generate graphical representation of the solution</source>
         <translation>Генерировать графическое представление решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="307"/>
+        <location filename="../ui/settingsdialog.ui" line="347"/>
         <source>Generate solution graph</source>
         <translation>Генерировать граф решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="348"/>
+        <location filename="../ui/settingsdialog.ui" line="388"/>
         <source>What image format to use for graph when saving solution as HTML</source>
         <translation>Какой формат использовать для графа при сохранении решения как HTML</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="394"/>
+        <location filename="../ui/settingsdialog.ui" line="434"/>
         <source>Embed solution graph into HTML</source>
         <translation>Встраивать граф решения в HTML</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="496"/>
-        <source>Output font settings</source>
-        <translation>Параметры шрифта</translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="521"/>
-        <source>&amp;Color...</source>
-        <translation>&amp;Цвет...</translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="107"/>
+        <location filename="../ui/settingsdialog.ui" line="134"/>
         <source>Automatically resize rows and columns to their contents</source>
         <translation>Автоматически подганять размер строк и колонок под их содержание</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="95"/>
+        <location filename="../ui/settingsdialog.ui" line="122"/>
+        <location filename="../ui/settingsdialog.ui" line="332"/>
         <source>General</source>
         <translation>Общие</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="98"/>
+        <location filename="../ui/settingsdialog.ui" line="125"/>
         <source>General TSPSG settings</source>
         <translation>Общие настройки TSPSG</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="110"/>
+        <location filename="../ui/settingsdialog.ui" line="137"/>
         <source>Autosize of rows and columns</source>
         <translation>Авторазмер строк и колонок</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="120"/>
+        <location filename="../ui/settingsdialog.ui" line="147"/>
         <source>Remember the last used directory when opening and saving files</source>
         <translation>Помнить последние использованные папки при открытии и сохранении файлов</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="123"/>
+        <location filename="../ui/settingsdialog.ui" line="150"/>
         <source>Remember last used directories</source>
         <translation>Помнить последние папки</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="133"/>
+        <location filename="../ui/settingsdialog.ui" line="160"/>
         <source>Use native File Open and File Save dialogs (uncheck to use Qt&apos;s Dialogs)</source>
         <translation>Использовать системные диалоги открытия и сохранения файла</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="209"/>
+        <location filename="../ui/settingsdialog.ui" line="236"/>
         <source>Task generation</source>
         <translation>Генерация задач</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="292"/>
+        <location filename="../ui/settingsdialog.ui" line="319"/>
         <source>Output</source>
         <translation>Вывод</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="295"/>
+        <location filename="../ui/settingsdialog.ui" line="322"/>
         <source>Solution output settings</source>
         <translation>Настройки текста решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="406"/>
+        <location filename="../ui/settingsdialog.ui" line="335"/>
+        <source>General solution output settings</source>
+        <translation>Общие настройки текста решения</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="446"/>
         <source>Show solution steps&apos; matrices for every solution step</source>
         <translation>Показывать матрицы шагов решения для каждого шага</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="409"/>
+        <location filename="../ui/settingsdialog.ui" line="449"/>
         <source>Show solution steps&apos; matrices</source>
         <translation>Показ матриц шагов решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="440"/>
+        <location filename="../ui/settingsdialog.ui" line="480"/>
         <source>Show or hide solution steps&apos; matrices based on number of cities in the task</source>
         <translation>Показывать матрицы хода решения в зависимости от количества городов</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="453"/>
+        <location filename="../ui/settingsdialog.ui" line="493"/>
         <source>Maximum number of cities to show solution steps&apos; matrices</source>
         <translation>Максимальное количество городов для показа матриц шагов решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="505"/>
-        <source>Font face for solution output</source>
+        <location filename="../ui/settingsdialog.ui" line="548"/>
+        <source>Font &amp;&amp; Colors</source>
+        <comment>Needs double &amp; or it won&apos;t be displayed!</comment>
+        <translation>Шрифт и цвета</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="551"/>
+        <source>Font and colors settings for solution output</source>
+        <translation>Параметры шрифта и цветов, используемые при выводе решения</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="559"/>
+        <source>Font used for solution text output</source>
+        <translation>Вид шрифта, используемого при выводе текста решения</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="562"/>
+        <source>Font:</source>
+        <translation>Шрифт:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="588"/>
+        <source>Change output text font</source>
+        <translation>Изменить шрифт текста вывода</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="605"/>
+        <location filename="../ui/settingsdialog.ui" line="627"/>
+        <source>Font color for solution text output</source>
+        <translation>Цвет шрифта для вывода текста решения</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="608"/>
+        <source>Default text color:</source>
+        <translation>Цвет текста по умолчанию:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="643"/>
+        <source>Change default text color</source>
+        <translation>Изменить цвет текста по умолчанию</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="660"/>
+        <location filename="../ui/settingsdialog.ui" line="682"/>
+        <source>Text color of the candidate that was selected for branching</source>
+        <translation>Цвет текста кандидата, выбранного для ветвления</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="663"/>
+        <source>Selected candidate text color:</source>
+        <translation>Текст выбранного кандидата:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="698"/>
+        <source>Change selected candidate text color</source>
+        <translation>Изменить цвет текста выбранного кандидата на ветвление</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="715"/>
+        <location filename="../ui/settingsdialog.ui" line="737"/>
+        <source>Text color of the alternate candidate that wasn&apos;t selected for branching</source>
+        <translation>Цвет текста кандидата, не выбранного для ветвления</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="718"/>
+        <source>Alternate candidate text color:</source>
+        <translation>Текст альтернативного кандидата:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="753"/>
+        <source>Change alternate candidate text color</source>
+        <translation>Изменить цвет текста альтернативного кандидата на ветвление</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="575"/>
+        <source>Font used for solution output</source>
         <translation>Вид шрифта, используемого при выводе</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="518"/>
-        <source>Font color for solution output</source>
-        <translation>Цвет шрифта, используемого при выводе</translation>
+        <location filename="../ui/settingsdialog.ui" line="770"/>
+        <location filename="../ui/settingsdialog.ui" line="792"/>
+        <source>Color of table borders in solution output</source>
+        <translation>Цвет границ таблиц в выводе решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="268"/>
+        <location filename="../ui/settingsdialog.ui" line="773"/>
+        <source>Table borders color:</source>
+        <translation>Цвет границ таблиц:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="808"/>
+        <source>Change color of table borders</source>
+        <translation>Изменить цвет границ таблицы</translation>
+    </message>
+    <message>
+        <location filename="../ui/settingsdialog.ui" line="295"/>
         <source>Fractional random values</source>
         <translation>Дробные случайные числа</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="484"/>
+        <location filename="../ui/settingsdialog.ui" line="524"/>
         <source>Scroll to the end of solution output after solving</source>
         <translation>Прокручивать в конец вывода после окончания решения задачи</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="487"/>
+        <location filename="../ui/settingsdialog.ui" line="527"/>
         <source>Scroll to solution end</source>
         <translation>Прокручивать в конец решения</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="136"/>
+        <location filename="../ui/settingsdialog.ui" line="163"/>
         <source>Use native file dialogs</source>
         <translation>Системные файловые диалоги</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="199"/>
+        <location filename="../ui/settingsdialog.ui" line="226"/>
         <source>In this mode the cost of travel from city 1 to city 2 and vice versa is the same</source>
         <translation>В этом режиме стоимость переезда из города 1 в город 2 и наоборот совпадает</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="202"/>
+        <location filename="../ui/settingsdialog.ui" line="229"/>
         <source>Symmetric mode</source>
         <translation>Симметричный режим</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="220"/>
+        <location filename="../ui/settingsdialog.ui" line="247"/>
         <source>Minimal random:</source>
         <translation>Минимальное случайное:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="240"/>
+        <location filename="../ui/settingsdialog.ui" line="267"/>
         <source>Maximal random:</source>
         <translation>Максимальное случайное:</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="335"/>
+        <location filename="../ui/settingsdialog.ui" line="375"/>
         <source>Save solution graph as</source>
         <translation>Зберегти граф решения как</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="391"/>
+        <location filename="../ui/settingsdialog.ui" line="431"/>
         <source>Save solution graph inside HTML using data URI scheme (not supported by IE 7 and lower)</source>
         <translation>Сохранять граф решения внутри HTML, используя data URI scheme (не поддерживается IE 7 и ниже)</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="443"/>
+        <location filename="../ui/settingsdialog.ui" line="483"/>
         <source>Only when &lt;=</source>
         <translation>Только когда ≤</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="456"/>
+        <location filename="../ui/settingsdialog.ui" line="496"/>
         <source> cities</source>
         <comment>Don&apos;t forget a space at the beginning!</comment>
         <translation> городов</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="508"/>
-        <source>&amp;Font...</source>
-        <translation>&amp;Шрифт...</translation>
-    </message>
-    <message>
-        <location filename="../ui/settingsdialog.ui" line="62"/>
-        <location filename="../ui/settingsdialog.ui" line="68"/>
+        <location filename="../ui/settingsdialog.ui" line="78"/>
+        <location filename="../ui/settingsdialog.ui" line="84"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../ui/settingsdialog.ui" line="65"/>
+        <location filename="../ui/settingsdialog.ui" line="81"/>
         <source>Get preferences help</source>
         <translation>Получить помощь по настройкам</translation>
     </message>
@@ -1331,74 +1421,74 @@ Falling back to autodetection.</source>
         <translation>Закрыть окно без сохранения параметров</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="69"/>
+        <location filename="../src/settingsdialog.cpp" line="73"/>
         <source>Higher quality graph looks much better when printing but uglier on the screen</source>
         <translation>Граф повышенного качества выглядит намного лучше при печати, но уродливее на экране</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="71"/>
+        <location filename="../src/settingsdialog.cpp" line="75"/>
         <source>Draw solution graph in higher quality</source>
         <translation>Граф решения в повышенном качестве</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="86"/>
+        <location filename="../src/settingsdialog.cpp" line="90"/>
         <source>Automatically check for updates at the given interval</source>
         <translation>Автоматически проверять обновления через указанный интервал</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="88"/>
+        <location filename="../src/settingsdialog.cpp" line="92"/>
         <source>Check for updates every</source>
         <translation>Проверять обновления каждые</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="94"/>
+        <location filename="../src/settingsdialog.cpp" line="98"/>
         <source>Minimal interval at which to check for updates</source>
         <translation>Минимальный интервал между проверками обновлений</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="96"/>
+        <location filename="../src/settingsdialog.cpp" line="100"/>
         <source> days</source>
         <comment>Don&apos;t forget a space at the beginning!</comment>
         <translation> дней</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="149"/>
+        <location filename="../src/settingsdialog.cpp" line="152"/>
         <source>Make Main Window background translucent</source>
         <translation>Сделтать фон главного окна полупрозрачным</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="151"/>
+        <location filename="../src/settingsdialog.cpp" line="154"/>
         <source>Use translucency effects</source>
         <translation>Использовать эффекты полупрозрачности</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="159"/>
+        <location filename="../src/settingsdialog.cpp" line="162"/>
         <source>Restore main window state and position on application restart</source>
         <translation>Сохранять состояние и размеры главного окна после перезапуска</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="161"/>
+        <location filename="../src/settingsdialog.cpp" line="164"/>
         <source>Save main window state and position</source>
         <translation>Сохранять состояние и положение главного окна</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="182"/>
+        <location filename="../src/settingsdialog.cpp" line="185"/>
         <source>Hover mouse pointer over dialog elements to get additional help</source>
         <translation>Наведите указатель мыши на элемент диалога, чтоб получить подсказку</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="342"/>
-        <location filename="../src/settingsdialog.cpp" line="348"/>
+        <location filename="../src/settingsdialog.cpp" line="364"/>
+        <location filename="../src/settingsdialog.cpp" line="370"/>
         <source>Settings Reset</source>
         <translation>Сброс настроек</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="342"/>
+        <location filename="../src/settingsdialog.cpp" line="364"/>
         <source>Do you really want to &lt;b&gt;reset all application settings to their defaults&lt;/b&gt;?</source>
         <translation>Вы действительно хотите &lt;b&gt;сбросить все настройки на значения по-умолчанию&lt;/b&gt;?</translation>
     </message>
     <message>
-        <location filename="../src/settingsdialog.cpp" line="348"/>
+        <location filename="../src/settingsdialog.cpp" line="370"/>
         <source>All settings where successfully reset to their defaults.
 It is recommended to restart the application now.</source>
         <translation>Все настройки было сброшено на значения по-умолчанию.

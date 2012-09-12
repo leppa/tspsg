@@ -518,7 +518,7 @@
             <string comment="Needs double &amp; or it won't be displayed!">Font &amp;&amp; Colors</string>
            </attribute>
            <attribute name="toolTip">
-            <string>Font and color settings for solution output</string>
+            <string>Font and colors settings for solution output</string>
            </attribute>
            <layout class="QVBoxLayout" name="_11">
             <item>
@@ -526,10 +526,10 @@
               <item>
                <widget class="QLabel" name="labelFont">
                 <property name="statusTip">
-                 <string>Font used for solution output</string>
+                 <string>Font used for solution text output</string>
                 </property>
                 <property name="text">
-                 <string>Text font:</string>
+                 <string>Font:</string>
                 </property>
                </widget>
               </item>
@@ -555,7 +555,7 @@
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="statusTip">
-                 <string>Change output font</string>
+                 <string>Change output text font</string>
                 </property>
                </widget>
               </item>
@@ -572,10 +572,10 @@
                  </sizepolicy>
                 </property>
                 <property name="statusTip">
-                 <string>Font color for solution output</string>
+                 <string>Font color for solution text output</string>
                 </property>
                 <property name="text">
-                 <string>Text color:</string>
+                 <string>Default text color:</string>
                 </property>
                </widget>
               </item>
@@ -594,7 +594,7 @@
                  </size>
                 </property>
                 <property name="statusTip">
-                 <string>Font color for solution output</string>
+                 <string>Font color for solution text output</string>
                 </property>
                 <property name="autoFillBackground">
                  <bool>true</bool>
@@ -610,7 +610,7 @@
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="statusTip">
-                 <string>Change font color</string>
+                 <string>Change default text color</string>
                 </property>
                </widget>
               </item>
@@ -627,10 +627,10 @@
                  </sizepolicy>
                 </property>
                 <property name="statusTip">
-                 <string>Font color for the candidate that was selected for branching</string>
+                 <string>Text color of the candidate that was selected for branching</string>
                 </property>
                 <property name="text">
-                 <string>Selected candidate color:</string>
+                 <string>Selected candidate text color:</string>
                 </property>
                </widget>
               </item>
@@ -649,7 +649,7 @@
                  </size>
                 </property>
                 <property name="statusTip">
-                 <string>Font color for the candidate that was selected for branching</string>
+                 <string>Text color of the candidate that was selected for branching</string>
                 </property>
                 <property name="autoFillBackground">
                  <bool>true</bool>
@@ -665,7 +665,7 @@
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="statusTip">
-                 <string>Change selected candidate color</string>
+                 <string>Change selected candidate text color</string>
                 </property>
                </widget>
               </item>
@@ -682,10 +682,10 @@
                  </sizepolicy>
                 </property>
                 <property name="statusTip">
-                 <string>Font color for the alternate candidate that wasn't selected for branching</string>
+                 <string>Text color of the alternate candidate that wasn't selected for branching</string>
                 </property>
                 <property name="text">
-                 <string>Alternate candidate color:</string>
+                 <string>Alternate candidate text color:</string>
                 </property>
                </widget>
               </item>
@@ -704,7 +704,7 @@
                  </size>
                 </property>
                 <property name="statusTip">
-                 <string>Font color for the alternate candidate that wasn't selected for branching</string>
+                 <string>Text color of the alternate candidate that wasn't selected for branching</string>
                 </property>
                 <property name="autoFillBackground">
                  <bool>true</bool>
@@ -720,7 +720,7 @@
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="statusTip">
-                 <string>Change alternate candidate color</string>
+                 <string>Change alternate candidate text color</string>
                 </property>
                </widget>
               </item>
