@@ -147,7 +147,18 @@ bool QtWin::enableBlurBehindWindow(QWidget *widget, bool enable)
         bb.hRgnBlur = NULL;
 #endif
         widget->setAttribute(Qt::WA_TranslucentBackground, enable);
-        widget->setAttribute(Qt::WA_NoSystemBackground, enable);
+#ifdef Q_WS_X11
+        widget->setAttribute(Qt::WA_NoSystemBackground, false);
+        QPalette p = widget->palette();
+        QColor c = p.color(QPalette::Window);
+        if (enable)
+            c.setAlpha(160);
+        else
+            c.setAlpha(255);
+        p.setColor(QPalette::Window, c);
+        widget->setPalette(p);
+        result = true;
+#endif
 #ifdef Q_OS_WIN32
         hr = pDwmEnableBlurBehindWindow(HWND(widget->winId()), &bb);
         if (SUCCEEDED(hr)) {
