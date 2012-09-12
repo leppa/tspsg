@@ -41,18 +41,18 @@
  * \def DEF_USE_NATIVE_DIALOGS
  * \brief Default for "Use native file dialog".
  */
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
 #   define DEF_USE_NATIVE_DIALOGS false
 #else
 #   define DEF_USE_NATIVE_DIALOGS true
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
 //! Default for "Save main window state and position"
 #define DEF_SAVEPOS true
 /*!
  * \def DEF_USE_TRANSLUCENCY
  * \brief Default for "Use translucency effects"
  */
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
 #   define DEF_USE_TRANSLUCENCY true
 #else
 #   define DEF_USE_TRANSLUCENCY false
@@ -101,11 +101,11 @@
  * \def DEF_FONT_SIZE
  * \brief Default font size
  */
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
 #   define DEF_FONT_SIZE 8
 #else
 #   define DEF_FONT_SIZE 10
-#endif // Q_WS_S60
+#endif // Q_OS_SYMBIAN
 //! Default solution text color
 #define DEF_TEXT_COLOR QPalette().color(QPalette::Text)
 //! Default selected candidate color

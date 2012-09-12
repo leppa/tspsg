@@ -40,7 +40,7 @@
 
 int main(int argc, char *argv[])
 {
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     // Not enough memory for solution graph generation with tasks
     // of 20 and more cities if we use non-raster graphics system.
     QApplication::setGraphicsSystem("raster");
@@ -60,7 +60,7 @@ QApplication app(argc, argv);
     // Seeding random number generator
     qsrand(QDateTime::currentDateTime().toTime_t() ^ QCursor::pos().x() ^ QCursor::pos().y());
 
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
     // Qt "leaves" unpacked .ttf files after running - let's try to delete them.
 QStringList files = QDir(app.applicationDirPath(), "*.ttf").entryList();
     foreach (QString file, files) {
@@ -80,7 +80,7 @@ QTranslator en;
         app.installTranslator(&en);
 
 MainWindow mainwindow;
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     //! \hack HACK: A workaround to hide Actions menu item in Symbian.
 QWidgetList widgets = QApplication::allWidgets();
 QWidget *w = 0;

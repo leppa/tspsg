@@ -63,7 +63,7 @@ private:
 #ifndef QT_NO_PRINTER
     QCheckBox *cbHQGraph;
 #endif
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
     QRect currentGeometry;
 #elif !defined(HANDHELD)
     QCheckBox *cbSaveState;
@@ -74,7 +74,7 @@ private:
 #ifndef QT_NO_STATUSTIP
     bool event(QEvent *ev);
 #endif // QT_NO_STATUSTIP
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
 
     void pickColor(QColor &where);
     void setBgColor(QWidget *widget, const QColor &color);
@@ -87,10 +87,10 @@ private slots:
     void buttonBorderColorClicked();
 //    void buttonBgColorClicked();
     void buttonFontClicked();
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
     void desktopResized(int screen);
     void showEvent(QShowEvent *ev);
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
     void spinRandMinValueChanged(int val);
 };
 

@@ -127,7 +127,7 @@ QScrollArea *scrollArea = new QScrollArea(this);
 
     bgWhite->layout()->setMargin(0);
 
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     // On Symbian buttons are moved to a native bar so Help button is
     // left alone. This causes it to be more to the middle instead of
     // to the left. Adding a stretch fixes this issue.
@@ -216,10 +216,10 @@ QVBoxLayout *vbox; // Layout helper
     setLayout(vbox);
 #endif // HANDHELD
 
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
     // We need to react to SIP show/hide and resize the window appropriately
     connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
     connect(spinRandMin, SIGNAL(valueChanged(int)), SLOT(spinRandMinValueChanged(int)));
     connect(buttonFont, SIGNAL(clicked()), SLOT(buttonFontClicked()));
     connect(buttonTextColor, SIGNAL(clicked()), SLOT(buttonTextColorClicked()));
@@ -324,7 +324,7 @@ QStringList whitelist;
     setWindowState(Qt::WindowMaximized);
 #else
     adjustSize();
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
 }
 
 /*!
@@ -511,7 +511,7 @@ QFont font = QFontDialog::getFont(&ok, this->font, this);
     }
 }
 
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
 void SettingsDialog::desktopResized(int screen)
 {
     if (screen != 0)
@@ -543,7 +543,7 @@ void SettingsDialog::showEvent(QShowEvent *ev)
 
     QWidget::showEvent(ev);
 }
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
 
 void SettingsDialog::spinRandMinValueChanged(int val) {
     spinRandMax->setMinimum(val);

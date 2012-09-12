@@ -55,7 +55,7 @@
 #   include <QtWidgets/QDialog>
 #endif
 
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN32)
 #  if !defined(QT_QTTOOLBARDIALOG_EXPORT) && !defined(QT_QTTOOLBARDIALOG_IMPORT)
 #    define QT_QTTOOLBARDIALOG_EXPORT
 #  elif defined(QT_QTTOOLBARDIALOG_IMPORT)

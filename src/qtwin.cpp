@@ -18,7 +18,7 @@
 #include <QX11Info>
 #endif // Q_WS_X11
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 
 #include <qt_windows.h>
 
@@ -98,7 +98,7 @@ static bool resolveLibs()
   */
 bool QtWin::isCompositionEnabled()
 {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
     if (resolveLibs()) {
         HRESULT hr = S_OK;
         BOOL isEnabled = false;
@@ -123,10 +123,8 @@ bool QtWin::isCompositionEnabled()
 bool QtWin::enableBlurBehindWindow(QWidget *widget, bool enable)
 {
     Q_ASSERT(widget);
-    Q_UNUSED(widget);
-    Q_UNUSED(enable);
     bool result = false;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
     if (resolveLibs()) {
         DWM_BLURBEHIND bb = {0};
         HRESULT hr = S_OK;
@@ -136,8 +134,8 @@ bool QtWin::enableBlurBehindWindow(QWidget *widget, bool enable)
 #endif
         widget->setAttribute(Qt::WA_TranslucentBackground, enable);
         widget->setAttribute(Qt::WA_NoSystemBackground, enable);
-#ifdef Q_WS_WIN
-        hr = pDwmEnableBlurBehindWindow(widget->winId(), &bb);
+#ifdef Q_OS_WIN32
+        hr = pDwmEnableBlurBehindWindow(HWND(widget->winId()), &bb);
         if (SUCCEEDED(hr)) {
             result = true;
             windowNotifier()->addWidget(widget);
@@ -170,12 +168,12 @@ bool QtWin::extendFrameIntoClientArea(QWidget *widget, int left, int top, int ri
     Q_UNUSED(bottom);
 
     bool result = false;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
     if (resolveLibs()) {
         QLibrary dwmLib(QString::fromAscii("dwmapi"));
         HRESULT hr = S_OK;
         MARGINS m = {left, top, right, bottom};
-        hr = pDwmExtendFrameIntoClientArea(widget->winId(), &m);
+        hr = pDwmExtendFrameIntoClientArea(HWND(widget->winId()), &m);
         if (SUCCEEDED(hr)) {
             result = true;
             windowNotifier()->addWidget(widget);
@@ -195,7 +193,7 @@ QColor QtWin::colorizatinColor()
 {
     QColor resultColor = QApplication::palette().window().color();
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
     if (resolveLibs()) {
         DWORD color = 0;
         BOOL opaque = FALSE;
@@ -209,7 +207,7 @@ QColor QtWin::colorizatinColor()
     return resultColor;
 }
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN32
 WindowNotifier *QtWin::windowNotifier()
 {
     static WindowNotifier *windowNotifierInstance = 0;

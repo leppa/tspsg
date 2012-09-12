@@ -23,7 +23,7 @@
 
 #include "mainwindow.h"
 
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
 #   include "shobjidl.h"
 #endif
 
@@ -79,11 +79,11 @@ QPrinter::PaperSize size = qvariant_cast<QPrinter::PaperSize>(settings->value("P
     settings->endGroup();
 #endif // QT_NO_PRINTER
 
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
     currentGeometry = QApplication::desktop()->availableGeometry(0);
     // We need to react to SIP show/hide and resize the window appropriately
     connect(QApplication::desktop(), SIGNAL(workAreaResized(int)), SLOT(desktopResized(int)));
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
     connect(actionFileNew, SIGNAL(triggered()), SLOT(actionFileNewTriggered()));
     connect(actionFileOpen, SIGNAL(triggered()), SLOT(actionFileOpenTriggered()));
     connect(actionFileSave, SIGNAL(triggered()), SLOT(actionFileSaveTriggered()));
@@ -452,7 +452,7 @@ QPrintDialog pd(printer,this);
 void MainWindow::actionSettingsPreferencesTriggered()
 {
 SettingsDialog sd(this);
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     sd.setWindowState(Qt::WindowMaximized);
 #endif
     if (sd.exec() != QDialog::Accepted)
@@ -668,9 +668,9 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
 
     hb2->addWidget(bb);
 
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
     vb->setMargin(3);
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
     vb->addLayout(hb1);
 #ifdef HANDHELD
     vb->addWidget(lblSubTitle);
@@ -713,7 +713,7 @@ QTextBrowser *txtTranslation = new QTextBrowser(dlg);
 
 #ifndef HANDHELD
     dlg->resize(450, 350);
-#elif defined(Q_WS_S60)
+#elif defined(Q_OS_SYMBIAN)
     dlg->setWindowState(Qt::WindowMaximized);
 #endif
     QApplication::restoreOverrideCursor();
@@ -770,7 +770,7 @@ QPushButton *cancel = new QPushButton(&pd);
     pd.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     pd.show();
 
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
 HRESULT hr = CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_INPROC_SERVER, IID_ITaskbarList3, (LPVOID*)&tl);
     if (SUCCEEDED(hr)) {
         hr = tl->HrInit();
@@ -787,12 +787,12 @@ CTSPSolver solver;
     solver.setCleanupOnCancel(false);
     connect(&solver, SIGNAL(routePartFound(int)), &pd, SLOT(setValue(int)));
     connect(&pd, SIGNAL(canceled()), &solver, SLOT(cancel()));
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
     if (tl != NULL)
         connect(&solver, SIGNAL(routePartFound(int)), SLOT(solverRoutePartFound(int)));
 #endif
 SStep *root = solver.solve(n, matrix);
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
     if (tl != NULL)
         disconnect(&solver, SIGNAL(routePartFound(int)), this, SLOT(solverRoutePartFound(int)));
 #endif
@@ -801,7 +801,7 @@ SStep *root = solver.solve(n, matrix);
     if (!root) {
         pd.reset();
         if (!solver.wasCanceled()) {
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
             if (tl != NULL) {
                 tl->SetProgressState(winId(), TBPF_ERROR);
             }
@@ -813,7 +813,7 @@ SStep *root = solver.solve(n, matrix);
         pd.setMaximum(0);
         pd.setCancelButton(NULL);
         pd.show();
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
         if (tl != NULL)
             tl->SetProgressState(winId(), TBPF_INDETERMINATE);
 #endif
@@ -828,7 +828,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
         solver.cleanup(true);
 #endif
         pd.reset();
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
         if (tl != NULL) {
             tl->SetProgressState(winId(), TBPF_NOPROGRESS);
             tl->Release();
@@ -842,7 +842,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
     pd.setMaximum(solver.getTotalSteps() + 1);
     pd.setValue(0);
 
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
     if (tl != NULL)
         tl->SetProgressValue(winId(), spinCities->value(), spinCities->value() + solver.getTotalSteps() + 1);
 #endif
@@ -859,7 +859,7 @@ QFont font = qvariant_cast<QFont>(settings->value("Output/Font", QFont(DEF_FONT_
         font.setStyleHint(QFont::TypeWriter);
         // Font size in pixels = graph node radius / 2.75.
         // See MainWindow::drawNode() for graph node radius calcualtion description.
-#ifndef Q_WS_S60
+#ifndef Q_OS_SYMBIAN
         font.setPixelSize(logicalDpiX() * (settings->value("Output/GraphWidth", DEF_GRAPH_WIDTH).toReal() / CM_IN_INCH) / 4.5 / 2.75);
 #else
         // Also, see again MainWindow::drawNode() for why is additional 1.3 divider added in Symbian.
@@ -912,7 +912,7 @@ int c = n = 1;
             pd.setCancelButton(NULL);
             pd.show();
             QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
             if (tl != NULL)
                 tl->SetProgressState(winId(), TBPF_INDETERMINATE);
 #endif
@@ -926,7 +926,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 #endif
             solutionText->clear();
             toggleSolutionActions(false);
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
             if (tl != NULL) {
                 tl->SetProgressState(winId(), TBPF_NOPROGRESS);
                 tl->Release();
@@ -936,7 +936,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
             return;
         }
         pd.setValue(n);
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
         if (tl != NULL)
             tl->SetProgressValue(winId(), spinCities->value() + n, spinCities->value() + solver.getTotalSteps() + 1);
 #endif
@@ -983,7 +983,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
     }
     pb->setFormat(tr("Generating footer"));
     pd.setValue(n);
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
     if (tl != NULL)
         tl->SetProgressValue(winId(), spinCities->value() + n, spinCities->value() + solver.getTotalSteps() + 1);
 #endif
@@ -1046,7 +1046,7 @@ QTextImageFormat img;
     pd.setMaximum(0);
     pd.setCancelButton(NULL);
     QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
     if (tl != NULL)
         tl->SetProgressState(winId(), TBPF_INDETERMINATE);
 #endif
@@ -1060,7 +1060,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 #endif
     toggleSolutionActions();
     tabWidget->setCurrentIndex(1);
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
     if (tl != NULL) {
         tl->SetProgressState(winId(), TBPF_NOPROGRESS);
         tl->Release();
@@ -1088,7 +1088,7 @@ void MainWindow::dataChanged(const QModelIndex &tl, const QModelIndex &br)
     }
 }
 
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
 void MainWindow::changeEvent(QEvent *ev)
 {
     if ((ev->type() == QEvent::ActivationChange) && isActiveWindow())
@@ -1121,7 +1121,7 @@ QRect availableGeometry = QApplication::desktop()->availableGeometry(0);
         QApplication::restoreOverrideCursor();
     }
 }
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
 
 void MainWindow::numCitiesChanged(int nCities)
 {
@@ -1137,12 +1137,12 @@ void MainWindow::printPreview(QPrinter *printer)
 }
 #endif // QT_NO_PRINTER
 
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
 void MainWindow::solverRoutePartFound(int n)
 {
     tl->SetProgressValue(winId(), n, spinCities->value() * 2);
 }
-#endif // Q_WS_WIN32
+#endif // Q_OS_WIN32
 
 void MainWindow::spinCitiesValueChanged(int n)
 {
@@ -1159,7 +1159,7 @@ int count = tspmodel->numCities();
 
 void MainWindow::check4Updates(bool silent)
 {
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
     if (silent)
         QProcess::startDetached("updater/Update.exe -name=\"TSPSG: TSP Solver and Generator\" -check=\"freeupdate\" -silentcheck");
     else {
@@ -1220,7 +1220,7 @@ qreal r; // Radius of graph node
     r = logicalDpiX() * (settings->value("Output/GraphWidth", DEF_GRAPH_WIDTH).toReal() / CM_IN_INCH) / 4.5;
     if (settings->value("Output/HQGraph", DEF_HQ_GRAPH).toBool())
         r *= HQ_FACTOR;
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     /*! \hack HACK: Solution graph on Symbian is visually larger than on
      *   Windows Mobile. This coefficient makes it about the same size.
      */
@@ -1371,7 +1371,7 @@ QColor hilight;
     else
         hilight.setHsv(color.hue(), color.saturation(), color.value() / 2);
 
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     /*!
      * \hack HACK: Fixing some weird behavior with default Symbian theme
      *  when text and background have the same color.
@@ -1380,7 +1380,7 @@ QColor hilight;
 #endif
     solutionText->document()->setDefaultStyleSheet(QString("* {color: %1;}").arg(color.name()));
     fmt_default.setForeground(QBrush(color));
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     }
 #endif
 
@@ -1548,7 +1548,7 @@ bool MainWindow::maybeSave()
 {
     if (!isWindowModified())
         return true;
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     int res = QSMessageBox(this).exec();
 #else
     int res = QMessageBox::warning(this, tr("Unsaved Changes"), tr("Would you like to save changes in the current task?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
@@ -1610,7 +1610,7 @@ SStep::SCandidate cand;
     cur.movePosition(QTextCursor::End);
 }
 
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
 void MainWindow::resizeEvent(QResizeEvent *ev)
 {
     static bool tb = toolBarMain->isVisible();
@@ -1630,7 +1630,7 @@ void MainWindow::resizeEvent(QResizeEvent *ev)
 
     QWidget::resizeEvent(ev);
 }
-#endif // Q_WS_S60
+#endif // Q_OS_SYMBIAN
 
 void MainWindow::retranslateUi(bool all)
 {
@@ -1691,7 +1691,7 @@ void MainWindow::retranslateUi(bool all)
     actionHelpAbout->setStatusTip(tr("About %1").arg(QCoreApplication::applicationName()));
 #endif // QT_NO_STATUSTIP
 
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     actionRightSoftKey->setText(tr("E&xit"));
 #endif
 }
@@ -1738,9 +1738,9 @@ void MainWindow::setupUi()
 {
     Ui_MainWindow::setupUi(this);
 
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     setWindowFlags(windowFlags() | Qt::WindowSoftkeysVisibleHint);
-#endif // Q_WS_S60
+#endif // Q_OS_SYMBIAN
 
     // File Menu
     actionFileNew->setIcon(GET_ICON("document-new"));
@@ -1792,7 +1792,7 @@ QStatusBar *statusbar = new QStatusBar(this);
     setStatusBar(statusbar);
 #endif // HANDHELD
 
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
     menuBar()->setDefaultAction(menuFile->menuAction());
 
 QScrollArea *scrollArea = new QScrollArea(this);
@@ -1803,15 +1803,15 @@ QScrollArea *scrollArea = new QScrollArea(this);
     setCentralWidget(scrollArea);
 #else
     setCentralWidget(tabWidget);
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
 
     //! \hack HACK: A little hack for toolbar icons to have a sane size.
 #if defined(HANDHELD) && !defined(Q_WS_MAEMO_5)
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     toolBarMain->setIconSize(QSize(logicalDpiX() / 5.2, logicalDpiY() / 5.2));
 #else
     toolBarMain->setIconSize(QSize(logicalDpiX() / 4, logicalDpiY() / 4));
-#endif // Q_WS_S60
+#endif // Q_OS_SYMBIAN
 #endif // HANDHELD && !Q_WS_MAEMO_5
 QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(actionFileSave));
     if (tb != NULL) {
@@ -1897,7 +1897,7 @@ QString cat = toolBarMain->windowTitle();
     toolBarMain->setVisible(settings->value("MainWindow/ToolbarVisible", true).toBool());
 #endif // HANDHELD
 
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     // Replace Exit on the right soft key with our own exit action.
     // This makes it translatable.
     actionRightSoftKey = new QAction(this);
@@ -1950,7 +1950,7 @@ void MainWindow::actionHelpReportBugTriggered()
     QDesktopServices::openUrl(QUrl("http://tspsg.info/goto/bugtracker"));
 }
 
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
 QSMessageBox::QSMessageBox(QWidget *parent)
     : QMessageBox(parent)
 {
@@ -1978,4 +1978,4 @@ void QSMessageBox::cancel(){
 void QSMessageBox::discard() {
     done(QMessageBox::Discard);
 }
-#endif // Q_WS_S60
+#endif // Q_OS_SYMBIAN

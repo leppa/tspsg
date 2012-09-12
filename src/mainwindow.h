@@ -35,7 +35,7 @@
 
 #include "tspmodel.h"
 
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
     // Forward declaration. A real one is in shobjidl.h
     struct ITaskbarList3;
 #endif
@@ -85,17 +85,17 @@ private slots:
 
     void dataChanged();
     void dataChanged(const QModelIndex &tl, const QModelIndex &br);
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
     void changeEvent(QEvent *ev);
     void desktopResized(int screen);
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
     void numCitiesChanged(int nCities);
 #ifndef QT_NO_PRINTER
     void printPreview(QPrinter *printer);
 #endif // QT_NO_PRINTER
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
     void solverRoutePartFound(int n);
-#endif // Q_WS_WIN32
+#endif // Q_OS_WIN32
     void spinCitiesValueChanged(int nCities);
 
 private:
@@ -113,18 +113,18 @@ private:
     QAction *actionFilePrint;
 #endif // QT_NO_PRINTER
     QAction *actionHelpCheck4Updates;
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     QAction *actionRightSoftKey;
 #endif
     QSettings *settings;
     CTSPModel *tspmodel;
-#ifdef Q_WS_WINCE_WM
+#ifdef Q_OS_WINCE_WM
     QRect currentGeometry;
-#endif // Q_WS_WINCE_WM
+#endif // Q_OS_WINCE_WM
 
-#ifdef Q_WS_WIN32
+#ifdef Q_OS_WIN32
     ITaskbarList3 *tl;
-#endif // Q_WS_WIN32
+#endif // Q_OS_WIN32
 
     // The solution graph SVG
     QPicture graph;
@@ -153,9 +153,9 @@ private:
     bool maybeSave();
     void outputMatrix(QTextCursor &cur, const TMatrix &matrix);
     void outputMatrix(QTextCursor &cur, const SStep &step);
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
     void resizeEvent(QResizeEvent *ev);
-#endif // Q_WS_S60
+#endif // Q_OS_SYMBIAN
     void retranslateUi(bool all = true);
     bool saveTask();
     void setFileName(const QString &fileName = tr("Untitled") + ".tspt");
@@ -164,7 +164,7 @@ private:
     void toggleTranclucency(bool enable);
 };
 
-#ifdef Q_WS_S60
+#ifdef Q_OS_SYMBIAN
 // A quickly hacked QMessageBox for Symbian that supports three buttons.
 class QSMessageBox: public QMessageBox {
     Q_OBJECT
@@ -174,6 +174,6 @@ private slots:
 public:
     QSMessageBox(QWidget *parent = 0);
 };
-#endif // Q_WS_S60
+#endif // Q_OS_SYMBIAN
 
 #endif // MAINWINDOW_H
