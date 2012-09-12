@@ -33,7 +33,7 @@ unix:!macx:!symbian:!maemo* {
     target.path = $$PREFIX/bin
     share.path = $$PREFIX/share/TSPSG
 #	l10n.path = $$PREFIX/share/TSPSG/l10n
-    docs.path = $$PREFIX/share/doc/TSPSG-$$VERSION
+    docs.path = $$PREFIX/share/doc/TSPSG-$$SHORT_VERSION
     desktop.files = resources/tspsg.desktop
     desktop.path = $$PREFIX/share/applications
     icon.files = resources/tspsg.png
