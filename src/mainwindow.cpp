@@ -778,7 +778,7 @@ HRESULT hr = CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_INPROC_SERVER, IID
             tl->Release();
             tl = NULL;
         } else {
-            tl->SetProgressValue(winId(), 0, n * 2);
+            tl->SetProgressValue(HWND(winId()), 0, n * 2);
         }
     }
 #endif
@@ -803,7 +803,7 @@ SStep *root = solver.solve(n, matrix);
         if (!solver.wasCanceled()) {
 #ifdef Q_OS_WIN32
             if (tl != NULL) {
-                tl->SetProgressState(winId(), TBPF_ERROR);
+                tl->SetProgressState(HWND(winId()), TBPF_ERROR);
             }
 #endif
             QApplication::alert(this);
@@ -815,7 +815,7 @@ SStep *root = solver.solve(n, matrix);
         pd.show();
 #ifdef Q_OS_WIN32
         if (tl != NULL)
-            tl->SetProgressState(winId(), TBPF_INDETERMINATE);
+            tl->SetProgressState(HWND(winId()), TBPF_INDETERMINATE);
 #endif
         QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
@@ -830,7 +830,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
         pd.reset();
 #ifdef Q_OS_WIN32
         if (tl != NULL) {
-            tl->SetProgressState(winId(), TBPF_NOPROGRESS);
+            tl->SetProgressState(HWND(winId()), TBPF_NOPROGRESS);
             tl->Release();
             tl = NULL;
         }
@@ -844,7 +844,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
 
 #ifdef Q_OS_WIN32
     if (tl != NULL)
-        tl->SetProgressValue(winId(), spinCities->value(), spinCities->value() + solver.getTotalSteps() + 1);
+        tl->SetProgressValue(HWND(winId()), spinCities->value(), spinCities->value() + solver.getTotalSteps() + 1);
 #endif
 
     solutionText->clear();
@@ -914,7 +914,7 @@ int c = n = 1;
             QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 #ifdef Q_OS_WIN32
             if (tl != NULL)
-                tl->SetProgressState(winId(), TBPF_INDETERMINATE);
+                tl->SetProgressState(HWND(winId()), TBPF_INDETERMINATE);
 #endif
 #ifndef QT_NO_CONCURRENT
 QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
@@ -928,7 +928,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
             toggleSolutionActions(false);
 #ifdef Q_OS_WIN32
             if (tl != NULL) {
-                tl->SetProgressState(winId(), TBPF_NOPROGRESS);
+                tl->SetProgressState(HWND(winId()), TBPF_NOPROGRESS);
                 tl->Release();
                 tl = NULL;
             }
@@ -938,7 +938,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
         pd.setValue(n);
 #ifdef Q_OS_WIN32
         if (tl != NULL)
-            tl->SetProgressValue(winId(), spinCities->value() + n, spinCities->value() + solver.getTotalSteps() + 1);
+            tl->SetProgressValue(HWND(winId()), spinCities->value() + n, spinCities->value() + solver.getTotalSteps() + 1);
 #endif
 
         cur.beginEditBlock();
@@ -985,7 +985,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
     pd.setValue(n);
 #ifdef Q_OS_WIN32
     if (tl != NULL)
-        tl->SetProgressValue(winId(), spinCities->value() + n, spinCities->value() + solver.getTotalSteps() + 1);
+        tl->SetProgressValue(HWND(winId()), spinCities->value() + n, spinCities->value() + solver.getTotalSteps() + 1);
 #endif
 
     cur.beginEditBlock();
@@ -1048,7 +1048,7 @@ QTextImageFormat img;
     QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 #ifdef Q_OS_WIN32
     if (tl != NULL)
-        tl->SetProgressState(winId(), TBPF_INDETERMINATE);
+        tl->SetProgressState(HWND(winId()), TBPF_INDETERMINATE);
 #endif
 #ifndef QT_NO_CONCURRENT
 QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
@@ -1062,7 +1062,7 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
     tabWidget->setCurrentIndex(1);
 #ifdef Q_OS_WIN32
     if (tl != NULL) {
-        tl->SetProgressState(winId(), TBPF_NOPROGRESS);
+        tl->SetProgressState(HWND(winId()), TBPF_NOPROGRESS);
         tl->Release();
         tl = NULL;
     }
@@ -1140,7 +1140,7 @@ void MainWindow::printPreview(QPrinter *printer)
 #ifdef Q_OS_WIN32
 void MainWindow::solverRoutePartFound(int n)
 {
-    tl->SetProgressValue(winId(), n, spinCities->value() * 2);
+    tl->SetProgressValue(HWND(winId()), n, spinCities->value() * 2);
 }
 #endif // Q_OS_WIN32
 
