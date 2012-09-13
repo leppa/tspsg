@@ -358,7 +358,7 @@
                  <string>Defines width of graph in solution output</string>
                 </property>
                 <property name="suffix">
-                 <string> cm</string>
+                 <string comment="Don't forget a space at the beginning!"> cm</string>
                 </property>
                 <property name="minimum">
                  <double>2.250000000000000</double>
@@ -607,7 +607,7 @@
                  </sizepolicy>
                 </property>
                 <property name="statusTip">
-                 <string>Font used for solution output</string>
+                 <string>Font used for solution text output</string>
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>

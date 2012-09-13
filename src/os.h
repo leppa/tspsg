@@ -31,6 +31,8 @@
 #ifndef OS_H
 #define OS_H
 
+#include <QtGlobal>
+
 // Some target arch detection.
 /*!
  * \def ARCH
