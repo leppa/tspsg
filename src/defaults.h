@@ -107,15 +107,15 @@
 #   define DEF_FONT_SIZE 10
 #endif // Q_OS_SYMBIAN
 //! Default solution text color
-#define DEF_TEXT_COLOR QPalette().color(QPalette::Text)
+#define DEF_TEXT_COLOR QApplication::palette().color(QPalette::Text)
 //! Default selected candidate color
 #define DEF_SELECTED_COLOR "#008000"
 //! Default alternate candidate color
 #define DEF_ALTERNATE_COLOR "#A00000"
 //! Default table border color
-#define DEF_TABLE_COLOR QPalette().color(QPalette::AlternateBase)
+#define DEF_TABLE_COLOR QApplication::palette().color(QPalette::AlternateBase)
 ////! Default solution background color
-//#define DEF_BACKGROUND_COLOR QPalette().color(QPalette::Base)
+//#define DEF_BACKGROUND_COLOR QApplication::palette().color(QPalette::Base)
 
 #ifndef QT_NO_PRINTER
 //! Default page size for printing
