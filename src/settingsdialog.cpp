@@ -79,7 +79,7 @@ QHBoxLayout *hbox;
     hbox = new QHBoxLayout();
     hbox->addSpacing(10);
     hbox->addWidget(cbHQGraph);
-    box->insertLayout(box->indexOf(cbGenerateGraph) + 2, hbox);
+    box->insertLayout(box->indexOf(cbGenerateGraph) + 3, hbox);
     connect(cbGenerateGraph, SIGNAL(toggled(bool)), cbHQGraph, SLOT(setEnabled(bool)));
 #endif
 
@@ -267,10 +267,8 @@ QVBoxLayout *vbox; // Layout helper
     settings->beginGroup("Output");
     cbGenerateGraph->setChecked(settings->value("GenerateGraph", DEF_GENERATE_GRAPH).toBool());
 
-#ifndef QT_NO_PRINTER
-    cbHQGraph->setEnabled(cbGenerateGraph->isChecked());
-    cbHQGraph->setChecked(settings->value("HQGraph", DEF_HQ_GRAPH).toBool());
-#endif
+    spinGraphWidth->setEnabled(cbGenerateGraph->isChecked());
+    spinGraphWidth->setValue(settings->value("GraphWidth", DEF_GRAPH_WIDTH).toDouble());
 
 #if !defined(NOSVG) && (QT_VERSION >= QT_VERSION_CHECK(4,5,0))
     comboGraphImageFormat->addItem("svg");
@@ -290,8 +288,15 @@ QStringList whitelist;
         comboGraphImageFormat->setCurrentIndex(comboGraphImageFormat->findText(DEF_GRAPH_IMAGE_FORMAT, Qt::MatchFixedString));
     labelGraphImageFormat->setEnabled(cbGenerateGraph->isChecked());
     comboGraphImageFormat->setEnabled(cbGenerateGraph->isChecked());
-    cbEmbedGraphIntoHTML->setChecked(settings->value("EmbedGraphIntoHTML", DEF_EMBED_GRAPH_INTO_HTML).toBool());
+
+#ifndef QT_NO_PRINTER
+    cbHQGraph->setEnabled(cbGenerateGraph->isChecked());
+    cbHQGraph->setChecked(settings->value("HQGraph", DEF_HQ_GRAPH).toBool());
+#endif
+
+    labelGraphWidth->setEnabled(cbGenerateGraph->isChecked());
     cbEmbedGraphIntoHTML->setEnabled(cbGenerateGraph->isChecked());
+    cbEmbedGraphIntoHTML->setChecked(settings->value("EmbedGraphIntoHTML", DEF_EMBED_GRAPH_INTO_HTML).toBool());
 
     cbShowMatrix->setChecked(settings->value("ShowMatrix", DEF_SHOW_MATRIX).toBool());
     cbCitiesLimit->setEnabled(cbShowMatrix->isChecked());
@@ -405,15 +410,16 @@ bool old = settings->value("UseTranslucency", DEF_USE_TRANSLUCENCY).toBool();
     settings->beginGroup("Output");
     settings->setValue("GenerateGraph", cbGenerateGraph->isChecked());
     if (cbGenerateGraph->isChecked()) {
-#ifndef QT_NO_PRINTER
-        settings->setValue("HQGraph", cbHQGraph->isChecked());
-#endif
+        settings->setValue("GraphWidth", spinGraphWidth->value());
         if (cbGenerateGraph->isChecked()) {
             if (comboGraphImageFormat->currentIndex() >= 0)
                 settings->setValue("GraphImageFormat", comboGraphImageFormat->currentText());
             else
                 settings->setValue("GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT);
         }
+#ifndef QT_NO_PRINTER
+        settings->setValue("HQGraph", cbHQGraph->isChecked());
+#endif
         settings->setValue("EmbedGraphIntoHTML", cbEmbedGraphIntoHTML->isChecked());
     }
     settings->setValue("ShowMatrix", cbShowMatrix->isChecked());

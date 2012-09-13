@@ -319,10 +319,75 @@
              </widget>
             </item>
             <item>
+             <layout class="QHBoxLayout" name="_16">
+              <item>
+               <spacer name="spacer_10">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>10</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelGraphWidth">
+                <property name="statusTip">
+                 <string>Defines width of graph in solution output</string>
+                </property>
+                <property name="text">
+                 <string>Solution graph width:</string>
+                </property>
+                <property name="buddy">
+                 <cstring>comboGraphImageFormat</cstring>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="spinGraphWidth">
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="statusTip">
+                 <string>Defines width of graph in solution output</string>
+                </property>
+                <property name="suffix">
+                 <string> cm</string>
+                </property>
+                <property name="minimum">
+                 <double>2.250000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>18.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.100000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="spacer_12">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>1</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item>
              <layout class="QHBoxLayout" name="_10">
-              <property name="spacing">
-               <number>5</number>
-              </property>
               <item>
                <spacer name="spacer_7">
                 <property name="orientation">
@@ -341,6 +406,9 @@
               </item>
               <item>
                <widget class="QLabel" name="labelGraphImageFormat">
+                <property name="statusTip">
+                 <string>What image format to use for graph when saving solution as HTML</string>
+                </property>
                 <property name="text">
                  <string>Save solution graph as</string>
                 </property>
@@ -422,9 +490,6 @@
             </item>
             <item>
              <layout class="QHBoxLayout" name="_12">
-              <property name="spacing">
-               <number>0</number>
-              </property>
               <item>
                <spacer name="spacer_3">
                 <property name="orientation">
@@ -932,6 +997,38 @@
     <hint type="destinationlabel">
      <x>136</x>
      <y>103</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbGenerateGraph</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>labelGraphWidth</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>157</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>100</x>
+     <y>147</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbGenerateGraph</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinGraphWidth</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>157</x>
+     <y>84</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>212</x>
+     <y>147</y>
     </hint>
    </hints>
   </connection>
