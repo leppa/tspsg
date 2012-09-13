@@ -64,7 +64,11 @@ UI_DIR = tmp
 translations.name = Translations
 translations.input = TRANSLATIONS
 translations.output = $$_PRO_FILE_PWD_/l10n/${QMAKE_FILE_BASE}.qm
-translations.commands = $$[QT_INSTALL_BINS]/lrelease ${QMAKE_FILE_IN}
+freebsd-* {
+    translations.commands = $$[QT_INSTALL_BINS]/lrelease-qt$${QT_MAJOR_VERSION} ${QMAKE_FILE_IN}
+} else {
+    translations.commands = $$[QT_INSTALL_BINS]/lrelease ${QMAKE_FILE_IN}
+}
 translations.CONFIG = no_link
 QMAKE_EXTRA_COMPILERS += translations
 PRE_TARGETDEPS += compiler_translations_make_all
