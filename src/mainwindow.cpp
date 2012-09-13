@@ -1519,9 +1519,10 @@ QAction *a;
 #endif
         a->setCheckable(true);
         a->setActionGroup(groupSettingsStyleList);
-        if ((style == settings->value("Stlye").toString())
+        QRegExp rx(QString("^Q?%1(::(Style)?)?$").arg(QRegExp::escape(style)), Qt::CaseInsensitive);
+        if ((style == settings->value("Style").toString()) || QApplication::style()->objectName().contains(rx)
 #ifndef Q_WS_MAEMO_5
-            || QString(QApplication::style()->metaObject()->className()).contains(QRegExp(QString("^Q?%1(Style)?$").arg(QRegExp::escape(style)), Qt::CaseInsensitive))
+            || QString(QApplication::style()->metaObject()->className()).contains(rx)
 #endif
         ) {
             a->setChecked(true);
