@@ -42,7 +42,7 @@ _C_ _R_ _Y_ _P_ _T_
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
+    settings = initSettings(this);
 
     if (settings->contains("Style")) {
 QStyle *s = QStyleFactory::create(settings->value("Style").toString());

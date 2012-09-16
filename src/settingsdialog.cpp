@@ -233,7 +233,7 @@ QVBoxLayout *vbox; // Layout helper
     labelHint->setText(labelHint->statusTip());
 #endif // HANDHELD
 
-    settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
+    settings = initSettings(this);
     settings->remove("SettingsReset");
 
     cbAutosize->setChecked(settings->value("Autosize", DEF_AUTOSIZE).toBool());

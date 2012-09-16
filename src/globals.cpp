@@ -23,6 +23,31 @@
 
 #include "globals.h"
 
+#ifdef Q_OS_WINCE_WM
+#   include <shellapi.h>
+#endif
+
+QSettings *initSettings(QObject *parent)
+{
+#ifdef Q_OS_WINCE_WM
+    /*!
+     * \hack HACK: On Windows Mobile the way Qt tries to get path for saving
+     *  settings doesn't always work. This workaround tries to fix it.
+     */
+    if (!QDesktopServices::storageLocation(QDesktopServices::DataLocation).isEmpty()) {
+#endif // Q_OS_WINCE_WM
+    return new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", parent);
+#ifdef Q_OS_WINCE_WM
+    } else {
+        wchar_t path[MAX_PATH];
+        SHGetSpecialFolderPath(0, path, 0x001a, FALSE);
+        QString fileName = QString::fromWCharArray(path);
+        fileName.append("\\TSPSG\\tspsg.ini");
+        return new QSettings(fileName, QSettings::IniFormat, parent);
+    }
+#endif // Q_OS_WINCE_WM
+}
+
 #ifndef HANDHELD
 void toggleStyle(QWidget *widget, bool enable)
 {

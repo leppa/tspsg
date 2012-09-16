@@ -153,6 +153,13 @@ inline QByteArray toWrappedBase64(const QByteArray &in)
     return out;
 }
 
+/*!
+ * \brief Creates QSettings instance with TSPSG-specific options.
+ * \param parent A QObject which will become parent for new QSetting instance.
+ * \return A pointer to new QSettings instance.
+ */
+QSettings *initSettings(QObject *parent);
+
 #ifndef HANDHELD
 /*!
  * \brief Enables or disables a mask for the \a widget.

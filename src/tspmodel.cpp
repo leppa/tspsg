@@ -30,7 +30,7 @@
 CTSPModel::CTSPModel(QObject *parent)
     : QAbstractTableModel(parent), nCities(0)
 {
-    settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, "TSPSG", "tspsg", this);
+    settings = initSettings(this);
 }
 
 /*!

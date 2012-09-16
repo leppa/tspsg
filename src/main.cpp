@@ -91,6 +91,13 @@ QWidget *w = 0;
 
 #ifdef HANDHELD
     mainwindow.showMaximized();
+#ifdef Q_OS_WINCE_WM
+    /*!
+     * \hack HACK: For some reason showMaximized() stopped working on
+     *  Windows Mobile. This workaround works all the time.
+     */
+    mainwindow.setWindowState(Qt::WindowMaximized);
+#endif // Q_OS_WINCE_WM
 #else // HANDHELD
     mainwindow.show();
 #endif // HANDHELD
