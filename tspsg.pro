@@ -42,14 +42,16 @@ DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
     BUILD_RELEASE=$$BUILD_RELEASE \
     BUILD_NUMBER=$$BUILD_NUMBER
 
-CONFIG(release, debug|release) {
-    OBJECTS_DIR = release
-    D =
-} else {
-    OBJECTS_DIR = debug
-    DEFINES += DEBUG
-#	CONFIG += console
-    D = d
+!debug_and_release|build_pass {
+    CONFIG(debug, debug|release) {
+        OBJECTS_DIR = debug
+        DEFINES += DEBUG
+#	    CONFIG += console
+        D = d
+    } else {
+        OBJECTS_DIR = release
+        D =
+    }
 }
 DESTDIR = bin
 TARGET = tspsg$${D}

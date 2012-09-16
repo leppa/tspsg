@@ -45,8 +45,18 @@ unix:!macx:!symbian:!maemo* {
 macx {
 }
 
-# For win32: everything goes to "%PROGRAMFILES%\TSPSG" and subfolders.
-win32 {
+wince* {
+    # For wince: we are deploying to %CSIDL_PROGRAM_FILES%\TSPSG.
+    # This is automatically set by qmake when creating VS Solution file.
+    share.sources = $$share.files
+#	l10n.sources = $$l10n.files \
+#		$$[QT_INSTALL_TRANSLATIONS]/*.qm
+    docs.sources = $$docs.files
+
+    DEPLOYMENT += target share docs # l10n
+    DEPLOYMENT_PLUGIN += qjpeg qtiff
+} else:win32 {
+    # For win32: everything goes to "%PROGRAMFILES%\TSPSG" and subfolders.
     isEmpty(PREFIX) {
         PREFIX = "$$(PROGRAMFILES)"
     }
@@ -65,24 +75,7 @@ win32 {
         $$[QT_INSTALL_PLUGINS]/imageformats/qtiff$${D}4.dll
     imageformats.path = $$PREFIX/TSPSG/imageformats
     INSTALLS += share imageformats
-}
 
-# For wince: we are deploying to \Program Files\TSPSG.
-wince* {
-    isEmpty(PREFIX) {
-        PREFIX = "\\Program Files"
-    }
-    share.sources = $$share.files
-#	l10n.sources = $$l10n.files \
-#		$$[QT_INSTALL_TRANSLATIONS]/*.qm
-    docs.sources = $$docs.files
-
-    DEPLOYMENT += target share docs # l10n
-    DEPLOYMENT_PLUGIN += qjpeg qtiff
-}
-
-# win32 and wince common
-win* {
     target.path = $$PREFIX/TSPSG
     share.path = $$PREFIX/TSPSG
 #	l10n.path = $$PREFIX/TSPSG/l10n
