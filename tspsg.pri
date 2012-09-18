@@ -46,6 +46,8 @@ handheld {
 }
 
 win* {
+    # We add manifest to resources manually
+    CONFIG -= embed_manifest_exe
     RC_FILE = resources/tspsg.rc
 }
 

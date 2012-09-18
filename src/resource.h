@@ -31,3 +31,5 @@
 #define VS_VERSION_INFO 1
 //! Main application icon resource ID
 #define IDI_APPICON 101
+//! Manifest file ID
+#define RT_MANIFEST 24

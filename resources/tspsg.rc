@@ -63,3 +63,6 @@ BEGIN
         VALUE "Translation", 0x0, 1200
     END
 END
+
+// Manifest file
+1 RT_MANIFEST "tspsg.exe.manifest"
