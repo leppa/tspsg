@@ -1806,7 +1806,7 @@ void QtToolBarListWidget::dropEvent(QDropEvent *event)
     Creates a toolbar dialog with the given \a parent and the specifed
     window \a flags.
 */
-QtToolBarDialog::QtToolBarDialog(QWidget *parent, Qt::WFlags flags)
+QtToolBarDialog::QtToolBarDialog(QWidget *parent, Qt::WindowFlags flags)
     : QDialog(parent, flags)
 {
     d_ptr = new QtToolBarDialogPrivate;

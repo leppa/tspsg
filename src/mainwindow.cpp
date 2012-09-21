@@ -306,9 +306,9 @@ QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filte
         QFileInfo fi(selectedFile);
         QString format = settings->value("Output/GraphImageFormat", DEF_GRAPH_IMAGE_FORMAT).toString();
 #if !defined(NOSVG)
-        if (!QImageWriter::supportedImageFormats().contains(format.toAscii()) && (format != "svg")) {
+        if (!QImageWriter::supportedImageFormats().contains(format.toLatin1()) && (format != "svg")) {
 #else // NOSVG
-        if (!QImageWriter::supportedImageFormats().contains(format.toAscii())) {
+        if (!QImageWriter::supportedImageFormats().contains(format.toLatin1())) {
 #endif // NOSVG
             format = DEF_GRAPH_IMAGE_FORMAT;
             settings->remove("Output/GraphImageFormat");
@@ -1316,7 +1316,7 @@ QByteArray MainWindow::generateImage(const QString &format)
         p.end();
         QImageWriter pic;
         pic.setDevice(&buf);
-        pic.setFormat(format.toAscii());
+        pic.setFormat(format.toLatin1());
         if (pic.supportsOption(QImageIOHandler::Description)) {
             pic.setText("Title", "Solution Graph");
             pic.setText("Software", QCoreApplication::applicationName());
