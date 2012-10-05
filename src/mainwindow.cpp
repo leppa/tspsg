@@ -22,6 +22,62 @@
  */
 
 #include "mainwindow.h"
+#include "settingsdialog.h"
+#include "tspmodel.h"
+
+#include <QBuffer>
+#include <QCloseEvent>
+#include <QDate>
+#include <QDesktopServices>
+#include <QDesktopWidget>
+#include <QFileDialog>
+#include <QImageWriter>
+#include <QLibraryInfo>
+#include <QMessageBox>
+#include <QPageSetupDialog>
+#include <QPainter>
+#include <QProgressBar>
+#include <QProgressDialog>
+#include <QSettings>
+#include <QStatusBar>
+#include <QStyleFactory>
+#include <QTextCodec>
+#include <QTextDocumentWriter>
+#include <QTextBrowser>
+#include <QTextStream>
+#include <QTextTable>
+#include <QTranslator>
+
+#ifdef Q_OS_WINCE_WM
+#   include <QScrollArea>
+#endif
+
+#ifndef QT_NO_PRINTER
+#   include <QPrinter>
+#   include <QPrintDialog>
+#   include <QPrintPreviewDialog>
+#endif
+
+#if !defined(NOSVG)
+#   include <QSvgGenerator>
+#endif // NOSVG
+
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#   include <QtConcurrent>
+#endif
+
+#include "os.h"
+
+#ifndef HANDHELD
+#   include "qttoolbardialog.h"
+    // Eyecandy
+#   include "qtwin.h"
+#endif // HANDHELD
+
+#ifndef QT_NO_PRINTER
+    Q_DECLARE_METATYPE(QPrinter::PageSize)
+    Q_DECLARE_METATYPE(QPrinter::Orientation)
+#endif
 
 #ifdef Q_OS_WIN32
 #   include "shobjidl.h"
@@ -31,6 +87,35 @@
 #include "_.h"
 _C_ _R_ _Y_ _P_ _T_
 #endif
+
+// BEGIN HELPER FUNCTIONS
+/*!
+ * \brief Checks whether \a x contains an integer value.
+ * \param x A value to check.
+ * \return \c true if \a x countains an integer, oherwise \c false.
+ */
+inline bool isInteger(double x)
+{
+double i;
+    return (modf(x, &i) == 0.0);
+}
+
+/*!
+ * \brief Converts \a in into Base64 format with lines wrapped at 64 characters.
+ * \param in A byte array to be converted.
+ * \return Converted byte array.
+ */
+inline QByteArray toWrappedBase64(const QByteArray &in)
+{
+    QByteArray out, base64(in.toBase64());
+    for (int i = 0; i <= base64.size() - 64; i += 64) {
+        out.append(QByteArray::fromRawData(base64.data() + i, 64)).append('\n');
+    }
+    if (int rest = base64.size() % 64)
+        out.append(QByteArray::fromRawData(base64.data() + base64.size() - rest, rest));
+    return out;
+}
+// END HELPER FUNCTIONS
 
 /*!
  * \brief Class constructor.
@@ -570,7 +655,7 @@ QString tag;
     tag = tr(" from git commit <b>%1</b>").arg(QString(REVISION_STR).left(10));
 #endif
     about += tr("Build <b>%1</b>, built on <b>%2</b> at <b>%3</b>%5 with <b>%4</b> compiler.").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__).arg(COMPILER).arg(tag) + "<br>";
-    about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), CTSPSolver::getVersionId());
+    about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), TSPSolver::CTSPSolver::getVersionId());
     about += "<br>";
     about += tr("This program is free software: you can redistribute it and/or modify<br>\n"
         "it under the terms of the GNU General Public License as published by<br>\n"
@@ -737,10 +822,10 @@ void MainWindow::buttonRandomClicked()
 
 void MainWindow::buttonSolveClicked()
 {
-TMatrix matrix;
-QList<double> row;
-int n = spinCities->value();
-bool ok;
+    TSPSolver::TMatrix matrix;
+    QList<double> row;
+    int n = spinCities->value();
+    bool ok;
     for (int r = 0; r < n; r++) {
         row.clear();
         for (int c = 0; c < n; c++) {
@@ -783,7 +868,7 @@ HRESULT hr = CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_INPROC_SERVER, IID
     }
 #endif
 
-CTSPSolver solver;
+    TSPSolver::CTSPSolver solver;
     solver.setCleanupOnCancel(false);
     connect(&solver, SIGNAL(routePartFound(int)), &pd, SLOT(setValue(int)));
     connect(&pd, SIGNAL(canceled()), &solver, SLOT(cancel()));
@@ -791,7 +876,7 @@ CTSPSolver solver;
     if (tl != NULL)
         connect(&solver, SIGNAL(routePartFound(int)), SLOT(solverRoutePartFound(int)));
 #endif
-SStep *root = solver.solve(n, matrix);
+    TSPSolver::SStep *root = solver.solve(n, matrix);
 #ifdef Q_OS_WIN32
     if (tl != NULL)
         disconnect(&solver, SIGNAL(routePartFound(int)), this, SLOT(solverRoutePartFound(int)));
@@ -820,7 +905,7 @@ SStep *root = solver.solve(n, matrix);
         QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
 #ifndef QT_NO_CONCURRENT
-QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
+        QFuture<void> f = QtConcurrent::run(&solver, &TSPSolver::CTSPSolver::cleanup, false);
         while (!f.isFinished()) {
             QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
         }
@@ -898,14 +983,14 @@ QTextCursor cur(doc);
     }
     cur.insertHtml("<hr>");
     cur.insertBlock(fmt_paragraph);
-int imgpos = cur.position();
+    int imgpos = cur.position();
     cur.insertText(tr("Variant #%1 Solution").arg(spinVariant->value()), fmt_default);
     cur.endEditBlock();
 
-SStep *step = root;
-int c = n = 1;
+    TSPSolver::SStep *step = root;
+    int c = n = 1;
     pb->setFormat(tr("Generating step %v"));
-    while ((step->next != SStep::NoNextStep) && (c < spinCities->value())) {
+    while ((step->next != TSPSolver::SStep::NoNextStep) && (c < spinCities->value())) {
         if (pd.wasCanceled()) {
             pd.setLabelText(tr("Memory cleanup..."));
             pd.setMaximum(0);
@@ -917,7 +1002,7 @@ int c = n = 1;
                 tl->SetProgressState(HWND(winId()), TBPF_INDETERMINATE);
 #endif
 #ifndef QT_NO_CONCURRENT
-QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
+            QFuture<void> f = QtConcurrent::run(&solver, &TSPSolver::CTSPSolver::cleanup, false);
             while (!f.isFinished()) {
                 QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
             }
@@ -951,9 +1036,9 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
             cur.insertBlock(fmt_lastparagraph);
         else
             cur.insertBlock(fmt_paragraph);
-        cur.insertText(tr("Selected route %1 %2 part.").arg((step->next == SStep::RightBranch) ? tr("with") : tr("without")).arg(tr("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)), fmt_default);
+        cur.insertText(tr("Selected route %1 %2 part.").arg((step->next == TSPSolver::SStep::RightBranch) ? tr("with") : tr("without")).arg(tr("(%1;%2)").arg(step->candidate.nRow + 1).arg(step->candidate.nCol + 1)), fmt_default);
         if (!step->alts.empty()) {
-            SStep::SCandidate cand;
+            TSPSolver::SStep::SCandidate cand;
             QString alts;
             foreach(cand, step->alts) {
                 if (!alts.isEmpty())
@@ -973,10 +1058,10 @@ QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
         }
         n++;
 
-        if (step->next == SStep::RightBranch) {
+        if (step->next == TSPSolver::SStep::RightBranch) {
             c++;
             step = step->prNode;
-        } else if (step->next == SStep::LeftBranch) {
+        } else if (step->next == TSPSolver::SStep::LeftBranch) {
             step = step->plNode;
         } else
             break;
@@ -1051,7 +1136,7 @@ QTextImageFormat img;
         tl->SetProgressState(HWND(winId()), TBPF_INDETERMINATE);
 #endif
 #ifndef QT_NO_CONCURRENT
-QFuture<void> f = QtConcurrent::run(&solver, &CTSPSolver::cleanup, false);
+    QFuture<void> f = QtConcurrent::run(&solver, &TSPSolver::CTSPSolver::cleanup, false);
     while (!f.isFinished()) {
         QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
     }
@@ -1210,7 +1295,7 @@ QFileInfo fi(ev->mimeData()->urls().first().toLocalFile());
     }
 }
 
-void MainWindow::drawNode(QPainter &pic, int nstep, bool left, SStep *step)
+void MainWindow::drawNode(QPainter &pic, int nstep, bool left, TSPSolver::SStep *step)
 {
 qreal r; // Radius of graph node
     // We calculate r from the full graph width in centimeters:
@@ -1267,7 +1352,7 @@ QFont font;
     if (nstep == 1) {
         pic.drawLine(QPointF(x, y - r), QPointF(r * 2.25, y - 2 * r));
     } else if (nstep > 1) {
-        pic.drawLine(QPointF(x, y - r), QPointF((step->pNode->pNode->next == SStep::RightBranch) ? r * 3.5 : r, y - 2 * r));
+        pic.drawLine(QPointF(x, y - r), QPointF((step->pNode->pNode->next == TSPSolver::SStep::RightBranch) ? r * 3.5 : r, y - 2 * r));
     }
 
 }
@@ -1562,7 +1647,7 @@ bool MainWindow::maybeSave()
         return true;
 }
 
-void MainWindow::outputMatrix(QTextCursor &cur, const TMatrix &matrix)
+void MainWindow::outputMatrix(QTextCursor &cur, const TSPSolver::TMatrix &matrix)
 {
 int n = spinCities->value();
 QTextTable *table = cur.insertTable(n, n, fmt_table);
@@ -1582,7 +1667,7 @@ QTextTable *table = cur.insertTable(n, n, fmt_table);
     cur.movePosition(QTextCursor::End);
 }
 
-void MainWindow::outputMatrix(QTextCursor &cur, const SStep &step)
+void MainWindow::outputMatrix(QTextCursor &cur, const TSPSolver::SStep &step)
 {
 int n = spinCities->value();
 QTextTable *table = cur.insertTable(n, n, fmt_table);
@@ -1596,7 +1681,7 @@ QTextTable *table = cur.insertTable(n, n, fmt_table);
             else if ((r == step.candidate.nRow) && (c == step.candidate.nCol))
                 cur.insertText(isInteger(step.matrix.at(r).at(c)) ? QString("%1").arg(step.matrix.at(r).at(c)) : QString("%1").arg(step.matrix.at(r).at(c), 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()), fmt_selected);
             else {
-SStep::SCandidate cand;
+    TSPSolver::SStep::SCandidate cand;
                 cand.nRow = r;
                 cand.nCol = c;
                 if (step.alts.contains(cand))

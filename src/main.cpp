@@ -22,6 +22,13 @@
  */
 
 #include "mainwindow.h"
+
+#include <QDateTime>
+#include <QFontDatabase>
+#include <QTextCodec>
+#include <QTranslator>
+#include "version.h"
+
 #if QT_VERSION < QT_VERSION_CHECK(4,6,0)
 #   ifdef Q_CC_MSVC
 #       pragma message("WARNING: You are using Qt version < 4.6. Application will not support some non-critical features.")

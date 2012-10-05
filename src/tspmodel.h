@@ -30,6 +30,10 @@
 
 #include "globals.h"
 
+#include <QAbstractTableModel>
+#include <QDataStream>
+#include <QVector>
+
 /*!
  * \brief This class implements table model for manipulating a task.
  * \author Copyright &copy; 2007-2012 Oleksii Serdiuk <contacts[at]oleksii[dot]name>

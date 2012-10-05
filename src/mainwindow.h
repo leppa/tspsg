@@ -31,16 +31,25 @@
 #include "globals.h"
 
 #include "ui_mainwindow.h"
-#include "settingsdialog.h"
+#include "tspsolver.h"
 
-#include "tspmodel.h"
+#include <QPicture>
 
 #ifdef Q_OS_WIN32
     // Forward declaration. A real one is in shobjidl.h
     struct ITaskbarList3;
 #endif
 
-using namespace TSPSolver;
+class CTSPModel;
+
+#ifndef HANDHELD
+    class QtToolbarDialog;
+    class QtToolBarManager;
+#endif
+
+#ifndef QT_NO_PRINTER
+    class QPrinter;
+#endif
 
 /*!
  * \brief Class for handling Main Window UI and logic.
@@ -142,7 +151,7 @@ private:
     void check4Updates(bool silent = false);
     void closeEvent(QCloseEvent *ev);
     void dragEnterEvent(QDragEnterEvent *ev);
-    void drawNode(QPainter &pic, int nstep, bool left = false, SStep *step = NULL);
+    void drawNode(QPainter &pic, int nstep, bool left = false, TSPSolver::SStep *step = NULL);
     void dropEvent(QDropEvent *ev);
     QByteArray generateImage(const QString &format);
     void initDocStyleSheet();
@@ -151,8 +160,8 @@ private:
     void loadStyleList();
     void loadToolbarList();
     bool maybeSave();
-    void outputMatrix(QTextCursor &cur, const TMatrix &matrix);
-    void outputMatrix(QTextCursor &cur, const SStep &step);
+    void outputMatrix(QTextCursor &cur, const TSPSolver::TMatrix &matrix);
+    void outputMatrix(QTextCursor &cur, const TSPSolver::SStep &step);
 #ifdef Q_OS_SYMBIAN
     void resizeEvent(QResizeEvent *ev);
 #endif // Q_OS_SYMBIAN
@@ -165,6 +174,7 @@ private:
 };
 
 #ifdef Q_OS_SYMBIAN
+#include <QMessageBox>
 // A quickly hacked QMessageBox for Symbian that supports three buttons.
 class QSMessageBox: public QMessageBox {
     Q_OBJECT

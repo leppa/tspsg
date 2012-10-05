@@ -23,15 +23,21 @@
 
 #include "tspmodel.h"
 
+#include <QApplication>
+#include <QFile>
+#include <QMessageBox>
+#include <QSettings>
+#include <QtCore/qmath.h>
+
+#include "tspsolver.h"
+#include "os.h"
+
 /*!
  * \brief Class constructor.
  * \param parent The parent of the table model.
  */
 CTSPModel::CTSPModel(QObject *parent)
-    : QAbstractTableModel(parent), nCities(0)
-{
-    settings = initSettings(this);
-}
+    : QAbstractTableModel(parent), settings(initSettings(this)), nCities(0) {}
 
 /*!
  * \brief Resets the table, setting all its elements to 0.

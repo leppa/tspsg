@@ -26,5 +26,20 @@
  */
 
 #ifdef __cplusplus
-	#include "globals.h"
+#   include "globals.h"
+#   include <QtCore>
+#   include <QtGui>
+#   if defined(QT_NO_SVG) && !defined(NOSVG)
+#       define NOSVG
+#   endif
+#   if !defined(NOSVG)
+#       include <QtSvg>
+#   endif // NOSVG
+#   if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#       include <QtConcurrent>
+#       include <QtPrintSupport>
+#   endif
+#   ifndef HANDHELD
+#       include "qttoolbardialog.h"
+#   endif
 #endif // __cplusplus

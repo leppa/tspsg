@@ -23,6 +23,25 @@
 
 #include "settingsdialog.h"
 
+#include <QColorDialog>
+#include <QFontDialog>
+#include <QImageWriter>
+#include <QMessageBox>
+#include <QSettings>
+
+#ifdef HANDHELD
+#   include <QScrollArea>
+#endif
+
+#if !defined(QT_NO_STATUSTIP)
+#   include <QStatusTipEvent>
+#endif
+
+#ifndef HANDHELD
+    // Eyecandy
+#   include "qtwin.h"
+#endif // HANDHELD
+
 /*!
  * \brief Class constructor.
  * \param parent Settings Dialog parent widget.

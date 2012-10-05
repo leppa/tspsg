@@ -28,8 +28,12 @@
 #ifndef TSPSOLVER_H
 #define TSPSOLVER_H
 
-#include <QtCore>
 #include <limits>
+
+#include <QHash>
+#include <QMutex>
+#include <QObject>
+#include <QStringList>
 
 /*!
  * \def INFINITY

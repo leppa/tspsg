@@ -23,6 +23,12 @@
 
 #include "tspsolver.h"
 
+#include <QCoreApplication>
+
+#ifdef DEBUG
+#   include <QDebug>
+#endif
+
 //! \internal \brief A short for maximum double, used internally in the solution algorithm.
 #define MAX_DOUBLE std::numeric_limits<double>::max()
 

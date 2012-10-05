@@ -23,9 +23,23 @@
 
 #include "globals.h"
 
+#include <QFile>
+#include <QObject>
+#include <QSettings>
+#include <QWidget>
+
 #ifdef Q_OS_WINCE_WM
 #   include <shellapi.h>
 #endif
+
+bool hasUpdater()
+{
+#ifdef Q_OS_WIN32
+    return QFile::exists("updater/Update.exe");
+#else // Q_OS_WIN32
+    return false;
+#endif // Q_OS_WIN32
+}
 
 QSettings *initSettings(QObject *parent)
 {

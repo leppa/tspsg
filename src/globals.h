@@ -29,7 +29,7 @@
 #define GLOBALS_H
 
 // INCLUDES
-#include <QtCore>
+#include <QtGlobal>
 #if QT_VERSION < QT_VERSION_CHECK(4,5,0)
 #   error You are using Qt version < 4.5 but minimum required version is 4.5.0. Compilation aborted.
 #endif
@@ -38,34 +38,12 @@
 #   define HANDHELD
 #   define QT_NO_STATUSTIP
 #endif
-#include <QtGui>
 #if defined(QT_NO_SVG) && !defined(NOSVG)
 #   define NOSVG
 #endif
-#if !defined(NOSVG)
-#   include <QtSvg>
-#endif // NOSVG
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-#   include <QtConcurrent>
-#   include <QtPrintSupport>
-#endif
 
-#ifndef HANDHELD
-#   include "qttoolbardialog.h"
-#endif
-
-// Version info
-#include "version.h"
-// OS and ARCH detection
-#include "os.h"
 // TSPSG Defaults
 #include "defaults.h"
-// TSPSolver
-#include "tspsolver.h"
-#ifndef HANDHELD
-    // Eyecandy
-#   include "qtwin.h"
-#endif // HANDHELD
 
 // DEFINES
 //! Maximum available number of cities
@@ -83,7 +61,7 @@
 #endif // PATH_L10N
 /*!
  * \def PATH_DOCS
- * \brief Bath to documentation files.
+ * \brief Path to documentation files.
  */
 #ifndef PATH_DOCS
 #   define PATH_DOCS "help"
@@ -110,49 +88,16 @@
 //! Factor for high quality graph generation
 #define HQ_FACTOR 2
 
-// FUNCTIONS
-/*!
- * \brief Checks whether \a x contains an integer value.
- * \param x A value to check.
- * \return \c true if \a x countains an integer, oherwise \c false.
- */
-inline bool isInteger(double x)
-{
-double i;
-    return (modf(x, &i) == 0.0);
-}
-
 /*!
  * \brief Checks whether the updater app is installed/available.
  * \return \c true if updater app is available, oherwise \c false.
  * \note The updater app is only available under Windows at this moment.
  *  On other systems this function always returns \c false.
  */
-inline bool hasUpdater()
-{
-#ifdef Q_OS_WIN32
-    return QFile::exists("updater/Update.exe");
-#else // Q_OS_WIN32
-    return false;
-#endif // Q_OS_WIN32
-}
+bool hasUpdater();
 
-/*!
- * \brief Converts \a in into Base64 format with lines wrapped at 64 characters.
- * \param in A byte array to be converted.
- * \return Converted byte array.
- */
-inline QByteArray toWrappedBase64(const QByteArray &in)
-{
-    QByteArray out, base64(in.toBase64());
-    for (int i = 0; i <= base64.size() - 64; i += 64) {
-        out.append(QByteArray::fromRawData(base64.data() + i, 64)).append('\n');
-    }
-    if (int rest = base64.size() % 64)
-        out.append(QByteArray::fromRawData(base64.data() + base64.size() - rest, rest));
-    return out;
-}
-
+class QSettings;
+class QObject;
 /*!
  * \brief Creates QSettings instance with TSPSG-specific options.
  * \param parent A QObject which will become parent for new QSetting instance.
@@ -161,6 +106,7 @@ inline QByteArray toWrappedBase64(const QByteArray &in)
 QSettings *initSettings(QObject *parent);
 
 #ifndef HANDHELD
+class QWidget;
 /*!
  * \brief Enables or disables a mask for the \a widget.
  * \param widget A widget to toggle mask on.
@@ -172,11 +118,6 @@ void toggleStyle(QWidget *widget, bool enable);
 #endif // HANDHELD
 
 #ifndef DOXYGEN_EXCLUDE
-
-#ifndef QT_NO_PRINTER
-    Q_DECLARE_METATYPE(QPrinter::PageSize)
-    Q_DECLARE_METATYPE(QPrinter::Orientation)
-#endif
 
 #ifdef HANDHELD
 #   define ICON_SIZE "48x48"
