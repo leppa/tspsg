@@ -407,6 +407,7 @@ QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filte
         if (!graph.isNull()) {
             imgdata = generateImage(format);
             if (imgdata.isEmpty()) {
+                QApplication::restoreOverrideCursor();
                 return;
             }
             if (embed) {
@@ -1416,8 +1417,9 @@ QByteArray MainWindow::generateImage(const QString &format)
         else if (format == "jpeg")
             pic.setQuality(80);
         if (!pic.write(i)) {
-            QApplication::restoreOverrideCursor();
+            QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
             QMessageBox::critical(this, tr("Solution Save"), tr("Unable to save the solution graph.\nError: %1").arg(pic.errorString()));
+            QApplication::restoreOverrideCursor();
             return QByteArray();
         }
 #if !defined(NOSVG)
