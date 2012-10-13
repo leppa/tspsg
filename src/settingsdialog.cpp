@@ -322,7 +322,9 @@ QStringList whitelist;
     cbCitiesLimit->setChecked(settings->value("UseShowMatrixLimit", DEF_USE_SHOW_MATRIX_LIMIT && cbShowMatrix->isChecked()).toBool());
     spinCitiesLimit->setEnabled(cbShowMatrix->isChecked() && cbCitiesLimit->isChecked());
     spinCitiesLimit->setValue(settings->value("ShowMatrixLimit", DEF_SHOW_MATRIX_LIMIT).toInt());
-    spinCitiesLimit->setMaximum(MAX_NUM_CITIES);
+    settings->endGroup();
+    spinCitiesLimit->setMaximum(settings->value("Tweaks/MaxNumCities", MAX_NUM_CITIES).toInt());
+    settings->beginGroup("Output");
     cbScrollToEnd->setChecked(settings->value("ScrollToEnd", DEF_SCROLL_TO_END).toBool());
 
     font = qvariant_cast<QFont>(settings->value("Font", QFont(DEF_FONT_FACE, DEF_FONT_SIZE)));
@@ -385,11 +387,30 @@ qint8 SettingsDialog::translucencyChanged() const
 void SettingsDialog::accept()
 {
     if (QApplication::keyboardModifiers() & Qt::ShiftModifier) {
-        if (QMessageBox::question(this, tr("Settings Reset"), tr("Do you really want to <b>reset all application settings to their defaults</b>?"), QMessageBox::RestoreDefaults | QMessageBox::Cancel) == QMessageBox::RestoreDefaults) {
+        if (QMessageBox::question(this, tr("Settings Reset"),
+                                  tr("Do you really want to <b>reset all application settings"
+                                     " to their defaults</b>?<br>"
+                                     "Please, note that \"Tweaks\" section won't be reset."),
+                                  QMessageBox::RestoreDefaults | QMessageBox::Cancel)
+                == QMessageBox::RestoreDefaults) {
             _fontChanged = (font != QFont(DEF_FONT_FACE, DEF_FONT_SIZE));
             _colorChanged = (textColor != DEF_TEXT_COLOR);
+            // Saving Tweaks section as we don't reset it
+            settings->beginGroup("Tweaks");
+            QHash<QString, QVariant> values;
+            foreach (const QString &key, settings->childKeys()) {
+                values.insert(key, settings->value(key));
+            }
+            settings->endGroup();
             settings->remove("");
             settings->setValue("SettingsReset", true);
+            if (!values.empty()) {
+                settings->beginGroup("Tweaks");
+                foreach (const QString &key, values.keys()) {
+                    settings->setValue(key, values.value(key));
+                }
+                settings->endGroup();
+            }
             QDialog::accept();
             QMessageBox::information(this->parentWidget(), tr("Settings Reset"), tr("All settings where successfully reset to their defaults.\nIt is recommended to restart the application now."));
             return;

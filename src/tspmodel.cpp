@@ -431,13 +431,26 @@ quint16 size;
         QApplication::restoreOverrideCursor();
         return false;
     }
-    if (size > MAX_NUM_CITIES) {
+    if (size > settings->value("Tweaks/MaxNumCities", MAX_NUM_CITIES).toInt()) {
         QApplication::restoreOverrideCursor();
         QApplication::setOverrideCursor(QCursor(Qt::ArrowCursor));
-        QMessageBox::critical(QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n"
-            + tr("The task contains more cities (%1) than this version of %3 supports (%2).\n"
-                 "You might be using an old version of the application or the file could be corrupted.")
-                 .arg(size).arg(MAX_NUM_CITIES).arg(QApplication::applicationName()));
+        if (settings->contains("Tweaks/MaxNumCities")) {
+            QMessageBox::critical(
+                        QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n"
+                        + tr("Your Tweaks/MaxNumCities setting in tspsg.ini is currently set to %1"
+                             " but the task you're trying to load contains %2 cities.\n"
+                             "Please, set Tweaks/MaxNumCities setting to at least %2"
+                             " to be able to load this task.")
+                        .arg(settings->value("Tweaks/MaxNumCities").toInt()).arg(size));
+        } else {
+            QMessageBox::critical(
+                        QApplication::activeWindow(), tr("Task Load"), tr("Unable to load task:") + "\n"
+                        + tr("The maximum number of cities this version of %1 supports is %2"
+                             " but the task you're trying to load contains %3.\n"
+                             "You might be using an old version of the application or the file"
+                             " could be corrupted.")
+                        .arg(QApplication::applicationName()).arg(MAX_NUM_CITIES).arg(size));
+        }
         QApplication::restoreOverrideCursor();
         return false;
     }

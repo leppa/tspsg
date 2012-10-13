@@ -129,6 +129,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     settings = initSettings(this);
 
+    // Sanity check
+    int m = settings->value("Tweaks/MaxNumCities", MAX_NUM_CITIES).toInt();
+    if (m < 3)
+        settings->setValue("Tweaks/MaxNumCities", 3);
+
     if (settings->contains("Style")) {
 QStyle *s = QStyleFactory::create(settings->value("Style").toString());
         if (s != NULL)
@@ -1965,7 +1970,7 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
     } else
         actionHelpCheck4Updates = NULL;
 
-    spinCities->setMaximum(MAX_NUM_CITIES);
+    spinCities->setMaximum(settings->value("Tweaks/MaxNumCities", MAX_NUM_CITIES).toInt());
 
 #ifndef HANDHELD
     toolBarManager = new QtToolBarManager(this);
