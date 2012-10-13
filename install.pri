@@ -59,7 +59,7 @@ wince* {
 } else:win32 {
     # For win32: everything goes to "%PROGRAMFILES%\TSPSG" and subfolders.
     isEmpty(PREFIX) {
-        PREFIX = "$$(PROGRAMFILES)"
+        PREFIX = "$$(PROGRAMFILES)/TSPSG"
     }
 
     share.files = $$[QT_INSTALL_BINS]/QtCore$${D}4.dll \
@@ -77,11 +77,11 @@ wince* {
         $$[QT_INSTALL_PLUGINS]/imageformats/qtiff$${D}4.dll
     INSTALLS += share l10n imageformats
 
-    target.path = $$PREFIX/TSPSG
-    share.path = $$PREFIX/TSPSG
-    l10n.path = $$PREFIX/TSPSG/l10n
-    imageformats.path = $$PREFIX/TSPSG/imageformats
-    docs.path = $$PREFIX/TSPSG
+    target.path = $$PREFIX
+    share.path = $$PREFIX
+    l10n.path = $$PREFIX/l10n
+    imageformats.path = $$PREFIX/imageformats
+    docs.path = $$PREFIX
 }
 
 # Symbian
