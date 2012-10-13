@@ -49,11 +49,12 @@ wince* {
     # For wince: we are deploying to %CSIDL_PROGRAM_FILES%\TSPSG.
     # This is automatically set by qmake when creating VS Solution file.
     share.sources = $$share.files
-#	l10n.sources = $$l10n.files \
-#		$$[QT_INSTALL_TRANSLATIONS]/*.qm
+    l10n.sources = $$l10n.files \
+        $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qt_uk.qm
     docs.sources = $$docs.files
 
-    DEPLOYMENT += target share docs # l10n
+    DEPLOYMENT += target share l10n docs
     DEPLOYMENT_PLUGIN += qjpeg qtiff
 } else:win32 {
     # For win32: everything goes to "%PROGRAMFILES%\TSPSG" and subfolders.
@@ -66,19 +67,20 @@ wince* {
     !nosvg {
         share.files += $$[QT_INSTALL_BINS]/QtSvg$${D}4.dll
     }
-#	l10n.files += $$[QT_INSTALL_TRANSLATIONS]/*.qm
+    l10n.files += $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qt_uk.qm
     win32-g++ {
         share.files += $$[QT_INSTALL_BINS]/mingwm10.dll \
             $$[QT_INSTALL_BINS]/libgcc_s_dw2-1.dll
     }
     imageformats.files = $$[QT_INSTALL_PLUGINS]/imageformats/qjpeg$${D}4.dll \
         $$[QT_INSTALL_PLUGINS]/imageformats/qtiff$${D}4.dll
-    imageformats.path = $$PREFIX/TSPSG/imageformats
-    INSTALLS += share imageformats
+    INSTALLS += share l10n imageformats
 
     target.path = $$PREFIX/TSPSG
     share.path = $$PREFIX/TSPSG
-#	l10n.path = $$PREFIX/TSPSG/l10n
+    l10n.path = $$PREFIX/TSPSG/l10n
+    imageformats.path = $$PREFIX/TSPSG/imageformats
     docs.path = $$PREFIX/TSPSG
 }
 

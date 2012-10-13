@@ -1566,6 +1566,10 @@ static QTranslator *translator; // Application translator
     // Trying to load system Qt library translation...
     qtTranslator = new QTranslator(this);
     if (qtTranslator->load("qt_" + lng, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+        // Trying from QT_INSTALL_TRANSLATIONS directory
+        qApp->installTranslator(qtTranslator);
+    } else if (qtTranslator->load("qt_" + lng, PATH_L10N)) {
+        // Than from l10n directory bundled with TSPSG
         qApp->installTranslator(qtTranslator);
     } else {
         // Qt library translation unavailable for this language.
