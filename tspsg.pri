@@ -44,7 +44,9 @@ FORMS += ui/mainwindow.ui \
 RESOURCES += resources/common.qrc \
     l10n/l10n.qrc
 
-handheld {
+blackberry {
+    RESOURCES += resources/desktop.qrc
+} else:handheld {
     RESOURCES += resources/handheld.qrc
 } else {
     RESOURCES += resources/desktop.qrc

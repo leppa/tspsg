@@ -151,7 +151,7 @@ void toggleStyle(QWidget *widget, bool enable);
     Q_DECLARE_METATYPE(QPrinter::Orientation)
 #endif
 
-#ifdef HANDHELD
+#if defined(HANDHELD) && !defined(Q_OS_BLACKBERRY)
 #   define ICON_SIZE "48x48"
 #   define ICON_FORMAT "png"
 #else

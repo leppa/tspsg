@@ -1650,12 +1650,12 @@ void MainWindow::setupUi()
     actionFileNew->setIcon(GET_ICON("document-new"));
     actionFileOpen->setIcon(GET_ICON("document-open"));
     actionFileSave->setIcon(GET_ICON("document-save"));
-#ifndef HANDHELD
+#if !defined(HANDHELD) || defined(Q_OS_BLACKBERRY)
     menuFileSaveAs->setIcon(GET_ICON("document-save-as"));
 #endif
     actionFileExit->setIcon(GET_ICON("application-exit"));
     // Settings Menu
-#ifndef HANDHELD
+#if !defined(HANDHELD) || defined(Q_OS_BLACKBERRY)
     menuSettingsLanguage->setIcon(GET_ICON("preferences-desktop-locale"));
 #if QT_VERSION >= 0x040600
     actionSettingsLanguageEnglish->setIcon(QIcon::fromTheme("flag-gb", QIcon(":/images/icons/l10n/flag-gb.png")));
@@ -1666,7 +1666,7 @@ void MainWindow::setupUi()
 #endif // HANDHELD
     actionSettingsPreferences->setIcon(GET_ICON("preferences-system"));
     // Help Menu
-#ifndef HANDHELD
+#if !defined(HANDHELD) || defined(Q_OS_BLACKBERRY)
     actionHelpContents->setIcon(GET_ICON("help-contents"));
     actionHelpContextual->setIcon(GET_ICON("help-contextual"));
     actionHelpOnlineSupport->setIcon(GET_ICON("applications-internet"));
