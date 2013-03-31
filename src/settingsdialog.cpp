@@ -418,12 +418,14 @@ QColor color = QColorDialog::getColor(this->color,this);
 
 void SettingsDialog::buttonFontClicked()
 {
-bool ok;
-QFont font = QFontDialog::getFont(&ok,this->font,this);
-    if (ok && (this->font != font)) {
-        this->font = font;
-        _newFont = true;
-    }
+    QFontDialog fd(font, this);
+#ifdef Q_OS_BLACKBERRY
+    fd.setWindowState(Qt::WindowMaximized);
+#endif
+    if ((fd.exec() != QDialog::Accepted) || (fd.selectedFont() == font))
+        return;
+    font = fd.selectedFont();
+    _newFont = true;
 }
 
 #ifdef Q_WS_WINCE_WM

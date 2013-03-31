@@ -89,7 +89,7 @@ QPrinter::PaperSize size = qvariant_cast<QPrinter::PaperSize>(settings->value("P
     connect(actionFileSave, SIGNAL(triggered()), SLOT(actionFileSaveTriggered()));
     connect(actionFileSaveAsTask, SIGNAL(triggered()), SLOT(actionFileSaveAsTaskTriggered()));
     connect(actionFileSaveAsSolution, SIGNAL(triggered()), SLOT(actionFileSaveAsSolutionTriggered()));
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
     connect(actionFilePrintPreview, SIGNAL(triggered()), SLOT(actionFilePrintPreviewTriggered()));
     connect(actionFilePageSetup, SIGNAL(triggered()), SLOT(actionFilePageSetupTriggered()));
     connect(actionFilePrint, SIGNAL(triggered()), SLOT(actionFilePrintTriggered()));
@@ -375,7 +375,7 @@ QTextDocumentWriter dw(selectedFile);
     QApplication::restoreOverrideCursor();
 }
 
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
 void MainWindow::actionFilePrintPreviewTriggered()
 {
 QPrintPreviewDialog ppd(printer, this);
@@ -433,7 +433,7 @@ QPrintDialog pd(printer,this);
     solutionText->print(printer);
     QApplication::restoreOverrideCursor();
 }
-#endif // QT_NO_PRINTER
+#endif // QT_NO_PRINTDIALOG
 
 void MainWindow::actionSettingsPreferencesTriggered()
 {
@@ -692,6 +692,8 @@ QTextBrowser *txtTranslation = new QTextBrowser(dlg);
 
 #ifndef HANDHELD
     dlg->resize(450, 350);
+#elif defined(Q_OS_BLACKBERRY)
+    dlg->setWindowState(Qt::WindowMaximized);
 #endif
     QApplication::restoreOverrideCursor();
 
@@ -1548,7 +1550,7 @@ void MainWindow::retranslateUi(bool all)
 #endif
     loadToolbarList();
 
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
     actionFilePrintPreview->setText(tr("P&rint Preview..."));
 #ifndef QT_NO_TOOLTIP
     actionFilePrintPreview->setToolTip(tr("Preview solution results"));
@@ -1572,8 +1574,10 @@ void MainWindow::retranslateUi(bool all)
 #ifndef QT_NO_STATUSTIP
     actionFilePrint->setStatusTip(tr("Print current solution results"));
 #endif // QT_NO_STATUSTIP
+#ifndef QT_NO_SHORTCUT
     actionFilePrint->setShortcut(tr("Ctrl+P"));
-#endif // QT_NO_PRINTER
+#endif // QT_NO_SHORTCUT
+#endif // QT_NO_PRINTDIALOG
 
 #ifndef QT_NO_STATUSTIP
     actionFileExit->setStatusTip(tr("Exit %1").arg(QCoreApplication::applicationName()));
@@ -1728,7 +1732,7 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 //	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>());
     solutionText->setWordWrapMode(QTextOption::WordWrap);
 
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
     actionFilePrintPreview = new QAction(this);
     actionFilePrintPreview->setObjectName("actionFilePrintPreview");
     actionFilePrintPreview->setEnabled(false);
@@ -1754,7 +1758,7 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
     menuFile->insertSeparator(actionFileExit);
 
     toolBarMain->insertAction(actionSettingsPreferences, actionFilePrint);
-#endif // QT_NO_PRINTER
+#endif // QT_NO_PRINTDIALOG
 
     groupSettingsLanguageList = new QActionGroup(this);
 #ifdef Q_WS_MAEMO_5
@@ -1827,10 +1831,10 @@ void MainWindow::toggleSolutionActions(bool enable)
     buttonSaveSolution->setEnabled(enable);
     actionFileSaveAsSolution->setEnabled(enable);
     solutionText->setEnabled(enable);
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
     actionFilePrint->setEnabled(enable);
     actionFilePrintPreview->setEnabled(enable);
-#endif // QT_NO_PRINTER
+#endif // QT_NO_PRINTDIALOG
 }
 
 void MainWindow::toggleTranclucency(bool enable)
