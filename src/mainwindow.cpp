@@ -200,7 +200,11 @@ QStringList filters(tr("All Supported Formats") + " (*.tspt *.zkt)");
 
 QString file;
     if ((fileName == tr("Untitled") + ".tspt") && settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
+#ifdef Q_OS_BLACKBERRY
+        file = settings->value(OS"/LastUsed/TaskLoadPath", "/accounts/1000/shared").toString();
+#else
         file = settings->value(OS"/LastUsed/TaskLoadPath").toString();
+#endif
     else
         file = QFileInfo(fileName).path();
 QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
@@ -241,7 +245,11 @@ void MainWindow::actionFileSaveAsSolutionTriggered()
 static QString selectedFile;
     if (selectedFile.isEmpty()) {
         if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool()) {
+#ifdef Q_OS_BLACKBERRY
+            selectedFile = settings->value(OS"/LastUsed/SolutionSavePath", "/accounts/1000/shared").toString();
+#else
             selectedFile = settings->value(OS"/LastUsed/SolutionSavePath").toString();
+#endif
         }
     } else
         selectedFile = QFileInfo(selectedFile).path();
@@ -1627,7 +1635,11 @@ QStringList filters(tr("%1 Task File").arg("TSPSG") + " (*.tspt)");
     filters.append(tr("All Files") + " (*)");
 QString file;
     if ((fileName == tr("Untitled") + ".tspt") && settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool()) {
+#ifdef Q_OS_BLACKBERRY
+        file = settings->value(OS"/LastUsed/TaskSavePath", "/accounts/1000/shared").toString();
+#else
         file = settings->value(OS"/LastUsed/TaskSavePath").toString();
+#endif
         if (!file.isEmpty())
             file.append("/");
         file.append(fileName);
