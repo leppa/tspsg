@@ -16,7 +16,7 @@
     DEFINES += NOSVG
 }
 
-wincewm*|symbian|maemo*|simulator {
+wincewm*|symbian|maemo*|simulator|blackberry {
     CONFIG += handheld
 }
 
@@ -62,17 +62,21 @@ DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
     BUILD_RELEASE=$$BUILD_RELEASE \
     BUILD_NUMBER=$$REVISION
 
-CONFIG(release, debug|release) {
-    OBJECTS_DIR = release
-    D =
+blackberry {
+    TARGET = tspsg
 } else {
-    OBJECTS_DIR = debug
-    DEFINES += DEBUG
-#	CONFIG += console
-    D = d
+    CONFIG(release, debug|release) {
+        OBJECTS_DIR = release
+        D =
+    } else {
+        OBJECTS_DIR = debug
+        DEFINES += DEBUG
+#        CONFIG += console
+        D = d
+    }
+    DESTDIR = bin
+    TARGET = tspsg$${D}
 }
-DESTDIR = bin
-TARGET = tspsg$${D}
 
 # Saving all intermediate files to tmp directory.
 MOC_DIR = tmp

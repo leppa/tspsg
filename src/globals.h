@@ -33,7 +33,7 @@
 #if QT_VERSION < 0x040500
 #   error You are using Qt version < 4.5 but minimum required version is 4.5.0. Compilation aborted.
 #endif
-#if defined(Q_WS_WINCE_WM) || defined(Q_WS_S60) || defined(Q_WS_MAEMO_5) || defined(Q_WS_SIMULATOR)
+#if defined(Q_WS_WINCE_WM) || defined(Q_WS_S60) || defined(Q_WS_MAEMO_5) || defined(Q_WS_SIMULATOR) || defined(Q_OS_BLACKBERRY)
     //! This is defined on handheld devices (e.g., Windows Mobile, Symbian).
 #   define HANDHELD
 #   define QT_NO_STATUSTIP
