@@ -1541,7 +1541,11 @@ void MainWindow::retranslateUi(bool all)
     if (all)
         Ui_MainWindow::retranslateUi(this);
 
+#ifdef Q_OS_BLACKBERRY
+    menuSettings->removeAction(menuSettingsStyle->menuAction());
+#else
     loadStyleList();
+#endif
     loadToolbarList();
 
 #ifndef QT_NO_PRINTER
@@ -1668,7 +1672,13 @@ void MainWindow::setupUi()
     actionHelpOnlineSupport->setIcon(GET_ICON("applications-internet"));
     actionHelpReportBug->setIcon(GET_ICON("tools-report-bug"));
     actionHelpAbout->setIcon(GET_ICON("help-about"));
+#ifdef Q_OS_BLACKBERRY
+    // Qt about dialog is too big for the screen
+    // and it's impossible to close it.
+    menuHelp->removeAction(actionHelpAboutQt);
+#else
     actionHelpAboutQt->setIcon(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"));
+#endif
 #endif
     // Buttons
     buttonRandom->setIcon(GET_ICON("roll"));

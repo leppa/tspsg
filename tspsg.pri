@@ -31,6 +31,11 @@ SOURCES += src/main.cpp \
     src/tspsolver.cpp \
     src/qtwin.cpp
 
+blackberry {
+    HEADERS += src/bb10proxystyle.h
+    SOURCES += src/bb10proxystyle.cpp
+}
+
 #Forms
 FORMS += ui/mainwindow.ui \
     ui/settingsdialog.ui

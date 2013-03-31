@@ -22,6 +22,10 @@
  */
 
 #include "mainwindow.h"
+#ifdef Q_OS_BLACKBERRY
+#   include "bb10proxystyle.h"
+#endif // Q_OS_BLACKBERRY
+
 #if QT_VERSION < 0x040600
 #   ifdef Q_CC_MSVC
 #       pragma message("WARNING: You are using Qt version < 4.6. Application will not support some non-critical features.")
@@ -54,6 +58,12 @@ QApplication app(argc, argv);
     app.setOrganizationDomain("oleksii.name");
     app.setApplicationName("TSP Solver and Generator");
     app.setApplicationVersion(BUILD_VERSION);
+
+#ifdef Q_OS_BLACKBERRY
+    QApplication::setStartDragDistance(42);
+    QApplication::setStyle(new BB10ProxyStyle);
+    app.setStyleSheet(CSS_FIX);
+#endif // Q_OS_BLACKBERRY
 
     // Seeding random number generator
     qsrand(QDateTime::currentDateTime().toTime_t() ^ QCursor::pos().x() ^ QCursor::pos().y());
