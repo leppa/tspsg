@@ -56,6 +56,10 @@ QStyle *s = QStyleFactory::create(settings->value("Style").toString());
     setupUi();
     setAcceptDrops(true);
 
+#ifdef Q_OS_BLACKBERRY
+    taskView->setEditTriggers(QAbstractItemView::AllEditTriggers);
+#endif
+
     initDocStyleSheet();
 
 #ifndef QT_NO_PRINTER
@@ -629,18 +633,27 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
     txtAbout->setHtml(about);
     txtAbout->moveCursor(QTextCursor::Start);
     txtAbout->setFrameShape(QFrame::NoFrame);
+#ifdef Q_OS_BLACKBERRY
+    txtAbout->setAttribute(Qt::WA_InputMethodEnabled, false);
+#endif
 
 //	txtCredits->setWordWrapMode(QTextOption::NoWrap);
     txtCredits->setOpenExternalLinks(true);
     txtCredits->setHtml(credits);
     txtCredits->moveCursor(QTextCursor::Start);
     txtCredits->setFrameShape(QFrame::NoFrame);
+#ifdef Q_OS_BLACKBERRY
+    txtCredits->setAttribute(Qt::WA_InputMethodEnabled, false);
+#endif
 
     txtLicense->setWordWrapMode(QTextOption::NoWrap);
     txtLicense->setOpenExternalLinks(true);
     txtLicense->setText(f.readAll());
     txtLicense->moveCursor(QTextCursor::Start);
     txtLicense->setFrameShape(QFrame::NoFrame);
+#ifdef Q_OS_BLACKBERRY
+    txtLicense->setAttribute(Qt::WA_InputMethodEnabled, false);
+#endif
 
     bb->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
     bb->button(QDialogButtonBox::Ok)->setIcon(GET_ICON("dialog-ok"));
@@ -742,6 +755,7 @@ QPushButton *cancel = new QPushButton(&pd);
     cancel->setText(QCoreApplication::translate("QDialogButtonBox", "Cancel", "No need to translate this. The translation will be taken from Qt translation files."));
     pd.setCancelButton(cancel);
     pd.setMaximum(n);
+    pd.setAutoClose(false);
     pd.setAutoReset(false);
     pd.setLabelText(tr("Calculating optimal route..."));
     pd.setWindowTitle(tr("Solution Progress"));
