@@ -54,6 +54,11 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+#ifdef Q_OS_BLACKBERRY
+public slots:
+    void setWindowModified(bool modified);
+#endif
+
 private slots:
 // Actions
     void actionFileNewTriggered();

@@ -23,6 +23,9 @@ blackberry {
 #    DEFINES += QT_NO_SHORTCUT
     DEFINES += QT_NO_PRINTDIALOG
     DEFINES += QT_NO_PRINTPREVIEWDIALOG
+
+    QT += xml declarative
+    LIBS += -lbb -lbbcascadespickers
 }
 
 TEMPLATE = app
