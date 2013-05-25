@@ -71,7 +71,7 @@ QHBoxLayout *hbox;
     cbHQGraph->setText(tr("Draw solution graph in higher quality"));
     cbHQGraph->setCursor(QCursor(Qt::PointingHandCursor));
 
-    box = static_cast<QBoxLayout *>(tabOutput->layout());
+    box = qobject_cast<QBoxLayout *>(tabOutput->layout());
     hbox = new QHBoxLayout();
     hbox->addSpacing(10);
     hbox->addWidget(cbHQGraph);
@@ -121,6 +121,15 @@ QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(bgWhite);
+#elif defined(Q_OS_BLACKBERRY)
+    QWidget *sac = new QWidget(this);
+    sac->setLayout(tabOutput->layout());
+    QScrollArea *sa = new QScrollArea(this);
+    sa->setWidgetResizable(true);
+    sa->setWidget(sac);
+    QVBoxLayout *vbox2 = new QVBoxLayout();
+    vbox2->addWidget(sa);
+    tabOutput->setLayout(vbox2);
 #else
     buttons->insertStretch(buttons->indexOf(buttonHelp) + 1);
 #endif // Q_WS_WINCE_WM
