@@ -369,7 +369,7 @@ Error: %1</source>
         <location filename="../src/mainwindow.cpp" line="575"/>
         <source>This program is free software: you can redistribute it and/or modify&lt;br&gt;
 it under the terms of the GNU General Public License as published by&lt;br&gt;
-the Free Software Foundation, either version 3 of the License, or&lt;br&gt;
+the Free Software Foundation, either version 2 of the License, or&lt;br&gt;
 (at your option) any later version.&lt;br&gt;
 &lt;br&gt;
 This program is distributed in the hope that it will be useful,&lt;br&gt;
@@ -382,7 +382,7 @@ along with TSPSG.  If not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quo
         <translation>Эта программа является свободным программным обеспечением. Вы можете&lt;br&gt;
 распространять и/или модифицировать её согласно условиям Стандартной&lt;br&gt;
 Общественной Лицензии GNU, опубликованной Фондом Свободного Программного&lt;br&gt;
-Обеспечения, версии 3 или, по Вашему желанию, любой более поздней версии.&lt;br&gt;
+Обеспечения, версии 2 или, по Вашему желанию, любой более поздней версии.&lt;br&gt;
 &lt;br&gt;
 Эта программа распространяется в надежде, что она будет полезной, но&lt;br&gt;
 БЕЗ ВСЯКИХ ГАРАНТИЙ, в том числе подразумеваемых гарантий ТОВАРНОГО СОСТОЯНИЯ&lt;br&gt;

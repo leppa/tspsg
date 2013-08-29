@@ -5,10 +5,10 @@ Source: http://tspsg.info/source-code
 
 Files: *
 Copyright: 2007-2013, Oleksii Serdiuk <contacts@oleksii.name>
-License: GPL-3+
+License: GPL-2+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
+ the Free Software Foundation, either version 2 of the License, or
  (at your option) any later version.
  .
  This program is distributed in the hope that it will be useful,
@@ -134,5 +134,6 @@ License:
 
 X-Comment: On Debian systems, the full text of the GNU Public Licenses
  can be found in files
+ `/usr/share/common-licenses/GPL-2',
  `/usr/share/common-licenses/GPL-3',
  `/usr/share/common-licenses/LGPL-2.1'.

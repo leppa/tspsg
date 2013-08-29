@@ -708,7 +708,7 @@ Error: %1</source>
         <location filename="../src/mainwindow.cpp" line="575"/>
         <source>This program is free software: you can redistribute it and/or modify&lt;br&gt;
 it under the terms of the GNU General Public License as published by&lt;br&gt;
-the Free Software Foundation, either version 3 of the License, or&lt;br&gt;
+the Free Software Foundation, either version 2 of the License, or&lt;br&gt;
 (at your option) any later version.&lt;br&gt;
 &lt;br&gt;
 This program is distributed in the hope that it will be useful,&lt;br&gt;
@@ -721,7 +721,7 @@ along with TSPSG.  If not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quo
         <translation>Ця програма - вільне програмне забезпечення. Ви можете розповсюджувати&lt;br&gt;
 її та/або вносити зміни до неї відповідно до умов Загальної Громадської&lt;br&gt;
 Ліцензії у тому вигляді, у якому вона була опублікована Фундацією&lt;br&gt;
-Вільного Програмного Забезпечення; або версії 3 Ліцензії, або (на Ваш&lt;br&gt;
+Вільного Програмного Забезпечення; або версії 2 Ліцензії, або (на Ваш&lt;br&gt;
 розсуд) будь-якої більш пізньої версії.&lt;br&gt;
 &lt;br&gt;
 Ця програма розповсюджується із сподіванням, що вона буде корисною,&lt;br&gt;
