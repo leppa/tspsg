@@ -140,8 +140,9 @@ bool QtWin::enableBlurBehindWindow(QWidget *widget, bool enable)
     bool result = false;
 #ifdef Q_OS_WIN32
     if (resolveLibs()) {
-        DWM_BLURBEHIND bb = {0};
+        DWM_BLURBEHIND bb;
         HRESULT hr = S_OK;
+        bb.dwFlags = 0;
         bb.fEnable = enable;
         bb.dwFlags = DWM_BB_ENABLE;
         bb.hRgnBlur = NULL;
