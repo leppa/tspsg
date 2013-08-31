@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<qnx xmlns="http://www.qnx.com/schemas/application/1.0">
+    <id>info.tspsg.app.blackberry</id>
+    <author>Oleksii Serdiuk</author>
+    <authorId>gYAAgOgaIb4973NLSyzhcqWpc9s</authorId>
+    <name>TSP Solver and Generator</name>
+    <versionNumber>0.1.4</versionNumber>
+    <buildId>173</buildId>
+    <description>TSP Solver and Generator is intended to generate and solve Travelling Salesman Problem tasks.</description>
+    <copyright>(C) 2007-2013 Oleksii Serdiuk</copyright>
+    <initialWindow>
+        <autoOrients>true</autoOrients>
+        <systemChrome>none</systemChrome>
+        <transparent>false</transparent>
+    </initialWindow>
+    <!-- Environment -->
+    <env value="app/native/plugins:/usr/lib/qt4/plugins" var="QT_PLUGIN_PATH"/>
+    <env value="app/native/lib:/usr/lib/qt4/lib" var="LD_LIBRARY_PATH"/>
+    <!-- Startup arguments -->
+    <arg>-style</arg>
+    <arg>bb10dark</arg>
+    <!-- Permissions -->
+    <action system="true">run_native</action>
+    <action>access_shared</action>
+    <!-- Assets -->
+    <asset path="tspsg" type="Qnx/Elf" entry="true">tspsg</asset>
+    <asset path="%SRC_DIR%/resources/tspsg.png">tspsg.png</asset>
+    <icon>
+        <image>tspsg.png</image>
+    </icon>
+</qnx>

@@ -20,7 +20,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     QT += printsupport concurrent
 }
 
-wincewm*|symbian|maemo*|simulator {
+wincewm*|symbian|maemo*|simulator|blackberry {
     CONFIG += handheld
 }
 
@@ -42,19 +42,21 @@ DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
     BUILD_RELEASE=$$BUILD_RELEASE \
     BUILD_NUMBER=$$BUILD_NUMBER
 
-!debug_and_release|build_pass {
-    CONFIG(debug, debug|release) {
-        OBJECTS_DIR = debug
-        DEFINES += DEBUG
-#	    CONFIG += console
-        D = d
-    } else {
-        OBJECTS_DIR = release
-        D =
+blackberry {
+    TARGET = tspsg
+} else {
+    !debug_and_release|build_pass {
+        CONFIG(debug, debug|release) {
+            OBJECTS_DIR = debug
+            DEFINES += DEBUG
+#            CONFIG += console
+            D = d
+        } else {
+            OBJECTS_DIR = release
+            D =
+        }
     }
 }
-DESTDIR = bin
-TARGET = tspsg$${D}
 
 # Saving all intermediate files to tmp directory.
 MOC_DIR = tmp

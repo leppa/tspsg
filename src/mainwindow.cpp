@@ -62,9 +62,7 @@
 #   include <QSvgGenerator>
 #endif // NOSVG
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-#   include <QtConcurrent>
-#endif
+#include <QtConcurrentRun>
 
 #include "os.h"
 
@@ -97,7 +95,11 @@ _C_ _R_ _Y_ _P_ _T_
 inline bool isInteger(double x)
 {
 double i;
+#ifdef Q_OS_BLACKBERRY
+    return (std::modf(x, &i) == 0.0);
+#else
     return (modf(x, &i) == 0.0);
+#endif
 }
 
 /*!

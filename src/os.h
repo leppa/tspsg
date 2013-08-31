@@ -114,36 +114,39 @@
 #elif defined(Q_OS_OSF)
 #   define OS "HP Tru64 UNIX"
 #   define OSID quint8(16)
+#elif defined(Q_OS_BLACKBERRY)
+#   define OS "BlackBerry 10"
+#   define OSID quint8(17)
 #elif defined(Q_OS_QNX)
 #   define OS "QNX Neutrino"
-#   define OSID quint8(17)
+#   define OSID quint8(18)
 #elif defined(Q_OS_RELIANT)
 #   define OS "Reliant UNIX"
-#   define OSID quint8(18)
+#   define OSID quint8(19)
 #elif defined(Q_OS_SCO)
 #   define OS "SCO OpenServer 5"
-#   define OSID quint8(19)
+#   define OSID quint8(20)
 #elif defined(Q_OS_SOLARIS)
 #   define OS "Sun Solaris"
-#   define OSID quint8(20)
+#   define OSID quint8(21)
 #elif defined(Q_OS_SYMBIAN)
 #   define OS "Symbian"
-#   define OSID quint8(21)
+#   define OSID quint8(22)
 #elif defined(Q_OS_ULTRIX)
 #   define OS "DEC Ultrix"
-#   define OSID quint8(22)
+#   define OSID quint8(23)
 #elif defined(Q_OS_UNIXWARE)
 #   define OS "UnixWare 7/Open UNIX 8"
-#   define OSID quint8(23)
+#   define OSID quint8(24)
 #elif defined(Q_OS_WIN32)
 #   define OS "Windows"
-#   define OSID quint8(24)
+#   define OSID quint8(25)
 #elif defined(Q_OS_WINCE_WM)
 #   define OS "Windows Mobile"
-#   define OSID quint8(25)
+#   define OSID quint8(26)
 #elif defined(Q_OS_WINCE)
 #   define OS "Windows CE"
-#   define OSID quint8(26)
+#   define OSID quint8(27)
 #elif defined(Q_OS_BSD4)
 #   define OS "BSD 4.4"
 #   define OSID quint8(253)

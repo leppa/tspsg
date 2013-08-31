@@ -58,6 +58,11 @@ TRANSLATIONS += l10n/template.ts \
     l10n/tspsg_ru.ts \
     l10n/tspsg_uk.ts
 
+blackberry {
+    OTHER_FILES += \
+        bar-descriptor.xml
+}
+
 !nopch {
     # Precompiled header
     PRECOMPILED_HEADER = src/pch.h
