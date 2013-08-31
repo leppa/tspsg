@@ -545,16 +545,25 @@ void SettingsDialog::buttonBorderColorClicked()
 
 void SettingsDialog::buttonFontClicked()
 {
-bool ok;
-QFont font = QFontDialog::getFont(&ok, this->font, this);
-    if (ok && (this->font != font)) {
-        this->font = font;
-        QFont f = font;
-        f.setPointSize(labelFontExample->font().pointSize());
-        labelFontExample->setFont(f);
-        labelFontExample->setText(font.family());
-        _fontChanged = true;
-    }
+    QFont newFont;
+#ifdef Q_OS_BLACKBERRY
+    QFontDialog fd(font, this);
+    fd.setWindowState(Qt::WindowMaximized);
+    if ((fd.exec() != QDialog::Accepted) || (fd.selectedFont() == font))
+        return;
+    newFont = fd.selectedFont();
+#else
+    bool ok;
+    newFont = QFontDialog::getFont(&ok, font, this);
+    if (!ok || (font == newFont))
+        return;
+#endif
+    font = newFont;
+    QFont f = font;
+    f.setPointSize(labelFontExample->font().pointSize());
+    labelFontExample->setFont(f);
+    labelFontExample->setText(font.family());
+    _fontChanged = true;
 }
 
 #ifdef Q_OS_WINCE_WM

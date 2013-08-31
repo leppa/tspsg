@@ -148,6 +148,10 @@ QStyle *s = QStyleFactory::create(settings->value("Style").toString());
     setupUi();
     setAcceptDrops(true);
 
+#ifdef Q_OS_BLACKBERRY
+    taskView->setEditTriggers(QAbstractItemView::AllEditTriggers);
+#endif
+
     initDocStyleSheet();
 
 #ifndef QT_NO_PRINTER
@@ -181,7 +185,7 @@ QPrinter::PaperSize size = qvariant_cast<QPrinter::PaperSize>(settings->value("P
     connect(actionFileSave, SIGNAL(triggered()), SLOT(actionFileSaveTriggered()));
     connect(actionFileSaveAsTask, SIGNAL(triggered()), SLOT(actionFileSaveAsTaskTriggered()));
     connect(actionFileSaveAsSolution, SIGNAL(triggered()), SLOT(actionFileSaveAsSolutionTriggered()));
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
     connect(actionFilePrintPreview, SIGNAL(triggered()), SLOT(actionFilePrintPreviewTriggered()));
     connect(actionFilePageSetup, SIGNAL(triggered()), SLOT(actionFilePageSetupTriggered()));
     connect(actionFilePrint, SIGNAL(triggered()), SLOT(actionFilePrintTriggered()));
@@ -482,7 +486,7 @@ QTextDocumentWriter dw(selectedFile);
     QApplication::restoreOverrideCursor();
 }
 
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
 void MainWindow::actionFilePrintPreviewTriggered()
 {
 QPrintPreviewDialog ppd(printer, this);
@@ -540,7 +544,7 @@ QPrintDialog pd(printer,this);
     solutionText->print(printer);
     QApplication::restoreOverrideCursor();
 }
-#endif // QT_NO_PRINTER
+#endif // QT_NO_PRINTDIALOG
 
 void MainWindow::actionSettingsPreferencesTriggered()
 {
@@ -743,18 +747,27 @@ QDialogButtonBox *bb = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal
     txtAbout->setHtml(about);
     txtAbout->moveCursor(QTextCursor::Start);
     txtAbout->setFrameShape(QFrame::NoFrame);
+#ifdef Q_OS_BLACKBERRY
+    txtAbout->setAttribute(Qt::WA_InputMethodEnabled, false);
+#endif
 
 //	txtCredits->setWordWrapMode(QTextOption::NoWrap);
     txtCredits->setOpenExternalLinks(true);
     txtCredits->setHtml(credits);
     txtCredits->moveCursor(QTextCursor::Start);
     txtCredits->setFrameShape(QFrame::NoFrame);
+#ifdef Q_OS_BLACKBERRY
+    txtCredits->setAttribute(Qt::WA_InputMethodEnabled, false);
+#endif
 
     txtLicense->setWordWrapMode(QTextOption::NoWrap);
     txtLicense->setOpenExternalLinks(true);
     txtLicense->setText(f.readAll());
     txtLicense->moveCursor(QTextCursor::Start);
     txtLicense->setFrameShape(QFrame::NoFrame);
+#ifdef Q_OS_BLACKBERRY
+    txtLicense->setAttribute(Qt::WA_InputMethodEnabled, false);
+#endif
 
     bb->button(QDialogButtonBox::Ok)->setCursor(QCursor(Qt::PointingHandCursor));
     bb->button(QDialogButtonBox::Ok)->setIcon(GET_ICON("dialog-ok"));
@@ -806,7 +819,7 @@ QTextBrowser *txtTranslation = new QTextBrowser(dlg);
 
 #ifndef HANDHELD
     dlg->resize(450, 350);
-#elif defined(Q_OS_SYMBIAN)
+#elif defined(Q_OS_SYMBIAN) || defined(Q_OS_BLACKBERRY)
     dlg->setWindowState(Qt::WindowMaximized);
 #endif
     QApplication::restoreOverrideCursor();
@@ -856,6 +869,7 @@ QPushButton *cancel = new QPushButton(&pd);
     cancel->setText(QCoreApplication::translate("QDialogButtonBox", "Cancel", "No need to translate this. The translation will be taken from Qt translation files."));
     pd.setCancelButton(cancel);
     pd.setMaximum(n);
+    pd.setAutoClose(false);
     pd.setAutoReset(false);
     pd.setLabelText(tr("Calculating optimal route..."));
     pd.setWindowTitle(tr("Solution Progress"));
@@ -1736,10 +1750,14 @@ void MainWindow::retranslateUi(bool all)
     if (all)
         Ui_MainWindow::retranslateUi(this);
 
+#ifdef Q_OS_BLACKBERRY
+    menuSettings->removeAction(menuSettingsStyle->menuAction());
+#else
     loadStyleList();
+#endif
     loadToolbarList();
 
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
     actionFilePrintPreview->setText(tr("P&rint Preview..."));
 #ifndef QT_NO_TOOLTIP
     actionFilePrintPreview->setToolTip(tr("Preview solution results"));
@@ -1763,8 +1781,10 @@ void MainWindow::retranslateUi(bool all)
 #ifndef QT_NO_STATUSTIP
     actionFilePrint->setStatusTip(tr("Print current solution results"));
 #endif // QT_NO_STATUSTIP
+#ifndef QT_NO_SHORTCUT
     actionFilePrint->setShortcut(tr("Ctrl+P"));
-#endif // QT_NO_PRINTER
+#endif // QT_NO_SHORTCUT
+#endif // QT_NO_PRINTDIALOG
 
 #ifndef QT_NO_STATUSTIP
     actionFileExit->setStatusTip(tr("Exit %1").arg(QCoreApplication::applicationName()));
@@ -1845,12 +1865,12 @@ void MainWindow::setupUi()
     actionFileNew->setIcon(GET_ICON("document-new"));
     actionFileOpen->setIcon(GET_ICON("document-open"));
     actionFileSave->setIcon(GET_ICON("document-save"));
-#ifndef HANDHELD
+#if !defined(HANDHELD) || defined(Q_OS_BLACKBERRY)
     menuFileSaveAs->setIcon(GET_ICON("document-save-as"));
 #endif
     actionFileExit->setIcon(GET_ICON("application-exit"));
     // Settings Menu
-#ifndef HANDHELD
+#if !defined(HANDHELD) || defined(Q_OS_BLACKBERRY)
     menuSettingsLanguage->setIcon(GET_ICON("preferences-desktop-locale"));
 #if QT_VERSION >= QT_VERSION_CHECK(4,6,0)
     actionSettingsLanguageEnglish->setIcon(QIcon::fromTheme("flag-gb", QIcon(":/images/icons/l10n/flag-gb.png")));
@@ -1861,17 +1881,23 @@ void MainWindow::setupUi()
 #endif // HANDHELD
     actionSettingsPreferences->setIcon(GET_ICON("preferences-system"));
     // Help Menu
-#ifndef HANDHELD
+#if !defined(HANDHELD) || defined(Q_OS_BLACKBERRY)
     actionHelpContents->setIcon(GET_ICON("help-contents"));
     actionHelpContextual->setIcon(GET_ICON("help-contextual"));
     actionHelpOnlineSupport->setIcon(GET_ICON("applications-internet"));
     actionHelpReportBug->setIcon(GET_ICON("tools-report-bug"));
     actionHelpAbout->setIcon(GET_ICON("help-about"));
+#ifdef Q_OS_BLACKBERRY
+    // Qt about dialog is too big for the screen
+    // and it's impossible to close it.
+    menuHelp->removeAction(actionHelpAboutQt);
+#else // Q_OS_BLACKBERRY
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
     actionHelpAboutQt->setIcon(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"));
-#else
+#else // QT_VERSION < QT_VERSION_CHECK(5,0,0)
     actionHelpAboutQt->setIcon(QIcon(":/qt-project.org/qmessagebox/images/qtlogo-64.png"));
 #endif // QT_VERSION < QT_VERSION_CHECK(5,0,0)
+#endif // Q_OS_BLACKBERRY
 #endif // HANDHELD
     // Buttons
     buttonRandom->setIcon(GET_ICON("roll"));
@@ -1921,7 +1947,7 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
 //	solutionText->document()->setDefaultFont(settings->value("Output/Font", QFont(DEF_FONT_FAMILY, DEF_FONT_SIZE)).value<QFont>());
     solutionText->setWordWrapMode(QTextOption::WordWrap);
 
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
     actionFilePrintPreview = new QAction(this);
     actionFilePrintPreview->setObjectName("actionFilePrintPreview");
     actionFilePrintPreview->setEnabled(false);
@@ -1947,7 +1973,7 @@ QToolButton *tb = static_cast<QToolButton *>(toolBarMain->widgetForAction(action
     menuFile->insertSeparator(actionFileExit);
 
     toolBarMain->insertAction(actionSettingsPreferences, actionFilePrint);
-#endif // QT_NO_PRINTER
+#endif // QT_NO_PRINTDIALOG
 
     groupSettingsLanguageList = new QActionGroup(this);
 #ifdef Q_WS_MAEMO_5
@@ -2020,10 +2046,10 @@ void MainWindow::toggleSolutionActions(bool enable)
     buttonSaveSolution->setEnabled(enable);
     actionFileSaveAsSolution->setEnabled(enable);
     solutionText->setEnabled(enable);
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
     actionFilePrint->setEnabled(enable);
     actionFilePrintPreview->setEnabled(enable);
-#endif // QT_NO_PRINTER
+#endif // QT_NO_PRINTDIALOG
 }
 
 void MainWindow::toggleTranclucency(bool enable)

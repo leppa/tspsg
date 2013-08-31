@@ -70,11 +70,11 @@ private slots:
     bool actionFileSaveTriggered();
     void actionFileSaveAsTaskTriggered();
     void actionFileSaveAsSolutionTriggered();
-#ifndef QT_NO_PRINTER
+#ifndef QT_NO_PRINTDIALOG
     void actionFilePrintPreviewTriggered();
     void actionFilePageSetupTriggered();
     void actionFilePrintTriggered();
-#endif // QT_NO_PRINTER
+#endif // QT_NO_PRINTDIALOG
     void actionSettingsPreferencesTriggered();
     void actionSettingsLanguageAutodetectTriggered(bool checked);
     void groupSettingsLanguageListTriggered(QAction *action);
@@ -117,9 +117,11 @@ private:
 #endif // HANDHELD
 #ifndef QT_NO_PRINTER
     QPrinter *printer;
+#ifndef QT_NO_PRINTDIALOG
     QAction *actionFilePrintPreview;
     QAction *actionFilePageSetup;
     QAction *actionFilePrint;
+#endif // QT_NO_PRINTDIALOG
 #endif // QT_NO_PRINTER
     QAction *actionHelpCheck4Updates;
 #ifdef Q_OS_SYMBIAN

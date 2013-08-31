@@ -119,7 +119,7 @@ void toggleStyle(QWidget *widget, bool enable);
 
 #ifndef DOXYGEN_EXCLUDE
 
-#ifdef HANDHELD
+#if defined(HANDHELD) && !defined(Q_OS_BLACKBERRY)
 #   define ICON_SIZE "48x48"
 #   define ICON_FORMAT "png"
 #else

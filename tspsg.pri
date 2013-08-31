@@ -31,6 +31,11 @@ SOURCES += src/main.cpp \
     src/tspsolver.cpp \
     src/qtwin.cpp
 
+blackberry {
+    HEADERS += src/bb10proxystyle.h
+    SOURCES += src/bb10proxystyle.cpp
+}
+
 #Forms
 FORMS += ui/mainwindow.ui \
     ui/settingsdialog.ui
@@ -39,7 +44,9 @@ FORMS += ui/mainwindow.ui \
 RESOURCES += resources/common.qrc \
     l10n/l10n.qrc
 
-handheld {
+blackberry {
+    RESOURCES += resources/desktop.qrc
+} else:handheld {
     RESOURCES += resources/handheld.qrc
 } else {
     RESOURCES += resources/desktop.qrc

@@ -22,12 +22,16 @@
  */
 
 #include "mainwindow.h"
+#include "version.h"
+
+#ifdef Q_OS_BLACKBERRY
+#   include "bb10proxystyle.h"
+#endif // Q_OS_BLACKBERRY
 
 #include <QDateTime>
 #include <QFontDatabase>
 #include <QTextCodec>
 #include <QTranslator>
-#include "version.h"
 
 #if QT_VERSION < QT_VERSION_CHECK(4,6,0)
 #   ifdef Q_CC_MSVC
@@ -63,6 +67,12 @@ QApplication app(argc, argv);
     app.setOrganizationDomain("oleksii.name");
     app.setApplicationName("TSP Solver and Generator");
     app.setApplicationVersion(BUILD_VERSION);
+
+#ifdef Q_OS_BLACKBERRY
+    QApplication::setStartDragDistance(42);
+    QApplication::setStyle(new BB10ProxyStyle);
+    app.setStyleSheet(CSS_FIX);
+#endif // Q_OS_BLACKBERRY
 
     // Seeding random number generator
     qsrand(QDateTime::currentDateTime().toTime_t() ^ QCursor::pos().x() ^ QCursor::pos().y());

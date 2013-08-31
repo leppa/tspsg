@@ -85,8 +85,15 @@
 #define DEF_HQ_GRAPH false
 //! Default for "Embed solution graph into HTML"
 #define DEF_EMBED_GRAPH_INTO_HTML false
-//! Default solution graph size in centimeters (HQ size is this size * HQ_FACTOR)
-#define DEF_GRAPH_WIDTH 4.5
+/*!
+ * \def DEF_GRAPH_WIDTH
+ * \brief Default solution graph size in centimeters (HQ size is this size * HQ_FACTOR)
+ */
+#ifdef Q_OS_BLACKBERRY
+#   define DEF_GRAPH_WIDTH 2.5
+#else
+#   define DEF_GRAPH_WIDTH 4.5
+#endif
 //! Default for "Show solution steps' matrices for every solution step"
 #define DEF_SHOW_MATRIX true
 //! Default for "Show or hide solution steps' matrices based on number of cities in the task"
@@ -103,11 +110,20 @@
  */
 #ifdef Q_OS_SYMBIAN
 #   define DEF_FONT_SIZE 8
+#elif defined(Q_OS_BLACKBERRY)
+#   define DEF_FONT_SIZE 7
 #else
 #   define DEF_FONT_SIZE 10
 #endif // Q_OS_SYMBIAN
-//! Default solution text color
-#define DEF_TEXT_COLOR QApplication::palette().color(QPalette::Text)
+/*!
+ * \def DEF_TEXT_COLOR
+ * \brief Default solution text color
+ */
+#ifdef Q_OS_BLACKBERRY
+#   define DEF_TEXT_COLOR Qt::black
+#else
+#   define DEF_TEXT_COLOR QApplication::palette().color(QPalette::Text)
+#endif
 //! Default selected candidate color
 #define DEF_SELECTED_COLOR "#008000"
 //! Default alternate candidate color

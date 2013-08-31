@@ -23,6 +23,11 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 wincewm*|symbian|maemo*|simulator|blackberry {
     CONFIG += handheld
 }
+blackberry {
+#    DEFINES += QT_NO_SHORTCUT
+    DEFINES += QT_NO_PRINTDIALOG
+    DEFINES += QT_NO_PRINTPREVIEWDIALOG
+}
 
 TEMPLATE = app
 
