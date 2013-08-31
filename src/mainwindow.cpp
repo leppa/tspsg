@@ -81,6 +81,12 @@
 #   include "shobjidl.h"
 #endif
 
+#ifdef Q_OS_BLACKBERRY
+#   include <bb/ApplicationSupport>
+#   include <bb/cascades/pickers/FilePicker>
+using namespace bb::cascades::pickers;
+#endif
+
 #ifdef _T_T_L_
 #include "_.h"
 _C_ _R_ _Y_ _P_ _T_
@@ -263,6 +269,18 @@ MainWindow::~MainWindow()
 #endif
 }
 
+#ifdef Q_OS_BLACKBERRY
+void MainWindow::setWindowModified(bool modified)
+{
+    QMainWindow::setWindowModified(modified);
+    bb::ApplicationSupport app;
+    if (modified)
+        app.setClosePrompt(tr("Unsaved Changes"), tr("The task has unsaved changes. Would you really like to close the application?"));
+    else
+        app.clearClosePrompt();
+}
+#endif
+
 /* Privates **********************************************************/
 
 void MainWindow::actionFileNewTriggered()
@@ -285,20 +303,49 @@ void MainWindow::actionFileOpenTriggered()
     if (!maybeSave())
         return;
 
-QStringList filters(tr("All Supported Formats") + " (*.tspt *.zkt)");
+    QStringList filters;
+#ifdef Q_OS_BLACKBERRY
+    filters << "*.tspt" << "*.zkt";
+#else
+    filters.append(tr("All Supported Formats") + " (*.tspt *.zkt)");
     filters.append(tr("%1 Task Files").arg("TSPSG") + " (*.tspt)");
     filters.append(tr("%1 Task Files").arg("ZKomModRd") + " (*.zkt)");
     filters.append(tr("All Files") + " (*)");
+#endif
 
 QString file;
     if ((fileName == tr("Untitled") + ".tspt") && settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
+#ifdef Q_OS_BLACKBERRY
+        file = settings->value(OS"/LastUsed/TaskLoadPath", "/accounts/1000/shared/documents").toString();
+#else
         file = settings->value(OS"/LastUsed/TaskLoadPath").toString();
+#endif
     else
         file = QFileInfo(fileName).path();
-QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
+#ifdef Q_OS_BLACKBERRY
+    FilePicker fd;
+    fd.setType(FileType::Document | FileType::Other);
+    fd.setDefaultType(FileType::Document);
+    fd.setTitle(tr("Task Load"));
+    fd.setFilter(filters);
+    fd.setDirectories(QStringList(file));
+    fd.open();
+
+    QEventLoop loop;
+    connect(&fd, SIGNAL(pickerClosed()), &loop, SLOT(quit()));
+    loop.exec();
+
+    if (fd.selectedFiles().count() < 1)
+        return;
+    file = fd.selectedFiles().at(0);
+    if (!QFileInfo(file).isFile())
+        return;
+#else
+    QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
     file = QFileDialog::getOpenFileName(this, tr("Task Load"), file, filters.join(";;"), NULL, opts);
     if (file.isEmpty() || !QFileInfo(file).isFile())
         return;
+#endif
     if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
         settings->setValue(OS"/LastUsed/TaskLoadPath", QFileInfo(file).path());
 
@@ -333,7 +380,11 @@ void MainWindow::actionFileSaveAsSolutionTriggered()
 static QString selectedFile;
     if (selectedFile.isEmpty()) {
         if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool()) {
+#ifdef Q_OS_BLACKBERRY
+            selectedFile = settings->value(OS"/LastUsed/SolutionSavePath", "/accounts/1000/shared/documents").toString();
+#else
             selectedFile = settings->value(OS"/LastUsed/SolutionSavePath").toString();
+#endif
         }
     } else
         selectedFile = QFileInfo(selectedFile).path();
@@ -354,6 +405,9 @@ static QString selectedFile;
     }
 
 QStringList filters;
+#ifdef Q_OS_BLACKBERRY
+    filters << "*.pdf" << "*.html" << "*.htm" << "*.odf";
+#else
 #ifndef QT_NO_PRINTER
     filters.append(tr("PDF Files") + " (*.pdf)");
 #endif
@@ -361,12 +415,34 @@ QStringList filters;
     filters.append(tr("Web Archive Files") + " (*.mht *.mhtml)");
     filters.append(tr("OpenDocument Files") + " (*.odt)");
     filters.append(tr("All Files") + " (*)");
+#endif
 
-QFileDialog::Options opts(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog);
-QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filters.join(";;"), NULL, opts);
+#ifdef Q_OS_BLACKBERRY
+    FilePicker fd;
+    fd.setMode(FilePickerMode::Saver);
+    fd.setType(FileType::Document | FileType::Other);
+    fd.setDefaultType(FileType::Document);
+    fd.setAllowOverwrite(true);
+    fd.setTitle(tr("Solution Save"));
+//    fd.setDirectories(QStringList(QFileInfo(selectedFile).path()));
+    fd.setDefaultSaveFileNames(QStringList(selectedFile));
+    fd.setFilter(filters);
+    fd.open();
+
+    QEventLoop loop;
+    connect(&fd, SIGNAL(pickerClosed()), &loop, SLOT(quit()));
+    loop.exec();
+
+    if (fd.selectedFiles().count() < 1)
+        return;
+    selectedFile = fd.selectedFiles().at(0);
+#else
+    QFileDialog::Options opts(settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog);
+    QString file = QFileDialog::getSaveFileName(this, QString(), selectedFile, filters.join(";;"), NULL, opts);
     if (file.isEmpty())
         return;
     selectedFile = file;
+#endif
     if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
         settings->setValue(OS"/LastUsed/SolutionSavePath", QFileInfo(selectedFile).path());
     QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -1815,12 +1891,22 @@ void MainWindow::retranslateUi(bool all)
 #endif
 }
 
-bool MainWindow::saveTask() {
-QStringList filters(tr("%1 Task File").arg("TSPSG") + " (*.tspt)");
+bool MainWindow::saveTask()
+{
+    QStringList filters;
+#ifdef Q_OS_BLACKBERRY
+    filters << "*.tspt";
+#else
+    filters.append(tr("%1 Task File").arg("TSPSG") + " (*.tspt)");
     filters.append(tr("All Files") + " (*)");
+#endif
 QString file;
     if ((fileName == tr("Untitled") + ".tspt") && settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool()) {
+#ifdef Q_OS_BLACKBERRY
+        file = settings->value(OS"/LastUsed/TaskSavePath", "/accounts/1000/shared/documents").toString();
+#else
         file = settings->value(OS"/LastUsed/TaskSavePath").toString();
+#endif
         if (!file.isEmpty())
             file.append("/");
         file.append(fileName);
@@ -1829,11 +1915,32 @@ QString file;
     else
         file = QFileInfo(fileName).path() + "/" + QFileInfo(fileName).completeBaseName() + ".tspt";
 
-QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
+#ifdef Q_OS_BLACKBERRY
+    FilePicker fd;
+    fd.setMode(FilePickerMode::Saver);
+    fd.setType(FileType::Document | FileType::Other);
+    fd.setDefaultType(FileType::Document);
+    fd.setAllowOverwrite(true);
+    fd.setTitle(tr("Task Save"));
+//    fd.setDirectories(QStringList(QFileInfo(file).path()));
+    fd.setDefaultSaveFileNames(QStringList(file));
+    fd.setFilter(filters);
+    fd.open();
+
+    QEventLoop loop;
+    connect(&fd, SIGNAL(pickerClosed()), &loop, SLOT(quit()));
+    loop.exec();
+
+    if (fd.selectedFiles().count() < 1)
+        return false;
+    file = fd.selectedFiles().at(0);
+#else
+    QFileDialog::Options opts = settings->value("UseNativeDialogs", DEF_USE_NATIVE_DIALOGS).toBool() ? QFileDialog::Options() : QFileDialog::DontUseNativeDialog;
     file = QFileDialog::getSaveFileName(this, tr("Task Save"), file, filters.join(";;"), NULL, opts);
     if (file.isEmpty())
         return false;
-    else if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
+#endif
+    if (settings->value("SaveLastUsed", DEF_SAVE_LAST_USED).toBool())
         settings->setValue(OS"/LastUsed/TaskSavePath", QFileInfo(file).path());
     if (QFileInfo(file).suffix().isEmpty()) {
         file.append(".tspt");
