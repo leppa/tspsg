@@ -51,7 +51,7 @@ DEFINES += BUILD_VERSION_MAJOR=$$BUILD_VERSION_MAJOR \
     BUILD_NUMBER=$$BUILD_NUMBER
 
 blackberry {
-    TARGET = tspsg
+    D =
 } else {
     !debug_and_release|build_pass {
         CONFIG(debug, debug|release) {
@@ -64,7 +64,9 @@ blackberry {
             D =
         }
     }
+    DESTDIR = bin
 }
+TARGET = tspsg$${D}
 
 # Saving all intermediate files to tmp directory.
 MOC_DIR = tmp
