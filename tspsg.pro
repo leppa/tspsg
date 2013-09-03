@@ -90,6 +90,8 @@ PRE_TARGETDEPS += compiler_translations_make_all
 # Include 3rd party libraries
 !handheld {
     include(src/3rdparty/qttoolbardialog-2.2_1-opensource/src/qttoolbardialog.pri)
+
+    unix:LIBS += -lX11
 }
 
 win32:LIBS += -lole32
