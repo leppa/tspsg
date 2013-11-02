@@ -1,13 +1,11 @@
-====================================
- TSP Solver and Generator ChangeLog
-====================================
+TSP Solver and Generator ChangeLog
+==================================
 
 
 TSPSG v0.1.4 beta 2 (build 170)
-===============================
+-------------------------------
 
-WHAT'S NEW
-----------
+### WHAT'S NEW ###
 
   - Support for embedded base64 encoded images when saving solution as
     HTML (Ticket #4).
@@ -16,8 +14,7 @@ WHAT'S NEW
     setting in tspsg.ini. Value is in centimeters. (Ticket #8)
 
 
-CHANGES & IMPROVEMENTS
-----------------------
+### CHANGES & IMPROVEMENTS ###
 
   - Any value that is entered into task table and doesn't contain
     numbers is considered an infinity.
@@ -32,8 +29,7 @@ CHANGES & IMPROVEMENTS
     only available in Windows Vista or higher.
 
 
-BUGFIXES
---------
+### BUGFIXES ###
 
   - Bug #2: Solution graph is too small on high resolution screens.
   - Bug #3: Solution graph font size should be fixed.
@@ -48,10 +44,9 @@ BUGFIXES
 
 
 TSPSG v0.1.3 beta 1 (build 145)
-===============================
+-------------------------------
 
-WHAT'S NEW
-----------
+### WHAT'S NEW ###
 
   + Solution graph generation.
   + Support for switching between available Qt styles.
@@ -61,8 +56,7 @@ WHAT'S NEW
     on Windows platform at this moment).
 
 
-IMPROVEMENTS
-------------
+### IMPROVEMENTS ###
 
   + Improved the solution output generation algorithm. It is now about
     1.65 times faster.
@@ -76,8 +70,7 @@ IMPROVEMENTS
   + Support for Windows 7 Taskbar Extensions (namely, Progress Bars).
 
 
-CHANGES
--------
+### CHANGES ###
 
   * About dialog was "tabified". Added GPL License and Credits tabs.
   * Platform dependent settings (e.g. paths) are saved per-platform.
@@ -87,8 +80,7 @@ CHANGES
     Visual C++ Runtime dependency.
 
 
-BUGFIXES
---------
+### BUGFIXES ###
 
   - Solution related actions not disabled when solution is canceled.
   - "Autosize" setting was never saved and was always on.
@@ -96,10 +88,9 @@ BUGFIXES
 
 
 TSPSG v0.1.2 alpha 2 (build 100)
-================================
+--------------------------------
 
-WHAT'S NEW
-----------
+### WHAT'S NEW ###
 
   + New TSPSG icon.
   + Symmetric mode: in this mode the cost of travel from city 1 to
@@ -123,8 +114,7 @@ WHAT'S NEW
     moment).
 
 
-IMPROVEMENTS
-------------
+### IMPROVEMENTS ###
 
   + Improved the solution algorithm.
   + The maximum number of cities in task was increased to 50.
@@ -145,8 +135,7 @@ IMPROVEMENTS
   + Window translucency support in Windows Vista and Windows 7.
 
 
-CHANGES
--------
+### CHANGES ###
 
   * The resulting path is now sorted, always starts from City 1 and has
     "City 1 -> City n -> ... -> City 1" format.
@@ -156,8 +145,7 @@ CHANGES
   * Reworked the About dialog.
 
 
-BUGFIXES
---------
+### BUGFIXES ###
 
   - A solution couldn't be found for some tasks while the task had at
     least one solution (mostly, tasks with a lot of restrictions).
@@ -168,12 +156,11 @@ BUGFIXES
 
 
 TSPSG v0.1.1 alpha 1 (build 42)
-===============================
+-------------------------------
 
 This is initial TSPSG release.
 
-FEATURES
---------
+### FEATURES ###
 
   * Solving taks with up to 5 cities.
   * Generating tasks.

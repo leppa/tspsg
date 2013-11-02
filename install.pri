@@ -13,13 +13,13 @@
 # Common rules
 #l10n.files = l10n/*.qm
 #share.files =
-docs.files = COPYING ChangeLog.txt README.txt INSTALL.txt
+docs.files = COPYING ChangeLog.md README.md INSTALL.md
 INSTALLS += target docs # share l10n
 
 # For *nix:
 #   - executable goes to /usr/bin
 #   - translations go to /usr/share/TSPSG/l10n
-#   - COPYING, ChangeLog.txt, README.txt and INSTALL.txt
+#   - COPYING, ChangeLog.md, README.md and INSTALL.md
 #     go to /usr/share/doc/TSPSG-x.x.x
 unix:!macx:!symbian:!maemo* {
     isEmpty(PREFIX) {

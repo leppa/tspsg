@@ -1,8 +1,11 @@
-=================================
- TSPSG: TSP Solver and Generator
-=================================
+TSPSG: TSP Solver and Generator
+===============================
 
 Copyright (C) 2007-2013 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
+
+
+About
+-----
 
 TSPSG is intended to generate and solve Travelling Salesman Problem
 (TSP) tasks. It uses Branch and Bound method for solving. Its input is
@@ -18,6 +21,9 @@ regular users to solve TSPs. Also, it may be used as an example of
 using Branch and Bound method to solve a particular task.
 
 
+License
+-------
+
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
@@ -31,6 +37,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+Credits
+-------
 
 I'd like to give credits to the following projects which were used in
 the creation of TSP Solver and Generator:
