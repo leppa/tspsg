@@ -65,6 +65,19 @@ the creation of **TSP Solver and Generator**:
     see <http://dejavu-fonts.org/>.
 
 
+Build Status
+------------
+
+Buld status of the `master` branch:
+  * [![Travis CI Build Status][tcimg]][Travis CI]
+  * [![BuildHive Build Status][bhimg]][BuildHive]
+
+
+[Travis CI]: https://travis-ci.org/leppa/tspsg
+[BuildHive]: https://buildhive.cloudbees.com/job/leppa/job/tspsg/
+[tcimg]: https://travis-ci.org/leppa/tspsg.png?branch=master
+[bhimg]: https://buildhive.cloudbees.com/job/leppa/job/tspsg/badge/icon
+
 <!--
 $Id: $Format:%h %ai %an$ $
 $URL: http://tspsg.info/ $
