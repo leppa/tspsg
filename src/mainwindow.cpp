@@ -746,6 +746,9 @@ QString tag;
     about += tr("Build <b>%1</b>, built on <b>%2</b> at <b>%3</b>%5 with <b>%4</b> compiler.").arg(BUILD_NUMBER).arg(__DATE__).arg(__TIME__).arg(COMPILER).arg(tag) + "<br>";
     about += QString("%1: <b>%2</b><br>").arg(tr("Algorithm"), TSPSolver::CTSPSolver::getVersionId());
     about += "<br>";
+    about += QString("<a href=\"https://www.transifex.com/projects/p/tspsg/\">%1</a><br>")
+            .arg(tr("Tanslate %1 into your language").arg(QCoreApplication::applicationName()));
+    about += "<br>";
     about += tr("This program is free software: you can redistribute it and/or modify<br>\n"
         "it under the terms of the GNU General Public License as published by<br>\n"
         "the Free Software Foundation, either version 2 of the License, or<br>\n"

@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+
+[tspsg.en]
+file_filter = l10n/tspsg_<lang>.ts
+source_file = l10n/tspsg_en.ts
+source_lang = en
+type = QT
+
