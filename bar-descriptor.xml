@@ -7,7 +7,7 @@
     <versionNumber>0.1.4</versionNumber>
     <buildId>173</buildId>
     <description>TSP Solver and Generator is intended to generate and solve Travelling Salesman Problem tasks.</description>
-    <copyright>(C) 2007-2013 Oleksii Serdiuk</copyright>
+    <copyright>(C) 2007-2014 Oleksii Serdiuk</copyright>
     <initialWindow>
         <autoOrients>true</autoOrients>
         <systemChrome>none</systemChrome>

@@ -1,6 +1,6 @@
 /*!
  * \file mainwindow.h
- * \author Copyright &copy; 2007-2013 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2014 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
  *
  *  $Id: $Format:%h %ai %an$ $
  *  $URL: http://tspsg.info/ $
@@ -53,7 +53,7 @@ class CTSPModel;
 
 /*!
  * \brief Class for handling Main Window UI and logic.
- * \author Copyright &copy; 2007-2013 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
+ * \author Copyright &copy; 2007-2014 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
  */
 class MainWindow: public QMainWindow, Ui::MainWindow
 {

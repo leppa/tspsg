@@ -1,6 +1,6 @@
 /*
  *  TSPSG: TSP Solver and Generator
- *  Copyright (C) 2007-2013 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
+ *  Copyright (C) 2007-2014 Oleksii Serdiuk <contacts[at]oleksii[dot]name>
  *
  *  $Id: $Format:%h %ai %an$ $
  *  $URL: http://tspsg.info/ $
