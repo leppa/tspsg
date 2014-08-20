@@ -48,12 +48,12 @@ Credits
 I'd like to give credits to the following projects which were used in
 the creation of **TSP Solver and Generator**:
 
-  * TSPSG was created using **Qt framework** licensed under the terms of
-    the *GNU Lesser General Public License*,
-    see <http://qt.nokia.com/>.
+  * TSPSG was created using **Qt** framework licensed under the terms of
+    *GNU Lesser General Public License*,
+    see <http://qt-project.org/>.
 
   * Most icons used in TSPSG are part of **Oxygen Icons** project
-    licensed according to the *GNU Lesser General Public License*,
+    licensed under the terms of *GNU Lesser General Public License*,
     see <http://www.oxygen-icons.org/>.
 
   * Country flag icons used in TSPSG are part of **Flag Icons** by
@@ -61,7 +61,7 @@ the creation of **TSP Solver and Generator**:
     see <https://www.gosquared.com/>.
 
   * TSPSG comes with the default "embedded" font **DejaVu LGC Sans
-    Mono** from the **DejaVu fonts** licensed under a *Free license*,
+    Mono** from the **DejaVu fonts** licensed under *Free license*,
     see <http://dejavu-fonts.org/>.
 
 

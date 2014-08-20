@@ -759,20 +759,20 @@ QString tag;
         "along with TSPSG.  If not, see <a href=\"http://www.gnu.org/licenses/\">www.gnu.org/licenses/</a>.");
 
 QString credits;
-    credits += tr("%1 was created using <b>Qt&nbsp;framework</b> licensed "
-        "under the terms of the GNU Lesser General Public License,<br>\n"
-        "see <a href=\"http://qt.nokia.com/\">qt.nokia.com</a><br>\n"
+    credits += tr("%1 was created using <b>Qt</b> framework licensed "
+        "under the terms of <i>GNU Lesser General Public License</i>,<br>\n"
+        "see <a href=\"http://qt-project.org/\">qt-project.org</a><br>\n"
         "<br>\n"
         "Most icons used in %1 are part of <b>Oxygen&nbsp;Icons</b> project "
-        "licensed according to the GNU Lesser General Public License,<br>\n"
+        "licensed according to the <i>GNU Lesser General Public License</i>,<br>\n"
         "see <a href=\"http://www.oxygen-icons.org/\">www.oxygen-icons.org</a><br>\n"
         "<br>\n"
         "Country flag icons used in %1 are part of <b>Flag Icons</b> by "
-        "<b>GoSquared</b> licensed under the terms of MIT License,<br>\n"
+        "<b>GoSquared</b> licensed under the terms of <i>MIT License</i>,<br>\n"
         "see <a href=\"https://www.gosquared.com/\">www.gosquared.com</a><br>\n"
         "<br>\n"
         "%1 comes with the default \"embedded\" font <b>DejaVu&nbsp;LGC&nbsp;Sans&nbsp;"
-        "Mono</b> from the <b>DejaVu fonts</b> licensed under a Free license</a>,<br>\n"
+        "Mono</b> from the <b>DejaVu fonts</b> licensed under <i>Free license</i></a>,<br>\n"
         "see <a href=\"http://dejavu-fonts.org/\">dejavu-fonts.org</a>")
             .arg("TSPSG");
 
