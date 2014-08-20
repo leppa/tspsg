@@ -56,9 +56,9 @@ the creation of **TSP Solver and Generator**:
     licensed according to the *GNU Lesser General Public License*,
     see <http://www.oxygen-icons.org/>.
 
-  * Country flag icons used in TSPSG are part of the free **Flag Icons**
-    collection created by **IconDrawer**,
-    see <http://www.icondrawer.com/>.
+  * Country flag icons used in TSPSG are part of **Flag Icons** by
+    **GoSquared** licensed under the terms of *MIT License*,
+    see <https://www.gosquared.com/>.
 
   * TSPSG comes with the default "embedded" font **DejaVu LGC Sans
     Mono** from the **DejaVu fonts** licensed under a *Free license*,
