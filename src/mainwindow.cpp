@@ -78,6 +78,7 @@
 #endif
 
 #ifdef Q_OS_WIN32
+#   include <initguid.h>
 #   include "shobjidl.h"
 #endif
 
