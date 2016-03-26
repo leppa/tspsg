@@ -10,7 +10,9 @@
 #
 ######################################################################
 
-exists(".git/") {
+!isEmpty(VERSION_TAG) {
+    DESC = $$VERSION_TAG
+} else:exists(".git/") {
     DESC = $$system("git describe --abbrev=40")
 } else:exists(".tag") {
     DESC = $$cat(".tag")

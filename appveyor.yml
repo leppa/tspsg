@@ -1,0 +1,30 @@
+version: '0.1.4.{build}'
+#image: 'Visual Studio 2017'
+image:
+  - Visual Studio 2017
+  - Visual Studio 2015
+configuration: Release
+
+environment:
+  matrix:
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      PATH: '%PATH%;C:\Qt\5.9\msvc2017_64\bin'
+      VCVARS: '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"'
+      platform: x64
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      PATH: '%PATH%;C:\Qt\5.9\msvc2015\bin'
+      VCVARS: '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86'
+      platform: x86
+#    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+#      PATH: '%PATH%;C:\MinGW\bin;C:\Qt\5.9\mingw53_32\bin'
+#      MAKE: mingw32-make
+
+before_build:
+  - call %VCVARS%
+#- set
+  - lrelease tspsg.pro
+  - qmake -tp vc tspsg.pro CONFIG+=release CONFIG+=_t_t_l_ "VERSION_TAG=%APPVEYOR_BUILD_VERSION%"
+
+build:
+  parallel: true
+  verbosity: detailed
