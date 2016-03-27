@@ -1,7 +1,7 @@
 TSP Solver and Generator
 ========================
 
-Copyright (C) 2007-2014 [Oleksii Serdiuk](mailto:contacts@oleksii.name).
+Copyright (C) 2007-2016 [Oleksii Serdiuk](mailto:contacts@oleksii.name).
 
 
 About TSPSG
