@@ -65,9 +65,9 @@
 
 #ifndef GET_ICON
 #   if QT_VERSION >= QT_VERSION_CHECK(4,6,0)
-#       define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/128x128/"x".png"))
+#       define GET_ICON(x) QIcon::fromTheme(x, QIcon(":/images/icons/128x128/" x ".png"))
 #   else
-#       define GET_ICON(x) QIcon(":/images/icons/128x128/"x".png")
+#       define GET_ICON(x) QIcon(":/images/icons/128x128/" x ".png")
 #   endif
 #endif
 

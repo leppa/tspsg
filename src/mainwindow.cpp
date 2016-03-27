@@ -1445,7 +1445,7 @@ QFont font;
         if (step->price != INFINITY) {
             pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, isInteger(step->price) ? QString("\n%1").arg(step->price) : QString("\n%1").arg(step->price, 0, 'f', settings->value("Task/FractionalAccuracy", DEF_FRACTIONAL_ACCURACY).toInt()));
         } else {
-            pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, "\n"INFSTR);
+            pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, "\n" INFSTR);
         }
     } else {
         pic.drawText(QRectF(x - r, y - r, r * 2, r * 2), Qt::AlignCenter, tr("Root"));
